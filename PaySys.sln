@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.15
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaySys.UnitTest", "PaySys.UnitTest\PaySys.UnitTest.csproj", "{2321989A-A452-4971-B4DF-592DA8CD000C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaySys.EF", "PaySys.EF\PaySys.EF.csproj", "{205E0F3C-71CE-42EE-B4AE-8CCA37414BFE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaySys.UI", "PaySys.UI\PaySys.UI.csproj", "{A070559E-AFF6-476B-A968-EBB1A3E66336}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2321989A-A452-4971-B4DF-592DA8CD000C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2321989A-A452-4971-B4DF-592DA8CD000C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2321989A-A452-4971-B4DF-592DA8CD000C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2321989A-A452-4971-B4DF-592DA8CD000C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{205E0F3C-71CE-42EE-B4AE-8CCA37414BFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{205E0F3C-71CE-42EE-B4AE-8CCA37414BFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{205E0F3C-71CE-42EE-B4AE-8CCA37414BFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{205E0F3C-71CE-42EE-B4AE-8CCA37414BFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A070559E-AFF6-476B-A968-EBB1A3E66336}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A070559E-AFF6-476B-A968-EBB1A3E66336}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A070559E-AFF6-476B-A968-EBB1A3E66336}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A070559E-AFF6-476B-A968-EBB1A3E66336}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
