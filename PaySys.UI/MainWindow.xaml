@@ -12,6 +12,13 @@
                 <MenuItem Header="تعریف عناوین کارکنان" Click="MenuItem_OnClick"> </MenuItem>
             </MenuItem>
         </Menu>
+        <TabControl x:Name="TabCntMain">
+            <TabItem Header="General">
+                <Label Content="Content goes here..." />
+            </TabItem>
+            <TabItem Header="Security" />
+            <TabItem Header="Details" />
+        </TabControl>
 
     </DockPanel>
 

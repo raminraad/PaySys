@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using PaySys.UI.User_Control;
 
 namespace PaySys
 {
@@ -37,8 +38,13 @@ namespace PaySys
 
 	    private void MenuItem_OnClick(object sender, RoutedEventArgs e)
 	    {
-		    MessageBox.Show("Event");
+		    TabItem _tabUserPage;
+			TabCntMain.Items.Clear(); //Clear previous Items in the user controls which is my tabItems    
+		    var userControls = new UcMasterDetail();
+		    _tabUserPage = new TabItem { Content = userControls };
+		    TabCntMain.Items.Add(_tabUserPage); // Add User Controls    
+		    TabCntMain.Items.Refresh();
 
-	    }
+		}
     }
 }

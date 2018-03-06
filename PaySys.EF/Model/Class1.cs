@@ -101,17 +101,16 @@ namespace PaySysModel
 		public int EmployeeId { get; set; }
 		public string FName { get; set; }
 		public string LName { get; set; }
-
-		public string NationalCardNo { set; get; }
-		public string BirthCertificateNo { get; set; }
+		public string NationalNo { set; get; }
+		public string IdCardNo { get; set; }
 		public string DateBirth { get; set; }
-		public string BirthCertificatePlace { get; set; }
+		public string IdCardExportPlace { get; set; }
 		public string BirthPlace { get; set; }
 		public string FatherName { get; set; }
 		public string HomeTel { get; set; }
 		public string Address { get; set; }
 		public string DossierNo { get; set; }
-		public string BirthCertificateDate { set; get; }
+		public string IdCardExportDate { set; get; }
 		public Sex Sex { set; get; }
 		public string CellNo { get; set; }
 		public string PostalCode { get; set; }
