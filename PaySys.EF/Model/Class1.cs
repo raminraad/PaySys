@@ -488,4 +488,13 @@ namespace PaySys.EF
 		public int SysMenuId { get; set; }
 		public string Title { get; set; }
 	}
+
+	public enum TabState
+	{
+		View,
+		Add,
+		Edit,
+		Delete
+	}
+
 }

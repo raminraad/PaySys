@@ -22,96 +22,114 @@ namespace PaySys.UI.User_Control
 	/// </summary>
 	public partial class UcGroupMng : UserControl
 	{
-		private readonly string _typeOfLevel1 = "MainGroup";
-		private readonly string _typeOfLevel2 = "SubGroup";
+		#region Field
 
-		private List<MainGroup> _lstMaster;
-		private PaySysContext _context = new PaySysContext();
-		SolidColorBrush mainGroupItemBrush = new SolidColorBrush();
-		SolidColorBrush subGroupItemBrush = new SolidColorBrush();
+		private readonly List<MainGroup> _lstMaster;
+		private readonly PaySysContext _context = new PaySysContext();
+		readonly SolidColorBrush _mainGroupItemBrush = new SolidColorBrush();
+		readonly SolidColorBrush _subGroupItemBrush = new SolidColorBrush();
+		string treeLevel1 = "MainGroup";
+		string treeLevel2 = "SubGroup";
+		private TabState _tabState;
+
+		#endregion
+
+		#region Prop
 
 		public TabControl ParentTabControl { get; set; }
+
+		public TabState State
+		{
+			get => _tabState;
+
+			set
+			{
+				switch (value)
+				{
+					case TabState.Edit:
+					case TabState.Add:
+						GridDetail.Visibility = Visibility.Visible;
+						TreeViewMain.IsEnabled = false;
+						break;
+					case TabState.View:
+						GridDetail.Visibility = Visibility.Hidden;
+						TreeViewMain.IsEnabled = true;
+						break;
+				}
+				_tabState=value;
+			}
+		}
+
+		#endregion
+
+		#region Ctor
+
 		public UcGroupMng()
 		{
 			InitializeComponent();
-			mainGroupItemBrush.Color = Colors.Maroon;
-			subGroupItemBrush.Color = Colors.DarkSlateBlue;
+			_mainGroupItemBrush.Color = Colors.Maroon;
+			_subGroupItemBrush.Color = Colors.DarkSlateBlue;
 			_lstMaster = _context.MainGroups.Include(x => x.SubGroups).ToList();
 			TreeViewMain.ItemsSource = _lstMaster;
-			GridDetail.Visibility = Visibility.Hidden;
+			State = TabState.View;
+			CommandManager.InvalidateRequerySuggested();
+			TreeViewMain.Focus();
 		}
+
+		#endregion
 
 		private void TreeViewMain_OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
 		{
 			GridDetail.DataContext = TreeViewMain.SelectedItem;
 		}
 
-		private void CommandEdit_OnExecuted(object sender, ExecutedRoutedEventArgs e)
-		{
-			GridDetail.Visibility = Visibility.Visible;
-			TreeViewMain.IsEnabled = false;
-		}
+		#region Edit
 
 		private void CommandEdit_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
 		{
+			bool canEdit;
 			if (TreeViewMain != null)
-				e.CanExecute = TreeViewMain.SelectedItem != null;
+				canEdit = TreeViewMain.SelectedItem != null;
 			else
 			{
-				e.CanExecute = false;
+				canEdit = false;
 			}
+			e.CanExecute = canEdit & State == TabState.View;
 		}
 
-		private void ButtonSave_Click(object sender, RoutedEventArgs e)
+		private void CommandEdit_OnExecuted(object sender, ExecutedRoutedEventArgs e)
 		{
-			BindingExpression binding = TextBoxItemValue.GetBindingExpression(TextBox.TextProperty);
-			binding.UpdateSource();
-			_context.SaveChanges();
-			TreeViewMain.IsEnabled = true;
-			GridDetail.Visibility = Visibility.Hidden;
-			if (TreeViewMain.SelectedItem.GetType().Name.StartsWith(_typeOfLevel1))
+			State = TabState.Edit;
+			TextBoxItemValue.Focus();
+		}
+
+		#endregion
+
+		#region Add
+
+		private void CommandAdd_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
+		{
+			e.CanExecute = State == TabState.View;
+		}
+
+		private void CommandAdd_OnExecuted(object sender, ExecutedRoutedEventArgs e)
+		{
+			State = TabState.Add;
+
+			if (TreeViewMain.SelectedItem.GetType().Name.StartsWith(treeLevel1))
 			{
-				//				MessageBox.Show("Level 1");
 			}
-			else if (TreeViewMain.SelectedItem.GetType().Name.StartsWith(_typeOfLevel2))
+			else
 			{
-				//				MessageBox.Show("Level 2");
+				if (TreeViewMain.SelectedItem.GetType().Name.StartsWith(treeLevel2))
+				{
+				}
 			}
 		}
 
-		private void ButtonCancel_Click(object sender, RoutedEventArgs e)
-		{
-			GridDetail.Visibility = Visibility.Hidden;
-			TreeViewMain.IsEnabled = true;
-		}
+		#endregion
 
-		private void CommandNew_OnExecuted(object sender, ExecutedRoutedEventArgs e)
-		{
-			var msg = string.Empty;
-			msg += $"Cout: {_context.ChangeTracker.Entries().Count()}\n";
-			foreach (var entityEntry in _context.ChangeTracker.Entries())
-			{
-				msg += $"{entityEntry.State} : {entityEntry.OriginalValues.PropertyNames} >> {entityEntry.CurrentValues}\n";
-			}
-			MessageBox.Show(msg);
-		}
-
-		private void CommandNew_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
-		{
-			e.CanExecute = true;
-		}
-
-		private void CommandSave_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
-		{
-			MessageBox.Show("CommandSave_OnCanExecute");
-			e.CanExecute = GridDetail.Visibility == Visibility.Visible;
-		}
-
-		private void CommandCancel_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
-		{
-			MessageBox.Show("CommandCancel_OnCanExecute");
-			e.CanExecute = GridDetail.Visibility == Visibility.Visible;
-		}
+		#region CloseTab
 
 		private void CommandCloseTab_OnExecuted(object sender, ExecutedRoutedEventArgs e)
 		{
@@ -120,7 +138,42 @@ namespace PaySys.UI.User_Control
 
 		private void CommandCloseTab_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
 		{
-			MessageBox.Show("CommandCloseTab_OnCanExecute");
+			e.CanExecute = State == TabState.View;
 		}
+
+		#endregion
+
+		#region Save
+
+		private void ButtonSave_Click(object sender, RoutedEventArgs e)
+		{
+			BindingExpression binding = TextBoxItemValue.GetBindingExpression(TextBox.TextProperty);
+			binding.UpdateSource();
+			_context.SaveChanges();
+			State = TabState.View;
+			TreeViewMain.Focus();
+		}
+
+		private void CommandSave_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
+		{
+			e.CanExecute = State == TabState.Add || State == TabState.Edit;
+		}
+
+		#endregion
+
+		#region Cancel
+
+		private void ButtonCancel_Click(object sender, RoutedEventArgs e)
+		{
+			State = TabState.View;
+			TreeViewMain.Focus();
+		}
+
+		private void CommandCancel_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
+		{
+			e.CanExecute = State == TabState.Add || State == TabState.Edit;
+		}
+
+		#endregion
 	}
 }

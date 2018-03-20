@@ -67,7 +67,7 @@
     <Compile Include="Command\CommandCancel.cs" />
     <Compile Include="Command\CommandCloseTab.cs" />
     <Compile Include="Command\CommandEdit.cs" />
-    <Compile Include="Command\CommandNew.cs" />
+    <Compile Include="Command\CommandAdd.cs" />
     <Compile Include="Command\CommandSave.cs" />
     <Compile Include="User Control\UcEmployee.xaml.cs">
       <DependentUpon>UcEmployee.xaml</DependentUpon>

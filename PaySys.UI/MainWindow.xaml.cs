@@ -61,6 +61,7 @@ namespace PaySys
 				Content = userControls,
 				Header = "گروه های استخدامی"
 			};
+			userControls.ParentTabControl = TabCntMain;
 			TabCntMain.Items.Add(tabGroupMng);
 			TabCntMain.Items.Refresh();
 		}

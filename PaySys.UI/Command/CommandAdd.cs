@@ -2,18 +2,18 @@
 
 namespace PaySys.UI
 {
-	public class CommandNew
+	public class CommandAdd
 	{
-		static CommandNew()
+		static CommandAdd()
 		{
 			// Initialize the command.
 			InputGestureCollection inputs = new InputGestureCollection
 			{
 				new KeyGesture(Key.N, ModifierKeys.Control, "Ctrl+N"),
 			};
-			New = new RoutedUICommand("New", "New", typeof(CommandNew), inputs);
+			Add = new RoutedUICommand("Add", "Add", typeof(CommandAdd), inputs);
 		}
 
-		public static RoutedUICommand New { get; }
+		public static RoutedUICommand Add { get; }
 	}
 }
