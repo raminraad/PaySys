@@ -1,5 +1,5 @@
 ﻿using System.Data.Entity;
-using PaySysModel;
+using PaySys.EF;
 
 namespace PaySys.EF
 {
@@ -7,7 +7,7 @@ namespace PaySys.EF
 	{
 		public PaySysContext() : base("PaySysContext")
 		{
-			Database.SetInitializer(new DropCreateDatabaseAlways<PaySysContext>());
+			Database.SetInitializer(new PaySysDbInitializer());
 		}
 
 		public DbSet<MainGroup> MainGroups { set; get; }

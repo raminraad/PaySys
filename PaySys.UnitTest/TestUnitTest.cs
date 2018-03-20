@@ -2,7 +2,6 @@
 using System.Threading;
 using NUnit.Framework;
 using PaySys.EF;
-using PaySysModel;
 
 namespace PaySys.UnitTest
 {

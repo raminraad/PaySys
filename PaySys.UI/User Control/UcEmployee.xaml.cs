@@ -12,18 +12,27 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using PaySys.EF;
 
 namespace PaySys.UI.User_Control
 {
     /// <summary>
-    /// Interaction logic for UcMasterDetail.xaml
+    /// Interaction logic for UcEmployee.xaml
     /// </summary>
-    public partial class UcMasterDetail : UserControl
+    public partial class UcEmployee : UserControl
     {
-        public UcMasterDetail()
+	    private List<Employee> _lstMain;
+	    private PaySysContext _context = new PaySysContext();
+		public UcEmployee()
         {
             InitializeComponent();
+			_lstMain = _context.Employees.ToList();
+		    GridMain.ItemsSource = _lstMain;
         }
 
-	}
+	    private void GridMain_OnSelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+	    {
+		    GrdDetail.DataContext = (Employee) GridMain.SelectedItem;
+	    }
+    }
 }
