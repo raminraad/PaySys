@@ -64,6 +64,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Command\CommandCancel.cs" />
+    <Compile Include="Command\CommandCloseTab.cs" />
+    <Compile Include="Command\CommandEdit.cs" />
+    <Compile Include="Command\CommandAdd.cs" />
+    <Compile Include="Command\CommandSave.cs" />
+    <Compile Include="User Control\UcEmployee.xaml.cs">
+      <DependentUpon>UcEmployee.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\UcGroupMng.xaml.cs">
+      <DependentUpon>UcGroupMng.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -76,6 +87,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="User Control\UcEmployee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="User Control\UcGroupMng.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -108,7 +127,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="User Control\" />
+    <ProjectReference Include="..\PaySys.EF\PaySys.EF.csproj">
+      <Project>{205E0F3C-71CE-42EE-B4AE-8CCA37414BFE}</Project>
+      <Name>PaySys.EF</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

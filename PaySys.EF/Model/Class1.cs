@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
-namespace PaySysModel
+namespace PaySys.EF
 {
 	public class MainGroup
 	{
@@ -14,7 +15,9 @@ namespace PaySysModel
 	public class SubGroup
 	{
 		public int SubGroupId { get; set; }
+		[Required]
 		public virtual MainGroup MainGroup { set; get; }
+		public string Title { get; set; }
 	}
 
 	public class ContractFieldTitle
@@ -56,7 +59,9 @@ namespace PaySysModel
 
 	public enum Sex
 	{
-		//todo: fill enum
+		Unknown,
+		مذکر,
+		مونث
 	}
 
 	public enum ContentType
@@ -99,21 +104,22 @@ namespace PaySysModel
 	public class Employee
 	{
 		public int EmployeeId { get; set; }
+		public string PersonnelCode { get; set; }
+		public string DossierNo { get; set; }
 		public string FName { get; set; }
 		public string LName { get; set; }
-
-		public string NationalCardNo { set; get; }
-		public string BirthCertificateNo { get; set; }
-		public string DateBirth { get; set; }
-		public string BirthCertificatePlace { get; set; }
-		public string BirthPlace { get; set; }
 		public string FatherName { get; set; }
-		public string HomeTel { get; set; }
-		public string Address { get; set; }
-		public string DossierNo { get; set; }
-		public string BirthCertificateDate { set; get; }
 		public Sex Sex { set; get; }
+		public string NationalNo { set; get; }
+		public string IdCardNo { get; set; }
+		public string DateBirth { get; set; }
+		public string BirthPlace { get; set; }
+		public string IdCardExportPlace { get; set; }
+		public string IdCardExportDate { set; get; }
+		public string HomeTel { get; set; }
 		public string CellNo { get; set; }
+		public string Address { get; set; }
+		
 		public string PostalCode { get; set; }
 	}
 
@@ -482,4 +488,13 @@ namespace PaySysModel
 		public int SysMenuId { get; set; }
 		public string Title { get; set; }
 	}
+
+	public enum TabState
+	{
+		View,
+		Add,
+		Edit,
+		Delete
+	}
+
 }

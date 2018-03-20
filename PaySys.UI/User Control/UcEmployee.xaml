@@ -1,0 +1,116 @@
+﻿<UserControl x:Class="PaySys.UI.User_Control.UcEmployee" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" d:DesignWidth="900" Width="auto" Height="auto">
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="RowDefinition">
+                <Setter Property="Height" Value="35" />
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="220" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <ToolBarTray FlowDirection="RightToLeft">
+                <ToolBar>
+                    <Button Command="New" Content="New" />
+                    <Button Command="Open" Content="Open" />
+                    <Button Command="Save" Content="Save" />
+                </ToolBar>
+                <ToolBar>
+                    <Button Command="Cut" Content="Cut" />
+                    <Button Command="Copy" Content="Copy" />
+                    <Button Command="Paste" Content="Paste" />
+                </ToolBar>
+            </ToolBarTray>
+        </StackPanel>
+        <ScrollViewer FlowDirection="RightToLeft" Background="DarkSlateGray" Grid.Row="1" Height="auto">
+            <DataGrid x:Name="GridMain" ItemsSource="{Binding Source=_lstMain}" SelectedCellsChanged="GridMain_OnSelectedCellsChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="نام" Binding="{Binding FName}" />
+                    <DataGridTextColumn Header="نام خانوادگی" Binding="{Binding LName}" />
+                    <DataGridTextColumn Header="کد پرسنلی" Binding="{Binding PersonnelCode}" />
+                    <DataGridTextColumn Header="شماره پرونده" Binding="{Binding DossierNo}" />
+                    <DataGridTextColumn Header="نام پدر" Binding="{Binding FatherName}" />
+                    <DataGridTextColumn Header="جنسیت" Binding="{Binding Sex}" />
+                    <DataGridTextColumn Header="کد ملی" Binding="{Binding NationalNo}" />
+                    <DataGridTextColumn Header="ش شناسنامه" Binding="{Binding IdCardNo}" />
+                    <DataGridTextColumn Header="تاریخ تولد" Binding="{Binding DateBirth}" />
+                    <DataGridTextColumn Header="محل تولد" Binding="{Binding BirthPlace}" />
+                    <DataGridTextColumn Header="تاریخ صدور" Binding="{Binding IdCardExportPlace}" />
+                    <DataGridTextColumn Header="محل صدور" Binding="{Binding IdCardExportDate}" />
+                    <DataGridTextColumn Header="تلفن منزل" Binding="{Binding HomeTel}" />
+                    <DataGridTextColumn Header="شماره موبایل" Binding="{Binding CellNo}" />
+                    <DataGridTextColumn Header="آدرس" Binding="{Binding Address}" />
+                    <DataGridTextColumn Header="کدپستی" Binding="{Binding PostalCode}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+        <Grid x:Name="GrdDetail" FlowDirection="RightToLeft" Grid.Row="2" Height="auto" HorizontalAlignment="Center" DockPanel.Dock="Bottom">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70" />
+                <ColumnDefinition Width="120" />
+                <ColumnDefinition Width="70" />
+                <ColumnDefinition Width="120" />
+                <ColumnDefinition Width="70" />
+                <ColumnDefinition Width="120" />
+                <ColumnDefinition Width="70" />
+                <ColumnDefinition Width="120" />
+
+            </Grid.ColumnDefinitions>
+            <Grid.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="FontSize" Value="12" />
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                </Style>
+
+                <Style TargetType="TextBox">
+                    <Setter Property="Margin" Value="2,8" />
+                    <!--                    <Setter Property="Height" Value="20px" />-->
+                </Style>
+            </Grid.Resources>
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="کد پرسنلی:" Height="16" />
+            <TextBlock Grid.Row="0" Grid.Column="2" Text="شماره پرونده:" Height="16" />
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="نام:" Height="16" />
+            <TextBlock Grid.Row="1" Grid.Column="2" Text="نام خانوادگی:" Height="16" />
+            <TextBlock Grid.Row="1" Grid.Column="4" Text="نام پدر:" Height="16" />
+            <TextBlock Grid.Row="1" Grid.Column="6" Text="جنسیت:" />
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="کد ملی:" Height="16" />
+            <TextBlock Grid.Row="2" Grid.Column="2" Text="ش شناسنامه:" Height="16" />
+            <TextBlock Grid.Row="2" Grid.Column="4" Text="تاریخ تولد:" Height="16" />
+            <TextBlock Grid.Row="2" Grid.Column="6" Text="محل تولد:" Height="16" />
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="تاریخ صدور:" Height="16" />
+            <TextBlock Grid.Row="3" Grid.Column="2" Text="محل صدور:" Height="16" />
+            <TextBlock Grid.Row="3" Grid.Column="4" Text="تلفن منزل:" Height="16" />
+            <TextBlock Grid.Row="3" Grid.Column="6" Text="شماره موبایل:" Height="16" />
+            <TextBlock Grid.Row="4" Grid.Column="0" Text="کدپستی:" Height="16" />
+            <TextBlock Grid.Row="5" Grid.Column="0" Text="آدرس:" Height="16" />
+
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding PersonnelCode}" />
+            <TextBox Grid.Row="0" Grid.Column="3" Text="{Binding DossierNo}" />
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding FName}" />
+            <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding LName}" />
+            <TextBox Grid.Row="1" Grid.Column="5" Text="{Binding FatherName}" />
+            <TextBox Grid.Row="1" Grid.Column="7" Text="{Binding Sex}" />
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding NationalNo}" />
+            <TextBox Grid.Row="2" Grid.Column="3" Text="{Binding IdCardNo}" />
+            <TextBox Grid.Row="2" Grid.Column="5" Text="{Binding DateBirth}" />
+            <TextBox Grid.Row="2" Grid.Column="7" Text="{Binding BirthPlace}" />
+            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding IdCardExportPlace}" />
+            <TextBox Grid.Row="3" Grid.Column="3" Text="{Binding IdCardExportPlace}" />
+            <TextBox Grid.Row="3" Grid.Column="5" Text="{Binding HomeTel}" />
+            <TextBox Grid.Row="3" Grid.Column="7" Text="{Binding CellNo}" />
+            <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding PostalCode}" />
+            <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Address}" Grid.ColumnSpan="7" />
+
+        </Grid>
+    </Grid>
+</UserControl>

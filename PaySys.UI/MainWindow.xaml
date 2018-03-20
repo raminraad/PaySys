@@ -9,9 +9,17 @@
     <DockPanel FlowDirection="RightToLeft">
         <Menu Name="MnuMain" DockPanel.Dock="Top">
             <MenuItem Header="اطلاعات پایه">
-                <MenuItem Header="تعریف عناوین کارکنان" Click="MenuItem_OnClick"> </MenuItem>
+                <MenuItem x:Name="MenuItemEmployeeMng" Header="اطلاعات پرسنل" Click="MenuItemEmployeeMng_OnClick"> </MenuItem>
+                <MenuItem x:Name="MenuItemGroupMng" Header="گروه های استخدامی" Click="MenuItemGroupMng_OnClick"> </MenuItem>
             </MenuItem>
         </Menu>
+        <TabControl x:Name="TabCntMain">
+            <TabItem Header="General">
+                
+            </TabItem>
+            <TabItem Header="Security" />
+            <TabItem Header="Details" />
+        </TabControl>
 
     </DockPanel>
 
