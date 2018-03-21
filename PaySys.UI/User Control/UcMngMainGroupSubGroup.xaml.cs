@@ -13,14 +13,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using PaySys.EF;
 
 namespace PaySys.UI.User_Control
 {
 	/// <summary>
-	/// Interaction logic for UcGroupMng.xaml
+	/// Interaction logic for UcMngMainGroupSubGroup.xaml
 	/// </summary>
-	public partial class UcGroupMng : UserControl
+	public partial class UcMngMainGroupSubGroup : UserControl
 	{
 		#region Field
 
@@ -28,8 +29,8 @@ namespace PaySys.UI.User_Control
 		private readonly PaySysContext _context = new PaySysContext();
 		readonly SolidColorBrush _mainGroupItemBrush = new SolidColorBrush();
 		readonly SolidColorBrush _subGroupItemBrush = new SolidColorBrush();
-		string treeLevel1 = "MainGroup";
-		string treeLevel2 = "SubGroup";
+		string _treeLevel1 = "MainGroup";
+		string _treeLevel2 = "SubGroup";
 		private TabState _tabState;
 
 		#endregion
@@ -64,7 +65,7 @@ namespace PaySys.UI.User_Control
 
 		#region Ctor
 
-		public UcGroupMng()
+		public UcMngMainGroupSubGroup()
 		{
 			InitializeComponent();
 			_mainGroupItemBrush.Color = Colors.Maroon;
@@ -72,7 +73,6 @@ namespace PaySys.UI.User_Control
 			_lstMaster = _context.MainGroups.Include(x => x.SubGroups).ToList();
 			TreeViewMain.ItemsSource = _lstMaster;
 			State = TabState.View;
-			CommandManager.InvalidateRequerySuggested();
 			TreeViewMain.Focus();
 		}
 
@@ -116,12 +116,12 @@ namespace PaySys.UI.User_Control
 		{
 			State = TabState.Add;
 
-			if (TreeViewMain.SelectedItem.GetType().Name.StartsWith(treeLevel1))
+			if (TreeViewMain.SelectedItem.GetType().Name.StartsWith(_treeLevel1))
 			{
 			}
 			else
 			{
-				if (TreeViewMain.SelectedItem.GetType().Name.StartsWith(treeLevel2))
+				if (TreeViewMain.SelectedItem.GetType().Name.StartsWith(_treeLevel2))
 				{
 				}
 			}
@@ -175,5 +175,6 @@ namespace PaySys.UI.User_Control
 		}
 
 		#endregion
+		
 	}
 }

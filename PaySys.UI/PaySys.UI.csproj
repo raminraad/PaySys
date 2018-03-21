@@ -46,6 +46,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -69,11 +70,17 @@
     <Compile Include="Command\CommandEdit.cs" />
     <Compile Include="Command\CommandAdd.cs" />
     <Compile Include="Command\CommandSave.cs" />
-    <Compile Include="User Control\UcEmployee.xaml.cs">
-      <DependentUpon>UcEmployee.xaml</DependentUpon>
+    <Compile Include="User Control\UcMngEmployee.xaml.cs">
+      <DependentUpon>UcMngEmployee.xaml</DependentUpon>
     </Compile>
-    <Compile Include="User Control\UcGroupMng.xaml.cs">
-      <DependentUpon>UcGroupMng.xaml</DependentUpon>
+    <Compile Include="User Control\UcMngMainGroupSubGroup.xaml.cs">
+      <DependentUpon>UcMngMainGroupSubGroup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\UcMngContractFieldTitle.xaml.cs">
+      <DependentUpon>UcMngContractFieldTitle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\UcMngRetirementFormField.xaml.cs">
+      <DependentUpon>UcMngRetirementFormField.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -87,11 +94,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="User Control\UcEmployee.xaml">
+    <Page Include="User Control\UcMngEmployee.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="User Control\UcGroupMng.xaml">
+    <Page Include="User Control\UcMngMainGroupSubGroup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="User Control\UcMngContractFieldTitle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="User Control\UcMngRetirementFormField.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

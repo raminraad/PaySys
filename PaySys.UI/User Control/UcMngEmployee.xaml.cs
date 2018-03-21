@@ -17,13 +17,13 @@ using PaySys.EF;
 namespace PaySys.UI.User_Control
 {
     /// <summary>
-    /// Interaction logic for UcEmployee.xaml
+    /// Interaction logic for UcMngEmployee.xaml
     /// </summary>
-    public partial class UcEmployee : UserControl
+    public partial class UcMngEmployee : UserControl
     {
 	    private List<Employee> _lstMain;
 	    private PaySysContext _context = new PaySysContext();
-		public UcEmployee()
+		public UcMngEmployee()
         {
             InitializeComponent();
 			_lstMain = _context.Employees.ToList();

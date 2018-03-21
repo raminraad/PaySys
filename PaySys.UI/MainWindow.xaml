@@ -1,26 +1,84 @@
-﻿<Window x:Class="PaySys.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PaySys"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <DockPanel FlowDirection="RightToLeft">
-        <Menu Name="MnuMain" DockPanel.Dock="Top">
-            <MenuItem Header="اطلاعات پایه">
-                <MenuItem x:Name="MenuItemEmployeeMng" Header="اطلاعات پرسنل" Click="MenuItemEmployeeMng_OnClick"> </MenuItem>
-                <MenuItem x:Name="MenuItemGroupMng" Header="گروه های استخدامی" Click="MenuItemGroupMng_OnClick"> </MenuItem>
-            </MenuItem>
-        </Menu>
-        <TabControl x:Name="TabCntMain">
-            <TabItem Header="General">
-                
-            </TabItem>
-            <TabItem Header="Security" />
-            <TabItem Header="Details" />
-        </TabControl>
-
-    </DockPanel>
-
+﻿<Window x:Class="PaySys.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:PaySys" mc:Ignorable="d" Title="MainWindow" Height="350" Width="525">
+	<DockPanel FlowDirection="RightToLeft">
+		<Menu Name="MnuMain" DockPanel.Dock="Top">
+			<MenuItem Header="اطلاعات پایه">
+				<MenuItem x:Name="MnuEmployeeMng" Header="اطلاعات پرسنل" Click="MnuEmployeeMng_OnClick" />
+				<MenuItem x:Name="MnuGroupMng" Header="گروه های استخدامی" Click="MnuGroupMng_OnClick" />
+				<MenuItem x:Name="mnuItem" Header="تعریف عناوین کارکنان" />
+				<MenuItem x:Name="mnuItem2" Header="عناوین فیلدهای احکام" />
+				<MenuItem x:Name="mnuItem3" Header="تعریف مقادیر گروهی" />
+				<MenuItem Header="تعریف پارامترهای گروهی" />
+				<MenuItem Header="ورود اطلاعات احکام" />
+				<MenuItem Header="تعریف مبانی مالیات">
+					<MenuItem Header="جدول مالیات" />
+					<MenuItem Header="اطلاعات اصلی" />
+				</MenuItem>
+				<MenuItem Header="تعریف شهرهای مأموریت" />
+				<MenuItem Header="تغییر کد پرسنلی" />
+				<MenuItem Header="تغییر گروه" />
+				<MenuItem Header="ورود اطلاعات سیستم" />
+				<MenuItem Header="تعریف مواد هزینه" />
+				<MenuItem Header="تفکیک مواد هزینه حقوق" />
+				<MenuItem Header="موقعیت فیلدها در بازنشستگی" />
+				<MenuItem Header="ثبت فیش های درآمدی" />
+				<MenuItem Header="چاپ لیست فیش ها" />
+				<MenuItem Header="گزارش بانکی فیش های درآمد" />
+			</MenuItem>
+			<MenuItem Header="عملیات ماه جاری">
+				<MenuItem Header="ورود اطلاعات بصورت انفرادی" />
+				<MenuItem Header="ورود اطلاعات بصورت گروهی" />
+				<MenuItem Header="تعریف عناوین پرداختهای متفرقه" />
+				<MenuItem Header="ورود اطلاعات متفرقه ماهانه" />
+				<MenuItem Header="ورود مابه التفاوت احکام" />
+				<MenuItem Header="اطلاح بایگانی تفاوت ها" />
+				<MenuItem Header="ورود احکام مأموریت" />
+				<MenuItem Header="اصلاح بایگانی مأموریت ها" />
+				<MenuItem Header="تعریف عناوین بدهی ها" />
+				<MenuItem Header="ورود مانده بدهی ها" />
+				<MenuItem Header="محاسبات اضافه کاری گذشته" />
+				<MenuItem Header="فرمول عیدی پایان سال" />
+				<MenuItem Header="درج مدت شمول عیدی هر نفر به روز" />
+				<MenuItem Header="درج مبالغ کسور مساعده عیدی" />
+				<MenuItem Header="چاپ لیست عیدی پایان سال" />
+			</MenuItem>
+			<MenuItem Header="گزارش گیری">
+				<MenuItem Header="انجام محاسبات حقوق و اضافه کار" />
+				<MenuItem Header="تهیه لیست های حقوق ماهانه" />
+				<MenuItem Header="چاپ لیست پرداختهای متفرقه" />
+				<MenuItem Header="تهیه لیست مغایرت با ماه گذشته" />
+				<MenuItem Header="چاپ لیست بدهی ها" />
+				<MenuItem Header="لیست ما به التفاوت" />
+				<MenuItem Header="چاپ لیست مأموریت" />
+				<MenuItem Header="تهیه فیش بانکی" />
+				<MenuItem Header="لیست بانکی خالص پرداختی" />
+				<MenuItem Header="تهیه دیسکت بانکی" />
+				<MenuItem Header="مالیات مکسوره" />
+				<MenuItem x:Name="mnuRetirementFormField" Header="فرم کسور بازنشستگی" Click="mnuRetirementFormField_OnClick"/>
+				<MenuItem Header="بیمه خدمات درمانی" />
+				<MenuItem Header="تهیه نماینده اسناد" />
+				<MenuItem Header="چاپ لیست کسور بیمه تکمیلی" />
+				<MenuItem Header="لیست بانکی پس انداز کارکنان" />
+				<MenuItem Header="چاپ لیست اضافه کار" />
+				<MenuItem Header="تهیه دیسکت بیمه تأمین اجتماعی" />
+				<MenuItem Header="گزارش مانده بدهی ها" />
+				<MenuItem Header="چاپ لیست خالی کارکنان" />
+				<MenuItem Header="سیستم">
+					<MenuItem Header="انتخاب ماه" />
+					<MenuItem Header="تغییر سال مالی" />
+					<MenuItem Header="پایان سال" />
+					<MenuItem Header="کپی برداری" />
+					<MenuItem Header="فارسی سازی چاپگر" />
+					<MenuItem Header="انتخاب فونت" />
+					<MenuItem Header="معرفی کاربران" />
+					<MenuItem Header="تقویم" />
+					<MenuItem Header="خروج از برنامه" />
+				</MenuItem>
+			</MenuItem>
+		</Menu>
+		<TabControl x:Name="TabCntMain">
+			<TabItem Header="General" />
+			<TabItem Header="Security" />
+			<TabItem Header="Details" />
+		</TabControl>
+	</DockPanel>
 </Window>
