@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PaySys.EF
 {
-	/// <summary>#1 گروه اصلی</summary>
+	/// <summary>#01 گروه اصلی</summary>
 	public class MainGroup
 	{
 		public int MainGroupId { set; get; }
@@ -14,7 +14,7 @@ namespace PaySys.EF
 		public virtual List<GroupMisc> GroupMiscs { get; set; }
 	}
 
-	/// <summary>#2 زیر گروه</summary>
+	/// <summary>#02 زیر گروه</summary>
 	public class SubGroup
 	{
 		public int SubGroupId { get; set; }
@@ -30,7 +30,7 @@ namespace PaySys.EF
 		public string Title { get; set; }
 	}
 
-	/// <summary>#3 عناوین بدهی یا پرداختهای متفرقه</summary>
+	/// <summary>#03 عناوین بدهی یا پرداختهای متفرقه</summary>
 	public class MiscTitle
 	{
 		public int MiscTitleId { get; set; }
@@ -42,7 +42,7 @@ namespace PaySys.EF
 
 	}
 
-	/// <summary>#4 بدهی یا پرداخت های متفرقه در سال و ماه</summary>
+	/// <summary>#04 بدهی یا پرداخت های متفرقه در سال و ماه</summary>
 	public class GroupMisc
 	{
 		public int GroupMiscId { get; set; }
@@ -55,7 +55,7 @@ namespace PaySys.EF
 		public virtual List<EmployeeMisc> EmployeeMiscs { get; set; }
 	}
 
-	/// <summary>#5 پرداختهای متفرقه دخیل در محاسبات مؤلفه ها</summary>
+	/// <summary>#05 پرداختهای متفرقه دخیل در محاسبات مؤلفه ها</summary>
 	public class SpecMisc
 	{
 		public int SpecMiscId { get; set; }
@@ -63,7 +63,7 @@ namespace PaySys.EF
 				public virtual GroupSpecValue GroupSpecValue { get; set; }
 	}
 
-	/// <summary>#6 عناوین مؤلفه های محاسباتی گروهی</summary>
+	/// <summary>#06 عناوین مؤلفه های محاسباتی گروهی</summary>
 	public class GroupSpecTitle
 	{
 		public int GroupSpecTitleId { get; set; }
@@ -73,7 +73,7 @@ namespace PaySys.EF
 
 	}
 
-	/// <summary>#7 مقادیر مؤلفه های محاسباتی گروهی زیرگروه در سال و ماه</summary>
+	/// <summary>#07 مقادیر مؤلفه های محاسباتی گروهی زیرگروه در سال و ماه</summary>
 	public class GroupSpecValue
 	{
 		public int GroupSpecValueId { get; set; }
@@ -85,7 +85,7 @@ namespace PaySys.EF
 		public virtual SubGroup SubGroup { get; set; }
 	}
 
-	/// <summary>#8 فیلدهای احکام دخیل در محاسبات مؤلفه ها</summary>
+	/// <summary>#08 فیلدهای احکام دخیل در محاسبات مؤلفه ها</summary>
 	public class SpecContractField
 	{
 		public int SpecContractFieldId { get; set; }
@@ -94,7 +94,7 @@ namespace PaySys.EF
 
 	}
 
-	/// <summary>#9 مواد هزینه</summary>
+	/// <summary>#09 مواد هزینه</summary>
 	public class ExpenseArticle
 	{
 		public int ExpenseArticleId { get; set; }
@@ -126,6 +126,8 @@ namespace PaySys.EF
 		public string Title { get; set; }
 		public string Alias { get; set; }
 		public ValueType ValueType { set; get; }
+		public virtual List<GroupMonthlyVariable> GroupMonthlyVariables { get; set; }
+
 	}
 
 	/// <summary>#12 عناوین فیلدهای احکام</summary>
@@ -133,6 +135,8 @@ namespace PaySys.EF
 	{
 		public int ContractFieldTitleId { get; set; }
 		public string Title { get; set; }
+		public virtual List<GroupContractFieldTitle> GroupContractFieldTitles { get; set; }
+
 	}
 
 	/// <summary>#13 عناوین فیلدهای احکام گروه اصلی در سال</summary>
@@ -140,12 +144,20 @@ namespace PaySys.EF
 	{
 		public int GroupContractFieldTitlesId { get; set; }
 		public int Year { get; set; }
+		public virtual ExpenseArticle ExpenseArticle { get; set; }
+		public virtual List<SpecContractField> SpecContractFields { get; set; }
+		public virtual MainGroup MainGroup { get; set; }
+		public virtual ContractFieldTitle ContractFieldTitle { get; set; }
+		public virtual List<ContractDetail> ContractDetails { get; set; }
+
 	}
 
 	/// <summary>#14 فرمول مأموریت زیرگروه در سال و ماه</summary>
 	public class MissionFormula
 	{
 		public int MissionFormulaId { get; set; }
+		public virtual SubGroup SubGroup { get; set; }
+
 	}
 
 	/// <summary>#15 جدول مالیات</summary>
@@ -154,7 +166,10 @@ namespace PaySys.EF
 		public int TaxTableId { get; set; }
 		public int Year { get; set; }
 		public int Month { get; set; }
+		public virtual SubGroup SubGroup { get; set; }
+	public virtual List<TaxRow> TaxRows { get; set; }
 	}
+
 
 	/// <summary>#16 سطر جدول مالیات</summary>
 	public class TaxRow
@@ -162,6 +177,8 @@ namespace PaySys.EF
 		public int TaxRowId { get; set; }
 		public float ValueTo { get; set; }
 		public float Factor { get; set; }
+		public virtual TaxTable TaxTable { get; set; }
+
 	}
 
 	/// <summary>#17 عناوین متغیرهای ماهانه گروه اصلی</summary>
@@ -169,6 +186,11 @@ namespace PaySys.EF
 	{
 		public int GroupMonthlyVariableId { get; set; }
 		public bool IsActive { get; set; }
+		public virtual MonthlyVariableTitle MonthlyVariableTitle { get; set; }
+		public virtual ContractFieldTitle ContractFieldTitle { get; set; }
+		public virtual MainGroup MainGroup { get; set; }
+		public virtual List<EmployeeMonthlyVariable> EmployeeMonthlyVariables { get; set; }
+
 	}
 
 	/// <summary>#18 مقادیر بدهی یا پرداختهای متفرقه برای اشخاص در سال و ماه</summary>
@@ -176,6 +198,9 @@ namespace PaySys.EF
 	{
 		public int EmployeeMiscId { get; set; }
 		public float Value { get; set; }
+		public virtual GroupMisc GroupMisc { get; set; }
+		public virtual Employee Employee { get; set; }
+
 	}
 
 	/// <summary>#19 مقادیر متغیرهای ماهانه برای اشخاص در سال و ماه</summary>
@@ -186,22 +211,20 @@ namespace PaySys.EF
 		public int Month { get; set; }
 		public float ValueNum { get; set; }
 		public float ValueStr { get; set; }
+		public virtual GroupMonthlyVariable GroupMonthlyVariable { get; set; }
+		public virtual Employee Employee { get; set; }
+
 	}
 
 	/// <summary>#20 پایه حکم</summary>
 	public class ContractMaster
 	{
 		public int ContractMasterId { get; set; }
-
-//		public virtual SubGroup SubGroup { set; get; }
-//		public virtual Employee Employee { get; set; }
 		public string ContractNo { get; set; }
 		public string DateExport { get; set; }
 		public string DateExecution { get; set; }
 		public string DateEmployment { get; set; }
 		public bool IsMarried { get; set; }
-
-//		public virtual Job Job { get; set; }
 		public double HardshipFactor { get; set; }
 		public string InsuranceNo { get; set; }
 		public EducationStand EducSt { get; set; }
@@ -210,6 +233,10 @@ namespace PaySys.EF
 		public SacrificeStand SacrificeStand { get; set; }
 		public string AccountNoGov { get; set; }
 		public string AccountNoEmp { get; set; }
+		public virtual List<ContractDetail> ContractDetails { get; set; }
+		public virtual Job Job { get; set; }
+		public virtual SubGroup SubGroup { set; get; }
+		public virtual Employee Employee { get; set; }
 	}
 
 	/// <summary>#21 جزئیات احکام</summary>
@@ -217,6 +244,9 @@ namespace PaySys.EF
 	{
 		public int ContractDetailId { get; set; }
 		public float Value { get; set; }
+		public virtual ContractMaster ContractMaster { get; set; }
+		public virtual GroupContractFieldTitle GroupContractFieldTitle { get; set; }
+
 	}
 
 	/// <summary>#22 اشخاص</summary>
@@ -239,6 +269,12 @@ namespace PaySys.EF
 		public string IdCardNo { get; set; }
 		public string IdCardExportPlace { get; set; }
 		public string IdCardExportDate { set; get; }
+		public virtual List<ContractMaster> ContractMaster { get; set; }
+		public virtual List<EmployeeMiscRemain> EmployeeMiscRemain { get; set; }
+		public virtual List<Mission> Mission { get; set; }
+		public virtual List<EmployeeMisc> EmployeeMisc { get; set; }
+		public virtual List<EmployeeMonthlyVariable> EmployeeMonthlyVariable { get; set; }
+
 	}
 
 	/// <summary>#23 فرمول عیدی</summary>
@@ -252,14 +288,13 @@ namespace PaySys.EF
 		public int TaxRate { get; set; }
 		public int Year { get; set; }
 		public int Month { get; set; }
+		public virtual SubGroup SubGroup { get; set; }
 	}
 
 	/// <summary>#24 تفاوت احکام</summary>
 	public class ContractDifference
 	{
 		public int ContractDifferenceId { get; set; }
-
-//		public virtual ContractMaster Contract_1st { get; set; }
 		public string DateFrom { get; set; }
 		public string DateTo { get; set; }
 		public double FirstMonth { get; set; }
@@ -275,6 +310,8 @@ namespace PaySys.EF
 		public string JobNo { get; set; }
 		public virtual int Parentjob { get; set; }
 		public string Description { get; set; }
+		public virtual List<ContractMaster> ContractMasters { get; set; }
+
 	}
 
 	/// <summary>#26 شهر</summary>
@@ -284,14 +321,13 @@ namespace PaySys.EF
 		public string Title { get; set; }
 		public int Distance { get; set; }
 		public int Percentage { get; set; }
+		public virtual List<Mission> Missions { get; set; }
 	}
 
 	/// <summary>#27 مأموریت</summary>
 	public class Mission
 	{
 		public int MissionId { get; set; }
-
-//		public virtual City City { get; set; }
 		public string Title { get; set; }
 		public string DateStart { get; set; }
 		public string DateEnd { get; set; }
@@ -304,6 +340,9 @@ namespace PaySys.EF
 		public VehicleType VehicleType { set; get; }
 		/// <summary>هزینه سفر</summary>
 		public double TravelExpense { get; set; }
+				public virtual City City { get; set; }
+				public virtual Employee Employee { get; set; }
+
 	}
 
 	public enum SacrificeStand
