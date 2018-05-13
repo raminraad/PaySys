@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PaySys.EF
 {
@@ -142,7 +143,7 @@ namespace PaySys.EF
 	/// <summary>#13 عناوین فیلدهای احکام گروه اصلی در سال</summary>
 	public class GroupContractFieldTitle
 	{
-		public int GroupContractFieldTitlesId { get; set; }
+		public int GroupContractFieldTitleId { get; set; }
 		public int Year { get; set; }
 		public virtual ExpenseArticle ExpenseArticle { get; set; }
 		public virtual List<SpecContractField> SpecContractFields { get; set; }
@@ -236,6 +237,7 @@ namespace PaySys.EF
 		public virtual List<ContractDetail> ContractDetails { get; set; }
 		public virtual Job Job { get; set; }
 		public virtual SubGroup SubGroup { set; get; }
+		[InverseProperty("ContractMaster")]
 		public virtual Employee Employee { get; set; }
 	}
 
@@ -274,7 +276,7 @@ namespace PaySys.EF
 		public virtual List<Mission> Mission { get; set; }
 		public virtual List<EmployeeMisc> EmployeeMisc { get; set; }
 		public virtual List<EmployeeMonthlyVariable> EmployeeMonthlyVariable { get; set; }
-
+		public virtual ContractMaster CurrentContract { get; set; }
 	}
 
 	/// <summary>#23 فرمول عیدی</summary>
@@ -294,12 +296,17 @@ namespace PaySys.EF
 	/// <summary>#24 تفاوت احکام</summary>
 	public class ContractDifference
 	{
-		public int ContractDifferenceId { get; set; }
+//		public int ContractDifferenceId { get; set; }
+		[Key]
+		[ForeignKey("Contract1St")]
+		public int ContractMasterId { get; set; }
 		public string DateFrom { get; set; }
 		public string DateTo { get; set; }
 		public double FirstMonth { get; set; }
 		public int PayYear { get; set; }
 		public int PayMonth { get; set; }
+		public virtual ContractMaster Contract1St { get; set; }
+		public virtual ContractMaster Contract2Nd { get; set; }
 	}
 
 	/// <summary>#25 شغل</summary>

@@ -21,7 +21,6 @@ namespace PaySys.UI.User_Control
 	/// </summary>
 	public partial class UcMngRetirementFormField : UserControl
 	{
-		private readonly List<RetirementFormField> _lstMain;
 		private readonly PaySysContext _context = new PaySysContext();
 
 		#region Prop
@@ -36,8 +35,6 @@ namespace PaySys.UI.User_Control
 		public UcMngRetirementFormField()
 		{
 			InitializeComponent();
-			_lstMain = _context.RetirementFormFields.ToList();
-			LstMain.ItemsSource = _lstMain;
 		}
 
 		#endregion

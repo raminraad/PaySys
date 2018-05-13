@@ -7,13 +7,13 @@ namespace PaySys.EF.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class subgroupmakemaingroupidrequired : IMigrationMetadata
+    public sealed partial class Init : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(subgroupmakemaingroupidrequired));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Init));
         
         string IMigrationMetadata.Id
         {
-            get { return "201803151230173_subgroup-make-maingroupid-required"; }
+            get { return "201805131221001_Init"; }
         }
         
         string IMigrationMetadata.Source

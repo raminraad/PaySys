@@ -36,20 +36,15 @@ namespace PaySys.EF
 				e.IdCardExportPlace = f.Address.City();
 				e.CellNo = $"{f.PickRandom(mobilePrefix)}{f.Phone.PhoneNumber("#######")}";
 				e.HomeTel = f.Phone.PhoneNumber();
-				e.DateBirth = $"13{f.Random.Number(30) + 30}{f.Random.Number(11) + 1}{f.Random.Number(29) + 1}";
+				e.BirthDate = $"13{f.Random.Number(30) + 30}{f.Random.Number(11) + 1}{f.Random.Number(29) + 1}";
 				e.IdCardExportDate = $"13{f.Random.Number(30) + 30}{f.Random.Number(11) + 1}{f.Random.Number(29) + 1}";
 				e.DossierNo = $"{f.Random.Number(999999):d6}";
 				e.PersonnelCode = $"{f.Random.Number(999999):d6}";
 				e.FatherName = f.Name.FirstName();
 				e.Sex = f.PickRandom(Enum.GetValues(typeof(Sex)).Cast<Sex>().Where(sex => sex != Sex.Unknown));
 				e.PostalCode = $"{f.Random.Number(999999999):d10}";
-				e.NationalNo = $"{f.Random.Number(999999999):d10}";
+				e.IdCardNo = $"{f.Random.Number(999999999):d10}";
 				e.IdCardNo = $"{f.Random.Number(999999)}";
-			});
-
-			var retirementFormFieldFaker = new Faker<RetirementFormField>("fa").StrictMode(false).Rules((f, e) =>
-			{
-				e.Title = f.Commerce.ProductAdjective();
 			});
 
 			var mainGroups = new List<MainGroup>
@@ -105,7 +100,6 @@ namespace PaySys.EF
 				},
 			};
 
-			retirementFormFieldFaker.Generate(11).ForEach(rff=>context.RetirementFormFields.Add(rff));
 			employeeFaker.Generate(80).ForEach(e => context.Employees.Add(e));
 			mainGroups.ForEach(e => context.MainGroups.Add(e));
 			base.Seed(context);
