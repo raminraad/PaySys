@@ -41,9 +41,9 @@ namespace PaySys
 			owned.Show();
 		}
 
-		private void MenuItemEmployeeMng_OnClick(object sender, RoutedEventArgs e)
+		private void MnuEmployeeMng_OnClick(object sender, RoutedEventArgs e)
 		{
-			var userControls = new UcEmployee();
+			var userControls = new UcMngEmployee();
 			var tabEmployeeMng = new TabItem
 			{
 				Content = userControls,
@@ -53,13 +53,26 @@ namespace PaySys
 			TabCntMain.Items.Refresh();
 		}
 
-		private void MenuItemGroupMng_OnClick(object sender, RoutedEventArgs e)
+		private void MnuGroupMng_OnClick(object sender, RoutedEventArgs e)
 		{
-			var userControls = new UcGroupMng();
+			var userControls = new UcMngMainGroupSubGroup();
 			var tabGroupMng = new TabItem
 			{
 				Content = userControls,
 				Header = "گروه های استخدامی"
+			};
+			userControls.ParentTabControl = TabCntMain;
+			TabCntMain.Items.Add(tabGroupMng);
+			TabCntMain.Items.Refresh();
+		}
+
+		private void mnuRetirementFormField_OnClick(object sender, RoutedEventArgs e)
+		{
+			var userControls = new UcMngRetirementFormField();
+			var tabGroupMng = new TabItem
+			{
+				Content = userControls,
+				Header = "فیلدهای فرم کسور بازنشستگی"
 			};
 			userControls.ParentTabControl = TabCntMain;
 			TabCntMain.Items.Add(tabGroupMng);
