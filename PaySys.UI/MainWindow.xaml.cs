@@ -43,7 +43,7 @@ namespace PaySys
 
 		private void MnuEmployeeMng_OnClick(object sender, RoutedEventArgs e)
 		{
-			var userControls = new UcMngEmployee();
+			var userControls = new UcEmployeeMng();
 			var tabEmployeeMng = new TabItem
 			{
 				Content = userControls,
@@ -55,7 +55,7 @@ namespace PaySys
 
 		private void MnuGroupMng_OnClick(object sender, RoutedEventArgs e)
 		{
-			var userControls = new UcMngMainGroupSubGroup();
+			var userControls = new UcGroupMng();
 			var tabGroupMng = new TabItem
 			{
 				Content = userControls,
@@ -68,7 +68,7 @@ namespace PaySys
 
 		private void mnuRetirementFormField_OnClick(object sender, RoutedEventArgs e)
 		{
-			var userControls = new UcMngRetirementFormField();
+			var userControls = new UcRetirementFormFieldMng();
 			var tabGroupMng = new TabItem
 			{
 				Content = userControls,

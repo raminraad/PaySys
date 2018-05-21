@@ -17,14 +17,14 @@ using PaySys.EF;
 namespace PaySys.UI.User_Control
 {
 	/// <summary>
-	/// Interaction logic for UcMngEmployee.xaml
+	/// Interaction logic for UcEmployeeMng.xaml
 	/// </summary>
-	public partial class UcMngEmployee : UserControl
+	public partial class UcEmployeeMng : UserControl
 	{
 		private List<Employee> _lstMain;
 		private PaySysContext _context = new PaySysContext();
 
-		public UcMngEmployee()
+		public UcEmployeeMng()
 		{
 			InitializeComponent();
 			_lstMain = _context.Employees.ToList();
@@ -33,10 +33,11 @@ namespace PaySys.UI.User_Control
 
 		private void GridMain_OnSelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
 		{
-			GrdDetail.DataContext = (Employee) GridMain.SelectedItem;
+			GrdDetail.DataContext = (Employee)GridMain.SelectedItem;
+			//			GridMain.ScrollIntoView(GridMain.SelectedItem);
 		}
 
-		
+
 
 		private void BtnFilter_OnClick(object sender, RoutedEventArgs e)
 		{
@@ -45,11 +46,11 @@ namespace PaySys.UI.User_Control
 			foreach (var strFilter in filters)
 			{
 				lists.Add((from x in _context.Employees
-					where x.FName.Contains(strFilter) || x.LName.Contains(strFilter) || x.DossierNo.Contains(strFilter)
-					select x).ToList());
+						   where x.FName.Contains(strFilter) || x.LName.Contains(strFilter) || x.DossierNo.Contains(strFilter)
+						   select x).ToList());
 			}
 			var filteredList = _context.Employees.ToList();
-			lists.ForEach(x =>  filteredList.RemoveAll(employee => filteredList.Except(x).Contains(employee)));
+			lists.ForEach(x => filteredList.RemoveAll(employee => filteredList.Except(x).Contains(employee)));
 			_lstMain = filteredList;
 			GridMain.ItemsSource = _lstMain;
 		}

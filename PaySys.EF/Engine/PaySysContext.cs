@@ -8,6 +8,7 @@ namespace PaySys.EF
 		public PaySysContext() : base("PaySysContext")
 		{
 			Database.SetInitializer(new PaySysDbInitializer());
+			Database.Initialize(true);
 		}
 
 		public DbSet<MainGroup> MainGroups { set; get; }

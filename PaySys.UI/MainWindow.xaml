@@ -75,10 +75,6 @@
 				</MenuItem>
 			</MenuItem>
 		</Menu>
-		<TabControl x:Name="TabCntMain">
-			<TabItem Header="General" />
-			<TabItem Header="Security" />
-			<TabItem Header="Details" />
-		</TabControl>
+		<TabControl x:Name="TabCntMain"/>
 	</DockPanel>
 </Window>

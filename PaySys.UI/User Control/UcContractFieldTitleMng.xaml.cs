@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace PaySys.UI.User_Control
 {
 	/// <summary>
-	/// Interaction logic for UcMngContractFieldTitle.xaml
+	/// Interaction logic for UcContractFieldTitleMng.xaml
 	/// </summary>
-	public partial class UcMngContractFieldTitle : UserControl
+	public partial class UcContractFieldTitleMng : UserControl
 	{
-		public UcMngContractFieldTitle()
+		public UcContractFieldTitleMng()
 		{
 			InitializeComponent();
 		}
