@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
+using System.Reflection;
+using System.Resources;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -38,6 +41,7 @@ namespace PaySys.UI.User_Control
 
 		private void RefreshDtgMain()
 		{
+			var index = DtgMain.SelectedIndex;
 			var filters = TxtFilter.Text.Split(' ');
 			var lists = new List<List<Employee>>();
 			foreach (var strFilter in filters)
@@ -48,17 +52,35 @@ namespace PaySys.UI.User_Control
 			lists.ForEach(x => filteredList.RemoveAll(employee => filteredList.Except(x).Contains(employee)));
 			_lstMain = new ObservableCollection<Employee>(filteredList);
 			DtgMain.DataContext = _lstMain;
+			if (DtgMain.Items.Count > index)
+				DtgMain.SelectedIndex = index;
 		}
 
 		private void BtnEmployeeAdd_OnClick(object sender, RoutedEventArgs e)
 		{
-			GrdDetail.DataContext = new Employee();
 			UcFormState.CurrentState = FormCurrentState.Add;
+			GrdDetail.DataContext = new Employee();
 		}
 
 		private void BtnEmployeeEdit_OnClick(object sender, RoutedEventArgs e)
 		{
 			UcFormState.CurrentState = FormCurrentState.Edit;
+		}
+
+		private void BtnEmployeeDelete_OnClick(object sender, RoutedEventArgs e)
+		{
+			ResourceManager rm = new ResourceManager("PaySys.UI.MessageLib", Assembly.GetExecutingAssembly());
+			String strmsg = rm.GetString("msgDeleteRow", CultureInfo.CurrentCulture);
+			var result = MessageBox.Show(strmsg, "Delete", MessageBoxButton.YesNo,
+				MessageBoxImage.Question, MessageBoxResult.No);
+			if (result != MessageBoxResult.Yes)
+				return;
+			var index = DtgMain.SelectedIndex;
+			_context.Employees.Remove(CurrentItem);
+			_lstMain.Remove(CurrentItem);
+			if (DtgMain.Items.Count > index)
+				DtgMain.SelectedIndex = index;
+			_context.SaveChanges();
 		}
 
 		private void BtnEmployeeSave_OnClick(object sender, RoutedEventArgs e)
@@ -68,7 +90,10 @@ namespace PaySys.UI.User_Control
 				textBox.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
 				textBox.GetBindingExpression(Selector.SelectedItemProperty)?.UpdateSource();
 			}
+			if (UcFormState.CurrentState==FormCurrentState.Add)
+				_context.Employees.Add((Employee)GrdDetail.DataContext);
 			_context.SaveChanges();
+			RefreshDtgMain();
 			UcFormState.CurrentState = FormCurrentState.Select;
 		}
 
@@ -79,19 +104,9 @@ namespace PaySys.UI.User_Control
 			UcFormState.CurrentState = FormCurrentState.Select;
 		}
 
-		private void BtnEmployeeDelete_OnClick(object sender, RoutedEventArgs e)
+		private void BtnEmployeeRefresh_OnClick(object sender, RoutedEventArgs e)
 		{
-			var result = MessageBox.Show("About to delete the current row.\n\nProceed?", "Delete", MessageBoxButton.YesNo,
-				MessageBoxImage.Question, MessageBoxResult.No);
-			if (result == MessageBoxResult.Yes)
-			{
-				var index = DtgMain.SelectedIndex;
-				_context.Employees.Remove(CurrentItem);
-				_lstMain.Remove(CurrentItem);
-				if (DtgMain.Items.Count > index)
-					DtgMain.SelectedIndex = index;
-				_context.SaveChanges();
-			}
+			RefreshDtgMain();
 		}
 	}
 }

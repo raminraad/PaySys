@@ -71,6 +71,11 @@
     <Compile Include="Command\CommandEdit.cs" />
     <Compile Include="Command\CommandAdd.cs" />
     <Compile Include="Command\CommandSave.cs" />
+    <Compile Include="MessageLib.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MessageLib.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="User Control\Ingredient\UcFormStateLabel.xaml.cs">
       <DependentUpon>UcFormStateLabel.xaml</DependentUpon>
@@ -121,6 +126,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="MessageLib.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MessageLib.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
