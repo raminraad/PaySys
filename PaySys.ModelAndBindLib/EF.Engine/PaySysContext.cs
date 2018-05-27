@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity;
-using PaySys.EF;
+using PaySys.ModelAndBindLib.Model;
 
-namespace PaySys.EF
+namespace PaySys.ModelAndBindLib.Engine
 {
 	public class PaySysContext : DbContext
 	{

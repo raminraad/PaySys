@@ -8,7 +8,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PaySys.UnitTest</RootNamespace>
     <AssemblyName>PaySys.UnitTest</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -16,6 +16,7 @@
     <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -71,9 +72,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PaySys.EF\PaySys.EF.csproj">
-      <Project>{205e0f3c-71ce-42ee-b4ae-8cca37414bfe}</Project>
-      <Name>PaySys.EF</Name>
+    <ProjectReference Include="..\PaySys.ModelAndBindLib\PaySys.ModelAndBindLib.csproj">
+      <Project>{21C027CA-0A77-47DF-B9D5-70079B1CDCC8}</Project>
+      <Name>PaySys.ModelAndBindLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

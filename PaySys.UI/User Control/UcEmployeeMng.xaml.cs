@@ -1,58 +1,97 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using PaySys.EF;
+using PaySys.ModelAndBindLib.Engine;
+using PaySys.ModelAndBindLib.Model;
 
 namespace PaySys.UI.User_Control
 {
-	/// <summary>
-	/// Interaction logic for UcEmployeeMng.xaml
-	/// </summary>
+	/// <summary>Interaction logic for UcEmployeeMng.xaml</summary>
 	public partial class UcEmployeeMng : UserControl
 	{
-		private List<Employee> _lstMain;
-		private PaySysContext _context = new PaySysContext();
+		private readonly PaySysContext _context = new PaySysContext();
+//		private List<Employee> _lstMain;
+		private ObservableCollection<Employee> _lstMain;
+		public Employee CurrentItem { get; set; }
 
 		public UcEmployeeMng()
 		{
 			InitializeComponent();
-			_lstMain = _context.Employees.ToList();
-			GridMain.ItemsSource = _lstMain;
+			RefreshDtgMain();
+			UcFormState.CurrentState = FormCurrentState.Select;
 		}
 
-		private void GridMain_OnSelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+		private void DtgMain_OnSelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
 		{
-			GrdDetail.DataContext = (Employee)GridMain.SelectedItem;
-			//			GridMain.ScrollIntoView(GridMain.SelectedItem);
+			GrdDetail.DataContext = CurrentItem = (Employee) DtgMain.SelectedItem;
 		}
-
-
 
 		private void BtnFilter_OnClick(object sender, RoutedEventArgs e)
 		{
+			RefreshDtgMain();
+		}
+
+		private void RefreshDtgMain()
+		{
 			var filters = TxtFilter.Text.Split(' ');
-			List<List<Employee>> lists = new List<List<Employee>>();
+			var lists = new List<List<Employee>>();
 			foreach (var strFilter in filters)
-			{
 				lists.Add((from x in _context.Employees
-						   where x.FName.Contains(strFilter) || x.LName.Contains(strFilter) || x.DossierNo.Contains(strFilter)
-						   select x).ToList());
-			}
+					where x.FName.Contains(strFilter) || x.LName.Contains(strFilter) || x.DossierNo.Contains(strFilter)
+					select x).ToList());
 			var filteredList = _context.Employees.ToList();
 			lists.ForEach(x => filteredList.RemoveAll(employee => filteredList.Except(x).Contains(employee)));
-			_lstMain = filteredList;
-			GridMain.ItemsSource = _lstMain;
+			_lstMain = new ObservableCollection<Employee>(filteredList);
+			DtgMain.DataContext = _lstMain;
+		}
+
+		private void BtnEmployeeAdd_OnClick(object sender, RoutedEventArgs e)
+		{
+			GrdDetail.DataContext = new Employee();
+			UcFormState.CurrentState = FormCurrentState.Add;
+		}
+
+		private void BtnEmployeeEdit_OnClick(object sender, RoutedEventArgs e)
+		{
+			UcFormState.CurrentState = FormCurrentState.Edit;
+		}
+
+		private void BtnEmployeeSave_OnClick(object sender, RoutedEventArgs e)
+		{
+			foreach (var textBox in GrdDetail.Children.OfType<Control>())
+			{
+				textBox.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
+				textBox.GetBindingExpression(Selector.SelectedItemProperty)?.UpdateSource();
+			}
+			_context.SaveChanges();
+			UcFormState.CurrentState = FormCurrentState.Select;
+		}
+
+		private void BtnEmployeeCancel_OnClick(object sender, RoutedEventArgs e)
+		{
+			GrdDetail.DataContext = null;
+			DtgMain_OnSelectedCellsChanged(null, null);
+			UcFormState.CurrentState = FormCurrentState.Select;
+		}
+
+		private void BtnEmployeeDelete_OnClick(object sender, RoutedEventArgs e)
+		{
+			var result = MessageBox.Show("About to delete the current row.\n\nProceed?", "Delete", MessageBoxButton.YesNo,
+				MessageBoxImage.Question, MessageBoxResult.No);
+			if (result == MessageBoxResult.Yes)
+			{
+				var index = DtgMain.SelectedIndex;
+				_context.Employees.Remove(CurrentItem);
+				_lstMain.Remove(CurrentItem);
+				if (DtgMain.Items.Count > index)
+					DtgMain.SelectedIndex = index;
+				_context.SaveChanges();
+			}
 		}
 	}
 }

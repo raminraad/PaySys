@@ -1,12 +1,34 @@
-﻿<Window x:Class="PaySys.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:PaySys" mc:Ignorable="d" Title="MainWindow" Height="350" Width="525">
+﻿<Window x:Class="PaySys.MainWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:local="clr-namespace:PaySys"
+		xmlns:System="clr-namespace:System;assembly=mscorlib"
+		
+		mc:Ignorable="d"
+		Title="MainWindow"
+		Height="350"
+		Width="525">
+	<Window.Resources>
+
+	</Window.Resources>
 	<DockPanel FlowDirection="RightToLeft">
-		<Menu Name="MnuMain" DockPanel.Dock="Top">
+		<Menu Name="MnuMain"
+			  DockPanel.Dock="Top">
 			<MenuItem Header="اطلاعات پایه">
-				<MenuItem x:Name="MnuEmployeeMng" Header="اطلاعات پرسنل" Click="MnuEmployeeMng_OnClick" />
-				<MenuItem x:Name="MnuGroupMng" Header="گروه های استخدامی" Click="MnuGroupMng_OnClick" />
-				<MenuItem x:Name="mnuItem" Header="تعریف عناوین کارکنان" />
-				<MenuItem x:Name="mnuItem2" Header="عناوین فیلدهای احکام" />
-				<MenuItem x:Name="mnuItem3" Header="تعریف مقادیر گروهی" />
+				<MenuItem x:Name="MnuEmployeeMng"
+						  Header="اطلاعات پرسنل"
+						  Click="MnuEmployeeMng_OnClick" />
+				<MenuItem x:Name="MnuGroupMng"
+						  Header="گروه های استخدامی"
+						  Click="MnuGroupMng_OnClick" />
+				<MenuItem x:Name="mnuItem"
+						  Header="تعریف عناوین کارکنان" />
+				<MenuItem x:Name="mnuItem2"
+						  Header="عناوین فیلدهای احکام" />
+				<MenuItem x:Name="mnuItem3"
+						  Header="تعریف مقادیر گروهی" />
 				<MenuItem Header="تعریف پارامترهای گروهی" />
 				<MenuItem Header="ورود اطلاعات احکام" />
 				<MenuItem Header="تعریف مبانی مالیات">
@@ -53,7 +75,9 @@
 				<MenuItem Header="لیست بانکی خالص پرداختی" />
 				<MenuItem Header="تهیه دیسکت بانکی" />
 				<MenuItem Header="مالیات مکسوره" />
-				<MenuItem x:Name="mnuRetirementFormField" Header="فرم کسور بازنشستگی" Click="mnuRetirementFormField_OnClick"/>
+				<MenuItem x:Name="mnuRetirementFormField"
+						  Header="فرم کسور بازنشستگی"
+						  Click="mnuRetirementFormField_OnClick" />
 				<MenuItem Header="بیمه خدمات درمانی" />
 				<MenuItem Header="تهیه نماینده اسناد" />
 				<MenuItem Header="چاپ لیست کسور بیمه تکمیلی" />
@@ -75,6 +99,6 @@
 				</MenuItem>
 			</MenuItem>
 		</Menu>
-		<TabControl x:Name="TabCntMain"/>
+		<TabControl x:Name="TabCntMain" />
 	</DockPanel>
 </Window>

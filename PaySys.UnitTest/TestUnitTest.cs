@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Threading;
 using NUnit.Framework;
-using PaySys.EF;
+using PaySys.ModelAndBindLib.Engine;
+using PaySys.ModelAndBindLib.Model;
 
 namespace PaySys.UnitTest
 {

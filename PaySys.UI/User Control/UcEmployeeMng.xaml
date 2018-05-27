@@ -3,56 +3,66 @@
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:ingredient="clr-namespace:PaySys.UI.User_Control.Ingredient"
+			 xmlns:extensionMethod="clr-namespace:PaySys.CalcLib.ExtensionMethod;assembly=PaySys.CalcLib"
+			 xmlns:bindingConverter1="clr-namespace:PaySys.ModelAndBindLib.BindingConverter;assembly=PaySys.ModelAndBindLib"
+			 xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Model;assembly=PaySys.ModelAndBindLib"
 			 mc:Ignorable="d"
 			 d:DesignWidth="900"
 			 Width="auto"
-			 Height="auto">
-	<Grid Name="GrdParent"
+			 Height="auto"
+			 x:Name="UcEmpMng">
+	<UserControl.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="pack://application:,,,/Globalizaton/Fa/FieldicEmployee.xaml" />
+			</ResourceDictionary.MergedDictionaries>
+			<bindingConverter1:DateFormatterConverter x:Key="DateFrmtCnv" />
+		</ResourceDictionary>
+	</UserControl.Resources>
+	<Grid x:Name="GrdParent"
 		  FlowDirection="RightToLeft">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="*"/>
 			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="33" />
 		</Grid.RowDefinitions>
 		<StackPanel Name="PnlToolbar"
 					Grid.Row="0"
-					Margin="0,0,0,0.2">
+					Margin="0,0,0,0.4">
 			<ToolBarTray FlowDirection="RightToLeft">
 				<ToolBar>
-					<Button Command="New"
+					<Button Name="BtnEmployeeAdd"
+							Click="BtnEmployeeAdd_OnClick"
+							IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
 							Content="جدید" />
-					<Button Command="Save"
-							Content="Save" />
-					0045936730
-					46/08/17
-					3792
-					ذوالفقار
-					
-					1729528163
-					37/05/15
-					58
-					علی اکبر
-					96068462
-					
-					1418814194
-				</ToolBar>
-				<ToolBar>
-					<Button Command="Cut"
-							Content="Cut" />
-					<Button Command="Copy"
-							Content="Copy" />
-					<Button Command="Paste"
-							Content="Paste" />
+					<Button Name="BtnEmployeeEdit"
+							Click="BtnEmployeeEdit_OnClick"
+							IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
+							Content="ویرایش" />
+					<Button Name="BtnEmployeeDelete"
+							Click="BtnEmployeeDelete_OnClick"
+							IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
+							Content="حذف" />
+					<Button Name="BtnEmployeeSave"
+							Click="BtnEmployeeSave_OnClick"
+							IsEnabled="{Binding ElementName=UcFormState,Path=SaveCancelButtonsEnabled}"
+							Content="ذخیره" />
+					<Button Name="BtnEmployeeCancel"
+							Click="BtnEmployeeCancel_OnClick"
+							IsEnabled="{Binding ElementName=UcFormState,Path=SaveCancelButtonsEnabled}"
+							Content="انصراف" />
 				</ToolBar>
 			</ToolBarTray>
 		</StackPanel>
 		<StackPanel Name="PnlSearch"
 					Orientation="Horizontal"
-					Grid.Row="1"
 					HorizontalAlignment="Center"
 					Width="516"
-					Height="30">
+					Margin="192,50"
+		            Grid.Row="1">
 			<TextBlock Text="جستجو:"
 					   Margin="5" />
 			<TextBox x:Name="TxtFilter"
@@ -65,40 +75,45 @@
 					Margin="5"
 					Click="BtnFilter_OnClick" />
 		</StackPanel>
-		<DataGrid x:Name="GridMain"
-				  ItemsSource="{Binding Source=_lstMain}"
-				  SelectedCellsChanged="GridMain_OnSelectedCellsChanged"
+		<DataGrid x:Name="DtgMain"
+				  SelectedCellsChanged="DtgMain_OnSelectedCellsChanged"
 				  HorizontalScrollBarVisibility="Auto"
 				  VerticalScrollBarVisibility="Auto"
 				  BorderThickness="3"
 				  Grid.Row="2"
-				  Margin="40,23.8,40,15.8"
+				  Margin="40,23.2,40,15.6"
 				  AutoGenerateColumns="False"
-				  IsReadOnly="True">
+				  IsSynchronizedWithCurrentItem="True"
+				  IsReadOnly="True"
+				  ItemsSource="{Binding}">
 			<DataGrid.Columns>
-				<DataGridTextColumn Header="کد پرسنلی"
-									Binding="{Binding PersonnelCode}" />
-				<DataGridTextColumn Header="شماره پرونده"
-									Binding="{Binding DossierNo}" />
-				<DataGridTextColumn Header="نام"
-									Binding="{Binding FName}" />
-				<DataGridTextColumn Header="نام خانوادگی"
-									Binding="{Binding LName}" />
-				<DataGridTextColumn Header="نام پدر"
-									Binding="{Binding FatherName}" />
-				<DataGridTextColumn Header="کد ملی"
-									Binding="{Binding NationalCardNo}" />
-				<DataGridTextColumn Header="ش شناسنامه"
-									Binding="{Binding IdCardNo}" />
-				<DataGridTextColumn Header="محل صدور"
-									Binding="{Binding IdCardExportPlace}" />
+				<DataGridTextColumn Header="{StaticResource FdEmployeeEmployeeId}"
+				                    Binding="{Binding (model:Employee.EmployeeId)}"
+									Visibility="Hidden"/>
+				<DataGridTextColumn Header="{StaticResource FdEmployeePersonnelCode}"
+									Binding="{Binding (model:Employee.PersonnelCode)}" />
+				<DataGridTextColumn Header="{StaticResource FdEmployeeDossierNo}"
+									Binding="{Binding (model:Employee.DossierNo)}" />
+				<DataGridTextColumn Header="{StaticResource FdEmployeeFName}"
+									Binding="{Binding (model:Employee.FName)}" />
+				<DataGridTextColumn Header="{StaticResource FdEmployeeLName}"
+									Binding="{Binding (model:Employee.LName)}" />
+				<DataGridTextColumn Header="{StaticResource FdEmployeeFatherName}"
+									Binding="{Binding (model:Employee.FatherName)}" />
+				<DataGridTextColumn Header="{StaticResource FdEmployeeNationalCardNo}"
+									Binding="{Binding (model:Employee.NationalCardNo)}" />
+				<DataGridTextColumn Header="{StaticResource FdEmployeeIdCardNo}"
+									Binding="{Binding (model:Employee.IdCardNo)}" />
+				<DataGridTextColumn Header="{StaticResource FdEmployeeIdCardExportPlace}"
+									Binding="{Binding (model:Employee.IdCardExportPlace)}" />
+				<DataGridTextColumn Header="{StaticResource FdEmployeeAddress}"
+									Binding="{Binding (model:Employee.Address)}" />
 			</DataGrid.Columns>
 		</DataGrid>
 		<Grid x:Name="GrdDetail"
-			  FlowDirection="RightToLeft"
 			  Grid.Row="3"
 			  DockPanel.Dock="Bottom"
-			  Margin="70,33.2,70,27.2"
+			  Margin="70,30.4,70,29.2"
 			  HorizontalAlignment="Center"
 			  Width="760">
 			<Grid.RowDefinitions>
@@ -128,121 +143,130 @@
 				</Style>
 				<Style TargetType="TextBox">
 					<Setter Property="Margin"
-							Value="2,8" />
+							Value="0,8,8,6" />
+					<Setter Property="Height"
+							Value="21" />
 				</Style>
 			</Grid.Resources>
 			<TextBlock Grid.Row="0"
 					   Grid.Column="0"
-					   Text="کد پرسنلی:"
-					   Height="16" />
+					   Text="{StaticResource FdEmployeePersonnelCode}" />
 			<TextBlock Grid.Row="0"
 					   Grid.Column="2"
-					   Text="شماره پرونده:"
-					   Height="16" />
+					   Text="{StaticResource FdEmployeeDossierNo}" />
 			<TextBlock Grid.Row="1"
 					   Grid.Column="0"
-					   Text="نام:"
-					   Height="16" />
+					   Text="{StaticResource FdEmployeeFName}" />
 			<TextBlock Grid.Row="1"
 					   Grid.Column="2"
-					   Text="نام خانوادگی:"
-					   Height="16" />
+					   Text="{StaticResource FdEmployeeLName}" />
 			<TextBlock Grid.Row="1"
 					   Grid.Column="4"
-					   Text="نام پدر:"
-					   Height="16" />
+					   Text="{StaticResource FdEmployeeFatherName}" />
 			<TextBlock Grid.Row="1"
 					   Grid.Column="6"
-					   Text="جنسیت:" />
+					   Text="{StaticResource 'FdEmployee Sex'}" />
 			<TextBlock Grid.Row="2"
 					   Grid.Column="0"
-					   Text="کد ملی:"
-					   Height="16" />
+					   Text="{StaticResource FdEmployeeNationalCardNo}" />
 			<TextBlock Grid.Row="2"
 					   Grid.Column="2"
-					   Text="ش شناسنامه:"
-					   Height="16" />
+					   Text="{StaticResource FdEmployeeIdCardNo}" />
 			<TextBlock Grid.Row="2"
 					   Grid.Column="4"
-					   Text="تاریخ تولد:"
-					   Height="16" />
+					   Text="{StaticResource FdEmployeeBirthDate}" />
 			<TextBlock Grid.Row="2"
 					   Grid.Column="6"
-					   Text="محل تولد:"
-					   Height="16" />
+					   Text="{StaticResource FdEmployeeBirthPlace}" />
 			<TextBlock Grid.Row="3"
 					   Grid.Column="0"
-					   Text="تاریخ صدور:"
-					   Height="16" />
+					   Text="{StaticResource FdEmployeeIdCardExportDate}" />
 			<TextBlock Grid.Row="3"
 					   Grid.Column="2"
-					   Text="محل صدور:"
-					   Height="16" />
+					   Text="{StaticResource FdEmployeeIdCardExportPlace}" />
 			<TextBlock Grid.Row="3"
 					   Grid.Column="4"
-					   Text="تلفن منزل:"
-					   Height="16" />
+					   Text="{StaticResource FdEmployeeHomeTel}" />
 			<TextBlock Grid.Row="3"
 					   Grid.Column="6"
-					   Text="شماره موبایل:"
-					   Height="16" />
+					   Text="{StaticResource FdEmployeeCellNo}" />
 			<TextBlock Grid.Row="4"
 					   Grid.Column="0"
-					   Text="کدپستی:"
-					   Height="16" />
+					   Text="{StaticResource FdEmployeePersonnelCode}" />
 			<TextBlock Grid.Row="5"
 					   Grid.Column="0"
-					   Text="آدرس:"
-					   Height="16" />
+					   Text="{StaticResource FdEmployeeAddress}" />
 			<TextBox Grid.Row="0"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
 					 Grid.Column="1"
-					 Text="{Binding PersonnelCode}" />
+					 Text="{Binding PersonnelCode,UpdateSourceTrigger=Explicit}" />
 			<TextBox Grid.Row="0"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
 					 Grid.Column="3"
-					 Text="{Binding DossierNo}" />
+					 Text="{Binding DossierNo,UpdateSourceTrigger=Explicit}" />
 			<TextBox Grid.Row="1"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
 					 Grid.Column="1"
-					 Text="{Binding FName}" />
+					 Text="{Binding FName,UpdateSourceTrigger=Explicit}" />
 			<TextBox Grid.Row="1"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
 					 Grid.Column="3"
-					 Text="{Binding LName}" />
+					 Text="{Binding LName,UpdateSourceTrigger=Explicit}" />
 			<TextBox Grid.Row="1"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
 					 Grid.Column="5"
-					 Text="{Binding FatherName}" />
-			<TextBox Grid.Row="1"
-					 Grid.Column="7"
-					 Text="{Binding Sex}" />
+					 Text="{Binding FatherName,UpdateSourceTrigger=Explicit}" />
+			<ComboBox Grid.Row="1"
+					  IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
+					  Grid.Column="7"
+					  ItemsSource="{Binding Source={extensionMethod:EnumBindingSource {x:Type model:Sex}}}"
+					  SelectedItem="{Binding Sex,UpdateSourceTrigger=Explicit}"
+					  Margin="0,6,9,6" />
 			<TextBox Grid.Row="2"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
 					 Grid.Column="1"
-					 Text="{Binding NationalNo}" />
+					 Text="{Binding NationalCardNo,UpdateSourceTrigger=Explicit}" />
 			<TextBox Grid.Row="2"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
 					 Grid.Column="3"
-					 Text="{Binding IdCardNo}" />
+					 Text="{Binding IdCardNo,UpdateSourceTrigger=Explicit}" />
 			<TextBox Grid.Row="2"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
 					 Grid.Column="5"
-					 Text="{Binding DateBirth}" />
+					 Text="{Binding BirthDate,UpdateSourceTrigger=Explicit,Converter={StaticResource DateFrmtCnv}}" />
 			<TextBox Grid.Row="2"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
 					 Grid.Column="7"
-					 Text="{Binding BirthPlace}" />
+					 Text="{Binding BirthPlace,UpdateSourceTrigger=Explicit}" />
 			<TextBox Grid.Row="3"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
 					 Grid.Column="1"
-					 Text="{Binding IdCardExportPlace}" />
+					 Text="{Binding IdCardExportDate,UpdateSourceTrigger=Explicit,Converter={StaticResource DateFrmtCnv}}" />
 			<TextBox Grid.Row="3"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
 					 Grid.Column="3"
-					 Text="{Binding IdCardExportPlace}" />
+					 Text="{Binding IdCardExportPlace,UpdateSourceTrigger=Explicit}" />
 			<TextBox Grid.Row="3"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
 					 Grid.Column="5"
-					 Text="{Binding HomeTel}" />
+					 Text="{Binding HomeTel,UpdateSourceTrigger=Explicit}" />
 			<TextBox Grid.Row="3"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
 					 Grid.Column="7"
-					 Text="{Binding CellNo}" />
+					 Text="{Binding CellNo,UpdateSourceTrigger=Explicit}" />
 			<TextBox Grid.Row="4"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
 					 Grid.Column="1"
-					 Text="{Binding PostalCode}" />
+					 Text="{Binding PostalCode,UpdateSourceTrigger=Explicit}" />
 			<TextBox Grid.Row="5"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
 					 Grid.Column="1"
-					 Text="{Binding Address}"
+					 Text="{Binding Address,UpdateSourceTrigger=Explicit}"
 					 Grid.ColumnSpan="7" />
 		</Grid>
+		<StatusBar FlowDirection="LeftToRight"
+				   Grid.Row="4">
+			<ingredient:UcFormStateLabel x:Name="UcFormState" />
+		</StatusBar>
 	</Grid>
 </UserControl>

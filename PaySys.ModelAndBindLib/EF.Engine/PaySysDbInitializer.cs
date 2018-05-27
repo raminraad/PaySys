@@ -2,13 +2,10 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Bogus;
-using PaySys.EF;
-using Bogus.DataSets;
+using PaySys.ModelAndBindLib.Model;
 
-namespace PaySys.EF
+namespace PaySys.ModelAndBindLib.Engine
 {
 	class PaySysDbInitializer : DropCreateDatabaseIfModelChanges<PaySysContext>
 	{
@@ -36,8 +33,8 @@ namespace PaySys.EF
 				e.IdCardExportPlace = f.Address.City();
 				e.CellNo = $"{f.PickRandom(mobilePrefix)}{f.Phone.PhoneNumber("#######")}";
 				e.HomeTel = f.Phone.PhoneNumber();
-				e.BirthDate = $"13{f.Random.Number(30) + 30:N4}{f.Random.Number(11) + 1:N2}{f.Random.Number(29) + 1:N2}";
-				e.IdCardExportDate = $"13{f.Random.Number(30) + 30:N4}{f.Random.Number(11) + 1:N2}{f.Random.Number(29) + 1:N2}";
+				e.BirthDate = $"13{f.Random.Number(30) + 30:d2}{f.Random.Number(11) + 1:d2}{f.Random.Number(29) + 1:d2}";
+				e.IdCardExportDate = $"13{f.Random.Number(30) + 30:d2}{f.Random.Number(11) + 1:d2}{f.Random.Number(29) + 1:d2}";
 				e.DossierNo = $"{f.Random.Number(999999):d6}";
 				e.PersonnelCode = $"{f.Random.Number(999999):d6}";
 				e.FatherName = f.Name.FirstName();

@@ -1,18 +1,16 @@
-namespace PaySys.EF.Migrations
-{
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
+using System.Data.Entity.Migrations;
+using PaySys.ModelAndBindLib.Engine;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<PaySys.EF.PaySysContext>
+namespace PaySys.ModelAndBindLib.Migrations
+{
+	internal sealed class Configuration : DbMigrationsConfiguration<PaySysContext>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(PaySys.EF.PaySysContext context)
+        protected override void Seed(PaySysContext context)
         {
 	        #region MyRegion
 

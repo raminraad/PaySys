@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using PaySys.CalcLib.Converter;
 
-namespace PaySys.EF
+namespace PaySys.ModelAndBindLib.Model
 {
 	/// <summary>#01 گروه اصلی</summary>
 	public class MainGroup
@@ -19,7 +21,7 @@ namespace PaySys.EF
 	public class SubGroup
 	{
 		public int SubGroupId { get; set; }
-		[Required]
+		[Microsoft.Build.Framework.Required]
 		public virtual MainGroup MainGroup { set; get; }
 		public virtual List<GroupSpecValue> GroupSpecValues { get; set; }
 		public virtual List<MissionFormula> MissionFormulas { get; set; }
@@ -279,7 +281,7 @@ namespace PaySys.EF
 	/// <summary>#24 تفاوت احکام</summary>
 	public class ContractDifference
 	{
-//		public int ContractDifferenceId { get; set; }
+		//		public int ContractDifferenceId { get; set; }
 		[Key]
 		[ForeignKey("Contract1St")]
 		public int ContractMasterId { get; set; }
@@ -360,11 +362,15 @@ namespace PaySys.EF
 		//todo: fill enum
 	}
 
+	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum Sex
 	{
+		[Description("وارد نشده")]
 		Unknown,
-		مذکر,
-		مونث
+		[Description("مذکر")]
+		Male,
+		[Description("مؤنث")]
+		Female
 	}
 
 	public enum ContentType
@@ -380,5 +386,14 @@ namespace PaySys.EF
 	public enum ValueType
 	{
 		//todo: fill enum
+	}
+
+	public enum FormCurrentState
+	{
+		Select,
+		Edit,
+		Add,
+		Delete,
+		Unknown
 	}
 }
