@@ -24,6 +24,7 @@ namespace PaySys.UI.UC
     public partial class UcSelectEmployee : UserControl
     {
 		ObservableCollection<Employee> EmployeeList = new ObservableCollection<Employee>(new PaySysContext().Employees);
+	    public event SelectionChangedEventHandler SelectedItemChanged;
         public UcSelectEmployee()
         {
             InitializeComponent();
@@ -40,6 +41,7 @@ namespace PaySys.UI.UC
 	    private void CmbSelector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
 	    {
 		    SelectedEmployee = (Employee)CmbEmployee.SelectedItem;
+		    SelectedItemChanged(sender, e);
 	    }
     }
 }

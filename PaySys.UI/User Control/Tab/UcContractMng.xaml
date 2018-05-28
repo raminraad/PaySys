@@ -9,7 +9,7 @@
 			 d:DesignHeight="1000"
 			 d:DesignWidth="1500">
 	<Grid Name="GrdMain"
-		  Margin="50"
+		  Margin="100"
 		  FlowDirection="RightToLeft">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition />
@@ -18,27 +18,9 @@
 		<Grid>
 			<Grid.RowDefinitions>
 				<RowDefinition />
-				<RowDefinition />
-				<RowDefinition Height="5*" />
+				<RowDefinition Height="2*" />
 			</Grid.RowDefinitions>
-			<StackPanel Grid.Row="0" HorizontalAlignment="Center"
-						Orientation="Horizontal">
-				<Label VerticalContentAlignment="Center"
-					   Width="200"
-					   HorizontalContentAlignment="Center"
-					   Content="{x:Static fa:LabelLib.Employee}" />
-				<local:UcSelectEmployee x:Name="UcSelectEmp"
-										Width="300" />
-			</StackPanel>
-			<StackPanel Grid.Row="1" HorizontalAlignment="Center"
-			            Orientation="Horizontal">
-				<Label VerticalContentAlignment="Center"
-				       Width="200"
-				       HorizontalContentAlignment="Center"
-				       Content="{x:Static fa:LabelLib.Contract}" />
-				<local:UcSelectEmployee x:Name="UcSelectEmp2"
-				                        Width="300" />
-			</StackPanel>
+			<local:UcSelectContractMasterOfEmployee/>
 		</Grid>
 	</Grid>
 </UserControl>

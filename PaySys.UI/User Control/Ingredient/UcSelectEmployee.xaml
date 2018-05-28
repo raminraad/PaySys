@@ -4,82 +4,94 @@
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			 xmlns:local="clr-namespace:PaySys.UI.UC"
+			 xmlns:fa="clr-namespace:PaySys.UI.Resource.Globalizaton.Fa"
 			 mc:Ignorable="d"
 			 d:DesignHeight="50"
 			 d:DesignWidth="300">
-	<ComboBox Name="CmbEmployee"
-		Height="30"
-			  TextSearch.Text="Name"
-			  TextSearch.TextPath="Name"
-			  IsTextSearchEnabled="True"
-			  Margin="5"
-			  ItemsSource="{Binding}"
-			  HorizontalContentAlignment="Stretch"
-			  SelectionChanged="CmbSelector_OnSelectionChanged">
-		<ComboBox.ItemTemplate>
-			<DataTemplate>
-				<TextBlock Margin="2">
-					<TextBlock.Text>
-						<MultiBinding StringFormat="{}{0} {1}">
-							<Binding Path="LName" />
-							<Binding Path="FName" />
-						</MultiBinding>
-					</TextBlock.Text></TextBlock>
-			</DataTemplate>
-		</ComboBox.ItemTemplate>
-		<ComboBox.ItemContainerStyle>
-			<Style TargetType="{x:Type ComboBoxItem}">
-				<Setter Property="Template">
-					<Setter.Value>
-						<ControlTemplate>
-							<Grid x:Name="gd"
-								  TextElement.Foreground="Black">
-								<Grid.ColumnDefinitions>
-									<ColumnDefinition />
-									<ColumnDefinition />
-									<ColumnDefinition />
-								</Grid.ColumnDefinitions>
-								<TextBlock Margin="5"
-										   Grid.Column="0"
-										   Text="{Binding PersonnelCode}" />
-								<TextBlock Margin="5"
-										   Grid.Column="1"
-										   Text="{Binding FName}" />
-								<TextBlock Margin="5"
-										   Grid.Column="2"
-										   Text="{Binding LName}" />
-							</Grid>
-							<ControlTemplate.Triggers>
-								<Trigger Property="ComboBoxItem.IsSelected"
-										 Value="True">
-									<Setter TargetName="gd"
-											Property="Background"
-											Value="DarkGoldenrod"></Setter>
-									<Setter TargetName="gd"
-											Property="TextElement.Foreground"
-											Value="White"></Setter>
-								</Trigger>
-								<Trigger Property="ComboBoxItem.IsMouseOver"
-										 Value="True">
-									<Setter TargetName="gd"
-											Property="Background"
-											Value="Gray"></Setter>
-									<Setter TargetName="gd"
-											Property="TextElement.Foreground"
-											Value="White"></Setter>
-								</Trigger>
-								<!--IsHighlighted and IsMouseOver is showing same effect but IsHighlighted is used for showing logical focus( for understanding check using tab key)-->
-								<!--<Trigger Property="ComboBoxItem.IsHighlighted" Value="True">
+	<Grid FlowDirection="RightToLeft">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition />
+			<ColumnDefinition Width="2*" />
+		</Grid.ColumnDefinitions>
+		<Label Grid.Column="0"
+			   Content="{x:Static fa:LabelLib.Employee}"
+			   VerticalContentAlignment="Center"
+			   HorizontalContentAlignment="Left" />
+		<ComboBox Grid.Column="1"
+				  Name="CmbEmployee"
+				  Height="30"
+				  TextSearch.Text="Name"
+				  TextSearch.TextPath="Name"
+				  IsTextSearchEnabled="True"
+				  Margin="5"
+				  ItemsSource="{Binding}"
+				  HorizontalContentAlignment="Stretch"
+				  SelectionChanged="CmbSelector_OnSelectionChanged">
+			<ComboBox.ItemTemplate>
+				<DataTemplate>
+					<TextBlock Margin="2">
+						<TextBlock.Text>
+							<MultiBinding StringFormat="{}{0} {1}">
+								<Binding Path="LName" />
+								<Binding Path="FName" />
+							</MultiBinding>
+						</TextBlock.Text></TextBlock>
+				</DataTemplate>
+			</ComboBox.ItemTemplate>
+			<ComboBox.ItemContainerStyle>
+				<Style TargetType="{x:Type ComboBoxItem}">
+					<Setter Property="Template">
+						<Setter.Value>
+							<ControlTemplate>
+								<Grid x:Name="gd"
+									  TextElement.Foreground="Black">
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition />
+										<ColumnDefinition />
+										<ColumnDefinition />
+									</Grid.ColumnDefinitions>
+									<TextBlock Margin="5"
+											   Grid.Column="0"
+											   Text="{Binding PersonnelCode}" />
+									<TextBlock Margin="5"
+											   Grid.Column="1"
+											   Text="{Binding FName}" />
+									<TextBlock Margin="5"
+											   Grid.Column="2"
+											   Text="{Binding LName}" />
+								</Grid>
+								<ControlTemplate.Triggers>
+									<Trigger Property="ComboBoxItem.IsSelected"
+											 Value="True">
+										<Setter TargetName="gd"
+												Property="Background"
+												Value="DarkGoldenrod"></Setter>
+										<Setter TargetName="gd"
+												Property="TextElement.Foreground"
+												Value="White"></Setter>
+									</Trigger>
+									<Trigger Property="ComboBoxItem.IsMouseOver"
+											 Value="True">
+										<Setter TargetName="gd"
+												Property="Background"
+												Value="Gray"></Setter>
+										<Setter TargetName="gd"
+												Property="TextElement.Foreground"
+												Value="White"></Setter>
+									</Trigger>
+									<!--IsHighlighted and IsMouseOver is showing same effect but IsHighlighted is used for showing logical focus( for understanding check using tab key)-->
+									<!--<Trigger Property="ComboBoxItem.IsHighlighted" Value="True">
                                     <Setter TargetName="gd"  Property="Background" Value="Yellow"></Setter>
                                     <Setter TargetName="gd"  Property="TextElement.Foreground" Value="Black"></Setter>
                                 </Trigger>-->
-							</ControlTemplate.Triggers>
-						</ControlTemplate>
-					</Setter.Value>
-				</Setter>
-			</Style>
-		</ComboBox.ItemContainerStyle>
-	</ComboBox>
+								</ControlTemplate.Triggers>
+							</ControlTemplate>
+						</Setter.Value>
+					</Setter>
+				</Style>
+			</ComboBox.ItemContainerStyle>
+		</ComboBox>
+	</Grid>
 </UserControl>
 
 

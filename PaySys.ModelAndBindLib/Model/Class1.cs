@@ -216,7 +216,7 @@ namespace PaySys.ModelAndBindLib.Model
 		public string InsuranceNo { get; set; }
 		public EducationStand EducSt { get; set; }
 		public EmploymentType EmpType { get; set; }
-		public JobCategory JobCat { get; set; }
+//		public JobCategory JobCat { get; set; }
 		public SacrificeStand SacrificeStand { get; set; }
 		public string AccountNoGov { get; set; }
 		public string AccountNoEmp { get; set; }
@@ -300,7 +300,7 @@ namespace PaySys.ModelAndBindLib.Model
 		public int JobId { get; set; }
 		public string Title { get; set; }
 		public string JobNo { get; set; }
-		public virtual int Parentjob { get; set; }
+//		public virtual int Parentjob { get; set; }
 		public string Description { get; set; }
 		public virtual List<ContractMaster> ContractMasters { get; set; }
 	}
@@ -337,6 +337,24 @@ namespace PaySys.ModelAndBindLib.Model
 
 	public enum SacrificeStand
 	{
+		[Description("وارد نشده")]
+		Unknown,
+		[Description("رزمنده")]
+		Razmande,
+		[Description("آزاده")]
+		Azade,
+		[Description("خانواده آزاده")]
+		KhanevadeAzade,
+		[Description("جانباز")]
+		Janbaz,
+		[Description("خانواده جانباز")]
+		KhanevadeJanbaz,
+		[Description("خانواده شهید")]
+		KhanevadeShahid,
+		[Description("ایثارگر")]
+		Isargar,
+		[Description("سایر موارد")]
+		Other
 	}
 
 	public enum TabState
@@ -349,18 +367,60 @@ namespace PaySys.ModelAndBindLib.Model
 
 	public enum EducationStand
 	{
-		//todo: fill enum
+		[Description("وارد نشده")]
+		Unknown,
+		[Description("بی سواد")]
+		Bisavad,
+		[Description("سیکل")]
+		Sikl,
+		[Description("زیر دیپلم")]
+		Zildiplom,
+		[Description("دیپلم")]
+		Diplom,
+		[Description("کاردانی")]
+		Kardani,
+		[Description("کارشناسی")]
+		Karshenasi,
+		[Description("فوق لیسانس")]
+		Foqlisans,
+		[Description("دکترا")]
+		Doctora,
+		[Description("فوق دکترا")]
+		Foqoctora,
+		[Description("سایر موارد")]
+		Other
 	}
 
 	public enum EmploymentType
 	{
-		//todo: fill enum
+		[Description("وارد نشده")]
+		Unknown,
+		[Description("رسمی آزمایشی")]
+		Rasmiazmayeshi,
+		[Description("رسمی قطعی")]
+		Rasmiqatei,
+		[Description("شرکتی")]
+		Sherkati,
+		[Description("پیمانی")]
+		Peymani,
+		[Description("قراردادی")]
+		Qarardadi,
+		[Description("تعاونی")]
+		Taavoni,
+		[Description("فصلی")]
+		Fasli,
+		[Description("خرید خدمتی")]
+		Kharidkhedmati,
+		[Description("روز مزد")]
+		Ruzmozd,
+		[Description("سایر موارد")]
+		Other
 	}
 
-	public enum JobCategory
-	{
-		//todo: fill enum
-	}
+//	public enum JobCategory
+//	{
+//		//todo: fill enum
+//	}
 
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum Sex
@@ -390,10 +450,10 @@ namespace PaySys.ModelAndBindLib.Model
 
 	public enum FormCurrentState
 	{
+		Unknown,
 		Select,
 		Edit,
 		Add,
-		Delete,
-		Unknown
+		Delete
 	}
 }

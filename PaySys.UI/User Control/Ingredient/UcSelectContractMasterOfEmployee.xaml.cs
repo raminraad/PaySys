@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.EnterpriseServices;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using PaySys.ModelAndBindLib.Engine;
 using PaySys.ModelAndBindLib.Model;
 
 namespace PaySys.UI.UC
@@ -21,13 +24,25 @@ namespace PaySys.UI.UC
     /// </summary>
     public partial class UcSelectContractMasterOfEmployee : UserControl
     {
+	    private ObservableCollection<ContractMaster> ContractMasterList;
+		private PaySysContext _context=new PaySysContext();
         public UcSelectContractMasterOfEmployee()
         {
             InitializeComponent();
-			UcSelectEmp.SelectedEmployee
+			UcSelectEmp.SelectedItemChanged+=UcSelectEmpOnSelectedItemChanged;
         }
 
-	    public static readonly DependencyProperty SelectedContractMasterProperty = DependencyProperty.Register("SelectedContractMaster", typeof(ContractMaster), typeof(UcSelectContractMaster), new PropertyMetadata(default(ContractMaster)));
+	    private void UcSelectEmpOnSelectedItemChanged(object sender, SelectionChangedEventArgs selectionChangedEventArgs)
+	    {
+		    var lstContract = from c in _context.ContractMasters
+			    where c.Employee.Equals(UcSelectEmp.SelectedEmployee)
+			    select c;
+						  ContractMasterList = new ObservableCollection<ContractMaster>(lstContract);
+			CmbContractMaster.DataContext=ContractMasterList;
+		    ;
+	    }
+
+	    public static readonly DependencyProperty SelectedContractMasterProperty = DependencyProperty.Register("SelectedContractMaster", typeof(ContractMaster), typeof(UcSelectContractMasterOfEmployee), new PropertyMetadata(default(ContractMaster)));
 
 	    public ContractMaster SelectedContractMaster
 	    {
