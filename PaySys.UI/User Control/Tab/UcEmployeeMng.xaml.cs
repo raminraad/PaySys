@@ -13,7 +13,7 @@ using PaySys.ModelAndBindLib.Engine;
 using PaySys.ModelAndBindLib.Model;
 using PaySys.UI.Resource;
 
-namespace PaySys.UI.User_Control
+namespace PaySys.UI.UC
 {
 	/// <summary>Interaction logic for UcEmployeeMng.xaml</summary>
 	public partial class UcEmployeeMng : UserControl

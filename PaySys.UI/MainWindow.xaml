@@ -5,14 +5,11 @@
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:local="clr-namespace:PaySys"
 		xmlns:System="clr-namespace:System;assembly=mscorlib"
-		
 		mc:Ignorable="d"
 		Title="MainWindow"
 		Height="350"
 		Width="525">
-	<Window.Resources>
-
-	</Window.Resources>
+	<Window.Resources></Window.Resources>
 	<DockPanel FlowDirection="RightToLeft">
 		<Menu Name="MnuMain"
 			  DockPanel.Dock="Top">
@@ -30,7 +27,9 @@
 				<MenuItem x:Name="mnuItem3"
 						  Header="تعریف مقادیر گروهی" />
 				<MenuItem Header="تعریف پارامترهای گروهی" />
-				<MenuItem Header="ورود اطلاعات احکام" />
+				<MenuItem x:Name="MnuContractMng"
+						  Header="ورود اطلاعات احکام" 
+						  Click="MnuContractMng_OnClick"/>
 				<MenuItem Header="تعریف مبانی مالیات">
 					<MenuItem Header="جدول مالیات" />
 					<MenuItem Header="اطلاعات اصلی" />

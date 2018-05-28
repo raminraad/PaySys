@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 using PaySys.ModelAndBindLib.Model;
 using PaySys.UI.Resource;
 
-namespace PaySys.UI.User_Control.Ingredient
+namespace PaySys.UI.UC
 {
 
 	public partial class UcFormStateLabel

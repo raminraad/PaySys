@@ -14,5 +14,7 @@ namespace PaySys.UI.Resource
 		public static ResourceManager MessageLib => new ResourceManager($"{NamespacePrefix}.MessageLib", Assembly.GetExecutingAssembly());
 		public static ResourceManager LabelLib => new ResourceManager($"{NamespacePrefix}.LabelLib", Assembly.GetExecutingAssembly());
 		public static ResourceManager FieldicEmployee => new ResourceManager($"{NamespacePrefix}.FieldicEmployee", Assembly.GetExecutingAssembly());
+		public static ResourceManager TabHeaderLib => new ResourceManager($"{NamespacePrefix}.TabHeaderLib", Assembly.GetExecutingAssembly());
+		public static ResourceManager MenuLib => new ResourceManager($"{NamespacePrefix}.MenuLib", Assembly.GetExecutingAssembly());
 	}
 }

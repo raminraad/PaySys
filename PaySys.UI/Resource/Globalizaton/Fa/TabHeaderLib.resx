@@ -117,40 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Add" xml:space="preserve">
-    <value>جدید</value>
+  <data name="ContractMng" xml:space="preserve">
+    <value>اطلاعات احکام</value>
   </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>انصراف</value>
-  </data>
-  <data name="Contract" xml:space="preserve">
-    <value>حکم</value>
-  </data>
-  <data name="Delete" xml:space="preserve">
-    <value>حذف</value>
-  </data>
-  <data name="Edit" xml:space="preserve">
-    <value>ویرایش</value>
-  </data>
-  <data name="Employee" xml:space="preserve">
-    <value>کارمند</value>
-  </data>
-  <data name="FormCurrentState" xml:space="preserve">
-    <value>حالت جاری فرم</value>
-  </data>
-  <data name="Refresh" xml:space="preserve">
-    <value>بارگذاری</value>
-  </data>
-  <data name="Save" xml:space="preserve">
-    <value>ذخیره</value>
-  </data>
-  <data name="Search" xml:space="preserve">
-    <value>جستجو</value>
-  </data>
-  <data name="Select" xml:space="preserve">
-    <value>انتخاب</value>
-  </data>
-  <data name="Unknown" xml:space="preserve">
-    <value>نامعلوم</value>
+  <data name="EmployeeMng" xml:space="preserve">
+    <value>اطلاعات پرسنل</value>
   </data>
 </root>

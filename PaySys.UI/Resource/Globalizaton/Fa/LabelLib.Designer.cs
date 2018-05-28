@@ -79,6 +79,15 @@ namespace PaySys.UI.Resource.Globalizaton.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to حکم.
+        /// </summary>
+        public static string Contract {
+            get {
+                return ResourceManager.GetString("Contract", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to حذف.
         /// </summary>
         public static string Delete {
@@ -93,6 +102,15 @@ namespace PaySys.UI.Resource.Globalizaton.Fa {
         public static string Edit {
             get {
                 return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to کارمند.
+        /// </summary>
+        public static string Employee {
+            get {
+                return ResourceManager.GetString("Employee", resourceCulture);
             }
         }
         

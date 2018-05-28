@@ -71,6 +71,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Resource\Globalizaton\Fa\TabHeaderLib.Designer.cs">
+      <DependentUpon>TabHeaderLib.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resource\Globalizaton\Fa\MenuLib.Designer.cs">
+      <DependentUpon>MenuLib.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Resource\Globalizaton\Fa\FieldicEmployee.Designer.cs">
       <DependentUpon>FieldicEmployee.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -86,7 +96,16 @@
     <Compile Include="User Control\Ingredient\UcFormStateLabel.xaml.cs">
       <DependentUpon>UcFormStateLabel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="User Control\UcEmployeeMng.xaml.cs">
+    <Compile Include="User Control\Ingredient\UcSelectContractMasterOfEmployee.xaml.cs">
+      <DependentUpon>UcSelectContractMasterOfEmployee.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\Ingredient\UcSelectEmployee.xaml.cs">
+      <DependentUpon>UcSelectEmployee.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\Tab\UcContractMng.xaml.cs">
+      <DependentUpon>UcContractMng.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\Tab\UcEmployeeMng.xaml.cs">
       <DependentUpon>UcEmployeeMng.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
@@ -109,7 +128,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="User Control\UcEmployeeMng.xaml">
+    <Page Include="User Control\Ingredient\UcSelectContractMasterOfEmployee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="User Control\Ingredient\UcSelectEmployee.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="User Control\Tab\UcContractMng.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="User Control\Tab\UcEmployeeMng.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -131,6 +162,14 @@
     <EmbeddedResource Include="Resource\Globalizaton\Fa\LabelLib.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>LabelLib.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource\Globalizaton\Fa\TabHeaderLib.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TabHeaderLib.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource\Globalizaton\Fa\MenuLib.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MenuLib.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resource\Globalizaton\Fa\FieldicEmployee.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
