@@ -57,10 +57,11 @@ namespace PaySys.ModelAndBindLib.Engine
 				e.NationalCardNo = $"{f.Random.Number(999999999):d10}";
 				e.IdCardNo = $"{f.Random.Number(999999)}";
 			});
-			employeeFaker.Generate(20).ForEach(e => context.Employees.Add(e));
+			var seedEmployees = employeeFaker.Generate(20);
+			seedEmployees.ForEach(e => context.Employees.Add(e));
 
 
-			var mainGroups = new List<MainGroup>
+			var seedMainGroups = new List<MainGroup>
 			{
 				new MainGroup
 				{
@@ -112,7 +113,7 @@ namespace PaySys.ModelAndBindLib.Engine
 					}
 				},
 			};
-			mainGroups.ForEach(e => context.MainGroups.Add(e));
+			seedMainGroups.ForEach(e => context.MainGroups.Add(e));
 
 
 			var jobFaker = new Faker<Job>("fa").StrictMode(false).Rules((f, e) =>
@@ -121,12 +122,13 @@ namespace PaySys.ModelAndBindLib.Engine
 				e.JobNo = $"{f.Random.Number(999999):d6}";
 				e.Title = f.Company.CompanySuffix();
 			});
-			jobFaker.Generate(10).ForEach(e => context.Jobs.Add(e));
+			var seedJobs = jobFaker.Generate(10);
+			seedJobs.ForEach(e => context.Jobs.Add(e));
 
 
 			var contractMasterFaker = new Faker<ContractMaster>("fa").StrictMode(false).Rules((f, e) =>
 			{
-				e.Employee = f.PickRandom<Employee>(context.Employees);
+				e.Employee = f.PickRandom(seedEmployees);
 				e.AccountNoEmp =
 					$"{f.PickRandom(creditCardNoPrefix)}-{f.Random.Number(9999):d4}-{f.Random.Number(9999):d4}-{f.Random.Number(9999):d4}";
 				e.AccountNoGov =
@@ -142,12 +144,13 @@ namespace PaySys.ModelAndBindLib.Engine
 				e.HardshipFactor = f.Random.Number(100);
 				e.InsuranceNo = $"{f.Random.Number(99999999):d8}";
 				e.IsMarried = f.PickRandomParam(true, false);
-				e.Job = f.PickRandom<Job>(context.Jobs);
+				e.Job = f.PickRandom<Job>(seedJobs);
 				e.SacrificeStand= f.PickRandom(Enum.GetValues(typeof(SacrificeStand)).Cast<SacrificeStand>()
 					.Where(sex => sex != SacrificeStand.Unknown));
-				e.SubGroup = f.PickRandom<SubGroup>(context.SubGroups);
+				e.SubGroup = f.PickRandom(f.PickRandom(seedMainGroups).SubGroups);
 			});
-			contractMasterFaker.Generate(30).ForEach(e => context.ContractMasters.Add(e));
+			var seedContractMasters = contractMasterFaker.Generate(30);
+			seedContractMasters.ForEach(e => context.ContractMasters.Add(e));
 
 			base.Seed(context);
 		}
