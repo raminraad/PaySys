@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PaySys.UI {
+namespace PaySys.UI.Resource.Globalizaton.Fa {
     using System;
     
     
@@ -22,7 +22,7 @@ namespace PaySys.UI {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class MessageLib {
+    public class MessageLib {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,10 +36,10 @@ namespace PaySys.UI {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PaySys.UI.MessageLib", typeof(MessageLib).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PaySys.UI.Resource.Globalizaton.Fa.MessageLib", typeof(MessageLib).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace PaySys.UI {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,9 +63,9 @@ namespace PaySys.UI {
         /// <summary>
         ///   Looks up a localized string similar to رکورد انتخاب شده حذف خواهد شد. تأیید مینمایید؟.
         /// </summary>
-        internal static string msgDeleteRow {
+        public static string DeleteRecord {
             get {
-                return ResourceManager.GetString("msgDeleteRow", resourceCulture);
+                return ResourceManager.GetString("DeleteRecord", resourceCulture);
             }
         }
     }

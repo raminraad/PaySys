@@ -66,27 +66,29 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Command\CommandCancel.cs" />
-    <Compile Include="Command\CommandCloseTab.cs" />
-    <Compile Include="Command\CommandEdit.cs" />
-    <Compile Include="Command\CommandAdd.cs" />
-    <Compile Include="Command\CommandSave.cs" />
-    <Compile Include="MessageLib.Designer.cs">
+    <Compile Include="Resource\Globalizaton\Fa\LabelLib.Designer.cs">
+      <DependentUpon>LabelLib.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resource\Globalizaton\Fa\FieldicEmployee.Designer.cs">
+      <DependentUpon>FieldicEmployee.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resource\Globalizaton\Fa\MessageLib.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MessageLib.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Resource\ResourceManager.cs" />
     <Compile Include="User Control\Ingredient\UcFormStateLabel.xaml.cs">
       <DependentUpon>UcFormStateLabel.xaml</DependentUpon>
     </Compile>
     <Compile Include="User Control\UcEmployeeMng.xaml.cs">
       <DependentUpon>UcEmployeeMng.xaml</DependentUpon>
     </Compile>
-    <Page Include="Globalizaton\Fa\FieldicEmployee.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -126,8 +128,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="MessageLib.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+    <EmbeddedResource Include="Resource\Globalizaton\Fa\LabelLib.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>LabelLib.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource\Globalizaton\Fa\FieldicEmployee.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FieldicEmployee.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource\Globalizaton\Fa\MessageLib.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MessageLib.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

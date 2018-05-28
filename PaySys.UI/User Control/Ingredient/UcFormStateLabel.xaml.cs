@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using PaySys.ModelAndBindLib.Model;
+using PaySys.UI.Resource;
 
 namespace PaySys.UI.User_Control.Ingredient
 {
@@ -21,7 +22,7 @@ namespace PaySys.UI.User_Control.Ingredient
 	public partial class UcFormStateLabel
 	{
 		private FormCurrentState _currentState = FormCurrentState.Unknown;
-		public static readonly DependencyProperty IsReadOnlyProperty;
+//		public static readonly DependencyProperty IsReadOnlyProperty;
 		public UcFormStateLabel()
 		{
 			InitializeComponent();
@@ -59,23 +60,23 @@ namespace PaySys.UI.User_Control.Ingredient
 				{
 					case FormCurrentState.Select:
 						LblState.Foreground = (Brush)FindResource("FormStateColorSelect");
-						LblState.Content = $"«انتخاب»";
+						LblState.Content = ResourceAccessor.LabelLib.GetString("Select");
 						break;
 					case FormCurrentState.Edit:
 						LblState.Foreground = (Brush)FindResource("FormStateColorEdit");
-						LblState.Content = $"«ویرایش»";
+						LblState.Content = ResourceAccessor.LabelLib.GetString("Edit");
 						break;
 					case FormCurrentState.Add:
 						LblState.Foreground = (Brush)FindResource("FormStateColorAdd");
-						LblState.Content = $"«جدید»";
+						LblState.Content = ResourceAccessor.LabelLib.GetString("Add");
 						break;
 					case FormCurrentState.Delete:
 						LblState.Foreground = (Brush)FindResource("FormStateColorDelete");
-						LblState.Content = $"«حذف»";
+						LblState.Content = ResourceAccessor.LabelLib.GetString("Delete");
 						break;
 					case FormCurrentState.Unknown:
 						LblState.Foreground = (Brush)FindResource("FormStateColorUnknown");
-						LblState.Content = $"«نامعلوم»";
+						LblState.Content = ResourceAccessor.LabelLib.GetString("Unknown");
 						break;
 					default:
 						throw new ArgumentOutOfRangeException(nameof(value), value, null);

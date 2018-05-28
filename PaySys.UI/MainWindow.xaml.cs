@@ -29,16 +29,8 @@ namespace PaySys
 		{
 			InitializeComponent();
 			context.Database.Initialize(true);
-		}
-
-		private void BtnDo_Click(object sender, RoutedEventArgs e)
-		{
-			Window owned = new Window();
-			owned.Owner = this;
-			owned.ShowInTaskbar = false;
-			owned.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-			owned.Height = owned.Width = 200;
-			owned.Show();
+			this.WindowStartupLocation=WindowStartupLocation.CenterScreen;
+			this.WindowState = WindowState.Maximized;
 		}
 
 		private void MnuEmployeeMng_OnClick(object sender, RoutedEventArgs e)

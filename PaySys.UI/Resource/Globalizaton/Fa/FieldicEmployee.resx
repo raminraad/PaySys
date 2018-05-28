@@ -117,7 +117,55 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="msgDeleteRow" xml:space="preserve">
-    <value>رکورد انتخاب شده حذف خواهد شد. تأیید مینمایید؟</value>
+  <data name="Address" xml:space="preserve">
+    <value>آدرس</value>
+  </data>
+  <data name="BirthDate" xml:space="preserve">
+    <value>تاریخ تولد</value>
+  </data>
+  <data name="BirthPlace" xml:space="preserve">
+    <value>محل تولد</value>
+  </data>
+  <data name="CellNo" xml:space="preserve">
+    <value>شماره موبایل</value>
+  </data>
+  <data name="DossierNo" xml:space="preserve">
+    <value>شماره پرونده</value>
+  </data>
+  <data name="EmployeeId" xml:space="preserve">
+    <value>کلید اصلی</value>
+  </data>
+  <data name="FatherName" xml:space="preserve">
+    <value>نام پدر</value>
+  </data>
+  <data name="FName" xml:space="preserve">
+    <value>نام</value>
+  </data>
+  <data name="HomeTel" xml:space="preserve">
+    <value>تلفن منزل</value>
+  </data>
+  <data name="IdCardExportDate" xml:space="preserve">
+    <value>تاریخ صدور</value>
+  </data>
+  <data name="IdCardExportPlace" xml:space="preserve">
+    <value>محل صدور</value>
+  </data>
+  <data name="IdCardNo" xml:space="preserve">
+    <value>ش شناسنامه</value>
+  </data>
+  <data name="LName" xml:space="preserve">
+    <value>نام خانوادگی</value>
+  </data>
+  <data name="NationalCardNo" xml:space="preserve">
+    <value>کد ملی</value>
+  </data>
+  <data name="PersonnelCode" xml:space="preserve">
+    <value>کد پرسنلی</value>
+  </data>
+  <data name="PostalCode" xml:space="preserve">
+    <value>کدپستی</value>
+  </data>
+  <data name="Sex" xml:space="preserve">
+    <value>جنسیت</value>
   </data>
 </root>

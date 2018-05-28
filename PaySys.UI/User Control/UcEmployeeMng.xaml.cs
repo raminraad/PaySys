@@ -11,6 +11,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using PaySys.ModelAndBindLib.Engine;
 using PaySys.ModelAndBindLib.Model;
+using PaySys.UI.Resource;
 
 namespace PaySys.UI.User_Control
 {
@@ -69,8 +70,7 @@ namespace PaySys.UI.User_Control
 
 		private void BtnEmployeeDelete_OnClick(object sender, RoutedEventArgs e)
 		{
-			ResourceManager rm = new ResourceManager("PaySys.UI.MessageLib", Assembly.GetExecutingAssembly());
-			String strmsg = rm.GetString("msgDeleteRow", CultureInfo.CurrentCulture);
+			String strmsg = ResourceAccessor.MessageLib.GetString("DeleteRecord", CultureInfo.CurrentCulture);
 			var result = MessageBox.Show(strmsg, "Delete", MessageBoxButton.YesNo,
 				MessageBoxImage.Question, MessageBoxResult.No);
 			if (result != MessageBoxResult.Yes)

@@ -7,18 +7,14 @@
 			 xmlns:extensionMethod="clr-namespace:PaySys.CalcLib.ExtensionMethod;assembly=PaySys.CalcLib"
 			 xmlns:bindingConverter1="clr-namespace:PaySys.ModelAndBindLib.BindingConverter;assembly=PaySys.ModelAndBindLib"
 			 xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Model;assembly=PaySys.ModelAndBindLib"
+			 xmlns:fa="clr-namespace:PaySys.UI.Resource.Globalizaton.Fa"
 			 mc:Ignorable="d"
 			 d:DesignWidth="900"
 			 Width="auto"
 			 Height="auto"
 			 x:Name="UcEmpMng">
 	<UserControl.Resources>
-		<ResourceDictionary>
-			<ResourceDictionary.MergedDictionaries>
-				<ResourceDictionary Source="pack://application:,,,/Globalizaton/Fa/FieldicEmployee.xaml" />
-			</ResourceDictionary.MergedDictionaries>
 			<bindingConverter1:DateFormatterConverter x:Key="DateFrmtCnv" />
-		</ResourceDictionary>
 	</UserControl.Resources>
 	<Grid x:Name="GrdParent"
 		  FlowDirection="RightToLeft">
@@ -37,29 +33,29 @@
 				<Button Name="BtnEmployeeAdd"
 				        Click="BtnEmployeeAdd_OnClick"
 				        IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
-				        Content="جدید" />
+				        Content="{x:Static fa:LabelLib.Add}" />
 				<Button Name="BtnEmployeeEdit"
 				        Click="BtnEmployeeEdit_OnClick"
 				        IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
-				        Content="ویرایش" />
+						Content="{x:Static fa:LabelLib.Edit}" />
 				<Button Name="BtnEmployeeDelete"
 				        Click="BtnEmployeeDelete_OnClick"
 				        IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
-				        Content="حذف" />
+						Content="{x:Static fa:LabelLib.Delete}" />
 				<Separator />
 				<Button Name="BtnEmployeeRefresh"
 				        Click="BtnEmployeeRefresh_OnClick"
 				        IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
-				        Content="بارگذاری" />
+						Content="{x:Static fa:LabelLib.Refresh}" />
 				<Separator/>
 				<Button Name="BtnEmployeeSave"
 				        Click="BtnEmployeeSave_OnClick"
 				        IsEnabled="{Binding ElementName=UcFormState,Path=SaveCancelButtonsEnabled}"
-				        Content="ذخیره" />
+						Content="{x:Static fa:LabelLib.Save}" />
 				<Button Name="BtnEmployeeCancel"
 				        Click="BtnEmployeeCancel_OnClick"
 				        IsEnabled="{Binding ElementName=UcFormState,Path=SaveCancelButtonsEnabled}"
-				        Content="انصراف" />
+						Content="{x:Static fa:LabelLib.Cancel}" />
 			</ToolBar>
 
 
@@ -70,13 +66,13 @@
 					Width="516"
 					Margin="192,50"
 		            Grid.Row="1">
-			<TextBlock Text="جستجو:"
+			<TextBlock Text="{x:Static fa:LabelLib.Search}"
 					   Margin="5" />
 			<TextBox x:Name="TxtFilter"
 					 Width="400"
 					 Margin="5" />
 			<Button x:Name="BtnFilter"
-					Content="فیلتر"
+					Content="{x:Static fa:LabelLib.Refresh}"
 					VerticalContentAlignment="Center"
 					Width="50"
 					Margin="5"
@@ -92,28 +88,30 @@
 				  AutoGenerateColumns="False"
 				  IsSynchronizedWithCurrentItem="True"
 				  IsReadOnly="True"
+		          IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
+				  SelectionMode="Single"
 				  ItemsSource="{Binding}">
 			<DataGrid.Columns>
-				<DataGridTextColumn Header="{StaticResource FdEmployeeEmployeeId}"
+				<DataGridTextColumn Header="{x:Static fa:FieldicEmployee.EmployeeId}"
 				                    Binding="{Binding (model:Employee.EmployeeId)}"
 									Visibility="Hidden"/>
-				<DataGridTextColumn Header="{StaticResource FdEmployeePersonnelCode}"
+				<DataGridTextColumn Header="{x:Static fa:FieldicEmployee.PersonnelCode}"
 									Binding="{Binding (model:Employee.PersonnelCode)}" />
-				<DataGridTextColumn Header="{StaticResource FdEmployeeDossierNo}"
+				<DataGridTextColumn Header="{x:Static fa:FieldicEmployee.DossierNo}"
 									Binding="{Binding (model:Employee.DossierNo)}" />
-				<DataGridTextColumn Header="{StaticResource FdEmployeeFName}"
+				<DataGridTextColumn Header="{x:Static fa:FieldicEmployee.FName}"
 									Binding="{Binding (model:Employee.FName)}" />
-				<DataGridTextColumn Header="{StaticResource FdEmployeeLName}"
+				<DataGridTextColumn Header="{x:Static fa:FieldicEmployee.LName}"
 									Binding="{Binding (model:Employee.LName)}" />
-				<DataGridTextColumn Header="{StaticResource FdEmployeeFatherName}"
+				<DataGridTextColumn Header="{x:Static fa:FieldicEmployee.FatherName}"
 									Binding="{Binding (model:Employee.FatherName)}" />
-				<DataGridTextColumn Header="{StaticResource FdEmployeeNationalCardNo}"
+				<DataGridTextColumn Header="{x:Static fa:FieldicEmployee.NationalCardNo}"
 									Binding="{Binding (model:Employee.NationalCardNo)}" />
-				<DataGridTextColumn Header="{StaticResource FdEmployeeIdCardNo}"
+				<DataGridTextColumn Header="{x:Static fa:FieldicEmployee.IdCardNo}"
 									Binding="{Binding (model:Employee.IdCardNo)}" />
-				<DataGridTextColumn Header="{StaticResource FdEmployeeIdCardExportPlace}"
+				<DataGridTextColumn Header="{x:Static fa:FieldicEmployee.IdCardExportPlace}"
 									Binding="{Binding (model:Employee.IdCardExportPlace)}" />
-				<DataGridTextColumn Header="{StaticResource FdEmployeeAddress}"
+				<DataGridTextColumn Header="{x:Static fa:FieldicEmployee.Address}"
 									Binding="{Binding (model:Employee.Address)}" />
 			</DataGrid.Columns>
 		</DataGrid>
@@ -157,52 +155,52 @@
 			</Grid.Resources>
 			<TextBlock Grid.Row="0"
 					   Grid.Column="0"
-					   Text="{StaticResource FdEmployeePersonnelCode}" />
+					   Text="{x:Static fa:FieldicEmployee.PersonnelCode}" />
 			<TextBlock Grid.Row="0"
 					   Grid.Column="2"
-					   Text="{StaticResource FdEmployeeDossierNo}" />
+					   Text="{x:Static fa:FieldicEmployee.DossierNo}" />
 			<TextBlock Grid.Row="1"
 					   Grid.Column="0"
-					   Text="{StaticResource FdEmployeeFName}" />
+					   Text="{x:Static fa:FieldicEmployee.FName}" />
 			<TextBlock Grid.Row="1"
 					   Grid.Column="2"
-					   Text="{StaticResource FdEmployeeLName}" />
+					   Text="{x:Static fa:FieldicEmployee.LName}" />
 			<TextBlock Grid.Row="1"
 					   Grid.Column="4"
-					   Text="{StaticResource FdEmployeeFatherName}" />
+					   Text="{x:Static fa:FieldicEmployee.FatherName}" />
 			<TextBlock Grid.Row="1"
 					   Grid.Column="6"
-					   Text="{StaticResource 'FdEmployee Sex'}" />
+			           Text="{x:Static fa:FieldicEmployee.Sex}" />
 			<TextBlock Grid.Row="2"
 					   Grid.Column="0"
-					   Text="{StaticResource FdEmployeeNationalCardNo}" />
+					   Text="{x:Static fa:FieldicEmployee.NationalCardNo}" />
 			<TextBlock Grid.Row="2"
 					   Grid.Column="2"
-					   Text="{StaticResource FdEmployeeIdCardNo}" />
+					   Text="{x:Static fa:FieldicEmployee.IdCardNo}" />
 			<TextBlock Grid.Row="2"
 					   Grid.Column="4"
-					   Text="{StaticResource FdEmployeeBirthDate}" />
+					   Text="{x:Static fa:FieldicEmployee.BirthDate}" />
 			<TextBlock Grid.Row="2"
 					   Grid.Column="6"
-					   Text="{StaticResource FdEmployeeBirthPlace}" />
+					   Text="{x:Static fa:FieldicEmployee.BirthPlace}" />
 			<TextBlock Grid.Row="3"
 					   Grid.Column="0"
-					   Text="{StaticResource FdEmployeeIdCardExportDate}" />
+					   Text="{x:Static fa:FieldicEmployee.IdCardExportDate}" />
 			<TextBlock Grid.Row="3"
 					   Grid.Column="2"
-					   Text="{StaticResource FdEmployeeIdCardExportPlace}" />
+					   Text="{x:Static fa:FieldicEmployee.IdCardExportPlace}" />
 			<TextBlock Grid.Row="3"
 					   Grid.Column="4"
-					   Text="{StaticResource FdEmployeeHomeTel}" />
+					   Text="{x:Static fa:FieldicEmployee.HomeTel}" />
 			<TextBlock Grid.Row="3"
 					   Grid.Column="6"
-					   Text="{StaticResource FdEmployeeCellNo}" />
+					   Text="{x:Static fa:FieldicEmployee.CellNo}" />
 			<TextBlock Grid.Row="4"
 					   Grid.Column="0"
-					   Text="{StaticResource FdEmployeePersonnelCode}" />
+					   Text="{x:Static fa:FieldicEmployee.PersonnelCode}" />
 			<TextBlock Grid.Row="5"
 					   Grid.Column="0"
-					   Text="{StaticResource FdEmployeeAddress}" />
+					   Text="{x:Static fa:FieldicEmployee.Address}" />
 			<TextBox Grid.Row="0"
 					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
 					 Grid.Column="1"
