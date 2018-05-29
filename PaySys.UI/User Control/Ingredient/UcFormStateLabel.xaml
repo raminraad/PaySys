@@ -3,11 +3,11 @@
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-			 xmlns:fa="clr-namespace:PaySys.UI.Resource.Globalizaton.Fa"
+			 xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
 			 FlowDirection="RightToLeft">
 	<StackPanel Orientation="Horizontal">
 		<Label FontWeight="Bold"
-			   Content="{x:Static fa:LabelLib.FormCurrentState}"/>
+			   Content="{x:Static fa:Labels.FormCurrentState}"/>
 		<Label Name="LblState"
 			   Content="---"
 			   FontWeight="Bold" />

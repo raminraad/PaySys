@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using PaySys.Globalization;
 using PaySys.ModelAndBindLib.Engine;
-using PaySys.UI.Resource;
 using PaySys.UI.UC;
 
 namespace PaySys
@@ -25,7 +25,7 @@ namespace PaySys
 			var tabEmployeeMng = new TabItem
 			{
 				Content = userControls,
-				Header = ResourceAccessor.TabHeaderLib.GetString("EmployeeMng")
+				Header = ResourceAccessor.Labels.GetString("tabEmployeeMng")
 			};
 			TabCntMain.Items.Add(tabEmployeeMng);
 			TabCntMain.Items.Refresh();
@@ -45,7 +45,7 @@ namespace PaySys
 			var tabContractMng = new TabItem
 			{
 				Content = userControls,
-				Header = ResourceAccessor.TabHeaderLib.GetString("ContractMng")
+				Header = ResourceAccessor.Labels.GetString("tabContractMng")
 			};
 			TabCntMain.Items.Add(tabContractMng);
 			TabCntMain.Items.Refresh();

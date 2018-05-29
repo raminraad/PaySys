@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PaySys.UI.Resource.Globalizaton.Fa {
+namespace PaySys.Globalization.Fa {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace PaySys.UI.Resource.Globalizaton.Fa {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class LabelLib {
+    public class Labels {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal LabelLib() {
+        internal Labels() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace PaySys.UI.Resource.Globalizaton.Fa {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PaySys.UI.Resource.Globalizaton.Fa.LabelLib", typeof(LabelLib).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PaySys.Globalization.Fa.Labels", typeof(Labels).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -84,6 +84,15 @@ namespace PaySys.UI.Resource.Globalizaton.Fa {
         public static string Contract {
             get {
                 return ResourceManager.GetString("Contract", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تاریخ.
+        /// </summary>
+        public static string Date {
+            get {
+                return ResourceManager.GetString("Date", resourceCulture);
             }
         }
         
@@ -156,6 +165,24 @@ namespace PaySys.UI.Resource.Globalizaton.Fa {
         public static string Select {
             get {
                 return ResourceManager.GetString("Select", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to اطلاعات احکام.
+        /// </summary>
+        public static string tabContractMng {
+            get {
+                return ResourceManager.GetString("tabContractMng", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to اطلاعات پرسنل.
+        /// </summary>
+        public static string tabEmployeeMng {
+            get {
+                return ResourceManager.GetString("tabEmployeeMng", resourceCulture);
             }
         }
         

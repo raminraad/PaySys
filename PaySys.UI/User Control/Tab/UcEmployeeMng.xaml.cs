@@ -9,9 +9,10 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
+using PaySys.Globalization;
 using PaySys.ModelAndBindLib.Engine;
 using PaySys.ModelAndBindLib.Model;
-using PaySys.UI.Resource;
+
 
 namespace PaySys.UI.UC
 {
@@ -70,7 +71,7 @@ namespace PaySys.UI.UC
 
 		private void BtnEmployeeDelete_OnClick(object sender, RoutedEventArgs e)
 		{
-			String strmsg = ResourceAccessor.MessageLib.GetString("DeleteRecord", CultureInfo.CurrentCulture);
+			String strmsg = ResourceAccessor.Messages.GetString("DeleteRecord", CultureInfo.CurrentCulture);
 			var result = MessageBox.Show(strmsg, "Delete", MessageBoxButton.YesNo,
 				MessageBoxImage.Question, MessageBoxResult.No);
 			if (result != MessageBoxResult.Yes)

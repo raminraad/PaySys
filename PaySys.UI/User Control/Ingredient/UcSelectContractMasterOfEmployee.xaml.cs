@@ -42,7 +42,8 @@ namespace PaySys.UI.UC
 				select c).ToList();
 			ContractMasterList = new ObservableCollection<ContractMaster>(lstContract);
 			CmbContractMaster.DataContext = ContractMasterList;
-			;
+			if(ContractMasterList.Count>0)
+			CmbContractMaster.SelectedItem = ContractMasterList.First(c => c.IsCurrentContract);
 		}
 
 		public static readonly DependencyProperty SelectedContractMasterProperty = DependencyProperty.Register(

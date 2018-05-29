@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PaySys.UI</RootNamespace>
     <AssemblyName>PaySys.UI</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -67,33 +67,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Resource\Globalizaton\Fa\LabelLib.Designer.cs">
-      <DependentUpon>LabelLib.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Resource\Globalizaton\Fa\TabHeaderLib.Designer.cs">
-      <DependentUpon>TabHeaderLib.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Resource\Globalizaton\Fa\MenuLib.Designer.cs">
-      <DependentUpon>MenuLib.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Resource\Globalizaton\Fa\FieldicEmployee.Designer.cs">
-      <DependentUpon>FieldicEmployee.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Resource\Globalizaton\Fa\MessageLib.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MessageLib.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="Resource\ResourceManager.cs" />
     <Compile Include="User Control\Ingredient\UcFormStateLabel.xaml.cs">
       <DependentUpon>UcFormStateLabel.xaml</DependentUpon>
     </Compile>
@@ -160,26 +134,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Resource\Globalizaton\Fa\LabelLib.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>LabelLib.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resource\Globalizaton\Fa\TabHeaderLib.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>TabHeaderLib.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resource\Globalizaton\Fa\MenuLib.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>MenuLib.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resource\Globalizaton\Fa\FieldicEmployee.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>FieldicEmployee.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resource\Globalizaton\Fa\MessageLib.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>MessageLib.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -200,6 +154,10 @@
     <ProjectReference Include="..\PaySys.CalcLib\PaySys.CalcLib.csproj">
       <Project>{733ddf04-3787-4610-95f1-a3ede7cff373}</Project>
       <Name>PaySys.CalcLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PaySys.Globalization\PaySys.Globalization.csproj">
+      <Project>{9833315b-63e2-4717-8615-b3e625acaea8}</Project>
+      <Name>PaySys.Globalization</Name>
     </ProjectReference>
     <ProjectReference Include="..\PaySys.ModelAndBindLib\PaySys.ModelAndBindLib.csproj">
       <Project>{21C027CA-0A77-47DF-B9D5-70079B1CDCC8}</Project>

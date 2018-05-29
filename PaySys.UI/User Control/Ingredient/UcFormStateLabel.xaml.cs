@@ -12,9 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using PaySys.Globalization;
 using PaySys.ModelAndBindLib.Model;
-using PaySys.UI.Resource;
 
 namespace PaySys.UI.UC
 {
@@ -60,23 +59,23 @@ namespace PaySys.UI.UC
 				{
 					case FormCurrentState.Select:
 						LblState.Foreground = (Brush)FindResource("FormStateColorSelect");
-						LblState.Content = ResourceAccessor.LabelLib.GetString("Select");
+						LblState.Content = ResourceAccessor.Labels.GetString("Select");
 						break;
 					case FormCurrentState.Edit:
 						LblState.Foreground = (Brush)FindResource("FormStateColorEdit");
-						LblState.Content = ResourceAccessor.LabelLib.GetString("Edit");
+						LblState.Content = ResourceAccessor.Labels.GetString("Edit");
 						break;
 					case FormCurrentState.Add:
 						LblState.Foreground = (Brush)FindResource("FormStateColorAdd");
-						LblState.Content = ResourceAccessor.LabelLib.GetString("Add");
+						LblState.Content = ResourceAccessor.Labels.GetString("Add");
 						break;
 					case FormCurrentState.Delete:
 						LblState.Foreground = (Brush)FindResource("FormStateColorDelete");
-						LblState.Content = ResourceAccessor.LabelLib.GetString("Delete");
+						LblState.Content = ResourceAccessor.Labels.GetString("Delete");
 						break;
 					case FormCurrentState.Unknown:
 						LblState.Foreground = (Brush)FindResource("FormStateColorUnknown");
-						LblState.Content = ResourceAccessor.LabelLib.GetString("Unknown");
+						LblState.Content = ResourceAccessor.Labels.GetString("Unknown");
 						break;
 					default:
 						throw new ArgumentOutOfRangeException(nameof(value), value, null);

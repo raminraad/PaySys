@@ -4,7 +4,7 @@
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			 xmlns:local="clr-namespace:PaySys.UI.UC"
-			 xmlns:fa="clr-namespace:PaySys.UI.Resource.Globalizaton.Fa"
+			 xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
 			 mc:Ignorable="d"
 			 d:DesignHeight="50"
 			 d:DesignWidth="300">
@@ -14,7 +14,7 @@
 			<ColumnDefinition Width="2*" />
 		</Grid.ColumnDefinitions>
 		<Label Grid.Column="0"
-			   Content="{x:Static fa:LabelLib.Employee}"
+			   Content="{x:Static fa:Labels.Employee}"
 			   VerticalContentAlignment="Center"
 			   HorizontalContentAlignment="Left" />
 		<ComboBox Grid.Column="1"

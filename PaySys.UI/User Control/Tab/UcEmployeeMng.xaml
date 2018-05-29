@@ -5,16 +5,16 @@
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			 xmlns:local="clr-namespace:PaySys.UI.UC"
 			 xmlns:extensionMethod="clr-namespace:PaySys.CalcLib.ExtensionMethod;assembly=PaySys.CalcLib"
-			 xmlns:bindingConverter1="clr-namespace:PaySys.ModelAndBindLib.BindingConverter;assembly=PaySys.ModelAndBindLib"
+			 xmlns:cnv="clr-namespace:PaySys.ModelAndBindLib.BindingConverter;assembly=PaySys.ModelAndBindLib"
 			 xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Model;assembly=PaySys.ModelAndBindLib"
-			 xmlns:fa="clr-namespace:PaySys.UI.Resource.Globalizaton.Fa"
+			 xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
 			 mc:Ignorable="d"
 			 d:DesignWidth="900"
 			 Width="auto"
 			 Height="auto"
 			 x:Name="UcEmpMng">
 	<UserControl.Resources>
-			<bindingConverter1:DateFormatterConverter x:Key="DateFrmtCnv" />
+			<cnv:DateFormatterConverter x:Key="DateFrmtCnv" />
 	</UserControl.Resources>
 	<Grid x:Name="GrdParent"
 		  FlowDirection="RightToLeft">
@@ -33,29 +33,29 @@
 				<Button Name="BtnEmployeeAdd"
 				        Click="BtnEmployeeAdd_OnClick"
 				        IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
-				        Content="{x:Static fa:LabelLib.Add}" />
+				        Content="{x:Static fa:Labels.Add}" />
 				<Button Name="BtnEmployeeEdit"
 				        Click="BtnEmployeeEdit_OnClick"
 				        IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
-						Content="{x:Static fa:LabelLib.Edit}" />
+						Content="{x:Static fa:Labels.Edit}" />
 				<Button Name="BtnEmployeeDelete"
 				        Click="BtnEmployeeDelete_OnClick"
 				        IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
-						Content="{x:Static fa:LabelLib.Delete}" />
+						Content="{x:Static fa:Labels.Delete}" />
 				<Separator />
 				<Button Name="BtnEmployeeRefresh"
 				        Click="BtnEmployeeRefresh_OnClick"
 				        IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
-						Content="{x:Static fa:LabelLib.Refresh}" />
+						Content="{x:Static fa:Labels.Refresh}" />
 				<Separator/>
 				<Button Name="BtnEmployeeSave"
 				        Click="BtnEmployeeSave_OnClick"
 				        IsEnabled="{Binding ElementName=UcFormState,Path=SaveCancelButtonsEnabled}"
-						Content="{x:Static fa:LabelLib.Save}" />
+						Content="{x:Static fa:Labels.Save}" />
 				<Button Name="BtnEmployeeCancel"
 				        Click="BtnEmployeeCancel_OnClick"
 				        IsEnabled="{Binding ElementName=UcFormState,Path=SaveCancelButtonsEnabled}"
-						Content="{x:Static fa:LabelLib.Cancel}" />
+						Content="{x:Static fa:Labels.Cancel}" />
 			</ToolBar>
 
 
@@ -66,13 +66,13 @@
 					Width="516"
 					Margin="192,50"
 		            Grid.Row="1">
-			<TextBlock Text="{x:Static fa:LabelLib.Search}"
+			<TextBlock Text="{x:Static fa:Labels.Search}"
 					   Margin="5" />
 			<TextBox x:Name="TxtFilter"
 					 Width="400"
 					 Margin="5" />
 			<Button x:Name="BtnFilter"
-					Content="{x:Static fa:LabelLib.Refresh}"
+					Content="{x:Static fa:Labels.Refresh}"
 					VerticalContentAlignment="Center"
 					Width="50"
 					Margin="5"

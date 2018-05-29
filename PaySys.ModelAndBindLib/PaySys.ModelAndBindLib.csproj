@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PaySys.ModelAndBindLib</RootNamespace>
     <AssemblyName>PaySys.ModelAndBindLib</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BindingConverter\ContractMasterComboConverter.cs" />
     <Compile Include="BindingConverter\DateFormatterConverter.cs" />
     <Compile Include="BindingConverter\FormStateToIsReadOnlyConverter.cs" />
     <Compile Include="BindingConverter\NegateBooleanConverter.cs" />
@@ -66,6 +67,10 @@
     <ProjectReference Include="..\PaySys.CalcLib\PaySys.CalcLib.csproj">
       <Project>{733DDF04-3787-4610-95F1-A3EDE7CFF373}</Project>
       <Name>PaySys.CalcLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PaySys.Globalization\PaySys.Globalization.csproj">
+      <Project>{9833315B-63E2-4717-8615-B3E625ACAEA8}</Project>
+      <Name>PaySys.Globalization</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

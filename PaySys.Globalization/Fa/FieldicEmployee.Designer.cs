@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PaySys.UI.Resource.Globalizaton.Fa {
+namespace PaySys.Globalization.Fa {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace PaySys.UI.Resource.Globalizaton.Fa {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PaySys.UI.Resource.Globalizaton.Fa.FieldicEmployee", typeof(FieldicEmployee).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PaySys.Globalization.Fa.FieldicEmployee", typeof(FieldicEmployee).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

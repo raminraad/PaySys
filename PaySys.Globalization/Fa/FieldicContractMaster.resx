@@ -117,40 +117,58 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Add" xml:space="preserve">
-    <value>جدید</value>
+  <data name="AccountNoEmp" xml:space="preserve">
+    <value>شماره حساب سهم پرسنل</value>
   </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>انصراف</value>
+  <data name="AccountNoGov" xml:space="preserve">
+    <value>شماره حساب سهم دولت</value>
   </data>
-  <data name="Contract" xml:space="preserve">
-    <value>حکم</value>
+  <data name="ContractDetails" xml:space="preserve">
+    <value>جزئیات احکام</value>
   </data>
-  <data name="Delete" xml:space="preserve">
-    <value>حذف</value>
+  <data name="ContractMasterId" xml:space="preserve">
+    <value>کلید اصلی</value>
   </data>
-  <data name="Edit" xml:space="preserve">
-    <value>ویرایش</value>
+  <data name="ContractNo" xml:space="preserve">
+    <value>شماره حکم</value>
+  </data>
+  <data name="DateEmployment" xml:space="preserve">
+    <value>تاریخ استخدام</value>
+  </data>
+  <data name="DateExecution" xml:space="preserve">
+    <value>تاریخ اجرا</value>
+  </data>
+  <data name="DateExport" xml:space="preserve">
+    <value>تاریخ صدور</value>
+  </data>
+  <data name="EducationStand" xml:space="preserve">
+    <value>مدرک تحصیلی</value>
   </data>
   <data name="Employee" xml:space="preserve">
-    <value>کارمند</value>
+    <value>پرسنل</value>
   </data>
-  <data name="FormCurrentState" xml:space="preserve">
-    <value>حالت جاری فرم</value>
+  <data name="EmploymentType" xml:space="preserve">
+    <value>نوع استخدام</value>
   </data>
-  <data name="Refresh" xml:space="preserve">
-    <value>بارگذاری</value>
+  <data name="HardshipFactor" xml:space="preserve">
+    <value>ضریب کار سخت</value>
   </data>
-  <data name="Save" xml:space="preserve">
-    <value>ذخیره</value>
+  <data name="InsuranceNo" xml:space="preserve">
+    <value>شماره بیمه</value>
   </data>
-  <data name="Search" xml:space="preserve">
-    <value>جستجو</value>
+  <data name="IsCurrentContract" xml:space="preserve">
+    <value>حکم جاری است</value>
   </data>
-  <data name="Select" xml:space="preserve">
-    <value>انتخاب</value>
+  <data name="IsMarried" xml:space="preserve">
+    <value>وضعیت ازدواج</value>
   </data>
-  <data name="Unknown" xml:space="preserve">
-    <value>نامعلوم</value>
+  <data name="Job" xml:space="preserve">
+    <value>شغل</value>
+  </data>
+  <data name="SacrificeStand" xml:space="preserve">
+    <value>وضعیت ایثارگری</value>
+  </data>
+  <data name="SubGroup" xml:space="preserve">
+    <value>زیر گروه</value>
   </data>
 </root>
