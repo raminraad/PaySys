@@ -1,0 +1,181 @@
+﻿<UserControl x:Class="PaySys.UI.UC.UcShowContractMaster"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:local="clr-namespace:PaySys.UI.UC"
+			 xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
+			 xmlns:extensionMethod="clr-namespace:PaySys.CalcLib.ExtensionMethod;assembly=PaySys.CalcLib"
+			 xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Model;assembly=PaySys.ModelAndBindLib"
+			 mc:Ignorable="d"
+			 d:DesignHeight="300"
+			 d:DesignWidth="600     "
+			 FlowDirection="RightToLeft">
+	<Border BorderBrush="Black"
+			BorderThickness="2"
+			CornerRadius="10">
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="2*" />
+				<RowDefinition Height="15*" />
+			</Grid.RowDefinitions>
+			<StackPanel Name="PnlTitle"
+						Grid.Row="0">
+				<Label Content="{x:Static fa:Labels.ContractMaster}"
+					   HorizontalContentAlignment="Center" />
+				<Line StrokeThickness="1"
+					  Width="50"
+					  X1="0"
+					  Y1="0"
+					  X2="50"
+					  Y2="0"
+					  HorizontalAlignment="Center"
+					  Stroke="Black" />
+				<Line StrokeThickness="1"
+					  Width="50"
+					  X1="5"
+					  Y1="0"
+					  X2="45"
+					  Y2="0"
+					  HorizontalAlignment="Center"
+					  Stroke="DimGray"
+					  Margin="0,1.5,0,0" />
+			</StackPanel>
+			<Grid Name="GridInfo"
+				  Grid.Row="1">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="5" />
+					<RowDefinition Height="1*" />
+					<RowDefinition Height="5" />
+					<RowDefinition Height="1*" />
+					<RowDefinition Height="5" />
+					<RowDefinition Height="1*" />
+					<RowDefinition Height="5" />
+					<RowDefinition Height="1*" />
+					<RowDefinition Height="5" />
+					<RowDefinition Height="1*" />
+					<RowDefinition Height="5" />
+					<RowDefinition Height="1*" />
+					<RowDefinition Height="5" />
+					<RowDefinition Height="1*" />
+					<RowDefinition Height="5" />
+					<RowDefinition Height="1*" />
+					<RowDefinition />
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="20" />
+					<ColumnDefinition Width="2*" />
+					<ColumnDefinition Width="3*" />
+					<ColumnDefinition Width="20" />
+					<ColumnDefinition Width="2*" />
+					<ColumnDefinition Width="3*" />
+					<ColumnDefinition Width="20" />
+				</Grid.ColumnDefinitions>
+				<!--				Line 0-->
+				<TextBlock Grid.Row="1"
+						   Grid.Column="1"
+						   Text="{x:Static fa:FieldicContractMaster.ContractNo}" />
+				<TextBox Grid.Row="1"
+						 Grid.Column="2"
+						 Text="{Binding ContractNo,UpdateSourceTrigger=Explicit}" />
+				<!--				Line 1-->
+				<TextBlock Grid.Row="3"
+						   Grid.Column="1"
+						   Text="{x:Static fa:FieldicContractMaster.DateExport}" />
+				<TextBox Grid.Row="3"
+						 Grid.Column="2"
+						 Text="{Binding DateExport,UpdateSourceTrigger=Explicit}" />
+				<TextBlock Grid.Row="3"
+						   Grid.Column="4"
+						   Text="{x:Static fa:FieldicContractMaster.DateExecution}" />
+				<TextBox Grid.Row="3"
+						 Grid.Column="5"
+						 Text="{Binding DateExecution,UpdateSourceTrigger=Explicit}" />
+				<!--				Line 2-->
+				<TextBlock Grid.Row="5"
+						   Grid.Column="1"
+						   Text="{x:Static fa:Labels.MainGroup}" />
+				<ComboBox Grid.Row="5"
+						  Grid.Column="2"
+						  Text="{Binding DateExport,UpdateSourceTrigger=Explicit}" />
+				<TextBlock Grid.Row="5"
+						   Grid.Column="4"
+						   Text="{x:Static fa:Labels.SubGroup}" />
+				<ComboBox Grid.Row="5"
+						  Grid.Column="5"
+						  Text="{Binding DateExecution,UpdateSourceTrigger=Explicit}" />
+				<!--				Line 3-->
+				<TextBlock Grid.Row="7"
+						   Grid.Column="1"
+						   Text="{x:Static fa:FieldicContractMaster.DateEmployment}" />
+				<TextBox Grid.Row="7"
+						 Grid.Column="2"
+						 Text="{Binding DateEmployment,UpdateSourceTrigger=Explicit}" />
+				<TextBlock Grid.Row="7"
+						   Grid.Column="4"
+						   Text="{x:Static fa:FieldicContractMaster.EmploymentType}" />
+				<ComboBox Grid.Row="7"
+						  Grid.Column="5"
+						  Text="{Binding EmploymentType,UpdateSourceTrigger=Explicit}"
+						  ItemsSource="{Binding Source={extensionMethod:EnumBindingSource {x:Type model:EmploymentType}}}"
+						  SelectedItem="{Binding EmploymentType,UpdateSourceTrigger=Explicit}" />
+				<!--				Line 4-->
+				<TextBlock Grid.Row="9"
+						   Grid.Column="1"
+						   Text="{x:Static fa:FieldicContractMaster.InsuranceNo}" />
+				<TextBox Grid.Row="9"
+						 Grid.Column="2"
+						 Text="{Binding InsuranceNo,UpdateSourceTrigger=Explicit}" />
+				<TextBlock Grid.Row="9"
+						   Grid.Column="4"
+						   Text="{x:Static fa:FieldicContractMaster.Job}" />
+				<ComboBox Grid.Row="9"
+						  Grid.Column="5"
+						  Text="{Binding Job,UpdateSourceTrigger=Explicit}" />
+				<!--				Line 5-->
+				<TextBlock Grid.Row="11"
+						   Grid.Column="1"
+						   Text="{x:Static fa:FieldicContractMaster.EducationStand}" />
+				<ComboBox Grid.Row="11"
+						  Grid.Column="2"
+						  Text="{Binding EducationStand,UpdateSourceTrigger=Explicit}"
+						  ItemsSource="{Binding Source={extensionMethod:EnumBindingSource {x:Type model:EducationStand}}}"
+						  SelectedItem="{Binding EducationStand,UpdateSourceTrigger=Explicit}" />
+				<TextBlock Grid.Row="11"
+						   Grid.Column="4"
+						   Text="{x:Static fa:FieldicContractMaster.SacrificeStand}" />
+				<ComboBox Grid.Row="11"
+						  Grid.Column="5"
+						  Text="{Binding SacrificeStand,UpdateSourceTrigger=Explicit}" />
+				<!--				Line 6-->
+				<TextBlock Grid.Row="13"
+						   Grid.Column="1"
+						   Text="{x:Static fa:FieldicContractMaster.MaritalStatus}" />
+				<ComboBox Grid.Row="13"
+						  Grid.Column="2"
+						  Text="{Binding MaritalStatus,UpdateSourceTrigger=Explicit}"
+						  ItemsSource="{Binding Source={extensionMethod:EnumBindingSource {x:Type model:MaritalStatus}}}"
+						  SelectedItem="{Binding MaritalStatus,UpdateSourceTrigger=Explicit}" />
+				<TextBlock Grid.Row="13"
+						   Grid.Column="4"
+						   Text="{x:Static fa:FieldicContractMaster.HardshipFactor}" />
+				<TextBox Grid.Row="13"
+						 Grid.Column="5"
+						 Text="{Binding  HardshipFactor,UpdateSourceTrigger=Explicit}" />
+				<!--				Line 7-->
+				<TextBlock Grid.Row="15"
+						   Grid.Column="1"
+						   Text="{x:Static fa:FieldicContractMaster.AccountNoGov}" />
+				<TextBox Grid.Row="15"
+						 Grid.Column="2"
+						 Text="{Binding AccountNoGov,UpdateSourceTrigger=Explicit}" />
+				<TextBlock Grid.Row="15"
+						   Grid.Column="4"
+						   Text="{x:Static fa:FieldicContractMaster.AccountNoEmp}" />
+				<TextBox Grid.Row="15"
+						 Grid.Column="5"
+						 Text="{Binding AccountNoEmp,UpdateSourceTrigger=Explicit}" />
+			</Grid>
+		</Grid>
+	</Border>
+</UserControl>

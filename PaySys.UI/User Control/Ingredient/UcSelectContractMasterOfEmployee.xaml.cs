@@ -24,9 +24,9 @@ namespace PaySys.UI.UC
 	/// </summary>
 	public partial class UcSelectContractMasterOfEmployee : UserControl
 	{
-		ObservableCollection<ContractMaster> ContractMasterList;
-		ObservableCollection<ContractMaster> ContList = new ObservableCollection<ContractMaster>(new PaySysContext().ContractMasters);
-
+		private ObservableCollection<ContractMaster> _contListForEmp;
+		private readonly ObservableCollection<ContractMaster> _contListAll = new ObservableCollection<ContractMaster>(new PaySysContext().ContractMasters);
+		public event SelectionChangedEventHandler SelectedContractChanged;
 		private PaySysContext _context = new PaySysContext();
 
 		public UcSelectContractMasterOfEmployee()
@@ -37,13 +37,13 @@ namespace PaySys.UI.UC
 
 		private void UcSelectEmpOnSelectedItemChanged(object sender, SelectionChangedEventArgs selectionChangedEventArgs)
 		{
-			var lstContract = (from c in ContList
-				where c.Employee.Equals(UcSelectEmp.SelectedEmployee)
-				select c).ToList();
-			ContractMasterList = new ObservableCollection<ContractMaster>(lstContract);
-			CmbContractMaster.DataContext = ContractMasterList;
-			if(ContractMasterList.Count>0)
-			CmbContractMaster.SelectedItem = ContractMasterList.First(c => c.IsCurrentContract);
+			var lstContract = (from c in _contListAll
+							   where c.Employee.Equals(UcSelectEmp.SelectedEmployee)
+							   select c).ToList();
+			_contListForEmp = new ObservableCollection<ContractMaster>(lstContract);
+			CmbContractMaster.DataContext = _contListForEmp;
+			if (_contListForEmp.Count > 0)
+				CmbContractMaster.SelectedItem = _contListForEmp.First(c => c.IsCurrentContract);
 		}
 
 		public static readonly DependencyProperty SelectedContractMasterProperty = DependencyProperty.Register(
@@ -51,13 +51,14 @@ namespace PaySys.UI.UC
 			new PropertyMetadata(default(ContractMaster)));
 		public ContractMaster SelectedContractMaster
 		{
-			get { return (ContractMaster) GetValue(SelectedContractMasterProperty); }
+			get { return (ContractMaster)GetValue(SelectedContractMasterProperty); }
 			set { SetValue(SelectedContractMasterProperty, value); }
 		}
 
 		private void CmbContractMaster_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			SelectedContractMaster = (ContractMaster) CmbContractMaster.SelectedItem;
+			SelectedContractMaster = (ContractMaster)CmbContractMaster.SelectedItem;
+		    SelectedContractChanged?.Invoke(sender, e);
 		}
 	}
 }

@@ -10,8 +10,8 @@
 			 d:DesignWidth="300">
 	<Grid FlowDirection="RightToLeft">
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition />
-			<ColumnDefinition Width="2*" />
+			<ColumnDefinition Width="2*"/>
+			<ColumnDefinition Width="5*" />
 		</Grid.ColumnDefinitions>
 		<Label Grid.Column="0"
 			   Content="{x:Static fa:Labels.Employee}"

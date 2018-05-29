@@ -140,7 +140,8 @@ namespace PaySys.ModelAndBindLib.Engine
 					.Where(sex => sex != EmploymentType.Unknown));
 				e.HardshipFactor = f.Random.Number(100);
 				e.InsuranceNo = $"{f.Random.Number(99999999):d8}";
-				e.IsMarried = f.PickRandomParam(true, false);
+				e.MaritalStatus = f.PickRandom(Enum.GetValues(typeof(MaritalStatus)).Cast<MaritalStatus>()
+					.Where(sex => sex != MaritalStatus.Unknown));
 				e.Job = f.PickRandom<Job>(seedJobs);
 				e.SacrificeStand = f.PickRandom(Enum.GetValues(typeof(SacrificeStand)).Cast<SacrificeStand>()
 					.Where(sex => sex != SacrificeStand.Unknown));

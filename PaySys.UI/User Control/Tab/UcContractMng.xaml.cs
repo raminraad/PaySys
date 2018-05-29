@@ -23,6 +23,10 @@ namespace PaySys.UI.UC
         public UcContractMng()
         {
             InitializeComponent();
+	        UcSelectContOfEmp.SelectedContractChanged += (sender, args) =>
+	        {
+		        UcShowContMaster.DataContext = UcSelectContOfEmp.SelectedContractMaster;
+	        };
         }
     }
 }

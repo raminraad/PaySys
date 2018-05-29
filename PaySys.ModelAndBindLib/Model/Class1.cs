@@ -211,7 +211,7 @@ namespace PaySys.ModelAndBindLib.Model
 		public string DateExport { get; set; }
 		public string DateExecution { get; set; }
 		public string DateEmployment { get; set; }
-		public bool IsMarried { get; set; }
+		public MaritalStatus MaritalStatus { get; set; }
 		public double HardshipFactor { get; set; }
 		public string InsuranceNo { get; set; }
 		public bool IsCurrentContract { set; get; }
@@ -421,6 +421,15 @@ namespace PaySys.ModelAndBindLib.Model
 		Ruzmozd,
 		[Description("سایر موارد")]
 		Other
+	}
+public enum MaritalStatus
+	{
+		[Description("وارد نشده")]
+		Unknown,
+		[Description("مجرد")]
+		Single,
+		[Description("متأهل")]
+		Married,
 	}
 
 //	public enum JobCategory

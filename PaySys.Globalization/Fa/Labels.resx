@@ -162,4 +162,16 @@
   <data name="Date" xml:space="preserve">
     <value>تاریخ</value>
   </data>
+  <data name="ContractDetail" xml:space="preserve">
+    <value>جزئیات احکام</value>
+  </data>
+  <data name="ContractMaster" xml:space="preserve">
+    <value>پایه حکم</value>
+  </data>
+  <data name="MainGroup" xml:space="preserve">
+    <value>گروه اصلی</value>
+  </data>
+  <data name="SubGroup" xml:space="preserve">
+    <value>زیر گروه</value>
+  </data>
 </root>

@@ -61,7 +61,7 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to شماره حساب سهم پرسنل.
+        ///   Looks up a localized string similar to ش حساب سهم پرسنل.
         /// </summary>
         public static string AccountNoEmp {
             get {
@@ -70,7 +70,7 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to شماره حساب سهم دولت.
+        ///   Looks up a localized string similar to ش حساب سهم دولت.
         /// </summary>
         public static string AccountNoGov {
             get {
@@ -187,20 +187,20 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to وضعیت ازدواج.
-        /// </summary>
-        public static string IsMarried {
-            get {
-                return ResourceManager.GetString("IsMarried", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to شغل.
         /// </summary>
         public static string Job {
             get {
                 return ResourceManager.GetString("Job", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to وضعیت تأهل.
+        /// </summary>
+        public static string MaritalStatus {
+            get {
+                return ResourceManager.GetString("MaritalStatus", resourceCulture);
             }
         }
         

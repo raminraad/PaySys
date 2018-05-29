@@ -118,57 +118,72 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccountNoEmp" xml:space="preserve">
-    <value>شماره حساب سهم پرسنل</value>
+    <value>ش حساب سهم پرسنل</value>
+    <comment>14</comment>
   </data>
   <data name="AccountNoGov" xml:space="preserve">
-    <value>شماره حساب سهم دولت</value>
+    <value>ش حساب سهم دولت</value>
+    <comment>13</comment>
   </data>
   <data name="ContractDetails" xml:space="preserve">
     <value>جزئیات احکام</value>
   </data>
   <data name="ContractMasterId" xml:space="preserve">
     <value>کلید اصلی</value>
+    <comment>00</comment>
   </data>
   <data name="ContractNo" xml:space="preserve">
     <value>شماره حکم</value>
+    <comment>01</comment>
   </data>
   <data name="DateEmployment" xml:space="preserve">
     <value>تاریخ استخدام</value>
+    <comment>05</comment>
   </data>
   <data name="DateExecution" xml:space="preserve">
     <value>تاریخ اجرا</value>
+    <comment>03</comment>
   </data>
   <data name="DateExport" xml:space="preserve">
     <value>تاریخ صدور</value>
+    <comment>02</comment>
   </data>
   <data name="EducationStand" xml:space="preserve">
     <value>مدرک تحصیلی</value>
+    <comment>09</comment>
   </data>
   <data name="Employee" xml:space="preserve">
     <value>پرسنل</value>
   </data>
   <data name="EmploymentType" xml:space="preserve">
     <value>نوع استخدام</value>
+    <comment>06</comment>
   </data>
   <data name="HardshipFactor" xml:space="preserve">
     <value>ضریب کار سخت</value>
+    <comment>12</comment>
   </data>
   <data name="InsuranceNo" xml:space="preserve">
     <value>شماره بیمه</value>
+    <comment>07</comment>
   </data>
   <data name="IsCurrentContract" xml:space="preserve">
     <value>حکم جاری است</value>
   </data>
-  <data name="IsMarried" xml:space="preserve">
-    <value>وضعیت ازدواج</value>
-  </data>
   <data name="Job" xml:space="preserve">
     <value>شغل</value>
+    <comment>08</comment>
+  </data>
+  <data name="MaritalStatus" xml:space="preserve">
+    <value>وضعیت تأهل</value>
+    <comment>11</comment>
   </data>
   <data name="SacrificeStand" xml:space="preserve">
     <value>وضعیت ایثارگری</value>
+    <comment>10</comment>
   </data>
   <data name="SubGroup" xml:space="preserve">
     <value>زیر گروه</value>
+    <comment>04</comment>
   </data>
 </root>

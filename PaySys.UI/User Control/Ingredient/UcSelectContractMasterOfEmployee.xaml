@@ -23,8 +23,8 @@
 		<local:UcSelectEmployee x:Name="UcSelectEmp" />
 		<Grid Grid.Row="1">
 			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="1*" />
 				<ColumnDefinition Width="2*" />
+				<ColumnDefinition Width="5*" />
 			</Grid.ColumnDefinitions>
 			<Label Content="{x:Static fa:Labels.Contract}"
 			       HorizontalContentAlignment="Left"
@@ -66,15 +66,14 @@
 											<ColumnDefinition />
 											<ColumnDefinition />
 										</Grid.ColumnDefinitions>
-										<TextBlock Margin="5"
-										           Grid.Column="0"
-										           Text="{Binding ContractNo}" />
-										<TextBlock Margin="5"
-										           Grid.Column="1"
-										           Text="{Binding DateExport}" />
-										<TextBlock Margin="5"
-										           Grid.Column="2"
-										           Text="{Binding DateExecution}" />
+										<TextBlock>
+											<TextBlock.Text>
+												<MultiBinding Converter="{StaticResource ContractMasterConverter}">
+													<Binding Path="ContractNo" />
+													<Binding Path="DateExport" />
+													<Binding Path="DateExecution" />
+												</MultiBinding>
+   											</TextBlock.Text></TextBlock>
 									</Grid>
 									<ControlTemplate.Triggers>
 										<Trigger Property="ComboBoxItem.IsSelected"

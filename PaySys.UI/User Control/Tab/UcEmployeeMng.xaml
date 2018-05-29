@@ -14,58 +14,55 @@
 			 Height="auto"
 			 x:Name="UcEmpMng">
 	<UserControl.Resources>
-			<cnv:DateFormatterConverter x:Key="DateFrmtCnv" />
+		<cnv:DateFormatterConverter x:Key="DateFrmtCnv" />
 	</UserControl.Resources>
-	<Grid x:Name="GrdParent"
+	<Grid x:Name="GridParent"
 		  FlowDirection="RightToLeft">
 		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="*" />
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="33" />
+			<RowDefinition Name="RowToolbar" Height="Auto" />
+			<RowDefinition Name="RowSearch" Height="Auto" />
+			<RowDefinition Name="RowDatagrid" Height="*" />
+			<RowDefinition Name="RowDetail" Height="Auto" />
+			<RowDefinition Name="RowStatusBar" Height="33" />
 		</Grid.RowDefinitions>
 		<StackPanel Name="PnlToolbar"
 					Grid.Row="0"
 					Margin="0,0,0,0.4">
 			<ToolBar>
-
 				<Button Name="BtnEmployeeAdd"
-				        Click="BtnEmployeeAdd_OnClick"
-				        IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
-				        Content="{x:Static fa:Labels.Add}" />
+						Click="BtnEmployeeAdd_OnClick"
+						IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
+						Content="{x:Static fa:Labels.Add}" />
 				<Button Name="BtnEmployeeEdit"
-				        Click="BtnEmployeeEdit_OnClick"
-				        IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
+						Click="BtnEmployeeEdit_OnClick"
+						IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
 						Content="{x:Static fa:Labels.Edit}" />
 				<Button Name="BtnEmployeeDelete"
-				        Click="BtnEmployeeDelete_OnClick"
-				        IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
+						Click="BtnEmployeeDelete_OnClick"
+						IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
 						Content="{x:Static fa:Labels.Delete}" />
 				<Separator />
 				<Button Name="BtnEmployeeRefresh"
-				        Click="BtnEmployeeRefresh_OnClick"
-				        IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
+						Click="BtnEmployeeRefresh_OnClick"
+						IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
 						Content="{x:Static fa:Labels.Refresh}" />
-				<Separator/>
+				<Separator />
 				<Button Name="BtnEmployeeSave"
-				        Click="BtnEmployeeSave_OnClick"
-				        IsEnabled="{Binding ElementName=UcFormState,Path=SaveCancelButtonsEnabled}"
+						Click="BtnEmployeeSave_OnClick"
+						IsEnabled="{Binding ElementName=UcFormState,Path=SaveCancelButtonsEnabled}"
 						Content="{x:Static fa:Labels.Save}" />
 				<Button Name="BtnEmployeeCancel"
-				        Click="BtnEmployeeCancel_OnClick"
-				        IsEnabled="{Binding ElementName=UcFormState,Path=SaveCancelButtonsEnabled}"
+						Click="BtnEmployeeCancel_OnClick"
+						IsEnabled="{Binding ElementName=UcFormState,Path=SaveCancelButtonsEnabled}"
 						Content="{x:Static fa:Labels.Cancel}" />
 			</ToolBar>
-
-
 		</StackPanel>
 		<StackPanel Name="PnlSearch"
 					Orientation="Horizontal"
 					HorizontalAlignment="Center"
 					Width="516"
 					Margin="192,50"
-		            Grid.Row="1">
+					Grid.Row="1">
 			<TextBlock Text="{x:Static fa:Labels.Search}"
 					   Margin="5" />
 			<TextBox x:Name="TxtFilter"
@@ -88,13 +85,13 @@
 				  AutoGenerateColumns="False"
 				  IsSynchronizedWithCurrentItem="True"
 				  IsReadOnly="True"
-		          IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
+				  IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
 				  SelectionMode="Single"
 				  ItemsSource="{Binding}">
 			<DataGrid.Columns>
 				<DataGridTextColumn Header="{x:Static fa:FieldicEmployee.EmployeeId}"
-				                    Binding="{Binding (model:Employee.EmployeeId)}"
-									Visibility="Hidden"/>
+									Binding="{Binding (model:Employee.EmployeeId)}"
+									Visibility="Hidden" />
 				<DataGridTextColumn Header="{x:Static fa:FieldicEmployee.PersonnelCode}"
 									Binding="{Binding (model:Employee.PersonnelCode)}" />
 				<DataGridTextColumn Header="{x:Static fa:FieldicEmployee.DossierNo}"
@@ -115,31 +112,42 @@
 									Binding="{Binding (model:Employee.Address)}" />
 			</DataGrid.Columns>
 		</DataGrid>
-		<Grid x:Name="GrdDetail"
+		<Grid x:Name="GridDetail"
 			  Grid.Row="3"
 			  DockPanel.Dock="Bottom"
-			  Margin="70,30.4,70,29.2"
+			  Margin="70,30"
 			  HorizontalAlignment="Center"
-			  Width="760">
+			  Width="760"			  >
 			<Grid.RowDefinitions>
-				<RowDefinition />
-				<RowDefinition />
-				<RowDefinition />
-				<RowDefinition />
-				<RowDefinition />
-				<RowDefinition />
+				<RowDefinition Height="5" />
+				<RowDefinition Height="5*" />
+				<RowDefinition Height="5" />
+				<RowDefinition Height="5*" />
+				<RowDefinition Height="5" />
+				<RowDefinition Height="5*" />
+				<RowDefinition Height="5" />
+				<RowDefinition Height="5*" />
+				<RowDefinition Height="5" />
+				<RowDefinition Height="5*" />
+				<RowDefinition Height="5" />
+				<RowDefinition Height="5*" />
+				<RowDefinition Height="30" />
 			</Grid.RowDefinitions>
 			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="70" />
-				<ColumnDefinition Width="120" />
-				<ColumnDefinition Width="70" />
-				<ColumnDefinition Width="120" />
-				<ColumnDefinition Width="70" />
-				<ColumnDefinition Width="120" />
-				<ColumnDefinition Width="70" />
-				<ColumnDefinition Width="120" />
+				<ColumnDefinition Width="0.5*" />
+				<ColumnDefinition Width="2*" />
+				<ColumnDefinition Width="3*" />
+				<ColumnDefinition Width="0.5*" />
+				<ColumnDefinition Width="2*" />
+				<ColumnDefinition Width="3*" />
+				<ColumnDefinition Width="0.5*" />
+				<ColumnDefinition Width="2*" />
+				<ColumnDefinition Width="3*" />
+				<ColumnDefinition Width="0.5*" />
+				<ColumnDefinition Width="2*" />
+				<ColumnDefinition Width="3*" />
 			</Grid.ColumnDefinitions>
-			<Grid.Resources>
+			<!--<Grid.Resources>
 				<Style TargetType="TextBlock">
 					<Setter Property="FontSize"
 							Value="12" />
@@ -147,127 +155,120 @@
 							Value="Center" />
 				</Style>
 				<Style TargetType="TextBox">
-					<Setter Property="Margin"
-							Value="0,8,8,6" />
+					  
 					<Setter Property="Height"
 							Value="21" />
 				</Style>
-			</Grid.Resources>
-			<TextBlock Grid.Row="0"
-					   Grid.Column="0"
+			</Grid.Resources>-->
+			<TextBlock Grid.Row="3"
+					   Grid.Column="1"
 					   Text="{x:Static fa:FieldicEmployee.PersonnelCode}" />
-			<TextBlock Grid.Row="0"
-					   Grid.Column="2"
+			<TextBlock Grid.Row="3"
+					   Grid.Column="4"
 					   Text="{x:Static fa:FieldicEmployee.DossierNo}" />
-			<TextBlock Grid.Row="1"
-					   Grid.Column="0"
-					   Text="{x:Static fa:FieldicEmployee.FName}" />
-			<TextBlock Grid.Row="1"
-					   Grid.Column="2"
-					   Text="{x:Static fa:FieldicEmployee.LName}" />
-			<TextBlock Grid.Row="1"
-					   Grid.Column="4"
-					   Text="{x:Static fa:FieldicEmployee.FatherName}" />
-			<TextBlock Grid.Row="1"
-					   Grid.Column="6"
-			           Text="{x:Static fa:FieldicEmployee.Sex}" />
-			<TextBlock Grid.Row="2"
-					   Grid.Column="0"
-					   Text="{x:Static fa:FieldicEmployee.NationalCardNo}" />
-			<TextBlock Grid.Row="2"
-					   Grid.Column="2"
-					   Text="{x:Static fa:FieldicEmployee.IdCardNo}" />
-			<TextBlock Grid.Row="2"
-					   Grid.Column="4"
-					   Text="{x:Static fa:FieldicEmployee.BirthDate}" />
-			<TextBlock Grid.Row="2"
-					   Grid.Column="6"
-					   Text="{x:Static fa:FieldicEmployee.BirthPlace}" />
-			<TextBlock Grid.Row="3"
-					   Grid.Column="0"
-					   Text="{x:Static fa:FieldicEmployee.IdCardExportDate}" />
-			<TextBlock Grid.Row="3"
-					   Grid.Column="2"
-					   Text="{x:Static fa:FieldicEmployee.IdCardExportPlace}" />
-			<TextBlock Grid.Row="3"
-					   Grid.Column="4"
-					   Text="{x:Static fa:FieldicEmployee.HomeTel}" />
-			<TextBlock Grid.Row="3"
-					   Grid.Column="6"
-					   Text="{x:Static fa:FieldicEmployee.CellNo}" />
-			<TextBlock Grid.Row="4"
-					   Grid.Column="0"
-					   Text="{x:Static fa:FieldicEmployee.PersonnelCode}" />
 			<TextBlock Grid.Row="5"
-					   Grid.Column="0"
+					   Grid.Column="1"
+					   Text="{x:Static fa:FieldicEmployee.FName}" />
+			<TextBlock Grid.Row="5"
+					   Grid.Column="4"
+					   Text="{x:Static fa:FieldicEmployee.LName}" />
+			<TextBlock Grid.Row="5"
+					   Grid.Column="7"
+					   Text="{x:Static fa:FieldicEmployee.FatherName}" />
+			<TextBlock Grid.Row="5"
+					   Grid.Column="10"
+					   Text="{x:Static fa:FieldicEmployee.Sex}" />
+			<TextBlock Grid.Row="7"
+					   Grid.Column="1"
+					   Text="{x:Static fa:FieldicEmployee.NationalCardNo}" />
+			<TextBlock Grid.Row="7"
+					   Grid.Column="4"
+					   Text="{x:Static fa:FieldicEmployee.IdCardNo}" />
+			<TextBlock Grid.Row="7"
+					   Grid.Column="7"
+					   Text="{x:Static fa:FieldicEmployee.BirthDate}" />
+			<TextBlock Grid.Row="7"
+					   Grid.Column="10"
+					   Text="{x:Static fa:FieldicEmployee.BirthPlace}" />
+			<TextBlock Grid.Row="9"
+					   Grid.Column="1"
+					   Text="{x:Static fa:FieldicEmployee.IdCardExportDate}" />
+			<TextBlock Grid.Row="9"
+					   Grid.Column="4"
+					   Text="{x:Static fa:FieldicEmployee.IdCardExportPlace}" />
+			<TextBlock Grid.Row="9"
+					   Grid.Column="7"
+					   Text="{x:Static fa:FieldicEmployee.HomeTel}" />
+			<TextBlock Grid.Row="9"
+					   Grid.Column="10"
+					   Text="{x:Static fa:FieldicEmployee.CellNo}" />
+			<TextBlock Grid.Row="11"
+					   Grid.Column="1"
 					   Text="{x:Static fa:FieldicEmployee.Address}" />
-			<TextBox Grid.Row="0"
+			<TextBox  Name="TxtPersonnelCode"
+				Grid.Row="3"
 					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
-					 Grid.Column="1"
+					 Grid.Column="2"
 					 Text="{Binding PersonnelCode,UpdateSourceTrigger=Explicit}" />
-			<TextBox Grid.Row="0"
+			<TextBox Grid.Row="3"
 					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
-					 Grid.Column="3"
+					 Grid.Column="5"
 					 Text="{Binding DossierNo,UpdateSourceTrigger=Explicit}" />
-			<TextBox Grid.Row="1"
-					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
-					 Grid.Column="1"
-					 Text="{Binding FName,UpdateSourceTrigger=Explicit}" />
-			<TextBox Grid.Row="1"
-					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
-					 Grid.Column="3"
-					 Text="{Binding LName,UpdateSourceTrigger=Explicit}" />
-			<TextBox Grid.Row="1"
-					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
-					 Grid.Column="5"
-					 Text="{Binding FatherName,UpdateSourceTrigger=Explicit}" />
-			<ComboBox Grid.Row="1"
-					  IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
-					  Grid.Column="7"
-					  ItemsSource="{Binding Source={extensionMethod:EnumBindingSource {x:Type model:Sex}}}"
-					  SelectedItem="{Binding Sex,UpdateSourceTrigger=Explicit}"
-					  Margin="0,6,9,6" />
-			<TextBox Grid.Row="2"
-					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
-					 Grid.Column="1"
-					 Text="{Binding NationalCardNo,UpdateSourceTrigger=Explicit}" />
-			<TextBox Grid.Row="2"
-					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
-					 Grid.Column="3"
-					 Text="{Binding IdCardNo,UpdateSourceTrigger=Explicit}" />
-			<TextBox Grid.Row="2"
-					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
-					 Grid.Column="5"
-					 Text="{Binding BirthDate,UpdateSourceTrigger=Explicit,Converter={StaticResource DateFrmtCnv}}" />
-			<TextBox Grid.Row="2"
-					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
-					 Grid.Column="7"
-					 Text="{Binding BirthPlace,UpdateSourceTrigger=Explicit}" />
-			<TextBox Grid.Row="3"
-					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
-					 Grid.Column="1"
-					 Text="{Binding IdCardExportDate,UpdateSourceTrigger=Explicit,Converter={StaticResource DateFrmtCnv}}" />
-			<TextBox Grid.Row="3"
-					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
-					 Grid.Column="3"
-					 Text="{Binding IdCardExportPlace,UpdateSourceTrigger=Explicit}" />
-			<TextBox Grid.Row="3"
-					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
-					 Grid.Column="5"
-					 Text="{Binding HomeTel,UpdateSourceTrigger=Explicit}" />
-			<TextBox Grid.Row="3"
-					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
-					 Grid.Column="7"
-					 Text="{Binding CellNo,UpdateSourceTrigger=Explicit}" />
-			<TextBox Grid.Row="4"
-					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
-					 Grid.Column="1"
-					 Text="{Binding PostalCode,UpdateSourceTrigger=Explicit}" />
 			<TextBox Grid.Row="5"
 					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
-					 Grid.Column="1"
+					 Grid.Column="2"
+					 Text="{Binding FName,UpdateSourceTrigger=Explicit}" />
+			<TextBox Grid.Row="5"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
+					 Grid.Column="5"
+					 Text="{Binding LName,UpdateSourceTrigger=Explicit}" />
+			<TextBox Grid.Row="5"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
+					 Grid.Column="8"
+					 Text="{Binding FatherName,UpdateSourceTrigger=Explicit}" />
+			<ComboBox Grid.Row="5"
+					  IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
+					  Grid.Column="11"
+					  ItemsSource="{Binding Source={extensionMethod:EnumBindingSource {x:Type model:Sex}}}"
+					  SelectedItem="{Binding Sex,UpdateSourceTrigger=Explicit}" />
+			<TextBox Grid.Row="7"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
+					 Grid.Column="2"
+					 Text="{Binding NationalCardNo,UpdateSourceTrigger=Explicit}" />
+			<TextBox Grid.Row="7"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
+					 Grid.Column="5"
+					 Text="{Binding IdCardNo,UpdateSourceTrigger=Explicit}" />
+			<TextBox Grid.Row="7"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
+					 Grid.Column="8"
+					 Text="{Binding BirthDate,UpdateSourceTrigger=Explicit,Converter={StaticResource DateFrmtCnv}}" />
+			<TextBox Grid.Row="7"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
+					 Grid.Column="11"
+					 Text="{Binding BirthPlace,UpdateSourceTrigger=Explicit}" />
+			<TextBox Grid.Row="9"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
+					 Grid.Column="2"
+					 Text="{Binding IdCardExportDate,UpdateSourceTrigger=Explicit,Converter={StaticResource DateFrmtCnv}}" />
+			<TextBox Grid.Row="9"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
+					 Grid.Column="5"
+					 Text="{Binding IdCardExportPlace,UpdateSourceTrigger=Explicit}" />
+			<TextBox Grid.Row="9"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
+					 Grid.Column="8"
+					 Text="{Binding HomeTel,UpdateSourceTrigger=Explicit}" />
+			<TextBox Grid.Row="9"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
+					 Grid.Column="11"
+					 Text="{Binding CellNo,UpdateSourceTrigger=Explicit}" />
+			<TextBox Grid.Row="11"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
+					 Grid.Column="2"
 					 Text="{Binding Address,UpdateSourceTrigger=Explicit}"
-					 Grid.ColumnSpan="7" />
+					 Grid.ColumnSpan="10"
+					 Grid.RowSpan="2"/>
 		</Grid>
 		<StatusBar FlowDirection="LeftToRight"
 				   Grid.Row="4">

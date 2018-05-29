@@ -88,6 +88,24 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to جزئیات احکام.
+        /// </summary>
+        public static string ContractDetail {
+            get {
+                return ResourceManager.GetString("ContractDetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to پایه حکم.
+        /// </summary>
+        public static string ContractMaster {
+            get {
+                return ResourceManager.GetString("ContractMaster", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to تاریخ.
         /// </summary>
         public static string Date {
@@ -133,6 +151,15 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to گروه اصلی.
+        /// </summary>
+        public static string MainGroup {
+            get {
+                return ResourceManager.GetString("MainGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to بارگذاری.
         /// </summary>
         public static string Refresh {
@@ -165,6 +192,15 @@ namespace PaySys.Globalization.Fa {
         public static string Select {
             get {
                 return ResourceManager.GetString("Select", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to زیر گروه.
+        /// </summary>
+        public static string SubGroup {
+            get {
+                return ResourceManager.GetString("SubGroup", resourceCulture);
             }
         }
         

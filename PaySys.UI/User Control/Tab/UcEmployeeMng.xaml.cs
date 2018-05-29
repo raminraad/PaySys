@@ -33,7 +33,7 @@ namespace PaySys.UI.UC
 
 		private void DtgMain_OnSelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
 		{
-			GrdDetail.DataContext = CurrentItem = (Employee) DtgMain.SelectedItem;
+			GridDetail.DataContext = CurrentItem = (Employee) DtgMain.SelectedItem;
 		}
 
 		private void BtnFilter_OnClick(object sender, RoutedEventArgs e)
@@ -61,7 +61,7 @@ namespace PaySys.UI.UC
 		private void BtnEmployeeAdd_OnClick(object sender, RoutedEventArgs e)
 		{
 			UcFormState.CurrentState = FormCurrentState.Add;
-			GrdDetail.DataContext = new Employee();
+			GridDetail.DataContext = new Employee();
 		}
 
 		private void BtnEmployeeEdit_OnClick(object sender, RoutedEventArgs e)
@@ -86,13 +86,13 @@ namespace PaySys.UI.UC
 
 		private void BtnEmployeeSave_OnClick(object sender, RoutedEventArgs e)
 		{
-			foreach (var textBox in GrdDetail.Children.OfType<Control>())
+			foreach (var textBox in GridDetail.Children.OfType<Control>())
 			{
 				textBox.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
 				textBox.GetBindingExpression(Selector.SelectedItemProperty)?.UpdateSource();
 			}
 			if (UcFormState.CurrentState==FormCurrentState.Add)
-				_context.Employees.Add((Employee)GrdDetail.DataContext);
+				_context.Employees.Add((Employee)GridDetail.DataContext);
 			_context.SaveChanges();
 			RefreshDtgMain();
 			UcFormState.CurrentState = FormCurrentState.Select;
@@ -100,7 +100,7 @@ namespace PaySys.UI.UC
 
 		private void BtnEmployeeCancel_OnClick(object sender, RoutedEventArgs e)
 		{
-			GrdDetail.DataContext = null;
+			GridDetail.DataContext = null;
 			DtgMain_OnSelectedCellsChanged(null, null);
 			UcFormState.CurrentState = FormCurrentState.Select;
 		}
