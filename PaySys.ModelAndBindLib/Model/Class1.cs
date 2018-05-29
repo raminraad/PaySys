@@ -214,6 +214,7 @@ namespace PaySys.ModelAndBindLib.Model
 		public bool IsMarried { get; set; }
 		public double HardshipFactor { get; set; }
 		public string InsuranceNo { get; set; }
+		public bool IsCurrentContract { set; get; }
 		public EducationStand EducSt { get; set; }
 		public EmploymentType EmpType { get; set; }
 //		public JobCategory JobCat { get; set; }
@@ -223,7 +224,6 @@ namespace PaySys.ModelAndBindLib.Model
 		public virtual List<ContractDetail> ContractDetails { get; set; }
 		public virtual Job Job { get; set; }
 		public virtual SubGroup SubGroup { set; get; }
-		[InverseProperty("ContractMaster")]
 		public virtual Employee Employee { get; set; }
 	}
 
@@ -261,7 +261,13 @@ namespace PaySys.ModelAndBindLib.Model
 		public virtual List<Mission> Mission { get; set; }
 		public virtual List<EmployeeMisc> EmployeeMisc { get; set; }
 		public virtual List<EmployeeMonthlyVariable> EmployeeMonthlyVariable { get; set; }
-		public virtual ContractMaster CurrentContract { get; set; }
+//		public virtual ContractMaster CurrentContract { get; set; }
+
+		public override bool Equals(object obj)
+		{
+			var emp = obj as Employee;
+			return emp != null && emp.EmployeeId == this.EmployeeId;
+		}
 	}
 
 	/// <summary>#23 فرمول عیدی</summary>

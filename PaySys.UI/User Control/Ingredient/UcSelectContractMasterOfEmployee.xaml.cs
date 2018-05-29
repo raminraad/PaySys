@@ -19,40 +19,44 @@ using PaySys.ModelAndBindLib.Model;
 
 namespace PaySys.UI.UC
 {
-    /// <summary>
-    /// Interaction logic for UcSelectContractMasterOfContractMaster.xaml
-    /// </summary>
-    public partial class UcSelectContractMasterOfEmployee : UserControl
-    {
-	    private ObservableCollection<ContractMaster> ContractMasterList;
-		private PaySysContext _context=new PaySysContext();
-        public UcSelectContractMasterOfEmployee()
-        {
-            InitializeComponent();
-			UcSelectEmp.SelectedItemChanged+=UcSelectEmpOnSelectedItemChanged;
-        }
+	/// <summary>
+	/// Interaction logic for UcSelectContractMasterOfContractMaster.xaml
+	/// </summary>
+	public partial class UcSelectContractMasterOfEmployee : UserControl
+	{
+		ObservableCollection<ContractMaster> ContractMasterList;
+		ObservableCollection<ContractMaster> ContList = new ObservableCollection<ContractMaster>(new PaySysContext().ContractMasters);
 
-	    private void UcSelectEmpOnSelectedItemChanged(object sender, SelectionChangedEventArgs selectionChangedEventArgs)
-	    {
-		    var lstContract = from c in _context.ContractMasters
-			    where c.Employee.Equals(UcSelectEmp.SelectedEmployee)
-			    select c;
-						  ContractMasterList = new ObservableCollection<ContractMaster>(lstContract);
-			CmbContractMaster.DataContext=ContractMasterList;
-		    ;
-	    }
+		private PaySysContext _context = new PaySysContext();
 
-	    public static readonly DependencyProperty SelectedContractMasterProperty = DependencyProperty.Register("SelectedContractMaster", typeof(ContractMaster), typeof(UcSelectContractMasterOfEmployee), new PropertyMetadata(default(ContractMaster)));
+		public UcSelectContractMasterOfEmployee()
+		{
+			InitializeComponent();
+			UcSelectEmp.SelectedItemChanged += UcSelectEmpOnSelectedItemChanged;
+		}
 
-	    public ContractMaster SelectedContractMaster
-	    {
-		    get { return (ContractMaster)GetValue(SelectedContractMasterProperty); }
-		    set { SetValue(SelectedContractMasterProperty, value); }
-	    }
+		private void UcSelectEmpOnSelectedItemChanged(object sender, SelectionChangedEventArgs selectionChangedEventArgs)
+		{
+			var lstContract = (from c in ContList
+				where c.Employee.Equals(UcSelectEmp.SelectedEmployee)
+				select c).ToList();
+			ContractMasterList = new ObservableCollection<ContractMaster>(lstContract);
+			CmbContractMaster.DataContext = ContractMasterList;
+			;
+		}
 
-	    private void CmbContractMaster_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-	    {
-		    SelectedContractMaster = (ContractMaster)CmbContractMaster.SelectedItem;
+		public static readonly DependencyProperty SelectedContractMasterProperty = DependencyProperty.Register(
+			"SelectedContractMaster", typeof(ContractMaster), typeof(UcSelectContractMasterOfEmployee),
+			new PropertyMetadata(default(ContractMaster)));
+		public ContractMaster SelectedContractMaster
+		{
+			get { return (ContractMaster) GetValue(SelectedContractMasterProperty); }
+			set { SetValue(SelectedContractMasterProperty, value); }
+		}
+
+		private void CmbContractMaster_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			SelectedContractMaster = (ContractMaster) CmbContractMaster.SelectedItem;
 		}
 	}
 }

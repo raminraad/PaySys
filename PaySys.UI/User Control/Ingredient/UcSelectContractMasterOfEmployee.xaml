@@ -26,8 +26,8 @@
 			<ComboBox Grid.Column="1"
 					  Name="CmbContractMaster"
 					  Height="30"
-					  TextSearch.Text="Name"
-					  TextSearch.TextPath="Name"
+					  TextSearch.Text="ContractNo"
+					  TextSearch.TextPath="ContractNo"
 					  IsTextSearchEnabled="True"
 					  Margin="5"
 					  ItemsSource="{Binding}"
@@ -37,9 +37,10 @@
 					<DataTemplate>
 						<TextBlock Margin="2">
 							<TextBlock.Text>
-								<MultiBinding StringFormat="{}{0} {1}">
-									<Binding Path="LName" />
-									<Binding Path="FName" />
+								<MultiBinding StringFormat="{} {1} {2} {3}">
+									<Binding Path="ContractNo" />
+									<Binding Path="DateExport" />
+									<Binding Path="DateExecution" />
 								</MultiBinding>
 							</TextBlock.Text></TextBlock>
 					</DataTemplate>
@@ -58,13 +59,13 @@
 										</Grid.ColumnDefinitions>
 										<TextBlock Margin="5"
 												   Grid.Column="0"
-												   Text="{Binding PersonnelCode}" />
+												   Text="{Binding ContractNo}" />
 										<TextBlock Margin="5"
 												   Grid.Column="1"
-												   Text="{Binding FName}" />
+												   Text="{Binding DateExport}" />
 										<TextBlock Margin="5"
 												   Grid.Column="2"
-												   Text="{Binding LName}" />
+												   Text="{Binding DateExecution}" />
 									</Grid>
 									<ControlTemplate.Triggers>
 										<Trigger Property="ComboBoxItem.IsSelected"

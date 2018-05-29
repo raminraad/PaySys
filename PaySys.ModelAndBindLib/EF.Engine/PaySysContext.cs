@@ -5,7 +5,7 @@ namespace PaySys.ModelAndBindLib.Engine
 {
 	public class PaySysContext : DbContext
 	{
-		public PaySysContext() : base("PaySysContext")
+		public PaySysContext() : base("PaySys")
 		{
 			Database.SetInitializer(new PaySysDbInitializer());
 			Database.Initialize(true);

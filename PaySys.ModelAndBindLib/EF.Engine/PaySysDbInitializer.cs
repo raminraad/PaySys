@@ -37,30 +37,6 @@ namespace PaySys.ModelAndBindLib.Engine
 				"627648",
 				"603799"
 			};
-			var employeeFaker = new Faker<Employee>("fa").StrictMode(false).Rules((f, e) =>
-			{
-				e.FName = f.Name.FirstName();
-				e.LName = f.Name.LastName();
-				e.Address =
-					$"{f.Address.City()} - {f.Address.CitySuffix()} - {f.Address.StreetName()} - پلاک  {f.Address.BuildingNumber()}";
-				e.BirthPlace = f.Address.City();
-				e.IdCardExportPlace = f.Address.City();
-				e.CellNo = $"{f.PickRandom(mobilePrefix)}{f.Phone.PhoneNumber("#######")}";
-				e.HomeTel = f.Phone.PhoneNumber();
-				e.BirthDate = $"13{f.Random.Number(30) + 30:d2}{f.Random.Number(11) + 1:d2}{f.Random.Number(29) + 1:d2}";
-				e.IdCardExportDate = $"13{f.Random.Number(30) + 30:d2}{f.Random.Number(11) + 1:d2}{f.Random.Number(29) + 1:d2}";
-				e.DossierNo = $"{f.Random.Number(999999):d6}";
-				e.PersonnelCode = $"{f.Random.Number(999999):d6}";
-				e.FatherName = f.Name.FirstName();
-				e.Sex = f.PickRandom(Enum.GetValues(typeof(Sex)).Cast<Sex>().Where(sex => sex != Sex.Unknown));
-				e.PostalCode = $"{f.Random.Number(999999999):d10}";
-				e.NationalCardNo = $"{f.Random.Number(999999999):d10}";
-				e.IdCardNo = $"{f.Random.Number(999999)}";
-			});
-			var seedEmployees = employeeFaker.Generate(20);
-			seedEmployees.ForEach(e => context.Employees.Add(e));
-
-
 			var seedMainGroups = new List<MainGroup>
 			{
 				new MainGroup
@@ -113,7 +89,29 @@ namespace PaySys.ModelAndBindLib.Engine
 					}
 				},
 			};
-			seedMainGroups.ForEach(e => context.MainGroups.Add(e));
+
+			var employeeFaker = new Faker<Employee>("fa").StrictMode(false).Rules((f, e) =>
+			{
+				e.FName = f.Name.FirstName();
+				e.LName = f.Name.LastName();
+				e.Address =
+					$"{f.Address.City()} - {f.Address.CitySuffix()} - {f.Address.StreetName()} - پلاک  {f.Address.BuildingNumber()}";
+				e.BirthPlace = f.Address.City();
+				e.IdCardExportPlace = f.Address.City();
+				e.CellNo = $"{f.PickRandom(mobilePrefix)}{f.Phone.PhoneNumber("#######")}";
+				e.HomeTel = f.Phone.PhoneNumber();
+				e.BirthDate = $"13{f.Random.Number(30) + 30:d2}{f.Random.Number(11) + 1:d2}{f.Random.Number(29) + 1:d2}";
+				e.IdCardExportDate = $"13{f.Random.Number(30) + 30:d2}{f.Random.Number(11) + 1:d2}{f.Random.Number(29) + 1:d2}";
+				e.DossierNo = $"{f.Random.Number(999999):d6}";
+				e.PersonnelCode = $"{f.Random.Number(999999):d6}";
+				e.FatherName = f.Name.FirstName();
+				e.Sex = f.PickRandom(Enum.GetValues(typeof(Sex)).Cast<Sex>().Where(sex => sex != Sex.Unknown));
+				e.PostalCode = $"{f.Random.Number(999999999):d10}";
+				e.NationalCardNo = $"{f.Random.Number(999999999):d10}";
+				e.IdCardNo = $"{f.Random.Number(999999)}";
+			});
+			var seedEmployees = employeeFaker.Generate(20);
+
 
 
 			var jobFaker = new Faker<Job>("fa").StrictMode(false).Rules((f, e) =>
@@ -123,7 +121,6 @@ namespace PaySys.ModelAndBindLib.Engine
 				e.Title = f.Company.CompanySuffix();
 			});
 			var seedJobs = jobFaker.Generate(10);
-			seedJobs.ForEach(e => context.Jobs.Add(e));
 
 
 			var contractMasterFaker = new Faker<ContractMaster>("fa").StrictMode(false).Rules((f, e) =>
@@ -145,11 +142,29 @@ namespace PaySys.ModelAndBindLib.Engine
 				e.InsuranceNo = $"{f.Random.Number(99999999):d8}";
 				e.IsMarried = f.PickRandomParam(true, false);
 				e.Job = f.PickRandom<Job>(seedJobs);
-				e.SacrificeStand= f.PickRandom(Enum.GetValues(typeof(SacrificeStand)).Cast<SacrificeStand>()
+				e.SacrificeStand = f.PickRandom(Enum.GetValues(typeof(SacrificeStand)).Cast<SacrificeStand>()
 					.Where(sex => sex != SacrificeStand.Unknown));
 				e.SubGroup = f.PickRandom(f.PickRandom(seedMainGroups).SubGroups);
 			});
 			var seedContractMasters = contractMasterFaker.Generate(30);
+
+			#region Set CurrentContract for each Employee
+			var queryEmpContracts =
+			from cont in seedContractMasters
+			group cont by cont.Employee into newGroup
+			select newGroup;
+
+			foreach (var empContract in queryEmpContracts)
+			{
+				var lastCnt = empContract.LastOrDefault();
+				if (lastCnt != null)
+					lastCnt.IsCurrentContract = true;
+			}
+			#endregion
+
+			seedMainGroups.ForEach(e => context.MainGroups.Add(e));
+			seedJobs.ForEach(e => context.Jobs.Add(e));
+			seedEmployees.ForEach(e => context.Employees.Add(e));
 			seedContractMasters.ForEach(e => context.ContractMasters.Add(e));
 
 			base.Seed(context);
