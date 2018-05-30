@@ -26,7 +26,7 @@
 				  Margin="5"
 				  ItemsSource="{Binding}"
 				  HorizontalContentAlignment="Stretch"
-				  SelectionChanged="CmbSelector_OnSelectionChanged">
+				  SelectionChanged="CmbEmployee_OnSelectionChanged">
 			<ComboBox.ItemTemplate>
 				<DataTemplate>
 					<TextBlock Margin="2">

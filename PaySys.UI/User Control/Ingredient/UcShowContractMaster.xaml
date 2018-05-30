@@ -7,10 +7,14 @@
 			 xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
 			 xmlns:extensionMethod="clr-namespace:PaySys.CalcLib.ExtensionMethod;assembly=PaySys.CalcLib"
 			 xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Model;assembly=PaySys.ModelAndBindLib"
+			 xmlns:cnv="clr-namespace:PaySys.ModelAndBindLib.BindingConverter;assembly=PaySys.ModelAndBindLib"
 			 mc:Ignorable="d"
 			 d:DesignHeight="300"
 			 d:DesignWidth="600     "
-			 FlowDirection="RightToLeft">
+			 FlowDirection="RightToLeft" DataContextChanged="UcShowContractMaster_OnDataContextChanged">
+	<UserControl.Resources>
+		<cnv:ColorPalletEnumToStringConverter x:Key="CnvColor" />
+	</UserControl.Resources>
 	<Border BorderBrush="Black"
 			BorderThickness="2"
 			CornerRadius="10">
@@ -95,15 +99,53 @@
 				<TextBlock Grid.Row="5"
 						   Grid.Column="1"
 						   Text="{x:Static fa:Labels.MainGroup}" />
-				<ComboBox Grid.Row="5"
+				<ComboBox Name="CmbMainGroup"
+						  Grid.Row="5"
 						  Grid.Column="2"
-						  Text="{Binding DateExport,UpdateSourceTrigger=Explicit}" />
+						  ItemsSource="{Binding}"
+						  SelectedItem="{Binding MainGroup.Title,UpdateSourceTrigger=Explicit}"
+						  SelectionChanged="CmbMainGroup_OnSelectionChanged">
+					<ComboBox.ItemTemplate>
+						<DataTemplate>
+							<StackPanel Orientation="Horizontal"
+										VerticalAlignment="Center">
+								<Rectangle Fill="{Binding ItemColorPallet,Converter={StaticResource CnvColor}}"
+										   RadiusX="4"
+										   RadiusY="4"
+										   Width="10"
+										   Height="10"
+										   VerticalAlignment="Center" />
+								<TextBlock Margin="2,0,2,0" VerticalAlignment="Center"
+										   Text="{Binding Title}" />
+							</StackPanel>
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+				</ComboBox>
 				<TextBlock Grid.Row="5"
 						   Grid.Column="4"
 						   Text="{x:Static fa:Labels.SubGroup}" />
-				<ComboBox Grid.Row="5"
+				<ComboBox Name="CmbSubGroup"
+						  Grid.Row="5"
 						  Grid.Column="5"
-						  Text="{Binding DateExecution,UpdateSourceTrigger=Explicit}" />
+						  ItemsSource="{Binding}"
+						  SelectedItem="{Binding SubGroup,UpdateSourceTrigger=Explicit}">
+					<ComboBox.ItemTemplate>
+						<DataTemplate>
+							<StackPanel Orientation="Horizontal"
+										VerticalAlignment="Center">
+								<Rectangle Fill="{Binding ItemColorPallet,Converter={StaticResource CnvColor}}"
+										   RadiusX="10"
+										   RadiusY="10"
+										   Width="10"
+										   Height="10"
+										   VerticalAlignment="Center" />
+								<TextBlock Margin="2,0,2,0"
+								           VerticalAlignment="Center"
+										   Text="{Binding Title}" />
+							</StackPanel>
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+				</ComboBox>
 				<!--				Line 3-->
 				<TextBlock Grid.Row="7"
 						   Grid.Column="1"
@@ -114,9 +156,9 @@
 				<TextBlock Grid.Row="7"
 						   Grid.Column="4"
 						   Text="{x:Static fa:FieldicContractMaster.EmploymentType}" />
-				<ComboBox Grid.Row="7"
+				<ComboBox Name="CmbEmploymentType"
+						  Grid.Row="7"
 						  Grid.Column="5"
-						  Text="{Binding EmploymentType,UpdateSourceTrigger=Explicit}"
 						  ItemsSource="{Binding Source={extensionMethod:EnumBindingSource {x:Type model:EmploymentType}}}"
 						  SelectedItem="{Binding EmploymentType,UpdateSourceTrigger=Explicit}" />
 				<!--				Line 4-->
@@ -129,31 +171,52 @@
 				<TextBlock Grid.Row="9"
 						   Grid.Column="4"
 						   Text="{x:Static fa:FieldicContractMaster.Job}" />
-				<ComboBox Grid.Row="9"
+				<ComboBox Name="CmbJob"
+						  Grid.Row="9"
 						  Grid.Column="5"
-						  Text="{Binding Job,UpdateSourceTrigger=Explicit}" />
+				          ItemsSource="{Binding}"
+				          SelectedItem="{Binding Job,UpdateSourceTrigger=Explicit}">
+					<ComboBox.ItemTemplate>
+						<DataTemplate>
+							<StackPanel Orientation="Horizontal"
+							            VerticalAlignment="Center">
+								<Rectangle Fill="{Binding ItemColorPallet,Converter={StaticResource CnvColor}}"
+								           RadiusX="10"
+								           RadiusY="10"
+								           Width="10"
+								           Height="10"
+								           VerticalAlignment="Center" />
+								<TextBlock Margin="2,0,2,0"
+								           VerticalAlignment="Center"
+								           Text="{Binding Title}" />
+							</StackPanel>
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+				</ComboBox>
 				<!--				Line 5-->
 				<TextBlock Grid.Row="11"
 						   Grid.Column="1"
 						   Text="{x:Static fa:FieldicContractMaster.EducationStand}" />
-				<ComboBox Grid.Row="11"
+				<ComboBox Name="CmbEducationStand"
+						  Grid.Row="11"
 						  Grid.Column="2"
-						  Text="{Binding EducationStand,UpdateSourceTrigger=Explicit}"
 						  ItemsSource="{Binding Source={extensionMethod:EnumBindingSource {x:Type model:EducationStand}}}"
 						  SelectedItem="{Binding EducationStand,UpdateSourceTrigger=Explicit}" />
 				<TextBlock Grid.Row="11"
 						   Grid.Column="4"
 						   Text="{x:Static fa:FieldicContractMaster.SacrificeStand}" />
-				<ComboBox Grid.Row="11"
+				<ComboBox Name="CmbSacrificeStand"
+						  Grid.Row="11"
 						  Grid.Column="5"
-						  Text="{Binding SacrificeStand,UpdateSourceTrigger=Explicit}" />
+						  ItemsSource="{Binding Source={extensionMethod:EnumBindingSource {x:Type model:SacrificeStand}}}"
+				          SelectedItem="{Binding SacrificeStand,UpdateSourceTrigger=Explicit}" />
 				<!--				Line 6-->
 				<TextBlock Grid.Row="13"
 						   Grid.Column="1"
 						   Text="{x:Static fa:FieldicContractMaster.MaritalStatus}" />
-				<ComboBox Grid.Row="13"
+				<ComboBox Name="CmbMaritalStatus"
+						  Grid.Row="13"
 						  Grid.Column="2"
-						  Text="{Binding MaritalStatus,UpdateSourceTrigger=Explicit}"
 						  ItemsSource="{Binding Source={extensionMethod:EnumBindingSource {x:Type model:MaritalStatus}}}"
 						  SelectedItem="{Binding MaritalStatus,UpdateSourceTrigger=Explicit}" />
 				<TextBlock Grid.Row="13"

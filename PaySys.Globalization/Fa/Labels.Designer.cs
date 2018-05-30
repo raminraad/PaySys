@@ -151,6 +151,15 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to (حکم جاری).
+        /// </summary>
+        public static string IsCurrentContractForCombobox {
+            get {
+                return ResourceManager.GetString("IsCurrentContractForCombobox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to گروه اصلی.
         /// </summary>
         public static string MainGroup {

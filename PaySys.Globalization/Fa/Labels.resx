@@ -174,4 +174,7 @@
   <data name="SubGroup" xml:space="preserve">
     <value>زیر گروه</value>
   </data>
+  <data name="IsCurrentContractForCombobox" xml:space="preserve">
+    <value>(حکم جاری)</value>
+  </data>
 </root>

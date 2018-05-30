@@ -51,8 +51,10 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BindingConverter\ColorPalletEnumToStringConverter.cs" />
     <Compile Include="BindingConverter\ContractMasterComboConverter.cs" />
     <Compile Include="BindingConverter\DateFormatterConverter.cs" />
     <Compile Include="BindingConverter\FormStateToIsReadOnlyConverter.cs" />

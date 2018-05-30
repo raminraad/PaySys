@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -23,10 +24,12 @@ namespace PaySys.UI.UC
         public UcContractMng()
         {
             InitializeComponent();
-	        UcSelectContOfEmp.SelectedContractChanged += (sender, args) =>
-	        {
-		        UcShowContMaster.DataContext = UcSelectContOfEmp.SelectedContractMaster;
-	        };
+	        UcSelectContOfEmp.SelectedContractChanged += UcSelectContOfEmpOnSelectedContractChanged;
         }
+
+	    private void UcSelectContOfEmpOnSelectedContractChanged(object sender, SelectionChangedEventArgs e)
+	    {
+		    UcShowContMaster.DataContext = ((Selector) sender).SelectedItem;
+	    }
     }
 }

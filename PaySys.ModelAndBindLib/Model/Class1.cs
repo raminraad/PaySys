@@ -11,24 +11,34 @@ namespace PaySys.ModelAndBindLib.Model
 	{
 		public int MainGroupId { set; get; }
 		public string Title { get; set; }
+		public ColorPallet ItemColorPallet { get; set; }
 		public virtual List<ContractFieldTitle> ContractFieldTitles { get; set; }
 		public virtual List<SubGroup> SubGroups { get; set; }
 		public virtual List<GroupContractFieldTitle> GroupContractFieldTitles { get; set; }
 		public virtual List<GroupMisc> GroupMiscs { get; set; }
+		public override bool Equals(object obj)
+		{
+			return obj != null && ((MainGroup)obj).MainGroupId == MainGroupId;
+		}
 	}
 
 	/// <summary>#02 زیر گروه</summary>
 	public class SubGroup
 	{
 		public int SubGroupId { get; set; }
-		[Microsoft.Build.Framework.Required]
+		public string Title { get; set; }
+		public ColorPallet ItemColorPallet { get; set; }
+		[Required]
 		public virtual MainGroup MainGroup { set; get; }
 		public virtual List<GroupSpecValue> GroupSpecValues { get; set; }
 		public virtual List<MissionFormula> MissionFormulas { get; set; }
 		public virtual List<TaxTable> TaxTables { get; set; }
 		public virtual List<HandselFormula> HandselFormulas { get; set; }
 		public virtual List<ContractMaster> ContractMasters { get; set; }
-		public string Title { get; set; }
+		public override bool Equals(object obj)
+		{
+			return (obj as SubGroup)?.SubGroupId == SubGroupId;
+		}
 	}
 
 	/// <summary>#03 عناوین بدهی یا پرداختهای متفرقه</summary>
@@ -215,9 +225,9 @@ namespace PaySys.ModelAndBindLib.Model
 		public double HardshipFactor { get; set; }
 		public string InsuranceNo { get; set; }
 		public bool IsCurrentContract { set; get; }
-		public EducationStand EducSt { get; set; }
-		public EmploymentType EmpType { get; set; }
-//		public JobCategory JobCat { get; set; }
+		public EducationStand EducationStand { get; set; }
+		public EmploymentType EmploymentType { get; set; }
+		//		public JobCategory JobCat { get; set; }
 		public SacrificeStand SacrificeStand { get; set; }
 		public string AccountNoGov { get; set; }
 		public string AccountNoEmp { get; set; }
@@ -261,12 +271,11 @@ namespace PaySys.ModelAndBindLib.Model
 		public virtual List<Mission> Mission { get; set; }
 		public virtual List<EmployeeMisc> EmployeeMisc { get; set; }
 		public virtual List<EmployeeMonthlyVariable> EmployeeMonthlyVariable { get; set; }
-//		public virtual ContractMaster CurrentContract { get; set; }
+		//		public virtual ContractMaster CurrentContract { get; set; }
 
 		public override bool Equals(object obj)
 		{
-			var emp = obj as Employee;
-			return emp != null && emp.EmployeeId == this.EmployeeId;
+			return obj != null && ((Employee) obj).EmployeeId == EmployeeId;
 		}
 	}
 
@@ -306,7 +315,7 @@ namespace PaySys.ModelAndBindLib.Model
 		public int JobId { get; set; }
 		public string Title { get; set; }
 		public string JobNo { get; set; }
-//		public virtual int Parentjob { get; set; }
+		public ColorPallet ItemColorPallet { get; set; }
 		public string Description { get; set; }
 		public virtual List<ContractMaster> ContractMasters { get; set; }
 	}
@@ -341,10 +350,11 @@ namespace PaySys.ModelAndBindLib.Model
 		public virtual Employee Employee { get; set; }
 	}
 
+	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum SacrificeStand
 	{
 		[Description("وارد نشده")]
-		Unknown,
+		Unknown = 0,
 		[Description("رزمنده")]
 		Razmande,
 		[Description("آزاده")]
@@ -363,18 +373,40 @@ namespace PaySys.ModelAndBindLib.Model
 		Other
 	}
 
-	public enum TabState
+	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
+	public enum ColorPallet
 	{
-		View,
-		Add,
-		Edit,
-		Delete
+		[Description("وارد نشده")]
+		Unknown = 0,
+		YellowGreen,
+		White,
+		SeaGreen,
+		Red,
+		Purple,
+		Peru,
+		PaleGoldenrod,
+		Navy,
+		MediumOrchid,
+		Maroon,
+		Lime,
+		LightPink,
+		LightCoral,
+		Goldenrod,
+		Gold,
+		GhostWhite,
+		ForestGreen,
+		DodgerBlue,
+		DarkSlateBlue,
+		DarkRed,
+		Teal,
+		CornflowerBlue
 	}
 
+	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EducationStand
 	{
 		[Description("وارد نشده")]
-		Unknown,
+		Unknown = 0,
 		[Description("بی سواد")]
 		Bisavad,
 		[Description("سیکل")]
@@ -397,10 +429,11 @@ namespace PaySys.ModelAndBindLib.Model
 		Other
 	}
 
+	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EmploymentType
 	{
 		[Description("وارد نشده")]
-		Unknown,
+		Unknown = 0,
 		[Description("رسمی آزمایشی")]
 		Rasmiazmayeshi,
 		[Description("رسمی قطعی")]
@@ -422,26 +455,28 @@ namespace PaySys.ModelAndBindLib.Model
 		[Description("سایر موارد")]
 		Other
 	}
-public enum MaritalStatus
+
+	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
+	public enum MaritalStatus
 	{
 		[Description("وارد نشده")]
-		Unknown,
+		Unknown = 0,
 		[Description("مجرد")]
 		Single,
 		[Description("متأهل")]
 		Married,
 	}
 
-//	public enum JobCategory
-//	{
-//		//todo: fill enum
-//	}
+	//	public enum JobCategory
+	//	{
+	//		//todo: fill enum
+	//	}
 
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum Sex
 	{
 		[Description("وارد نشده")]
-		Unknown,
+		Unknown = 0,
 		[Description("مذکر")]
 		Male,
 		[Description("مؤنث")]
@@ -453,9 +488,12 @@ public enum MaritalStatus
 		//todo: fill enum
 	}
 
+	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum VehicleType
 	{
 		//todo: fill enum
+		[Description("وارد نشده")]
+		Unknown = 0,
 	}
 
 	public enum ValueType
@@ -465,7 +503,7 @@ public enum MaritalStatus
 
 	public enum FormCurrentState
 	{
-		Unknown,
+		Unknown = 0,
 		Select,
 		Edit,
 		Add,

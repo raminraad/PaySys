@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -35,10 +36,13 @@ namespace PaySys.UI.UC
 			UcSelectEmp.SelectedItemChanged += UcSelectEmpOnSelectedItemChanged;
 		}
 
-		private void UcSelectEmpOnSelectedItemChanged(object sender, SelectionChangedEventArgs selectionChangedEventArgs)
+		private void UcSelectEmpOnSelectedItemChanged(object sender, SelectionChangedEventArgs e)
 		{
+			if (e.AddedItems.Count != 1)
+				return;
 			var lstContract = (from c in _contListAll
-							   where c.Employee.Equals(UcSelectEmp.SelectedEmployee)
+							   where c.Employee.Equals(e.AddedItems[0])
+							   orderby c.DateExport
 							   select c).ToList();
 			_contListForEmp = new ObservableCollection<ContractMaster>(lstContract);
 			CmbContractMaster.DataContext = _contListForEmp;
@@ -46,19 +50,19 @@ namespace PaySys.UI.UC
 				CmbContractMaster.SelectedItem = _contListForEmp.First(c => c.IsCurrentContract);
 		}
 
-		public static readonly DependencyProperty SelectedContractMasterProperty = DependencyProperty.Register(
-			"SelectedContractMaster", typeof(ContractMaster), typeof(UcSelectContractMasterOfEmployee),
-			new PropertyMetadata(default(ContractMaster)));
 		public ContractMaster SelectedContractMaster
 		{
-			get { return (ContractMaster)GetValue(SelectedContractMasterProperty); }
-			set { SetValue(SelectedContractMasterProperty, value); }
+			get => CmbContractMaster.SelectedItem as ContractMaster;
+			set => CmbContractMaster.SelectedItem = value;
 		}
 
 		private void CmbContractMaster_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			SelectedContractMaster = (ContractMaster)CmbContractMaster.SelectedItem;
-		    SelectedContractChanged?.Invoke(sender, e);
+			if (e.AddedItems.Count > 0)
+			{
+				SelectedContractMaster = (ContractMaster) ((Selector) sender).SelectedItem;
+				SelectedContractChanged?.Invoke(sender, e);
+			}
 		}
 	}
 }

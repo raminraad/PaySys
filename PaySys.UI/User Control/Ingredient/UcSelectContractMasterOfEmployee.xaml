@@ -48,6 +48,7 @@
 									<Binding Path="ContractNo" />
 									<Binding Path="DateExport" />
 									<Binding Path="DateExecution" />
+									<Binding Path="IsCurrentContract" />
 								</MultiBinding>
 							</TextBlock.Text>
 						</TextBlock>
@@ -72,6 +73,7 @@
 													<Binding Path="ContractNo" />
 													<Binding Path="DateExport" />
 													<Binding Path="DateExecution" />
+													<Binding Path="IsCurrentContract" />
 												</MultiBinding>
    											</TextBlock.Text></TextBlock>
 									</Grid>

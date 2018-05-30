@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -31,17 +32,18 @@ namespace PaySys.UI.UC
 			DataContext=EmployeeList;
         }
 
-	    public static readonly DependencyProperty SelectedEmployeeProperty = DependencyProperty.Register("SelectedEmployee", typeof(Employee), typeof(UcSelectEmployee), new PropertyMetadata(default(Employee)));
-
 	    public Employee SelectedEmployee
 	    {
-		    get { return (Employee) GetValue(SelectedEmployeeProperty); }
-		    set { SetValue(SelectedEmployeeProperty, value); }
+		    get => CmbEmployee.SelectedItem as Employee;
+		    set => CmbEmployee.SelectedItem=value;
 	    }
-	    private void CmbSelector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+	    private void CmbEmployee_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
 	    {
-		    SelectedEmployee = (Employee)CmbEmployee.SelectedItem;
-		    SelectedItemChanged(sender, e);
+		    if (e.AddedItems.Count > 0)
+		    {
+			    SelectedEmployee = (Employee) ((Selector) sender).SelectedItem;
+			    SelectedItemChanged?.Invoke(sender, e);
+		    }
 	    }
     }
 }

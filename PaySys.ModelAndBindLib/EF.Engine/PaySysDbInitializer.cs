@@ -42,49 +42,59 @@ namespace PaySys.ModelAndBindLib.Engine
 				new MainGroup
 				{
 					Title = "استخدام کشوری",
+							ItemColorPallet = ColorPallet.Goldenrod,
 					SubGroups = new List<SubGroup>
 					{
 						new SubGroup
 						{
-							Title = "کارمندان ثابت"
+							Title = "کارمندان ثابت",
+							ItemColorPallet = ColorPallet.Goldenrod
 						},
 						new SubGroup
 						{
-							Title = "کارمندان رسمی"
+							Title = "کارمندان رسمی",
+							ItemColorPallet = ColorPallet.Goldenrod
 						},
 						new SubGroup
 						{
-							Title = "شهردار"
+							Title = "شهردار",
+							ItemColorPallet = ColorPallet.Goldenrod
 						}
 					}
 				},
 				new MainGroup
 				{
 					Title = "بازنشستگان",
+							ItemColorPallet = ColorPallet.Teal,
 					SubGroups = new List<SubGroup>
 					{
 						new SubGroup
 						{
-							Title = "بازنشستگان"
+							Title = "بازنشستگان",
+							ItemColorPallet = ColorPallet.Teal,
 						},
 						new SubGroup
 						{
-							Title = "موظفین"
+							Title = "موظفین",
+							ItemColorPallet = ColorPallet.Teal,
 						},
 					}
 				},
 				new MainGroup
 				{
 					Title = "تأمین اجتماعی",
+							ItemColorPallet = ColorPallet.CornflowerBlue,
 					SubGroups = new List<SubGroup>
 					{
 						new SubGroup
 						{
-							Title = "کارگران خدمات شهری"
+							Title = "کارگران خدمات شهری",
+							ItemColorPallet = ColorPallet.CornflowerBlue,
 						},
 						new SubGroup
 						{
-							Title = "کارگران خدمات اداری"
+							Title = "کارگران خدمات اداری",
+							ItemColorPallet = ColorPallet.CornflowerBlue,
 						}
 					}
 				},
@@ -116,9 +126,11 @@ namespace PaySys.ModelAndBindLib.Engine
 
 			var jobFaker = new Faker<Job>("fa").StrictMode(false).Rules((f, e) =>
 			{
-				e.Description = f.Lorem.Text();
+				e.Description = f.Name.JobDescriptor();
 				e.JobNo = $"{f.Random.Number(999999):d6}";
-				e.Title = f.Company.CompanySuffix();
+				e.ItemColorPallet= f.PickRandom(Enum.GetValues(typeof(ColorPallet)).Cast<ColorPallet>()
+					.Where(x => x != ColorPallet.Unknown));
+				e.Title = f.Name.JobTitle();
 			});
 			var seedJobs = jobFaker.Generate(10);
 
@@ -134,9 +146,9 @@ namespace PaySys.ModelAndBindLib.Engine
 				e.DateEmployment = $"13{f.Random.Number(20) + 40:d2}{f.Random.Number(11) + 1:d2}{f.Random.Number(29) + 1:d2}";
 				e.DateExecution = $"13{f.Random.Number(20) + 40:d2}{f.Random.Number(11) + 1:d2}{f.Random.Number(29) + 1:d2}";
 				e.DateExport = $"13{f.Random.Number(20) + 40:d2}{f.Random.Number(11) + 1:d2}{f.Random.Number(29) + 1:d2}";
-				e.EducSt = f.PickRandom(Enum.GetValues(typeof(EducationStand)).Cast<EducationStand>()
+				e.EducationStand = f.PickRandom(Enum.GetValues(typeof(EducationStand)).Cast<EducationStand>()
 					.Where(sex => sex != EducationStand.Unknown));
-				e.EmpType = f.PickRandom(Enum.GetValues(typeof(EmploymentType)).Cast<EmploymentType>()
+				e.EmploymentType = f.PickRandom(Enum.GetValues(typeof(EmploymentType)).Cast<EmploymentType>()
 					.Where(sex => sex != EmploymentType.Unknown));
 				e.HardshipFactor = f.Random.Number(100);
 				e.InsuranceNo = $"{f.Random.Number(99999999):d8}";
