@@ -25,38 +25,34 @@
 			<RowDefinition Name="RowDetail" Height="Auto" />
 			<RowDefinition Name="RowStatusBar" Height="33" />
 		</Grid.RowDefinitions>
-		<StackPanel Name="PnlToolbar"
-					Grid.Row="0"
-					Margin="0,0,0,0.4">
-			<ToolBar>
-				<Button Name="BtnEmployeeAdd"
-						Click="BtnEmployeeAdd_OnClick"
-						IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
-						Content="{x:Static fa:Labels.Add}" />
-				<Button Name="BtnEmployeeEdit"
-						Click="BtnEmployeeEdit_OnClick"
-						IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
-						Content="{x:Static fa:Labels.Edit}" />
-				<Button Name="BtnEmployeeDelete"
-						Click="BtnEmployeeDelete_OnClick"
-						IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
-						Content="{x:Static fa:Labels.Delete}" />
-				<Separator />
-				<Button Name="BtnEmployeeRefresh"
-						Click="BtnEmployeeRefresh_OnClick"
-						IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
-						Content="{x:Static fa:Labels.Refresh}" />
-				<Separator />
-				<Button Name="BtnEmployeeSave"
-						Click="BtnEmployeeSave_OnClick"
-						IsEnabled="{Binding ElementName=UcFormState,Path=SaveCancelButtonsEnabled}"
-						Content="{x:Static fa:Labels.Save}" />
-				<Button Name="BtnEmployeeCancel"
-						Click="BtnEmployeeCancel_OnClick"
-						IsEnabled="{Binding ElementName=UcFormState,Path=SaveCancelButtonsEnabled}"
-						Content="{x:Static fa:Labels.Cancel}" />
-			</ToolBar>
-		</StackPanel>
+		<ToolBar Grid.Row="0">
+			<Button Name="BtnEmployeeAdd"
+			        Click="BtnEmployeeAdd_OnClick"
+			        IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
+			        Content="{x:Static fa:Labels.Add}" />
+			<Button Name="BtnEmployeeEdit"
+			        Click="BtnEmployeeEdit_OnClick"
+			        IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
+			        Content="{x:Static fa:Labels.Edit}" />
+			<Button Name="BtnEmployeeDelete"
+			        Click="BtnEmployeeDelete_OnClick"
+			        IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
+			        Content="{x:Static fa:Labels.Delete}" />
+			<Separator />
+			<Button Name="BtnEmployeeRefresh"
+			        Click="BtnEmployeeRefresh_OnClick"
+			        IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
+			        Content="{x:Static fa:Labels.Refresh}" />
+			<Separator />
+			<Button Name="BtnEmployeeSave"
+			        Click="BtnEmployeeSave_OnClick"
+			        IsEnabled="{Binding ElementName=UcFormState,Path=SaveCancelButtonsEnabled}"
+			        Content="{x:Static fa:Labels.Save}" />
+			<Button Name="BtnEmployeeCancel"
+			        Click="BtnEmployeeCancel_OnClick"
+			        IsEnabled="{Binding ElementName=UcFormState,Path=SaveCancelButtonsEnabled}"
+			        Content="{x:Static fa:Labels.Cancel}" />
+		</ToolBar>
 		<StackPanel Name="PnlSearch"
 					Orientation="Horizontal"
 					HorizontalAlignment="Center"
@@ -270,8 +266,7 @@
 					 Grid.ColumnSpan="10"
 					 Grid.RowSpan="2"/>
 		</Grid>
-		<StatusBar FlowDirection="LeftToRight"
-				   Grid.Row="4">
+		<StatusBar Grid.Row="4">
 			<local:UcFormStateLabel x:Name="UcFormState" />
 		</StatusBar>
 	</Grid>
