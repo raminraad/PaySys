@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using PaySys.ModelAndBindLib.Model;
 
 namespace PaySys.ModelAndBindLib.Engine
@@ -8,7 +9,7 @@ namespace PaySys.ModelAndBindLib.Engine
 		public PaySysContext() : base("PaySys")
 		{
 			Database.SetInitializer(new PaySysDbInitializer());
-			Database.Initialize(true);
+			//			Database.Initialize(true);
 		}
 
 		public DbSet<MainGroup> MainGroups { set; get; }

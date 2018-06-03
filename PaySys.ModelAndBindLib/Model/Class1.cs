@@ -12,13 +12,18 @@ namespace PaySys.ModelAndBindLib.Model
 		public int MainGroupId { set; get; }
 		public string Title { get; set; }
 		public ColorPallet ItemColorPallet { get; set; }
-		public virtual List<ContractFieldTitle> ContractFieldTitles { get; set; }
 		public virtual List<SubGroup> SubGroups { get; set; }
-		public virtual List<GroupContractFieldTitle> GroupContractFieldTitles { get; set; }
 		public virtual List<GroupMisc> GroupMiscs { get; set; }
+		public virtual List<GroupContractFieldTitle> GroupContractFieldTitles { get; set; }
+		public virtual List<GroupMonthlyVariable> GroupMonthlyVariables { get; set; }
 		public override bool Equals(object obj)
 		{
 			return obj != null && ((MainGroup)obj).MainGroupId == MainGroupId;
+		}
+
+		public bool EqualsByTitle(object obj)
+		{
+			return obj != null && ((MainGroup)obj).Title == Title;
 		}
 	}
 
@@ -155,7 +160,7 @@ namespace PaySys.ModelAndBindLib.Model
 		public virtual List<ContractDetail> ContractDetails { get; set; }
 	}
 
-	/// <summary>#14 فرمول مأموریت زیرگروه در سال و ماه</summary>
+	/// <summary>#14 فرمول مأموریت زیرگروه در سال و ماه</summary> 
 	public class MissionFormula
 	{
 		public int MissionFormulaId { get; set; }

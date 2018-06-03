@@ -77,6 +77,9 @@
     <Compile Include="User Control\Ingredient\UcSelectEmployee.xaml.cs">
       <DependentUpon>UcSelectEmployee.xaml</DependentUpon>
     </Compile>
+    <Compile Include="User Control\Ingredient\UcShowContractDetails.xaml.cs">
+      <DependentUpon>UcShowContractDetails.xaml</DependentUpon>
+    </Compile>
     <Compile Include="User Control\Ingredient\UcShowContractMaster.xaml.cs">
       <DependentUpon>UcShowContractMaster.xaml</DependentUpon>
     </Compile>
@@ -113,6 +116,10 @@
     <Page Include="User Control\Ingredient\UcSelectEmployee.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="User Control\Ingredient\UcShowContractDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="User Control\Ingredient\UcShowContractMaster.xaml">
       <SubType>Designer</SubType>

@@ -44,15 +44,20 @@ namespace PaySys.UI.UC
 		private void RefreshDtgMain()
 		{
 			var index = DtgMain.SelectedIndex;
-			var filters = TxtFilter.Text.Split(' ');
-			var lists = new List<List<Employee>>();
-			foreach (var strFilter in filters)
-				lists.Add((from x in _context.Employees
-					where x.FName.Contains(strFilter) || x.LName.Contains(strFilter) || x.DossierNo.Contains(strFilter)
-					select x).ToList());
-			var filteredList = _context.Employees.ToList();
-			lists.ForEach(x => filteredList.RemoveAll(employee => filteredList.Except(x).Contains(employee)));
-			_lstMain = new ObservableCollection<Employee>(filteredList);
+			if(TxtFilter.Text.Trim()==string.Empty)
+				_lstMain = new ObservableCollection<Employee>(_context.Employees.ToList());
+			else
+			{
+				var filters = TxtFilter.Text.Split(' ');
+				var lists = new List<List<Employee>>();
+				foreach (var strFilter in filters)
+					lists.Add((from x in _context.Employees
+						where x.FName.Contains(strFilter) || x.LName.Contains(strFilter) || x.DossierNo.Contains(strFilter)
+						select x).ToList());
+				var filteredList = _context.Employees.ToList();
+				lists.ForEach(x => filteredList.RemoveAll(employee => filteredList.Except(x).Contains(employee)));
+				_lstMain = new ObservableCollection<Employee>(filteredList);
+			}
 			DtgMain.DataContext = _lstMain;
 			if (DtgMain.Items.Count > index)
 				DtgMain.SelectedIndex = index;

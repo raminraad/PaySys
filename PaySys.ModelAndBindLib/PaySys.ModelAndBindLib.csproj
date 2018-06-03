@@ -62,6 +62,10 @@
     <Compile Include="EF.Engine\PaySysContext.cs" />
     <Compile Include="EF.Engine\PaySysDbInitializer.cs" />
     <Compile Include="EF.Migrations\Configuration.cs" />
+    <Compile Include="Migrations\201806021902573_Init.cs" />
+    <Compile Include="Migrations\201806021902573_Init.Designer.cs">
+      <DependentUpon>201806021902573_Init.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -78,6 +82,11 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201806021902573_Init.resx">
+      <DependentUpon>201806021902573_Init.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

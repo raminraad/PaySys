@@ -14,7 +14,7 @@ namespace PaySys
 		public MainWindow()
 		{
 			InitializeComponent();
-			context.Database.Initialize(true);
+//			context.Database.Initialize(true);
 			WindowStartupLocation = WindowStartupLocation.CenterScreen;
 			WindowState = WindowState.Maximized;
 		}

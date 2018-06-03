@@ -48,21 +48,21 @@
 				<ColumnDefinition />
 				<ColumnDefinition />
 			</Grid.ColumnDefinitions>
-			<Grid>
+			<Grid Name="GridContractRightSide"
+				  Grid.Column="0">
 				<Grid.RowDefinitions>
 					<RowDefinition Height="1*" />
 					<RowDefinition Height="2*" />
 				</Grid.RowDefinitions>
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="5*" />
-					<ColumnDefinition Width="1*" />
-				</Grid.ColumnDefinitions>
 				<local:UcSelectContractMasterOfEmployee x:Name="UcSelectContOfEmp"
-														Grid.Row="0" />
+														Grid.Row="0"
+														Margin="150,0" />
 				<local:UcShowContractMaster x:Name="UcShowContMaster"
-											Grid.Row="1"
-											Grid.Column="0" />
+											Grid.Row="1" />
 			</Grid>
+			<StackPanel Name="PanelContractLeftSide" Grid.Column="1">
+				<ingredient:UcShowContractDetails x:Name="UcShowContractDetails"/>
+			</StackPanel>
 		</Grid>
 		<StatusBar Grid.Row="2">
 			<local:UcFormStateLabel x:Name="UcFormState" />
