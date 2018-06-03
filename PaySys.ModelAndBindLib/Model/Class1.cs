@@ -236,6 +236,10 @@ namespace PaySys.ModelAndBindLib.Model
 		public virtual Job Job { get; set; }
 		public virtual SubGroup SubGroup { set; get; }
 		public virtual Employee Employee { get; set; }
+		public override bool Equals(object obj)
+		{
+			return obj is ContractMaster && ((ContractMaster)obj).ContractMasterId == ContractMasterId && string.Equals(ContractNo, ((ContractMaster)obj).ContractNo);
+		}
 	}
 
 	/// <summary>#21 جزئیات احکام</summary>

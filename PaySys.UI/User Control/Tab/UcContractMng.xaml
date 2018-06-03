@@ -20,24 +20,24 @@
 						   Height="Auto" />
 		</Grid.RowDefinitions>
 		<ToolBar Grid.Row="0">
-			<Button Name="BtnEmployeeAdd"
+			<Button Name="BtnContractMasterAdd"
 					IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
-					Content="{x:Static fa:Labels.Add}" />
-			<Button Name="BtnEmployeeEdit"
+					Content="{x:Static fa:Labels.Add}" Click="BtnContractMasterAdd_OnClick"/>
+			<Button Name="BtnContractMasterEdit"
 					IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
-					Content="{x:Static fa:Labels.Edit}" />
-			<Button Name="BtnEmployeeDelete"
+					Content="{x:Static fa:Labels.Edit}" Click="BtnContractMasterEdit_OnClick"/>
+			<Button Name="BtnContractMasterDelete"
 					IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
-					Content="{x:Static fa:Labels.Delete}" />
+					Content="{x:Static fa:Labels.Delete}" Click="BtnContractMasterDelete_OnClick"/>
 			<Separator />
-			<Button Name="BtnEmployeeRefresh"
+			<Button Name="BtnContractMasterRefresh"
 					IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
 					Content="{x:Static fa:Labels.Refresh}" />
 			<Separator />
-			<Button Name="BtnEmployeeSave"
+			<Button Name="BtnContractMasterSave"
 					IsEnabled="{Binding ElementName=UcFormState,Path=SaveCancelButtonsEnabled}"
-					Content="{x:Static fa:Labels.Save}" />
-			<Button Name="BtnEmployeeCancel"
+					Content="{x:Static fa:Labels.Save}" Click="BtnContractMasterSave_OnClick"/>
+			<Button Name="BtnContractMasterCancel"
 					IsEnabled="{Binding ElementName=UcFormState,Path=SaveCancelButtonsEnabled}"
 					Content="{x:Static fa:Labels.Cancel}" />
 		</ToolBar>

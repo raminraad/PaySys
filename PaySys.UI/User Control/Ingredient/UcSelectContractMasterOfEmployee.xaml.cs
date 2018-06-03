@@ -50,11 +50,18 @@ namespace PaySys.UI.UC
 				CmbContractMaster.SelectedItem = _contListForEmp.First(c => c.IsCurrentContract);
 		}
 
+		public static readonly DependencyProperty SelectedContractMasterProperty = DependencyProperty.Register("SelectedContractMaster", typeof(ContractMaster), typeof(UcSelectContractMasterOfEmployee), new PropertyMetadata(default(ContractMaster)));
+
 		public ContractMaster SelectedContractMaster
 		{
-			get => CmbContractMaster.SelectedItem as ContractMaster;
-			set => CmbContractMaster.SelectedItem = value;
+			get { return (ContractMaster) GetValue(SelectedContractMasterProperty); }
+			set { SetValue(SelectedContractMasterProperty, value); }
 		}
+//		public ContractMaster SelectedContractMaster
+//		{
+//			get => CmbContractMaster.SelectedItem as ContractMaster;
+//			set => CmbContractMaster.SelectedItem = value;
+//		}
 
 		private void CmbContractMaster_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
 		{

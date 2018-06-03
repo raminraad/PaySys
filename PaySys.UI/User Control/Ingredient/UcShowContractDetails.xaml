@@ -13,7 +13,7 @@
 			BorderThickness="2"
 			CornerRadius="10"
 			Padding="5">
-		<StackPanel>
+		<StackPanel Name="PanelMain">
 			<StackPanel Name="PanelTitle"
 						Margin="0,0,0,15">
 				<Label Content="{x:Static fa:Labels.ContractDetail}"
