@@ -88,7 +88,7 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to جزئیات احکام.
+        ///   Looks up a localized string similar to جزئیات حکم.
         /// </summary>
         public static string ContractDetail {
             get {

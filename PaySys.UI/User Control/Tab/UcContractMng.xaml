@@ -60,7 +60,7 @@
 				<local:UcShowContractMaster x:Name="UcShowContMaster"
 											Grid.Row="1" />
 			</Grid>
-			<StackPanel Name="PanelContractLeftSide" Grid.Column="1">
+			<StackPanel Name="PanelContractLeftSide" Grid.Column="1" Width="600" HorizontalAlignment="Left" Margin="30,0">
 				<ingredient:UcShowContractDetails x:Name="UcShowContractDetails"/>
 			</StackPanel>
 		</Grid>

@@ -236,27 +236,22 @@ namespace PaySys.ModelAndBindLib.Migrations
 	        });
 	        var seedContractDetails = new List<ContractDetail>();
 
-
-	        int indexContMast = 0;
-	        int indexGrpContField = 0;
 	        foreach (var contMast in seedContractMasters)
 	        {
-		        File.AppendAllText(@"d:\SeedLog.log", @"ContractMaster no." + (indexContMast++) + "\n");
+		        File.AppendAllText(@"d:\SeedLog.log", @"ContractNo: " + (contMast.ContractNo) + "\n");
 		        foreach (var grpCntField in seedGroupContractFieldTitle.Where(c=>c.MainGroup.Equals(contMast.SubGroup.MainGroup)))
-//		        foreach (var grpCntField in seedGroupContractFieldTitle.Where(c => c.MainGroup.EqualsByTitle(contMast.SubGroup.MainGroup)).ToList())
 		        {
 			        contractDetailFaker.RuleFor(detail => detail.ContractMaster, contMast);
 			        contractDetailFaker.RuleFor(detail => detail.GroupContractFieldTitle, grpCntField);
 			        var contractDetail = contractDetailFaker.Generate();
 			        seedContractDetails.Add(contractDetail);
-			        File.AppendAllText(@"d:\SeedLog.log", "\tDetail " + (indexGrpContField++)+$@" ({grpCntField.ContractFieldTitle.Title} : {contractDetail.Value}) " + "\n");
+			        File.AppendAllText(@"d:\SeedLog.log", "\t" + grpCntField.ContractFieldTitle.Title+ $@" : {contractDetail.Value} " + "\n");
 		        }
 	        }
 	        context.ContractDetails.AddRange(seedContractDetails);
 	        
 
 	        #endregion
-
 
 			#region Set CurrentContract for each Employee
 			var queryEmpContracts =

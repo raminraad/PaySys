@@ -23,7 +23,7 @@
 				<RowDefinition Height="2*" />
 				<RowDefinition Height="15*" />
 			</Grid.RowDefinitions>
-			<StackPanel Name="PnlTitle"
+			<StackPanel Name="PanelTitle"
 						Grid.Row="0">
 				<Label Content="{x:Static fa:Labels.ContractMaster}"
 					   HorizontalContentAlignment="Center" />

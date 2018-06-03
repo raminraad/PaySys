@@ -18,13 +18,9 @@ namespace PaySys.ModelAndBindLib.Model
 		public virtual List<GroupMonthlyVariable> GroupMonthlyVariables { get; set; }
 		public override bool Equals(object obj)
 		{
-			return obj != null && ((MainGroup)obj).MainGroupId == MainGroupId;
+			return obj != null && ((MainGroup)obj).MainGroupId == MainGroupId && string.Equals(Title, ((MainGroup)obj).Title) ;
 		}
 
-		public bool EqualsByTitle(object obj)
-		{
-			return obj != null && ((MainGroup)obj).Title == Title;
-		}
 	}
 
 	/// <summary>#02 زیر گروه</summary>
@@ -280,7 +276,7 @@ namespace PaySys.ModelAndBindLib.Model
 
 		public override bool Equals(object obj)
 		{
-			return obj != null && ((Employee) obj).EmployeeId == EmployeeId;
+			return obj != null && ((Employee)obj).EmployeeId == EmployeeId;
 		}
 	}
 

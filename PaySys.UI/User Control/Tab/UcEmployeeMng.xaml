@@ -53,7 +53,7 @@
 			        IsEnabled="{Binding ElementName=UcFormState,Path=SaveCancelButtonsEnabled}"
 			        Content="{x:Static fa:Labels.Cancel}" />
 		</ToolBar>
-		<StackPanel Name="PnlSearch"
+		<StackPanel Name="PanelSearch"
 					Orientation="Horizontal"
 					HorizontalAlignment="Center"
 					Width="516"
