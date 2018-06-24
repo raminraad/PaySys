@@ -19,11 +19,11 @@ using PaySys.UI.ExtensionMethods;
 namespace PaySys.UI.UC
 {
     /// <summary>
-    /// Interaction logic for UcShowContractDetails.xaml
+    /// Interaction logic for SmpUcShowContractDetails.xaml
     /// </summary>
     public partial class UcShowContractDetails : UserControl
     {
-	    public ContractMaster CurrentContractMaster { get; set; }
+	    
         public UcShowContractDetails()
         {
             InitializeComponent();
@@ -31,17 +31,33 @@ namespace PaySys.UI.UC
 
 	    private void UcShowContractDetails_OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
 	    {
-		    CurrentContractMaster = (ContractMaster) DataContext;
-		    ListViewContractDetails.DataContext = CurrentContractMaster.ContractDetails;
+		    //		    DataContext = CurrentContractMaster?.ContractDetails;
 	    }
 
-	    public void UpdateDataSources()
+		public static readonly DependencyProperty ReadOnlyFieldsProperty = DependencyProperty.Register("ReadOnlyFields", typeof(bool), typeof(UcShowContractDetails), new PropertyMetadata(default(bool)));
+
+	    public bool ReadOnlyFields
+
 	    {
-			foreach (var textBox in ListViewContractDetails.FindVisualChildren<TextBox>())
-		    {
-			    textBox.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
+		    get { return (bool)GetValue(ReadOnlyFieldsProperty); }
+		    set { SetValue(ReadOnlyFieldsProperty, value); }
+	    }
+
+		public ContractMaster CurrentContractMaster
+	    {
+		    get => (ContractMaster)DataContext;
+		    set => DataContext = value;
+	    }
+
+		public void CommitContext()
+	    {
+			foreach (var cnt in this.FindVisualChildren<Control>())
+			{
+				cnt.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
+			    cnt.GetBindingExpression(Selector.SelectedItemProperty)?.UpdateSource();
 		    }
-		    
+		    GetBindingExpression(DataContextProperty)?.UpdateSource();
+
 		}
-    }
+	}
 }

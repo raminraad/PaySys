@@ -30,7 +30,7 @@ namespace PaySys.UI.UC
 				new Thickness(), FrameworkPropertyMetadataOptions.AffectsMeasure);
 		}
 
-		public static readonly DependencyProperty FieldsReadOnlyProperty = DependencyProperty.Register("FieldsReadOnly", typeof(bool), typeof(UcFormStateLabel), new PropertyMetadata(default(bool)));
+		public static readonly DependencyProperty ReadOnlyFieldsProperty = DependencyProperty.Register("ReadOnlyFields", typeof(bool), typeof(UcFormStateLabel), new PropertyMetadata(default(bool)));
 		public static readonly DependencyProperty CrudButtonsEnabledProperty = DependencyProperty.Register("CrudButtonsEnabled", typeof(bool), typeof(UcFormStateLabel), new PropertyMetadata(default(bool)));
 		public static readonly DependencyProperty SaveCancelButtonsEnabledProperty = DependencyProperty.Register("SaveCancelButtonsEnabled", typeof(bool), typeof(UcFormStateLabel), new PropertyMetadata(default(bool)));
 
@@ -44,10 +44,10 @@ namespace PaySys.UI.UC
 			get { return (bool) GetValue(CrudButtonsEnabledProperty); }
 			set { SetValue(CrudButtonsEnabledProperty, value); }
 		}
-		public bool FieldsReadOnly
+		public bool ReadOnlyFields
 		{
-			get { return (bool)GetValue(FieldsReadOnlyProperty); }
-			set { SetValue(FieldsReadOnlyProperty, value); }
+			get { return (bool)GetValue(ReadOnlyFieldsProperty); }
+			set { SetValue(ReadOnlyFieldsProperty, value); }
 		}
 
 		public FormCurrentState CurrentState
@@ -80,7 +80,7 @@ namespace PaySys.UI.UC
 					default:
 						throw new ArgumentOutOfRangeException(nameof(value), value, null);
 				}
-				FieldsReadOnly = value != FormCurrentState.Edit && value != FormCurrentState.Add;
+				ReadOnlyFields = value != FormCurrentState.Edit && value != FormCurrentState.Add;
 				CrudButtonsEnabled = value == FormCurrentState.Select;
 				SaveCancelButtonsEnabled = value == FormCurrentState.Edit || value == FormCurrentState.Add;
 				_currentState = value;

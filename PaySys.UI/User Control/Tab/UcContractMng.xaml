@@ -21,24 +21,24 @@
 		</Grid.RowDefinitions>
 		<ToolBar Grid.Row="0">
 			<Button Name="BtnContractMasterAdd"
-					IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
+					IsEnabled="{Binding ElementName=SmpUcFormState,Path=CrudButtonsEnabled}"
 					Content="{x:Static fa:Labels.Add}" Click="BtnContractMasterAdd_OnClick"/>
 			<Button Name="BtnContractMasterEdit"
-					IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
+					IsEnabled="{Binding ElementName=SmpUcFormState,Path=CrudButtonsEnabled}"
 					Content="{x:Static fa:Labels.Edit}" Click="BtnContractMasterEdit_OnClick"/>
 			<Button Name="BtnContractMasterDelete"
-					IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
+					IsEnabled="{Binding ElementName=SmpUcFormState,Path=CrudButtonsEnabled}"
 					Content="{x:Static fa:Labels.Delete}" Click="BtnContractMasterDelete_OnClick"/>
 			<Separator />
 			<Button Name="BtnContractMasterRefresh"
-					IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
+					IsEnabled="{Binding ElementName=SmpUcFormState,Path=CrudButtonsEnabled}"
 					Content="{x:Static fa:Labels.Refresh}" />
 			<Separator />
 			<Button Name="BtnContractMasterSave"
-					IsEnabled="{Binding ElementName=UcFormState,Path=SaveCancelButtonsEnabled}"
+					IsEnabled="{Binding ElementName=SmpUcFormState,Path=SaveCancelButtonsEnabled}"
 					Content="{x:Static fa:Labels.Save}" Click="BtnContractMasterSave_OnClick"/>
 			<Button Name="BtnContractMasterCancel"
-					IsEnabled="{Binding ElementName=UcFormState,Path=SaveCancelButtonsEnabled}"
+					IsEnabled="{Binding ElementName=SmpUcFormState,Path=SaveCancelButtonsEnabled}"
 					Content="{x:Static fa:Labels.Cancel}" />
 		</ToolBar>
 		<Grid Name="GridContractWhole"
@@ -57,15 +57,16 @@
 				<local:UcSelectContractMasterOfEmployee x:Name="UcSelectContOfEmp"
 														Grid.Row="0"
 														Margin="150,0" />
-				<local:UcShowContractMaster x:Name="UcShowContMaster"
-											Grid.Row="1" />
+				<local:UcShowContractMaster x:Name="SmpUcShowContractMaster"
+											Grid.Row="1" ReadOnlyFields="{Binding ElementName=SmpUcFormState,Path=ReadOnlyFields}"/>
 			</Grid>
 			<StackPanel Name="PanelContractLeftSide" Grid.Column="1" Width="600" HorizontalAlignment="Left" Margin="30,0">
-				<ingredient:UcShowContractDetails x:Name="UcShowContractDetails"/>
+				<TextBox Text="{Binding ElementName=SmpUcFormState,Path=ReadOnlyFields}"></TextBox>
+				<ingredient:UcShowContractDetails x:Name="SmpUcShowContractDetails"/>
 			</StackPanel>
 		</Grid>
 		<StatusBar Grid.Row="2">
-			<local:UcFormStateLabel x:Name="UcFormState" />
+			<local:UcFormStateLabel x:Name="SmpUcFormState" />
 		</StatusBar>
 	</Grid>
 </UserControl>

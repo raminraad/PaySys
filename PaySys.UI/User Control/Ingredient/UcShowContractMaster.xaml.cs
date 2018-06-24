@@ -1,53 +1,78 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Controls.Primitives;
 using PaySys.ModelAndBindLib.Engine;
 using PaySys.ModelAndBindLib.Model;
+using PaySys.UI.ExtensionMethods;
 
 namespace PaySys.UI.UC
 {
-	/// <summary>
-	/// Interaction logic for UcShowContractMaster.xaml
-	/// </summary>
+	/// <summary>Interaction logic for UcShowContractMaster.xaml</summary>
 	public partial class UcShowContractMaster : UserControl
 	{
-		private readonly ObservableCollection<MainGroup> _mainGroupsAll;
 		private readonly ObservableCollection<Job> _jobsAll;
-
+		private readonly ObservableCollection<MainGroup> _mainGroupsAll;
 		private PaySysContext _context = new PaySysContext();
+
 		public UcShowContractMaster()
 		{
 			InitializeComponent();
-			_mainGroupsAll = new ObservableCollection<MainGroup>(_context.MainGroups);
-			_jobsAll = new ObservableCollection<Job>(_context.Jobs);
-			CmbMainGroup.DataContext = _mainGroupsAll;
-			CmbJob.DataContext = _jobsAll;
+			//			CmbMainGroup.DataContext = _mainGroupsAll = new ObservableCollection<MainGroup>(_context.MainGroups);
+			//			CmbJob.DataContext = _jobsAll = new ObservableCollection<Job>(_context.Jobs);
+		}
+
+		public static readonly DependencyProperty ReadOnlyFieldsProperty = DependencyProperty.Register("ReadOnlyFields", typeof(bool), typeof(UcShowContractMaster), new PropertyMetadata(default(bool)));
+
+		public bool ReadOnlyFields
+
+		{
+			get { return (bool) GetValue(ReadOnlyFieldsProperty); }
+			set { SetValue(ReadOnlyFieldsProperty, value); }
+		}
+		public ObservableCollection<MainGroup> MainGroups
+		{
+			set => CmbMainGroup.ItemsSource = value;
+		}
+		public ObservableCollection<SubGroup> SubGroups
+		{
+			set => CmbSubGroup.ItemsSource = value;
+		}
+		public ObservableCollection<Job> Jobs
+		{
+			set => CmbJob.ItemsSource = value;
+		}
+		public ContractMaster CurrentContractMaster
+		{
+			get => (ContractMaster) DataContext;
+			set => DataContext = value;
 		}
 
 		private void CmbMainGroup_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			if (e.AddedItems.Count > 0)
-				CmbSubGroup.DataContext = ((MainGroup)CmbMainGroup.SelectedItem).SubGroups;
+				CmbSubGroup.Items.Filter = s=> (s as SubGroup)?.MainGroup==(MainGroup) CmbMainGroup.SelectedItem;
 		}
+		public void CommitContext()
+		{
+//			foreach (var cnt in GridFields.Children.OfType<Control>())
+			foreach (var cnt in this.FindVisualChildren<Control>())
+			{
+				cnt.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
+				cnt.GetBindingExpression(Selector.SelectedItemProperty)?.UpdateSource();
+			}
+			GetBindingExpression(DataContextProperty)?.UpdateSource();
 
+		}
 		private void UcShowContractMaster_OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
 		{
-			var newContractMaster = (ContractMaster)e.NewValue;
-			var selectedMainGroup = _mainGroupsAll.First(x => x.Equals(newContractMaster.SubGroup.MainGroup));
-			CmbMainGroup.SelectedItem = selectedMainGroup;
-			CmbSubGroup.SelectedItem = selectedMainGroup.SubGroups.FirstOrDefault(x => x.Equals(newContractMaster.SubGroup));
+			//			if (e.NewValue == null)
+			//				return;
+			//			var newContractMaster = (ContractMaster)e.NewValue;
+			//			var selectedMainGroup = _mainGroupsAll.First(x => x.Equals(newContractMaster.SubGroup.MainGroup));
+			//			CmbMainGroup.SelectedItem = selectedMainGroup;
+			//			CmbSubGroup.SelectedItem = selectedMainGroup.SubGroups.FirstOrDefault(x => x.Equals(newContractMaster.SubGroup));
 		}
 	}
 }

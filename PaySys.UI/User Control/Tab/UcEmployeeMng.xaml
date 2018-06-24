@@ -203,64 +203,64 @@
 					   Text="{x:Static fa:FieldicEmployee.Address}" />
 			<TextBox  Name="TxtPersonnelCode"
 				Grid.Row="3"
-					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyFields}"
 					 Grid.Column="2"
 					 Text="{Binding PersonnelCode,UpdateSourceTrigger=Explicit}" />
 			<TextBox Grid.Row="3"
-					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyFields}"
 					 Grid.Column="5"
 					 Text="{Binding DossierNo,UpdateSourceTrigger=Explicit}" />
 			<TextBox Grid.Row="5"
-					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyFields}"
 					 Grid.Column="2"
 					 Text="{Binding FName,UpdateSourceTrigger=Explicit}" />
 			<TextBox Grid.Row="5"
-					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyFields}"
 					 Grid.Column="5"
 					 Text="{Binding LName,UpdateSourceTrigger=Explicit}" />
 			<TextBox Grid.Row="5"
-					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyFields}"
 					 Grid.Column="8"
 					 Text="{Binding FatherName,UpdateSourceTrigger=Explicit}" />
 			<ComboBox Grid.Row="5"
-					  IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
+					  IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyFields}"
 					  Grid.Column="11"
 					  ItemsSource="{Binding Source={extensionMethod:EnumBindingSource {x:Type model:Sex}}}"
 					  SelectedItem="{Binding Sex,UpdateSourceTrigger=Explicit}" />
 			<TextBox Grid.Row="7"
-					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyFields}"
 					 Grid.Column="2"
 					 Text="{Binding NationalCardNo,UpdateSourceTrigger=Explicit}" />
 			<TextBox Grid.Row="7"
-					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyFields}"
 					 Grid.Column="5"
 					 Text="{Binding IdCardNo,UpdateSourceTrigger=Explicit}" />
 			<TextBox Grid.Row="7"
-					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyFields}"
 					 Grid.Column="8"
 					 Text="{Binding BirthDate,UpdateSourceTrigger=Explicit,Converter={StaticResource DateFrmtCnv}}" />
 			<TextBox Grid.Row="7"
-					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyFields}"
 					 Grid.Column="11"
 					 Text="{Binding BirthPlace,UpdateSourceTrigger=Explicit}" />
 			<TextBox Grid.Row="9"
-					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyFields}"
 					 Grid.Column="2"
 					 Text="{Binding IdCardExportDate,UpdateSourceTrigger=Explicit,Converter={StaticResource DateFrmtCnv}}" />
 			<TextBox Grid.Row="9"
-					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyFields}"
 					 Grid.Column="5"
 					 Text="{Binding IdCardExportPlace,UpdateSourceTrigger=Explicit}" />
 			<TextBox Grid.Row="9"
-					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyFields}"
 					 Grid.Column="8"
 					 Text="{Binding HomeTel,UpdateSourceTrigger=Explicit}" />
 			<TextBox Grid.Row="9"
-					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyFields}"
 					 Grid.Column="11"
 					 Text="{Binding CellNo,UpdateSourceTrigger=Explicit}" />
 			<TextBox Grid.Row="11"
-					 IsReadOnly="{Binding ElementName=UcFormState,Path=FieldsReadOnly}"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyFields}"
 					 Grid.Column="2"
 					 Text="{Binding Address,UpdateSourceTrigger=Explicit}"
 					 Grid.ColumnSpan="10"

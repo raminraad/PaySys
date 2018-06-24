@@ -19,31 +19,34 @@ using PaySys.ModelAndBindLib.Model;
 
 namespace PaySys.UI.UC
 {
-    /// <summary>
-    /// Interaction logic for UcSelectEmployee.xaml
-    /// </summary>
-    public partial class UcSelectEmployee : UserControl
-    {
-		ObservableCollection<Employee> EmployeeList = new ObservableCollection<Employee>(new PaySysContext().Employees);
-	    public event SelectionChangedEventHandler SelectedItemChanged;
-        public UcSelectEmployee()
-        {
-            InitializeComponent();
-			DataContext=EmployeeList;
-        }
+	public partial class UcSelectEmployee : UserControl
+	{
+		public event SelectionChangedEventHandler SelectedItemChanged;
 
-	    public Employee SelectedEmployee
-	    {
-		    get => CmbEmployee.SelectedItem as Employee;
-		    set => CmbEmployee.SelectedItem=value;
-	    }
-	    private void CmbEmployee_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-	    {
-		    if (e.AddedItems.Count > 0)
-		    {
-			    SelectedEmployee = (Employee) ((Selector) sender).SelectedItem;
-			    SelectedItemChanged?.Invoke(sender, e);
-		    }
-	    }
-    }
+		public UcSelectEmployee()
+		{
+			InitializeComponent();
+		}
+
+		public Employee SelectedEmployee
+		{
+			get => CmbEmployee.SelectedItem as Employee;
+			set => CmbEmployee.SelectedItem = value;
+		}
+		public ObservableCollection<Employee> EmployeesAll
+		{
+			set
+			{
+				var selectedId = SelectedEmployee?.EmployeeId;
+				DataContext = value;
+				SelectedEmployee = EmployeesAll.FirstOrDefault(emp => emp.EmployeeId == selectedId);
+			}
+			get => DataContext as ObservableCollection<Employee>;
+		}
+
+		private void CmbEmployee_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			SelectedItemChanged?.Invoke(sender, e);
+		}
+	}
 }
