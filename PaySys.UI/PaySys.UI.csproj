@@ -9,11 +9,12 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PaySys.UI</RootNamespace>
     <AssemblyName>PaySys.UI</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -35,6 +36,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Bogus, Version=22.0.5.0, Culture=neutral, PublicKeyToken=fa1bb3f3f218129a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bogus.22.0.5\lib\net40\Bogus.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -46,6 +50,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -65,22 +70,28 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Command\CommandCancel.cs" />
-    <Compile Include="Command\CommandCloseTab.cs" />
-    <Compile Include="Command\CommandEdit.cs" />
-    <Compile Include="Command\CommandAdd.cs" />
-    <Compile Include="Command\CommandSave.cs" />
-    <Compile Include="User Control\UcMngEmployee.xaml.cs">
-      <DependentUpon>UcMngEmployee.xaml</DependentUpon>
+    <Compile Include="ExtensionMethods\UcMethods.cs" />
+    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="User Control\Ingredient\UcFormStateLabel.xaml.cs">
+      <DependentUpon>UcFormStateLabel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="User Control\UcMngMainGroupSubGroup.xaml.cs">
-      <DependentUpon>UcMngMainGroupSubGroup.xaml</DependentUpon>
+    <Compile Include="User Control\Ingredient\UcSelectContractMasterOfEmployee.xaml.cs">
+      <DependentUpon>UcSelectContractMasterOfEmployee.xaml</DependentUpon>
     </Compile>
-    <Compile Include="User Control\UcMngContractFieldTitle.xaml.cs">
-      <DependentUpon>UcMngContractFieldTitle.xaml</DependentUpon>
+    <Compile Include="User Control\Ingredient\UcSelectEmployee.xaml.cs">
+      <DependentUpon>UcSelectEmployee.xaml</DependentUpon>
     </Compile>
-    <Compile Include="User Control\UcMngRetirementFormField.xaml.cs">
-      <DependentUpon>UcMngRetirementFormField.xaml</DependentUpon>
+    <Compile Include="User Control\Ingredient\UcShowContractDetails.xaml.cs">
+      <DependentUpon>UcShowContractDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\Ingredient\UcShowContractMaster.xaml.cs">
+      <DependentUpon>UcShowContractMaster.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\Tab\UcContractMng.xaml.cs">
+      <DependentUpon>UcContractMng.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\Tab\UcEmployeeMng.xaml.cs">
+      <DependentUpon>UcEmployeeMng.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -94,19 +105,35 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="User Control\UcMngEmployee.xaml">
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="User Control\Ingredient\UcFormStateLabel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="User Control\UcMngMainGroupSubGroup.xaml">
+    <Page Include="User Control\Ingredient\UcSelectContractMasterOfEmployee.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="User Control\UcMngContractFieldTitle.xaml">
+    <Page Include="User Control\Ingredient\UcSelectEmployee.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="User Control\Ingredient\UcShowContractDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="User Control\UcMngRetirementFormField.xaml">
+    <Page Include="User Control\Ingredient\UcShowContractMaster.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="User Control\Tab\UcContractMng.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="User Control\Tab\UcEmployeeMng.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -142,11 +169,20 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PaySys.EF\PaySys.EF.csproj">
-      <Project>{205E0F3C-71CE-42EE-B4AE-8CCA37414BFE}</Project>
-      <Name>PaySys.EF</Name>
+    <ProjectReference Include="..\PaySys.CalcLib\PaySys.CalcLib.csproj">
+      <Project>{733ddf04-3787-4610-95f1-a3ede7cff373}</Project>
+      <Name>PaySys.CalcLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PaySys.Globalization\PaySys.Globalization.csproj">
+      <Project>{9833315b-63e2-4717-8615-b3e625acaea8}</Project>
+      <Name>PaySys.Globalization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PaySys.ModelAndBindLib\PaySys.ModelAndBindLib.csproj">
+      <Project>{21C027CA-0A77-47DF-B9D5-70079B1CDCC8}</Project>
+      <Name>PaySys.ModelAndBindLib</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

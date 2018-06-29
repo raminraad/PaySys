@@ -1,0 +1,99 @@
+﻿<UserControl x:Class="PaySys.UI.UC.UcContractMng"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:local="clr-namespace:PaySys.UI.UC"
+			 xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
+			 xmlns:ingredient="clr-namespace:PaySys.UI.UC"
+			 mc:Ignorable="d"
+			 d:DesignHeight="1000"
+			 d:DesignWidth="1500"
+			 FlowDirection="RightToLeft">
+	<Grid Name="GridMain">
+		<Grid.RowDefinitions>
+			<RowDefinition Name="RowToolbar"
+						   Height="Auto" />
+			<RowDefinition Name="RowContractData"
+						   Height="*" />
+			<RowDefinition Name="RowStatusBar"
+						   Height="Auto" />
+		</Grid.RowDefinitions>
+		<ToolBar Grid.Row="0">
+			<Button Name="BtnContractMasterAdd"
+					IsEnabled="{Binding ElementName=SmpUcFormState,Path=CrudButtonsEnabled}"
+					Content="{x:Static fa:Labels.Add}"
+					Click="BtnContractMasterAdd_OnClick" />
+			<Button Name="BtnContractMasterEdit"
+					IsEnabled="{Binding ElementName=SmpUcFormState,Path=CrudButtonsEnabled}"
+					Content="{x:Static fa:Labels.Edit}"
+					Click="BtnContractMasterEdit_OnClick" />
+			<Button Name="BtnContractMasterDelete"
+					IsEnabled="{Binding ElementName=SmpUcFormState,Path=CrudButtonsEnabled}"
+					Content="{x:Static fa:Labels.Delete}"
+					Click="BtnContractMasterDelete_OnClick" />
+			<Separator />
+			<Button Name="BtnContractMasterRefresh"
+					IsEnabled="{Binding ElementName=SmpUcFormState,Path=CrudButtonsEnabled}"
+					Click="BtnContractMasterRefresh_OnClick"
+					Content="{x:Static fa:Labels.Refresh}" />
+			<Separator />
+			<Button Name="BtnContractMasterSave"
+					IsEnabled="{Binding ElementName=SmpUcFormState,Path=SaveCancelButtonsEnabled}"
+					Content="{x:Static fa:Labels.Save}"
+					Click="BtnContractMasterSave_OnClick" />
+			<Button Name="BtnContractMasterCancel"
+					IsEnabled="{Binding ElementName=SmpUcFormState,Path=SaveCancelButtonsEnabled}"
+					Content="{x:Static fa:Labels.Cancel}" />
+		</ToolBar>
+		<Grid Name="GridContractWhole"
+			  Grid.Row="1"
+			  Margin="50,10">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition />
+				<ColumnDefinition />
+			</Grid.ColumnDefinitions>
+			<Grid Name="GridContractRightSide"
+				  Grid.Column="0">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="10*" />
+					<RowDefinition Height="20*" />
+					<RowDefinition Height="3*"/>
+				</Grid.RowDefinitions>
+				<local:UcSelectContractMasterOfEmployee x:Name="SmpUcSelectContOfEmp"
+														Grid.Row="0"
+														Margin="150,0" />
+				<local:UcShowContractMaster x:Name="SmpUcShowContractMaster"
+											Grid.Row="1"
+											ReadOnlyFields="{Binding ElementName=SmpUcFormState,Path=ReadOnlyFields}"
+											ReadOnlyAddFields="{Binding ElementName=SmpUcFormState,Path=ReadOnlyAddFields}" />
+				<StackPanel Grid.Row="2">
+					<Button x:Name="BtnSaveContractMasterAndContinueToContractDetails"
+						Width="150"
+							Height="50"
+							Content="{x:Static fa:Labels.SaveContractMasterAndContinueToContractDetails}"
+							Click="BtnSaveContractMasterAndContinueToContractDetails_Click" Margin="0,20"/>
+
+				</StackPanel>
+			</Grid>
+			<StackPanel Name="PanelContractLeftSide"
+						Grid.Column="1"
+						Width="600"
+						HorizontalAlignment="Left"
+						Margin="30,0">
+				<ingredient:UcShowContractDetails x:Name="SmpUcShowContractDetails"
+												  ReadOnlyFields="{Binding ElementName=SmpUcFormState,Path=ReadOnlyFields}" />
+			</StackPanel>
+		</Grid>
+		<StatusBar Grid.Row="2">
+			<local:UcFormStateLabel x:Name="SmpUcFormState" />
+		</StatusBar>
+	</Grid>
+</UserControl>
+
+
+
+
+
+
+

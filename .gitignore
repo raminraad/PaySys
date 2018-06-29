@@ -297,3 +297,5 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
+/Paysys.Docs
+/Paysys.Docs/97.02.10.20.00.PaySysTableList.pdf

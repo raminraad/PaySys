@@ -1,53 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using PaySys.EF;
-using PaySys.UI.User_Control;
+using PaySys.Globalization;
+using PaySys.ModelAndBindLib.Engine;
+using PaySys.UI.UC;
 
 namespace PaySys
 {
-	/// <summary>
-	/// Interaction logic for MainWindow.xaml
-	/// </summary>
+	/// <summary>Interaction logic for MainWindow.xaml</summary>
 	public partial class MainWindow : Window
 	{
-		PaySysContext context = new PaySysContext();
+		private readonly PaySysContext context = new PaySysContext();
 
 		public MainWindow()
 		{
 			InitializeComponent();
-			context.Database.Initialize(true);
-		}
-
-		private void BtnDo_Click(object sender, RoutedEventArgs e)
-		{
-			Window owned = new Window();
-			owned.Owner = this;
-			owned.ShowInTaskbar = false;
-			owned.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-			owned.Height = owned.Width = 200;
-			owned.Show();
+//			context.Database.Initialize(true);
+			WindowStartupLocation = WindowStartupLocation.CenterScreen;
+			WindowState = WindowState.Maximized;
 		}
 
 		private void MnuEmployeeMng_OnClick(object sender, RoutedEventArgs e)
 		{
-			var userControls = new UcMngEmployee();
+			var userControls = new UcEmployeeMng();
 			var tabEmployeeMng = new TabItem
 			{
 				Content = userControls,
-				Header = "اطلاعات پرسنلی"
+				Header = ResourceAccessor.Labels.GetString("tabEmployeeMng")
 			};
 			TabCntMain.Items.Add(tabEmployeeMng);
 			TabCntMain.Items.Refresh();
@@ -55,27 +33,21 @@ namespace PaySys
 
 		private void MnuGroupMng_OnClick(object sender, RoutedEventArgs e)
 		{
-			var userControls = new UcMngMainGroupSubGroup();
-			var tabGroupMng = new TabItem
-			{
-				Content = userControls,
-				Header = "گروه های استخدامی"
-			};
-			userControls.ParentTabControl = TabCntMain;
-			TabCntMain.Items.Add(tabGroupMng);
-			TabCntMain.Items.Refresh();
 		}
 
 		private void mnuRetirementFormField_OnClick(object sender, RoutedEventArgs e)
 		{
-			var userControls = new UcMngRetirementFormField();
-			var tabGroupMng = new TabItem
+		}
+
+		private void MnuContractMng_OnClick(object sender, RoutedEventArgs e)
+		{
+			var userControls = new UcContractMng();
+			var tabContractMng = new TabItem
 			{
 				Content = userControls,
-				Header = "فیلدهای فرم کسور بازنشستگی"
+				Header = ResourceAccessor.Labels.GetString("tabContractMng")
 			};
-			userControls.ParentTabControl = TabCntMain;
-			TabCntMain.Items.Add(tabGroupMng);
+			TabCntMain.Items.Add(tabContractMng);
 			TabCntMain.Items.Refresh();
 		}
 	}
