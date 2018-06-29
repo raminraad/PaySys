@@ -70,6 +70,24 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to جدید (ورود جزئیات).
+        /// </summary>
+        public static string AddDetails {
+            get {
+                return ResourceManager.GetString("AddDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to جدید (ورود اطلاعات پایه).
+        /// </summary>
+        public static string AddMaster {
+            get {
+                return ResourceManager.GetString("AddMaster", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to انصراف.
         /// </summary>
         public static string Cancel {
@@ -90,9 +108,9 @@ namespace PaySys.Globalization.Fa {
         /// <summary>
         ///   Looks up a localized string similar to جزئیات حکم.
         /// </summary>
-        public static string ContractDetail {
+        public static string ContractDetails {
             get {
-                return ResourceManager.GetString("ContractDetail", resourceCulture);
+                return ResourceManager.GetString("ContractDetails", resourceCulture);
             }
         }
         
@@ -183,6 +201,15 @@ namespace PaySys.Globalization.Fa {
         public static string Save {
             get {
                 return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ذخیره و ورود جزئیات.
+        /// </summary>
+        public static string SaveContractMasterAndContinueToContractDetails {
+            get {
+                return ResourceManager.GetString("SaveContractMasterAndContinueToContractDetails", resourceCulture);
             }
         }
         

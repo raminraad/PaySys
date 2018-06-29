@@ -16,7 +16,7 @@
 		<StackPanel Name="PanelMain">
 			<StackPanel Name="PanelTitle"
 			            Margin="0,0,0,15">
-				<Label Content="{x:Static fa:Labels.ContractDetail}"
+				<Label Content="{x:Static fa:Labels.ContractDetails}"
 				       HorizontalContentAlignment="Center" />
 				<Line StrokeThickness="1"
 				      Width="50"
@@ -35,10 +35,9 @@
 				      HorizontalAlignment="Center"
 				      Stroke="DimGray"
 				      Margin="0,1.5,0,0" />
-				<TextBox Text="{Binding ElementName=SmpUcShowContractDetail,Path=ReadOnlyFields}"></TextBox>
 			</StackPanel>
 			<ListView Name="ListViewContractDetails"
-			          ItemsSource="{Binding ContractDetails}"
+			          ItemsSource="{Binding ContractDetails,UpdateSourceTrigger=PropertyChanged}"
 			          BorderThickness="0">
 				<ListView.ItemTemplate>
 					<DataTemplate>

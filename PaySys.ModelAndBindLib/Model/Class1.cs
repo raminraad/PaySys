@@ -512,6 +512,8 @@ namespace PaySys.ModelAndBindLib.Model
 		Select,
 		Edit,
 		Add,
+		AddMaster,
+		AddDetails,
 		Delete
 	}
 }

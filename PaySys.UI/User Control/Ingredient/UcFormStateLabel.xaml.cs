@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,11 +16,12 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using PaySys.Globalization;
 using PaySys.ModelAndBindLib.Model;
+using PaySys.UI.Annotations;
 
 namespace PaySys.UI.UC
 {
 
-	public partial class UcFormStateLabel
+	public partial class UcFormStateLabel:INotifyPropertyChanged
 	{
 		private FormCurrentState _currentState = FormCurrentState.Unknown;
 //		public static readonly DependencyProperty IsReadOnlyProperty;
@@ -33,7 +36,13 @@ namespace PaySys.UI.UC
 		public static readonly DependencyProperty ReadOnlyFieldsProperty = DependencyProperty.Register("ReadOnlyFields", typeof(bool), typeof(UcFormStateLabel), new PropertyMetadata(default(bool)));
 		public static readonly DependencyProperty CrudButtonsEnabledProperty = DependencyProperty.Register("CrudButtonsEnabled", typeof(bool), typeof(UcFormStateLabel), new PropertyMetadata(default(bool)));
 		public static readonly DependencyProperty SaveCancelButtonsEnabledProperty = DependencyProperty.Register("SaveCancelButtonsEnabled", typeof(bool), typeof(UcFormStateLabel), new PropertyMetadata(default(bool)));
+		public static readonly DependencyProperty ReadOnlyAddFieldsProperty = DependencyProperty.Register("ReadOnlyAddFields", typeof(bool), typeof(UcFormStateLabel), new PropertyMetadata(default(bool)));
 
+		public bool ReadOnlyAddFields
+		{
+			get { return (bool) GetValue(ReadOnlyAddFieldsProperty); }
+			set { SetValue(ReadOnlyAddFieldsProperty, value); }
+		}
 		public bool SaveCancelButtonsEnabled
 		{
 			get { return (bool) GetValue(SaveCancelButtonsEnabledProperty); }
@@ -69,6 +78,14 @@ namespace PaySys.UI.UC
 						LblState.Foreground = (Brush)FindResource("FormStateColorAdd");
 						LblState.Content = ResourceAccessor.Labels.GetString("Add");
 						break;
+					case FormCurrentState.AddMaster:
+						LblState.Foreground = (Brush)FindResource("FormStateColorAdd");
+						LblState.Content = ResourceAccessor.Labels.GetString("AddMaster");
+						break;
+					case FormCurrentState.AddDetails:
+						LblState.Foreground = (Brush)FindResource("FormStateColorAdd");
+						LblState.Content = ResourceAccessor.Labels.GetString("AddDetails");
+						break;
 					case FormCurrentState.Delete:
 						LblState.Foreground = (Brush)FindResource("FormStateColorDelete");
 						LblState.Content = ResourceAccessor.Labels.GetString("Delete");
@@ -80,11 +97,25 @@ namespace PaySys.UI.UC
 					default:
 						throw new ArgumentOutOfRangeException(nameof(value), value, null);
 				}
-				ReadOnlyFields = value != FormCurrentState.Edit && value != FormCurrentState.Add;
+				ReadOnlyFields = value != FormCurrentState.Edit && value != FormCurrentState.Add && value != FormCurrentState.AddMaster && value != FormCurrentState.AddDetails;
+				ReadOnlyAddFields = value != FormCurrentState.Add && value != FormCurrentState.AddMaster &&
+				                    value != FormCurrentState.AddDetails;
 				CrudButtonsEnabled = value == FormCurrentState.Select;
-				SaveCancelButtonsEnabled = value == FormCurrentState.Edit || value == FormCurrentState.Add;
+				SaveCancelButtonsEnabled = value == FormCurrentState.Edit || value == FormCurrentState.Add || value == FormCurrentState.AddMaster || value == FormCurrentState.AddDetails;
+				OnPropertyChanged(nameof(ReadOnlyFields));
+				OnPropertyChanged(nameof(ReadOnlyAddFields));
+				OnPropertyChanged(nameof(CrudButtonsEnabled));
+				OnPropertyChanged(nameof(SaveCancelButtonsEnabled));
+
 				_currentState = value;
 			}
+		}
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		[NotifyPropertyChangedInvocator]
+		protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+		{
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
 	}
 }

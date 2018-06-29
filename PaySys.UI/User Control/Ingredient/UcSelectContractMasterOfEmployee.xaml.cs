@@ -25,7 +25,6 @@ namespace PaySys.UI.UC
 	/// </summary>
 	public partial class UcSelectContractMasterOfEmployee : UserControl
 	{
-		private ObservableCollection<ContractMaster> _contractMastersOfCurrentEmployee;
 		public event SelectionChangedEventHandler SelectedContractChanged;
 //		private PaySysContext _context = new PaySysContext();
 

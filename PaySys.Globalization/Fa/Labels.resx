@@ -162,7 +162,7 @@
   <data name="Date" xml:space="preserve">
     <value>تاریخ</value>
   </data>
-  <data name="ContractDetail" xml:space="preserve">
+  <data name="ContractDetails" xml:space="preserve">
     <value>جزئیات حکم</value>
   </data>
   <data name="ContractMaster" xml:space="preserve">
@@ -176,5 +176,14 @@
   </data>
   <data name="IsCurrentContractForCombobox" xml:space="preserve">
     <value>(حکم جاری)</value>
+  </data>
+  <data name="SaveContractMasterAndContinueToContractDetails" xml:space="preserve">
+    <value>ذخیره و ورود جزئیات</value>
+  </data>
+  <data name="AddDetails" xml:space="preserve">
+    <value>جدید (ورود جزئیات)</value>
+  </data>
+  <data name="AddMaster" xml:space="preserve">
+    <value>جدید (ورود اطلاعات پایه)</value>
   </data>
 </root>
