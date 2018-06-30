@@ -186,4 +186,22 @@
   <data name="AddMaster" xml:space="preserve">
     <value>جدید (ورود اطلاعات پایه)</value>
   </data>
+  <data name="tabGroupMng" xml:space="preserve">
+    <value>اطلاعات گروه های استخدامی</value>
+  </data>
+  <data name="MainGroupsList" xml:space="preserve">
+    <value>لیست گروه های اصلی</value>
+  </data>
+  <data name="SubGroupsList" xml:space="preserve">
+    <value>لیست زیر گروه ها</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>تأیید</value>
+  </data>
+  <data name="AddMainGroup" xml:space="preserve">
+    <value>گروه اصلی جدید</value>
+  </data>
+  <data name="AddSubGroup" xml:space="preserve">
+    <value>زیر گروه جدید</value>
+  </data>
 </root>

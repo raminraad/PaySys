@@ -50,6 +50,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -71,27 +72,31 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ExtensionMethods\UcMethods.cs" />
+    <Compile Include="Modals\InputBox.cs" />
     <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="User Control\Ingredient\UcFormStateLabel.xaml.cs">
+    <Compile Include="UserControls\Ingredient\UcFormStateLabel.xaml.cs">
       <DependentUpon>UcFormStateLabel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="User Control\Ingredient\UcSelectContractMasterOfEmployee.xaml.cs">
+    <Compile Include="UserControls\Ingredient\UcSelectContractMasterOfEmployee.xaml.cs">
       <DependentUpon>UcSelectContractMasterOfEmployee.xaml</DependentUpon>
     </Compile>
-    <Compile Include="User Control\Ingredient\UcSelectEmployee.xaml.cs">
+    <Compile Include="UserControls\Ingredient\UcSelectEmployee.xaml.cs">
       <DependentUpon>UcSelectEmployee.xaml</DependentUpon>
     </Compile>
-    <Compile Include="User Control\Ingredient\UcShowContractDetails.xaml.cs">
+    <Compile Include="UserControls\Ingredient\UcShowContractDetails.xaml.cs">
       <DependentUpon>UcShowContractDetails.xaml</DependentUpon>
     </Compile>
-    <Compile Include="User Control\Ingredient\UcShowContractMaster.xaml.cs">
+    <Compile Include="UserControls\Ingredient\UcShowContractMaster.xaml.cs">
       <DependentUpon>UcShowContractMaster.xaml</DependentUpon>
     </Compile>
-    <Compile Include="User Control\Tab\UcContractMng.xaml.cs">
+    <Compile Include="UserControls\Tab\UcContractMng.xaml.cs">
       <DependentUpon>UcContractMng.xaml</DependentUpon>
     </Compile>
-    <Compile Include="User Control\Tab\UcEmployeeMng.xaml.cs">
+    <Compile Include="UserControls\Tab\UcEmployeeMng.xaml.cs">
       <DependentUpon>UcEmployeeMng.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Tab\UcGroupMng.xaml.cs">
+      <DependentUpon>UcGroupMng.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -109,31 +114,35 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="User Control\Ingredient\UcFormStateLabel.xaml">
+    <Page Include="UserControls\Ingredient\UcFormStateLabel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="User Control\Ingredient\UcSelectContractMasterOfEmployee.xaml">
+    <Page Include="UserControls\Ingredient\UcSelectContractMasterOfEmployee.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="User Control\Ingredient\UcSelectEmployee.xaml">
+    <Page Include="UserControls\Ingredient\UcSelectEmployee.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="User Control\Ingredient\UcShowContractDetails.xaml">
+    <Page Include="UserControls\Ingredient\UcShowContractDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="User Control\Ingredient\UcShowContractMaster.xaml">
+    <Page Include="UserControls\Ingredient\UcShowContractMaster.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="User Control\Tab\UcContractMng.xaml">
+    <Page Include="UserControls\Tab\UcContractMng.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="User Control\Tab\UcEmployeeMng.xaml">
+    <Page Include="UserControls\Tab\UcEmployeeMng.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Tab\UcGroupMng.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

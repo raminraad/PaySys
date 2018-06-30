@@ -19,7 +19,7 @@
 						  Click="MnuEmployeeMng_OnClick" />
 				<MenuItem x:Name="MnuGroupMng"
 						  Header="گروه های استخدامی"
-						  Click="MnuGroupMng_OnClick" />
+						  Click="MenuItem_OnClick" />
 				<MenuItem x:Name="mnuItem"
 						  Header="تعریف عناوین کارکنان" />
 				<MenuItem x:Name="mnuItem2"

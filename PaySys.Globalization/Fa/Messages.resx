@@ -120,4 +120,10 @@
   <data name="DeleteRecord" xml:space="preserve">
     <value>رکورد انتخاب شده حذف خواهد شد. تأیید مینمایید؟</value>
   </data>
+  <data name="EnterMainGroupName" xml:space="preserve">
+    <value>لطفاً نام گروه اصلی را وارد نمایید.</value>
+  </data>
+  <data name="EnterSubGroupName" xml:space="preserve">
+    <value>لطفاً نام زیر گروه را وارد نمایید.</value>
+  </data>
 </root>

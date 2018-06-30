@@ -31,8 +31,21 @@ namespace PaySys
 			TabCntMain.Items.Refresh();
 		}
 
-		private void MnuGroupMng_OnClick(object sender, RoutedEventArgs e)
+		private void MenuItem_OnClick(object sender, RoutedEventArgs e)
 		{
+			switch (((MenuItem)sender).Name)
+			{
+				case nameof(MnuGroupMng):
+					var uc = new UcGroupMng();
+					var tab = new TabItem
+					{
+						Content = uc,
+						Header = ResourceAccessor.Labels.GetString("tabGroupMng")
+					};
+					TabCntMain.Items.Add(tab);
+					break;
+			}
+			TabCntMain.Items.Refresh();
 		}
 
 		private void mnuRetirementFormField_OnClick(object sender, RoutedEventArgs e)

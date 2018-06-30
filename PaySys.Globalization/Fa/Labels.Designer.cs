@@ -79,11 +79,29 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to گروه اصلی جدید.
+        /// </summary>
+        public static string AddMainGroup {
+            get {
+                return ResourceManager.GetString("AddMainGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to جدید (ورود اطلاعات پایه).
         /// </summary>
         public static string AddMaster {
             get {
                 return ResourceManager.GetString("AddMaster", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to زیر گروه جدید.
+        /// </summary>
+        public static string AddSubGroup {
+            get {
+                return ResourceManager.GetString("AddSubGroup", resourceCulture);
             }
         }
         
@@ -187,6 +205,24 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to لیست گروه های اصلی.
+        /// </summary>
+        public static string MainGroupsList {
+            get {
+                return ResourceManager.GetString("MainGroupsList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تأیید.
+        /// </summary>
+        public static string Ok {
+            get {
+                return ResourceManager.GetString("Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to بارگذاری.
         /// </summary>
         public static string Refresh {
@@ -241,6 +277,15 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to لیست زیر گروه ها.
+        /// </summary>
+        public static string SubGroupsList {
+            get {
+                return ResourceManager.GetString("SubGroupsList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to اطلاعات احکام.
         /// </summary>
         public static string tabContractMng {
@@ -255,6 +300,15 @@ namespace PaySys.Globalization.Fa {
         public static string tabEmployeeMng {
             get {
                 return ResourceManager.GetString("tabEmployeeMng", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to اطلاعات گروه های استخدامی.
+        /// </summary>
+        public static string tabGroupMng {
+            get {
+                return ResourceManager.GetString("tabGroupMng", resourceCulture);
             }
         }
         

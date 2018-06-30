@@ -68,5 +68,23 @@ namespace PaySys.Globalization.Fa {
                 return ResourceManager.GetString("DeleteRecord", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to لطفاً نام گروه اصلی را وارد نمایید..
+        /// </summary>
+        public static string EnterMainGroupName {
+            get {
+                return ResourceManager.GetString("EnterMainGroupName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to لطفاً نام زیر گروه را وارد نمایید..
+        /// </summary>
+        public static string EnterSubGroupName {
+            get {
+                return ResourceManager.GetString("EnterSubGroupName", resourceCulture);
+            }
+        }
     }
 }
