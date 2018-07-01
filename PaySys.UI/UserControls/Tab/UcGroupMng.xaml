@@ -11,11 +11,14 @@
 			 FlowDirection="RightToLeft">
 	<Grid>
 		<Grid.RowDefinitions>
-			<RowDefinition x:Name="RowToolbar" Height="Auto" />
-			<RowDefinition Height="2*" />
+			<RowDefinition x:Name="RowToolbar"
+						   Height="Auto" />
+			<RowDefinition Height="1*" />
 			<RowDefinition Height="Auto" />
+			<RowDefinition Height="3*" />
+			<RowDefinition Height="1*" />
 			<RowDefinition Height="5*" />
-			<RowDefinition Height="2*" />
+			<RowDefinition Height="5*" />
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="2*" />
@@ -24,53 +27,71 @@
 			<ColumnDefinition Width="3*" />
 			<ColumnDefinition Width="8*" />
 		</Grid.ColumnDefinitions>
-		<ToolBar Grid.Row="0" Grid.ColumnSpan="5">
+		<ToolBar Grid.Row="0"
+				 Grid.ColumnSpan="5">
 			<Button Name="BtnAddMainGroup"
-			        IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
-			        Content="{x:Static fa:Labels.AddMainGroup}" Click="BtnAddMainGroup_OnClick"/>
+					IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
+					Content="{x:Static fa:Labels.AddMainGroup}"
+					Click="BtnAddMainGroup_OnClick" />
 			<Button Name="BtnAddSubGroup"
-			        IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
-			        Content="{x:Static fa:Labels.AddSubGroup}"
-			        Click="BtnAddSubGroup_OnClick" />
+					IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
+					Content="{x:Static fa:Labels.AddSubGroup}"
+					Click="BtnAddSubGroup_OnClick" />
 			<Button Name="BtnEdit"
-			        IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
-			        Content="{x:Static fa:Labels.Edit}" Click="BtnEdit_OnClick"
-					/>
+					IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
+					Content="{x:Static fa:Labels.Edit}"
+					Click="BtnEdit_OnClick" />
 			<Button Name="BtnDelete"
-			        IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
-			        Content="{x:Static fa:Labels.Delete}" />
+					IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
+					Content="{x:Static fa:Labels.Delete}" />
 			<Separator />
 			<Button Name="BtnRefresh"
-			        IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
+					IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
 					Click="BtnRefresh_OnClick"
-			        Content="{x:Static fa:Labels.Refresh}" />
+					Content="{x:Static fa:Labels.Refresh}" />
 			<Separator />
-			<Button Name="BtnSave"
-			        IsEnabled="{Binding ElementName=UcFormState,Path=SaveCancelButtonsEnabled}"
-			        Content="{x:Static fa:Labels.Save}" />
-			<Button Name="BtnCancel"
-			        IsEnabled="{Binding ElementName=UcFormState,Path=SaveCancelButtonsEnabled}"
-			        Content="{x:Static fa:Labels.Cancel}" />
 		</ToolBar>
+		<TextBlock Grid.Row="1"
+				   Grid.Column="1"
+				   HorizontalAlignment="Center"
+				   VerticalAlignment="Bottom"
+				   Text="{x:Static fa:Labels.MainGroupsList}"></TextBlock>
+		<TextBlock Grid.Row="1"
+				   Grid.Column="3"
+				   HorizontalAlignment="Center"
+				   VerticalAlignment="Bottom"
+				   Text="{x:Static fa:Labels.SubGroupsList}"></TextBlock>
 		<ListView x:Name="ListViewGroupMain"
 				  ItemsSource="{Binding}"
 				  Grid.Row="3"
-				  Grid.Column="1" Focusable="True" GotFocus="ListViewGroupMain_OnGotFocus">
-			<ListView.ItemTemplate>
-				<DataTemplate>
-					<TextBlock Text="{Binding Path=Title}"/>
-				</DataTemplate>
-			</ListView.ItemTemplate>
-		</ListView>
-		<ListView x:Name="ListViewSubGroup"
-				  ItemsSource="{Binding ElementName=ListViewGroupMain,Path=SelectedItem.SubGroups,Mode=TwoWay}"
-				  Grid.Row="3"
-				  Grid.Column="3" Focusable="True" GotFocus="ListViewSubGroup_OnGotFocus">
+				  Grid.Column="1"
+				  Focusable="True"
+				  GotFocus="ListViewGroupMain_OnGotFocus">
 			<ListView.ItemTemplate>
 				<DataTemplate>
 					<TextBlock Text="{Binding Path=Title}" />
 				</DataTemplate>
 			</ListView.ItemTemplate>
 		</ListView>
+		<ListView x:Name="ListViewSubGroup"
+				  ItemsSource="{Binding ElementName=ListViewGroupMain,Path=SelectedItem.SubGroups,Mode=TwoWay}"
+				  Grid.Row="3"
+				  Grid.Column="3"
+				  Focusable="True"
+				  GotFocus="ListViewSubGroup_OnGotFocus">
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<TextBlock Text="{Binding Path=Title}" />
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+		<TabControl x:Name="TabControlMainGroupDatails"
+					Grid.Row="5"
+					Grid.Column="0"
+					Grid.ColumnSpan="5"/>
+		<TabControl x:Name="TabControlSubGroupDatails"
+					Grid.Row="6"
+					Grid.Column="0"
+					Grid.ColumnSpan="5"/>
 	</Grid>
 </UserControl>

@@ -14,7 +14,6 @@ namespace PaySys.ModelAndBindLib.Engine
 
 		public DbSet<MainGroup> MainGroups { set; get; }
 		public DbSet<SubGroup> SubGroups { set; get; }
-		public DbSet<MiscTitle> MiscTitles { set; get; }
 		public DbSet<GroupMisc> GroupMiscs { set; get; }
 		public DbSet<SpecMisc> SpecMiscs { set; get; }
 		public DbSet<GroupSpecTitle> GroupSpecTitles { set; get; }
@@ -29,7 +28,7 @@ namespace PaySys.ModelAndBindLib.Engine
 		public DbSet<TaxTable> TaxTables { set; get; }
 		public DbSet<TaxRow> TaxRows { set; get; }
 		public DbSet<GroupMonthlyVariable> GroupMonthlyVariables { set; get; }
-		public DbSet<EmployeeMisc> EmployeeMiscs { set; get; }
+		public DbSet<PayslipEmployeeMisc> EmployeeMiscs { set; get; }
 		public DbSet<EmployeeMonthlyVariable> EmployeeMonthlyVariables { set; get; }
 		public DbSet<ContractMaster> ContractMasters { set; get; }
 		public DbSet<ContractDetail> ContractDetails { set; get; }

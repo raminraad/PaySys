@@ -11,96 +11,82 @@ namespace PaySys.ModelAndBindLib.Model
 	{
 		public int MainGroupId { set; get; }
 		public string Title { get; set; }
-		public ColorPallet ItemColorPallet { get; set; }
+		public ColorPallet ItemColor { get; set; }
 		public virtual List<SubGroup> SubGroups { get; set; }
 		public virtual List<GroupMisc> GroupMiscs { get; set; }
 		public virtual List<GroupContractFieldTitle> GroupContractFieldTitles { get; set; }
-		public virtual List<GroupMonthlyVariable> GroupMonthlyVariables { get; set; }
 		public override bool Equals(object obj)
 		{
 			return (obj as MainGroup)?.MainGroupId == MainGroupId && string.Equals(Title, ((MainGroup)obj).Title) ;
 		}
-
 	}
 
-	/// <summary>#02 زیر گروه</summary>
+	/// <summary>#02 زیرگروه</summary>
 	public class SubGroup
 	{
 		public int SubGroupId { get; set; }
 		public string Title { get; set; }
 		public ColorPallet ItemColorPallet { get; set; }
+		public bool Is31 { set; get; }
 		[Required]
 		public virtual MainGroup MainGroup { set; get; }
-		public virtual List<GroupSpecValue> GroupSpecValues { get; set; }
+		public virtual List<ParameterValue> ParameterValues { set; get; }
 		public virtual List<MissionFormula> MissionFormulas { get; set; }
 		public virtual List<TaxTable> TaxTables { get; set; }
 		public virtual List<HandselFormula> HandselFormulas { get; set; }
 		public virtual List<ContractMaster> ContractMasters { get; set; }
+		public virtual List<ExpenseArticleOfContractFieldForSubGroup> ExpenseArticleOfContractFieldForSubGroups { get; set; }
+		public virtual List<ExpenseArticleOfMiscForSubGroup> ExpenseArticleOfMiscForSubGroups { get; set; }
+		public virtual List<ExpenseArticleOfOverTimeForSubGroup> ExpenseArticleOfOverTimeForSubGroups { get; set; }
 		public override bool Equals(object obj)
 		{
 			return (obj as SubGroup)?.SubGroupId == SubGroupId && string.Equals(Title, ((SubGroup)obj).Title);
 		}
 	}
 
-	/// <summary>#03 عناوین بدهی یا پرداختهای متفرقه</summary>
-	public class MiscTitle
-	{
-		public int MiscTitleId { get; set; }
-		public string Title { get; set; }
-		public int Index { get; set; }
-		public bool IsPayment { get; set; }
-		public virtual List<EmployeeMiscRemain> EmployeeMiscRemains { get; set; }
-		public virtual List<GroupMisc> GroupMiscs { get; set; }
-	}
-
-	/// <summary>#04 بدهی یا پرداخت های متفرقه در سال و ماه</summary>
+	/// <summary>#04 بدهی یا پرداختهای متفرقه گروه در سال و ماه</summary>
 	public class GroupMisc
 	{
 		public int GroupMiscId { get; set; }
 		public int Year { get; set; }
 		public int Month { get; set; }
-		public virtual MiscTitle MiscTitle { get; set; }
-		public virtual List<SpecMisc> SpecMiscs { get; set; }
+		public string Title { get; set; }
+		public bool IsPayment { get; set; }
+		public int Index { get; set; }
+		public virtual List<ParameterInvolvedMisc> ParameterInvolvedMiscs { get; set; }
+		public virtual List<EmployeeMiscRemain> EmployeeMiscRemains { get; set; }
 		public virtual MainGroup MainGroup { set; get; }
-		public virtual ExpenseArticle ExpenseArticle { set; get; }
-		public virtual List<EmployeeMisc> EmployeeMiscs { get; set; }
+		public virtual List<PayslipEmployeeMisc> PayslipEmployeeMiscs { get; set; }
+		public virtual List<ExpenseArticleOfMiscForSubGroup> ExpenseArticleOfMiscForSubGroups { get; set; }
 	}
 
 	/// <summary>#05 پرداختهای متفرقه دخیل در محاسبات مؤلفه ها</summary>
-	public class SpecMisc
+	public class ParameterInvolvedMisc
 	{
-		public int SpecMiscId { get; set; }
+		public int ParameterInvolvedMiscId { get; set; }
 		public virtual GroupMisc GroupMisc { get; set; }
-		public virtual GroupSpecValue GroupSpecValue { get; set; }
+		public virtual ParameterValue ParameterValue { get; set; }
 	}
 
-	/// <summary>#06 عناوین مؤلفه های محاسباتی گروهی</summary>
-	public class GroupSpecTitle
+	/// <summary>#07 مقادیر مؤلفه های محاسباتی زیرگروه در سال و ماه</summary>
+	public class ParameterValue
 	{
-		public int GroupSpecTitleId { get; set; }
-		public string Title { get; set; }
-		public string Alias { get; set; }
-		public virtual List<GroupSpecValue> GroupSpecValues { get; set; }
-	}
-
-	/// <summary>#07 مقادیر مؤلفه های محاسباتی گروهی زیرگروه در سال و ماه</summary>
-	public class GroupSpecValue
-	{
-		public int GroupSpecValueId { get; set; }
+		public int GroupParameterValueId { get; set; }
 		public float Value { get; set; }
 		public ContentType ContentType { get; set; }
-		public virtual List<SpecContractField> SpecContractFields { get; set; }
-		public virtual List<SpecMisc> SpecMiscs { get; set; }
-		public virtual GroupSpecTitle GroupSpecTitle { get; set; }
+		public string Title { get; set; }
+		public string Alias { get; set; }
+		public virtual List<ParameterInvolvedMisc> ParameterInvolvedMiscs { set; get; }
+		public virtual List<ParameterInvolvedContractField> ParameterInvolvedContractFields { get; set; }
 		public virtual SubGroup SubGroup { get; set; }
 	}
 
 	/// <summary>#08 فیلدهای احکام دخیل در محاسبات مؤلفه ها</summary>
-	public class SpecContractField
+	public class ParameterInvolvedContractField
 	{
-		public int SpecContractFieldId { get; set; }
+		public int ParameterInvolvedContractFieldId { get; set; }
 		public virtual GroupContractFieldTitle GroupContractFieldTitle { get; set; }
-		public virtual GroupSpecValue GroupSpecValue { get; set; }
+		public virtual ParameterValue ParameterValue { get; set; }
 	}
 
 	/// <summary>#09 مواد هزینه</summary>
@@ -110,9 +96,9 @@ namespace PaySys.ModelAndBindLib.Model
 		public string Title { get; set; }
 		public string Code { get; set; }
 		public bool IsActive { get; set; }
-		public virtual List<GroupMisc> GroupMiscs { get; set; }
-		public virtual List<GroupContractFieldTitle> GroupContractFieldTitles { get; set; }
-		public virtual List<GroupMonthlyVariable> GroupMonthlyVariables { get; set; }
+		public virtual List<ExpenseArticleOfContractFieldForSubGroup> ExpenseArticleOfContractFieldForSubGroups { get; set; }
+		public virtual List<ExpenseArticleOfMiscForSubGroup> ExpenseArticleOfMiscForSubGroups { get; set; }
+		public virtual List<ExpenseArticleOfOverTimeForSubGroup> ExpenseArticleOfOverTimeForSubGroups { get; set; }
 	}
 
 	/// <summary>#10 مانده بدهی متفرقه اشخاص</summary>
@@ -122,43 +108,26 @@ namespace PaySys.ModelAndBindLib.Model
 		public float Value { get; set; }
 		public int Year { get; set; }
 		public int Month { get; set; }
-		public virtual MiscTitle MiscTitle { get; set; }
+		public virtual GroupMisc GroupMisc { get; set; }
 		public virtual Employee Employee { get; set; }
-	}
-
-	/// <summary>#11 عناوین متغیرهای ماهانه</summary>
-	public class MonthlyVariableTitle
-	{
-		public int MonthlyVariableTitleId { get; set; }
-		public string Title { get; set; }
-		public string Alias { get; set; }
-		public ValueType ValueType { set; get; }
-		public virtual List<GroupMonthlyVariable> GroupMonthlyVariables { get; set; }
-	}
-
-	/// <summary>#12 عناوین فیلدهای احکام</summary>
-	public class ContractFieldTitle
-	{
-		public int ContractFieldTitleId { get; set; }
-		public string Title { get; set; }
-		public virtual List<GroupContractFieldTitle> GroupContractFieldTitles { get; set; }
 	}
 
 	/// <summary>#13 عناوین فیلدهای احکام گروه اصلی در سال</summary>
 	public class GroupContractFieldTitle
 	{
 		public int GroupContractFieldTitleId { get; set; }
+		public string Title { get; set; }
 		public int Year { get; set; }
-		public virtual ExpenseArticle ExpenseArticle { get; set; }
-		public virtual List<SpecContractField> SpecContractFields { get; set; }
 		public virtual MainGroup MainGroup { get; set; }
-		public virtual ContractFieldTitle ContractFieldTitle { get; set; }
+		public virtual List<ParameterInvolvedContractField> ParameterInvolvedContractFields { get; set; }
 		public virtual List<ContractDetail> ContractDetails { get; set; }
+		public virtual List<ExpenseArticleOfContractFieldForSubGroup> ExpenseArticleOfContractFieldForSubGroups { get; set; }
 	}
 
 	/// <summary>#14 فرمول مأموریت زیرگروه در سال و ماه</summary> 
 	public class MissionFormula
 	{
+		//Todo: Add fileds
 		public int MissionFormulaId { get; set; }
 		public virtual SubGroup SubGroup { get; set; }
 	}
@@ -182,35 +151,16 @@ namespace PaySys.ModelAndBindLib.Model
 		public virtual TaxTable TaxTable { get; set; }
 	}
 
-	/// <summary>#17 عناوین متغیرهای ماهانه گروه اصلی</summary>
-	public class GroupMonthlyVariable
-	{
-		public int GroupMonthlyVariableId { get; set; }
-		public bool IsActive { get; set; }
-		public virtual MonthlyVariableTitle MonthlyVariableTitle { get; set; }
-		public virtual ContractFieldTitle ContractFieldTitle { get; set; }
-		public virtual MainGroup MainGroup { get; set; }
-		public virtual List<EmployeeMonthlyVariable> EmployeeMonthlyVariables { get; set; }
-	}
-
+	
 	/// <summary>#18 مقادیر بدهی یا پرداختهای متفرقه برای اشخاص در سال و ماه</summary>
-	public class EmployeeMisc
+	public class PayslipEmployeeMisc
 	{
-		public int EmployeeMiscId { get; set; }
+		public int PayslipEmployeeMiscId { get; set; }
 		public float Value { get; set; }
-		public virtual GroupMisc GroupMisc { get; set; }
-		public virtual Employee Employee { get; set; }
-	}
-
-	/// <summary>#19 مقادیر متغیرهای ماهانه برای اشخاص در سال و ماه</summary>
-	public class EmployeeMonthlyVariable
-	{
-		public int EmployeeMonthlyVariableId { get; set; }
+		public float PayslipValue { get; set; }
 		public int Year { get; set; }
 		public int Month { get; set; }
-		public float ValueNum { get; set; }
-		public float ValueStr { get; set; }
-		public virtual GroupMonthlyVariable GroupMonthlyVariable { get; set; }
+		public virtual GroupMisc GroupMisc { get; set; }
 		public virtual Employee Employee { get; set; }
 	}
 
@@ -225,17 +175,16 @@ namespace PaySys.ModelAndBindLib.Model
 		public MaritalStatus MaritalStatus { get; set; }
 		public double HardshipFactor { get; set; }
 		public string InsuranceNo { get; set; }
-		public bool IsCurrentContract { set; get; }
 		public EducationStand EducationStand { get; set; }
 		public EmploymentType EmploymentType { get; set; }
-		//		public JobCategory JobCat { get; set; }
 		public SacrificeStand SacrificeStand { get; set; }
 		public string AccountNoGov { get; set; }
 		public string AccountNoEmp { get; set; }
-		public virtual List<ContractDetail> ContractDetails { get; set; }
-		public virtual Job Job { get; set; }
+		public bool IsCurrentContract { set; get; }
 		public virtual SubGroup SubGroup { set; get; }
 		public virtual Employee Employee { get; set; }
+		public virtual Job Job { get; set; }
+		public virtual List<ContractDetail> ContractDetails { get; set; }
 		public override bool Equals(object obj)
 		{
 			return obj is ContractMaster && ((ContractMaster)obj).ContractMasterId == ContractMasterId && string.Equals(ContractNo, ((ContractMaster)obj).ContractNo);
@@ -247,8 +196,9 @@ namespace PaySys.ModelAndBindLib.Model
 	{
 		public int ContractDetailId { get; set; }
 		public float Value { get; set; }
-		public virtual ContractMaster ContractMaster { get; set; }
 		public virtual GroupContractFieldTitle GroupContractFieldTitle { get; set; }
+		public virtual ContractMaster ContractMaster { get; set; }
+		public virtual List<PayslipContractDetail> PayslipContractDetails { set; get; }
 	}
 
 	/// <summary>#22 اشخاص</summary>
@@ -268,23 +218,21 @@ namespace PaySys.ModelAndBindLib.Model
 		public string CellNo { get; set; }
 		public string PostalCode { get; set; }
 		public string PersonnelCode { get; set; }
-		public string IdCardNo { get; set; }
 		public string IdCardExportPlace { get; set; }
 		public string IdCardExportDate { set; get; }
-		public virtual List<ContractMaster> ContractMaster { get; set; }
-		public virtual List<EmployeeMiscRemain> EmployeeMiscRemain { get; set; }
-		public virtual List<Mission> Mission { get; set; }
-		public virtual List<EmployeeMisc> EmployeeMisc { get; set; }
-		public virtual List<EmployeeMonthlyVariable> EmployeeMonthlyVariable { get; set; }
-		//		public virtual ContractMaster CurrentContract { get; set; }
-
+		public string IdCardNo { get; set; }
+		public virtual List<ContractMaster> ContractMasters { get; set; }
+		public virtual List<EmployeeMiscRemain> EmployeeMiscRemains { get; set; }
+		public virtual List<Mission> Missions { get; set; }
+		public virtual List<PayslipEmployeeMisc> PayslipEmployeeMiscs { get; set; }
+		public virtual List<PayslipEmployeeOvertime> PayslipEmployeeOvertimes { get; set; }
 		public override bool Equals(object obj)
 		{
 			return obj != null && ((Employee)obj).EmployeeId == EmployeeId;
 		}
 	}
 
-	/// <summary>#23 فرمول عیدی</summary>
+	/// <summary>#23 فرمول عیدی در سال و ماه</summary>
 	public class HandselFormula
 	{
 		public int HandselFormulaId { get; set; }
@@ -301,7 +249,6 @@ namespace PaySys.ModelAndBindLib.Model
 	/// <summary>#24 تفاوت احکام</summary>
 	public class ContractDifference
 	{
-		//		public int ContractDifferenceId { get; set; }
 		[Key]
 		[ForeignKey("Contract1St")]
 		public int ContractMasterId { get; set; }
@@ -320,8 +267,8 @@ namespace PaySys.ModelAndBindLib.Model
 		public int JobId { get; set; }
 		public string Title { get; set; }
 		public string JobNo { get; set; }
-		public ColorPallet ItemColorPallet { get; set; }
 		public string Description { get; set; }
+		public ColorPallet ItemColor { get; set; }
 		public virtual List<ContractMaster> ContractMasters { get; set; }
 	}
 
@@ -351,8 +298,68 @@ namespace PaySys.ModelAndBindLib.Model
 		public VehicleType VehicleType { set; get; }
 		/// <summary>هزینه سفر</summary>
 		public double TravelExpense { get; set; }
-		public virtual City City { get; set; }
 		public virtual Employee Employee { get; set; }
+		public virtual City City { get; set; }
+	}
+
+	/// <summary>#28 مقادیر جزئیات احکام در فیش حقوقی</summary>
+	public class PayslipContractDetail
+	{
+		public int PayslipContractDetailId { get; set; }
+		public float PayslipValue { get; set; }
+		public int Year { get; set; }
+		public int Month { get; set; }
+		public virtual ContractDetail ContractDetail { get; set; }
+	}
+
+	/// <summary>
+	///#30 مواد هزینه عناوین فیلدهای احکام برای زیرگروه در ماه
+	/// </summary>
+	public class ExpenseArticleOfContractFieldForSubGroup
+	{
+		public int ExpenseArticleOfContractFieldForSubGroupId { get; set; }
+		public int Month { get; set; }
+		public virtual ExpenseArticle ExpenseArticle { set; get; }
+		public virtual GroupContractFieldTitle GroupContractFieldTitle { set; get; }
+		public virtual SubGroup SubGroup { set; get; }
+	}
+
+	/// <summary>
+	///#31 مواد هزینه بدهی یا پرداختهای متفرقه برای زیرگروه در ماه
+	/// </summary>
+	public class ExpenseArticleOfMiscForSubGroup
+	{
+		public int ExpenseArticleOfMiscForSubGroupId { get; set; }
+		public int Month { get; set; }
+		public virtual ExpenseArticle ExpenseArticle { set; get; }
+		public virtual GroupMisc GroupMisc { set; get; }
+		public virtual SubGroup SubGroup { set; get; }
+	}
+
+	/// <summary>
+	///#32 مواد هزینه اضافه کار برای زیرگروه در سال و ماه
+	/// </summary>
+	public class ExpenseArticleOfOverTimeForSubGroup
+	{
+		public int ExpenseArticleOfOverTimeForSubGroupId { get; set; }
+		public int Year { get; set; }
+		public int Month { get; set; }
+		public virtual ExpenseArticle ExpenseArticle { set; get; }
+		public virtual SubGroup SubGroup { set; get; }
+
+	}
+
+	/// <summary>
+	///#33 مقادیر اضافه کار اشخاص در سال و ماه و فیش حقوقی
+	/// </summary>
+	public class PayslipEmployeeOvertime
+	{
+		public int PayslipEmployeeOvertimeId { get; set; }
+		public float Value { get; set; }
+		public float PayslipValue { get; set; }
+		public int Year { get; set; }
+		public int Month { get; set; }
+		public Employee Employee { get; set; }
 	}
 
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
@@ -472,11 +479,6 @@ namespace PaySys.ModelAndBindLib.Model
 		Married,
 	}
 
-	//	public enum JobCategory
-	//	{
-	//		//todo: fill enum
-	//	}
-
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum Sex
 	{
@@ -488,6 +490,7 @@ namespace PaySys.ModelAndBindLib.Model
 		Female
 	}
 
+	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum ContentType
 	{
 		//todo: fill enum
@@ -501,11 +504,13 @@ namespace PaySys.ModelAndBindLib.Model
 		Unknown = 0,
 	}
 
+	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum ValueType
 	{
 		//todo: fill enum
 	}
 
+	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum FormCurrentState
 	{
 		Unknown = 0,

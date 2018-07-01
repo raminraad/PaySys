@@ -72,7 +72,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 		        new MainGroup
 		        {
 			        Title = "استخدام کشوری",
-			        ItemColorPallet = ColorPallet.Goldenrod,
+			        ItemColor = ColorPallet.Goldenrod,
 			        SubGroups = new List<SubGroup>
 			        {
 				        new SubGroup
@@ -95,7 +95,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 		        new MainGroup
 		        {
 			        Title = "بازنشستگان",
-			        ItemColorPallet = ColorPallet.Teal,
+			        ItemColor = ColorPallet.Teal,
 			        SubGroups = new List<SubGroup>
 			        {
 				        new SubGroup
@@ -113,7 +113,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 		        new MainGroup
 		        {
 			        Title = "تأمین اجتماعی",
-			        ItemColorPallet = ColorPallet.CornflowerBlue,
+			        ItemColor = ColorPallet.CornflowerBlue,
 			        SubGroups = new List<SubGroup>
 			        {
 				        new SubGroup

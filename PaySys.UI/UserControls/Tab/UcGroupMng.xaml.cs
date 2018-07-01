@@ -19,6 +19,7 @@ using Bogus;
 using PaySys.Globalization;
 using PaySys.ModelAndBindLib.Engine;
 using PaySys.ModelAndBindLib.Model;
+using PaySys.UI.UC;
 using ListView = System.Windows.Controls.ListView;
 using UserControl = System.Windows.Controls.UserControl;
 
@@ -54,7 +55,7 @@ namespace PaySys.UI.UC
 				_context.MainGroups.Add(new MainGroup
 				{
 					Title = title,
-					ItemColorPallet = randomColor,
+					ItemColor = randomColor,
 					SubGroups = new List<SubGroup>()
 				});
 				_context.SaveChanges();
@@ -103,8 +104,17 @@ namespace PaySys.UI.UC
 
 		private void BtnRefresh_OnClick(object sender, RoutedEventArgs e)
 		{
-			_context = new PaySysContext();
-			ListViewGroupMain.DataContext = _context.MainGroups.ToList();
+			//			_context = new PaySysContext();
+			//			ListViewGroupMain.DataContext = _context.MainGroups.ToList();
+			var userControls = new UcGroupContractFieldTitlesMng();
+			userControls.CurrentMainGroup = (MainGroup) ListViewGroupMain.SelectedItem;
+			var tab = new TabItem
+			{
+				Content = userControls,
+				Header = ResourceAccessor.Labels.GetString("tabEmployeeMng")
+			};
+			TabControlMainGroupDatails.Items.Add(tab);
+			TabControlMainGroupDatails.Items.Refresh();
 		}
 
 		private void BtnAddSubGroup_OnClick(object sender, RoutedEventArgs e)
@@ -116,7 +126,7 @@ namespace PaySys.UI.UC
 				selectedMainGroup.SubGroups.Add(new SubGroup
 				{
 					Title = title,
-					ItemColorPallet = selectedMainGroup.ItemColorPallet
+					ItemColorPallet = selectedMainGroup.ItemColor
 				});
 				_context.SaveChanges();
 				CollectionViewSource.GetDefaultView(ListViewSubGroup.ItemsSource).Refresh();

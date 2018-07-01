@@ -95,6 +95,9 @@
     <Compile Include="UserControls\Tab\UcEmployeeMng.xaml.cs">
       <DependentUpon>UcEmployeeMng.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Tab\UcGroupContractFieldTitlesMng.xaml.cs">
+      <DependentUpon>UcGroupContractFieldTitlesMng.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Tab\UcGroupMng.xaml.cs">
       <DependentUpon>UcGroupMng.xaml</DependentUpon>
     </Compile>
@@ -139,6 +142,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Tab\UcEmployeeMng.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Tab\UcGroupContractFieldTitlesMng.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
