@@ -126,7 +126,7 @@ namespace PaySys.UI.UC
 				selectedMainGroup.SubGroups.Add(new SubGroup
 				{
 					Title = title,
-					ItemColorPallet = selectedMainGroup.ItemColor
+					ItemColor = selectedMainGroup.ItemColor
 				});
 				_context.SaveChanges();
 				CollectionViewSource.GetDefaultView(ListViewSubGroup.ItemsSource).Refresh();

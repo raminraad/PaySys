@@ -126,7 +126,7 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal"
                                         VerticalAlignment="Center">
-                                <Rectangle Fill="{Binding ItemColorPallet,Converter={StaticResource CnvColor}}"
+                                <Rectangle Fill="{Binding ItemColor,Converter={StaticResource CnvColor}}"
                                            RadiusX="4"
                                            RadiusY="4"
                                            Width="10"
@@ -151,7 +151,7 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal"
                                         VerticalAlignment="Center">
-                                <Rectangle Fill="{Binding ItemColorPallet,Converter={StaticResource CnvColor}}"
+                                <Rectangle Fill="{Binding ItemColor,Converter={StaticResource CnvColor}}"
                                            RadiusX="10"
                                            RadiusY="10"
                                            Width="10"
@@ -203,7 +203,7 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal"
                                         VerticalAlignment="Center">
-                                <Rectangle Fill="{Binding ItemColorPallet,Converter={StaticResource CnvColor}}"
+                                <Rectangle Fill="{Binding ItemColor,Converter={StaticResource CnvColor}}"
                                            RadiusX="10"
                                            RadiusY="10"
                                            Width="10"

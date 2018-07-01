@@ -26,7 +26,7 @@ namespace PaySys.ModelAndBindLib.Model
 	{
 		public int SubGroupId { get; set; }
 		public string Title { get; set; }
-		public ColorPallet ItemColorPallet { get; set; }
+		public ColorPallet ItemColor { get; set; }
 		public bool Is31 { set; get; }
 		[Required]
 		public virtual MainGroup MainGroup { set; get; }
@@ -71,7 +71,7 @@ namespace PaySys.ModelAndBindLib.Model
 	/// <summary>#07 مقادیر مؤلفه های محاسباتی زیرگروه در سال و ماه</summary>
 	public class ParameterValue
 	{
-		public int GroupParameterValueId { get; set; }
+		public int ParameterValueId { get; set; }
 		public float Value { get; set; }
 		public ContentType ContentType { get; set; }
 		public string Title { get; set; }

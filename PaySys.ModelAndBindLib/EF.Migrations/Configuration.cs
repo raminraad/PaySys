@@ -78,17 +78,17 @@ namespace PaySys.ModelAndBindLib.Migrations
 				        new SubGroup
 				        {
 					        Title = "کارمندان ثابت",
-					        ItemColorPallet = ColorPallet.Goldenrod
+					        ItemColor = ColorPallet.Goldenrod
 				        },
 				        new SubGroup
 				        {
 					        Title = "کارمندان رسمی",
-					        ItemColorPallet = ColorPallet.Goldenrod
+					        ItemColor = ColorPallet.Goldenrod
 				        },
 				        new SubGroup
 				        {
 					        Title = "شهردار",
-					        ItemColorPallet = ColorPallet.Goldenrod
+					        ItemColor = ColorPallet.Goldenrod
 				        }
 			        }
 		        },
@@ -101,12 +101,12 @@ namespace PaySys.ModelAndBindLib.Migrations
 				        new SubGroup
 				        {
 					        Title = "بازنشستگان",
-					        ItemColorPallet = ColorPallet.Teal,
+					        ItemColor = ColorPallet.Teal,
 				        },
 				        new SubGroup
 				        {
 					        Title = "موظفین",
-					        ItemColorPallet = ColorPallet.Teal,
+					        ItemColor = ColorPallet.Teal,
 				        },
 			        }
 		        },
@@ -119,12 +119,12 @@ namespace PaySys.ModelAndBindLib.Migrations
 				        new SubGroup
 				        {
 					        Title = "کارگران خدمات شهری",
-					        ItemColorPallet = ColorPallet.CornflowerBlue,
+					        ItemColor = ColorPallet.CornflowerBlue,
 				        },
 				        new SubGroup
 				        {
 					        Title = "کارگران خدمات اداری",
-					        ItemColorPallet = ColorPallet.CornflowerBlue,
+					        ItemColor = ColorPallet.CornflowerBlue,
 				        }
 			        }
 		        },
@@ -167,7 +167,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 	        {
 		        e.Description = f.Name.JobDescriptor();
 		        e.JobNo = $"{f.Random.Number(999999):d6}";
-		        e.ItemColorPallet = f.PickRandom(Enum.GetValues(typeof(ColorPallet)).Cast<ColorPallet>()
+		        e.ItemColor = f.PickRandom(Enum.GetValues(typeof(ColorPallet)).Cast<ColorPallet>()
 			        .Where(x => x != ColorPallet.Unknown));
 		        e.Title = f.Name.JobTitle();
 	        });
@@ -179,15 +179,10 @@ namespace PaySys.ModelAndBindLib.Migrations
 
 			#region ContractFieldTitle & GroupContractFieldTitle
 
-			var contractFieldTitleFaker = new Faker<ContractFieldTitle>("fa").StrictMode(false).Rules((f, e) =>
-				{
-					e.Title = f.Finance.AccountName().Replace("Account", string.Empty).Trim();
-				});
-
 	        var groupContractFieldTitleFaker = new Faker<GroupContractFieldTitle>("fa").StrictMode(false).Rules((f, e) =>
 	        {
 		        e.MainGroup = f.PickRandom(seedMainGroups);
-		        e.ContractFieldTitle = contractFieldTitleFaker.Generate();
+		        e.Title = f.Finance.AccountName().Replace("Account", string.Empty).Trim();
 		        e.Year = 97;
 	        });
 	        var seedGroupContractFieldTitle = groupContractFieldTitleFaker.Generate(40);
@@ -245,7 +240,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 			        contractDetailFaker.RuleFor(detail => detail.GroupContractFieldTitle, grpCntField);
 			        var contractDetail = contractDetailFaker.Generate();
 			        seedContractDetails.Add(contractDetail);
-			        File.AppendAllText(@"d:\SeedLog.log", "\t" + grpCntField.ContractFieldTitle.Title+ $@" : {contractDetail.Value} " + "\n");
+			        File.AppendAllText(@"d:\SeedLog.log", "\t" + grpCntField.Title+ $@" : {contractDetail.Value} " + "\n");
 		        }
 	        }
 	        context.ContractDetails.AddRange(seedContractDetails);
