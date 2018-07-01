@@ -26,23 +26,21 @@
 				 Grid.ColumnSpan="5">
 			<Button Name="BtnAddMainGroup"
 					IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
+					Click="BtnAddMainGroup_OnClick"
 					Content="{x:Static fa:Labels.Add}" />
 			<Button Name="BtnEdit"
 					IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
-					Content="{x:Static fa:Labels.Edit}" />
+					Content="{x:Static fa:Labels.Edit}" 
+					Click="BtnEdit_OnClick"/>
 			<Button Name="BtnDelete"
 					IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
+					Click="BtnDelete_OnClick"
 					Content="{x:Static fa:Labels.Delete}" />
-			<Separator />
-			<Button Name="BtnRefresh"
-					IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
-					Content="{x:Static fa:Labels.Refresh}" />
-			<Separator />
 		</ToolBar>
 		<ListView x:Name="ListViewGroupContractFieldTitle"
 				  Grid.Row="2"
 				  Grid.Column="1"
-				  ItemsSource="{Binding ElementName=SmpUcGroupContractFieldTitlesMng,Path=CurrentMainGroup.GroupContractFieldTitles}">
+				  ItemsSource="{Binding ElementName=SmpUcGroupContractFieldTitlesMng,Path=CurrentMainGroup.GroupContractFieldTitles,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
 			<ListView.ItemTemplate>
 				<DataTemplate>
 					<TextBlock Text="{Binding Path=Title}" />

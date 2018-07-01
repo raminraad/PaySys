@@ -43,6 +43,7 @@ namespace PaySys.UI.UC
 		{
 			InitializeComponent();
 			ListViewGroupMain.DataContext = _context.MainGroups.ToList();
+			SmpUcGroupContractFieldTitlesMng.SaveContext += () => _context.SaveChanges();
 		}
 
 		private void BtnAddMainGroup_OnClick(object sender, RoutedEventArgs e)
@@ -76,7 +77,7 @@ namespace PaySys.UI.UC
 		private void BtnEdit_OnClick(object sender, RoutedEventArgs e)
 		{
 			var title = string.Empty;
-
+			
 			switch (LastFocusedList)
 			{
 				case GroupType.MainGroup:

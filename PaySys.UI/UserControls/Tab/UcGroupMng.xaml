@@ -1,18 +1,18 @@
 ﻿<UserControl x:Class="PaySys.UI.UC.UcGroupMng"
-			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-			 xmlns:local="clr-namespace:PaySys.UI.UC"
-			 xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
-			 mc:Ignorable="d"
-			 d:DesignHeight="600"
-			 d:DesignWidth="1000"
-			 FlowDirection="RightToLeft">
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:PaySys.UI.UC"
+             xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
+             mc:Ignorable="d"
+             d:DesignHeight="600"
+             d:DesignWidth="1000"
+             FlowDirection="RightToLeft">
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition x:Name="RowToolbar"
-						   Height="Auto" />
+			               Height="Auto" />
 			<RowDefinition Height="1*" />
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="3*" />
@@ -28,45 +28,45 @@
 			<ColumnDefinition Width="8*" />
 		</Grid.ColumnDefinitions>
 		<ToolBar Grid.Row="0"
-				 Grid.ColumnSpan="5">
+		         Grid.ColumnSpan="5">
 			<Button Name="BtnAddMainGroup"
-					IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
-					Content="{x:Static fa:Labels.AddMainGroup}"
-					Click="BtnAddMainGroup_OnClick" />
+			        IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
+			        Content="{x:Static fa:Labels.AddMainGroup}"
+			        Click="BtnAddMainGroup_OnClick" />
 			<Button Name="BtnAddSubGroup"
-					IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
-					Content="{x:Static fa:Labels.AddSubGroup}"
-					Click="BtnAddSubGroup_OnClick" />
+			        IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
+			        Content="{x:Static fa:Labels.AddSubGroup}"
+			        Click="BtnAddSubGroup_OnClick" />
 			<Button Name="BtnEdit"
-					IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
-					Content="{x:Static fa:Labels.Edit}"
-					Click="BtnEdit_OnClick" />
+			        IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
+			        Content="{x:Static fa:Labels.Edit}"
+			        Click="BtnEdit_OnClick" />
 			<Button Name="BtnDelete"
-					IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
-					Content="{x:Static fa:Labels.Delete}" />
+			        IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
+			        Content="{x:Static fa:Labels.Delete}" />
 			<Separator />
 			<Button Name="BtnRefresh"
-					IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
-					Click="BtnRefresh_OnClick"
-					Content="{x:Static fa:Labels.Refresh}" />
+			        IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
+			        Click="BtnRefresh_OnClick"
+			        Content="{x:Static fa:Labels.Refresh}" />
 			<Separator />
 		</ToolBar>
 		<TextBlock Grid.Row="1"
-				   Grid.Column="1"
-				   HorizontalAlignment="Center"
-				   VerticalAlignment="Bottom"
-				   Text="{x:Static fa:Labels.MainGroupsList}"></TextBlock>
+		           Grid.Column="1"
+		           HorizontalAlignment="Center"
+		           VerticalAlignment="Bottom"
+		           Text="{x:Static fa:Labels.MainGroupsList}" />
 		<TextBlock Grid.Row="1"
-				   Grid.Column="3"
-				   HorizontalAlignment="Center"
-				   VerticalAlignment="Bottom"
-				   Text="{x:Static fa:Labels.SubGroupsList}"></TextBlock>
+		           Grid.Column="3"
+		           HorizontalAlignment="Center"
+		           VerticalAlignment="Bottom"
+		           Text="{x:Static fa:Labels.SubGroupsList}" />
 		<ListView x:Name="ListViewGroupMain"
-				  ItemsSource="{Binding}"
-				  Grid.Row="3"
-				  Grid.Column="1"
-				  Focusable="True"
-				  GotFocus="ListViewGroupMain_OnGotFocus">
+		          ItemsSource="{Binding}"
+		          Grid.Row="3"
+		          Grid.Column="1"
+		          Focusable="True"
+		          GotFocus="ListViewGroupMain_OnGotFocus">
 			<ListView.ItemTemplate>
 				<DataTemplate>
 					<TextBlock Text="{Binding Path=Title}" />
@@ -74,24 +74,46 @@
 			</ListView.ItemTemplate>
 		</ListView>
 		<ListView x:Name="ListViewSubGroup"
-				  ItemsSource="{Binding ElementName=ListViewGroupMain,Path=SelectedItem.SubGroups,Mode=TwoWay}"
-				  Grid.Row="3"
-				  Grid.Column="3"
-				  Focusable="True"
-				  GotFocus="ListViewSubGroup_OnGotFocus">
+		          ItemsSource="{Binding ElementName=ListViewGroupMain,Path=SelectedItem.SubGroups,Mode=TwoWay}"
+		          Grid.Row="3"
+		          Grid.Column="3"
+		          Focusable="True"
+		          GotFocus="ListViewSubGroup_OnGotFocus">
 			<ListView.ItemTemplate>
 				<DataTemplate>
 					<TextBlock Text="{Binding Path=Title}" />
 				</DataTemplate>
 			</ListView.ItemTemplate>
 		</ListView>
+		<TextBlock Grid.Row="5"
+				   Grid.Column="0"
+				   VerticalAlignment="Center"
+				   HorizontalAlignment="Center"
+				   TextAlignment="Center"
+		           Margin="30"
+		           TextWrapping="Wrap"
+				   Text="{x:Static fa:Labels.MainGroupItems}" />
 		<TabControl x:Name="TabControlMainGroupDatails"
-					Grid.Row="5"
-					Grid.Column="0"
-					Grid.ColumnSpan="5"/>
+		            Grid.Row="5"
+		            Grid.Column="1"
+		            Grid.ColumnSpan="4">
+			<TabItem x:Name="TabItemGroupContractFieldTitles"
+			         Header="{x:Static fa:Labels.GroupContractFieldTitles}">
+				<local:UcGroupContractFieldTitlesMng x:Name="SmpUcGroupContractFieldTitlesMng"
+				                                     CurrentMainGroup="{Binding ElementName=ListViewGroupMain,Path=SelectedItem}" />
+			</TabItem>
+		</TabControl>
+		<TextBlock Grid.Row="6"
+		       Grid.Column="0"
+		       VerticalAlignment="Center"
+		       HorizontalAlignment="Center"
+				   TextAlignment="Center"
+		           Margin="30"
+				   TextWrapping="Wrap"
+		       Text="{x:Static fa:Labels.SubGroupItems}" />
 		<TabControl x:Name="TabControlSubGroupDatails"
-					Grid.Row="6"
-					Grid.Column="0"
-					Grid.ColumnSpan="5"/>
+		            Grid.Row="6"
+		            Grid.Column="1"
+		            Grid.ColumnSpan="4" />
 	</Grid>
 </UserControl>

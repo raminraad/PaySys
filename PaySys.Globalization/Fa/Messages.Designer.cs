@@ -61,11 +61,29 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to آیتم انتخاب شده حذف خواهد شد. تأیید مینمایید؟.
+        /// </summary>
+        public static string DeleteConfirmationOfItem {
+            get {
+                return ResourceManager.GetString("DeleteConfirmationOfItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to رکورد انتخاب شده حذف خواهد شد. تأیید مینمایید؟.
         /// </summary>
         public static string DeleteRecord {
             get {
                 return ResourceManager.GetString("DeleteRecord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to لطفاً عنوان فیلد حکم را وارد نمایید..
+        /// </summary>
+        public static string EnterGroupContractFieldTitle {
+            get {
+                return ResourceManager.GetString("EnterGroupContractFieldTitle", resourceCulture);
             }
         }
         

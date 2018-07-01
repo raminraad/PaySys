@@ -187,6 +187,15 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to عناوین فیلدهای احکام.
+        /// </summary>
+        public static string GroupContractFieldTitles {
+            get {
+                return ResourceManager.GetString("GroupContractFieldTitles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to (حکم جاری).
         /// </summary>
         public static string IsCurrentContractForCombobox {
@@ -201,6 +210,15 @@ namespace PaySys.Globalization.Fa {
         public static string MainGroup {
             get {
                 return ResourceManager.GetString("MainGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to آیتم های مربوط به گروه اصلی.
+        /// </summary>
+        public static string MainGroupItems {
+            get {
+                return ResourceManager.GetString("MainGroupItems", resourceCulture);
             }
         }
         
@@ -273,6 +291,15 @@ namespace PaySys.Globalization.Fa {
         public static string SubGroup {
             get {
                 return ResourceManager.GetString("SubGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to آیتم های مربوط به زیرگروه.
+        /// </summary>
+        public static string SubGroupItems {
+            get {
+                return ResourceManager.GetString("SubGroupItems", resourceCulture);
             }
         }
         

@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PaySys.CalcLib.Converter
+namespace PaySys.CalcLib.Converters
 {
 	public class EnumDescriptionTypeConverter : EnumConverter
 	{

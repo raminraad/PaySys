@@ -6,7 +6,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:PaySys.UI.UC"
              xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
-             xmlns:extensionMethod="clr-namespace:PaySys.CalcLib.ExtensionMethod;assembly=PaySys.CalcLib"
+             xmlns:extensionMethod="clr-namespace:PaySys.CalcLib.ExtensionMethods;assembly=PaySys.CalcLib"
              xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Model;assembly=PaySys.ModelAndBindLib"
              xmlns:cnv="clr-namespace:PaySys.ModelAndBindLib.BindingConverter;assembly=PaySys.ModelAndBindLib"
              mc:Ignorable="d"

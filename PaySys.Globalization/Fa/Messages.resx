@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="DeleteConfirmationOfItem" xml:space="preserve">
+    <value>آیتم انتخاب شده حذف خواهد شد. تأیید مینمایید؟</value>
+  </data>
   <data name="DeleteRecord" xml:space="preserve">
     <value>رکورد انتخاب شده حذف خواهد شد. تأیید مینمایید؟</value>
+  </data>
+  <data name="EnterGroupContractFieldTitle" xml:space="preserve">
+    <value>لطفاً عنوان فیلد حکم را وارد نمایید.</value>
   </data>
   <data name="EnterMainGroupName" xml:space="preserve">
     <value>لطفاً نام گروه اصلی را وارد نمایید.</value>

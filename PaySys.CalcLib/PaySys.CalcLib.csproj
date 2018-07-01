@@ -43,8 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Converter\EnumDescriptionTypeConverter.cs" />
-    <Compile Include="ExtensionMethod\EnumBindingSourceExtension.cs" />
+    <Compile Include="Converters\EnumDescriptionTypeConverter.cs" />
+    <Compile Include="Delegates\ContextDelegates.cs" />
+    <Compile Include="ExtensionMethods\EnumBindingSourceExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

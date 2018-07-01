@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Markup;
 
-namespace PaySys.CalcLib.ExtensionMethod
+namespace PaySys.CalcLib.ExtensionMethods
 {
 	public class EnumBindingSourceExtension : MarkupExtension
 	{
