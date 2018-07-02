@@ -85,35 +85,16 @@
 				</DataTemplate>
 			</ListView.ItemTemplate>
 		</ListView>
-		<TextBlock Grid.Row="5"
-				   Grid.Column="0"
-				   VerticalAlignment="Center"
-				   HorizontalAlignment="Center"
-				   TextAlignment="Center"
-				   Margin="30"
-				   TextWrapping="Wrap"
-				   Text="{x:Static fa:Labels.MainGroupItems}" />
 		<TabControl x:Name="TabControlMainGroupDatails"
 					Grid.Row="5"
-					Grid.Column="1"
-					Grid.ColumnSpan="4">
+					Grid.Column="0"
+					Grid.RowSpan="2"
+					Grid.ColumnSpan="5">
 			<TabItem x:Name="TabItemContractFieldTitles"
 					 Header="{x:Static fa:Labels.ContractFieldTitles}">
 				<local:UcContractFieldTitlesMng x:Name="SmpUcContractFieldTitlesMng"
 												CurrentSubGroup="{Binding ElementName=ListViewSubGroup,Path=SelectedItem}" />
 			</TabItem>
 		</TabControl>
-		<TextBlock Grid.Row="6"
-				   Grid.Column="0"
-				   VerticalAlignment="Center"
-				   HorizontalAlignment="Center"
-				   TextAlignment="Center"
-				   Margin="30"
-				   TextWrapping="Wrap"
-				   Text="{x:Static fa:Labels.SubGroupItems}" />
-		<TabControl x:Name="TabControlSubGroupDatails"
-					Grid.Row="6"
-					Grid.Column="1"
-					Grid.ColumnSpan="4" />
 	</Grid>
 </UserControl>

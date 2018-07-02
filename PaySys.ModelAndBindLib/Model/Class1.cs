@@ -14,10 +14,10 @@ namespace PaySys.ModelAndBindLib.Model
 		public string Title { get; set; }
 		public ColorPallet ItemColor { get; set; }
 		public virtual List<SubGroup> SubGroups { get; set; }
-		
+
 		public override bool Equals(object obj)
 		{
-			return (obj as MainGroup)?.MainGroupId == MainGroupId && string.Equals(Title, ((MainGroup)obj).Title) ;
+			return (obj as MainGroup)?.MainGroupId == MainGroupId && string.Equals(Title, ((MainGroup)obj).Title);
 		}
 	}
 
@@ -40,6 +40,7 @@ namespace PaySys.ModelAndBindLib.Model
 		public virtual List<ExpenseArticleOfContractFieldForSubGroup> ExpenseArticleOfContractFieldForSubGroups { get; set; }
 		public virtual List<ExpenseArticleOfMiscForSubGroup> ExpenseArticleOfMiscForSubGroups { get; set; }
 		public virtual List<ExpenseArticleOfOverTimeForSubGroup> ExpenseArticleOfOverTimeForSubGroups { get; set; }
+
 		public override bool Equals(object obj)
 		{
 			return (obj as SubGroup)?.SubGroupId == SubGroupId && string.Equals(Title, ((SubGroup)obj).Title);
@@ -125,7 +126,28 @@ namespace PaySys.ModelAndBindLib.Model
 		public virtual List<ContractDetail> ContractDetails { get; set; }
 		public virtual List<ExpenseArticleOfContractFieldForSubGroup> ExpenseArticleOfContractFieldForSubGroups { get; set; }
 		[NotMapped]
-		public ExpenseArticle CurrentExpenseArticle => ExpenseArticleOfContractFieldForSubGroups.FirstOrDefault(exp => exp.Month == 007)?.ExpenseArticle;
+		public ExpenseArticle CurrentExpenseArticle
+		{
+			get => ExpenseArticleOfContractFieldForSubGroups.FirstOrDefault(exp => exp.Month == 007)?.ExpenseArticle;
+			set
+			{
+				if (CurrentExpenseArticle != null)
+				{
+					ExpenseArticleOfContractFieldForSubGroups.FirstOrDefault(exp => exp.Month == 007).ExpenseArticle = value;
+				}
+				else
+				{
+					var newLink = new ExpenseArticleOfContractFieldForSubGroup
+					{
+						SubGroup = SubGroup,
+						ContractField = this,
+						Month = 007,
+						ExpenseArticle = value
+					};
+					ExpenseArticleOfContractFieldForSubGroups.Add(newLink);
+				}
+			}
+		}
 	}
 
 	/// <summary>#14 فرمول مأموریت زیرگروه در سال و ماه</summary> 
@@ -155,7 +177,6 @@ namespace PaySys.ModelAndBindLib.Model
 		public virtual TaxTable TaxTable { get; set; }
 	}
 
-	
 	/// <summary>#18 مقادیر بدهی یا پرداختهای متفرقه برای اشخاص در سال و ماه</summary>
 	public class PayslipEmployeeMisc
 	{
@@ -189,9 +210,11 @@ namespace PaySys.ModelAndBindLib.Model
 		public virtual Employee Employee { get; set; }
 		public virtual Job Job { get; set; }
 		public virtual List<ContractDetail> ContractDetails { get; set; }
+
 		public override bool Equals(object obj)
 		{
-			return obj is ContractMaster && ((ContractMaster)obj).ContractMasterId == ContractMasterId && string.Equals(ContractNo, ((ContractMaster)obj).ContractNo);
+			return obj is ContractMaster && ((ContractMaster)obj).ContractMasterId == ContractMasterId &&
+				   string.Equals(ContractNo, ((ContractMaster)obj).ContractNo);
 		}
 	}
 
@@ -234,6 +257,7 @@ namespace PaySys.ModelAndBindLib.Model
 		public string FullName => $"{FName} {LName}";
 		[NotMapped]
 		public string LuffName => $"{LName} {FName}";
+
 		public override bool Equals(object obj)
 		{
 			return obj != null && ((Employee)obj).EmployeeId == EmployeeId;
@@ -354,7 +378,6 @@ namespace PaySys.ModelAndBindLib.Model
 		public int Month { get; set; }
 		public virtual ExpenseArticle ExpenseArticle { set; get; }
 		public virtual SubGroup SubGroup { set; get; }
-
 	}
 
 	/// <summary>

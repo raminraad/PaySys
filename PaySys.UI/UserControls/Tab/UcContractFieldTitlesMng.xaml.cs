@@ -3,9 +3,11 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Forms;
+using System.Windows.Shell;
 using PaySys.CalcLib.Delegates;
 using PaySys.Globalization;
 using PaySys.ModelAndBindLib.Model;
+using PaySys.UI.Dialogs;
 using MessageBox = System.Windows.Forms.MessageBox;
 using MessageBoxOptions = System.Windows.Forms.MessageBoxOptions;
 using UserControl = System.Windows.Controls.UserControl;
@@ -67,7 +69,15 @@ namespace PaySys.UI.UC
 
 		private void BtnChangeExpenseArticle_OnClick(object sender, RoutedEventArgs e)
 		{
-			MessageBox.Show(CurrentSubGroup.ContractFields.FirstOrDefault().CurrentExpenseArticle.Title);
+			WinSelectExpenseArticle selectExpenseArticleDialog = new WinSelectExpenseArticle();
+			selectExpenseArticleDialog.ListItemsSource=ExpenseArticlesAll;
+			if (selectExpenseArticleDialog.ShowDialog() == true)
+			{
+				var selectedContractField = ListViewGroupContractFieldTitle.SelectedItem as ContractField;
+				selectedContractField.CurrentExpenseArticle=selectExpenseArticleDialog.SelectedExpenseArticle;
+				SaveContext.Invoke();
+				CollectionViewSource.GetDefaultView(ListViewGroupContractFieldTitle.ItemsSource).Refresh();
+			}
 		}
 
 		#region DependencyProperties
@@ -78,13 +88,6 @@ namespace PaySys.UI.UC
 		{
 			get => (SubGroup) GetValue(CurrentSubGroupProperty);
 			set => SetValue(CurrentSubGroupProperty, value);
-		}
-		public static readonly DependencyProperty ReadOnlyListViewItemsProperty = DependencyProperty.Register(
-			"ReadOnlyListViewItems", typeof(bool), typeof(UcContractFieldTitlesMng), new PropertyMetadata(default(bool)));
-		public bool ReadOnlyListViewItems
-		{
-			get => (bool) GetValue(ReadOnlyListViewItemsProperty);
-			set => SetValue(ReadOnlyListViewItemsProperty, value);
 		}
 
 		public static readonly DependencyProperty ExpenseArticlesAllProperty = DependencyProperty.Register("ExpenseArticlesAll", typeof(List<ExpenseArticle>), typeof(UcContractFieldTitlesMng), new PropertyMetadata(default(List<ExpenseArticle>)));

@@ -71,6 +71,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Dialogs\WinSelectExpenseArticle.xaml.cs">
+      <DependentUpon>WinSelectExpenseArticle.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ExtensionMethods\UcMethods.cs" />
     <Compile Include="Modals\InputBox.cs" />
     <Compile Include="Properties\Annotations.cs" />
@@ -101,6 +104,10 @@
     <Compile Include="UserControls\Tab\UcGroupMng.xaml.cs">
       <DependentUpon>UcGroupMng.xaml</DependentUpon>
     </Compile>
+    <Page Include="Dialogs\WinSelectExpenseArticle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

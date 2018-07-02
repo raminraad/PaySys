@@ -132,4 +132,7 @@
   <data name="EnterSubGroupName" xml:space="preserve">
     <value>لطفاً نام زیر گروه را وارد نمایید.</value>
   </data>
+  <data name="SelectExpenseArticle" xml:space="preserve">
+    <value>لطفاً ماده هزینه را انتخاب نمایید.</value>
+  </data>
 </root>

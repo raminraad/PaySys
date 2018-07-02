@@ -187,11 +187,29 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ویرایش عنوان.
+        /// </summary>
+        public static string EditTitle {
+            get {
+                return ResourceManager.GetString("EditTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to کارمند.
         /// </summary>
         public static string Employee {
             get {
                 return ResourceManager.GetString("Employee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ماده هزینه.
+        /// </summary>
+        public static string ExpenseArticle {
+            get {
+                return ResourceManager.GetString("ExpenseArticle", resourceCulture);
             }
         }
         
@@ -345,6 +363,15 @@ namespace PaySys.Globalization.Fa {
         public static string tabGroupMng {
             get {
                 return ResourceManager.GetString("tabGroupMng", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to عنوان.
+        /// </summary>
+        public static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
             }
         }
         

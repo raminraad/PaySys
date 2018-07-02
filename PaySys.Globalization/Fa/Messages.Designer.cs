@@ -104,5 +104,14 @@ namespace PaySys.Globalization.Fa {
                 return ResourceManager.GetString("EnterSubGroupName", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to لطفاً ماده هزینه را انتخاب نمایید..
+        /// </summary>
+        public static string SelectExpenseArticle {
+            get {
+                return ResourceManager.GetString("SelectExpenseArticle", resourceCulture);
+            }
+        }
     }
 }

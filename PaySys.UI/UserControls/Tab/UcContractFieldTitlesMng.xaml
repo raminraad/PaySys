@@ -30,19 +30,32 @@
 		<ToolBar Grid.Row="0"
 				 Grid.ColumnSpan="5">
 			<Button Name="BtnAddMainGroup"
+					Margin="2,0"
 					Click="BtnAddMainGroup_OnClick"
 					Content="{x:Static fa:Labels.Add}" />
 			<Button Name="BtnEdit"
-					Content="{x:Static fa:Labels.Edit}"
+					Content="{x:Static fa:Labels.EditTitle}"
+					Margin="2,0"
 					Click="BtnEdit_OnClick" />
-			<Button Name="BtnDelete"
-					Click="BtnDelete_OnClick"
-					Content="{x:Static fa:Labels.Delete}" />
-			<Separator />
 			<Button Name="BtnChangeExpenseArticle"
+					Margin="2,0"
 					Click="BtnChangeExpenseArticle_OnClick"
 					Content="{x:Static fa:Labels.ChangeExpenseArticle}" />
+			<Button Name="BtnDelete"
+					Margin="2,0"
+					Click="BtnDelete_OnClick"
+					Content="{x:Static fa:Labels.Delete}" />
 		</ToolBar>
+		<StackPanel Orientation="Horizontal" Grid.Row="1"
+					Grid.Column="1"
+					HorizontalAlignment="Left"
+					VerticalAlignment="Bottom"
+					x:Name="StackPanelListTitle">
+			<TextBlock Text="{x:Static fa:Labels.Title}" />
+			<TextBlock Text="   ["></TextBlock>
+			<TextBlock Text="{x:Static fa:Labels.ExpenseArticle}" />
+			<TextBlock Text="]"></TextBlock>
+		</StackPanel>
 		<ListView x:Name="ListViewGroupContractFieldTitle"
 				  Grid.Row="2"
 				  Grid.Column="1"
@@ -56,13 +69,7 @@
 							<ColumnDefinition Width="*" />
 						</Grid.ColumnDefinitions>
 						<TextBlock Grid.Column="0"
-							   Text="{Binding Converter={StaticResource CnvContractFieldDisplay}}" />
-						<ComboBox Name="CmbExpenseArticle"
-								  DisplayMemberPath="Title"
-								  Grid.Column="1"
-								  ItemsSource="{Binding ElementName=SmpUcContractFieldTitlesMng,Path=ExpenseArticlesAll}"
-								  SelectedItem="{Binding CurrentExpenseArticle,Mode=OneWay}"/>
-						<Button Grid.Column="2" x:Name="BtnChangeExpenseArticle" Click="BtnChangeExpenseArticle_OnClick"/>
+								   Text="{Binding Converter={StaticResource CnvContractFieldDisplay}}" />
 					</Grid>
 				</DataTemplate>
 			</ListView.ItemTemplate>

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using Bogus.Extensions;
 using PaySys.Globalization;
 using PaySys.ModelAndBindLib.Model;
 
@@ -29,8 +30,14 @@ namespace PaySys.ModelAndBindLib.BindingConverter
 			if (contractField == null)
 				return string.Empty;
 			var labelCurrentExpenseArticle = ResourceAccessor.FieldicContractField.GetString("CurrentExpenseArticle");
-			var labelTitle = ResourceAccessor.FieldicContractField.GetString("Title");
-			return $"{labelTitle}:{contractField.Title} - {labelCurrentExpenseArticle}:{contractField.CurrentExpenseArticle.Title}";
+			string result=string.Empty;
+			result += $"{contractField.Title}";
+			result += "  [";
+			result += $"{contractField.CurrentExpenseArticle.Code}";
+			result += " : ";
+			result += $"{contractField.CurrentExpenseArticle.Title}";
+			result += "]";
+			return result;
 		}
 
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

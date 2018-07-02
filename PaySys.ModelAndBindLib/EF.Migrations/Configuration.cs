@@ -41,6 +41,61 @@ namespace PaySys.ModelAndBindLib.Migrations
 			File.AppendAllText(@"d:\SeedLog.log", "Seed start\n");
 
 			#region Static Arrays
+			var contractFields = new[]
+			{
+				"بیمه تکمیلی سهم دولت",
+				"بیمه تبعی یک",
+				"بیمه تبعی دو",
+				"بیمه مازاد",
+				"درصد معاف مالیات",
+				"شماره حساب سهم دولت",
+				"شماره حساب سهم پرسنل",
+				"مبلغ کل بیمه تکمیلی",
+				"اضافه کار عادی",
+				"اضافه کار جمعه",
+				"بازنشستگی گذشته",
+				"بیمه عمر",
+				"بدهی های متفرقه",
+				"مقرری ماه اول",
+				"بدهی اضافه کار",
+				"معافیت وام مسکن",
+				"مازاد سی سال",
+				"پرداختهای متفرقه",
+				"مدت پرداخت بروز",
+				"سهم بیمه تکمیلی",
+				"روزهای کارکرد",
+				"ساعات شیفت کاری",
+				"بدهی اضافه کار",
+				"مدت مرخصی ذخیره",
+				"ضریب پایان کار",
+				"حق جذب",
+				"عائله مندی",
+				"سختی کار",
+				"خوار و بار",
+				"ایاب و ذهاب",
+				"فوق العاده اشتغال خارج از كشور",
+				"فوق العاده شغل",
+				"فوق العاده مخصوص",
+				"بدي آب و هوا",
+				"تفاوت تطبيق",
+				"حق سرپرستي",
+				"همطرازي",
+				"هزينه سفر",
+			};
+
+			var expenseArticles = new[]
+			{
+				"دیون",
+				"اداری",
+				"پاداش",
+				"پرسنلی",
+				"سرمایه ای",
+				"تفاوت تطبيق",
+				"مزایا و کمکها",
+				"حقوق و دستمزد",
+				"هزینه های سری",
+				"پرداختهای انتقالی",
+			};
 
 			var mobilePrefix = new[]
 			{
@@ -174,7 +229,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 
 			var expenseArticleFaker = new Faker<ExpenseArticle>("fa").StrictMode(false).Rules((f, e) =>
 			{
-				e.Title = f.Finance.AccountName();
+				e.Title = f.PickRandom(expenseArticles);
 				e.Code = $"{f.Random.Number(99999):D5}";
 				e.IsActive = true;
 			});
@@ -207,10 +262,10 @@ namespace PaySys.ModelAndBindLib.Migrations
 			var contractFieldTitleFaker = new Faker<ContractField>("fa").StrictMode(false).Rules((f, e) =>
 			{
 				e.SubGroup = f.PickRandom(f.PickRandom(seedMainGroups).SubGroups);
-				e.Title = f.Finance.AccountName().Replace("Account", string.Empty).Trim();
+				e.Title = f.PickRandom(contractFields);
 				e.Year = 97;
 			});
-			var seedContractFieldTitles = contractFieldTitleFaker.Generate(40);
+			var seedContractFieldTitles = contractFieldTitleFaker.Generate(60);
 			context.ContractFields.AddRange(seedContractFieldTitles);
 			foreach (var item in context.ContractFields.ToList())
 				File.AppendAllText(@"d:\SeedLog.log", $@"ContractField: {item.ContractFieldId}.{item.Title}" + "\n");
