@@ -123,7 +123,7 @@
   <data name="DeleteRecord" xml:space="preserve">
     <value>رکورد انتخاب شده حذف خواهد شد. تأیید مینمایید؟</value>
   </data>
-  <data name="EnterGroupContractFieldTitle" xml:space="preserve">
+  <data name="EnterContractFieldTitle" xml:space="preserve">
     <value>لطفاً عنوان فیلد حکم را وارد نمایید.</value>
   </data>
   <data name="EnterMainGroupName" xml:space="preserve">

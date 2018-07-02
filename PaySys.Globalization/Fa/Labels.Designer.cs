@@ -115,6 +115,15 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to تغییر ماده هزینه.
+        /// </summary>
+        public static string ChangeExpenseArticle {
+            get {
+                return ResourceManager.GetString("ChangeExpenseArticle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to حکم.
         /// </summary>
         public static string Contract {
@@ -129,6 +138,15 @@ namespace PaySys.Globalization.Fa {
         public static string ContractDetails {
             get {
                 return ResourceManager.GetString("ContractDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to عناوین فیلدهای احکام.
+        /// </summary>
+        public static string ContractFieldTitles {
+            get {
+                return ResourceManager.GetString("ContractFieldTitles", resourceCulture);
             }
         }
         
@@ -183,15 +201,6 @@ namespace PaySys.Globalization.Fa {
         public static string FormCurrentState {
             get {
                 return ResourceManager.GetString("FormCurrentState", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to عناوین فیلدهای احکام.
-        /// </summary>
-        public static string GroupContractFieldTitles {
-            get {
-                return ResourceManager.GetString("GroupContractFieldTitles", resourceCulture);
             }
         }
         

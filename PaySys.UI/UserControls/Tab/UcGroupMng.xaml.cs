@@ -43,7 +43,8 @@ namespace PaySys.UI.UC
 		{
 			InitializeComponent();
 			ListViewGroupMain.DataContext = _context.MainGroups.ToList();
-			SmpUcGroupContractFieldTitlesMng.SaveContext += () => _context.SaveChanges();
+			SmpUcContractFieldTitlesMng.SaveContext += () => _context.SaveChanges();
+			SmpUcContractFieldTitlesMng.ExpenseArticlesAll = _context.ExpenseArticles.ToList();
 		}
 
 		private void BtnAddMainGroup_OnClick(object sender, RoutedEventArgs e)
@@ -105,17 +106,8 @@ namespace PaySys.UI.UC
 
 		private void BtnRefresh_OnClick(object sender, RoutedEventArgs e)
 		{
-			//			_context = new PaySysContext();
-			//			ListViewGroupMain.DataContext = _context.MainGroups.ToList();
-			var userControls = new UcGroupContractFieldTitlesMng();
-			userControls.CurrentMainGroup = (MainGroup) ListViewGroupMain.SelectedItem;
-			var tab = new TabItem
-			{
-				Content = userControls,
-				Header = ResourceAccessor.Labels.GetString("tabEmployeeMng")
-			};
-			TabControlMainGroupDatails.Items.Add(tab);
-			TabControlMainGroupDatails.Items.Refresh();
+						_context = new PaySysContext();
+						ListViewGroupMain.DataContext = _context.MainGroups.ToList();
 		}
 
 		private void BtnAddSubGroup_OnClick(object sender, RoutedEventArgs e)

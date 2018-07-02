@@ -81,9 +81,9 @@ namespace PaySys.Globalization.Fa {
         /// <summary>
         ///   Looks up a localized string similar to لطفاً عنوان فیلد حکم را وارد نمایید..
         /// </summary>
-        public static string EnterGroupContractFieldTitle {
+        public static string EnterContractFieldTitle {
             get {
-                return ResourceManager.GetString("EnterGroupContractFieldTitle", resourceCulture);
+                return ResourceManager.GetString("EnterContractFieldTitle", resourceCulture);
             }
         }
         

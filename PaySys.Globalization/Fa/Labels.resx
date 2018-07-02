@@ -204,7 +204,7 @@
   <data name="AddSubGroup" xml:space="preserve">
     <value>زیر گروه جدید</value>
   </data>
-  <data name="GroupContractFieldTitles" xml:space="preserve">
+  <data name="ContractFieldTitles" xml:space="preserve">
     <value>عناوین فیلدهای احکام</value>
   </data>
   <data name="MainGroupItems" xml:space="preserve">
@@ -212,5 +212,8 @@
   </data>
   <data name="SubGroupItems" xml:space="preserve">
     <value>آیتم های مربوط به زیرگروه</value>
+  </data>
+  <data name="ChangeExpenseArticle" xml:space="preserve">
+    <value>تغییر ماده هزینه</value>
   </data>
 </root>

@@ -50,7 +50,7 @@
 								<RowDefinition Height="*" />
 							</Grid.RowDefinitions>
 							<TextBlock Name="LblContractDetailTitle"
-							           Text="{Binding GroupContractFieldTitle.ContractFieldTitle.Title}"
+							           Text="{Binding ContractField.Title}"
 							           Grid.Column="0"
 							           VerticalAlignment="Center" />
 							<TextBox Name="TxtContractDetailValue"

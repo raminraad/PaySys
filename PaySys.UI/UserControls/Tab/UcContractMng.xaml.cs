@@ -93,8 +93,8 @@ namespace PaySys.UI.UC
 		{
 			SmpUcShowContractMaster.CommitContext();
 			var newContract = SmpUcShowContractMaster.CurrentContractMaster;
-			var groupContractFieldTitles = _context.GroupContractFieldTitles.Where(gft => gft.MainGroup.MainGroupId==newContract.SubGroup.MainGroup.MainGroupId && gft.Year == 97).ToList();
-			groupContractFieldTitles.ForEach(gft => newContract.ContractDetails.Add(new ContractDetail { GroupContractFieldTitle = gft }));
+			var ContractFields = _context.ContractFields.Where(gft => gft.SubGroup.SubGroupId==newContract.SubGroup.SubGroupId && gft.Year == 97).ToList();
+			ContractFields.ForEach(gft => newContract.ContractDetails.Add(new ContractDetail { ContractField = gft }));
 			_context.ContractMasters.Add(newContract);
 			_context.SaveChanges();
 			SmpUcFormState.CurrentState = FormCurrentState.AddDetails;

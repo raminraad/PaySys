@@ -13,7 +13,7 @@ namespace PaySys.ModelAndBindLib.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201807010852516_Init"; }
+            get { return "201807012346496_Init"; }
         }
         
         string IMigrationMetadata.Source

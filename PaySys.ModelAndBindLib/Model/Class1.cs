@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using PaySys.CalcLib.Converters;
 
 namespace PaySys.ModelAndBindLib.Model
@@ -13,8 +14,7 @@ namespace PaySys.ModelAndBindLib.Model
 		public string Title { get; set; }
 		public ColorPallet ItemColor { get; set; }
 		public virtual List<SubGroup> SubGroups { get; set; }
-		public virtual List<GroupMisc> GroupMiscs { get; set; }
-		public virtual List<GroupContractFieldTitle> GroupContractFieldTitles { get; set; }
+		
 		public override bool Equals(object obj)
 		{
 			return (obj as MainGroup)?.MainGroupId == MainGroupId && string.Equals(Title, ((MainGroup)obj).Title) ;
@@ -35,6 +35,8 @@ namespace PaySys.ModelAndBindLib.Model
 		public virtual List<TaxTable> TaxTables { get; set; }
 		public virtual List<HandselFormula> HandselFormulas { get; set; }
 		public virtual List<ContractMaster> ContractMasters { get; set; }
+		public virtual List<Misc> Miscs { get; set; }
+		public virtual List<ContractField> ContractFields { get; set; }
 		public virtual List<ExpenseArticleOfContractFieldForSubGroup> ExpenseArticleOfContractFieldForSubGroups { get; set; }
 		public virtual List<ExpenseArticleOfMiscForSubGroup> ExpenseArticleOfMiscForSubGroups { get; set; }
 		public virtual List<ExpenseArticleOfOverTimeForSubGroup> ExpenseArticleOfOverTimeForSubGroups { get; set; }
@@ -44,10 +46,10 @@ namespace PaySys.ModelAndBindLib.Model
 		}
 	}
 
-	/// <summary>#04 بدهی یا پرداختهای متفرقه گروه در سال و ماه</summary>
-	public class GroupMisc
+	/// <summary>#04 بدهی یا پرداختهای متفرقه زیرگروه در سال و ماه</summary>
+	public class Misc
 	{
-		public int GroupMiscId { get; set; }
+		public int MiscId { get; set; }
 		public int Year { get; set; }
 		public int Month { get; set; }
 		public string Title { get; set; }
@@ -55,7 +57,7 @@ namespace PaySys.ModelAndBindLib.Model
 		public int Index { get; set; }
 		public virtual List<ParameterInvolvedMisc> ParameterInvolvedMiscs { get; set; }
 		public virtual List<EmployeeMiscRemain> EmployeeMiscRemains { get; set; }
-		public virtual MainGroup MainGroup { set; get; }
+		public virtual SubGroup SubGroup { set; get; }
 		public virtual List<PayslipEmployeeMisc> PayslipEmployeeMiscs { get; set; }
 		public virtual List<ExpenseArticleOfMiscForSubGroup> ExpenseArticleOfMiscForSubGroups { get; set; }
 	}
@@ -64,7 +66,7 @@ namespace PaySys.ModelAndBindLib.Model
 	public class ParameterInvolvedMisc
 	{
 		public int ParameterInvolvedMiscId { get; set; }
-		public virtual GroupMisc GroupMisc { get; set; }
+		public virtual Misc Misc { get; set; }
 		public virtual ParameterValue ParameterValue { get; set; }
 	}
 
@@ -85,7 +87,7 @@ namespace PaySys.ModelAndBindLib.Model
 	public class ParameterInvolvedContractField
 	{
 		public int ParameterInvolvedContractFieldId { get; set; }
-		public virtual GroupContractFieldTitle GroupContractFieldTitle { get; set; }
+		public virtual ContractField ContractField { get; set; }
 		public virtual ParameterValue ParameterValue { get; set; }
 	}
 
@@ -108,20 +110,22 @@ namespace PaySys.ModelAndBindLib.Model
 		public float Value { get; set; }
 		public int Year { get; set; }
 		public int Month { get; set; }
-		public virtual GroupMisc GroupMisc { get; set; }
+		public virtual Misc Misc { get; set; }
 		public virtual Employee Employee { get; set; }
 	}
 
-	/// <summary>#13 عناوین فیلدهای احکام گروه اصلی در سال</summary>
-	public class GroupContractFieldTitle
+	/// <summary>#13 فیلدهای احکام زیرگروه در سال</summary>
+	public class ContractField
 	{
-		public int GroupContractFieldTitleId { get; set; }
+		public int ContractFieldId { get; set; }
 		public string Title { get; set; }
 		public int Year { get; set; }
-		public virtual MainGroup MainGroup { get; set; }
+		public virtual SubGroup SubGroup { get; set; }
 		public virtual List<ParameterInvolvedContractField> ParameterInvolvedContractFields { get; set; }
 		public virtual List<ContractDetail> ContractDetails { get; set; }
 		public virtual List<ExpenseArticleOfContractFieldForSubGroup> ExpenseArticleOfContractFieldForSubGroups { get; set; }
+		[NotMapped]
+		public ExpenseArticle CurrentExpenseArticle => ExpenseArticleOfContractFieldForSubGroups.FirstOrDefault(exp => exp.Month == 007)?.ExpenseArticle;
 	}
 
 	/// <summary>#14 فرمول مأموریت زیرگروه در سال و ماه</summary> 
@@ -160,7 +164,7 @@ namespace PaySys.ModelAndBindLib.Model
 		public float PayslipValue { get; set; }
 		public int Year { get; set; }
 		public int Month { get; set; }
-		public virtual GroupMisc GroupMisc { get; set; }
+		public virtual Misc Misc { get; set; }
 		public virtual Employee Employee { get; set; }
 	}
 
@@ -196,7 +200,7 @@ namespace PaySys.ModelAndBindLib.Model
 	{
 		public int ContractDetailId { get; set; }
 		public float Value { get; set; }
-		public virtual GroupContractFieldTitle GroupContractFieldTitle { get; set; }
+		public virtual ContractField ContractField { get; set; }
 		public virtual ContractMaster ContractMaster { get; set; }
 		public virtual List<PayslipContractDetail> PayslipContractDetails { set; get; }
 	}
@@ -226,6 +230,10 @@ namespace PaySys.ModelAndBindLib.Model
 		public virtual List<Mission> Missions { get; set; }
 		public virtual List<PayslipEmployeeMisc> PayslipEmployeeMiscs { get; set; }
 		public virtual List<PayslipEmployeeOvertime> PayslipEmployeeOvertimes { get; set; }
+		[NotMapped]
+		public string FullName => $"{FName} {LName}";
+		[NotMapped]
+		public string LuffName => $"{LName} {FName}";
 		public override bool Equals(object obj)
 		{
 			return obj != null && ((Employee)obj).EmployeeId == EmployeeId;
@@ -320,7 +328,7 @@ namespace PaySys.ModelAndBindLib.Model
 		public int ExpenseArticleOfContractFieldForSubGroupId { get; set; }
 		public int Month { get; set; }
 		public virtual ExpenseArticle ExpenseArticle { set; get; }
-		public virtual GroupContractFieldTitle GroupContractFieldTitle { set; get; }
+		public virtual ContractField ContractField { set; get; }
 		public virtual SubGroup SubGroup { set; get; }
 	}
 
@@ -332,7 +340,7 @@ namespace PaySys.ModelAndBindLib.Model
 		public int ExpenseArticleOfMiscForSubGroupId { get; set; }
 		public int Month { get; set; }
 		public virtual ExpenseArticle ExpenseArticle { set; get; }
-		public virtual GroupMisc GroupMisc { set; get; }
+		public virtual Misc Misc { set; get; }
 		public virtual SubGroup SubGroup { set; get; }
 	}
 
