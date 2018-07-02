@@ -11,7 +11,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 {
 	internal sealed class Configuration : DbMigrationsConfiguration<PaySysContext>
 	{
-		Faker _faker = new Faker("fa");
+		private readonly Faker _faker = new Faker("fa");
 
 		public Configuration()
 		{
@@ -36,6 +36,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 			//
 
 			#endregion
+
 			File.Delete(@"d:\SeedLog.log");
 			File.AppendAllText(@"d:\SeedLog.log", "Seed start\n");
 
@@ -102,13 +103,13 @@ namespace PaySys.ModelAndBindLib.Migrations
 						new SubGroup
 						{
 							Title = "بازنشستگان",
-							ItemColor = ColorPallet.Teal,
+							ItemColor = ColorPallet.Teal
 						},
 						new SubGroup
 						{
 							Title = "موظفین",
-							ItemColor = ColorPallet.Teal,
-						},
+							ItemColor = ColorPallet.Teal
+						}
 					}
 				},
 				new MainGroup
@@ -120,22 +121,22 @@ namespace PaySys.ModelAndBindLib.Migrations
 						new SubGroup
 						{
 							Title = "کارگران خدمات شهری",
-							ItemColor = ColorPallet.CornflowerBlue,
+							ItemColor = ColorPallet.CornflowerBlue
 						},
 						new SubGroup
 						{
 							Title = "کارگران خدمات اداری",
-							ItemColor = ColorPallet.CornflowerBlue,
+							ItemColor = ColorPallet.CornflowerBlue
 						}
 					}
-				},
+				}
 			};
 			context.MainGroups.AddRange(seedMainGroups);
 			foreach (var item in context.MainGroups.ToList())
 			{
 				File.AppendAllText(@"d:\SeedLog.log", $@"MainGroup: {item.MainGroupId}.{item.Title}" + "\n");
 				foreach (var subItem in item.SubGroups)
-					File.AppendAllText(@"d:\SeedLog.log","\t\t\t"+ $@"SubGroup: {subItem.SubGroupId}.{subItem.Title}" + "\n");
+					File.AppendAllText(@"d:\SeedLog.log", "\t\t\t" + $@"SubGroup: {subItem.SubGroupId}.{subItem.Title}" + "\n");
 			}
 
 			#endregion
@@ -164,9 +165,9 @@ namespace PaySys.ModelAndBindLib.Migrations
 			});
 			var seedEmployees = employeeFaker.Generate(40);
 			context.Employees.AddRange(seedEmployees);
-
 			foreach (var item in context.Employees.ToList())
 				File.AppendAllText(@"d:\SeedLog.log", $@"Employee: {item.EmployeeId}.{item.FullName}" + "\n");
+
 			#endregion
 
 			#region ExpenseArticle
@@ -178,9 +179,10 @@ namespace PaySys.ModelAndBindLib.Migrations
 				e.IsActive = true;
 			});
 			var seedExpenseArticles = expenseArticleFaker.Generate(7);
-			context.ExpenseArticles.AddRange(seedExpenseArticles);
-			foreach (var item in context.ExpenseArticles.ToList())
+			seedExpenseArticles.AddRange(seedExpenseArticles);
+			foreach (var item in seedExpenseArticles.ToList())
 				File.AppendAllText(@"d:\SeedLog.log", $@"ExpenseArticle: {item.ExpenseArticleId}.{item.Title}" + "\n");
+
 			#endregion
 
 			#region Job
@@ -197,6 +199,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 			context.Jobs.AddRange(seedJobs);
 			foreach (var item in context.Jobs.ToList())
 				File.AppendAllText(@"d:\SeedLog.log", $@"Job: {item.JobId}.{item.Title}" + "\n");
+
 			#endregion
 
 			#region ContractField
@@ -211,6 +214,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 			context.ContractFields.AddRange(seedContractFieldTitles);
 			foreach (var item in context.ContractFields.ToList())
 				File.AppendAllText(@"d:\SeedLog.log", $@"ContractField: {item.ContractFieldId}.{item.Title}" + "\n");
+
 			#endregion
 
 			#region Misc
@@ -221,65 +225,85 @@ namespace PaySys.ModelAndBindLib.Migrations
 				e.Year = 97;
 				e.Month = 007;
 			});
-			foreach (var subGroup in context.SubGroups.ToList())
-			{
-				for (var i = 0; i < 10; i++)
-				{
-					miscFaker.RuleFor(misc => misc.SubGroup, subGroup).RuleFor(misc => misc.IsPayment, i < 5);
-					context.Miscs.Add(miscFaker.Generate());
-				}
 
-			}
+			var seedMiscs=new List<Misc>();
+			foreach (var mainGroup in seedMainGroups)
+				foreach (var subGroup in mainGroup.SubGroups)
+					for (var i = 0; i < 10; i++)
+					{
+						miscFaker.RuleFor(misc => misc.SubGroup, subGroup).RuleFor(misc => misc.IsPayment, i < 5);
+						seedMiscs.Add(miscFaker.Generate());
+					}
+			context.Miscs.AddRange(seedMiscs);
 			foreach (var item in context.Miscs.ToList())
-				File.AppendAllText(@"d:\SeedLog.log", $@"(SubGroup.Misc): {item.MiscId}.({item.SubGroup.Title}.{item.Title})" + "\n");
+				File.AppendAllText(@"d:\SeedLog.log",
+					$@"(SubGroup.Misc): {item.MiscId}.({item.SubGroup.Title}.{item.Title})" + "\n");
+
 			#endregion
 
 			#region ExpenseArticleOfMiscForSubGroups
+			var seedExpenseArticleOfMiscForSubGroups = new List<ExpenseArticleOfMiscForSubGroup>();
+			foreach (var mainGroup in seedMainGroups)
+				foreach (var subGroup in mainGroup.SubGroups)
+					foreach (var misc in subGroup.Miscs)
+						seedExpenseArticleOfMiscForSubGroups.Add(new ExpenseArticleOfMiscForSubGroup
+						{
+							SubGroup = subGroup,
+							Month = 007,
+							Misc = misc,
+							ExpenseArticle = _faker.PickRandom(seedExpenseArticles)
+						});
+			context.ExpenseArticleOfMiscForSubGroups.AddRange(seedExpenseArticleOfMiscForSubGroups);
+			foreach (var item in context.ExpenseArticleOfMiscForSubGroups.ToList())
+				File.AppendAllText(@"d:\SeedLog.log",
+					$@"ExpenseArticleOfMiscForSubGroup (SubGroup.ExpenseArticle.Misc): {item.ExpenseArticleOfMiscForSubGroupId}.({
+							item.SubGroup.Title
+						}.{item.ExpenseArticle.Title}.{item.Misc.Title})" + "\n");
 
-			foreach (var subGroup in context.SubGroups)
-				foreach (var misc in subGroup.Miscs)
-				{
-					context.ExpenseArticleOfMiscForSubGroups.Add(new ExpenseArticleOfMiscForSubGroup
-					{
-						SubGroup = subGroup,
-						Month = 007,
-						Misc = misc,
-						ExpenseArticle = _faker.PickRandom<ExpenseArticle>(context.ExpenseArticles)
-					});
-				}
-			foreach (var item in context.ExpenseArticleOfMiscForSubGroups)
-				File.AppendAllText(@"d:\SeedLog.log", $@"ExpenseArticleOfMiscForSubGroup (SubGroup.ExpenseArticle.Misc): {item.ExpenseArticleOfMiscForSubGroupId}.({item.SubGroup.Title}.{item.ExpenseArticle.Title}.{item.Misc.Title})" + "\n");
 			#endregion
 
 			#region ExpenseArticleOfContractFieldForSubGroups
 
-			foreach (var subGroup in context.SubGroups)
-				foreach (var contractFieldTitle in context.ContractFields)
-				{
-					context.ExpenseArticleOfContractFieldForSubGroups.Add(new ExpenseArticleOfContractFieldForSubGroup()
-					{
-						SubGroup = subGroup,
-						Month = 007,
-						ContractField = contractFieldTitle,
-						ExpenseArticle = _faker.PickRandom<ExpenseArticle>(context.ExpenseArticles)
-					});
-				}
-			foreach (var item in context.ExpenseArticleOfContractFieldForSubGroups)
-				File.AppendAllText(@"d:\SeedLog.log", $@"ExpenseArticleOfContractFieldForSubGroup (SubGroup.ExpenseArticle.ContractField): {item.ExpenseArticleOfContractFieldForSubGroupId}.({item.SubGroup.Title}.{item.ExpenseArticle.Title}.{item.ContractField.Title})" + "\n");
+			var seedExpenseArticleOfContractFieldForSubGroups = new List<ExpenseArticleOfContractFieldForSubGroup>();
+			foreach (var mainGroup in seedMainGroups)
+				foreach (var subGroup in mainGroup.SubGroups)
+					foreach (var contractField in subGroup.ContractFields)
+						seedExpenseArticleOfContractFieldForSubGroups.Add(new ExpenseArticleOfContractFieldForSubGroup
+						{
+							SubGroup = subGroup,
+							Month = 007,
+							ContractField = contractField,
+							ExpenseArticle = _faker.PickRandom(seedExpenseArticles)
+						});
+			context.ExpenseArticleOfContractFieldForSubGroups.AddRange(seedExpenseArticleOfContractFieldForSubGroups);
+			foreach (var item in context.ExpenseArticleOfContractFieldForSubGroups.ToList())
+				File.AppendAllText(@"d:\SeedLog.log",
+					$@"ExpenseArticleOfContractFieldForSubGroup (SubGroup.ExpenseArticle.ContractField): {
+							item.ExpenseArticleOfContractFieldForSubGroupId
+						}.({item.SubGroup.Title}.{item.ExpenseArticle.Title}.{item.ContractField.Title})" + "\n");
+
 			#endregion
 
 			#region ExpenseArticleOfOverTimeForSubGroups
+			var seedExpenseArticleOfOverTimeForSubGroups = new List<ExpenseArticleOfOverTimeForSubGroup>();
 
-			foreach (var subGroup in context.SubGroups)
-				context.ExpenseArticleOfOverTimeForSubGroups.Add(new ExpenseArticleOfOverTimeForSubGroup()
-				{
-					SubGroup = subGroup,
-					Year = 97,
-					Month = 007,
-					ExpenseArticle = _faker.PickRandom<ExpenseArticle>(context.ExpenseArticles)
-				});
-			foreach (var item in context.ExpenseArticleOfOverTimeForSubGroups)
-				File.AppendAllText(@"d:\SeedLog.log", $@"ExpenseArticleOfOverTimeForSubGroup (SubGroup.ExpenseArticle): {item.ExpenseArticleOfOverTimeForSubGroupId}.({item.SubGroup.Title}.{item.ExpenseArticle.Title})" + "\n");
+			foreach (var mainGroup in seedMainGroups)
+				foreach (var subGroup in mainGroup.SubGroups)
+					seedExpenseArticleOfOverTimeForSubGroups.Add(new ExpenseArticleOfOverTimeForSubGroup
+					{
+						SubGroup = subGroup,
+						Year = 97,
+						Month = 007,
+						ExpenseArticle = _faker.PickRandom<ExpenseArticle>(seedExpenseArticles)
+					});
+			context.ExpenseArticleOfOverTimeForSubGroups.AddRange(seedExpenseArticleOfOverTimeForSubGroups);
+
+			foreach (var item in context.ExpenseArticleOfOverTimeForSubGroups.ToList())
+				File.AppendAllText(@"d:\SeedLog.log",
+					$@"ExpenseArticleOfOverTimeForSubGroup (SubGroup.ExpenseArticle): {item.ExpenseArticleOfOverTimeForSubGroupId}.({
+							item.SubGroup.Title
+						}.{item.ExpenseArticle.Title})" + "\n");
+
 			#endregion
 
 			#region ContractMaster
@@ -303,14 +327,14 @@ namespace PaySys.ModelAndBindLib.Migrations
 				e.InsuranceNo = $"{f.Random.Number(99999999):d8}";
 				e.MaritalStatus = f.PickRandom(Enum.GetValues(typeof(MaritalStatus)).Cast<MaritalStatus>()
 					.Where(sex => sex != MaritalStatus.Unknown));
-				e.Job = f.PickRandom<Job>(seedJobs);
+				e.Job = f.PickRandom(seedJobs);
 				e.SacrificeStand = f.PickRandom(Enum.GetValues(typeof(SacrificeStand)).Cast<SacrificeStand>()
 					.Where(sex => sex != SacrificeStand.Unknown));
 				e.SubGroup = f.PickRandom(f.PickRandom(seedMainGroups).SubGroups);
 			});
 			var seedContractMasters = contractMasterFaker.Generate(30);
 			context.ContractMasters.AddRange(seedContractMasters);
-			
+
 			#endregion
 
 			#region ContractDetail
@@ -319,7 +343,6 @@ namespace PaySys.ModelAndBindLib.Migrations
 				.Rules((f, e) => { e.Value = f.Random.Number(100) * 10000; });
 			var seedContractDetails = new List<ContractDetail>();
 			foreach (var contMast in seedContractMasters)
-			{
 				foreach (var grpCntField in seedContractFieldTitles.Where(c => c.SubGroup.Equals(contMast.SubGroup)))
 				{
 					contractDetailFaker.RuleFor(detail => detail.ContractMaster, contMast);
@@ -327,14 +350,15 @@ namespace PaySys.ModelAndBindLib.Migrations
 					var contractDetail = contractDetailFaker.Generate();
 					seedContractDetails.Add(contractDetail);
 				}
-			}
 			context.ContractDetails.AddRange(seedContractDetails);
 			foreach (var item in context.ContractMasters)
 			{
-			File.AppendAllText(@"d:\SeedLog.log", $@"ContractMaster: {item.ContractMasterId}.{item.ContractNo}" + "\n");
-			foreach (var subItem in item.ContractDetails)
-				File.AppendAllText(@"d:\SeedLog.log", "\t\t\t"+$@"{subItem.ContractDetailId}.{subItem.ContractField.Title}:{subItem.Value}" + "\n");
+				File.AppendAllText(@"d:\SeedLog.log", $@"ContractMaster: {item.ContractMasterId}.{item.ContractNo}" + "\n");
+				foreach (var subItem in item.ContractDetails)
+					File.AppendAllText(@"d:\SeedLog.log",
+						"\t\t\t" + $@"{subItem.ContractDetailId}.{subItem.ContractField.Title}:{subItem.Value}" + "\n");
 			}
+
 			#endregion
 
 			#region Set CurrentContract for each Employee

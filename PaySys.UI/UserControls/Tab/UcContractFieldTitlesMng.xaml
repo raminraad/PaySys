@@ -12,7 +12,7 @@
 			 d:DesignHeight="300"
 			 d:DesignWidth="300">
 	<UserControl.Resources>
-		<bindingConverter:NegateBooleanConverter x:Key="CnvNegateBool" />
+		<bindingConverter:ContractFieldDisplayConverter x:Key="CnvContractFieldDisplay" />
 	</UserControl.Resources>
 	<Grid>
 		<Grid.RowDefinitions>
@@ -51,17 +51,18 @@
 				<DataTemplate>
 					<Grid>
 						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="300" />
-							<ColumnDefinition Width="100" />
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="*" />
 						</Grid.ColumnDefinitions>
-						<TextBox Grid.Column="0"
-								 Text="{Binding Path=Title}" />
+						<TextBlock Grid.Column="0"
+							   Text="{Binding Converter={StaticResource CnvContractFieldDisplay}}" />
 						<ComboBox Name="CmbExpenseArticle"
 								  DisplayMemberPath="Title"
 								  Grid.Column="1"
 								  ItemsSource="{Binding ElementName=SmpUcContractFieldTitlesMng,Path=ExpenseArticlesAll}"
-								  SelectedItem="{Binding CurrentExpenseArticle,Mode=OneWay}"
-								  IsEnabled="{Binding ElementName=SmpUcContractFieldTitlesMng,Path=ReadOnlyListViewItems,Converter={StaticResource CnvNegateBool}}" />
+								  SelectedItem="{Binding CurrentExpenseArticle,Mode=OneWay}"/>
+						<Button Grid.Column="2" x:Name="BtnChangeExpenseArticle" Click="BtnChangeExpenseArticle_OnClick"/>
 					</Grid>
 				</DataTemplate>
 			</ListView.ItemTemplate>

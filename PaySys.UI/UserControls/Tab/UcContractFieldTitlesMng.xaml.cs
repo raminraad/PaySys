@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Forms;
@@ -66,6 +67,7 @@ namespace PaySys.UI.UC
 
 		private void BtnChangeExpenseArticle_OnClick(object sender, RoutedEventArgs e)
 		{
+			MessageBox.Show(CurrentSubGroup.ContractFields.FirstOrDefault().CurrentExpenseArticle.Title);
 		}
 
 		#region DependencyProperties
@@ -74,8 +76,8 @@ namespace PaySys.UI.UC
 
 		public SubGroup CurrentSubGroup
 		{
-			get { return (SubGroup) GetValue(CurrentSubGroupProperty); }
-			set { SetValue(CurrentSubGroupProperty, value); }
+			get => (SubGroup) GetValue(CurrentSubGroupProperty);
+			set => SetValue(CurrentSubGroupProperty, value);
 		}
 		public static readonly DependencyProperty ReadOnlyListViewItemsProperty = DependencyProperty.Register(
 			"ReadOnlyListViewItems", typeof(bool), typeof(UcContractFieldTitlesMng), new PropertyMetadata(default(bool)));
@@ -89,8 +91,8 @@ namespace PaySys.UI.UC
 
 		public List<ExpenseArticle> ExpenseArticlesAll
 		{
-			get { return (List<ExpenseArticle>) GetValue(ExpenseArticlesAllProperty); }
-			set { SetValue(ExpenseArticlesAllProperty, value); }
+			get => (List<ExpenseArticle>) GetValue(ExpenseArticlesAllProperty);
+			set => SetValue(ExpenseArticlesAllProperty, value);
 		}
 		#endregion
 	}

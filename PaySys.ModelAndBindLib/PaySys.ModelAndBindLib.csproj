@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BindingConverter\ColorPalletEnumToStringConverter.cs" />
+    <Compile Include="BindingConverter\ContractFieldDisplayConverter.cs" />
     <Compile Include="BindingConverter\ContractMasterComboConverter.cs" />
     <Compile Include="BindingConverter\DateFormatterConverter.cs" />
     <Compile Include="BindingConverter\FormStateToIsReadOnlyConverter.cs" />
