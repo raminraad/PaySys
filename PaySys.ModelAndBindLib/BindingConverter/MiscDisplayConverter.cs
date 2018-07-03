@@ -14,10 +14,10 @@ using PaySys.ModelAndBindLib.Model;
 
 namespace PaySys.ModelAndBindLib.BindingConverter
 {
-	public class ContractFieldDisplayConverter : IValueConverter
+	public class MiscDisplayConverter : IValueConverter
 	{
 		/// <summary>
-		/// Used for displaying contract fields in ListView
+		/// Used for displaying Miscs in ListView
 		/// </summary>
 		/// <param name="value"></param>
 		/// <param name="targetType"></param>
@@ -26,15 +26,15 @@ namespace PaySys.ModelAndBindLib.BindingConverter
 		/// <returns></returns>
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			var contractField = value as ContractField;
-			if (contractField == null)
+			var misc = value as Misc;
+			if (misc == null)
 				return string.Empty;
-			var result=string.Empty;
-			result += $"{contractField.Title}";
+			var result = string.Empty;
+			result += $"{misc.Title}";
 			result += "  [";
-			result += $"{contractField.CurrentExpenseArticle.Code}";
+			result += $"{misc.CurrentExpenseArticle.Code}";
 			result += " : ";
-			result += $"{contractField.CurrentExpenseArticle.Title}";
+			result += $"{misc.CurrentExpenseArticle.Title}";
 			result += "]";
 			return result;
 		}
@@ -43,6 +43,6 @@ namespace PaySys.ModelAndBindLib.BindingConverter
 		{
 			throw new NotImplementedException();
 		}
-		
+
 	}
 }

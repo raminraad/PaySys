@@ -10,7 +10,7 @@
 			 mc:Ignorable="d"
 			 FlowDirection="RightToLeft"
 			 d:DesignHeight="300"
-			 d:DesignWidth="300">
+			 d:DesignWidth="600">
 	<UserControl.Resources>
 		<bindingConverter:ContractFieldDisplayConverter x:Key="CnvContractFieldDisplay" />
 	</UserControl.Resources>
@@ -18,6 +18,7 @@
 		<Grid.RowDefinitions>
 			<RowDefinition x:Name="RowToolbar"
 						   Height="Auto" />
+			<RowDefinition Height="1*" />
 			<RowDefinition Height="1*" />
 			<RowDefinition Height="5*" />
 			<RowDefinition Height="1*" />
@@ -27,6 +28,12 @@
 			<ColumnDefinition Width="5*" />
 			<ColumnDefinition Width="2*" />
 		</Grid.ColumnDefinitions>
+		<TextBlock Grid.Row="2"
+				   Grid.Column="1"
+				   FontSize="20"
+				   HorizontalAlignment="Center"
+				   VerticalAlignment="Center"
+				   Text="{x:Static fa:Labels.ContractFieldTitles}" />
 		<ToolBar Grid.Row="0"
 				 Grid.ColumnSpan="5">
 			<Button Name="BtnAddMainGroup"
@@ -46,33 +53,21 @@
 					Click="BtnDelete_OnClick"
 					Content="{x:Static fa:Labels.Delete}" />
 		</ToolBar>
-		<StackPanel Orientation="Horizontal" Grid.Row="1"
-					Grid.Column="1"
-					HorizontalAlignment="Left"
-					VerticalAlignment="Bottom"
-					x:Name="StackPanelListTitle">
-			<TextBlock Text="{x:Static fa:Labels.Title}" />
-			<TextBlock Text="   ["></TextBlock>
-			<TextBlock Text="{x:Static fa:Labels.ExpenseArticle}" />
-			<TextBlock Text="]"></TextBlock>
-		</StackPanel>
-		<ListView x:Name="ListViewGroupContractFieldTitle"
-				  Grid.Row="2"
+		<ListView x:Name="ListViewGroupContractField"
+				  Grid.Row="3"
 				  Grid.Column="1"
+				  MaxWidth="300"
 				  ItemsSource="{Binding ElementName=SmpUcContractFieldTitlesMng,Path=CurrentSubGroup.ContractFields,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
-			<ListView.ItemTemplate>
-				<DataTemplate>
-					<Grid>
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="*" />
-							<ColumnDefinition Width="*" />
-							<ColumnDefinition Width="*" />
-						</Grid.ColumnDefinitions>
-						<TextBlock Grid.Column="0"
-								   Text="{Binding Converter={StaticResource CnvContractFieldDisplay}}" />
-					</Grid>
-				</DataTemplate>
-			</ListView.ItemTemplate>
+			<ListView.View>
+				<GridView>
+					<GridViewColumn Header="{x:Static fa:Labels.Title}"
+									Width="150"
+									DisplayMemberBinding="{Binding Title}" />
+					<GridViewColumn Header="{x:Static fa:Labels.ExpenseArticle}"
+									Width="150"
+									DisplayMemberBinding="{Binding CurrentExpenseArticle.DspCodeTitle}" />
+				</GridView>
+			</ListView.View>
 		</ListView>
 	</Grid>
 </UserControl>

@@ -259,6 +259,33 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to بدهی های متفرقه.
+        /// </summary>
+        public static string MiscDebts {
+            get {
+                return ResourceManager.GetString("MiscDebts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to پرداخت های متفرقه.
+        /// </summary>
+        public static string MiscPayments {
+            get {
+                return ResourceManager.GetString("MiscPayments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to عناوین بدهی/پرداخت های متفرقه.
+        /// </summary>
+        public static string MiscTitles {
+            get {
+                return ResourceManager.GetString("MiscTitles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to تأیید.
         /// </summary>
         public static string Ok {

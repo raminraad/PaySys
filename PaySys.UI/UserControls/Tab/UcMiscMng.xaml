@@ -1,0 +1,102 @@
+﻿<UserControl x:Name="SmpUcMiscMng"
+	x:Class="PaySys.UI.UC.UcMiscMng"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:PaySys.UI.UC"
+	xmlns:bindingConverter="clr-namespace:PaySys.ModelAndBindLib.BindingConverter;assembly=PaySys.ModelAndBindLib"
+	xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
+	mc:Ignorable="d"
+	FlowDirection="RightToLeft"
+	d:DesignHeight="300"
+	d:DesignWidth="900">
+	<UserControl.Resources>
+		<bindingConverter:MiscDisplayConverter x:Key="CnvMiscDisplay"/>
+	</UserControl.Resources>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition x:Name="RowToolbar"
+				Height="Auto"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="6*"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="2*"/>
+			<ColumnDefinition Width="3*"/>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="3*"/>
+			<ColumnDefinition Width="2*"/>
+		</Grid.ColumnDefinitions>
+		<ToolBar Grid.Row="0"
+			Grid.ColumnSpan="5">
+			<Button Name="BtnAdd"
+				Margin="2,0"
+				Content="{x:Static fa:Labels.Add}"
+				Click="BtnAdd_OnClick"/>
+			<Button Name="BtnEdit"
+				Content="{x:Static fa:Labels.EditTitle}"
+				Click="BtnEditMiscTitle_OnClick"
+				Margin="2,0"/>
+			<Button Name="BtnChangeExpenseArticle"
+				Margin="2,0"
+				Click="BtnChangeExpenseArticle_OnClick"
+				Content="{x:Static fa:Labels.ChangeExpenseArticle}"/>
+			<Button Name="BtnDelete"
+				Margin="2,0"
+				Click="BtnDelete_OnClick"
+				Content="{x:Static fa:Labels.Delete}"/>
+		</ToolBar>
+		<TextBlock Grid.Row="2"
+			Grid.Column="1"
+			FontSize="20"
+			HorizontalAlignment="Center"
+			VerticalAlignment="Center"
+			Text="{x:Static fa:Labels.MiscPayments}"/>
+		<TextBlock Grid.Row="2"
+			FontSize="20" 
+			Grid.Column="3"
+			HorizontalAlignment="Center"
+			VerticalAlignment="Center"
+			Text="{x:Static fa:Labels.MiscDebts}"/>
+		<ListView x:Name="ListViewMiscPayment"
+			Grid.Row="3"
+			Grid.RowSpan="2"
+			Grid.Column="1"
+			MaxWidth="300"
+			GotKeyboardFocus="ListViewMiscPayment_OnGotKeyboardFocus"
+			ItemsSource="{Binding ElementName=SmpUcMiscMng,Path=CurrentSubGroup.MiscsOfTypePayment,UpdateSourceTrigger=PropertyChanged}">
+			<ListView.View>
+				<GridView>
+					<GridViewColumn Header="{x:Static fa:Labels.Title}"
+						Width="90"
+						DisplayMemberBinding="{Binding Title}"/>
+					<GridViewColumn Header="{x:Static fa:Labels.ExpenseArticle}"
+						Width="80"
+						DisplayMemberBinding="{Binding CurrentExpenseArticle.DspCodeTitle}"/>
+				</GridView>
+			</ListView.View>
+		</ListView>
+		<ListView Grid.Row="3"
+			Grid.RowSpan="2"
+			Grid.Column="3"
+			MaxWidth="300"
+			x:Name="ListViewMiscDebt"
+			GotKeyboardFocus="ListViewMiscDebt_OnGotKeyboardFocus"
+				  ItemsSource="{Binding ElementName=SmpUcMiscMng,Path=CurrentSubGroup.MiscsOfTypeDebt,UpdateSourceTrigger=PropertyChanged}">
+			<ListView.View>
+				<GridView>
+					<GridViewColumn Header="{x:Static fa:Labels.Title}"
+						Width="90"
+						DisplayMemberBinding="{Binding Title}"/>
+					<GridViewColumn Header="{x:Static fa:Labels.ExpenseArticle}"
+						Width="80"
+						DisplayMemberBinding="{Binding CurrentExpenseArticle.DspCodeTitle}"/>
+				</GridView>
+			</ListView.View>
+		</ListView>
+	</Grid>
+</UserControl>

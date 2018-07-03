@@ -44,7 +44,9 @@ namespace PaySys.UI.UC
 			InitializeComponent();
 			ListViewGroupMain.DataContext = _context.MainGroups.ToList();
 			SmpUcContractFieldTitlesMng.SaveContext += () => _context.SaveChanges();
+			SmpUcMiscMng.SaveContext += () => _context.SaveChanges();
 			SmpUcContractFieldTitlesMng.ExpenseArticlesAll = _context.ExpenseArticles.ToList();
+			SmpUcMiscMng.ExpenseArticlesAll = _context.ExpenseArticles.ToList();
 		}
 
 		private void BtnAddMainGroup_OnClick(object sender, RoutedEventArgs e)

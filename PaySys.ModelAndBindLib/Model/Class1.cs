@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -40,7 +41,10 @@ namespace PaySys.ModelAndBindLib.Model
 		public virtual List<ExpenseArticleOfContractFieldForSubGroup> ExpenseArticleOfContractFieldForSubGroups { get; set; }
 		public virtual List<ExpenseArticleOfMiscForSubGroup> ExpenseArticleOfMiscForSubGroups { get; set; }
 		public virtual List<ExpenseArticleOfOverTimeForSubGroup> ExpenseArticleOfOverTimeForSubGroups { get; set; }
-
+		[NotMapped]
+		public ObservableCollection<Misc> MiscsOfTypePayment => new ObservableCollection<Misc>(Miscs.Where(misc => misc.IsPayment));
+		[NotMapped]
+		public ObservableCollection<Misc> MiscsOfTypeDebt => new ObservableCollection<Misc>(Miscs.Where(misc => !misc.IsPayment));
 		public override bool Equals(object obj)
 		{
 			return (obj as SubGroup)?.SubGroupId == SubGroupId && string.Equals(Title, ((SubGroup)obj).Title);
@@ -61,6 +65,30 @@ namespace PaySys.ModelAndBindLib.Model
 		public virtual SubGroup SubGroup { set; get; }
 		public virtual List<PayslipEmployeeMisc> PayslipEmployeeMiscs { get; set; }
 		public virtual List<ExpenseArticleOfMiscForSubGroup> ExpenseArticleOfMiscForSubGroups { get; set; }
+		[NotMapped]
+		public ExpenseArticle CurrentExpenseArticle
+		{
+			get => ExpenseArticleOfMiscForSubGroups?.FirstOrDefault(exp => exp.Month == 007)?.ExpenseArticle;
+			set
+			{
+				if (CurrentExpenseArticle != null)
+				{
+					ExpenseArticleOfMiscForSubGroups.FirstOrDefault(exp => exp.Month == 007).ExpenseArticle = value;
+				}
+				else
+				{
+					if (ExpenseArticleOfMiscForSubGroups==null) ExpenseArticleOfMiscForSubGroups=new List<ExpenseArticleOfMiscForSubGroup>();
+					var newLink = new ExpenseArticleOfMiscForSubGroup
+					{
+						SubGroup = SubGroup,
+						Misc = this,
+						Month = 007,
+						ExpenseArticle = value
+					};
+					ExpenseArticleOfMiscForSubGroups.Add(newLink);
+				}
+			}
+		}
 	}
 
 	/// <summary>#05 پرداختهای متفرقه دخیل در محاسبات مؤلفه ها</summary>
@@ -102,6 +130,8 @@ namespace PaySys.ModelAndBindLib.Model
 		public virtual List<ExpenseArticleOfContractFieldForSubGroup> ExpenseArticleOfContractFieldForSubGroups { get; set; }
 		public virtual List<ExpenseArticleOfMiscForSubGroup> ExpenseArticleOfMiscForSubGroups { get; set; }
 		public virtual List<ExpenseArticleOfOverTimeForSubGroup> ExpenseArticleOfOverTimeForSubGroups { get; set; }
+		[NotMapped]
+		public string DspCodeTitle => $"{Code}:{Title}";
 	}
 
 	/// <summary>#10 مانده بدهی متفرقه اشخاص</summary>
@@ -128,7 +158,7 @@ namespace PaySys.ModelAndBindLib.Model
 		[NotMapped]
 		public ExpenseArticle CurrentExpenseArticle
 		{
-			get => ExpenseArticleOfContractFieldForSubGroups.FirstOrDefault(exp => exp.Month == 007)?.ExpenseArticle;
+			get => ExpenseArticleOfContractFieldForSubGroups?.FirstOrDefault(exp => exp.Month == 007)?.ExpenseArticle;
 			set
 			{
 				if (CurrentExpenseArticle != null)
@@ -144,6 +174,8 @@ namespace PaySys.ModelAndBindLib.Model
 						Month = 007,
 						ExpenseArticle = value
 					};
+					if (ExpenseArticleOfContractFieldForSubGroups == null)
+						ExpenseArticleOfContractFieldForSubGroups=new List<ExpenseArticleOfContractFieldForSubGroup>();
 					ExpenseArticleOfContractFieldForSubGroups.Add(newLink);
 				}
 			}

@@ -129,6 +129,9 @@
   <data name="EnterMainGroupName" xml:space="preserve">
     <value>لطفاً نام گروه اصلی را وارد نمایید.</value>
   </data>
+  <data name="EnterMiscTitle" xml:space="preserve">
+    <value>لطفاً عنوان بدهی/پرداخت متفرقه را وارد نمایید.</value>
+  </data>
   <data name="EnterSubGroupName" xml:space="preserve">
     <value>لطفاً نام زیر گروه را وارد نمایید.</value>
   </data>

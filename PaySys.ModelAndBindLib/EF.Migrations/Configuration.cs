@@ -83,6 +83,32 @@ namespace PaySys.ModelAndBindLib.Migrations
 				"هزينه سفر",
 			};
 
+			var miscsPayment = new[]
+			{
+				"پاداش",
+				"عیدی",
+				"حق الزحمه",
+				"تشویقی",
+				"مساعده",
+				"حق العمل",
+				"حسن انجام کار",
+				"هزینه تحصیل",
+				"بورسیه"
+			};
+
+			var miscDebt = new[]
+			{
+				"جریمه",
+				"توبیخی",
+				"بدهی قبلی",
+				"وام مسکن",
+				"وام ضروری",
+				"کسر کار",
+				"اضافه مرخصی",
+				"خسارت اموال",
+				"هزینه های متفرقه"
+			};
+
 			var expenseArticles = new[]
 			{
 				"دیون",
@@ -196,7 +222,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 
 			#endregion
 
-			#region Employee
+			#region Employees
 
 			var employeeFaker = new Faker<Employee>("fa").StrictMode(false).Rules((f, e) =>
 			{
@@ -225,7 +251,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 
 			#endregion
 
-			#region ExpenseArticle
+			#region ExpenseArticles
 
 			var expenseArticleFaker = new Faker<ExpenseArticle>("fa").StrictMode(false).Rules((f, e) =>
 			{
@@ -240,7 +266,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 
 			#endregion
 
-			#region Job
+			#region Jobs
 
 			var jobFaker = new Faker<Job>("fa").StrictMode(false).Rules((f, e) =>
 			{
@@ -257,7 +283,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 
 			#endregion
 
-			#region ContractField
+			#region ContractFields
 
 			var contractFieldTitleFaker = new Faker<ContractField>("fa").StrictMode(false).Rules((f, e) =>
 			{
@@ -272,11 +298,10 @@ namespace PaySys.ModelAndBindLib.Migrations
 
 			#endregion
 
-			#region Misc
+			#region Miscs
 
 			var miscFaker = new Faker<Misc>("fa").StrictMode(false).Rules((f, e) =>
 			{
-				e.Title = f.Commerce.Department();
 				e.Year = 97;
 				e.Month = 007;
 			});
@@ -287,6 +312,11 @@ namespace PaySys.ModelAndBindLib.Migrations
 					for (var i = 0; i < 10; i++)
 					{
 						miscFaker.RuleFor(misc => misc.SubGroup, subGroup).RuleFor(misc => misc.IsPayment, i < 5);
+						if (i < 5)
+							miscFaker.RuleFor(misc => misc.Title, (faker, misc) => faker.PickRandom(miscsPayment));
+						else
+							miscFaker.RuleFor(misc => misc.Title, (faker, misc) => faker.PickRandom(miscDebt));
+
 						seedMiscs.Add(miscFaker.Generate());
 					}
 			context.Miscs.AddRange(seedMiscs);

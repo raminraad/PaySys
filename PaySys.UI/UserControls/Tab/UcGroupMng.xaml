@@ -21,10 +21,10 @@
 			<RowDefinition Height="5*" />
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="2*" />
-			<ColumnDefinition Width="3*" />
+			<ColumnDefinition Width="8*" />
+			<ColumnDefinition Width="4*" />
 			<ColumnDefinition Width="1*" />
-			<ColumnDefinition Width="3*" />
+			<ColumnDefinition Width="4*" />
 			<ColumnDefinition Width="8*" />
 		</Grid.ColumnDefinitions>
 		<ToolBar Grid.Row="0"
@@ -90,9 +90,14 @@
 					Grid.Column="0"
 					Grid.RowSpan="2"
 					Grid.ColumnSpan="5">
-			<TabItem x:Name="TabItemContractFieldTitles"
+			<TabItem x:Name="TabItemContractFieldTitlesMng"
 					 Header="{x:Static fa:Labels.ContractFieldTitles}">
 				<local:UcContractFieldTitlesMng x:Name="SmpUcContractFieldTitlesMng"
+												CurrentSubGroup="{Binding ElementName=ListViewSubGroup,Path=SelectedItem}" />
+			</TabItem>
+			<TabItem x:Name="TabItemMisc"
+					 Header="{x:Static fa:Labels.MiscTitles}">
+				<local:UcMiscMng x:Name="SmpUcMiscMng"
 												CurrentSubGroup="{Binding ElementName=ListViewSubGroup,Path=SelectedItem}" />
 			</TabItem>
 		</TabControl>

@@ -97,6 +97,15 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to لطفاً عنوان بدهی/پرداخت متفرقه را وارد نمایید..
+        /// </summary>
+        public static string EnterMiscTitle {
+            get {
+                return ResourceManager.GetString("EnterMiscTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to لطفاً نام زیر گروه را وارد نمایید..
         /// </summary>
         public static string EnterSubGroupName {
