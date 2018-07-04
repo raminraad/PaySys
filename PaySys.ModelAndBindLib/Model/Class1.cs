@@ -31,7 +31,7 @@ namespace PaySys.ModelAndBindLib.Model
 		public bool Is31 { set; get; }
 		[Required]
 		public virtual MainGroup MainGroup { set; get; }
-		public virtual List<ParameterValue> ParameterValues { set; get; }
+		public virtual List<Parameter> Parameters { set; get; }
 		public virtual List<MissionFormula> MissionFormulas { get; set; }
 		public virtual List<TaxTable> TaxTables { get; set; }
 		public virtual List<HandselFormula> HandselFormulas { get; set; }
@@ -96,17 +96,19 @@ namespace PaySys.ModelAndBindLib.Model
 	{
 		public int ParameterInvolvedMiscId { get; set; }
 		public virtual Misc Misc { get; set; }
-		public virtual ParameterValue ParameterValue { get; set; }
+		public virtual Parameter Parameter { get; set; }
 	}
 
 	/// <summary>#07 مقادیر مؤلفه های محاسباتی زیرگروه در سال و ماه</summary>
-	public class ParameterValue
+	public class Parameter
 	{
-		public int ParameterValueId { get; set; }
+		public int ParameterId { get; set; }
 		public float Value { get; set; }
-		public ContentType ContentType { get; set; }
+		public ValueType ValueType { get; set; }
 		public string Title { get; set; }
 		public string Alias { get; set; }
+		public int Year { get; set; }
+		public int Month { get; set; }
 		public virtual List<ParameterInvolvedMisc> ParameterInvolvedMiscs { set; get; }
 		public virtual List<ParameterInvolvedContractField> ParameterInvolvedContractFields { get; set; }
 		public virtual SubGroup SubGroup { get; set; }
@@ -117,7 +119,7 @@ namespace PaySys.ModelAndBindLib.Model
 	{
 		public int ParameterInvolvedContractFieldId { get; set; }
 		public virtual ContractField ContractField { get; set; }
-		public virtual ParameterValue ParameterValue { get; set; }
+		public virtual Parameter Parameter { get; set; }
 	}
 
 	/// <summary>#09 مواد هزینه</summary>
@@ -554,9 +556,12 @@ namespace PaySys.ModelAndBindLib.Model
 	}
 
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum ContentType
+	public enum ValueType
 	{
-		//todo: fill enum
+		Unknown=0,
+		Absolute,
+		Percent
+
 	}
 
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
@@ -565,12 +570,6 @@ namespace PaySys.ModelAndBindLib.Model
 		//todo: fill enum
 		[Description("وارد نشده")]
 		Unknown = 0,
-	}
-
-	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum ValueType
-	{
-		//todo: fill enum
 	}
 
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]

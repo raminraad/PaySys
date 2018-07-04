@@ -17,6 +17,7 @@ namespace PaySys.UI.UC
 	/// <summary>Interaction logic for UcContractFieldTitlesMng.xaml</summary>
 	public partial class UcContractFieldTitlesMng : UserControl
 	{
+
 		private readonly string _enterTitleMessage;
 
 		public UcContractFieldTitlesMng()
@@ -31,7 +32,7 @@ namespace PaySys.UI.UC
 		private void BtnAddMainGroup_OnClick(object sender, RoutedEventArgs e)
 		{
 			var newTitle = string.Empty;
-			if (InputBox.Show(_enterTitleMessage, ref newTitle) == DialogResult.OK)
+			if(InputBox.Show(_enterTitleMessage, ref newTitle) == DialogResult.OK)
 			{
 				CurrentSubGroup.ContractFields.Add(new ContractField
 				{
@@ -47,7 +48,7 @@ namespace PaySys.UI.UC
 		{
 			var selectedTitle = ListViewGroupContractField.SelectedItem as ContractField;
 			var newTitle = selectedTitle?.Title;
-			if (InputBox.Show(_enterTitleMessage, ref newTitle) == DialogResult.OK)
+			if(InputBox.Show(_enterTitleMessage, ref newTitle) == DialogResult.OK)
 			{
 				selectedTitle.Title = newTitle;
 				SaveContext.Invoke();
@@ -57,11 +58,11 @@ namespace PaySys.UI.UC
 
 		private void BtnDelete_OnClick(object sender, RoutedEventArgs e)
 		{
-			if (MessageBox.Show(ResourceAccessor.Messages.GetString("DeleteConfirmationOfItem"), "", MessageBoxButtons.YesNo,
-				    MessageBoxIcon.Question, MessageBoxDefaultButton.Button2, MessageBoxOptions.RightAlign) == DialogResult.Yes)
+			if(MessageBox.Show(ResourceAccessor.Messages.GetString("DeleteConfirmationOfItem"), "", MessageBoxButtons.YesNo,
+			                   MessageBoxIcon.Question, MessageBoxDefaultButton.Button2, MessageBoxOptions.RightAlign) ==
+			   DialogResult.Yes)
 			{
-				CurrentSubGroup.ContractFields.Remove(
-					(ContractField) ListViewGroupContractField.SelectedItem);
+				CurrentSubGroup.ContractFields.Remove((ContractField) ListViewGroupContractField.SelectedItem);
 				SaveContext.Invoke();
 				CollectionViewSource.GetDefaultView(ListViewGroupContractField.ItemsSource).Refresh();
 			}
@@ -69,12 +70,15 @@ namespace PaySys.UI.UC
 
 		private void BtnChangeExpenseArticle_OnClick(object sender, RoutedEventArgs e)
 		{
-			WinSelectExpenseArticle selectExpenseArticleDialog = new WinSelectExpenseArticle();
-			selectExpenseArticleDialog.ListItemsSource=ExpenseArticlesAll;
-			if (selectExpenseArticleDialog.ShowDialog() == true)
+			WinSelectItem selectExpenseArticleDialog =
+				new WinSelectItem(ResourceAccessor.Messages.GetString("SelectExpenseArticle"))
+				{
+					ListViewItemsSource = ExpenseArticlesAll
+				};
+			if(selectExpenseArticleDialog.ShowDialog() == true)
 			{
 				var selectedContractField = ListViewGroupContractField.SelectedItem as ContractField;
-				selectedContractField.CurrentExpenseArticle=selectExpenseArticleDialog.SelectedExpenseArticle;
+				selectedContractField.CurrentExpenseArticle = (ExpenseArticle) selectExpenseArticleDialog.SelectedItem;
 				SaveContext.Invoke();
 				CollectionViewSource.GetDefaultView(ListViewGroupContractField.ItemsSource).Refresh();
 			}
@@ -82,7 +86,9 @@ namespace PaySys.UI.UC
 
 		#region DependencyProperties
 
-		public static readonly DependencyProperty CurrentSubGroupProperty = DependencyProperty.Register("CurrentSubGroup", typeof(SubGroup), typeof(UcContractFieldTitlesMng), new PropertyMetadata(default(SubGroup)));
+		public static readonly DependencyProperty CurrentSubGroupProperty =
+			DependencyProperty.Register("CurrentSubGroup", typeof(SubGroup), typeof(UcContractFieldTitlesMng),
+			                            new PropertyMetadata(default(SubGroup)));
 
 		public SubGroup CurrentSubGroup
 		{
@@ -90,13 +96,17 @@ namespace PaySys.UI.UC
 			set => SetValue(CurrentSubGroupProperty, value);
 		}
 
-		public static readonly DependencyProperty ExpenseArticlesAllProperty = DependencyProperty.Register("ExpenseArticlesAll", typeof(List<ExpenseArticle>), typeof(UcContractFieldTitlesMng), new PropertyMetadata(default(List<ExpenseArticle>)));
+		public static readonly DependencyProperty ExpenseArticlesAllProperty =
+			DependencyProperty.Register("ExpenseArticlesAll", typeof(List<ExpenseArticle>), typeof(UcContractFieldTitlesMng),
+			                            new PropertyMetadata(default(List<ExpenseArticle>)));
 
 		public List<ExpenseArticle> ExpenseArticlesAll
 		{
 			get => (List<ExpenseArticle>) GetValue(ExpenseArticlesAllProperty);
 			set => SetValue(ExpenseArticlesAllProperty, value);
 		}
+
 		#endregion
+
 	}
 }

@@ -93,11 +93,11 @@ namespace PaySys.UI.UC
 
 		private void BtnChangeExpenseArticle_OnClick(object sender, RoutedEventArgs e)
 		{
-			WinSelectExpenseArticle selectExpenseArticleDialog = new WinSelectExpenseArticle();
-			selectExpenseArticleDialog.ListItemsSource = ExpenseArticlesAll;
+			var selectExpenseArticleDialog = new WinSelectItem(ResourceAccessor.Messages.GetString("SelectExpenseArticle"));
+			selectExpenseArticleDialog.ListViewItemsSource = ExpenseArticlesAll;
 			if (selectExpenseArticleDialog.ShowDialog() == true)
 			{
-				_selectedMisc.CurrentExpenseArticle = selectExpenseArticleDialog.SelectedExpenseArticle;
+				_selectedMisc.CurrentExpenseArticle = (ExpenseArticle) selectExpenseArticleDialog.SelectedItem;
 				SaveContext.Invoke();
 				SelectedListView.GetBindingExpression(ItemsControl.ItemsSourceProperty)?.UpdateTarget();
 			}

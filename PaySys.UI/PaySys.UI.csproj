@@ -71,11 +71,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Dialogs\WinSelectExpenseArticle.xaml.cs">
-      <DependentUpon>WinSelectExpenseArticle.xaml</DependentUpon>
+    <Compile Include="Dialogs\WinSelectItem.xaml.cs">
+      <DependentUpon>WinSelectItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="ExtensionMethods\UcMethods.cs" />
     <Compile Include="Modals\InputBox.cs" />
+    <Compile Include="Modals\PaySysMessage.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="UserControls\Ingredient\UcFormStateLabel.xaml.cs">
       <DependentUpon>UcFormStateLabel.xaml</DependentUpon>
@@ -107,7 +108,10 @@
     <Compile Include="UserControls\Tab\UcMiscMng.xaml.cs">
       <DependentUpon>UcMiscMng.xaml</DependentUpon>
     </Compile>
-    <Page Include="Dialogs\WinSelectExpenseArticle.xaml">
+    <Compile Include="UserControls\Tab\UcParameterMng.xaml.cs">
+      <DependentUpon>UcParameterMng.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Dialogs\WinSelectItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -164,6 +168,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Tab\UcMiscMng.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Tab\UcParameterMng.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

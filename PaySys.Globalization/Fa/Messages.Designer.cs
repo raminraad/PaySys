@@ -72,9 +72,9 @@ namespace PaySys.Globalization.Fa {
         /// <summary>
         ///   Looks up a localized string similar to رکورد انتخاب شده حذف خواهد شد. تأیید مینمایید؟.
         /// </summary>
-        public static string DeleteRecord {
+        public static string DeleteItem {
             get {
-                return ResourceManager.GetString("DeleteRecord", resourceCulture);
+                return ResourceManager.GetString("DeleteItem", resourceCulture);
             }
         }
         
@@ -106,6 +106,15 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to لطفاًمقدار مؤلفه محاسباتی را وارد نمایید..
+        /// </summary>
+        public static string EnterParameterValue {
+            get {
+                return ResourceManager.GetString("EnterParameterValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to لطفاً نام زیر گروه را وارد نمایید..
         /// </summary>
         public static string EnterSubGroupName {
@@ -115,11 +124,38 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to لطفاً فیلد مورد نظر را انتخاب فرمایید..
+        /// </summary>
+        public static string SelectContractField {
+            get {
+                return ResourceManager.GetString("SelectContractField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to لطفاً ماده هزینه را انتخاب نمایید..
         /// </summary>
         public static string SelectExpenseArticle {
             get {
                 return ResourceManager.GetString("SelectExpenseArticle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to لطفاً یکی از آیتم ها را انتخاب فرمایید..
+        /// </summary>
+        public static string SelectItem {
+            get {
+                return ResourceManager.GetString("SelectItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to لطفاً پرداخت متفرقه مورد نظر را انتخاب فرمایید..
+        /// </summary>
+        public static string SelectMiscPayment {
+            get {
+                return ResourceManager.GetString("SelectMiscPayment", resourceCulture);
             }
         }
     }

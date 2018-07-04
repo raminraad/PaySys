@@ -45,8 +45,11 @@ namespace PaySys.UI.UC
 			ListViewGroupMain.DataContext = _context.MainGroups.ToList();
 			SmpUcContractFieldTitlesMng.SaveContext += () => _context.SaveChanges();
 			SmpUcMiscMng.SaveContext += () => _context.SaveChanges();
+			SmpUcParameterMng.SaveContext += () => _context.SaveChanges();
 			SmpUcContractFieldTitlesMng.ExpenseArticlesAll = _context.ExpenseArticles.ToList();
 			SmpUcMiscMng.ExpenseArticlesAll = _context.ExpenseArticles.ToList();
+//			SmpUcParameterMng.ContractFieldsAll = _context.ContractFields.ToList();
+//			SmpUcParameterMng.MiscPaymentsAll = _context.Miscs.Where(misc => misc.IsPayment).ToList();
 		}
 
 		private void BtnAddMainGroup_OnClick(object sender, RoutedEventArgs e)

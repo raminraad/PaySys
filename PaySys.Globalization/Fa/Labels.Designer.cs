@@ -97,6 +97,24 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to افزودن فیلد حکم دخیل در محاسبه مؤلفه.
+        /// </summary>
+        public static string AddParameterInvolvedContractField {
+            get {
+                return ResourceManager.GetString("AddParameterInvolvedContractField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to افزودن پرداخت متفرقه دخیل در محاسبه مؤلفه.
+        /// </summary>
+        public static string AddParameterInvolvedMiscPayment {
+            get {
+                return ResourceManager.GetString("AddParameterInvolvedMiscPayment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to زیر گروه جدید.
         /// </summary>
         public static string AddSubGroup {
@@ -178,6 +196,24 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to حذف فیلد حکم دخیل در محاسبه مؤلفه.
+        /// </summary>
+        public static string DeleteParameterInvolvedContractField {
+            get {
+                return ResourceManager.GetString("DeleteParameterInvolvedContractField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to حذف پرداخت متفرقه دخیل در محاسبه مؤلفه.
+        /// </summary>
+        public static string DeleteParameterInvolvedMiscPayment {
+            get {
+                return ResourceManager.GetString("DeleteParameterInvolvedMiscPayment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ویرایش.
         /// </summary>
         public static string Edit {
@@ -192,6 +228,15 @@ namespace PaySys.Globalization.Fa {
         public static string EditTitle {
             get {
                 return ResourceManager.GetString("EditTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ویرایش مقدار.
+        /// </summary>
+        public static string EditValue {
+            get {
+                return ResourceManager.GetString("EditValue", resourceCulture);
             }
         }
         
@@ -291,6 +336,42 @@ namespace PaySys.Globalization.Fa {
         public static string Ok {
             get {
                 return ResourceManager.GetString("Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to فیلدهای احکام دخیل در محاسبه.
+        /// </summary>
+        public static string ParameterInvolvedContractFields {
+            get {
+                return ResourceManager.GetString("ParameterInvolvedContractFields", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to پرداختهای متفرقه دخیل در محاسبه.
+        /// </summary>
+        public static string ParameterInvolvedMiscPayments {
+            get {
+                return ResourceManager.GetString("ParameterInvolvedMiscPayments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to مؤلفه های محاسباتی.
+        /// </summary>
+        public static string Parameters {
+            get {
+                return ResourceManager.GetString("Parameters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to عنوان مؤلفه محاسباتی.
+        /// </summary>
+        public static string ParameterTitle {
+            get {
+                return ResourceManager.GetString("ParameterTitle", resourceCulture);
             }
         }
         
@@ -408,6 +489,24 @@ namespace PaySys.Globalization.Fa {
         public static string Unknown {
             get {
                 return ResourceManager.GetString("Unknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to مقدار.
+        /// </summary>
+        public static string Value {
+            get {
+                return ResourceManager.GetString("Value", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نوع مقدار.
+        /// </summary>
+        public static string ValueType {
+            get {
+                return ResourceManager.GetString("ValueType", resourceCulture);
             }
         }
     }

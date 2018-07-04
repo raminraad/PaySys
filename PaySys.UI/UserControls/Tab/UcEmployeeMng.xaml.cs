@@ -12,7 +12,7 @@ using System.Windows.Data;
 using PaySys.Globalization;
 using PaySys.ModelAndBindLib.Engine;
 using PaySys.ModelAndBindLib.Model;
-
+using PaySys.UI.Modals;
 
 namespace PaySys.UI.UC
 {
@@ -76,10 +76,7 @@ namespace PaySys.UI.UC
 
 		private void BtnEmployeeDelete_OnClick(object sender, RoutedEventArgs e)
 		{
-			String strmsg = ResourceAccessor.Messages.GetString("DeleteRecord", CultureInfo.CurrentCulture);
-			var result = MessageBox.Show(strmsg, "Delete", MessageBoxButton.YesNo,
-				MessageBoxImage.Question, MessageBoxResult.No);
-			if (result != MessageBoxResult.Yes)
+			if (PaySysMessage.GetDeleteItemConfirmation() != MessageBoxResult.Yes)
 				return;
 			var index = DtgMain.SelectedIndex;
 			_context.Employees.Remove(CurrentItem);

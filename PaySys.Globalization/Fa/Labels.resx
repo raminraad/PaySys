@@ -234,4 +234,37 @@
   <data name="MiscPayments" xml:space="preserve">
     <value>پرداخت های متفرقه</value>
   </data>
+  <data name="Parameters" xml:space="preserve">
+    <value>مؤلفه های محاسباتی</value>
+  </data>
+  <data name="ParameterTitle" xml:space="preserve">
+    <value>عنوان مؤلفه محاسباتی</value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>مقدار</value>
+  </data>
+  <data name="ValueType" xml:space="preserve">
+    <value>نوع مقدار</value>
+  </data>
+  <data name="ParameterInvolvedContractFields" xml:space="preserve">
+    <value>فیلدهای احکام دخیل در محاسبه</value>
+  </data>
+  <data name="ParameterInvolvedMiscPayments" xml:space="preserve">
+    <value>پرداختهای متفرقه دخیل در محاسبه</value>
+  </data>
+  <data name="EditValue" xml:space="preserve">
+    <value>ویرایش مقدار</value>
+  </data>
+  <data name="AddParameterInvolvedContractField" xml:space="preserve">
+    <value>افزودن فیلد حکم دخیل در محاسبه مؤلفه</value>
+  </data>
+  <data name="AddParameterInvolvedMiscPayment" xml:space="preserve">
+    <value>افزودن پرداخت متفرقه دخیل در محاسبه مؤلفه</value>
+  </data>
+  <data name="DeleteParameterInvolvedContractField" xml:space="preserve">
+    <value>حذف فیلد حکم دخیل در محاسبه مؤلفه</value>
+  </data>
+  <data name="DeleteParameterInvolvedMiscPayment" xml:space="preserve">
+    <value>حذف پرداخت متفرقه دخیل در محاسبه مؤلفه</value>
+  </data>
 </root>
