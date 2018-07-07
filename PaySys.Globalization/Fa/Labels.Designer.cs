@@ -223,6 +223,15 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ویرایش نرخ.
+        /// </summary>
+        public static string EditRate {
+            get {
+                return ResourceManager.GetString("EditRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ویرایش عنوان.
         /// </summary>
         public static string EditTitle {
@@ -259,11 +268,38 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to نرخ.
+        /// </summary>
+        public static string Factor {
+            get {
+                return ResourceManager.GetString("Factor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to حالت جاری فرم.
         /// </summary>
         public static string FormCurrentState {
             get {
                 return ResourceManager.GetString("FormCurrentState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to از.
+        /// </summary>
+        public static string From {
+            get {
+                return ResourceManager.GetString("From", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to فرمول عیدی.
+        /// </summary>
+        public static string HandselFormula {
+            get {
+                return ResourceManager.GetString("HandselFormula", resourceCulture);
             }
         }
         
@@ -304,7 +340,7 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to بدهی های متفرقه.
+        ///   Looks up a localized string similar to کسور متفرقه.
         /// </summary>
         public static string MiscDebts {
             get {
@@ -322,7 +358,7 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to عناوین بدهی/پرداخت های متفرقه.
+        ///   Looks up a localized string similar to عناوین پرداخت ها و کسور متفرقه.
         /// </summary>
         public static string MiscTitles {
             get {
@@ -475,11 +511,38 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to جدول مالیاتی.
+        /// </summary>
+        public static string TaxTable {
+            get {
+                return ResourceManager.GetString("TaxTable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to جدول محاسبه مبلغ مالیات.
+        /// </summary>
+        public static string TaxValueCalculationTable {
+            get {
+                return ResourceManager.GetString("TaxValueCalculationTable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to عنوان.
         /// </summary>
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تا.
+        /// </summary>
+        public static string To {
+            get {
+                return ResourceManager.GetString("To", resourceCulture);
             }
         }
         

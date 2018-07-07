@@ -32,38 +32,18 @@ namespace PaySys.ModelAndBindLib.Migrations
                         AmountNonResident = c.Int(nullable: false),
                         VehicleType = c.Int(nullable: false),
                         TravelExpense = c.Double(nullable: false),
+                        MissionContractNo = c.String(),
                         City_CityId = c.Int(),
                         Employee_EmployeeId = c.Int(),
+                        ContractMaster_ContractMasterId = c.Int(),
                     })
                 .PrimaryKey(t => t.MissionId)
                 .ForeignKey("dbo.Cities", t => t.City_CityId)
                 .ForeignKey("dbo.Employees", t => t.Employee_EmployeeId)
+                .ForeignKey("dbo.ContractMasters", t => t.ContractMaster_ContractMasterId)
                 .Index(t => t.City_CityId)
-                .Index(t => t.Employee_EmployeeId);
-            
-            CreateTable(
-                "dbo.Employees",
-                c => new
-                    {
-                        EmployeeId = c.Int(nullable: false, identity: true),
-                        FName = c.String(),
-                        LName = c.String(),
-                        NationalCardNo = c.String(),
-                        BirthDate = c.String(),
-                        BirthPlace = c.String(),
-                        FatherName = c.String(),
-                        HomeTel = c.String(),
-                        Address = c.String(),
-                        DossierNo = c.String(),
-                        Sex = c.Int(nullable: false),
-                        CellNo = c.String(),
-                        PostalCode = c.String(),
-                        PersonnelCode = c.String(),
-                        IdCardExportPlace = c.String(),
-                        IdCardExportDate = c.String(),
-                        IdCardNo = c.String(),
-                    })
-                .PrimaryKey(t => t.EmployeeId);
+                .Index(t => t.Employee_EmployeeId)
+                .Index(t => t.ContractMaster_ContractMasterId);
             
             CreateTable(
                 "dbo.ContractMasters",
@@ -83,16 +63,16 @@ namespace PaySys.ModelAndBindLib.Migrations
                         AccountNoGov = c.String(),
                         AccountNoEmp = c.String(),
                         IsCurrentContract = c.Boolean(nullable: false),
-                        SubGroup_SubGroupId = c.Int(),
                         Employee_EmployeeId = c.Int(),
+                        SubGroup_SubGroupId = c.Int(),
                         Job_JobId = c.Int(),
                     })
                 .PrimaryKey(t => t.ContractMasterId)
-                .ForeignKey("dbo.SubGroups", t => t.SubGroup_SubGroupId)
                 .ForeignKey("dbo.Employees", t => t.Employee_EmployeeId)
+                .ForeignKey("dbo.SubGroups", t => t.SubGroup_SubGroupId)
                 .ForeignKey("dbo.Jobs", t => t.Job_JobId)
-                .Index(t => t.SubGroup_SubGroupId)
                 .Index(t => t.Employee_EmployeeId)
+                .Index(t => t.SubGroup_SubGroupId)
                 .Index(t => t.Job_JobId);
             
             CreateTable(
@@ -202,6 +182,63 @@ namespace PaySys.ModelAndBindLib.Migrations
                 .ForeignKey("dbo.Miscs", t => t.Misc_MiscId)
                 .Index(t => t.Employee_EmployeeId)
                 .Index(t => t.Misc_MiscId);
+            
+            CreateTable(
+                "dbo.Employees",
+                c => new
+                    {
+                        EmployeeId = c.Int(nullable: false, identity: true),
+                        FName = c.String(),
+                        LName = c.String(),
+                        NationalCardNo = c.String(),
+                        BirthDate = c.String(),
+                        BirthPlace = c.String(),
+                        FatherName = c.String(),
+                        HomeTel = c.String(),
+                        Address = c.String(),
+                        DossierNo = c.String(),
+                        Sex = c.Int(nullable: false),
+                        CellNo = c.String(),
+                        PostalCode = c.String(),
+                        PersonnelCode = c.String(),
+                        IdCardExportPlace = c.String(),
+                        IdCardExportDate = c.String(),
+                        IdCardNo = c.String(),
+                    })
+                .PrimaryKey(t => t.EmployeeId);
+            
+            CreateTable(
+                "dbo.PayslipEmployeeMiscs",
+                c => new
+                    {
+                        PayslipEmployeeMiscId = c.Int(nullable: false, identity: true),
+                        Value = c.Single(nullable: false),
+                        PayslipValue = c.Single(nullable: false),
+                        Year = c.Int(nullable: false),
+                        Month = c.Int(nullable: false),
+                        Employee_EmployeeId = c.Int(),
+                        Misc_MiscId = c.Int(),
+                    })
+                .PrimaryKey(t => t.PayslipEmployeeMiscId)
+                .ForeignKey("dbo.Employees", t => t.Employee_EmployeeId)
+                .ForeignKey("dbo.Miscs", t => t.Misc_MiscId)
+                .Index(t => t.Employee_EmployeeId)
+                .Index(t => t.Misc_MiscId);
+            
+            CreateTable(
+                "dbo.PayslipEmployeeOvertimes",
+                c => new
+                    {
+                        PayslipEmployeeOvertimeId = c.Int(nullable: false, identity: true),
+                        Value = c.Single(nullable: false),
+                        PayslipValue = c.Single(nullable: false),
+                        Year = c.Int(nullable: false),
+                        Month = c.Int(nullable: false),
+                        Employee_EmployeeId = c.Int(),
+                    })
+                .PrimaryKey(t => t.PayslipEmployeeOvertimeId)
+                .ForeignKey("dbo.Employees", t => t.Employee_EmployeeId)
+                .Index(t => t.Employee_EmployeeId);
             
             CreateTable(
                 "dbo.ParameterInvolvedMiscs",
@@ -344,24 +381,6 @@ namespace PaySys.ModelAndBindLib.Migrations
                 .Index(t => t.TaxTable_TaxTableId);
             
             CreateTable(
-                "dbo.PayslipEmployeeMiscs",
-                c => new
-                    {
-                        PayslipEmployeeMiscId = c.Int(nullable: false, identity: true),
-                        Value = c.Single(nullable: false),
-                        PayslipValue = c.Single(nullable: false),
-                        Year = c.Int(nullable: false),
-                        Month = c.Int(nullable: false),
-                        Employee_EmployeeId = c.Int(),
-                        Misc_MiscId = c.Int(),
-                    })
-                .PrimaryKey(t => t.PayslipEmployeeMiscId)
-                .ForeignKey("dbo.Employees", t => t.Employee_EmployeeId)
-                .ForeignKey("dbo.Miscs", t => t.Misc_MiscId)
-                .Index(t => t.Employee_EmployeeId)
-                .Index(t => t.Misc_MiscId);
-            
-            CreateTable(
                 "dbo.PayslipContractDetails",
                 c => new
                     {
@@ -388,21 +407,6 @@ namespace PaySys.ModelAndBindLib.Migrations
                 .PrimaryKey(t => t.JobId);
             
             CreateTable(
-                "dbo.PayslipEmployeeOvertimes",
-                c => new
-                    {
-                        PayslipEmployeeOvertimeId = c.Int(nullable: false, identity: true),
-                        Value = c.Single(nullable: false),
-                        PayslipValue = c.Single(nullable: false),
-                        Year = c.Int(nullable: false),
-                        Month = c.Int(nullable: false),
-                        Employee_EmployeeId = c.Int(),
-                    })
-                .PrimaryKey(t => t.PayslipEmployeeOvertimeId)
-                .ForeignKey("dbo.Employees", t => t.Employee_EmployeeId)
-                .Index(t => t.Employee_EmployeeId);
-            
-            CreateTable(
                 "dbo.ContractDifferences",
                 c => new
                     {
@@ -426,14 +430,10 @@ namespace PaySys.ModelAndBindLib.Migrations
         {
             DropForeignKey("dbo.ContractDifferences", "Contract2Nd_ContractMasterId", "dbo.ContractMasters");
             DropForeignKey("dbo.ContractDifferences", "ContractMasterId", "dbo.ContractMasters");
-            DropForeignKey("dbo.PayslipEmployeeOvertimes", "Employee_EmployeeId", "dbo.Employees");
-            DropForeignKey("dbo.Missions", "Employee_EmployeeId", "dbo.Employees");
+            DropForeignKey("dbo.Missions", "ContractMaster_ContractMasterId", "dbo.ContractMasters");
             DropForeignKey("dbo.ContractMasters", "Job_JobId", "dbo.Jobs");
-            DropForeignKey("dbo.ContractMasters", "Employee_EmployeeId", "dbo.Employees");
             DropForeignKey("dbo.PayslipContractDetails", "ContractDetail_ContractDetailId", "dbo.ContractDetails");
             DropForeignKey("dbo.ContractDetails", "ContractMaster_ContractMasterId", "dbo.ContractMasters");
-            DropForeignKey("dbo.PayslipEmployeeMiscs", "Misc_MiscId", "dbo.Miscs");
-            DropForeignKey("dbo.PayslipEmployeeMiscs", "Employee_EmployeeId", "dbo.Employees");
             DropForeignKey("dbo.TaxRows", "TaxTable_TaxTableId", "dbo.TaxTables");
             DropForeignKey("dbo.TaxTables", "SubGroup_SubGroupId", "dbo.SubGroups");
             DropForeignKey("dbo.Parameters", "SubGroup_SubGroupId", "dbo.SubGroups");
@@ -453,7 +453,12 @@ namespace PaySys.ModelAndBindLib.Migrations
             DropForeignKey("dbo.ParameterInvolvedMiscs", "Misc_MiscId", "dbo.Miscs");
             DropForeignKey("dbo.ExpenseArticleOfMiscForSubGroups", "Misc_MiscId", "dbo.Miscs");
             DropForeignKey("dbo.EmployeeMiscRemains", "Misc_MiscId", "dbo.Miscs");
+            DropForeignKey("dbo.PayslipEmployeeOvertimes", "Employee_EmployeeId", "dbo.Employees");
+            DropForeignKey("dbo.PayslipEmployeeMiscs", "Misc_MiscId", "dbo.Miscs");
+            DropForeignKey("dbo.PayslipEmployeeMiscs", "Employee_EmployeeId", "dbo.Employees");
+            DropForeignKey("dbo.Missions", "Employee_EmployeeId", "dbo.Employees");
             DropForeignKey("dbo.EmployeeMiscRemains", "Employee_EmployeeId", "dbo.Employees");
+            DropForeignKey("dbo.ContractMasters", "Employee_EmployeeId", "dbo.Employees");
             DropForeignKey("dbo.ExpenseArticleOfMiscForSubGroups", "ExpenseArticle_ExpenseArticleId", "dbo.ExpenseArticles");
             DropForeignKey("dbo.ExpenseArticleOfContractFieldForSubGroups", "ExpenseArticle_ExpenseArticleId", "dbo.ExpenseArticles");
             DropForeignKey("dbo.ExpenseArticleOfContractFieldForSubGroups", "ContractField_ContractFieldId", "dbo.ContractFields");
@@ -461,10 +466,7 @@ namespace PaySys.ModelAndBindLib.Migrations
             DropForeignKey("dbo.Missions", "City_CityId", "dbo.Cities");
             DropIndex("dbo.ContractDifferences", new[] { "Contract2Nd_ContractMasterId" });
             DropIndex("dbo.ContractDifferences", new[] { "ContractMasterId" });
-            DropIndex("dbo.PayslipEmployeeOvertimes", new[] { "Employee_EmployeeId" });
             DropIndex("dbo.PayslipContractDetails", new[] { "ContractDetail_ContractDetailId" });
-            DropIndex("dbo.PayslipEmployeeMiscs", new[] { "Misc_MiscId" });
-            DropIndex("dbo.PayslipEmployeeMiscs", new[] { "Employee_EmployeeId" });
             DropIndex("dbo.TaxRows", new[] { "TaxTable_TaxTableId" });
             DropIndex("dbo.TaxTables", new[] { "SubGroup_SubGroupId" });
             DropIndex("dbo.MissionFormulas", new[] { "SubGroup_SubGroupId" });
@@ -477,6 +479,9 @@ namespace PaySys.ModelAndBindLib.Migrations
             DropIndex("dbo.Parameters", new[] { "SubGroup_SubGroupId" });
             DropIndex("dbo.ParameterInvolvedMiscs", new[] { "Parameter_ParameterId" });
             DropIndex("dbo.ParameterInvolvedMiscs", new[] { "Misc_MiscId" });
+            DropIndex("dbo.PayslipEmployeeOvertimes", new[] { "Employee_EmployeeId" });
+            DropIndex("dbo.PayslipEmployeeMiscs", new[] { "Misc_MiscId" });
+            DropIndex("dbo.PayslipEmployeeMiscs", new[] { "Employee_EmployeeId" });
             DropIndex("dbo.EmployeeMiscRemains", new[] { "Misc_MiscId" });
             DropIndex("dbo.EmployeeMiscRemains", new[] { "Employee_EmployeeId" });
             DropIndex("dbo.Miscs", new[] { "SubGroup_SubGroupId" });
@@ -490,15 +495,14 @@ namespace PaySys.ModelAndBindLib.Migrations
             DropIndex("dbo.ContractDetails", new[] { "ContractMaster_ContractMasterId" });
             DropIndex("dbo.ContractDetails", new[] { "ContractField_ContractFieldId" });
             DropIndex("dbo.ContractMasters", new[] { "Job_JobId" });
-            DropIndex("dbo.ContractMasters", new[] { "Employee_EmployeeId" });
             DropIndex("dbo.ContractMasters", new[] { "SubGroup_SubGroupId" });
+            DropIndex("dbo.ContractMasters", new[] { "Employee_EmployeeId" });
+            DropIndex("dbo.Missions", new[] { "ContractMaster_ContractMasterId" });
             DropIndex("dbo.Missions", new[] { "Employee_EmployeeId" });
             DropIndex("dbo.Missions", new[] { "City_CityId" });
             DropTable("dbo.ContractDifferences");
-            DropTable("dbo.PayslipEmployeeOvertimes");
             DropTable("dbo.Jobs");
             DropTable("dbo.PayslipContractDetails");
-            DropTable("dbo.PayslipEmployeeMiscs");
             DropTable("dbo.TaxRows");
             DropTable("dbo.TaxTables");
             DropTable("dbo.MissionFormulas");
@@ -509,6 +513,9 @@ namespace PaySys.ModelAndBindLib.Migrations
             DropTable("dbo.ParameterInvolvedContractFields");
             DropTable("dbo.Parameters");
             DropTable("dbo.ParameterInvolvedMiscs");
+            DropTable("dbo.PayslipEmployeeOvertimes");
+            DropTable("dbo.PayslipEmployeeMiscs");
+            DropTable("dbo.Employees");
             DropTable("dbo.EmployeeMiscRemains");
             DropTable("dbo.Miscs");
             DropTable("dbo.ExpenseArticleOfMiscForSubGroups");
@@ -517,7 +524,6 @@ namespace PaySys.ModelAndBindLib.Migrations
             DropTable("dbo.ContractFields");
             DropTable("dbo.ContractDetails");
             DropTable("dbo.ContractMasters");
-            DropTable("dbo.Employees");
             DropTable("dbo.Missions");
             DropTable("dbo.Cities");
         }

@@ -226,10 +226,10 @@
     <value>عنوان</value>
   </data>
   <data name="MiscTitles" xml:space="preserve">
-    <value>عناوین بدهی/پرداخت های متفرقه</value>
+    <value>عناوین پرداخت ها و کسور متفرقه</value>
   </data>
   <data name="MiscDebts" xml:space="preserve">
-    <value>بدهی های متفرقه</value>
+    <value>کسور متفرقه</value>
   </data>
   <data name="MiscPayments" xml:space="preserve">
     <value>پرداخت های متفرقه</value>
@@ -266,5 +266,26 @@
   </data>
   <data name="DeleteParameterInvolvedMiscPayment" xml:space="preserve">
     <value>حذف پرداخت متفرقه دخیل در محاسبه مؤلفه</value>
+  </data>
+  <data name="Factor" xml:space="preserve">
+    <value>نرخ</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>از</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>تا</value>
+  </data>
+  <data name="TaxTable" xml:space="preserve">
+    <value>جدول مالیاتی</value>
+  </data>
+  <data name="TaxValueCalculationTable" xml:space="preserve">
+    <value>جدول محاسبه مبلغ مالیات</value>
+  </data>
+  <data name="EditRate" xml:space="preserve">
+    <value>ویرایش نرخ</value>
+  </data>
+	<data name="HandselFormula" xml:space="preserve">
+    <value>فرمول عیدی</value>
   </data>
 </root>

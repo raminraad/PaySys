@@ -13,7 +13,6 @@ namespace PaySys.ModelAndBindLib.Migrations
 {
 	internal sealed class Configuration : DbMigrationsConfiguration<PaySysContext>
 	{
-
 		private readonly Faker _faker = new Faker("fa");
 
 		public Configuration()
@@ -65,7 +64,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 				"اضافه کار جمعه",
 				"بازنشستگی گذشته",
 				"بیمه عمر",
-				"بدهی های متفرقه",
+				"کسور متفرقه",
 				"مقرری ماه اول",
 				"بدهی اضافه کار",
 				"معافیت وام مسکن",
@@ -249,8 +248,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 			{
 				e.FName = f.Name.FirstName();
 				e.LName = f.Name.LastName();
-				e.Address =
-					$"{f.Address.City()} - {f.Address.CitySuffix()} - {f.Address.StreetName()} - پلاک  {f.Address.BuildingNumber()}";
+				e.Address = $"{f.Address.City()} - {f.Address.CitySuffix()} - {f.Address.StreetName()} - پلاک  {f.Address.BuildingNumber()}";
 				e.BirthPlace = f.Address.City();
 				e.IdCardExportPlace = f.Address.City();
 				e.CellNo = $"{f.PickRandom(mobilePrefix)}{f.Phone.PhoneNumber("#######")}";
@@ -289,8 +287,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 			{
 				e.Description = f.Name.JobDescriptor();
 				e.JobNo = $"{f.Random.Number(999999):d6}";
-				e.ItemColor = f.PickRandom(Enum.GetValues(typeof(ColorPallet)).Cast<ColorPallet>()
-				                               .Where(x => x != ColorPallet.Unknown));
+				e.ItemColor = f.PickRandom(Enum.GetValues(typeof(ColorPallet)).Cast<ColorPallet>().Where(x => x != ColorPallet.Unknown));
 				e.Title = f.Name.JobTitle();
 			});
 			var seedJobs = jobFaker.Generate(10);
@@ -335,6 +332,59 @@ namespace PaySys.ModelAndBindLib.Migrations
 
 			#endregion
 
+			#region TaxTables
+
+			var TaxTableFaker = new Faker<TaxTable>("fa").StrictMode(false).Rules((f, e) => { e.Month = 007; });
+			var seedTaxTables = new List<TaxTable>();
+			foreach(var mainGroup in seedMainGroups)
+				foreach(var subGroup in mainGroup.SubGroups)
+					for(var i = 95; i <= 97; i++)
+					{
+						TaxTableFaker.RuleFor(TaxTable => TaxTable.SubGroup, subGroup).RuleFor(TaxTable => TaxTable.Year, i);
+						seedTaxTables.Add(TaxTableFaker.Generate());
+					}
+
+			context.TaxTables.AddRange(seedTaxTables);
+			var TaxRowFaker = new Faker<TaxRow>("fa").StrictMode(false).Rules((f, e) =>
+			{
+				e.ValueTo = f.Random.Number(20000) * 1000;
+				e.Factor = f.Random.Number(10);
+			});
+			var seedTaxRows = new List<TaxRow>();
+			foreach(var taxTable in seedTaxTables)
+				for(int i = 0; i < 10; i++)
+				{
+					TaxRowFaker.RuleFor(row => row.TaxTable, taxTable);
+					seedTaxRows.Add(TaxRowFaker.Generate());
+				}
+
+			context.TaxRows.AddRange(seedTaxRows);
+
+			#endregion
+
+			#region HandselFormulaFaker
+
+			var HandselFormulaFaker = new Faker<HandselFormula>("fa").StrictMode(false).Rules((f, e) =>
+			{
+				e.Month = 007;
+				e.DaysCount = f.Random.Number(60);
+				e.TaxRate = f.Random.Number(10);
+				e.Max = f.Random.Number(5000) * 1000;
+				e.Min = f.Random.Number(5000) * 1000;
+				e.TaxFreeValue = f.Random.Number(5000) * 1000;
+			});
+			var seedHandselFormulas = new List<HandselFormula>();
+			foreach (var mainGroup in seedMainGroups)
+				foreach (var subGroup in mainGroup.SubGroups)
+					for (var i = 95; i <= 97; i++)
+					{
+						HandselFormulaFaker.RuleFor(HandselFormula => HandselFormula.SubGroup, subGroup).RuleFor(HandselFormula => HandselFormula.Year, i);
+						seedHandselFormulas.Add(HandselFormulaFaker.Generate());
+					}
+			context.HandselFormulas.AddRange(seedHandselFormulas);
+
+			#endregion
+
 			#region Parameters
 
 			var ParameterFaker = new Faker<Parameter>("fa").StrictMode(false).Rules((f, e) =>
@@ -343,8 +393,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 				e.Month = 007;
 				e.Alias = f.Finance.AccountName().Replace(" ", string.Empty);
 				e.Title = f.PickRandom(parameterTitles);
-				e.ValueType = f.PickRandom(Enum.GetValues(typeof(ValueType)).Cast<ValueType>()
-				                                 .Where(valueType => valueType != ValueType.Unknown));
+				e.ValueType = f.PickRandom(Enum.GetValues(typeof(ValueType)).Cast<ValueType>().Where(valueType => valueType != ValueType.Unknown));
 				e.Value = f.Random.Number(999999);
 			});
 			var parameters = new List<Parameter>();
@@ -381,11 +430,11 @@ namespace PaySys.ModelAndBindLib.Migrations
 			#region ParameterInvolvedMiscs
 
 			var seedParameterInvolvedMiscs = new List<ParameterInvolvedMisc>();
-			foreach (var mainGroup in seedMainGroups)
-				foreach (var subGroup in mainGroup.SubGroups)
-					foreach (var parameter in subGroup.Parameters)
-						foreach (var Misc in subGroup.Miscs.Where(misc => misc.IsPayment))
-							if (_faker.Random.Bool())
+			foreach(var mainGroup in seedMainGroups)
+				foreach(var subGroup in mainGroup.SubGroups)
+					foreach(var parameter in subGroup.Parameters)
+						foreach(var Misc in subGroup.Miscs.Where(misc => misc.IsPayment))
+							if(_faker.Random.Bool())
 								seedParameterInvolvedMiscs.Add(new ParameterInvolvedMisc
 								{
 									Parameter = parameter,
@@ -454,25 +503,19 @@ namespace PaySys.ModelAndBindLib.Migrations
 			var contractMasterFaker = new Faker<ContractMaster>("fa").StrictMode(false).Rules((f, e) =>
 			{
 				e.Employee = f.PickRandom(seedEmployees);
-				e.AccountNoEmp =
-					$"{f.PickRandom(creditCardNoPrefix)}-{f.Random.Number(9999):d4}-{f.Random.Number(9999):d4}-{f.Random.Number(9999):d4}";
-				e.AccountNoGov =
-					$"{f.PickRandom(creditCardNoPrefix)}-{f.Random.Number(9999):d4}-{f.Random.Number(9999):d4}-{f.Random.Number(9999):d4}";
+				e.AccountNoEmp = $"{f.PickRandom(creditCardNoPrefix)}-{f.Random.Number(9999):d4}-{f.Random.Number(9999):d4}-{f.Random.Number(9999):d4}";
+				e.AccountNoGov = $"{f.PickRandom(creditCardNoPrefix)}-{f.Random.Number(9999):d4}-{f.Random.Number(9999):d4}-{f.Random.Number(9999):d4}";
 				e.ContractNo = $"{f.Random.Number(99999):d5}";
 				e.DateEmployment = $"13{f.Random.Number(20) + 40:d2}{f.Random.Number(11) + 1:d2}{f.Random.Number(29) + 1:d2}";
 				e.DateExecution = $"13{f.Random.Number(20) + 40:d2}{f.Random.Number(11) + 1:d2}{f.Random.Number(29) + 1:d2}";
 				e.DateExport = $"13{f.Random.Number(20) + 40:d2}{f.Random.Number(11) + 1:d2}{f.Random.Number(29) + 1:d2}";
-				e.EducationStand = f.PickRandom(Enum.GetValues(typeof(EducationStand)).Cast<EducationStand>()
-				                                    .Where(sex => sex != EducationStand.Unknown));
-				e.EmploymentType = f.PickRandom(Enum.GetValues(typeof(EmploymentType)).Cast<EmploymentType>()
-				                                    .Where(sex => sex != EmploymentType.Unknown));
+				e.EducationStand = f.PickRandom(Enum.GetValues(typeof(EducationStand)).Cast<EducationStand>().Where(sex => sex != EducationStand.Unknown));
+				e.EmploymentType = f.PickRandom(Enum.GetValues(typeof(EmploymentType)).Cast<EmploymentType>().Where(sex => sex != EmploymentType.Unknown));
 				e.HardshipFactor = f.Random.Number(100);
 				e.InsuranceNo = $"{f.Random.Number(99999999):d8}";
-				e.MaritalStatus = f.PickRandom(Enum.GetValues(typeof(MaritalStatus)).Cast<MaritalStatus>()
-				                                   .Where(sex => sex != MaritalStatus.Unknown));
+				e.MaritalStatus = f.PickRandom(Enum.GetValues(typeof(MaritalStatus)).Cast<MaritalStatus>().Where(sex => sex != MaritalStatus.Unknown));
 				e.Job = f.PickRandom(seedJobs);
-				e.SacrificeStand = f.PickRandom(Enum.GetValues(typeof(SacrificeStand)).Cast<SacrificeStand>()
-				                                    .Where(sex => sex != SacrificeStand.Unknown));
+				e.SacrificeStand = f.PickRandom(Enum.GetValues(typeof(SacrificeStand)).Cast<SacrificeStand>().Where(sex => sex != SacrificeStand.Unknown));
 				e.SubGroup = f.PickRandom(f.PickRandom(seedMainGroups).SubGroups);
 			});
 			var seedContractMasters = contractMasterFaker.Generate(30);
@@ -482,8 +525,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 
 			#region ContractDetail
 
-			var contractDetailFaker = new Faker<ContractDetail>("fa")
-				.StrictMode(false).Rules((f, e) => { e.Value = f.Random.Number(100) * 10000; });
+			var contractDetailFaker = new Faker<ContractDetail>("fa").StrictMode(false).Rules((f, e) => { e.Value = f.Random.Number(100) * 10000; });
 			var seedContractDetails = new List<ContractDetail>();
 			foreach(var contMast in seedContractMasters)
 				foreach(var grpCntField in seedContractFieldTitles.Where(c => c.SubGroup.Equals(contMast.SubGroup)))
@@ -515,6 +557,5 @@ namespace PaySys.ModelAndBindLib.Migrations
 
 			base.Seed(context);
 		}
-
 	}
 }

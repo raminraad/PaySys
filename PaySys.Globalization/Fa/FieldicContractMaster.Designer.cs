@@ -142,7 +142,7 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to پرسنل.
+        ///   Looks up a localized string similar to شخص.
         /// </summary>
         public static string Employee {
             get {

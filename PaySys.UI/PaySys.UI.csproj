@@ -105,11 +105,17 @@
     <Compile Include="UserControls\Tab\UcGroupMng.xaml.cs">
       <DependentUpon>UcGroupMng.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Tab\UcHandselFormulaMng.xaml.cs">
+      <DependentUpon>UcHandselFormulaMng.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Tab\UcMiscMng.xaml.cs">
       <DependentUpon>UcMiscMng.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Tab\UcParameterMng.xaml.cs">
       <DependentUpon>UcParameterMng.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Tab\UcTaxTableMng.xaml.cs">
+      <DependentUpon>UcTaxTableMng.xaml</DependentUpon>
     </Compile>
     <Page Include="Dialogs\WinSelectItem.xaml">
       <SubType>Designer</SubType>
@@ -167,11 +173,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\Tab\UcHandselFormulaMng.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\Tab\UcMiscMng.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Tab\UcParameterMng.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Tab\UcTaxTableMng.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -35,11 +35,10 @@ namespace PaySys.UI.UC
 		public UcParameterMng()
 		{
 			InitializeComponent();
+			ListViewParameter.Items.Filter = o => ((Parameter)o).Year == 97&& ((Parameter)o).Month == 007;
 		}
 
-		public static readonly DependencyProperty CurrentSubGroupProperty =
-			DependencyProperty.Register("CurrentSubGroup", typeof(SubGroup), typeof(UcParameterMng),
-			                            new PropertyMetadata(default(SubGroup)));
+		public static readonly DependencyProperty CurrentSubGroupProperty = DependencyProperty.Register("CurrentSubGroup", typeof(SubGroup), typeof(UcParameterMng), new PropertyMetadata(default(SubGroup)));
 
 		public SubGroup CurrentSubGroup
 		{
@@ -64,7 +63,7 @@ namespace PaySys.UI.UC
 		{
 			var dialog = new WinSelectItem(ResourceAccessor.Messages.GetString("SelectContractField"))
 			{
-				ListViewItemsSource = CurrentSubGroup.ContractFields.Where(field => field.Year == 97)
+				ListViewItemsSource = CurrentSubGroup.ContractFields.Where(contractField => contractField.Year == 97 && !((List<ParameterInvolvedContractField>) ListViewParameterInvolvedContractFields.ItemsSource).Select(involvedContractField => involvedContractField.ContractField).Contains(contractField))
 			};
 			if(dialog.ShowDialog() == true)
 			{
@@ -82,7 +81,7 @@ namespace PaySys.UI.UC
 		{
 			var dialog = new WinSelectItem(ResourceAccessor.Messages.GetString("SelectMiscPayment"))
 			{
-				ListViewItemsSource = CurrentSubGroup.MiscsOfTypePayment.Where(misc => misc.Year == 97 && misc.Month == 007)
+				ListViewItemsSource = CurrentSubGroup.MiscsOfTypePayment.Where(misc => misc.Year == 97 && misc.Month == 007 && !((List<ParameterInvolvedMisc>) ListViewParameterInvolvedMiscPayments.ItemsSource).Select(involvedMisc => involvedMisc.Misc).Contains(misc))
 			};
 			if(dialog.ShowDialog() == true)
 			{
@@ -111,7 +110,7 @@ namespace PaySys.UI.UC
 			if(PaySysMessage.GetDeleteItemConfirmation() != MessageBoxResult.Yes)
 				return;
 
-			((Parameter)ListViewParameter.SelectedItem).ParameterInvolvedContractFields.Remove((ParameterInvolvedContractField)ListViewParameterInvolvedContractFields.SelectedItem);
+			((Parameter) ListViewParameter.SelectedItem).ParameterInvolvedContractFields.Remove((ParameterInvolvedContractField) ListViewParameterInvolvedContractFields.SelectedItem);
 			SaveContext.Invoke();
 			CollectionViewSource.GetDefaultView(ListViewParameterInvolvedContractFields.ItemsSource).Refresh();
 		}

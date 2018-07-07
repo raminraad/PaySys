@@ -97,7 +97,7 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to لطفاً عنوان بدهی/پرداخت متفرقه را وارد نمایید..
+        ///   Looks up a localized string similar to لطفاً عنوان کسور/پرداخت متفرقه را وارد نمایید..
         /// </summary>
         public static string EnterMiscTitle {
             get {
@@ -124,6 +124,24 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to لطفاً مقدار جدید نرخ مالیات را وارد نمایید..
+        /// </summary>
+        public static string EnterTaxRowFactor {
+            get {
+                return ResourceManager.GetString("EnterTaxRowFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to لطفاً مقدار جدید حد پایانی بازه را وارد نمایید..
+        /// </summary>
+        public static string EnterTaxRowValueTo {
+            get {
+                return ResourceManager.GetString("EnterTaxRowValueTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to لطفاً فیلد مورد نظر را انتخاب فرمایید..
         /// </summary>
         public static string SelectContractField {
@@ -142,7 +160,7 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to لطفاً یکی از آیتم ها را انتخاب فرمایید..
+        ///   Looks up a localized string similar to لطفاً یکی از آیتم ها را انتخاب نمایید..
         /// </summary>
         public static string SelectItem {
             get {
@@ -151,7 +169,7 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to لطفاً پرداخت متفرقه مورد نظر را انتخاب فرمایید..
+        ///   Looks up a localized string similar to لطفاً پرداخت متفرقه مورد نظر را انتخاب نمایید..
         /// </summary>
         public static string SelectMiscPayment {
             get {

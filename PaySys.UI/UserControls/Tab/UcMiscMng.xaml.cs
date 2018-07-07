@@ -17,7 +17,8 @@ using PaySys.CalcLib.Delegates;
 using PaySys.Globalization;
 using PaySys.ModelAndBindLib.Model;
 using PaySys.UI.Dialogs;
-using DialogResult= System.Windows.Forms.DialogResult;
+using PaySys.UI.Modals;
+using DialogResult = System.Windows.Forms.DialogResult;
 using MessageBoxDefaultButton = System.Windows.Forms.MessageBoxDefaultButton;
 using MessageBoxButtons = System.Windows.Forms.MessageBoxButtons;
 using MessageBoxIcon = System.Windows.Forms.MessageBoxIcon;
@@ -42,11 +43,15 @@ namespace PaySys.UI.UC
 		private readonly string _enterTitleMessage;
 		private MiscType _selectedList = MiscType.None;
 		private Misc _selectedMisc;
+
 		private ListView SelectedListView => _selectedList == MiscType.Payment ? ListViewMiscPayment : ListViewMiscDebt;
+
 		public UcMiscMng()
 		{
 			InitializeComponent();
 			_enterTitleMessage = ResourceAccessor.Messages.GetString("EnterMiscTitle");
+			ListViewMiscDebt.Items.Filter = o => ((Misc) o).Year == 97 && ((Misc) o).Month == 007;
+			ListViewMiscPayment.Items.Filter = o => ((Misc) o).Year == 97 && ((Misc) o).Month == 007;
 		}
 
 		public DelegateSaveContext SaveContext { set; get; }
@@ -54,7 +59,7 @@ namespace PaySys.UI.UC
 		private void BtnAdd_OnClick(object sender, RoutedEventArgs e)
 		{
 			var newTitle = string.Empty;
-			if (InputBox.Show(_enterTitleMessage, ref newTitle) == DialogResult.OK)
+			if(InputBox.Show(_enterTitleMessage, ref newTitle) == DialogResult.OK)
 			{
 				CurrentSubGroup.Miscs.Add(new Misc
 				{
@@ -71,10 +76,11 @@ namespace PaySys.UI.UC
 		private void BtnEditMiscTitle_OnClick(object sender, RoutedEventArgs e)
 		{
 			var newTitle = _selectedMisc?.Title;
-			if (InputBox.Show(_enterTitleMessage, ref newTitle) == DialogResult.OK)
+			if(InputBox.Show(_enterTitleMessage, ref newTitle) == DialogResult.OK)
 			{
 				_selectedMisc.Title = newTitle;
 				SaveContext.Invoke();
+
 //				CollectionViewSource.GetDefaultView(SelectedListView.ItemsSource).Refresh();
 				SelectedListView.GetBindingExpression(ItemsControl.ItemsSourceProperty)?.UpdateTarget();
 			}
@@ -82,8 +88,7 @@ namespace PaySys.UI.UC
 
 		private void BtnDelete_OnClick(object sender, RoutedEventArgs e)
 		{
-			if (System.Windows.Forms.MessageBox.Show(ResourceAccessor.Messages.GetString("DeleteConfirmationOfItem"), "",MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2,
-				    System.Windows.Forms.MessageBoxOptions.RightAlign) == DialogResult.Yes)
+			if(PaySysMessage.GetDeleteItemConfirmation() == MessageBoxResult.Yes)
 			{
 				CurrentSubGroup.Miscs.Remove(_selectedMisc);
 				SaveContext.Invoke();
@@ -95,7 +100,7 @@ namespace PaySys.UI.UC
 		{
 			var selectExpenseArticleDialog = new WinSelectItem(ResourceAccessor.Messages.GetString("SelectExpenseArticle"));
 			selectExpenseArticleDialog.ListViewItemsSource = ExpenseArticlesAll;
-			if (selectExpenseArticleDialog.ShowDialog() == true)
+			if(selectExpenseArticleDialog.ShowDialog() == true)
 			{
 				_selectedMisc.CurrentExpenseArticle = (ExpenseArticle) selectExpenseArticleDialog.SelectedItem;
 				SaveContext.Invoke();
@@ -105,16 +110,16 @@ namespace PaySys.UI.UC
 
 		#region DependencyProperties
 
-		public static readonly DependencyProperty CurrentSubGroupProperty = DependencyProperty.Register("CurrentSubGroup",
-			typeof(SubGroup), typeof(UcMiscMng), new PropertyMetadata(default(SubGroup)));
+		public static readonly DependencyProperty CurrentSubGroupProperty = DependencyProperty.Register("CurrentSubGroup", typeof(SubGroup), typeof(UcMiscMng), new PropertyMetadata(default(SubGroup)));
+
 		public SubGroup CurrentSubGroup
 		{
 			get => (SubGroup) GetValue(CurrentSubGroupProperty);
 			set => SetValue(CurrentSubGroupProperty, value);
 		}
-		public static readonly DependencyProperty ExpenseArticlesAllProperty =
-			DependencyProperty.Register("ExpenseArticlesAll", typeof(List<ExpenseArticle>), typeof(UcMiscMng),
-				new PropertyMetadata(default(List<ExpenseArticle>)));
+
+		public static readonly DependencyProperty ExpenseArticlesAllProperty = DependencyProperty.Register("ExpenseArticlesAll", typeof(List<ExpenseArticle>), typeof(UcMiscMng), new PropertyMetadata(default(List<ExpenseArticle>)));
+
 		public List<ExpenseArticle> ExpenseArticlesAll
 		{
 			get => (List<ExpenseArticle>) GetValue(ExpenseArticlesAllProperty);

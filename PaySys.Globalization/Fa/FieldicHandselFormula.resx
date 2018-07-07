@@ -117,43 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DeleteConfirmationOfItem" xml:space="preserve">
-    <value>آیتم انتخاب شده حذف خواهد شد. تأیید مینمایید؟</value>
+  <data name="DaysCount" xml:space="preserve">
+    <value>روز حقوق مبنای عیدی</value>
   </data>
-  <data name="DeleteItem" xml:space="preserve">
-    <value>رکورد انتخاب شده حذف خواهد شد. تأیید مینمایید؟</value>
+  <data name="HandselFormulaId" xml:space="preserve">
+    <value>کلید فرمول عیدی</value>
   </data>
-  <data name="EnterContractFieldTitle" xml:space="preserve">
-    <value>لطفاً عنوان فیلد حکم را وارد نمایید.</value>
+  <data name="Max" xml:space="preserve">
+    <value>حداکثر مبلغ عیدی</value>
   </data>
-  <data name="EnterMainGroupName" xml:space="preserve">
-    <value>لطفاً نام گروه اصلی را وارد نمایید.</value>
+  <data name="Min" xml:space="preserve">
+    <value>حداقل مبنای عیدی</value>
   </data>
-  <data name="EnterMiscTitle" xml:space="preserve">
-    <value>لطفاً عنوان کسور/پرداخت متفرقه را وارد نمایید.</value>
+  <data name="Month" xml:space="preserve">
+    <value>ماه</value>
   </data>
-  <data name="EnterParameterValue" xml:space="preserve">
-    <value>لطفاًمقدار مؤلفه محاسباتی را وارد نمایید.</value>
+  <data name="SubGroup" xml:space="preserve">
+    <value>زیرگروه</value>
   </data>
-  <data name="EnterSubGroupName" xml:space="preserve">
-    <value>لطفاً نام زیر گروه را وارد نمایید.</value>
+  <data name="TaxFreeValue" xml:space="preserve">
+    <value>مبلغ معاف از مالیات</value>
   </data>
-  <data name="EnterTaxRowFactor" xml:space="preserve">
-    <value>لطفاً مقدار جدید نرخ مالیات را وارد نمایید.</value>
+  <data name="TaxRate" xml:space="preserve">
+    <value>نرخ مالیات بقیه</value>
   </data>
-  <data name="EnterTaxRowValueTo" xml:space="preserve">
-    <value>لطفاً مقدار جدید حد پایانی بازه را وارد نمایید.</value>
-  </data>
-  <data name="SelectContractField" xml:space="preserve">
-    <value>لطفاً فیلد مورد نظر را انتخاب فرمایید.</value>
-  </data>
-  <data name="SelectExpenseArticle" xml:space="preserve">
-    <value>لطفاً ماده هزینه را انتخاب نمایید.</value>
-  </data>
-  <data name="SelectItem" xml:space="preserve">
-    <value>لطفاً یکی از آیتم ها را انتخاب نمایید.</value>
-  </data>
-  <data name="SelectMiscPayment" xml:space="preserve">
-    <value>لطفاً پرداخت متفرقه مورد نظر را انتخاب نمایید.</value>
+  <data name="Year" xml:space="preserve">
+    <value>سال</value>
   </data>
 </root>

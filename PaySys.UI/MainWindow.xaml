@@ -54,7 +54,7 @@
 				<MenuItem Header="اطلاح بایگانی تفاوت ها" />
 				<MenuItem Header="ورود احکام مأموریت" />
 				<MenuItem Header="اصلاح بایگانی مأموریت ها" />
-				<MenuItem Header="تعریف عناوین بدهی ها" />
+				<MenuItem Header="تعریف عناوین کسور" />
 				<MenuItem Header="ورود مانده بدهی ها" />
 				<MenuItem Header="محاسبات اضافه کاری گذشته" />
 				<MenuItem Header="فرمول عیدی پایان سال" />
