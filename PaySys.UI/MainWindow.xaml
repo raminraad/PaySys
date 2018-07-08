@@ -38,7 +38,7 @@
 				<MenuItem Header="تغییر کد پرسنلی" />
 				<MenuItem Header="تغییر گروه" />
 				<MenuItem Header="ورود اطلاعات سیستم" />
-				<MenuItem Header="تعریف مواد هزینه" />
+				<MenuItem x:Name="MenuItemExpenseArticlesMng" Header="تعریف مواد هزینه" Click="MenuItemExpenseArticlesMng_OnClick" />
 				<MenuItem Header="تفکیک مواد هزینه حقوق" />
 				<MenuItem Header="موقعیت فیلدها در بازنشستگی" />
 				<MenuItem Header="ثبت فیش های درآمدی" />

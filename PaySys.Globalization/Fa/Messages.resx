@@ -126,6 +126,12 @@
   <data name="EnterContractFieldTitle" xml:space="preserve">
     <value>لطفاً عنوان فیلد حکم را وارد نمایید.</value>
   </data>
+  <data name="EnterExpenseArticleCode" xml:space="preserve">
+    <value>لطفاً کد پرداخت هزینه را وارد فرمایید.</value>
+  </data>
+  <data name="EnterExpenseArticleTitle" xml:space="preserve">
+    <value>لطفاً عنوان پرداخت هزینه را وارد فرمایید.</value>
+  </data>
   <data name="EnterMainGroupName" xml:space="preserve">
     <value>لطفاً نام گروه اصلی را وارد نمایید.</value>
   </data>

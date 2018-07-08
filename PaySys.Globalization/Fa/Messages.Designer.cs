@@ -88,6 +88,24 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to لطفاً کد پرداخت هزینه را وارد فرمایید..
+        /// </summary>
+        public static string EnterExpenseArticleCode {
+            get {
+                return ResourceManager.GetString("EnterExpenseArticleCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to لطفاً عنوان پرداخت هزینه را وارد فرمایید..
+        /// </summary>
+        public static string EnterExpenseArticleTitle {
+            get {
+                return ResourceManager.GetString("EnterExpenseArticleTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to لطفاً نام گروه اصلی را وارد نمایید..
         /// </summary>
         public static string EnterMainGroupName {

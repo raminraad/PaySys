@@ -7,11 +7,17 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using PaySys.Globalization;
+using PaySys.ModelAndBindLib.Engine;
+using PaySys.ModelAndBindLib.Model;
+using MessageBox = System.Windows.MessageBox;
+using UserControl = System.Windows.Controls.UserControl;
 
 namespace PaySys.UI.UC
 {
@@ -20,9 +26,59 @@ namespace PaySys.UI.UC
 	/// </summary>
 	public partial class UcExpenseArticleMng : UserControl
 	{
+		PaySysContext _context = new PaySysContext();
+
 		public UcExpenseArticleMng()
 		{
 			InitializeComponent();
+			TreeViewExpenseArticles.ItemsSource = _context.ExpenseArticles.ToList();
+		}
+
+		private void BtnAdd_OnClick(object sender, RoutedEventArgs e)
+		{
+			var messageTitle = ResourceAccessor.Messages.GetString("EnterExpenseArticleTitle");
+			var messageCode = ResourceAccessor.Messages.GetString("EnterExpenseArticleCode");
+			var title = string.Empty;
+			var code = string.Empty;
+			if(InputBox.Show(messageTitle, ref title) == DialogResult.OK)
+				if(InputBox.Show(messageCode, ref code) == DialogResult.OK)
+				{
+					_context.ExpenseArticles.Add(new ExpenseArticle()
+					{
+						Code = code,
+						Title = title
+					});
+					_context.SaveChanges();
+					TreeViewExpenseArticles.ItemsSource = _context.ExpenseArticles.ToList();
+				}
+		}
+
+		private void BtnEdit_OnClick(object sender, RoutedEventArgs e)
+		{
+			var selectedItem = TreeViewExpenseArticles.SelectedItem as ExpenseArticle;
+			var messageTitle = ResourceAccessor.Messages.GetString("EnterExpenseArticleTitle");
+			var messageCode = ResourceAccessor.Messages.GetString("EnterExpenseArticleCode");
+			var title = selectedItem.Title;
+			var code = selectedItem.Code;
+			if(InputBox.Show(messageTitle, ref title) == DialogResult.OK)
+				if(InputBox.Show(messageCode, ref code) == DialogResult.OK)
+				{
+					selectedItem.Title = title;
+					selectedItem.Code = code;
+					_context.SaveChanges();
+					TreeViewExpenseArticles.ItemsSource = _context.ExpenseArticles.ToList();
+				}
+		}
+
+		private void TreeViewExpenseArticles_OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+		{
+			BtnEdit.IsEnabled = BtnDelete.IsEnabled = TreeViewExpenseArticles.SelectedItem is ExpenseArticle;
+		}
+
+		private void BtnRefresh_OnClick(object sender, RoutedEventArgs e)
+		{
+			_context = new PaySysContext();
+			TreeViewExpenseArticles.ItemsSource = _context.ExpenseArticles.ToList();
 		}
 	}
 }

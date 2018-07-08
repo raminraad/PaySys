@@ -68,6 +68,11 @@
     <Compile Include="Migrations\201807072111059_Init.Designer.cs">
       <DependentUpon>201807072111059_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807081352031_UpdateMissionFormula.cs" />
+    <Compile Include="Migrations\201807081352031_UpdateMissionFormula.Designer.cs">
+      <DependentUpon>201807081352031_UpdateMissionFormula.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Visual\TitledCompositeCollection.cs" />
     <Compile Include="Model\Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -89,6 +94,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201807072111059_Init.resx">
       <DependentUpon>201807072111059_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807081352031_UpdateMissionFormula.resx">
+      <DependentUpon>201807081352031_UpdateMissionFormula.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

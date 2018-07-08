@@ -135,6 +135,9 @@
   <data name="Month" xml:space="preserve">
     <value>ماه</value>
   </data>
+  <data name="PerKmFactor" xml:space="preserve">
+    <value>هزینه سفر هر کیلومتر</value>
+  </data>
   <data name="SubGroup" xml:space="preserve">
     <value>زیرگروه</value>
   </data>

@@ -1,60 +1,131 @@
 ﻿<UserControl x:Name="SmpUcExpenseArticleMng"
-			 x:Class="PaySys.UI.UC.UcExpenseArticleMng"
-			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-			 xmlns:local="clr-namespace:PaySys.UI.UC"
-			 xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
-			 xmlns:bindingConverter="clr-namespace:PaySys.ModelAndBindLib.BindingConverter;assembly=PaySys.ModelAndBindLib"
-			 mc:Ignorable="d"
-			 FlowDirection="RightToLeft"
-			 d:DesignHeight="300"
-			 d:DesignWidth="600">
+             x:Class="PaySys.UI.UC.UcExpenseArticleMng"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:PaySys.UI.UC"
+             xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
+             xmlns:bindingConverter="clr-namespace:PaySys.ModelAndBindLib.BindingConverter;assembly=PaySys.ModelAndBindLib"
+             xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Model;assembly=PaySys.ModelAndBindLib"
+             mc:Ignorable="d"
+             FlowDirection="RightToLeft"
+             d:DesignHeight="300"
+             d:DesignWidth="600">
 	<Grid x:Name="GridMain"
-		  DataContext="{Binding ElementName=SmpUcHandselFormulaMng,Path=CurrentSubGroup.CurrenHandselFormula}">
+	      DataContext="{Binding ElementName=SmpUcHandselFormulaMng,Path=CurrentSubGroup.CurrenHandselFormula}">
 		<Grid.RowDefinitions>
 			<RowDefinition x:Name="RowToolbar"
-						   Height="Auto" />
-			<RowDefinition Height="*" />
-			<RowDefinition Height="8*" />
-			<RowDefinition Height="*" />
+			               Height="Auto"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="8*"/>
+			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="*" />
-			<ColumnDefinition Width="2*" />
-			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="2*"/>
+			<ColumnDefinition Width="*"/>
 		</Grid.ColumnDefinitions>
 		<TextBlock Grid.Row="1"
-				   Grid.Column="1"
-				   FontSize="20"
-				   HorizontalAlignment="Center"
-				   Text="{x:Static fa:Labels.ExpenseArticles}"/>
+		           Grid.Column="1"
+		           FontSize="20"
+		           HorizontalAlignment="Center"
+				   VerticalAlignment="Center"
+		           Text="{x:Static fa:Labels.ExpenseArticles}"/>
 		<ToolBar Grid.Row="0"
-				 Grid.ColumnSpan="4"
-				 Grid.Column="0">
+		         Grid.ColumnSpan="3"
+		         Grid.Column="0">
 			<ToolBar.Resources>
 				<Style x:Key="ToolbarButtonStyle"
-					   TargetType="Button">
+				       TargetType="Button">
 					<Setter Property="Margin"
-							Value="2,0" />
+					        Value="2,0"/>
 				</Style>
 			</ToolBar.Resources>
+			<Button Name="BtnAdd"
+			        Style="{StaticResource ToolbarButtonStyle}"
+			        Content="{x:Static fa:Labels.Add}"
+			        Click="BtnAdd_OnClick"/>
 			<Button Name="BtnEdit"
-					Content="{x:Static fa:Labels.Edit}"
-					Style="{StaticResource ToolbarButtonStyle}" />
-			<Button Name="BtnSave"
-					Style="{StaticResource ToolbarButtonStyle}"
-					Content="{x:Static fa:Labels.Save}" />
-			<Button Name="BtnCancel"
-					Style="{StaticResource ToolbarButtonStyle}"
-					Content="{x:Static fa:Labels.Cancel}" />
+			        Content="{x:Static fa:Labels.Edit}"
+					Click="BtnEdit_OnClick"
+			        Style="{StaticResource ToolbarButtonStyle}"/>
+			<Button Name="BtnDelete"
+			        Style="{StaticResource ToolbarButtonStyle}"
+			        Content="{x:Static fa:Labels.Delete}"/>
+			<Button Name="BtnRefresh"
+			        Style="{StaticResource ToolbarButtonStyle}"
+			        Content="{x:Static fa:Labels.Refresh}"
+					Click="BtnRefresh_OnClick"/>
 		</ToolBar>
-		<TreeView x:Name="TreeViewExpenseArticles" Grid.Row="2" Grid.Column="1">
-			<TabItem Header="Eng">
-				<TabItem Header="Hello"/></TabItem>
-			<TabItem>سلام</TabItem>
-			<TabItem>Merhaba</TabItem>
+		<TreeView x:Name="TreeViewExpenseArticles"
+		          Grid.Row="2"
+		          Grid.Column="1"
+				  SelectedItemChanged="TreeViewExpenseArticles_OnSelectedItemChanged">
+			<TreeView.Resources>
+				<HierarchicalDataTemplate DataType="{x:Type model:ExpenseArticle}"
+				                          ItemsSource="{Binding InvolversUngrouped}">
+					<StackPanel Orientation="Horizontal"
+					            Margin="5">
+
+						<TextBlock Text="{Binding Title}"
+						           FontSize="18"/>
+						<TextBlock Text=" ("
+						           FontSize="18"/>
+						<TextBlock Text="{Binding Code}"
+						           FontSize="18"/>
+						<TextBlock Text=")"
+						           FontSize="18"/>
+
+						<TextBlock Text="["
+						           Foreground="Goldenrod"
+						           Margin="5,0,0,0"/>
+						<TextBlock Text="{Binding InvolversCount}"
+						           Foreground="Goldenrod"/>
+						<TextBlock Text="]"
+						           Foreground="Goldenrod"/>
+					</StackPanel>
+				</HierarchicalDataTemplate>
+				<HierarchicalDataTemplate DataType="{x:Type model:TitledCompositeCollection}"
+				                          ItemsSource="{Binding CompositeCollection}">
+					<TextBlock Text="{Binding Title}"
+					           Foreground="SaddleBrown"
+					           FontSize="15"
+					           Margin="8,0"/>
+				</HierarchicalDataTemplate>
+				<DataTemplate DataType="{x:Type model:Misc}">
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Text="{Binding SubGroup.Title}"
+						           Foreground="Green"
+						           Margin="5,0"/>
+						<TextBlock Text=" »»» "
+						           Foreground="Green"
+						           Margin="5,0"/>
+						<TextBlock Text="{Binding Title}"
+						           Foreground="Green"
+						           Margin="5,0"/>
+					</StackPanel>
+				</DataTemplate>
+				<DataTemplate DataType="{x:Type model:ContractField}">
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Text="{Binding SubGroup.Title}"
+						           Foreground="SlateBlue"
+						           Margin="5,0"/>
+						<TextBlock Text=" »»» "
+						           Foreground="SlateBlue"
+						           Margin="5,0"/>
+						<TextBlock Text="{Binding Title}"
+						           Foreground="SlateBlue"
+						           Margin="5,0"/>
+					</StackPanel>
+				</DataTemplate>
+				<DataTemplate DataType="{x:Type model:SubGroup}">
+					<TextBlock Text="{Binding Title}"
+					           Foreground="DarkRed"
+					           Margin="5,0"/>
+				</DataTemplate>
+			</TreeView.Resources>
 		</TreeView>
+
 	</Grid>
 </UserControl>

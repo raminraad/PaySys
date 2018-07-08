@@ -115,6 +115,15 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to هزینه سفر هر کیلومتر.
+        /// </summary>
+        public static string PerKmFactor {
+            get {
+                return ResourceManager.GetString("PerKmFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to زیرگروه.
         /// </summary>
         public static string SubGroup {

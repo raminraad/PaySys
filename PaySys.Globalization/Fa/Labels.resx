@@ -303,4 +303,13 @@
   <data name="MissionFormulaInvolvedContractFields" xml:space="preserve">
     <value>فیلدهای احکام دخیل در محاسبه مأموریت</value>
   </data>
+  <data name="tabExpenseArticlesMng" xml:space="preserve">
+    <value>مواد هزینه</value>
+  </data>
+  <data name="ContractFields" xml:space="preserve">
+    <value>فیلدهای احکام</value>
+  </data>
+  <data name="OverTimes" xml:space="preserve">
+    <value>اضافه کارها</value>
+  </data>
 </root>

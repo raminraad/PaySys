@@ -169,6 +169,15 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to فیلدهای احکام.
+        /// </summary>
+        public static string ContractFields {
+            get {
+                return ResourceManager.GetString("ContractFields", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to عناوین فیلدهای احکام.
         /// </summary>
         public static string ContractFieldTitles {
@@ -421,6 +430,15 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to اضافه کارها.
+        /// </summary>
+        public static string OverTimes {
+            get {
+                return ResourceManager.GetString("OverTimes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to فیلدهای احکام دخیل در محاسبه.
         /// </summary>
         public static string ParameterInvolvedContractFields {
@@ -543,6 +561,15 @@ namespace PaySys.Globalization.Fa {
         public static string tabEmployeeMng {
             get {
                 return ResourceManager.GetString("tabEmployeeMng", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to مواد هزینه.
+        /// </summary>
+        public static string tabExpenseArticlesMng {
+            get {
+                return ResourceManager.GetString("tabExpenseArticlesMng", resourceCulture);
             }
         }
         

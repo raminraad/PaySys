@@ -46,6 +46,7 @@
 			<RowDefinition Height="*"/>
 			<RowDefinition Height="*"/>
 			<RowDefinition Height="*"/>
+			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="80"/>
@@ -89,7 +90,7 @@
 		           Style="{StaticResource StyleTitle}"/>
 		<ListView Grid.Row="3"
 		          Grid.Column="4"
-		          Grid.RowSpan="4"
+		          Grid.RowSpan="5"
 		          MaxWidth="300"
 		          DisplayMemberPath="ContractField.Title"
 		          x:Name="ListViewContractField"
@@ -110,6 +111,10 @@
 		           Grid.Column="1"
 		           Text="{x:Static fa:FieldicMissionFormula.MaxFactor}"
 		           Style="{StaticResource StyleTextBlockFieldName}"/>
+		<TextBlock Grid.Row="7"
+		           Grid.Column="1"
+				   Text="{x:Static fa:FieldicMissionFormula.PerKmFactor}"
+		           Style="{StaticResource StyleTextBlockFieldName}" />
 		<TextBox x:Name="TextBoxSubtractFactor"
 		         Grid.Row="3"
 		         Grid.Column="2"
@@ -126,5 +131,9 @@
 		         Grid.Row="6"
 		         Grid.Column="2"
 				 Text="{Binding MaxFactor,UpdateSourceTrigger=Explicit}"/>
+		<TextBox x:Name="TextBoxPerKmFactor"
+		         Grid.Row="7"
+		         Grid.Column="2"
+				 Text="{Binding PerKmFactor,UpdateSourceTrigger=Explicit}" />
 	</Grid>
 </UserControl>

@@ -379,6 +379,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 				e.DivideFactor = f.Random.Number(30);
 				e.AddFactor = f.Random.Number(250000);
 				e.MaxFactor = f.Random.Number(1000000);
+				e.PerKmFactor = f.Random.Number(500);
 				e.MissionFormulaInvolvedContractFields = new List<MissionFormulaInvolvedContractField>();
 			});
 			var seedMissionFormulas = new List<MissionFormula>();

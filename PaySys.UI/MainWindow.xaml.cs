@@ -63,5 +63,17 @@ namespace PaySys
 			TabCntMain.Items.Add(tabContractMng);
 			TabCntMain.Items.Refresh();
 		}
+
+		private void MenuItemExpenseArticlesMng_OnClick(object sender, RoutedEventArgs e)
+		{
+			var uc = new UcExpenseArticleMng();
+			var tabItem = new TabItem
+			{
+				Content = uc,
+				Header = ResourceAccessor.Labels.GetString("tabExpenseArticlesMng")
+			};
+			TabCntMain.Items.Add(tabItem);
+			TabCntMain.Items.Refresh();
+		}
 	}
 }
