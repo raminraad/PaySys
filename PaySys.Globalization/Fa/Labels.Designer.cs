@@ -70,6 +70,15 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to افزودن فیلد حکم.
+        /// </summary>
+        public static string AddContractField {
+            get {
+                return ResourceManager.GetString("AddContractField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to جدید (ورود جزئیات).
         /// </summary>
         public static string AddDetails {
@@ -196,6 +205,15 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to حذف فیلد حکم.
+        /// </summary>
+        public static string DeleteContractField {
+            get {
+                return ResourceManager.GetString("DeleteContractField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to حذف فیلد حکم دخیل در محاسبه مؤلفه.
         /// </summary>
         public static string DeleteParameterInvolvedContractField {
@@ -264,6 +282,15 @@ namespace PaySys.Globalization.Fa {
         public static string ExpenseArticle {
             get {
                 return ResourceManager.GetString("ExpenseArticle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to مواد هزینه.
+        /// </summary>
+        public static string ExpenseArticles {
+            get {
+                return ResourceManager.GetString("ExpenseArticles", resourceCulture);
             }
         }
         
@@ -363,6 +390,24 @@ namespace PaySys.Globalization.Fa {
         public static string MiscTitles {
             get {
                 return ResourceManager.GetString("MiscTitles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to فرمول مأموریت.
+        /// </summary>
+        public static string MissionFormula {
+            get {
+                return ResourceManager.GetString("MissionFormula", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to فیلدهای احکام دخیل در محاسبه مأموریت.
+        /// </summary>
+        public static string MissionFormulaInvolvedContractFields {
+            get {
+                return ResourceManager.GetString("MissionFormulaInvolvedContractFields", resourceCulture);
             }
         }
         

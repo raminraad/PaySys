@@ -92,6 +92,17 @@ namespace PaySys.ModelAndBindLib.Model
 			}
 		}
 
+		[NotMapped]
+		public MissionFormula CurrenMissionFormula
+		{
+			get => MissionFormulas.FirstOrDefault(table => table.Year == 97);
+			set
+			{
+				var MissionFormula = MissionFormulas.FirstOrDefault(table => table.Year == 97);
+				if(MissionFormula != null)
+					MissionFormula = value;
+			}
+		}
 		public override bool Equals(object obj)
 		{
 			return (obj as SubGroup)?.SubGroupId == SubGroupId && string.Equals(Title, ((SubGroup) obj).Title);
@@ -294,10 +305,19 @@ namespace PaySys.ModelAndBindLib.Model
 	public class MissionFormula
 	{
 
-		//Todo: Add fileds
 		public int MissionFormulaId { get; set; }
 
+		public float DivideFactor { get; set; }
+		public float AddFactor { get; set; }
+		public float MaxFactor { get; set; }
+		public float SubtractFactor { get; set; }
+
+		public int Year { get; set; }
+
+		public int Month { get; set; }
+
 		public virtual SubGroup SubGroup { get; set; }
+		public virtual List<MissionFormulaInvolvedContractField> MissionFormulaInvolvedContractFields { get; set; }
 
 	}
 
@@ -711,6 +731,17 @@ namespace PaySys.ModelAndBindLib.Model
 		public int Month { get; set; }
 
 		public Employee Employee { get; set; }
+
+	}
+
+	/// <summary>#34 فیلدهای احکام دخیل در فرمول مأموریت</summary> 
+	public class MissionFormulaInvolvedContractField
+	{
+
+		public int MissionFormulaInvolvedContractFieldId { get; set; }
+
+		public virtual ContractField ContractField { get; set; }
+		public virtual MissionFormula MissionFormula { get; set; }
 
 	}
 

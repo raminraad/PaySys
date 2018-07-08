@@ -41,10 +41,10 @@ namespace PaySys.ModelAndBindLib.Migrations
 
 			#region Debug
 
-//			if (Debugger.IsAttached == false)
-//			{
-//				Debugger.Launch();
-//			}
+//						if (Debugger.IsAttached == false)
+//						{
+//							Debugger.Launch();
+//						}
 
 			#endregion
 
@@ -297,14 +297,23 @@ namespace PaySys.ModelAndBindLib.Migrations
 
 			#region ContractFields
 
+			var seedContractFields = new List<ContractField>();
 			var contractFieldTitleFaker = new Faker<ContractField>("fa").StrictMode(false).Rules((f, e) =>
 			{
 				e.SubGroup = f.PickRandom(f.PickRandom(seedMainGroups).SubGroups);
-				e.Title = f.PickRandom(contractFields);
 				e.Year = 97;
 			});
-			var seedContractFieldTitles = contractFieldTitleFaker.Generate(60);
-			context.ContractFields.AddRange(seedContractFieldTitles);
+			foreach(var mainGroup in seedMainGroups)
+				foreach(var subGroup in mainGroup.SubGroups)
+					for(int i = 0; i < 10; i++)
+					{
+						contractFieldTitleFaker.RuleFor(field => field.Title, _faker.PickRandom(contractFields));
+						var newContractField = contractFieldTitleFaker.Generate();
+						if(!seedContractFields.Where(field=>field.SubGroup.Equals(subGroup)).Select(field => field.Title).Contains(newContractField.Title))
+							seedContractFields.Add(newContractField);
+					}
+			
+			context.ContractFields.AddRange(seedContractFields);
 
 			#endregion
 
@@ -316,15 +325,15 @@ namespace PaySys.ModelAndBindLib.Migrations
 				e.Month = 007;
 			});
 			var seedMiscs = new List<Misc>();
-			foreach(var mainGroup in seedMainGroups)
-				foreach(var subGroup in mainGroup.SubGroups)
-					for(var i = 0; i < 10; i++)
+			foreach (var mainGroup in seedMainGroups)
+				foreach (var subGroup in mainGroup.SubGroups)
+					for (var i = 0; i < 10; i++)
 					{
 						miscFaker.RuleFor(misc => misc.SubGroup, subGroup).RuleFor(misc => misc.IsPayment, i < 5);
-						if(i < 5)
-							miscFaker.RuleFor(misc => misc.Title, (faker, misc) => faker.PickRandom(miscsPayment));
+						if (i < 5)
+							miscFaker.RuleFor(misc => misc.Title, _faker.PickRandom(miscsPayment));
 						else
-							miscFaker.RuleFor(misc => misc.Title, (faker, misc) => faker.PickRandom(miscDebt));
+							miscFaker.RuleFor(misc => misc.Title, _faker.PickRandom(miscDebt));
 						seedMiscs.Add(miscFaker.Generate());
 					}
 
@@ -336,9 +345,9 @@ namespace PaySys.ModelAndBindLib.Migrations
 
 			var TaxTableFaker = new Faker<TaxTable>("fa").StrictMode(false).Rules((f, e) => { e.Month = 007; });
 			var seedTaxTables = new List<TaxTable>();
-			foreach(var mainGroup in seedMainGroups)
-				foreach(var subGroup in mainGroup.SubGroups)
-					for(var i = 95; i <= 97; i++)
+			foreach (var mainGroup in seedMainGroups)
+				foreach (var subGroup in mainGroup.SubGroups)
+					for (var i = 95; i <= 97; i++)
 					{
 						TaxTableFaker.RuleFor(TaxTable => TaxTable.SubGroup, subGroup).RuleFor(TaxTable => TaxTable.Year, i);
 						seedTaxTables.Add(TaxTableFaker.Generate());
@@ -351,14 +360,52 @@ namespace PaySys.ModelAndBindLib.Migrations
 				e.Factor = f.Random.Number(10);
 			});
 			var seedTaxRows = new List<TaxRow>();
-			foreach(var taxTable in seedTaxTables)
-				for(int i = 0; i < 10; i++)
+			foreach (var taxTable in seedTaxTables)
+				for (int i = 0; i < 10; i++)
 				{
 					TaxRowFaker.RuleFor(row => row.TaxTable, taxTable);
 					seedTaxRows.Add(TaxRowFaker.Generate());
 				}
 
 			context.TaxRows.AddRange(seedTaxRows);
+
+			#endregion
+
+			#region MissionFormulas
+
+			var MissionFormulaFaker = new Faker<MissionFormula>("fa").StrictMode(false).Rules((f, e) =>
+			{
+				e.Month = 007;
+				e.DivideFactor = f.Random.Number(30);
+				e.AddFactor = f.Random.Number(250000);
+				e.MaxFactor = f.Random.Number(1000000);
+				e.MissionFormulaInvolvedContractFields = new List<MissionFormulaInvolvedContractField>();
+			});
+			var seedMissionFormulas = new List<MissionFormula>();
+			foreach (var mainGroup in seedMainGroups)
+				foreach (var subGroup in mainGroup.SubGroups)
+					for (var i = 95; i <= 97; i++)
+					{
+						MissionFormulaFaker.RuleFor(missionFormula => missionFormula.SubGroup, subGroup).RuleFor(missionFormula => missionFormula.Year, i);
+						seedMissionFormulas.Add(MissionFormulaFaker.Generate());
+					}
+			foreach (var missionFormula in seedMissionFormulas)
+				for (int i = 0; i < 10; i++)
+				{
+					if (_faker.Random.Bool())
+					{
+						var item = new MissionFormulaInvolvedContractField();
+						var validContractFields = missionFormula.SubGroup.ContractFields.Where(field => !missionFormula.MissionFormulaInvolvedContractFields.Select(invFld => invFld.ContractField).Contains(field));
+						if (validContractFields.Any())
+						{
+							item.ContractField = _faker.PickRandom(validContractFields);
+							item.MissionFormula = missionFormula;
+							missionFormula.MissionFormulaInvolvedContractFields.Add(item);
+						}
+					}
+				}
+
+			context.MissionFormulas.AddRange(seedMissionFormulas);
 
 			#endregion
 
@@ -381,6 +428,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 						HandselFormulaFaker.RuleFor(HandselFormula => HandselFormula.SubGroup, subGroup).RuleFor(HandselFormula => HandselFormula.Year, i);
 						seedHandselFormulas.Add(HandselFormulaFaker.Generate());
 					}
+
 			context.HandselFormulas.AddRange(seedHandselFormulas);
 
 			#endregion
@@ -395,62 +443,52 @@ namespace PaySys.ModelAndBindLib.Migrations
 				e.Title = f.PickRandom(parameterTitles);
 				e.ValueType = f.PickRandom(Enum.GetValues(typeof(ValueType)).Cast<ValueType>().Where(valueType => valueType != ValueType.Unknown));
 				e.Value = f.Random.Number(999999);
+				e.ParameterInvolvedContractFields = new List<ParameterInvolvedContractField>();
+				e.ParameterInvolvedMiscs = new List<ParameterInvolvedMisc>();
 			});
-			var parameters = new List<Parameter>();
-			foreach(var mainGroup in seedMainGroups)
-				foreach(var subGroup in mainGroup.SubGroups)
-					for(var i = 0; i < 10; i++)
+			var seedParameters = new List<Parameter>();
+			foreach (var mainGroup in seedMainGroups)
+				foreach (var subGroup in mainGroup.SubGroups)
+					for (var i = 0; i < 10; i++)
 					{
 						ParameterFaker.RuleFor(parameter => parameter.SubGroup, subGroup);
-						parameters.Add(ParameterFaker.Generate());
+						seedParameters.Add(ParameterFaker.Generate());
 					}
-
-			context.Parameters.AddRange(parameters);
-
-			#endregion
 
 			#region ParameterInvolvedContractFields
 
-			var seedParameterInvolvedContractFields = new List<ParameterInvolvedContractField>();
-			foreach(var mainGroup in seedMainGroups)
-				foreach(var subGroup in mainGroup.SubGroups)
-					foreach(var parameter in subGroup.Parameters)
-						foreach(var contractField in subGroup.ContractFields)
-							if(_faker.Random.Bool())
-								seedParameterInvolvedContractFields.Add(new ParameterInvolvedContractField
-								{
-									Parameter = parameter,
-									ContractField = contractField
-								});
-
-			context.ParameterInvolvedContractFields.AddRange(seedParameterInvolvedContractFields);
+			foreach (var parameter in seedParameters)
+				foreach (var contractField in parameter.SubGroup.ContractFields)
+					if (_faker.Random.Bool() && !parameter.ParameterInvolvedContractFields.Select(inv => inv.ContractField).Contains(contractField))
+						parameter.ParameterInvolvedContractFields.Add(new ParameterInvolvedContractField
+						{
+							ContractField = contractField
+						});
 
 			#endregion
 
 			#region ParameterInvolvedMiscs
 
-			var seedParameterInvolvedMiscs = new List<ParameterInvolvedMisc>();
-			foreach(var mainGroup in seedMainGroups)
-				foreach(var subGroup in mainGroup.SubGroups)
-					foreach(var parameter in subGroup.Parameters)
-						foreach(var Misc in subGroup.Miscs.Where(misc => misc.IsPayment))
-							if(_faker.Random.Bool())
-								seedParameterInvolvedMiscs.Add(new ParameterInvolvedMisc
-								{
-									Parameter = parameter,
-									Misc = Misc
-								});
+			foreach (var parameter in seedParameters)
+				foreach (var misc in parameter.SubGroup.Miscs)
+					if (_faker.Random.Bool() && !parameter.ParameterInvolvedMiscs.Select(inv => inv.Misc).Contains(misc))
+						parameter.ParameterInvolvedMiscs.Add(new ParameterInvolvedMisc
+						{
+							Misc = misc
+						});
 
-			context.ParameterInvolvedMiscs.AddRange(seedParameterInvolvedMiscs);
+			#endregion
+
+			context.Parameters.AddRange(seedParameters);
 
 			#endregion
 
 			#region ExpenseArticleOfMiscForSubGroups
 
 			var seedExpenseArticleOfMiscForSubGroups = new List<ExpenseArticleOfMiscForSubGroup>();
-			foreach(var mainGroup in seedMainGroups)
-				foreach(var subGroup in mainGroup.SubGroups)
-					foreach(var misc in subGroup.Miscs)
+			foreach (var mainGroup in seedMainGroups)
+				foreach (var subGroup in mainGroup.SubGroups)
+					foreach (var misc in subGroup.Miscs)
 						seedExpenseArticleOfMiscForSubGroups.Add(new ExpenseArticleOfMiscForSubGroup
 						{
 							SubGroup = subGroup,
@@ -466,9 +504,9 @@ namespace PaySys.ModelAndBindLib.Migrations
 			#region ExpenseArticleOfContractFieldForSubGroups
 
 			var seedExpenseArticleOfContractFieldForSubGroups = new List<ExpenseArticleOfContractFieldForSubGroup>();
-			foreach(var mainGroup in seedMainGroups)
-				foreach(var subGroup in mainGroup.SubGroups)
-					foreach(var contractField in subGroup.ContractFields)
+			foreach (var mainGroup in seedMainGroups)
+				foreach (var subGroup in mainGroup.SubGroups)
+					foreach (var contractField in subGroup.ContractFields)
 						seedExpenseArticleOfContractFieldForSubGroups.Add(new ExpenseArticleOfContractFieldForSubGroup
 						{
 							SubGroup = subGroup,
@@ -484,8 +522,8 @@ namespace PaySys.ModelAndBindLib.Migrations
 			#region ExpenseArticleOfOverTimeForSubGroups
 
 			var seedExpenseArticleOfOverTimeForSubGroups = new List<ExpenseArticleOfOverTimeForSubGroup>();
-			foreach(var mainGroup in seedMainGroups)
-				foreach(var subGroup in mainGroup.SubGroups)
+			foreach (var mainGroup in seedMainGroups)
+				foreach (var subGroup in mainGroup.SubGroups)
 					seedExpenseArticleOfOverTimeForSubGroups.Add(new ExpenseArticleOfOverTimeForSubGroup
 					{
 						SubGroup = subGroup,
@@ -527,8 +565,8 @@ namespace PaySys.ModelAndBindLib.Migrations
 
 			var contractDetailFaker = new Faker<ContractDetail>("fa").StrictMode(false).Rules((f, e) => { e.Value = f.Random.Number(100) * 10000; });
 			var seedContractDetails = new List<ContractDetail>();
-			foreach(var contMast in seedContractMasters)
-				foreach(var grpCntField in seedContractFieldTitles.Where(c => c.SubGroup.Equals(contMast.SubGroup)))
+			foreach (var contMast in seedContractMasters)
+				foreach (var grpCntField in seedContractFields.Where(c => c.SubGroup.Equals(contMast.SubGroup)))
 				{
 					contractDetailFaker.RuleFor(detail => detail.ContractMaster, contMast);
 					contractDetailFaker.RuleFor(detail => detail.ContractField, grpCntField);
@@ -543,13 +581,13 @@ namespace PaySys.ModelAndBindLib.Migrations
 			#region Set CurrentContract for each Employee
 
 			var queryEmpContracts = from cont in seedContractMasters
-			                        group cont by cont.Employee
-			                        into newGroup
-			                        select newGroup;
-			foreach(var empContract in queryEmpContracts)
+									group cont by cont.Employee
+									into newGroup
+									select newGroup;
+			foreach (var empContract in queryEmpContracts)
 			{
 				var lastCnt = empContract.LastOrDefault();
-				if(lastCnt != null)
+				if (lastCnt != null)
 					lastCnt.IsCurrentContract = true;
 			}
 

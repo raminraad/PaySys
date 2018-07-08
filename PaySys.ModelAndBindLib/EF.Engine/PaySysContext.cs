@@ -22,6 +22,7 @@ namespace PaySys.ModelAndBindLib.Engine
 		public DbSet<EmployeeMiscRemain> EmployeeMiscRemains { set; get; }
 		public DbSet<ContractField> ContractFields { set; get; }
 		public DbSet<MissionFormula> MissionFormulas { set; get; }
+		public DbSet<MissionFormulaInvolvedContractField> MissionFormulaInvolvedContractFields { set; get; }
 		public DbSet<TaxTable> TaxTables { set; get; }
 		public DbSet<TaxRow> TaxRows { set; get; }
 		public DbSet<PayslipEmployeeMisc> PayslipEmployeeMiscs { set; get; }

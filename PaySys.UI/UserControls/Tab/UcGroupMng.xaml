@@ -121,6 +121,11 @@
 				<local:UcHandselFormulaMng x:Name="SmpUcHandselFormula"
 				                           CurrentSubGroup="{Binding ElementName=ListViewSubGroup,Path=SelectedItem}"/>
 			</TabItem>
+			<TabItem x:Name="TabItemMissionFormula"
+			         Header="{x:Static fa:Labels.MissionFormula}">
+				<local:UcMissionFormulaMng x:Name="SmpUcMissionFormulaMng"
+				                           CurrentSubGroup="{Binding ElementName=ListViewSubGroup,Path=SelectedItem}" />
+			</TabItem>
 		</TabControl>
 	</Grid>
 </UserControl>

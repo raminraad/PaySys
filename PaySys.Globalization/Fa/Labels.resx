@@ -222,6 +222,9 @@
   <data name="ExpenseArticle" xml:space="preserve">
     <value>ماده هزینه</value>
   </data>
+  <data name="ExpenseArticles" xml:space="preserve">
+    <value>مواد هزینه</value>
+  </data>
   <data name="Title" xml:space="preserve">
     <value>عنوان</value>
   </data>
@@ -258,6 +261,12 @@
   <data name="AddParameterInvolvedContractField" xml:space="preserve">
     <value>افزودن فیلد حکم دخیل در محاسبه مؤلفه</value>
   </data>
+  <data name="AddContractField" xml:space="preserve">
+    <value>افزودن فیلد حکم</value>
+  </data>
+  <data name="DeleteContractField" xml:space="preserve">
+    <value>حذف فیلد حکم</value>
+  </data>
   <data name="AddParameterInvolvedMiscPayment" xml:space="preserve">
     <value>افزودن پرداخت متفرقه دخیل در محاسبه مؤلفه</value>
   </data>
@@ -285,7 +294,13 @@
   <data name="EditRate" xml:space="preserve">
     <value>ویرایش نرخ</value>
   </data>
-	<data name="HandselFormula" xml:space="preserve">
+  <data name="HandselFormula" xml:space="preserve">
     <value>فرمول عیدی</value>
+  </data>
+  <data name="MissionFormula" xml:space="preserve">
+    <value>فرمول مأموریت</value>
+  </data>
+  <data name="MissionFormulaInvolvedContractFields" xml:space="preserve">
+    <value>فیلدهای احکام دخیل در محاسبه مأموریت</value>
   </data>
 </root>

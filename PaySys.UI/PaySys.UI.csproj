@@ -102,6 +102,9 @@
     <Compile Include="UserControls\Tab\UcContractFieldTitlesMng.xaml.cs">
       <DependentUpon>UcContractFieldTitlesMng.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Tab\UcExpenseArticleMng.xaml.cs">
+      <DependentUpon>UcExpenseArticleMng.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Tab\UcGroupMng.xaml.cs">
       <DependentUpon>UcGroupMng.xaml</DependentUpon>
     </Compile>
@@ -110,6 +113,9 @@
     </Compile>
     <Compile Include="UserControls\Tab\UcMiscMng.xaml.cs">
       <DependentUpon>UcMiscMng.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Tab\UcMissionFormulaMng.xaml.cs">
+      <DependentUpon>UcMissionFormulaMng.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Tab\UcParameterMng.xaml.cs">
       <DependentUpon>UcParameterMng.xaml</DependentUpon>
@@ -169,6 +175,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\Tab\UcExpenseArticleMng.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\Tab\UcGroupMng.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -178,6 +188,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Tab\UcMiscMng.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Tab\UcMissionFormulaMng.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

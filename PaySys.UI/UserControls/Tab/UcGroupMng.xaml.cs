@@ -49,6 +49,7 @@ namespace PaySys.UI.UC
 			SmpUcParameterMng.SaveContext += () => _context.SaveChanges();
 			SmpUcTaxTableMng.SaveContext += () => _context.SaveChanges();
 			SmpUcHandselFormula.SaveContext += () => _context.SaveChanges();
+			SmpUcMissionFormulaMng.SaveContext += () => _context.SaveChanges();
 
 			SmpUcContractFieldTitlesMng.ExpenseArticlesAll = _context.ExpenseArticles.ToList();
 			SmpUcMiscMng.ExpenseArticlesAll = _context.ExpenseArticles.ToList();
