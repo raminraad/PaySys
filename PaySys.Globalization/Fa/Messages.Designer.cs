@@ -160,6 +160,24 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to لطفاً XXX را وارد نمایید..
+        /// </summary>
+        public static string EnterXXXValue {
+            get {
+                return ResourceManager.GetString("EnterXXXValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to مقدار وارد شده برای &quot;XXX&quot; نامعتبر میباشد..
+        /// </summary>
+        public static string ErrorValidationXXXValue {
+            get {
+                return ResourceManager.GetString("ErrorValidationXXXValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to لطفاً فیلد مورد نظر را انتخاب فرمایید..
         /// </summary>
         public static string SelectContractField {

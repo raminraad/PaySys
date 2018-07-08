@@ -708,7 +708,7 @@ namespace PaySys.ModelAndBindLib.Model
 
 		public int Distance { get; set; }
 
-		public int Percentage { get; set; }
+		public float Percentage { get; set; }
 
 		public virtual List<Mission> Missions { get; set; }
 	}

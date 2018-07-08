@@ -40,6 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Fa\FieldicCity.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FieldicCity.resx</DependentUpon>
+    </Compile>
     <Compile Include="Fa\FieldicContractField.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -79,6 +84,10 @@
     <Compile Include="ResourceManager.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Fa\FieldicCity.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FieldicCity.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Fa\FieldicContractField.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>FieldicContractField.Designer.cs</LastGenOutput>

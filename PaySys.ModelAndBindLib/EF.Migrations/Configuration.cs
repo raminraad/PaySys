@@ -119,8 +119,10 @@ namespace PaySys.ModelAndBindLib.Migrations
 			{
 				"دیون",
 				"اداری",
-				"پاداش",
-				"پرسنلی",
+				"پاداشها",
+				"درآمدها",
+				"بودجه مازاد",
+				"هزینه های پرسنل",
 				"سرمایه ای",
 				"تفاوت تطبيق",
 				"مزایا و کمکها",
@@ -171,7 +173,71 @@ namespace PaySys.ModelAndBindLib.Migrations
 				"627648",
 				"603799"
 			};
-
+			var cityNames = new[]
+			{
+				"آبش‌احمد",
+				"آچاچی",
+				"آذرشهر",
+				"آقکند",
+				"اسکو",
+				"اهر",
+				"ایلخچی",
+				"باسمنج",
+				"بخشایش",
+				"بستان‌آباد",
+				"بناب",
+				"بناب مرند",
+				"تبریز",
+				"ترک",
+				"تیمورلو (آذرشهر)",
+				"ترکمانچای",
+				"تسوج",
+				"تیکمه‌داش",
+				"جلفا",
+				"جوان‌قلعه",
+				"خاروانا",
+				"خامنه",
+				"خداجو",
+				"خسروشاه",
+				"خمارلو",
+				"خواجه",
+				"دوزدوزان",
+				"زرنق",
+				"زنوز",
+				"سراب",
+				"سردرود",
+				"سهند",
+				"سیس",
+				"سیه‌رود",
+				"شبستر",
+				"شربیان",
+				"شرفخانه",
+				"شندآباد",
+				"صوفیان",
+				"عجب‌شیر",
+				"قره‌آغاج (چاراویماق)",
+				"کشکسرای",
+				"کلوانق",
+				"کلیبر",
+				"کوزه‌کنان",
+				"گوگان",
+				"لیلان",
+				"مبارک‌شهر",
+				"مراغه",
+				"مرند",
+				"ملکان",
+				"ممقان",
+				"مهربان",
+				"میانه",
+				"نظرکهریزی",
+				"وایقان",
+				"ورزقان",
+				"هادیشهر",
+				"هریس",
+				"هشترود",
+				"هوراند",
+				"یامچی کهنمو "
+			};
 			#endregion
 
 			#region MainGroups & SubGroups
@@ -269,15 +335,33 @@ namespace PaySys.ModelAndBindLib.Migrations
 			#endregion
 
 			#region ExpenseArticles
-
+			var seedExpenseArticles =new List<ExpenseArticle>();
 			var expenseArticleFaker = new Faker<ExpenseArticle>("fa").StrictMode(false).Rules((f, e) =>
 			{
-				e.Title = f.PickRandom(expenseArticles);
+				e.Title = f.PickRandom(expenseArticles.Where(s => !seedExpenseArticles.Select(x=>x.Title).Contains(s)));
 				e.Code = $"{f.Random.Number(99999):D5}";
 				e.IsActive = true;
 			});
-			var seedExpenseArticles = expenseArticleFaker.Generate(7);
+			for(int i = 0; i < 10; i++)
+				seedExpenseArticles.Add(expenseArticleFaker.Generate());
 			seedExpenseArticles.AddRange(seedExpenseArticles);
+
+			#endregion
+
+			#region Cities
+
+			var seedCities = new List<City>();
+			var CityFaker = new Faker<City>("fa").StrictMode(false).Rules((f, e) =>
+			{
+				e.Title = f.PickRandom(cityNames.Where(s => !seedCities.Select(city => city.Title).Contains(s)));
+				e.Distance = f.Random.Int(20, 999);
+				e.Percentage = f.Random.Number(100);
+			});
+			for(int i = 0; i < 50; i++)
+			{
+				seedCities.Add(CityFaker.Generate());
+			}
+			context.Cities.AddRange(seedCities);
 
 			#endregion
 

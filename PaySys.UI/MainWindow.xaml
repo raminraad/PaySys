@@ -34,7 +34,7 @@
 					<MenuItem Header="جدول مالیات" />
 					<MenuItem Header="اطلاعات اصلی" />
 				</MenuItem>
-				<MenuItem Header="تعریف شهرهای مأموریت" />
+				<MenuItem x:Name="MnuCityMng" Click="MnuCityMng_OnClick" Header="تعریف شهرهای مأموریت" />
 				<MenuItem Header="تغییر کد پرسنلی" />
 				<MenuItem Header="تغییر گروه" />
 				<MenuItem Header="ورود اطلاعات سیستم" />

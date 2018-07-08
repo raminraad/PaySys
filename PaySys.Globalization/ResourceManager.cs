@@ -13,5 +13,6 @@ namespace PaySys.Globalization
 		public static ResourceManager FieldicContractField => new ResourceManager($"{NamespacePrefix}.FieldicContractField", Assembly.GetExecutingAssembly());
 		public static ResourceManager FieldicHandselFormula => new ResourceManager($"{NamespacePrefix}.FieldicHandselFormula", Assembly.GetExecutingAssembly());
 		public static ResourceManager FieldicMissionFormula => new ResourceManager($"{NamespacePrefix}.FieldicMissionFormula", Assembly.GetExecutingAssembly());
+		public static ResourceManager FieldicCity => new ResourceManager($"{NamespacePrefix}.FieldicCity", Assembly.GetExecutingAssembly());
 	}
 }

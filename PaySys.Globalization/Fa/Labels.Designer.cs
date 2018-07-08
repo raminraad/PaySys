@@ -151,6 +151,24 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to شهرها.
+        /// </summary>
+        public static string Cities {
+            get {
+                return ResourceManager.GetString("Cities", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to شهر.
+        /// </summary>
+        public static string City {
+            get {
+                return ResourceManager.GetString("City", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to حکم.
         /// </summary>
         public static string Contract {
@@ -543,6 +561,15 @@ namespace PaySys.Globalization.Fa {
         public static string SubGroupsList {
             get {
                 return ResourceManager.GetString("SubGroupsList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to شهرهای محل مأموریت.
+        /// </summary>
+        public static string tabCityMng {
+            get {
+                return ResourceManager.GetString("tabCityMng", resourceCulture);
             }
         }
         

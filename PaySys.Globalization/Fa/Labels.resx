@@ -312,4 +312,13 @@
   <data name="OverTimes" xml:space="preserve">
     <value>اضافه کارها</value>
   </data>
+  <data name="Cities" xml:space="preserve">
+    <value>شهرها</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>شهر</value>
+  </data>
+  <data name="tabCityMng" xml:space="preserve">
+    <value>شهرهای محل مأموریت</value>
+  </data>
 </root>

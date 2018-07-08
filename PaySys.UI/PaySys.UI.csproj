@@ -93,6 +93,9 @@
     <Compile Include="UserControls\Ingredient\UcShowContractMaster.xaml.cs">
       <DependentUpon>UcShowContractMaster.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Tab\UcCityMng.xaml.cs">
+      <DependentUpon>UcCityMng.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Tab\UcContractMng.xaml.cs">
       <DependentUpon>UcContractMng.xaml</DependentUpon>
     </Compile>
@@ -160,6 +163,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Ingredient\UcShowContractMaster.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Tab\UcCityMng.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

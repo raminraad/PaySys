@@ -33,9 +33,9 @@
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="2*"/>
-			<ColumnDefinition Width="3*"/>
+			<ColumnDefinition Width="5*"/>
 			<ColumnDefinition Width="*"/>
-			<ColumnDefinition Width="3*"/>
+			<ColumnDefinition Width="3*" />
 			<ColumnDefinition Width="2*"/>
 		</Grid.ColumnDefinitions>
 		<ToolBar Grid.Row="0"
@@ -76,7 +76,7 @@
 					                Width="120"
 					                DisplayMemberBinding="{Binding Title}"/>
 					<GridViewColumn Header="{x:Static fa:Labels.ExpenseArticle}"
-					                Width="120"
+					                Width="150"
 					                DisplayMemberBinding="{Binding CurrentExpenseArticle.DspCodeTitle}"/>
 				</GridView>
 			</ListView.View>
@@ -94,7 +94,7 @@
 					                Width="120"
 					                DisplayMemberBinding="{Binding Title}"/>
 					<GridViewColumn Header="{x:Static fa:Labels.ExpenseArticle}"
-					                Width="120"
+					                Width="150"
 					                DisplayMemberBinding="{Binding CurrentExpenseArticle.DspCodeTitle}"/>
 				</GridView>
 			</ListView.View>

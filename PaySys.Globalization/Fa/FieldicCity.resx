@@ -117,55 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DeleteConfirmationOfItem" xml:space="preserve">
-    <value>آیتم انتخاب شده حذف خواهد شد. تأیید مینمایید؟</value>
+  <data name="CityId" xml:space="preserve">
+    <value>کلید اصلی شهر</value>
   </data>
-  <data name="DeleteItem" xml:space="preserve">
-    <value>رکورد انتخاب شده حذف خواهد شد. تأیید مینمایید؟</value>
+  <data name="Distance" xml:space="preserve">
+    <value>مسافت</value>
   </data>
-  <data name="EnterContractFieldTitle" xml:space="preserve">
-    <value>لطفاً عنوان فیلد حکم را وارد نمایید.</value>
+  <data name="Missions" xml:space="preserve">
+    <value>لیست مأموریت ها</value>
   </data>
-  <data name="EnterExpenseArticleCode" xml:space="preserve">
-    <value>لطفاً کد پرداخت هزینه را وارد فرمایید.</value>
+  <data name="Percentage" xml:space="preserve">
+    <value>درصد</value>
   </data>
-  <data name="EnterExpenseArticleTitle" xml:space="preserve">
-    <value>لطفاً عنوان پرداخت هزینه را وارد فرمایید.</value>
-  </data>
-  <data name="EnterMainGroupName" xml:space="preserve">
-    <value>لطفاً نام گروه اصلی را وارد نمایید.</value>
-  </data>
-  <data name="EnterMiscTitle" xml:space="preserve">
-    <value>لطفاً عنوان کسور/پرداخت متفرقه را وارد نمایید.</value>
-  </data>
-  <data name="EnterParameterValue" xml:space="preserve">
-    <value>لطفاًمقدار مؤلفه محاسباتی را وارد نمایید.</value>
-  </data>
-  <data name="EnterSubGroupName" xml:space="preserve">
-    <value>لطفاً نام زیر گروه را وارد نمایید.</value>
-  </data>
-  <data name="EnterTaxRowFactor" xml:space="preserve">
-    <value>لطفاً مقدار جدید نرخ مالیات را وارد نمایید.</value>
-  </data>
-  <data name="EnterTaxRowValueTo" xml:space="preserve">
-    <value>لطفاً مقدار جدید حد پایانی بازه را وارد نمایید.</value>
-  </data>
-  <data name="EnterXXXValue" xml:space="preserve">
-    <value>لطفاً XXX را وارد نمایید.</value>
-  </data>
-  <data name="ErrorValidationXXXValue" xml:space="preserve">
-    <value>مقدار وارد شده برای "XXX" نامعتبر میباشد.</value>
-  </data>
-  <data name="SelectContractField" xml:space="preserve">
-    <value>لطفاً فیلد مورد نظر را انتخاب فرمایید.</value>
-  </data>
-  <data name="SelectExpenseArticle" xml:space="preserve">
-    <value>لطفاً ماده هزینه را انتخاب نمایید.</value>
-  </data>
-  <data name="SelectItem" xml:space="preserve">
-    <value>لطفاً یکی از آیتم ها را انتخاب نمایید.</value>
-  </data>
-  <data name="SelectMiscPayment" xml:space="preserve">
-    <value>لطفاً پرداخت متفرقه مورد نظر را انتخاب نمایید.</value>
+  <data name="Title" xml:space="preserve">
+    <value>نام شهر</value>
   </data>
 </root>
