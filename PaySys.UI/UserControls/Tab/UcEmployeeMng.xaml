@@ -33,29 +33,29 @@
 		<ToolBar Grid.Row="0">
 			<Button Name="BtnEmployeeAdd"
 					Click="BtnEmployeeAdd_OnClick"
-					IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
+					IsEnabled="{Binding ElementName=UcFormState,Path=EnabledOfCrudButtons}"
 					Content="{x:Static fa:Labels.Add}" />
 			<Button Name="BtnEmployeeEdit"
 					Click="BtnEmployeeEdit_OnClick"
-					IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
+					IsEnabled="{Binding ElementName=UcFormState,Path=EnabledOfCrudButtons}"
 					Content="{x:Static fa:Labels.Edit}" />
 			<Button Name="BtnEmployeeDelete"
 					Click="BtnEmployeeDelete_OnClick"
-					IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
+					IsEnabled="{Binding ElementName=UcFormState,Path=EnabledOfCrudButtons}"
 					Content="{x:Static fa:Labels.Delete}" />
 			<Separator />
 			<Button Name="BtnEmployeeRefresh"
 					Click="BtnEmployeeRefresh_OnClick"
-					IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
+					IsEnabled="{Binding ElementName=UcFormState,Path=EnabledOfCrudButtons}"
 					Content="{x:Static fa:Labels.Refresh}" />
 			<Separator />
 			<Button Name="BtnEmployeeSave"
 					Click="BtnEmployeeSave_OnClick"
-					IsEnabled="{Binding ElementName=UcFormState,Path=SaveCancelButtonsEnabled}"
+					IsEnabled="{Binding ElementName=UcFormState,Path=EnabledOfSaveCancelButtons}"
 					Content="{x:Static fa:Labels.Save}" />
 			<Button Name="BtnEmployeeCancel"
 					Click="BtnEmployeeCancel_OnClick"
-					IsEnabled="{Binding ElementName=UcFormState,Path=SaveCancelButtonsEnabled}"
+					IsEnabled="{Binding ElementName=UcFormState,Path=EnabledOfSaveCancelButtons}"
 					Content="{x:Static fa:Labels.Cancel}" />
 		</ToolBar>
 		<StackPanel Name="PanelSearch"
@@ -86,7 +86,7 @@
 				  AutoGenerateColumns="False"
 				  IsSynchronizedWithCurrentItem="True"
 				  IsReadOnly="True"
-				  IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
+				  IsEnabled="{Binding ElementName=UcFormState,Path=EnabledOfCrudButtons}"
 				  SelectionMode="Single"
 				  ItemsSource="{Binding}">
 			<DataGrid.Columns>
@@ -208,64 +208,64 @@
 					   Text="{x:Static fa:FieldicEmployee.Address}" />
 			<TextBox  Name="TxtPersonnelCode"
 					  Grid.Row="3"
-					  IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyFields}"
+					  IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyOfEditControls}"
 					  Grid.Column="2"
 					  Text="{Binding PersonnelCode,UpdateSourceTrigger=Explicit}" />
 			<TextBox Grid.Row="3"
-					 IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyFields}"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyOfEditControls}"
 					 Grid.Column="5"
 					 Text="{Binding DossierNo,UpdateSourceTrigger=Explicit}" />
 			<TextBox Grid.Row="5"
-					 IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyFields}"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyOfEditControls}"
 					 Grid.Column="2"
 					 Text="{Binding FName,UpdateSourceTrigger=Explicit}" />
 			<TextBox Grid.Row="5"
-					 IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyFields}"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyOfEditControls}"
 					 Grid.Column="5"
 					 Text="{Binding LName,UpdateSourceTrigger=Explicit}" />
 			<TextBox Grid.Row="5"
-					 IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyFields}"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyOfEditControls}"
 					 Grid.Column="8"
 					 Text="{Binding FatherName,UpdateSourceTrigger=Explicit}" />
 			<ComboBox Grid.Row="5"
-					  IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyFields}"
+					  IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyOfEditControls}"
 					  Grid.Column="11"
 					  ItemsSource="{Binding Source={extensionMethod:EnumBindingSource {x:Type model:Sex}}}"
 					  SelectedItem="{Binding Sex,UpdateSourceTrigger=Explicit}" />
 			<TextBox Grid.Row="7"
-					 IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyFields}"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyOfEditControls}"
 					 Grid.Column="2"
 					 Text="{Binding NationalCardNo,UpdateSourceTrigger=Explicit}" />
 			<TextBox Grid.Row="7"
-					 IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyFields}"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyOfEditControls}"
 					 Grid.Column="5"
 					 Text="{Binding IdCardNo,UpdateSourceTrigger=Explicit}" />
 			<TextBox Grid.Row="7"
-					 IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyFields}"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyOfEditControls}"
 					 Grid.Column="8"
 					 Text="{Binding BirthDate,UpdateSourceTrigger=Explicit,Converter={StaticResource DateFrmtCnv}}" />
 			<TextBox Grid.Row="7"
-					 IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyFields}"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyOfEditControls}"
 					 Grid.Column="11"
 					 Text="{Binding BirthPlace,UpdateSourceTrigger=Explicit}" />
 			<TextBox Grid.Row="9"
-					 IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyFields}"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyOfEditControls}"
 					 Grid.Column="2"
 					 Text="{Binding IdCardExportDate,UpdateSourceTrigger=Explicit,Converter={StaticResource DateFrmtCnv}}" />
 			<TextBox Grid.Row="9"
-					 IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyFields}"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyOfEditControls}"
 					 Grid.Column="5"
 					 Text="{Binding IdCardExportPlace,UpdateSourceTrigger=Explicit}" />
 			<TextBox Grid.Row="9"
-					 IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyFields}"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyOfEditControls}"
 					 Grid.Column="8"
 					 Text="{Binding HomeTel,UpdateSourceTrigger=Explicit}" />
 			<TextBox Grid.Row="9"
-					 IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyFields}"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyOfEditControls}"
 					 Grid.Column="11"
 					 Text="{Binding CellNo,UpdateSourceTrigger=Explicit}" />
 			<TextBox Grid.Row="11"
-					 IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyFields}"
+					 IsReadOnly="{Binding ElementName=UcFormState,Path=ReadOnlyOfEditControls}"
 					 Grid.Column="2"
 					 Text="{Binding Address,UpdateSourceTrigger=Explicit}"
 					 Grid.ColumnSpan="10"

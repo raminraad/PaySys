@@ -86,7 +86,7 @@ namespace PaySys.UI.UC
 
 			SmpUcFormState.CurrentState = FormCurrentState.Select;
 
-			//		    SmpUcShowContractMaster.ReadOnlyFields = true;
+			//		    SmpUcShowContractMaster.ReadOnlyOfEditControls = true;
 		}
 
 		private void BtnSaveContractMasterAndContinueToContractDetails_Click(object sender, RoutedEventArgs e)

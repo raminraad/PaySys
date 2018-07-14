@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,8 +9,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
-
-//using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -43,7 +42,13 @@ namespace PaySys.UI.UC.Tab
 		private void BtnAdd_OnClick(object sender, RoutedEventArgs e)
 		{
 			SmpUcFormStateLabel.CurrentState = FormCurrentState.Add;
-			GridDetails.DataContext = new Employee();
+			var newItem = new City
+			{
+				Title = ResourceAccessor.Labels.GetString("New")
+			};
+			Cities.Add(newItem);
+			ListViewCities.SelectedItem = newItem;
+			ListViewCities.ScrollIntoView(newItem);
 		}
 
 		private void BtnEdit_OnClick(object sender, RoutedEventArgs e)
@@ -53,11 +58,15 @@ namespace PaySys.UI.UC.Tab
 
 		private void BtnRefresh_OnClick(object sender, RoutedEventArgs e)
 		{
+			var selectedId = (ListViewCities.SelectedItem as City)?.CityId;
 			Context = new PaySysContext();
-			Cities = new ObservableCollection<City>(Context.Cities.ToList());
+			Context.Cities.Load();
+			Cities = Context.Cities.Local;
 			ListViewCities.GetBindingExpression(ItemsControl.ItemsSourceProperty).UpdateTarget();
+			if(selectedId.HasValue)
+				ListViewCities.SelectedItem = Cities.FirstOrDefault(city => city.CityId == selectedId.Value);
 		}
-		
+
 		private void BtnSave_OnClick(object sender, RoutedEventArgs e)
 		{
 			foreach(var textBox in this.FindVisualChildren<TextBox>())
@@ -69,6 +78,7 @@ namespace PaySys.UI.UC.Tab
 
 		private void BtnCancel_OnClick(object sender, RoutedEventArgs e)
 		{
+			Cities.Remove((City) ListViewCities.SelectedItem);
 			foreach(var textBox in this.FindVisualChildren<TextBox>())
 				textBox.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
 

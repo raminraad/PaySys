@@ -88,10 +88,10 @@ namespace PaySys.UI.UC
 
 		private void BtnEmployeeSave_OnClick(object sender, RoutedEventArgs e)
 		{
-			foreach (var textBox in GridDetail.Children.OfType<Control>())
+			foreach (var control in GridDetail.Children.OfType<Control>())
 			{
-				textBox.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
-				textBox.GetBindingExpression(Selector.SelectedItemProperty)?.UpdateSource();
+				control.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
+				control.GetBindingExpression(Selector.SelectedItemProperty)?.UpdateSource();
 			}
 			if (UcFormState.CurrentState==FormCurrentState.Add)
 				_context.Employees.Add((Employee)GridDetail.DataContext);

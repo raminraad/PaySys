@@ -33,30 +33,39 @@ namespace PaySys.UI.UC
 				new Thickness(), FrameworkPropertyMetadataOptions.AffectsMeasure);
 		}
 
-		public static readonly DependencyProperty ReadOnlyFieldsProperty = DependencyProperty.Register("ReadOnlyFields", typeof(bool), typeof(UcFormStateLabel), new PropertyMetadata(default(bool)));
-		public static readonly DependencyProperty CrudButtonsEnabledProperty = DependencyProperty.Register("CrudButtonsEnabled", typeof(bool), typeof(UcFormStateLabel), new PropertyMetadata(default(bool)));
-		public static readonly DependencyProperty SaveCancelButtonsEnabledProperty = DependencyProperty.Register("SaveCancelButtonsEnabled", typeof(bool), typeof(UcFormStateLabel), new PropertyMetadata(default(bool)));
-		public static readonly DependencyProperty ReadOnlyAddFieldsProperty = DependencyProperty.Register("ReadOnlyAddFields", typeof(bool), typeof(UcFormStateLabel), new PropertyMetadata(default(bool)));
+		public static readonly DependencyProperty ReadOnlyOfEditControlsProperty = DependencyProperty.Register("ReadOnlyOfEditControls", typeof(bool), typeof(UcFormStateLabel), new PropertyMetadata(default(bool)));
+		public static readonly DependencyProperty EnabledOfCrudButtonsProperty = DependencyProperty.Register("EnabledOfCrudButtons", typeof(bool), typeof(UcFormStateLabel), new PropertyMetadata(default(bool)));
+		public static readonly DependencyProperty EnabledOfSaveCancelButtonsProperty = DependencyProperty.Register("EnabledOfSaveCancelButtons", typeof(bool), typeof(UcFormStateLabel), new PropertyMetadata(default(bool)));
+		//		public static readonly DependencyProperty ReadOnlyAddFieldsProperty = DependencyProperty.Register("ReadOnlyAddFields", typeof(bool), typeof(UcFormStateLabel), new PropertyMetadata(default(bool)));
 
-		public bool ReadOnlyAddFields
+		//		public bool ReadOnlyAddFields
+		//		{
+		//			get => (bool) GetValue(ReadOnlyAddFieldsProperty);
+		//			set => SetValue(ReadOnlyAddFieldsProperty, value);
+		//		}
+		/// <summary>
+		/// Enabled attribute of Save and Cancel buttons
+		/// </summary>
+		public bool EnabledOfSaveCancelButtons
 		{
-			get { return (bool) GetValue(ReadOnlyAddFieldsProperty); }
-			set { SetValue(ReadOnlyAddFieldsProperty, value); }
+			get => (bool) GetValue(EnabledOfSaveCancelButtonsProperty);
+			set => SetValue(EnabledOfSaveCancelButtonsProperty, value);
 		}
-		public bool SaveCancelButtonsEnabled
+		/// <summary>
+		/// Enabled attribute of Add,Edit and Delete buttons
+		/// </summary>
+		public bool EnabledOfCrudButtons
 		{
-			get { return (bool) GetValue(SaveCancelButtonsEnabledProperty); }
-			set { SetValue(SaveCancelButtonsEnabledProperty, value); }
+			get => (bool) GetValue(EnabledOfCrudButtonsProperty);
+			set => SetValue(EnabledOfCrudButtonsProperty, value);
 		}
-		public bool CrudButtonsEnabled
+		/// <summary>
+		/// ReadOnly attribute of controls that are used to edit fields (like textbox,combo,...) of models in Grid/Textbox forms
+		/// </summary>
+		public bool ReadOnlyOfEditControls
 		{
-			get { return (bool) GetValue(CrudButtonsEnabledProperty); }
-			set { SetValue(CrudButtonsEnabledProperty, value); }
-		}
-		public bool ReadOnlyFields
-		{
-			get { return (bool)GetValue(ReadOnlyFieldsProperty); }
-			set { SetValue(ReadOnlyFieldsProperty, value); }
+			get => (bool)GetValue(ReadOnlyOfEditControlsProperty);
+			set => SetValue(ReadOnlyOfEditControlsProperty, value);
 		}
 
 		public FormCurrentState CurrentState
@@ -97,15 +106,15 @@ namespace PaySys.UI.UC
 					default:
 						throw new ArgumentOutOfRangeException(nameof(value), value, null);
 				}
-				ReadOnlyFields = value != FormCurrentState.Edit && value != FormCurrentState.Add && value != FormCurrentState.AddMaster && value != FormCurrentState.AddDetails;
-				ReadOnlyAddFields = value != FormCurrentState.Add && value != FormCurrentState.AddMaster &&
-				                    value != FormCurrentState.AddDetails;
-				CrudButtonsEnabled = value == FormCurrentState.Select;
-				SaveCancelButtonsEnabled = value == FormCurrentState.Edit || value == FormCurrentState.Add || value == FormCurrentState.AddMaster || value == FormCurrentState.AddDetails;
-				OnPropertyChanged(nameof(ReadOnlyFields));
-				OnPropertyChanged(nameof(ReadOnlyAddFields));
-				OnPropertyChanged(nameof(CrudButtonsEnabled));
-				OnPropertyChanged(nameof(SaveCancelButtonsEnabled));
+				ReadOnlyOfEditControls = value != FormCurrentState.Edit && value != FormCurrentState.Add && value != FormCurrentState.AddMaster && value != FormCurrentState.AddDetails;
+//				ReadOnlyAddFields = value != FormCurrentState.Add && value != FormCurrentState.AddMaster &&
+//				                    value != FormCurrentState.AddDetails;
+				EnabledOfCrudButtons = value == FormCurrentState.Select;
+				EnabledOfSaveCancelButtons = value == FormCurrentState.Edit || value == FormCurrentState.Add || value == FormCurrentState.AddMaster || value == FormCurrentState.AddDetails;
+				OnPropertyChanged(nameof(ReadOnlyOfEditControls));
+//				OnPropertyChanged(nameof(ReadOnlyAddFields));
+				OnPropertyChanged(nameof(EnabledOfCrudButtons));
+				OnPropertyChanged(nameof(EnabledOfSaveCancelButtons));
 
 				_currentState = value;
 			}

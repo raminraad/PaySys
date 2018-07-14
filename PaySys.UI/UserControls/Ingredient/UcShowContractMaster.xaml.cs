@@ -25,7 +25,7 @@ namespace PaySys.UI.UC
 			//			CmbJob.DataContext = _jobsAll = new ObservableCollection<Job>(_context.Jobs);
 		}
 
-		public static readonly DependencyProperty ReadOnlyFieldsProperty = DependencyProperty.Register("ReadOnlyFields", typeof(bool), typeof(UcShowContractMaster), new PropertyMetadata(default(bool)));
+		public static readonly DependencyProperty ReadOnlyFieldsProperty = DependencyProperty.Register("ReadOnlyOfEditControls", typeof(bool), typeof(UcShowContractMaster), new PropertyMetadata(default(bool)));
 		public static readonly DependencyProperty ReadOnlyAddFieldsProperty = DependencyProperty.Register("ReadOnlyAddFields", typeof(bool), typeof(UcShowContractMaster), new PropertyMetadata(default(bool)));
 
 		/// <summary>
@@ -80,36 +80,6 @@ namespace PaySys.UI.UC
 			GetBindingExpression(DataContextProperty)?.UpdateSource();
 
 		}
-		private void UcShowContractMaster_OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-		{
-			//			if (e.NewValue == null)
-			//				return;
-			//			var newContractMaster = (ContractMaster)e.NewValue;
-			//			var selectedMainGroup = _mainGroupsAll.First(x => x.Equals(newContractMaster.SubGroup.MainGroup));
-			//			CmbMainGroup.SelectedItem = selectedMainGroup;
-			//			CmbSubGroup.SelectedItem = selectedMainGroup.SubGroups.FirstOrDefault(x => x.Equals(newContractMaster.SubGroup));
-		}
 
-		private void TmpBtnFill_OnClick(object sender, RoutedEventArgs e)
-		{
-			var f = new Faker();
-			TxtAccountNoEmp.Text = $"{f.Random.Number(9999):D4}-{f.Random.Number(9999):D4}-{f.Random.Number(9999):D4}-{f.Random.Number(9999):D4}";
-			TxtAccountNoGov.Text =
-				$"{f.Random.Number(9999):D4}-{f.Random.Number(9999):D4}-{f.Random.Number(9999):D4}-{f.Random.Number(9999):D4}";
-			TxtContractNo.Text = $"{f.Random.Number(99999):D5}";
-			TxtDateEmployment.Text = $"13{f.Random.Number(20) + 40:d2}{f.Random.Number(11) + 1:d2}{f.Random.Number(29) + 1:d2}";
-			TxtDateExecution.Text = $"13{f.Random.Number(20) + 40:d2}{f.Random.Number(11) + 1:d2}{f.Random.Number(29) + 1:d2}";
-			TxtDateExport.Text = $"13{f.Random.Number(20) + 40:d2}{f.Random.Number(11) + 1:d2}{f.Random.Number(29) + 1:d2}";
-			TxtHardshipFactor.Text = $"{f.Random.Number(99):D2}";
-			TxtInsuranceNo.Text = $"{f.Random.Number(999999):D6}";
-			CmbMainGroup.SelectedIndex = f.PickRandom(CmbMainGroup.Items.Count);
-			CmbSubGroup.SelectedIndex = f.PickRandom(CmbSubGroup.Items.Count);
-			CmbEducationStand.SelectedIndex = f.PickRandom(CmbEducationStand.Items.Count);
-			CmbEmploymentType.SelectedIndex = f.PickRandom(CmbEmploymentType.Items.Count);
-			CmbJob.SelectedIndex = f.PickRandom(CmbJob.Items.Count); ;
-			CmbMaritalStatus.SelectedIndex = f.PickRandom(CmbMaritalStatus.Items.Count);
-			CmbSacrificeStand.SelectedIndex = f.PickRandom(CmbSacrificeStand.Items.Count);
-
-		}
 	}
 }

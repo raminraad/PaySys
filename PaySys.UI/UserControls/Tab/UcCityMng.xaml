@@ -52,36 +52,40 @@
 			<Button Name="BtnAdd"
 			        Style="{StaticResource ToolbarButtonStyle}"
 			        Content="{x:Static fa:Labels.Add}"
-					IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=CrudButtonsEnabled}"
+					IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}"
 			        Click="BtnAdd_OnClick"/>
 			<Button Name="BtnEdit"
 			        Content="{x:Static fa:Labels.Edit}"
-					IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=CrudButtonsEnabled}"
+					IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}"
 			        Click="BtnEdit_OnClick"
 					Style="{StaticResource ToolbarButtonStyle}"/>
 			<Button Name="BtnDelete"
 			        Style="{StaticResource ToolbarButtonStyle}"
-					IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=CrudButtonsEnabled}"
+					IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}"
 					Content="{x:Static fa:Labels.Delete}"/>
 			<Separator/>
 			<Button Name="BtnSave"
 			        Style="{StaticResource ToolbarButtonStyle}"
-			        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=SaveCancelButtonsEnabled}"
+			        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSaveCancelButtons}"
 					Click="BtnSave_OnClick"
 			        Content="{x:Static fa:Labels.Save}" />
 			<Button Name="BtnCancel"
 			        Style="{StaticResource ToolbarButtonStyle}"
-			        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=SaveCancelButtonsEnabled}"
+			        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSaveCancelButtons}"
 					Click="BtnCancel_OnClick"
 			        Content="{x:Static fa:Labels.Cancel}" />
 			<Separator/>
 			<Button Name="BtnRefresh"
 			        Style="{StaticResource ToolbarButtonStyle}"
+			        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}"
 			        Content="{x:Static fa:Labels.Refresh}"
 			        Click="BtnRefresh_OnClick"/>
+			<Separator/>
+			<Button x:Name="BtnSaveCommand"></Button>
 		</ToolBar>
 		<ListView x:Name="ListViewCities"
 		          ItemsSource="{Binding ElementName=SmpUcCityMng,Path=Cities}"
+				  IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}"
 		          Grid.Row="2"
 		          Grid.Column="1"
 		          Grid.ColumnSpan="2">
@@ -139,17 +143,17 @@
 			<TextBox x:Name="TextBoxTitle"
 			         Grid.Row="0"
 			         Grid.Column="1"
-			         IsReadOnly="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyFields}"
+			         IsReadOnly="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditControls}"
 			         Text="{Binding Title,UpdateSourceTrigger=Explicit}"/>
 			<TextBox x:Name="TextBoxDistance"
 			         Grid.Row="1"
 			         Grid.Column="1"
-			         IsReadOnly="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyFields}"
+			         IsReadOnly="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditControls}"
 			         Text="{Binding Distance,UpdateSourceTrigger=Explicit}"/>
 			<TextBox x:Name="TextBoxPercentage"
 			         Grid.Row="2"
 			         Grid.Column="1"
-			         IsReadOnly="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyFields}"
+			         IsReadOnly="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditControls}"
 			         Text="{Binding Percentage,UpdateSourceTrigger=Explicit}"/>
 		</Grid>
 		<StatusBar Grid.Column="0"

@@ -321,4 +321,7 @@
   <data name="tabCityMng" xml:space="preserve">
     <value>شهرهای محل مأموریت</value>
   </data>
+  <data name="New" xml:space="preserve">
+    <value>جدید</value>
+  </data>
 </root>
