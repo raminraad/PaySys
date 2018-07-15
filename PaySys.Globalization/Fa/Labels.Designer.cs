@@ -367,6 +367,15 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to شغل ها.
+        /// </summary>
+        public static string Jobs {
+            get {
+                return ResourceManager.GetString("Jobs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to گروه اصلی.
         /// </summary>
         public static string MainGroup {
@@ -615,6 +624,15 @@ namespace PaySys.Globalization.Fa {
         public static string tabGroupMng {
             get {
                 return ResourceManager.GetString("tabGroupMng", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to عناوین شغل ها.
+        /// </summary>
+        public static string tabJobMng {
+            get {
+                return ResourceManager.GetString("tabJobMng", resourceCulture);
             }
         }
         

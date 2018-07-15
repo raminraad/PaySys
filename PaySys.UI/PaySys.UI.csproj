@@ -114,6 +114,9 @@
     <Compile Include="UserControls\Tab\UcHandselFormulaMng.xaml.cs">
       <DependentUpon>UcHandselFormulaMng.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Tab\UcJobMng.xaml.cs">
+      <DependentUpon>UcJobMng.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Tab\UcMiscMng.xaml.cs">
       <DependentUpon>UcMiscMng.xaml</DependentUpon>
     </Compile>
@@ -191,6 +194,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Tab\UcHandselFormulaMng.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Tab\UcJobMng.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

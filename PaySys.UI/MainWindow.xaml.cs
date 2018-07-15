@@ -4,6 +4,7 @@ using PaySys.Globalization;
 using PaySys.ModelAndBindLib.Engine;
 using PaySys.UI.UC;
 using PaySys.UI.UC.Tab;
+using PaySys.UI.UserControls.Tab;
 
 namespace PaySys
 {
@@ -84,6 +85,18 @@ namespace PaySys
 			{
 				Content = uc,
 				Header = ResourceAccessor.Labels.GetString("tabCityMng")
+			};
+			TabCntMain.Items.Add(tabItem);
+			TabCntMain.Items.Refresh();
+		}
+
+		private void MnuJobMng_OnClick(object sender, RoutedEventArgs e)
+		{
+			var uc = new UcJobMng();
+			var tabItem = new TabItem
+			{
+				Content = uc,
+				Header = ResourceAccessor.Labels.GetString("tabJobMng")
 			};
 			TabCntMain.Items.Add(tabItem);
 			TabCntMain.Items.Refresh();

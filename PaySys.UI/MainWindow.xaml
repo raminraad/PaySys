@@ -35,6 +35,7 @@
 					<MenuItem Header="اطلاعات اصلی" />
 				</MenuItem>
 				<MenuItem x:Name="MnuCityMng" Click="MnuCityMng_OnClick" Header="تعریف شهرهای مأموریت" />
+				<MenuItem x:Name="MnuJobMng" Click="MnuJobMng_OnClick" Header="تعریف عناوین شغل ها" />
 				<MenuItem Header="تغییر کد پرسنلی" />
 				<MenuItem Header="تغییر گروه" />
 				<MenuItem Header="ورود اطلاعات سیستم" />

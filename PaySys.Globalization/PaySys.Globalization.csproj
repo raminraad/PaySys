@@ -65,6 +65,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FieldicHandselFormula.resx</DependentUpon>
     </Compile>
+    <Compile Include="Fa\FieldicJob.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FieldicJob.resx</DependentUpon>
+    </Compile>
     <Compile Include="Fa\FieldicMissionFormula.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -103,6 +108,10 @@
     <EmbeddedResource Include="Fa\FieldicHandselFormula.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>FieldicHandselFormula.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fa\FieldicJob.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FieldicJob.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Fa\FieldicMissionFormula.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

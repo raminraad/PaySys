@@ -238,6 +238,29 @@ namespace PaySys.ModelAndBindLib.Migrations
 				"هوراند",
 				"یامچی کهنمو "
 			};
+			Dictionary<string, string> jobTitleAndDescriptions = new Dictionary<string, string>()
+			{
+				{"مهندس برق", "مهندسی برق یکی از مشاغل مهم و کلیدی صنعت برق و مخابرات به شمار می رود."},
+				{"مهندس معماری", "اگر از طراحی لذت برده و عاشق ساخت و ساز هم هستید، شغل مهندسی معماری می تواند برای شما ایده آل باشد."},
+				{"مهندس شیمی", "مهندس شیمی فردی است که یافته های شیمیدان ها را به صورت عملی و کاربردی درآورده و در صنایع مختلف آنها را بکار می گیرد. در واقع مهندسی شیمی، فرآیند بکارگیری علم شیمی است."},
+				{"مهندس سخت افزار", "مهندس سخت افزار کامپیوتر به تحقیق، طراحی، توسعه، تعمیر و آزمایش تجهیزات کامپیوتر مانند چیپ ها، صفحه مدارها، مونیتورها یا روترها می پردازد."},
+				{"مهندس هوا فضا", "اگر شما عاشق هواپیما و فضاپیماها بوده و می خواهید برای پیشرفت و توسعه آنها کاری بکنید، شغل مهندسی هوافضا می تواند برای شما مناسب باشد."},
+				{"مهندس دریا", "به دلیل داشتن مرزهای آبی گسترده و اهمیت بسیار زیاد حمل و نقل آبی در رشد و توسعه کشور، تخصص ها و مشاغل زیادی در حوزه دریایی ایجاد شده است. مهندسی دریا یکی از اصلی ترین آنها می باشد. مهندسی دریا چندین تخصص را در بر می گیرد که هر کدام حیطه وظایف مجزایی دارند."},
+				{"مهندس کشاورزی", "مهندس کشاورزی فعالیت های مختلفی را انجام می دهد. او به توسعه استفاده از ماشین آلات کشاورزی و پیاده سازی فرآیندهای صحیح و علمی کشاورزی، باغبانی و جنگلداری می پردازد. مهندس کشاورزی باید دارای دانش و مهارت کافی برای کار کردن در صنایع مختلف کشاورزی و یا بخش بازرگانی و تجارت محصولات کشاورزی باشد."},
+				{"مهندس بهداشت حرفه ای", "بهداشت حرفه‌ای یا سلامت شغلی یا سلامت کار شاخه‌ای است ازعلم بهداشت وعبارتست از شناسائی، ارزیابی و کنترل عوامل زیان آور موجود در محیط کار به همراه یکسری مراقبت های بهداشتی درمانی به منظور سالم سازی محیط کار و حفظ سلامت نیروی کار. بهداشت حرفه‌ای ترکیبی از علوم پزشکی ومهندسی می‌باشد."},
+				{"مهندس عمران", "به عنوان مهندس عمران، شما به طراحی و مدیریت انواع پروژه های ساختمانی از تعمیر پل گرفته تا ساخت یک استادیوم ورزشی جدید می پردازید. برای مهندسی عمران باید در ریاضیات و مهارت های فناوری اطلاعات, عالی باشید. همچنین باید بتوانید به خوبی طرح ها و ایده های خود را برای دیگران بیان کرده و در نتیجه باید مهارت های ارتباطی بسیار خوبی داشته باشید. برای دست یابی به شغل مهندسی عمران باید مدارک معتبر دانشگاهی کسب نمایید."},
+				{"مهندس صنایع", "در بازار رقابتی امروز، شرکت ها و سازمان ها برای بقا و رسیدن به اهداف خود باید از منابع موجود خود اعم از مالی و غیرمالی به صورت بهینه استفاده کنند تا هزینه های خود را به حداقل برسانند. علاوه بر این موارد تلاش در جهت افزایش کیفیت محصولات و خدمات در کنار بکارگیری نوآوری های مختلف، در موفقیت آنها بسیار موثر است. مهندسی صنایع ابزاری اساسی و موثر است که به مدیران و صاحبان شرکت ها و سازمان ها در انجام موارد فوق یاری می رساند."},
+				{"مهندس نفت", "مهندس نفت روش های استخراج نفت و گاز از زیر زمین را طراحی کرده و توسعه می دهد.محل کار مهندس نفت در دفاتر کاری، پالایشگاه ها، محل های حفاری و یا آزمایشگاه های تحقیقاتی می باشد."},
+				{"مهندس رباتیک", "مهندس رباتیک فردی است که پاسخگوی  نیاز صنعت در تحقیق و توسعه، طراحی، تولید، نگهداری و تعمیرات ربات ها می باشد."},
+				{"مهندس معدن", "مهندسی معدن مجموعه علوم، روش ها و فنونی است که از اکتشاف یک معدن آغاز و تا فرآوری آن ادامه دارد. البته معدن باید از نظر اقتصادی ارزش و صرفه کافی را داشته باشد تا بتوان کار اکتشاف و استخراج (که فرآیندهایی پرهزینه هستند) را در آن انجام داد. از آنجا که از سالیان بسیار قبل، انسان ها به دنبال کشف طلا و برخی از مواد معدنی ارزشمند بوده اند، شغل مهندسی معدن دارای قدمت زیادی است."},
+				{"مهندسی پزشکی", "مهندسی پزشکی کاربرد علوم مهندسی در حوزه پزشکی برای تشخیص و درمان بیماری ها است. حوزه مهندسی پزشکی به دنبال برطرف کردن نیازهای پزشکی در زمینه طراحی، ساخت و نگهداری تجهیزات و ابزارهای پزشکی برای کاربردهای پیشگیری، تشخیص و درمان بیماریها به کمک علوم مهندسی است."},
+				{"مهندس بهداشت محیط", "مهندسی بهداشت محیط -بهداشت محیط کنترل همه عواملی است که اثر سویی بر پایدار ماندن سلامت انسان می‌گذارند. این شامل بیماری‌های زیادی می‌شود که از طریق آب، هوا، مواد غذایی و بسیاری از عوامل محیطی دیگر سلامت انسان را تهدید می‌کنند. برای رسیدن به این هدف، بهره‌گیری اصول مهندسی و دانش زیست‌محیطی به منظور کنترل، اصلاح و بهبود عوامل فیزیکی، شیمیایی و بیولوژیک محیط جهت حفظ و ارتقاء سلامتی و رفاه و آسایش انسان ضرورت می‌یابد."},
+				{"مهندس راه آهن", "حمل و نقل یکی از عوامل اصلی و تعیین کننده در دنیای امروز است که در اقتصاد، فرهنگ و در همه شئون مهندس راه آهن – اجتماعی جوامع، نقش چشمگیر و حیاتی دارد. در میان انواع حمل ‌و نقل، حمل‌ و نقل ریلی از مزیت ‌های بسیاری برخوردار است و کشورهای صنعتی و نیمه‌ صنعتی از گذشته های دور به این پدیده پرارزش پرداخته و شبکه حمل و نقل خود را با حمل و نقل ریلی تجهیز کرده‌اند. تاجایی که امروزه خیلی از کشورها به مرحله‌ای رسیده‌اند که چندان به دنبال توسعه کمّی نیستند بلکه به دنبال هماهنگ کردن و هم سو کردن صنعت حمل و نقل ریلی با دیگر پدیده‌ های علمی و صنعتی پیشرو مانند الکترونیک و سیستم ‌های ارتباط جمعی می‌ باشند. در واقع هدف آن ها رسیدن سریع از مبدا به مقصد و امکان جابجایی پرحجم مسافر و کالا است."},
+				{"مهندس مکانیک", "مهندس مکانیک، اصول اساسی نیرو، انرژی، حرکت و گرما را می‌آموزد و با دانش تخصصی خود، سیستم‌های مکانیکی و دستگاه‌ها و فرایندهای گرمایی را طراحی کرده و می‌سازد. مهندس مکانیک گستره وسیعی از دستگاه‌ها، فرآورده‌ها و فرایندها را تولید می‌کند؛ از قالب ساخت سوزن ته‌گرد تا مدل‌سازی حرکت ماهواره‌ها در فضای خارج از جو، موتورها و سیستم‌های کنترل خودرو و هواپیما، نیروگاه‌های الکتریکی، دستگاه‌های پزشکی و اجزا و قطعه‌های گوناگون و…."},
+				{"مهندس مواد (مهندس متالورژی)", "مهندس مواد دست اندر کار استخراج، عمل آوری، و امتحان موادی است که در تولیدفراورده های گوناگون، از چیپهای کامپیوتری و صفحات تلوزیون گرفته تا فلز بکار رفته در خودروها به کار می روند. مهندس مواد با فلزات، سرامیک ها، مواد پلاستیکی، نیمه هادیها، و ترکیباتی از موادی که به آنها کامپوزیت (مواد مرکب) می‌گویند، برای بوجود آوردن موادی که دارای خصوصیات خاص مکانیکی، الکتریکی و شیمیائی باشند کار می کند. از جمله کارهای مهندس مواد انتخاب مواد برای کاربردهای جدید نیز میباشد."},
+				{"مهندس پلیمر", "شما به عنوان مهندس پلیمر محصولاتی را طراحی، تولید و یا اصلاح می کنید که در همه جا وجود داشته و همه ما تا حد زیادی به آنها وابسته هستیم و شاید در دنیای امروز زندگی بدون مواد و محصولات پلیمری بسیار سخت باشد. نمونه ای ساده از این محصولات عبارتند از مسواک، تیوب خمیردندان، دمپایی پلاستیکی، بسیاری از لباس ها، ظروف پلاستیکی و ملامینی آشپزخانه، جلد برخی از کتاب ها، بسیاری از قطعات تلویزیون، کامپیوتر و …"},
+			};
+
 			#endregion
 
 			#region MainGroups & SubGroups
@@ -335,15 +358,17 @@ namespace PaySys.ModelAndBindLib.Migrations
 			#endregion
 
 			#region ExpenseArticles
-			var seedExpenseArticles =new List<ExpenseArticle>();
+
+			var seedExpenseArticles = new List<ExpenseArticle>();
 			var expenseArticleFaker = new Faker<ExpenseArticle>("fa").StrictMode(false).Rules((f, e) =>
 			{
-				e.Title = f.PickRandom(expenseArticles.Where(s => !seedExpenseArticles.Select(x=>x.Title).Contains(s)));
+				e.Title = f.PickRandom(expenseArticles.Where(s => !seedExpenseArticles.Select(x => x.Title).Contains(s)));
 				e.Code = $"{f.Random.Number(99999):D5}";
 				e.IsActive = true;
 			});
 			for(int i = 0; i < 10; i++)
 				seedExpenseArticles.Add(expenseArticleFaker.Generate());
+
 			seedExpenseArticles.AddRange(seedExpenseArticles);
 
 			#endregion
@@ -361,20 +386,25 @@ namespace PaySys.ModelAndBindLib.Migrations
 			{
 				seedCities.Add(CityFaker.Generate());
 			}
+
 			context.Cities.AddRange(seedCities);
 
 			#endregion
 
 			#region Jobs
 
+			var seedJobs = new List<Job>();
 			var jobFaker = new Faker<Job>("fa").StrictMode(false).Rules((f, e) =>
 			{
-				e.Description = f.Name.JobDescriptor();
 				e.JobNo = $"{f.Random.Number(999999):d6}";
 				e.ItemColor = f.PickRandom(Enum.GetValues(typeof(ColorPallet)).Cast<ColorPallet>().Where(x => x != ColorPallet.Unknown));
-				e.Title = f.Name.JobTitle();
 			});
-			var seedJobs = jobFaker.Generate(10);
+			foreach(var job in jobTitleAndDescriptions)
+			{
+				jobFaker.RuleFor(j => j.Title, job.Key).RuleFor(j => j.Description, job.Value);
+				seedJobs.Add(jobFaker.Generate());
+			}
+
 			context.Jobs.AddRange(seedJobs);
 
 			#endregion
@@ -393,10 +423,10 @@ namespace PaySys.ModelAndBindLib.Migrations
 					{
 						contractFieldTitleFaker.RuleFor(field => field.Title, _faker.PickRandom(contractFields));
 						var newContractField = contractFieldTitleFaker.Generate();
-						if(!seedContractFields.Where(field=>field.SubGroup.Equals(subGroup)).Select(field => field.Title).Contains(newContractField.Title))
+						if(!seedContractFields.Where(field => field.SubGroup.Equals(subGroup)).Select(field => field.Title).Contains(newContractField.Title))
 							seedContractFields.Add(newContractField);
 					}
-			
+
 			context.ContractFields.AddRange(seedContractFields);
 
 			#endregion
@@ -409,12 +439,12 @@ namespace PaySys.ModelAndBindLib.Migrations
 				e.Month = 007;
 			});
 			var seedMiscs = new List<Misc>();
-			foreach (var mainGroup in seedMainGroups)
-				foreach (var subGroup in mainGroup.SubGroups)
-					for (var i = 0; i < 10; i++)
+			foreach(var mainGroup in seedMainGroups)
+				foreach(var subGroup in mainGroup.SubGroups)
+					for(var i = 0; i < 10; i++)
 					{
 						miscFaker.RuleFor(misc => misc.SubGroup, subGroup).RuleFor(misc => misc.IsPayment, i < 5);
-						if (i < 5)
+						if(i < 5)
 							miscFaker.RuleFor(misc => misc.Title, _faker.PickRandom(miscsPayment));
 						else
 							miscFaker.RuleFor(misc => misc.Title, _faker.PickRandom(miscDebt));
@@ -429,9 +459,9 @@ namespace PaySys.ModelAndBindLib.Migrations
 
 			var TaxTableFaker = new Faker<TaxTable>("fa").StrictMode(false).Rules((f, e) => { e.Month = 007; });
 			var seedTaxTables = new List<TaxTable>();
-			foreach (var mainGroup in seedMainGroups)
-				foreach (var subGroup in mainGroup.SubGroups)
-					for (var i = 95; i <= 97; i++)
+			foreach(var mainGroup in seedMainGroups)
+				foreach(var subGroup in mainGroup.SubGroups)
+					for(var i = 95; i <= 97; i++)
 					{
 						TaxTableFaker.RuleFor(TaxTable => TaxTable.SubGroup, subGroup).RuleFor(TaxTable => TaxTable.Year, i);
 						seedTaxTables.Add(TaxTableFaker.Generate());
@@ -444,8 +474,8 @@ namespace PaySys.ModelAndBindLib.Migrations
 				e.Factor = f.Random.Number(10);
 			});
 			var seedTaxRows = new List<TaxRow>();
-			foreach (var taxTable in seedTaxTables)
-				for (int i = 0; i < 10; i++)
+			foreach(var taxTable in seedTaxTables)
+				for(int i = 0; i < 10; i++)
 				{
 					TaxRowFaker.RuleFor(row => row.TaxTable, taxTable);
 					seedTaxRows.Add(TaxRowFaker.Generate());
@@ -467,21 +497,21 @@ namespace PaySys.ModelAndBindLib.Migrations
 				e.MissionFormulaInvolvedContractFields = new List<MissionFormulaInvolvedContractField>();
 			});
 			var seedMissionFormulas = new List<MissionFormula>();
-			foreach (var mainGroup in seedMainGroups)
-				foreach (var subGroup in mainGroup.SubGroups)
-					for (var i = 95; i <= 97; i++)
+			foreach(var mainGroup in seedMainGroups)
+				foreach(var subGroup in mainGroup.SubGroups)
+					for(var i = 95; i <= 97; i++)
 					{
 						MissionFormulaFaker.RuleFor(missionFormula => missionFormula.SubGroup, subGroup).RuleFor(missionFormula => missionFormula.Year, i);
 						seedMissionFormulas.Add(MissionFormulaFaker.Generate());
 					}
-			foreach (var missionFormula in seedMissionFormulas)
-				for (int i = 0; i < 10; i++)
+			foreach(var missionFormula in seedMissionFormulas)
+				for(int i = 0; i < 10; i++)
 				{
-					if (_faker.Random.Bool())
+					if(_faker.Random.Bool())
 					{
 						var item = new MissionFormulaInvolvedContractField();
 						var validContractFields = missionFormula.SubGroup.ContractFields.Where(field => !missionFormula.MissionFormulaInvolvedContractFields.Select(invFld => invFld.ContractField).Contains(field));
-						if (validContractFields.Any())
+						if(validContractFields.Any())
 						{
 							item.ContractField = _faker.PickRandom(validContractFields);
 							item.MissionFormula = missionFormula;
@@ -506,9 +536,9 @@ namespace PaySys.ModelAndBindLib.Migrations
 				e.TaxFreeValue = f.Random.Number(5000) * 1000;
 			});
 			var seedHandselFormulas = new List<HandselFormula>();
-			foreach (var mainGroup in seedMainGroups)
-				foreach (var subGroup in mainGroup.SubGroups)
-					for (var i = 95; i <= 97; i++)
+			foreach(var mainGroup in seedMainGroups)
+				foreach(var subGroup in mainGroup.SubGroups)
+					for(var i = 95; i <= 97; i++)
 					{
 						HandselFormulaFaker.RuleFor(HandselFormula => HandselFormula.SubGroup, subGroup).RuleFor(HandselFormula => HandselFormula.Year, i);
 						seedHandselFormulas.Add(HandselFormulaFaker.Generate());
@@ -532,9 +562,9 @@ namespace PaySys.ModelAndBindLib.Migrations
 				e.ParameterInvolvedMiscs = new List<ParameterInvolvedMisc>();
 			});
 			var seedParameters = new List<Parameter>();
-			foreach (var mainGroup in seedMainGroups)
-				foreach (var subGroup in mainGroup.SubGroups)
-					for (var i = 0; i < 10; i++)
+			foreach(var mainGroup in seedMainGroups)
+				foreach(var subGroup in mainGroup.SubGroups)
+					for(var i = 0; i < 10; i++)
 					{
 						ParameterFaker.RuleFor(parameter => parameter.SubGroup, subGroup);
 						seedParameters.Add(ParameterFaker.Generate());
@@ -542,9 +572,9 @@ namespace PaySys.ModelAndBindLib.Migrations
 
 			#region ParameterInvolvedContractFields
 
-			foreach (var parameter in seedParameters)
-				foreach (var contractField in parameter.SubGroup.ContractFields)
-					if (_faker.Random.Bool() && !parameter.ParameterInvolvedContractFields.Select(inv => inv.ContractField).Contains(contractField))
+			foreach(var parameter in seedParameters)
+				foreach(var contractField in parameter.SubGroup.ContractFields)
+					if(_faker.Random.Bool() && !parameter.ParameterInvolvedContractFields.Select(inv => inv.ContractField).Contains(contractField))
 						parameter.ParameterInvolvedContractFields.Add(new ParameterInvolvedContractField
 						{
 							ContractField = contractField
@@ -554,9 +584,9 @@ namespace PaySys.ModelAndBindLib.Migrations
 
 			#region ParameterInvolvedMiscs
 
-			foreach (var parameter in seedParameters)
-				foreach (var misc in parameter.SubGroup.Miscs)
-					if (_faker.Random.Bool() && !parameter.ParameterInvolvedMiscs.Select(inv => inv.Misc).Contains(misc))
+			foreach(var parameter in seedParameters)
+				foreach(var misc in parameter.SubGroup.Miscs)
+					if(_faker.Random.Bool() && !parameter.ParameterInvolvedMiscs.Select(inv => inv.Misc).Contains(misc))
 						parameter.ParameterInvolvedMiscs.Add(new ParameterInvolvedMisc
 						{
 							Misc = misc
@@ -571,9 +601,9 @@ namespace PaySys.ModelAndBindLib.Migrations
 			#region ExpenseArticleOfMiscForSubGroups
 
 			var seedExpenseArticleOfMiscForSubGroups = new List<ExpenseArticleOfMiscForSubGroup>();
-			foreach (var mainGroup in seedMainGroups)
-				foreach (var subGroup in mainGroup.SubGroups)
-					foreach (var misc in subGroup.Miscs)
+			foreach(var mainGroup in seedMainGroups)
+				foreach(var subGroup in mainGroup.SubGroups)
+					foreach(var misc in subGroup.Miscs)
 						seedExpenseArticleOfMiscForSubGroups.Add(new ExpenseArticleOfMiscForSubGroup
 						{
 							SubGroup = subGroup,
@@ -589,9 +619,9 @@ namespace PaySys.ModelAndBindLib.Migrations
 			#region ExpenseArticleOfContractFieldForSubGroups
 
 			var seedExpenseArticleOfContractFieldForSubGroups = new List<ExpenseArticleOfContractFieldForSubGroup>();
-			foreach (var mainGroup in seedMainGroups)
-				foreach (var subGroup in mainGroup.SubGroups)
-					foreach (var contractField in subGroup.ContractFields)
+			foreach(var mainGroup in seedMainGroups)
+				foreach(var subGroup in mainGroup.SubGroups)
+					foreach(var contractField in subGroup.ContractFields)
 						seedExpenseArticleOfContractFieldForSubGroups.Add(new ExpenseArticleOfContractFieldForSubGroup
 						{
 							SubGroup = subGroup,
@@ -607,8 +637,8 @@ namespace PaySys.ModelAndBindLib.Migrations
 			#region ExpenseArticleOfOverTimeForSubGroups
 
 			var seedExpenseArticleOfOverTimeForSubGroups = new List<ExpenseArticleOfOverTimeForSubGroup>();
-			foreach (var mainGroup in seedMainGroups)
-				foreach (var subGroup in mainGroup.SubGroups)
+			foreach(var mainGroup in seedMainGroups)
+				foreach(var subGroup in mainGroup.SubGroups)
 					seedExpenseArticleOfOverTimeForSubGroups.Add(new ExpenseArticleOfOverTimeForSubGroup
 					{
 						SubGroup = subGroup,
@@ -650,8 +680,8 @@ namespace PaySys.ModelAndBindLib.Migrations
 
 			var contractDetailFaker = new Faker<ContractDetail>("fa").StrictMode(false).Rules((f, e) => { e.Value = f.Random.Number(100) * 10000; });
 			var seedContractDetails = new List<ContractDetail>();
-			foreach (var contMast in seedContractMasters)
-				foreach (var grpCntField in seedContractFields.Where(c => c.SubGroup.Equals(contMast.SubGroup)))
+			foreach(var contMast in seedContractMasters)
+				foreach(var grpCntField in seedContractFields.Where(c => c.SubGroup.Equals(contMast.SubGroup)))
 				{
 					contractDetailFaker.RuleFor(detail => detail.ContractMaster, contMast);
 					contractDetailFaker.RuleFor(detail => detail.ContractField, grpCntField);
@@ -666,13 +696,13 @@ namespace PaySys.ModelAndBindLib.Migrations
 			#region Set CurrentContract for each Employee
 
 			var queryEmpContracts = from cont in seedContractMasters
-									group cont by cont.Employee
-									into newGroup
-									select newGroup;
-			foreach (var empContract in queryEmpContracts)
+			                        group cont by cont.Employee
+			                        into newGroup
+			                        select newGroup;
+			foreach(var empContract in queryEmpContracts)
 			{
 				var lastCnt = empContract.LastOrDefault();
-				if (lastCnt != null)
+				if(lastCnt != null)
 					lastCnt.IsCurrentContract = true;
 			}
 

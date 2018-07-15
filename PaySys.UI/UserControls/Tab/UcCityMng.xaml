@@ -12,8 +12,7 @@
              FlowDirection="RightToLeft"
              d:DesignHeight="600"
              d:DesignWidth="900">
-	<Grid x:Name="GridMain"
-	      DataContext="{Binding ElementName=SmpUcHandselFormulaMng,Path=CurrentSubGroup.CurrenHandselFormula}">
+	<Grid x:Name="GridMain">
 		<Grid.RowDefinitions>
 			<RowDefinition x:Name="RowToolbar"
 			               Height="Auto"/>
@@ -28,7 +27,7 @@
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="3*"/>
-			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/> 
 			<ColumnDefinition Width="*"/>
 			<ColumnDefinition Width="3*"/>
 		</Grid.ColumnDefinitions>
@@ -92,7 +91,7 @@
 			<ListView.View>
 				<GridView>
 					<GridViewColumn Header="{x:Static fa:FieldicCity.Title}"
-					                Width="150"
+					                Width="80"
 					                DisplayMemberBinding="{Binding Title}"/>
 					<GridViewColumn Header="{x:Static fa:FieldicCity.Distance}"
 					                Width="80"

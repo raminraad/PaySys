@@ -324,4 +324,10 @@
   <data name="New" xml:space="preserve">
     <value>جدید</value>
   </data>
+  <data name="Jobs" xml:space="preserve">
+    <value>شغل ها</value>
+  </data>
+  <data name="tabJobMng" xml:space="preserve">
+    <value>عناوین شغل ها</value>
+  </data>
 </root>
