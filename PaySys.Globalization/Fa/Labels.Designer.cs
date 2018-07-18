@@ -466,6 +466,15 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to عملیات.
+        /// </summary>
+        public static string Operations {
+            get {
+                return ResourceManager.GetString("Operations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to اضافه کارها.
         /// </summary>
         public static string OverTimes {
@@ -552,6 +561,42 @@ namespace PaySys.Globalization.Fa {
         public static string Select {
             get {
                 return ResourceManager.GetString("Select", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /.
+        /// </summary>
+        public static string SignOfDivide {
+            get {
+                return ResourceManager.GetString("SignOfDivide", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to -.
+        /// </summary>
+        public static string SignOfMinus {
+            get {
+                return ResourceManager.GetString("SignOfMinus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to *.
+        /// </summary>
+        public static string SignOfMultiply {
+            get {
+                return ResourceManager.GetString("SignOfMultiply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to +.
+        /// </summary>
+        public static string SignOfPlus {
+            get {
+                return ResourceManager.GetString("SignOfPlus", resourceCulture);
             }
         }
         

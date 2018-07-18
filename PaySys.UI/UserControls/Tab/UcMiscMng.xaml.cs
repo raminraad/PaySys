@@ -16,6 +16,7 @@ using Bogus;
 using PaySys.CalcLib.Delegates;
 using PaySys.Globalization;
 using PaySys.ModelAndBindLib.Model;
+using PaySys.UI.Commands;
 using PaySys.UI.Dialogs;
 using PaySys.UI.Modals;
 using DialogResult = System.Windows.Forms.DialogResult;
@@ -33,14 +34,7 @@ namespace PaySys.UI.UC
 	/// </summary>
 	public partial class UcMiscMng : UserControl
 	{
-		private enum MiscType
-		{
-			None,
-			Payment,
-			Debt
-		}
-
-		private readonly string _enterTitleMessage;
+		private readonly string _enterTitleMessage = ResourceAccessor.Messages.GetString("EnterMiscTitle");
 		private MiscType _selectedList = MiscType.None;
 		private Misc _selectedMisc;
 
@@ -49,51 +43,15 @@ namespace PaySys.UI.UC
 		public UcMiscMng()
 		{
 			InitializeComponent();
-			_enterTitleMessage = ResourceAccessor.Messages.GetString("EnterMiscTitle");
 			ListViewMiscDebt.Items.Filter = o => ((Misc) o).Year == 97 && ((Misc) o).Month == 007;
 			ListViewMiscPayment.Items.Filter = o => ((Misc) o).Year == 97 && ((Misc) o).Month == 007;
 		}
 
 		public DelegateSaveContext SaveContext { set; get; }
 
-		private void BtnAdd_OnClick(object sender, RoutedEventArgs e)
-		{
-			var newTitle = string.Empty;
-			if(InputBox.Show(_enterTitleMessage, ref newTitle) == DialogResult.OK)
-			{
-				CurrentSubGroup.Miscs.Add(new Misc
-				{
-					Title = newTitle,
-					Year = 97,
-					Month = 007,
-					IsPayment = _selectedList == MiscType.Payment
-				});
-				SaveContext.Invoke();
-				SelectedListView.GetBindingExpression(ItemsControl.ItemsSourceProperty)?.UpdateTarget();
-			}
-		}
-
 		private void BtnEditMiscTitle_OnClick(object sender, RoutedEventArgs e)
 		{
-			var newTitle = _selectedMisc?.Title;
-			if(InputBox.Show(_enterTitleMessage, ref newTitle) == DialogResult.OK)
-			{
-				_selectedMisc.Title = newTitle;
-				SaveContext.Invoke();
-
-//				CollectionViewSource.GetDefaultView(SelectedListView.ItemsSource).Refresh();
-				SelectedListView.GetBindingExpression(ItemsControl.ItemsSourceProperty)?.UpdateTarget();
-			}
-		}
-
-		private void BtnDelete_OnClick(object sender, RoutedEventArgs e)
-		{
-			if(PaySysMessage.GetDeleteItemConfirmation() == MessageBoxResult.Yes)
-			{
-				CurrentSubGroup.Miscs.Remove(_selectedMisc);
-				SaveContext.Invoke();
-				SelectedListView.GetBindingExpression(ItemsControl.ItemsSourceProperty)?.UpdateTarget();
-			}
+			//Todo
 		}
 
 		private void BtnChangeExpenseArticle_OnClick(object sender, RoutedEventArgs e)
@@ -108,7 +66,7 @@ namespace PaySys.UI.UC
 			}
 		}
 
-		#region DependencyProperties
+		#region Properties
 
 		public static readonly DependencyProperty CurrentSubGroupProperty = DependencyProperty.Register("CurrentSubGroup", typeof(SubGroup), typeof(UcMiscMng), new PropertyMetadata(default(SubGroup)));
 
@@ -118,13 +76,9 @@ namespace PaySys.UI.UC
 			set => SetValue(CurrentSubGroupProperty, value);
 		}
 
-		public static readonly DependencyProperty ExpenseArticlesAllProperty = DependencyProperty.Register("ExpenseArticlesAll", typeof(List<ExpenseArticle>), typeof(UcMiscMng), new PropertyMetadata(default(List<ExpenseArticle>)));
+		public List<ExpenseArticle> ExpenseArticlesAll { get; set; }
 
-		public List<ExpenseArticle> ExpenseArticlesAll
-		{
-			get => (List<ExpenseArticle>) GetValue(ExpenseArticlesAllProperty);
-			set => SetValue(ExpenseArticlesAllProperty, value);
-		}
+		public List<MiscTitle> MiscTitlesAll { get; set; }
 
 		#endregion
 
@@ -138,6 +92,67 @@ namespace PaySys.UI.UC
 		{
 			_selectedList = MiscType.Debt;
 			_selectedMisc = ListViewMiscDebt.SelectedItem as Misc;
+		}
+
+		private void UcMiscMng_OnLoaded(object sender, RoutedEventArgs e)
+		{
+			SmpUcSuggesterTextBoxMiscTitlePayments.ItemsSource = MiscTitlesAll.Where(title => title.IsPayment).Select(title => title.Title);
+			SmpUcSuggesterTextBoxMiscTitleDebts.ItemsSource = MiscTitlesAll.Where(title => !title.IsPayment).Select(title => title.Title);
+		}
+
+		#region Add/Remove misc commands
+
+		private void AddMisc_Execute(object target, ExecutedRoutedEventArgs e)
+		{
+			var newItemIsPayment = (target as Control).Name.Equals("ListViewMiscPayment");
+			var param = e.Parameter.ToString().Trim();
+			var newMiscTitle = MiscTitlesAll.FirstOrDefault(title => string.Equals(title.Title, param)) ?? new MiscTitle
+			{
+				Title = param,
+				IsPayment = newItemIsPayment
+			};
+			CurrentSubGroup.Miscs.Add(new Misc
+			{
+				MiscTitle = newMiscTitle,
+				Year = 97,
+				Month = 007
+			});
+			if(newMiscTitle.MiscTitleId == 0)
+				MiscTitlesAll.Add(newMiscTitle);
+			SaveContext.Invoke();
+			if(newItemIsPayment)
+				ListViewMiscPayment.GetBindingExpression(ItemsControl.ItemsSourceProperty)?.UpdateTarget();
+			else
+				ListViewMiscDebt.GetBindingExpression(ItemsControl.ItemsSourceProperty)?.UpdateTarget();
+		}
+
+		private void AddMisc_CanExecute(object target, CanExecuteRoutedEventArgs e)
+		{
+			//Todo: Optimize performance by using Misc Title list of sub group one-time loaded not every time.
+			var newItemIsPayment = (target as Control).Name.Equals("ListViewMiscPayment");
+			if(newItemIsPayment)
+				e.CanExecute = !String.IsNullOrEmpty(SmpUcSuggesterTextBoxMiscTitlePayments.SelectedValue) && !CurrentSubGroup.MiscsOfTypePayment.Select(misc => misc.MiscTitle.Title).Contains(SmpUcSuggesterTextBoxMiscTitlePayments.SelectedValue);
+			else
+				e.CanExecute = !String.IsNullOrEmpty(SmpUcSuggesterTextBoxMiscTitleDebts.SelectedValue) && !CurrentSubGroup.MiscsOfTypeDebt.Select(misc => misc.MiscTitle.Title).Contains(SmpUcSuggesterTextBoxMiscTitleDebts.SelectedValue);
+			e.Handled = true;
+		}
+
+		#endregion
+
+		private void RemoveMisc_Execute(object target, ExecutedRoutedEventArgs e)
+		{
+			var item = e.Parameter as Misc;
+			var itemIsPayment = item.MiscTitle.IsPayment;
+			var listTitle = ResourceAccessor.Labels.GetString(itemIsPayment ? "MiscPayments" : "MiscDebts");
+			if(PaySysMessage.GetDeleteSubGroupMiscConfirmation(item.MiscTitle.Title, listTitle) != MessageBoxResult.Yes)
+				return;
+			CurrentSubGroup.Miscs.Remove(item);
+			SaveContext.Invoke();
+			if(itemIsPayment)
+				ListViewMiscPayment.GetBindingExpression(ItemsControl.ItemsSourceProperty)?.UpdateTarget();
+			else
+				ListViewMiscDebt.GetBindingExpression(ItemsControl.ItemsSourceProperty)?.UpdateTarget();
+
 		}
 	}
 }

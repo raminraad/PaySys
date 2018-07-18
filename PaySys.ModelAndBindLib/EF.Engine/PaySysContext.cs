@@ -15,11 +15,12 @@ namespace PaySys.ModelAndBindLib.Engine
 		public DbSet<MainGroup> MainGroups { set; get; }
 		public DbSet<SubGroup> SubGroups { set; get; }
 		public DbSet<Misc> Miscs { set; get; }
+		public DbSet<MiscTitle> MiscTitles { set; get; }
 		public DbSet<ParameterInvolvedMisc> ParameterInvolvedMiscs { set; get; }
 		public DbSet<Parameter> Parameters { set; get; }
 		public DbSet<ParameterInvolvedContractField> ParameterInvolvedContractFields { set; get; }
 		public DbSet<ExpenseArticle> ExpenseArticles { set; get; }
-		public DbSet<EmployeeMiscRemain> EmployeeMiscRemains { set; get; }
+		public DbSet<EmployeeMiscRecharge> EmployeeMiscRecharges { set; get; }
 		public DbSet<ContractField> ContractFields { set; get; }
 		public DbSet<MissionFormula> MissionFormulas { set; get; }
 		public DbSet<MissionFormulaInvolvedContractField> MissionFormulaInvolvedContractFields { set; get; }

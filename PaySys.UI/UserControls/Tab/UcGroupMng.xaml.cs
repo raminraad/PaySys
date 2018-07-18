@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -53,6 +54,7 @@ namespace PaySys.UI.UC
 
 			SmpUcContractFieldTitlesMng.ExpenseArticlesAll = _context.ExpenseArticles.ToList();
 			SmpUcMiscMng.ExpenseArticlesAll = _context.ExpenseArticles.ToList();
+			SmpUcMiscMng.MiscTitlesAll = _context.MiscTitles.ToList();
 		}
 
 		private void BtnAddMainGroup_OnClick(object sender, RoutedEventArgs e)
@@ -114,7 +116,7 @@ namespace PaySys.UI.UC
 
 		private void BtnRefresh_OnClick(object sender, RoutedEventArgs e)
 		{
-						_context = new PaySysContext();
+						_context.MainGroups.Load();
 						ListViewGroupMain.DataContext = _context.MainGroups.ToList();
 		}
 

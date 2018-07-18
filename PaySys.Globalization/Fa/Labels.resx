@@ -330,4 +330,19 @@
   <data name="tabJobMng" xml:space="preserve">
     <value>عناوین شغل ها</value>
   </data>
+  <data name="SignOfDivide" xml:space="preserve">
+    <value>/</value>
+  </data>
+  <data name="SignOfMinus" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="SignOfMultiply" xml:space="preserve">
+    <value>*</value>
+  </data>
+  <data name="SignOfPlus" xml:space="preserve">
+    <value>+</value>
+  </data>
+<data name="Operations" xml:space="preserve">
+    <value>عملیات</value>
+  </data>
 </root>

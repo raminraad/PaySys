@@ -113,7 +113,7 @@
 		<ListView x:Name="ListViewParameterInvolvedMiscPayments"
 		          Grid.Row="3"
 		          Grid.Column="5"
-		          DisplayMemberPath="Misc.Title"
+				  DisplayMemberPath="Misc.MiscTitle.Title"
 		          ItemsSource="{Binding ElementName=ListViewParameter,Path=SelectedItem.ParameterInvolvedMiscs}"/>
 	</Grid>
 </UserControl>

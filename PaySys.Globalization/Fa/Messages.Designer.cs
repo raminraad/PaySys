@@ -70,11 +70,11 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to رکورد انتخاب شده حذف خواهد شد. تأیید مینمایید؟.
+        ///   Looks up a localized string similar to «XXX» از لیست YYY حذف خواهد گردید. تأیید مینمایید؟.
         /// </summary>
-        public static string DeleteItem {
+        public static string DeleteConfirmationOfMisc {
             get {
-                return ResourceManager.GetString("DeleteItem", resourceCulture);
+                return ResourceManager.GetString("DeleteConfirmationOfMisc", resourceCulture);
             }
         }
         

@@ -64,17 +64,9 @@
     <Compile Include="EF.Engine\PaySysContext.cs" />
     <Compile Include="EF.Engine\PaySysDbInitializer.cs" />
     <Compile Include="EF.Migrations\Configuration.cs" />
-    <Compile Include="Migrations\201807072111059_Init.cs" />
-    <Compile Include="Migrations\201807072111059_Init.Designer.cs">
-      <DependentUpon>201807072111059_Init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807081352031_UpdateMissionFormula.cs" />
-    <Compile Include="Migrations\201807081352031_UpdateMissionFormula.Designer.cs">
-      <DependentUpon>201807081352031_UpdateMissionFormula.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807082002597_UpdateCityPercentage.cs" />
-    <Compile Include="Migrations\201807082002597_UpdateCityPercentage.Designer.cs">
-      <DependentUpon>201807082002597_UpdateCityPercentage.cs</DependentUpon>
+    <Compile Include="Migrations\201807181747255_Init.cs" />
+    <Compile Include="Migrations\201807181747255_Init.Designer.cs">
+      <DependentUpon>201807181747255_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Visual\TitledCompositeCollection.cs" />
     <Compile Include="Model\Class1.cs" />
@@ -96,14 +88,8 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201807072111059_Init.resx">
-      <DependentUpon>201807072111059_Init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807081352031_UpdateMissionFormula.resx">
-      <DependentUpon>201807081352031_UpdateMissionFormula.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807082002597_UpdateCityPercentage.resx">
-      <DependentUpon>201807082002597_UpdateCityPercentage.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807181747255_Init.resx">
+      <DependentUpon>201807181747255_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

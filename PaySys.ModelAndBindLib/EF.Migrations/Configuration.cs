@@ -91,7 +91,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 				"همطرازي",
 				"هزينه سفر"
 			};
-			var miscsPayment = new[]
+			var miscTitlesPayment = new[]
 			{
 				"پاداش",
 				"عیدی",
@@ -103,7 +103,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 				"هزینه تحصیل",
 				"بورسیه"
 			};
-			var miscDebt = new[]
+			var miscTitlesDebt = new[]
 			{
 				"جریمه",
 				"توبیخی",
@@ -431,23 +431,44 @@ namespace PaySys.ModelAndBindLib.Migrations
 
 			#endregion
 
+			#region MiscTitles
+
+			var seedMiscTitles = new List<MiscTitle>();
+			foreach(var title in miscTitlesPayment)
+			{
+				seedMiscTitles.Add(new MiscTitle
+				{
+					Title = title,
+					IsPayment = true
+				});
+			}
+			foreach (var title in miscTitlesDebt)
+			{
+				seedMiscTitles.Add(new MiscTitle
+				{
+					Title = title,
+					IsPayment = false
+				});
+			}
+
+			context.MiscTitles.AddRange(seedMiscTitles);
+
+			#endregion
+
 			#region Miscs
 
 			var miscFaker = new Faker<Misc>("fa").StrictMode(false).Rules((f, e) =>
 			{
 				e.Year = 97;
 				e.Month = 007;
+				e.MiscTitle = f.PickRandom(seedMiscTitles);
 			});
 			var seedMiscs = new List<Misc>();
 			foreach(var mainGroup in seedMainGroups)
 				foreach(var subGroup in mainGroup.SubGroups)
 					for(var i = 0; i < 10; i++)
 					{
-						miscFaker.RuleFor(misc => misc.SubGroup, subGroup).RuleFor(misc => misc.IsPayment, i < 5);
-						if(i < 5)
-							miscFaker.RuleFor(misc => misc.Title, _faker.PickRandom(miscsPayment));
-						else
-							miscFaker.RuleFor(misc => misc.Title, _faker.PickRandom(miscDebt));
+						miscFaker.RuleFor(parameter => parameter.SubGroup, subGroup);
 						seedMiscs.Add(miscFaker.Generate());
 					}
 

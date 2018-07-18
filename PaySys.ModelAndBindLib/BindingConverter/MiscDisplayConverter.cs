@@ -30,7 +30,7 @@ namespace PaySys.ModelAndBindLib.BindingConverter
 			if (misc == null)
 				return string.Empty;
 			var result = string.Empty;
-			result += $"{misc.Title}";
+			result += $"{misc.MiscTitle.Title}";
 			result += "  [";
 			result += $"{misc.CurrentExpenseArticle.Code}";
 			result += " : ";

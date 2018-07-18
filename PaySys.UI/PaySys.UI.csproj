@@ -71,6 +71,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\PaySysCommandLibrary.cs" />
     <Compile Include="Dialogs\WinSelectItem.xaml.cs">
       <DependentUpon>WinSelectItem.xaml</DependentUpon>
     </Compile>
@@ -78,6 +79,9 @@
     <Compile Include="Modals\InputBox.cs" />
     <Compile Include="Modals\PaySysMessage.cs" />
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="UserControls\Ingredient\UcSuggesterTextBox.xaml.cs">
+      <DependentUpon>UcSuggesterTextBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Ingredient\UcFormStateLabel.xaml.cs">
       <DependentUpon>UcFormStateLabel.xaml</DependentUpon>
     </Compile>
@@ -146,6 +150,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\Ingredient\UcSuggesterTextBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

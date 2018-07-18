@@ -79,7 +79,7 @@ namespace PaySys.UI.UC
 
 		private void BtnAddParameterInvolvedMiscPayment_OnClick(object sender, RoutedEventArgs e)
 		{
-			var dialog = new WinSelectItem(ResourceAccessor.Messages.GetString("SelectMiscPayment"))
+			var dialog = new WinSelectItem(ResourceAccessor.Messages.GetString("SelectMiscPayment"),"MiscTitle.Title")
 			{
 				ListViewItemsSource = CurrentSubGroup.MiscsOfTypePayment.Where(misc => misc.Year == 97 && misc.Month == 007 && !((List<ParameterInvolvedMisc>) ListViewParameterInvolvedMiscPayments.ItemsSource).Select(involvedMisc => involvedMisc.Misc).Contains(misc))
 			};

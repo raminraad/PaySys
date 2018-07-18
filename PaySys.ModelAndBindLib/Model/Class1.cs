@@ -63,10 +63,10 @@ namespace PaySys.ModelAndBindLib.Model
 		public virtual List<ExpenseArticleOfOverTimeForSubGroup> ExpenseArticleOfOverTimeForSubGroups { get; set; }
 
 		[NotMapped]
-		public ObservableCollection<Misc> MiscsOfTypePayment => new ObservableCollection<Misc>(Miscs.Where(misc => misc.IsPayment));
+		public List<Misc> MiscsOfTypePayment => Miscs.Where(misc => misc.MiscTitle.IsPayment).ToList();
 
 		[NotMapped]
-		public ObservableCollection<Misc> MiscsOfTypeDebt => new ObservableCollection<Misc>(Miscs.Where(misc => !misc.IsPayment));
+		public List<Misc> MiscsOfTypeDebt => Miscs.Where(misc => !misc.MiscTitle.IsPayment).ToList();
 
 		[NotMapped]
 		public TaxTable CurrenTaxTable
@@ -110,6 +110,19 @@ namespace PaySys.ModelAndBindLib.Model
 		}
 	}
 
+
+	/// <summary>#03 عناوین کسور و پرداختهای متفرقه</summary>
+	public class MiscTitle
+	{
+		public int MiscTitleId { get; set; }
+
+		public string Title { get; set; }
+
+		public bool IsPayment { get; set; }
+
+		public virtual List<Misc> Miscs { get; set; }
+	}
+
 	/// <summary>#04 کسور و پرداختهای متفرقه زیرگروه در سال و ماه</summary>
 	public class Misc
 	{
@@ -119,15 +132,12 @@ namespace PaySys.ModelAndBindLib.Model
 
 		public int Month { get; set; }
 
-		public string Title { get; set; }
-
-		public bool IsPayment { get; set; }
-
 		public int Index { get; set; }
+		public MiscTitle MiscTitle { get; set; }
 
 		public virtual List<ParameterInvolvedMisc> ParameterInvolvedMiscs { get; set; }
 
-		public virtual List<EmployeeMiscRemain> EmployeeMiscRemains { get; set; }
+		public virtual List<EmployeeMiscRecharge> EmployeeMiscRecharges { get; set; }
 
 		public virtual SubGroup SubGroup { set; get; }
 
@@ -362,9 +372,9 @@ namespace PaySys.ModelAndBindLib.Model
 	}
 
 /// <summary>#10 مانده بدهی متفرقه اشخاص</summary>
-	public class EmployeeMiscRemain
+	public class EmployeeMiscRecharge
 	{
-		public int EmployeeMiscRemainId { set; get; }
+		public int EmployeeMiscRechargeId { set; get; }
 
 		public float Value { get; set; }
 
@@ -619,7 +629,7 @@ namespace PaySys.ModelAndBindLib.Model
 
 		public virtual List<ContractMaster> ContractMasters { get; set; }
 
-		public virtual List<EmployeeMiscRemain> EmployeeMiscRemains { get; set; }
+		public virtual List<EmployeeMiscRecharge> EmployeeMiscRecharges { get; set; }
 
 		public virtual List<Mission> Missions { get; set; }
 
@@ -990,5 +1000,12 @@ namespace PaySys.ModelAndBindLib.Model
 		AddMaster,
 		AddDetails,
 		Delete
+	}
+
+	public enum MiscType
+	{
+		None,
+		Payment,
+		Debt
 	}
 }

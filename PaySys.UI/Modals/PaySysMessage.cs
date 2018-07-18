@@ -14,9 +14,20 @@ namespace PaySys.UI.Modals
 
 		public static MessageBoxResult GetDeleteItemConfirmation()
 		{
-			String strmsg = ResourceAccessor.Messages.GetString("DeleteItem", CultureInfo.CurrentCulture);
-			return MessageBox.Show(strmsg, "Delete", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
+			String strmsg = ResourceAccessor.Messages.GetString("DeleteConfirmationOfItem", CultureInfo.CurrentCulture);
+			return ShowDefaultYesNoMessage(strmsg);
 		}
 
+		public static MessageBoxResult GetDeleteSubGroupMiscConfirmation(string miscTitle,string miscsListTitle)
+		{
+			String strmsg = ResourceAccessor.Messages.GetString("DeleteConfirmationOfMisc", CultureInfo.CurrentCulture);
+			strmsg = strmsg.Replace("XXX", miscTitle).Replace("YYY", miscsListTitle);
+			return ShowDefaultYesNoMessage(strmsg);
+		}
+
+		private static MessageBoxResult ShowDefaultYesNoMessage(string strmsg)
+		{
+			return MessageBox.Show(strmsg, "Delete", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No,MessageBoxOptions.RtlReading);
+		}
 	}
 }

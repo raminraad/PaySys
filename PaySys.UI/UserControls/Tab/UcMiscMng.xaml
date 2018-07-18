@@ -7,12 +7,20 @@
              xmlns:local="clr-namespace:PaySys.UI.UC"
              xmlns:bindingConverter="clr-namespace:PaySys.ModelAndBindLib.BindingConverter;assembly=PaySys.ModelAndBindLib"
              xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
+             xmlns:commands="clr-namespace:PaySys.UI.Commands"
              mc:Ignorable="d"
              FlowDirection="RightToLeft"
+			 Loaded="UcMiscMng_OnLoaded"
              d:DesignHeight="300"
-             d:DesignWidth="900">
+             d:DesignWidth="800">
 	<Grid>
 		<Grid.Resources>
+				<Style  TargetType="local:UcSuggesterTextBox">
+					<Setter Property="VerticalAlignment"
+					        Value="Top" />
+					<Setter Property="HorizontalAlignment"
+					        Value="Stretch" />
+				</Style>
 			<Style TargetType="TextBlock">
 				<Setter Property="HorizontalAlignment"
 				        Value="Center"/>
@@ -32,18 +40,14 @@
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="2*"/>
-			<ColumnDefinition Width="5*"/>
-			<ColumnDefinition Width="*"/>
-			<ColumnDefinition Width="3*" />
-			<ColumnDefinition Width="2*"/>
+			<ColumnDefinition Width="50*"/>
+			<ColumnDefinition Width="50*"/>
+			<ColumnDefinition Width="10*"/>
+			<ColumnDefinition Width="50*" />
+			<ColumnDefinition Width="50*"/>
 		</Grid.ColumnDefinitions>
 		<ToolBar Grid.Row="0"
 		         Grid.ColumnSpan="5">
-			<Button Name="BtnAdd"
-			        Margin="2,0"
-			        Content="{x:Static fa:Labels.Add}"
-			        Click="BtnAdd_OnClick"/>
 			<Button Name="BtnEdit"
 			        Content="{x:Static fa:Labels.EditTitle}"
 			        Click="BtnEditMiscTitle_OnClick"
@@ -52,10 +56,6 @@
 			        Margin="2,0"
 			        Click="BtnChangeExpenseArticle_OnClick"
 			        Content="{x:Static fa:Labels.ChangeExpenseArticle}"/>
-			<Button Name="BtnDelete"
-			        Margin="2,0"
-			        Click="BtnDelete_OnClick"
-			        Content="{x:Static fa:Labels.Delete}"/>
 		</ToolBar>
 		<TextBlock Grid.Row="2"
 		           Grid.Column="1"
@@ -63,41 +63,118 @@
 		<TextBlock Grid.Row="2"
 		           Grid.Column="3"
 		           Text="{x:Static fa:Labels.MiscDebts}"/>
+		<Grid x:Name="GridAddMiscPayments"
+		      Grid.Row="3"
+		      Grid.Column="1"
+			  ZIndex="99">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="11*"/>
+				<ColumnDefinition Width="1*"/>
+				<ColumnDefinition Width="Auto"/>
+			</Grid.ColumnDefinitions>
+			<local:UcSuggesterTextBox x:Name="SmpUcSuggesterTextBoxMiscTitlePayments"
+									  Grid.Column="0"/>
+			<Button x:Name="BtnAddMiscPayment" HorizontalAlignment="Right"
+			        Grid.Column="1"
+					Height="25"
+					VerticalAlignment="Top"
+			        Width="{Binding RelativeSource={RelativeSource Self},Path=ActualHeight}"
+			        Command="commands:PaySysCommandLibrary.AddItem"
+			        CommandTarget="{Binding ElementName=ListViewMiscPayment}"
+			        CommandParameter="{Binding ElementName=SmpUcSuggesterTextBoxMiscTitlePayments, Path=SelectedValue}"
+					Content="{x:Static fa:Labels.SignOfPlus}"/>
+		</Grid>
+<Grid x:Name="GridAddMiscDebts"
+		      Grid.Row="3"
+		      Grid.Column="3"
+			  ZIndex="98">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="11*"/>
+				<ColumnDefinition Width="1*"/>
+				<ColumnDefinition Width="Auto"/>
+			</Grid.ColumnDefinitions>
+			<local:UcSuggesterTextBox x:Name="SmpUcSuggesterTextBoxMiscTitleDebts"
+									  Grid.Column="0"/>
+			<Button x:Name="BtnAddMiscDebt" HorizontalAlignment="Right"
+			        Grid.Column="1"
+					Height="25"
+					VerticalAlignment="Top"
+			        Width="{Binding RelativeSource={RelativeSource Self},Path=ActualHeight}"
+			        Command="commands:PaySysCommandLibrary.AddItem"
+			        CommandTarget="{Binding ElementName=ListViewMiscDebt}"
+			        CommandParameter="{Binding ElementName=SmpUcSuggesterTextBoxMiscTitleDebts, Path=SelectedValue}"
+					Content="{x:Static fa:Labels.SignOfPlus}"/>
+		</Grid>
 		<ListView x:Name="ListViewMiscPayment"
-		          Grid.Row="3"
-		          Grid.RowSpan="2"
+		          Grid.Row="4"
 		          Grid.Column="1"
-		          MaxWidth="300"
 		          GotKeyboardFocus="ListViewMiscPayment_OnGotKeyboardFocus"
 		          ItemsSource="{Binding ElementName=SmpUcMiscMng,Path=CurrentSubGroup.MiscsOfTypePayment,UpdateSourceTrigger=PropertyChanged}">
+			<ListView.CommandBindings>
+				<CommandBinding Command="commands:PaySysCommandLibrary.AddItem"
+				                CanExecute="AddMisc_CanExecute"
+				                Executed="AddMisc_Execute" />
+				<CommandBinding Command="commands:PaySysCommandLibrary.RemoveItem"
+				                Executed="RemoveMisc_Execute" />
+			</ListView.CommandBindings>
 			<ListView.View>
 				<GridView>
 					<GridViewColumn Header="{x:Static fa:Labels.Title}"
 					                Width="120"
-					                DisplayMemberBinding="{Binding Title}"/>
+					                DisplayMemberBinding="{Binding MiscTitle.Title}"/>
 					<GridViewColumn Header="{x:Static fa:Labels.ExpenseArticle}"
 					                Width="150"
 					                DisplayMemberBinding="{Binding CurrentExpenseArticle.DspCodeTitle}"/>
+					<GridViewColumn Header="{x:Static fa:Labels.Operations}"
+					                Width="50">
+						<GridViewColumn.CellTemplate>
+							<DataTemplate>
+								<Button Content="{x:Static fa:Labels.Delete}"
+								        Command="commands:PaySysCommandLibrary.RemoveItem"
+										CommandParameter="{Binding}"
+										Tag="{Binding}"/>
+							</DataTemplate>
+						</GridViewColumn.CellTemplate>
+					</GridViewColumn>
 				</GridView>
 			</ListView.View>
 		</ListView>
-		<ListView Grid.Row="3"
-		          Grid.RowSpan="2"
+		<ListView Grid.Row="4"
 		          Grid.Column="3"
-		          MaxWidth="300"
 		          x:Name="ListViewMiscDebt"
 		          GotKeyboardFocus="ListViewMiscDebt_OnGotKeyboardFocus"
 		          ItemsSource="{Binding ElementName=SmpUcMiscMng,Path=CurrentSubGroup.MiscsOfTypeDebt,UpdateSourceTrigger=PropertyChanged}">
+			<ListView.CommandBindings>
+				<CommandBinding Command="commands:PaySysCommandLibrary.AddItem"
+				                CanExecute="AddMisc_CanExecute"
+								Executed="AddMisc_Execute" />
+				<CommandBinding Command="commands:PaySysCommandLibrary.RemoveItem"
+				                Executed="RemoveMisc_Execute" />
+			</ListView.CommandBindings>
 			<ListView.View>
 				<GridView>
 					<GridViewColumn Header="{x:Static fa:Labels.Title}"
 					                Width="120"
-					                DisplayMemberBinding="{Binding Title}"/>
+									DisplayMemberBinding="{Binding MiscTitle.Title}"/>
 					<GridViewColumn Header="{x:Static fa:Labels.ExpenseArticle}"
 					                Width="150"
 					                DisplayMemberBinding="{Binding CurrentExpenseArticle.DspCodeTitle}"/>
+					<GridViewColumn Header="{x:Static fa:Labels.Operations}"
+					                Width="50">
+						<GridViewColumn.CellTemplate>
+							<DataTemplate>
+								<Button Content="{x:Static fa:Labels.Delete}"
+								        Command="commands:PaySysCommandLibrary.RemoveItem"
+								        CommandParameter="{Binding}"
+								        Tag="{Binding}" />
+							</DataTemplate>
+						</GridViewColumn.CellTemplate>
+					</GridViewColumn>
 				</GridView>
 			</ListView.View>
 		</ListView>
+		<TextBlock Grid.Row="2"
+				   Grid.Column="1"
+				   Text="{x:Static fa:Labels.MiscPayments}"/>
 	</Grid>
 </UserControl>
