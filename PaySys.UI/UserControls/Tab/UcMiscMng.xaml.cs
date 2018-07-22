@@ -43,8 +43,8 @@ namespace PaySys.UI.UC
 		public UcMiscMng()
 		{
 			InitializeComponent();
-			ListViewMiscDebt.Items.Filter = o => ((Misc) o).Year == 97 && ((Misc) o).Month == 007;
-			ListViewMiscPayment.Items.Filter = o => ((Misc) o).Year == 97 && ((Misc) o).Month == 007;
+			ListViewMiscDebt.Items.Filter = o => ((Misc) o).Year == 97;
+			ListViewMiscPayment.Items.Filter = o => ((Misc) o).Year == 97;
 		}
 
 		public DelegateSaveContext SaveContext { set; get; }
@@ -114,8 +114,7 @@ namespace PaySys.UI.UC
 			CurrentSubGroup.Miscs.Add(new Misc
 			{
 				MiscTitle = newMiscTitle,
-				Year = 97,
-				Month = 007
+				Year = 97
 			});
 			if(newMiscTitle.MiscTitleId == 0)
 				MiscTitlesAll.Add(newMiscTitle);
@@ -146,13 +145,13 @@ namespace PaySys.UI.UC
 			var listTitle = ResourceAccessor.Labels.GetString(itemIsPayment ? "MiscPayments" : "MiscDebts");
 			if(PaySysMessage.GetDeleteSubGroupMiscConfirmation(item.MiscTitle.Title, listTitle) != MessageBoxResult.Yes)
 				return;
+
 			CurrentSubGroup.Miscs.Remove(item);
 			SaveContext.Invoke();
 			if(itemIsPayment)
 				ListViewMiscPayment.GetBindingExpression(ItemsControl.ItemsSourceProperty)?.UpdateTarget();
 			else
 				ListViewMiscDebt.GetBindingExpression(ItemsControl.ItemsSourceProperty)?.UpdateTarget();
-
 		}
 	}
 }

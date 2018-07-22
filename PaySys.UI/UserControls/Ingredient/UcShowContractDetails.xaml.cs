@@ -30,11 +30,6 @@ namespace PaySys.UI.UC
             InitializeComponent();
         }
 
-	    private void UcShowContractDetails_OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-	    {
-		    //		    DataContext = CurrentContractMaster?.ContractDetails;
-	    }
-
 		public static readonly DependencyProperty ReadOnlyFieldsProperty = DependencyProperty.Register("ReadOnlyOfEditControls", typeof(bool), typeof(UcShowContractDetails), new PropertyMetadata(default(bool)));
 
 	    public bool ReadOnlyFields

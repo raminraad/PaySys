@@ -61,7 +61,7 @@
 		           HorizontalAlignment="Center"
 		           VerticalAlignment="Bottom"
 		           Text="{x:Static fa:Labels.SubGroupsList}"/>
-		<ListView x:Name="ListViewGroupMain"
+		<ListView x:Name="ListViewMainGroups"
 		          ItemsSource="{Binding}"
 		          Grid.Row="3"
 		          Grid.Column="1"
@@ -73,8 +73,8 @@
 				</DataTemplate>
 			</ListView.ItemTemplate>
 		</ListView>
-		<ListView x:Name="ListViewSubGroup"
-		          ItemsSource="{Binding ElementName=ListViewGroupMain,Path=SelectedItem.SubGroups,Mode=TwoWay}"
+		<ListView x:Name="ListViewSubGroups"
+		          ItemsSource="{Binding ElementName=ListViewMainGroups,Path=SelectedItem.SubGroups,Mode=TwoWay}"
 		          Grid.Row="3"
 		          Grid.Column="3"
 		          Focusable="True"
@@ -99,32 +99,32 @@
 			<TabItem x:Name="TabItemContractFieldTitlesMng"
 			         Header="{x:Static fa:Labels.ContractFieldTitles}">
 				<local:UcContractFieldTitlesMng x:Name="SmpUcContractFieldTitlesMng"
-				                                CurrentSubGroup="{Binding ElementName=ListViewSubGroup,Path=SelectedItem}"/>
+				                                CurrentSubGroup="{Binding ElementName=ListViewSubGroups,Path=SelectedItem}"/>
 			</TabItem>
 			<TabItem x:Name="TabItemMisc"
 			         Header="{x:Static fa:Labels.MiscTitles}">
 				<local:UcMiscMng x:Name="SmpUcMiscMng"
-				                 CurrentSubGroup="{Binding ElementName=ListViewSubGroup,Path=SelectedItem}"/>
+				                 CurrentSubGroup="{Binding ElementName=ListViewSubGroups,Path=SelectedItem}"/>
 			</TabItem>
 			<TabItem x:Name="TabItemParameters"
 			         Header="{x:Static fa:Labels.Parameters}">
 				<local:UcParameterMng x:Name="SmpUcParameterMng"
-				                      CurrentSubGroup="{Binding ElementName=ListViewSubGroup,Path=SelectedItem}"/>
+				                      CurrentSubGroup="{Binding ElementName=ListViewSubGroups,Path=SelectedItem}"/>
 			</TabItem>
 			<TabItem x:Name="TabItemTaxTable"
 			         Header="{x:Static fa:Labels.TaxTable}">
 				<local:UcTaxTableMng x:Name="SmpUcTaxTableMng"
-				                     CurrentSubGroup="{Binding ElementName=ListViewSubGroup,Path=SelectedItem}"/>
+				                     CurrentSubGroup="{Binding ElementName=ListViewSubGroups,Path=SelectedItem}"/>
 			</TabItem>
 			<TabItem x:Name="TabItemHandselFormula"
 			         Header="{x:Static fa:Labels.HandselFormula}">
 				<local:UcHandselFormulaMng x:Name="SmpUcHandselFormula"
-				                           CurrentSubGroup="{Binding ElementName=ListViewSubGroup,Path=SelectedItem}"/>
+				                           CurrentSubGroup="{Binding ElementName=ListViewSubGroups,Path=SelectedItem}"/>
 			</TabItem>
 			<TabItem x:Name="TabItemMissionFormula"
 			         Header="{x:Static fa:Labels.MissionFormula}">
 				<local:UcMissionFormulaMng x:Name="SmpUcMissionFormulaMng"
-				                           CurrentSubGroup="{Binding ElementName=ListViewSubGroup,Path=SelectedItem}" />
+				                           CurrentSubGroup="{Binding ElementName=ListViewSubGroups,Path=SelectedItem}" />
 			</TabItem>
 		</TabControl>
 	</Grid>

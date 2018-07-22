@@ -104,6 +104,15 @@ namespace PaySys.ModelAndBindLib.Model
 			}
 		}
 
+		[NotMapped]
+		public List<Employee> CurrentEmployees
+		{
+			get
+			{
+				return ContractMasters.Where(master => master.IsCurrentContract).Select(master => master.Employee).ToList();
+			}
+		}
+
 		public override bool Equals(object obj)
 		{
 			return (obj as SubGroup)?.SubGroupId == SubGroupId && string.Equals(Title, ((SubGroup) obj).Title);
@@ -123,17 +132,15 @@ namespace PaySys.ModelAndBindLib.Model
 		public virtual List<Misc> Miscs { get; set; }
 	}
 
-	/// <summary>#04 کسور و پرداختهای متفرقه زیرگروه در سال و ماه</summary>
+	/// <summary>#04 کسور و پرداختهای متفرقه زیرگروه در سال</summary>
 	public class Misc
 	{
 		public int MiscId { get; set; }
 
 		public int Year { get; set; }
 
-		public int Month { get; set; }
-
 		public int Index { get; set; }
-		public MiscTitle MiscTitle { get; set; }
+		public virtual MiscTitle MiscTitle { get; set; }
 
 		public virtual List<ParameterInvolvedMisc> ParameterInvolvedMiscs { get; set; }
 
@@ -638,13 +645,15 @@ namespace PaySys.ModelAndBindLib.Model
 		public virtual List<PayslipEmployeeOvertime> PayslipEmployeeOvertimes { get; set; }
 
 		[NotMapped]
-		public string FullName => $"{FName} {LName}";
+		public string DspFullName => $"{FName} {LName}";
 
 		[NotMapped]
-		public string LuffName => $"{LName} {FName}";
+		public string DspLuffName => $"{LName} {FName}";
 
 		public override bool Equals(object obj)
 		{
+			if(obj.GetType() != this.GetType())
+				return false;
 			return obj != null && ((Employee) obj).EmployeeId == EmployeeId;
 		}
 	}

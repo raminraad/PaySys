@@ -342,7 +342,19 @@
   <data name="SignOfPlus" xml:space="preserve">
     <value>+</value>
   </data>
-<data name="Operations" xml:space="preserve">
+  <data name="Operations" xml:space="preserve">
     <value>عملیات</value>
+  </data>
+  <data name="tabMiscRechargesMng" xml:space="preserve">
+    <value>مانده بدهی های متفرقه</value>
+  </data>
+  <data name="GroupByEmployees" xml:space="preserve">
+    <value>به تفکیک اشخاص</value>
+  </data>
+  <data name="GroupByMiscTitle" xml:space="preserve">
+    <value>به تفکیک عناوین بدهی</value>
+  </data>
+  <data name="GroupByTitles" xml:space="preserve">
+    <value>به تفکیک عناوین</value>
   </data>
 </root>

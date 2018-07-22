@@ -81,7 +81,7 @@ namespace PaySys.UI.UC
 		{
 			var dialog = new WinSelectItem(ResourceAccessor.Messages.GetString("SelectMiscPayment"),"MiscTitle.Title")
 			{
-				ListViewItemsSource = CurrentSubGroup.MiscsOfTypePayment.Where(misc => misc.Year == 97 && misc.Month == 007 && !((List<ParameterInvolvedMisc>) ListViewParameterInvolvedMiscPayments.ItemsSource).Select(involvedMisc => involvedMisc.Misc).Contains(misc))
+				ListViewItemsSource = CurrentSubGroup.MiscsOfTypePayment.Where(misc => misc.Year == 97 && !((List<ParameterInvolvedMisc>) ListViewParameterInvolvedMiscPayments.ItemsSource).Select(involvedMisc => involvedMisc.Misc).Contains(misc))
 			};
 			if(dialog.ShowDialog() == true)
 			{

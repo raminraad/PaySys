@@ -19,7 +19,7 @@ using PaySys.ModelAndBindLib.Engine;
 using PaySys.ModelAndBindLib.Model;
 using PaySys.UI.ExtensionMethods;
 
-namespace PaySys.UI.UserControls.Tab
+namespace PaySys.UI.UC
 {
     /// <summary>
     /// Interaction logic for UcJobMng.xaml

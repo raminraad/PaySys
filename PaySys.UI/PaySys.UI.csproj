@@ -79,6 +79,12 @@
     <Compile Include="Modals\InputBox.cs" />
     <Compile Include="Modals\PaySysMessage.cs" />
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="UserControls\Ingredient\UcRibbonSelector.xaml.cs">
+      <DependentUpon>UcRibbonSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Ingredient\UcSelectGroupAndSubGroup.xaml.cs">
+      <DependentUpon>UcSelectGroupAndSubGroup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Ingredient\UcSuggesterTextBox.xaml.cs">
       <DependentUpon>UcSuggesterTextBox.xaml</DependentUpon>
     </Compile>
@@ -103,6 +109,9 @@
     <Compile Include="UserControls\Tab\UcContractMng.xaml.cs">
       <DependentUpon>UcContractMng.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Ingredient\UcMiscRechargesOfOneEmployee.xaml.cs">
+      <DependentUpon>UcMiscRechargesOfOneEmployee.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Tab\UcEmployeeMng.xaml.cs">
       <DependentUpon>UcEmployeeMng.xaml</DependentUpon>
     </Compile>
@@ -123,6 +132,9 @@
     </Compile>
     <Compile Include="UserControls\Tab\UcMiscMng.xaml.cs">
       <DependentUpon>UcMiscMng.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Tab\UcMiscRechargeMng.xaml.cs">
+      <DependentUpon>UcMiscRechargeMng.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Tab\UcMissionFormulaMng.xaml.cs">
       <DependentUpon>UcMissionFormulaMng.xaml</DependentUpon>
@@ -152,6 +164,14 @@
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\Ingredient\UcRibbonSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Ingredient\UcSelectGroupAndSubGroup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Ingredient\UcSuggesterTextBox.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -185,6 +205,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\Ingredient\UcMiscRechargesOfOneEmployee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\Tab\UcEmployeeMng.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -210,6 +234,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Tab\UcMiscMng.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Tab\UcMiscRechargeMng.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

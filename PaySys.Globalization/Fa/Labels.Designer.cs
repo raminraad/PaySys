@@ -349,6 +349,33 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to به تفکیک اشخاص.
+        /// </summary>
+        public static string GroupByEmployees {
+            get {
+                return ResourceManager.GetString("GroupByEmployees", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to به تفکیک عناوین بدهی.
+        /// </summary>
+        public static string GroupByMiscTitle {
+            get {
+                return ResourceManager.GetString("GroupByMiscTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to به تفکیک عناوین.
+        /// </summary>
+        public static string GroupByTitles {
+            get {
+                return ResourceManager.GetString("GroupByTitles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to فرمول عیدی.
         /// </summary>
         public static string HandselFormula {
@@ -678,6 +705,15 @@ namespace PaySys.Globalization.Fa {
         public static string tabJobMng {
             get {
                 return ResourceManager.GetString("tabJobMng", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to مانده بدهی های متفرقه.
+        /// </summary>
+        public static string tabMiscRechargesMng {
+            get {
+                return ResourceManager.GetString("tabMiscRechargesMng", resourceCulture);
             }
         }
         

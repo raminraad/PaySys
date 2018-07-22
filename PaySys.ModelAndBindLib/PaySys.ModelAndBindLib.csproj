@@ -64,9 +64,13 @@
     <Compile Include="EF.Engine\PaySysContext.cs" />
     <Compile Include="EF.Engine\PaySysDbInitializer.cs" />
     <Compile Include="EF.Migrations\Configuration.cs" />
-    <Compile Include="Migrations\201807181747255_Init.cs" />
-    <Compile Include="Migrations\201807181747255_Init.Designer.cs">
-      <DependentUpon>201807181747255_Init.cs</DependentUpon>
+    <Compile Include="Migrations\201807201637217_Init.cs" />
+    <Compile Include="Migrations\201807201637217_Init.Designer.cs">
+      <DependentUpon>201807201637217_Init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807212021163_MakeMiscForSubGroupPerYear.cs" />
+    <Compile Include="Migrations\201807212021163_MakeMiscForSubGroupPerYear.Designer.cs">
+      <DependentUpon>201807212021163_MakeMiscForSubGroupPerYear.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Visual\TitledCompositeCollection.cs" />
     <Compile Include="Model\Class1.cs" />
@@ -88,8 +92,11 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201807181747255_Init.resx">
-      <DependentUpon>201807181747255_Init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807201637217_Init.resx">
+      <DependentUpon>201807201637217_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807212021163_MakeMiscForSubGroupPerYear.resx">
+      <DependentUpon>201807212021163_MakeMiscForSubGroupPerYear.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

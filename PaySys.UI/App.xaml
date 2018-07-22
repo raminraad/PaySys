@@ -10,5 +10,9 @@
          <SolidColorBrush x:Key="FormStateColorSelect" Color="DarkSlateGray"/>
          <SolidColorBrush x:Key="FormStateColorDelete" Color="Crimson"/>
          <SolidColorBrush x:Key="FormStateColorUnknown" Color="Black"/>
+		<Style x:Key="StyleOfCombobox" TargetType="ComboBox">
+				<Setter Property="Height"
+				        Value="30"/>
+			</Style>
     </Application.Resources>
 </Application>

@@ -1,0 +1,65 @@
+﻿<UserControl x:Name="SmpUcMiscRechargesOfOneEmployee" x:Class="PaySys.UI.UC.UcMiscRechargesOfOneEmployee"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:PaySys.UI.UC"
+             xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Model;assembly=PaySys.ModelAndBindLib"
+             d:DataContext="{d:DesignInstance Type=model:SubGroup, IsDesignTimeCreatable=True}"
+             mc:Ignorable="d"
+             FlowDirection="RightToLeft"
+             d:DesignHeight="300"
+             d:DesignWidth="600">
+	<UserControl.Resources>
+		<CollectionViewSource x:Key="Cvs"
+		                      Source="{Binding Miscs}"/>
+	</UserControl.Resources>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="2*"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="6*"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<local:UcRibbonSelector Grid.Row="1"
+		                        Grid.Column="1"
+		                        x:Name="SmpUcRibbonSelector"
+								SelectedItemChanged="SmpUcRibbonSelector_OnSelectedItemChanged"
+		                        DataContext="{Binding CurrentEmployees}"
+		                        TitleDisplayMember="/DspFullName" />
+		<ListView x:Name="ListViewMiscs"
+		          Grid.Row="3"
+		          Grid.Column="1"
+		          ItemsSource="{Binding Source={StaticResource Cvs}}"
+		          d:DataContext="{d:DesignInstance Type=model:Misc, IsDesignTimeCreatable=True}">
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<StackPanel>
+						<TextBlock Text="{Binding MiscTitle.Title}"/>
+						<TextBox Text=""/>
+					</StackPanel>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+		<StackPanel Orientation="Horizontal"
+		            Grid.Row="4"
+		            Grid.Column="1">
+			<Button Height="20"
+			        Width="60"
+			        x:Name="ButtonSet"
+			        Click="ButtonSet_OnClick"
+			        Content="Set"/>
+			<Button Height="20"
+			        Width="60"
+			        x:Name="ButtonSet2"
+			        Click="ButtonSet2_OnClick"
+			        Content="Set2"/>
+		</StackPanel>
+	</Grid>
+</UserControl>

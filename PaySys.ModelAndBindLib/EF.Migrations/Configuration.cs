@@ -30,10 +30,10 @@ namespace PaySys.ModelAndBindLib.Migrations
 			//  to avoid creating duplicate seed data. E.g.
 			//
 			//    context.People.AddOrUpdate(
-			//      p => p.FullName,
-			//      new Person { FullName = "Andrew Peters" },
-			//      new Person { FullName = "Brice Lambson" },
-			//      new Person { FullName = "Rowan Miller" }
+			//      p => p.DspFullName,
+			//      new Person { DspFullName = "Andrew Peters" },
+			//      new Person { DspFullName = "Brice Lambson" },
+			//      new Person { DspFullName = "Rowan Miller" }
 			//    );
 			//
 
@@ -460,7 +460,6 @@ namespace PaySys.ModelAndBindLib.Migrations
 			var miscFaker = new Faker<Misc>("fa").StrictMode(false).Rules((f, e) =>
 			{
 				e.Year = 97;
-				e.Month = 007;
 				e.MiscTitle = f.PickRandom(seedMiscTitles);
 			});
 			var seedMiscs = new List<Misc>();

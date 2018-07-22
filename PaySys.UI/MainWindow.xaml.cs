@@ -1,17 +1,17 @@
-﻿using System.Windows;
+﻿using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using PaySys.Globalization;
 using PaySys.ModelAndBindLib.Engine;
 using PaySys.UI.UC;
 using PaySys.UI.UC.Tab;
-using PaySys.UI.UserControls.Tab;
 
 namespace PaySys
 {
 	/// <summary>Interaction logic for MainWindow.xaml</summary>
 	public partial class MainWindow : Window
 	{
-		private readonly PaySysContext context = new PaySysContext();
+		public PaySysContext Context { get; set; } = new PaySysContext();
 
 		public MainWindow()
 		{
@@ -97,6 +97,19 @@ namespace PaySys
 			{
 				Content = uc,
 				Header = ResourceAccessor.Labels.GetString("tabJobMng")
+			};
+			TabCntMain.Items.Add(tabItem);
+			TabCntMain.Items.Refresh();
+		}
+
+		private void MnuMiscRechargesMng_OnClick(object sender, RoutedEventArgs e)
+		{
+			var uc = new UcMiscRechargeMng();
+			uc.DataContext = Context.MainGroups.ToList();
+			var tabItem = new TabItem
+			{
+				Content = uc,
+				Header = ResourceAccessor.Labels.GetString("tabMiscRechargesMng")
 			};
 			TabCntMain.Items.Add(tabItem);
 			TabCntMain.Items.Refresh();

@@ -91,5 +91,6 @@ namespace PaySys.UI.UC
 				SelectedContractChanged?.Invoke(sender, e);
 //			}
 		}
+		
 	}
 }

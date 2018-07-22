@@ -43,7 +43,7 @@ namespace PaySys.UI.UC
 		public UcGroupMng()
 		{
 			InitializeComponent();
-			ListViewGroupMain.DataContext = _context.MainGroups.ToList();
+			ListViewMainGroups.DataContext = _context.MainGroups.ToList();
 
 			SmpUcContractFieldTitlesMng.SaveContext += () => _context.SaveChanges();
 			SmpUcMiscMng.SaveContext += () => _context.SaveChanges();
@@ -71,7 +71,7 @@ namespace PaySys.UI.UC
 					SubGroups = new List<SubGroup>()
 				});
 				_context.SaveChanges();
-				ListViewGroupMain.DataContext = _context.MainGroups.ToList();
+				ListViewMainGroups.DataContext = _context.MainGroups.ToList();
 			}
 		}
 
@@ -92,23 +92,23 @@ namespace PaySys.UI.UC
 			switch (LastFocusedList)
 			{
 				case GroupType.MainGroup:
-					var selectedMainGroup = (MainGroup)ListViewGroupMain.SelectedItem;
+					var selectedMainGroup = (MainGroup)ListViewMainGroups.SelectedItem;
 					title = selectedMainGroup.Title;
 					if (InputBox.Show(ResourceAccessor.Messages.GetString("EnterMainGroupName"), ref title) == DialogResult.OK)
 					{
 						selectedMainGroup.Title = title;
 						_context.SaveChanges();
-						ListViewGroupMain.DataContext = _context.MainGroups.ToList();
+						ListViewMainGroups.DataContext = _context.MainGroups.ToList();
 					}
 					break;
 				case GroupType.SubGroup:
-					var selectedSubGroup = (SubGroup)ListViewSubGroup.SelectedItem;
+					var selectedSubGroup = (SubGroup)ListViewSubGroups.SelectedItem;
 					title = selectedSubGroup.Title;
 					if (InputBox.Show(ResourceAccessor.Messages.GetString("EnterSubGroupName"), ref title) == DialogResult.OK)
 					{
 						selectedSubGroup.Title = title;
 						_context.SaveChanges();
-						CollectionViewSource.GetDefaultView(ListViewSubGroup.ItemsSource).Refresh();
+						CollectionViewSource.GetDefaultView(ListViewSubGroups.ItemsSource).Refresh();
 					}
 					break;
 			}
@@ -117,7 +117,7 @@ namespace PaySys.UI.UC
 		private void BtnRefresh_OnClick(object sender, RoutedEventArgs e)
 		{
 						_context.MainGroups.Load();
-						ListViewGroupMain.DataContext = _context.MainGroups.ToList();
+						ListViewMainGroups.DataContext = _context.MainGroups.ToList();
 		}
 
 		private void BtnAddSubGroup_OnClick(object sender, RoutedEventArgs e)
@@ -125,14 +125,14 @@ namespace PaySys.UI.UC
 			var title = string.Empty;
 			if (InputBox.Show(ResourceAccessor.Messages.GetString("EnterSubGroupName"), ref title) == DialogResult.OK)
 			{
-				var selectedMainGroup = (MainGroup)ListViewGroupMain.SelectedItem;
+				var selectedMainGroup = (MainGroup)ListViewMainGroups.SelectedItem;
 				selectedMainGroup.SubGroups.Add(new SubGroup
 				{
 					Title = title,
 					ItemColor = selectedMainGroup.ItemColor
 				});
 				_context.SaveChanges();
-				CollectionViewSource.GetDefaultView(ListViewSubGroup.ItemsSource).Refresh();
+				CollectionViewSource.GetDefaultView(ListViewSubGroups.ItemsSource).Refresh();
 			}
 		}
 	}

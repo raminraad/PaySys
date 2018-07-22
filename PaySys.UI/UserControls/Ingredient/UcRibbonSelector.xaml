@@ -1,0 +1,117 @@
+﻿<UserControl x:Name="SmpUcRibbonSelector"
+             x:Class="PaySys.UI.UC.UcRibbonSelector"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:PaySys.UI.UC"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="450"
+             DataContextChanged="UcRibbonSelector_OnDataContextChanged"
+             FlowDirection="RightToLeft">
+	<UserControl.CommandBindings>
+		<CommandBinding Command="NavigationCommands.FirstPage"
+		                Executed="Navigate_OnExecuted"
+		                CanExecute="Navigate_OnCanExecute"/>
+		<CommandBinding Command="NavigationCommands.PreviousPage"
+		                Executed="Navigate_OnExecuted"
+		                CanExecute="Navigate_OnCanExecute"/>
+		<CommandBinding Command="NavigationCommands.NextPage"
+		                Executed="Navigate_OnExecuted"
+		                CanExecute="Navigate_OnCanExecute"/>
+		<CommandBinding Command="NavigationCommands.LastPage"
+		                Executed="Navigate_OnExecuted"
+		                CanExecute="Navigate_OnCanExecute"/>
+	</UserControl.CommandBindings>
+	<Border BorderThickness="1"
+	        BorderBrush="Black">
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition x:Name="ColumnLast"
+				                  Width="30px"/>
+				<ColumnDefinition x:Name="ColumnNext"
+				                  Width="30px"/>
+				<ColumnDefinition x:Name="ColumnTitle"
+				                  Width="*"/>
+				<ColumnDefinition x:Name="ColumnPrevious"
+				                  Width="30px"/>
+				<ColumnDefinition x:Name="ColumnFirst"
+				                  Width="30px"/>
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="30"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition/>
+			</Grid.RowDefinitions>
+			<Button Grid.Column="0"
+			        Grid.RowSpan="2"
+			        Command="NavigationCommands.LastPage"
+			        x:Name="ButtonLast"
+			        Content="««">
+				<Button.CommandParameter>
+					<system:Int32> 2 </system:Int32>
+				</Button.CommandParameter>
+			</Button>
+			<Button Grid.Row="0"
+			        Grid.Column="1"
+			        Grid.RowSpan="2"
+			        Command="NavigationCommands.NextPage"
+			        x:Name="ButtonNext"
+			        Content="«">
+				<Button.CommandParameter>
+					<system:Int32> 1 </system:Int32>
+				</Button.CommandParameter>
+			</Button>
+			<TextBlock Grid.Row="0"
+			           Grid.Column="2"
+			           VerticalAlignment="Center"
+			           x:Name="TextBlockTitle"/>
+			<Button Grid.Row="0"
+			        Grid.Column="3"
+			        Grid.RowSpan="2"
+			        x:Name="ButtonPrevious"
+			        Command="NavigationCommands.PreviousPage"
+			        Content="»">
+				<Button.CommandParameter>
+					<system:Int32> -1 </system:Int32>
+				</Button.CommandParameter>
+			</Button>
+			<Button Grid.Row="0"
+			        Grid.Column="4"
+			        Grid.RowSpan="2"
+			        x:Name="ButtonFirst"
+			        Command="NavigationCommands.FirstPage"
+			        Content="»»">
+				<Button.CommandParameter>
+					<system:Int32> -2 </system:Int32>
+				</Button.CommandParameter>
+			</Button>
+			<ProgressBar x:Name="ProgressBarOfItems"
+			             Grid.Row="1"
+			             Grid.Column="2"
+			             FlowDirection="LeftToRight"
+			             Value="{Binding ElementName=ListViewHolder,Path=SelectedIndex}"
+			             Minimum="0"
+			             Height="3"/>
+			<ListView x:Name="ListViewHolder"
+			          Grid.Row="2"
+			          Grid.Column="2"
+			          Visibility="Collapsed"
+			          IsSynchronizedWithCurrentItem="True"
+			          ItemsSource="{Binding}"
+			          SelectedItem="{Binding ElementName=SmpUcRibbonSelector,Path=SelectedItem,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+					  SelectionChanged="ListViewHolder_OnSelectionChanged">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<StackPanel Orientation="Horizontal">
+							<TextBlock Text="{Binding MiscId}"/>
+							<TextBlock Text="{Binding MiscTitle.Title}"/>
+						</StackPanel>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+		</Grid>
+	</Border>
+</UserControl>
