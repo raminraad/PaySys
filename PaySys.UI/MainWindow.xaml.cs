@@ -105,7 +105,6 @@ namespace PaySys
 		private void MnuMiscRechargesMng_OnClick(object sender, RoutedEventArgs e)
 		{
 			var uc = new UcMiscRechargeMng();
-			uc.DataContext = Context.MainGroups.ToList();
 			var tabItem = new TabItem
 			{
 				Content = uc,

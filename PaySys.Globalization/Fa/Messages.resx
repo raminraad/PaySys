@@ -156,6 +156,9 @@
   <data name="ErrorValidationXXXValue" xml:space="preserve">
     <value>مقدار وارد شده برای "XXX" نامعتبر میباشد.</value>
   </data>
+  <data name="SaveSuccessful" xml:space="preserve">
+    <value>ذخیره اطلاعات با موفقیت انجام گردید.</value>
+  </data>
   <data name="SelectContractField" xml:space="preserve">
     <value>لطفاً فیلد مورد نظر را انتخاب فرمایید.</value>
   </data>

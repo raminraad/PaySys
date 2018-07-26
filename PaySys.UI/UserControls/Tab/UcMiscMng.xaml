@@ -79,7 +79,7 @@
 					Height="25"
 					VerticalAlignment="Top"
 			        Width="{Binding RelativeSource={RelativeSource Self},Path=ActualHeight}"
-			        Command="commands:PaySysCommandLibrary.AddItem"
+			        Command="commands:PaySysCommands.AddItem"
 			        CommandTarget="{Binding ElementName=ListViewMiscPayment}"
 			        CommandParameter="{Binding ElementName=SmpUcSuggesterTextBoxMiscTitlePayments, Path=SelectedValue}"
 					Content="{x:Static fa:Labels.SignOfPlus}"/>
@@ -100,7 +100,7 @@
 					Height="25"
 					VerticalAlignment="Top"
 			        Width="{Binding RelativeSource={RelativeSource Self},Path=ActualHeight}"
-			        Command="commands:PaySysCommandLibrary.AddItem"
+			        Command="commands:PaySysCommands.AddItem"
 			        CommandTarget="{Binding ElementName=ListViewMiscDebt}"
 			        CommandParameter="{Binding ElementName=SmpUcSuggesterTextBoxMiscTitleDebts, Path=SelectedValue}"
 					Content="{x:Static fa:Labels.SignOfPlus}"/>
@@ -111,10 +111,10 @@
 		          GotKeyboardFocus="ListViewMiscPayment_OnGotKeyboardFocus"
 		          ItemsSource="{Binding ElementName=SmpUcMiscMng,Path=CurrentSubGroup.MiscsOfTypePayment,UpdateSourceTrigger=PropertyChanged}">
 			<ListView.CommandBindings>
-				<CommandBinding Command="commands:PaySysCommandLibrary.AddItem"
+				<CommandBinding Command="commands:PaySysCommands.AddItem"
 				                CanExecute="AddMisc_CanExecute"
 				                Executed="AddMisc_Execute" />
-				<CommandBinding Command="commands:PaySysCommandLibrary.RemoveItem"
+				<CommandBinding Command="commands:PaySysCommands.RemoveItem"
 				                Executed="RemoveMisc_Execute" />
 			</ListView.CommandBindings>
 			<ListView.View>
@@ -130,7 +130,7 @@
 						<GridViewColumn.CellTemplate>
 							<DataTemplate>
 								<Button Content="{x:Static fa:Labels.Delete}"
-								        Command="commands:PaySysCommandLibrary.RemoveItem"
+								        Command="commands:PaySysCommands.RemoveItem"
 										CommandParameter="{Binding}"
 										Tag="{Binding}"/>
 							</DataTemplate>
@@ -145,10 +145,10 @@
 		          GotKeyboardFocus="ListViewMiscDebt_OnGotKeyboardFocus"
 		          ItemsSource="{Binding ElementName=SmpUcMiscMng,Path=CurrentSubGroup.MiscsOfTypeDebt,UpdateSourceTrigger=PropertyChanged}">
 			<ListView.CommandBindings>
-				<CommandBinding Command="commands:PaySysCommandLibrary.AddItem"
+				<CommandBinding Command="commands:PaySysCommands.AddItem"
 				                CanExecute="AddMisc_CanExecute"
 								Executed="AddMisc_Execute" />
-				<CommandBinding Command="commands:PaySysCommandLibrary.RemoveItem"
+				<CommandBinding Command="commands:PaySysCommands.RemoveItem"
 				                Executed="RemoveMisc_Execute" />
 			</ListView.CommandBindings>
 			<ListView.View>
@@ -164,7 +164,7 @@
 						<GridViewColumn.CellTemplate>
 							<DataTemplate>
 								<Button Content="{x:Static fa:Labels.Delete}"
-								        Command="commands:PaySysCommandLibrary.RemoveItem"
+								        Command="commands:PaySysCommands.RemoveItem"
 								        CommandParameter="{Binding}"
 								        Tag="{Binding}" />
 							</DataTemplate>

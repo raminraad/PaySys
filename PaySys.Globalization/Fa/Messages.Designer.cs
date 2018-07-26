@@ -178,6 +178,15 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ذخیره اطلاعات با موفقیت انجام گردید..
+        /// </summary>
+        public static string SaveSuccessful {
+            get {
+                return ResourceManager.GetString("SaveSuccessful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to لطفاً فیلد مورد نظر را انتخاب فرمایید..
         /// </summary>
         public static string SelectContractField {

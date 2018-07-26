@@ -30,23 +30,18 @@
 		<ToolBar Grid.Row="0"
 		         Grid.ColumnSpan="5">
 			<Button Name="BtnAddMainGroup"
-			        IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
 			        Content="{x:Static fa:Labels.AddMainGroup}"
 			        Click="BtnAddMainGroup_OnClick"/>
 			<Button Name="BtnAddSubGroup"
-			        IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
 			        Content="{x:Static fa:Labels.AddSubGroup}"
 			        Click="BtnAddSubGroup_OnClick"/>
 			<Button Name="BtnEdit"
-			        IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
 			        Content="{x:Static fa:Labels.Edit}"
 			        Click="BtnEdit_OnClick"/>
 			<Button Name="BtnDelete"
-			        IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
 			        Content="{x:Static fa:Labels.Delete}"/>
 			<Separator/>
 			<Button Name="BtnRefresh"
-			        IsEnabled="{Binding ElementName=UcFormState,Path=CrudButtonsEnabled}"
 			        Click="BtnRefresh_OnClick"
 			        Content="{x:Static fa:Labels.Refresh}"/>
 			<Separator/>

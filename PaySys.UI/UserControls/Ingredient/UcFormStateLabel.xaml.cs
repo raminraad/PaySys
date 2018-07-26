@@ -20,105 +20,83 @@ using PaySys.UI.Annotations;
 
 namespace PaySys.UI.UC
 {
-
-	public partial class UcFormStateLabel:INotifyPropertyChanged
+	public partial class UcFormStateLabel : INotifyPropertyChanged
 	{
 		private FormCurrentState _currentState = FormCurrentState.Unknown;
-//		public static readonly DependencyProperty IsReadOnlyProperty;
+
 		public UcFormStateLabel()
 		{
 			InitializeComponent();
 
-			FrameworkPropertyMetadata metadata = new FrameworkPropertyMetadata(
-				new Thickness(), FrameworkPropertyMetadataOptions.AffectsMeasure);
+//			FrameworkPropertyMetadata metadata = new FrameworkPropertyMetadata(
+//				new Thickness(), FrameworkPropertyMetadataOptions.AffectsMeasure);
 		}
 
-		public static readonly DependencyProperty ReadOnlyOfEditControlsProperty = DependencyProperty.Register("ReadOnlyOfEditControls", typeof(bool), typeof(UcFormStateLabel), new PropertyMetadata(default(bool)));
-		public static readonly DependencyProperty EnabledOfCrudButtonsProperty = DependencyProperty.Register("EnabledOfCrudButtons", typeof(bool), typeof(UcFormStateLabel), new PropertyMetadata(default(bool)));
-		public static readonly DependencyProperty EnabledOfSaveCancelButtonsProperty = DependencyProperty.Register("EnabledOfSaveCancelButtons", typeof(bool), typeof(UcFormStateLabel), new PropertyMetadata(default(bool)));
-		//		public static readonly DependencyProperty ReadOnlyAddFieldsProperty = DependencyProperty.Register("ReadOnlyAddFields", typeof(bool), typeof(UcFormStateLabel), new PropertyMetadata(default(bool)));
-
-		//		public bool ReadOnlyAddFields
-		//		{
-		//			get => (bool) GetValue(ReadOnlyAddFieldsProperty);
-		//			set => SetValue(ReadOnlyAddFieldsProperty, value);
-		//		}
 		/// <summary>
 		/// Enabled attribute of Save and Cancel buttons
 		/// </summary>
-		public bool EnabledOfSaveCancelButtons
-		{
-			get => (bool) GetValue(EnabledOfSaveCancelButtonsProperty);
-			set => SetValue(EnabledOfSaveCancelButtonsProperty, value);
-		}
+		public bool EnabledOfSaveCancelButtons { set; get; }
+
 		/// <summary>
 		/// Enabled attribute of Add,Edit and Delete buttons
 		/// </summary>
-		public bool EnabledOfCrudButtons
-		{
-			get => (bool) GetValue(EnabledOfCrudButtonsProperty);
-			set => SetValue(EnabledOfCrudButtonsProperty, value);
-		}
+		public bool EnabledOfCrudButtons { set; get; }
+
 		/// <summary>
 		/// ReadOnly attribute of controls that are used to edit fields (like textbox,combo,...) of models in Grid/Textbox forms
 		/// </summary>
-		public bool ReadOnlyOfEditControls
-		{
-			get => (bool)GetValue(ReadOnlyOfEditControlsProperty);
-			set => SetValue(ReadOnlyOfEditControlsProperty, value);
-		}
+		public bool ReadOnlyOfEditControls { set; get; }
 
 		public FormCurrentState CurrentState
 		{
 			get => _currentState;
 			set
 			{
-				switch (value)
+				switch(value)
 				{
 					case FormCurrentState.Select:
-						LblState.Foreground = (Brush)FindResource("FormStateColorSelect");
+						LblState.Foreground = (Brush) FindResource("FormStateColorSelect");
 						LblState.Content = ResourceAccessor.Labels.GetString("Select");
 						break;
 					case FormCurrentState.Edit:
-						LblState.Foreground = (Brush)FindResource("FormStateColorEdit");
+						LblState.Foreground = (Brush) FindResource("FormStateColorEdit");
 						LblState.Content = ResourceAccessor.Labels.GetString("Edit");
 						break;
 					case FormCurrentState.Add:
-						LblState.Foreground = (Brush)FindResource("FormStateColorAdd");
+						LblState.Foreground = (Brush) FindResource("FormStateColorAdd");
 						LblState.Content = ResourceAccessor.Labels.GetString("Add");
 						break;
 					case FormCurrentState.AddMaster:
-						LblState.Foreground = (Brush)FindResource("FormStateColorAdd");
+						LblState.Foreground = (Brush) FindResource("FormStateColorAdd");
 						LblState.Content = ResourceAccessor.Labels.GetString("AddMaster");
 						break;
 					case FormCurrentState.AddDetails:
-						LblState.Foreground = (Brush)FindResource("FormStateColorAdd");
+						LblState.Foreground = (Brush) FindResource("FormStateColorAdd");
 						LblState.Content = ResourceAccessor.Labels.GetString("AddDetails");
 						break;
 					case FormCurrentState.Delete:
-						LblState.Foreground = (Brush)FindResource("FormStateColorDelete");
+						LblState.Foreground = (Brush) FindResource("FormStateColorDelete");
 						LblState.Content = ResourceAccessor.Labels.GetString("Delete");
 						break;
 					case FormCurrentState.Unknown:
-						LblState.Foreground = (Brush)FindResource("FormStateColorUnknown");
+						LblState.Foreground = (Brush) FindResource("FormStateColorUnknown");
 						LblState.Content = ResourceAccessor.Labels.GetString("Unknown");
 						break;
 					default:
 						throw new ArgumentOutOfRangeException(nameof(value), value, null);
 				}
-				ReadOnlyOfEditControls = value != FormCurrentState.Edit && value != FormCurrentState.Add && value != FormCurrentState.AddMaster && value != FormCurrentState.AddDetails;
-//				ReadOnlyAddFields = value != FormCurrentState.Add && value != FormCurrentState.AddMaster &&
-//				                    value != FormCurrentState.AddDetails;
-				EnabledOfCrudButtons = value == FormCurrentState.Select;
-				EnabledOfSaveCancelButtons = value == FormCurrentState.Edit || value == FormCurrentState.Add || value == FormCurrentState.AddMaster || value == FormCurrentState.AddDetails;
-				OnPropertyChanged(nameof(ReadOnlyOfEditControls));
-//				OnPropertyChanged(nameof(ReadOnlyAddFields));
-				OnPropertyChanged(nameof(EnabledOfCrudButtons));
-				OnPropertyChanged(nameof(EnabledOfSaveCancelButtons));
 
+				EnabledOfSaveCancelButtons = value == FormCurrentState.Edit || value == FormCurrentState.Add || value == FormCurrentState.AddMaster || value == FormCurrentState.AddDetails;
+
+				EnabledOfCrudButtons = ReadOnlyOfEditControls = !EnabledOfSaveCancelButtons;
+
+				OnPropertyChanged(nameof(EnabledOfSaveCancelButtons));
+				OnPropertyChanged(nameof(EnabledOfCrudButtons));
+				OnPropertyChanged(nameof(ReadOnlyOfEditControls));
 				_currentState = value;
 			}
 		}
+
 		public event PropertyChangedEventHandler PropertyChanged;
 
 		[NotifyPropertyChangedInvocator]

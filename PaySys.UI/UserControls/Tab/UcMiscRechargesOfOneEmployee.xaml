@@ -1,0 +1,125 @@
+﻿<UserControl x:Name="SmpUcMiscRechargesOfOneEmployee"
+             x:Class="PaySys.UI.UC.UcMiscRechargesOfOneEmployee"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:PaySys.UI.UC"
+             xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Model;assembly=PaySys.ModelAndBindLib"
+             xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
+             xmlns:commands="clr-namespace:PaySys.UI.Commands"
+             d:DataContext="{d:DesignInstance Type=model:SubGroup, IsDesignTimeCreatable=True}"
+             mc:Ignorable="d"
+             FlowDirection="RightToLeft"
+			 Background="WhiteSmoke"
+             d:DesignHeight="300"
+             d:DesignWidth="600"
+             Loaded="UcMiscRechargesOfOneEmployee_OnLoaded">
+	<UserControl.Resources>
+		<CollectionViewSource x:Name="CvsRechargesOfEmployee"
+		                      x:Key="CvsRechargesOfEmployee"
+							  Source="{Binding TempMiscRechargesOfEmployees}" />
+	</UserControl.Resources>
+	<UserControl.CommandBindings>
+		<CommandBinding Command="commands:PaySysCommands.Edit"
+						Executed="CommandBinding_OnExecuted"
+		                CanExecute="CommandBinding_OnCanExecute"/>
+		<CommandBinding Command="commands:PaySysCommands.Save"
+		                PreviewCanExecute="CommandBinding_OnCanExecute"/>
+		<CommandBinding Command="commands:PaySysCommands.Cancel"
+		                PreviewCanExecute="CommandBinding_OnCanExecute"/>
+		<CommandBinding Command="commands:PaySysCommands.Reload"
+		                CanExecute="CommandBinding_OnCanExecute"/>
+	</UserControl.CommandBindings>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="2*"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="6*"/>
+			<RowDefinition Height="30"/>
+			<RowDefinition Height="30"/>
+		</Grid.RowDefinitions>
+		<ToolBar Grid.Row="0"
+		         Grid.ColumnSpan="3">
+			<Button Name="BtnEdit"
+			        Command="commands:PaySysCommands.Edit"
+					CommandTarget="{Binding RelativeSource={x:Static RelativeSource.Self}}"
+			        Content="{x:Static fa:Labels.Edit}"/>
+			<Button Name="BtnSave"
+			        Command="commands:PaySysCommands.Save"
+					CommandTarget="{Binding RelativeSource={x:Static RelativeSource.Self}}"
+					Content="{x:Static fa:Labels.Save}"/>
+			<Button Name="BtnCancel"
+			        Command="commands:PaySysCommands.Cancel"
+					CommandTarget="{Binding RelativeSource={x:Static RelativeSource.Self}}"
+			        Content="{x:Static fa:Labels.Cancel}"/>
+			<Separator/>
+			<Button Name="BtnRefresh"
+			        Command="commands:PaySysCommands.Reload"
+					CommandTarget="{Binding RelativeSource={x:Static RelativeSource.Self}}"
+			        Content="{x:Static fa:Labels.Refresh}"/>
+		</ToolBar>
+		<local:UcRibbonSelector Grid.Row="1"
+		                        Grid.Column="1"
+		                        x:Name="SmpUcRibbonSelector"
+		                        SelectedItemChanged="SmpUcRibbonSelector_OnSelectedItemChanged"
+		                        DataContext="{Binding CurrentEmployees, Mode=OneWay}"
+		                        TitleDisplayMember="/DspFullName"/>
+		<ListView x:Name="ListViewMiscs"
+		          Grid.Row="3"
+		          KeyboardNavigation.TabNavigation="Cycle"
+				  DataContext="{Binding Source={StaticResource CvsRechargesOfEmployee}}"
+				  ItemsSource="{Binding}"
+		          Grid.Column="1"
+		          d:DataContext="{d:DesignInstance Type=model:MiscRecharge, IsDesignTimeCreatable=True}">
+			<ListView.ItemContainerStyle>
+				<Style TargetType="ListBoxItem">
+					<Setter Property="IsTabStop"
+					        Value="False"/>
+				</Style>
+			</ListView.ItemContainerStyle>
+			<ListView.ItemTemplate>
+				<DataTemplate DataType="model:MiscRecharge">
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Text="{Binding Employee.DspFullName,Mode=OneWay}"
+						           VerticalAlignment="Center"
+							     Foreground="DarkGreen"
+							     FontWeight="Black"
+						           Width="100" />
+						<TextBlock Text="{Binding Misc.MiscTitle.Title,Mode=OneWay}"
+						           VerticalAlignment="Center"
+						           Width="100"/>
+						<TextBox Text="{Binding Value,UpdateSourceTrigger=PropertyChanged}"
+						         VerticalContentAlignment="Center"
+						         Width="100"
+						         Tag="{Binding}"
+						         LostFocus="TextBoxRechargeValue_OnLostFocus"/>
+					</StackPanel>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+		<StackPanel Orientation="Horizontal"
+		            Grid.Row="4"
+		            Grid.Column="1">
+			<Button Height="20"
+			        Width="60"
+			        x:Name="ButtonSet"
+			        Click="ButtonSet_OnClick"
+			        Content="Set"/>
+			<TextBox x:Name="TextBoxTemp"
+			         Width="60"
+			         Height="20"/>
+		</StackPanel>
+		<StatusBar Grid.Column="0"
+		           Grid.Row="5"
+		           Grid.ColumnSpan="3">
+			<local:UcFormStateLabel x:Name="SmpUcFormStateLabel"/>
+		</StatusBar>
+	</Grid>
+</UserControl>

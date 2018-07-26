@@ -357,4 +357,7 @@
   <data name="GroupByTitles" xml:space="preserve">
     <value>به تفکیک عناوین</value>
   </data>
+  <data name="AutoMoveNext" xml:space="preserve">
+    <value>حرکت خودکار به رکورد بعدی</value>
+  </data>
 </root>

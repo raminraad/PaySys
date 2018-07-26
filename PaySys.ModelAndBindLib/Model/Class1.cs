@@ -105,11 +105,89 @@ namespace PaySys.ModelAndBindLib.Model
 		}
 
 		[NotMapped]
-		public List<Employee> CurrentEmployees
+		public IEnumerable<Employee> CurrentEmployees
 		{
 			get
 			{
-				return ContractMasters.Where(master => master.IsCurrentContract).Select(master => master.Employee).ToList();
+				return ContractMasters.Where(master => master.IsCurrent).Select(master => master.Employee).ToList();
+			}
+		}
+
+		[NotMapped]
+		public IEnumerable<MiscRecharge> CurrentMiscRecharges
+		{
+			get
+			{
+				var currentContractsOfSubGroup = this.ContractMasters.Where(master => master.IsCurrent);
+				var currentEmployeeOfSubGroup = currentContractsOfSubGroup.SelectMany(master => CurrentEmployees);
+				var miscRechargesOfCurrentEmployees = currentEmployeeOfSubGroup.SelectMany(employee => employee.MiscRecharges);
+				return miscRechargesOfCurrentEmployees;
+			}
+		}
+		
+		[NotMapped]
+		public List<MiscRecharge> TempMiscRechargesOfEmployees
+		{
+			set;
+			get;
+		}
+
+		[Obsolete]
+		[NotMapped]
+		public Dictionary<Employee, IEnumerable<MiscRecharge>> TempMiscRechargesOfEmployee_0
+		{
+			get
+			{
+				var result = new Dictionary<Employee, IEnumerable<MiscRecharge>>();
+				var subGroup = this;
+				var currentContractsOfSubGroup = this.ContractMasters.Where(master => master.IsCurrent);
+
+				foreach(var contractMaster in currentContractsOfSubGroup)
+				{
+					var employee = contractMaster.Employee;
+					var query = (from msc in subGroup.Miscs
+					             join rec in employee.MiscRecharges on msc.MiscId equals rec.Misc.MiscId into empRecs
+					             from empRec in empRecs.DefaultIfEmpty(new MiscRecharge()
+					             {
+						             MiscRechargeId = 0,
+						             Employee = employee,
+						             Misc = msc,
+						             Year = msc.Year,
+						             Value = 0
+					             })
+					             select empRec);
+					result.Add(employee, query);
+				}
+				return result;
+			}
+		}
+
+		[Obsolete]
+		[NotMapped]
+		public IEnumerable<MiscRecharge> TempMiscRechargesOfEmployee_1
+		{
+			get
+			{
+				
+				var subGroup = this;
+				var currentContractsOfSubGroup = this.ContractMasters.Where(master => master.IsCurrent);
+				IEnumerable<Employee> currentEmployeesOfSubGroup = currentContractsOfSubGroup.Select(master => master.Employee);
+
+				var rechargesOfCurrentEmployees = currentEmployeesOfSubGroup.SelectMany(employee => employee.MiscRecharges);
+
+
+				var query = from msc in subGroup.Miscs
+				            join rec in rechargesOfCurrentEmployees on msc.MiscId equals rec.Misc.MiscId into empRecs
+				            from empRec in empRecs.DefaultIfEmpty(new MiscRecharge()
+				            {
+					            MiscRechargeId = 0,
+					            Employee = null,
+					            Misc = msc,
+					            Year = msc.Year,
+					            Value = 0
+				            })
+				            select new MiscRecharge{Employee = empRec.Employee};
+				return null;
 			}
 		}
 
@@ -118,7 +196,6 @@ namespace PaySys.ModelAndBindLib.Model
 			return (obj as SubGroup)?.SubGroupId == SubGroupId && string.Equals(Title, ((SubGroup) obj).Title);
 		}
 	}
-
 
 	/// <summary>#03 عناوین کسور و پرداختهای متفرقه</summary>
 	public class MiscTitle
@@ -140,11 +217,12 @@ namespace PaySys.ModelAndBindLib.Model
 		public int Year { get; set; }
 
 		public int Index { get; set; }
+
 		public virtual MiscTitle MiscTitle { get; set; }
 
 		public virtual List<ParameterInvolvedMisc> ParameterInvolvedMiscs { get; set; }
 
-		public virtual List<EmployeeMiscRecharge> EmployeeMiscRecharges { get; set; }
+		public virtual List<MiscRecharge> MiscRecharges { get; set; }
 
 		public virtual SubGroup SubGroup { set; get; }
 
@@ -266,9 +344,9 @@ namespace PaySys.ModelAndBindLib.Model
 							CompositeCollection = new CompositeCollection()
 						});
 				}
-				foreach (var subGroup in ExpenseArticleOfOverTimeForSubGroups.Select(ex => ex.SubGroup))
+				foreach(var subGroup in ExpenseArticleOfOverTimeForSubGroups.Select(ex => ex.SubGroup))
 				{
-					if (!result.Select(collection => collection.Title).Contains(subGroup.Title))
+					if(!result.Select(collection => collection.Title).Contains(subGroup.Title))
 						result.Add(new TitledCompositeCollection
 						{
 							Title = subGroup.Title,
@@ -289,7 +367,7 @@ namespace PaySys.ModelAndBindLib.Model
 					ccOf2NdLevel.CompositeCollection.Add(groupedContractField.Select(group => group.ContractField));
 					result.First(collection => collection.Title == groupedContractField.Key.Title).CompositeCollection.Add(ccOf2NdLevel);
 				}
-				foreach (var groupedMisc in groupedMiscs)
+				foreach(var groupedMisc in groupedMiscs)
 				{
 					var ccOf2NdLevel = new TitledCompositeCollection
 					{
@@ -299,16 +377,18 @@ namespace PaySys.ModelAndBindLib.Model
 					ccOf2NdLevel.CompositeCollection.Add(groupedMisc.Select(group => group.Misc));
 					result.First(collection => collection.Title == groupedMisc.Key.Title).CompositeCollection.Add(ccOf2NdLevel);
 				}
-				foreach (var groupedOverTime in groupedOverTimes)
+				foreach(var groupedOverTime in groupedOverTimes)
 				{
 					var ccOf2NdLevel = new TitledCompositeCollection
 					{
 						Title = "اضافه کار",
 						CompositeCollection = new CompositeCollection()
 					};
+
 //					ccOf2NdLevel.CompositeCollection.Add(groupedOverTime.Select(group => group.SubGroup));
 					result.First(collection => collection.Title == groupedOverTime.Key.Title).CompositeCollection.Add(ccOf2NdLevel);
 				}
+
 				return result;
 			}
 		}
@@ -319,44 +399,42 @@ namespace PaySys.ModelAndBindLib.Model
 			get
 			{
 				var result = new ObservableCollection<TitledCompositeCollection>();
-
 				var ccContractFields = new TitledCompositeCollection
 				{
 					Title = ResourceAccessor.Labels.GetString("ContractFields"),
 					CompositeCollection = new CompositeCollection()
 				};
-				if (ExpenseArticleOfContractFieldForSubGroups!=null)
-				foreach (var item in ExpenseArticleOfContractFieldForSubGroups.ToList())
-				{
-					ccContractFields.CompositeCollection.Add(item.ContractField);
-				}
-				result.Add(ccContractFields);
+				if(ExpenseArticleOfContractFieldForSubGroups != null)
+					foreach(var item in ExpenseArticleOfContractFieldForSubGroups.ToList())
+					{
+						ccContractFields.CompositeCollection.Add(item.ContractField);
+					}
 
+				result.Add(ccContractFields);
 				var ccMiscs = new TitledCompositeCollection
 				{
 					Title = ResourceAccessor.Labels.GetString("MiscPayments"),
 					CompositeCollection = new CompositeCollection()
 				};
-				if (ExpenseArticleOfMiscForSubGroups != null)
-					foreach (var item in ExpenseArticleOfMiscForSubGroups.ToList())
-				{
-					ccMiscs.CompositeCollection.Add(item.Misc);
-				}
-				result.Add(ccMiscs);
+				if(ExpenseArticleOfMiscForSubGroups != null)
+					foreach(var item in ExpenseArticleOfMiscForSubGroups.ToList())
+					{
+						ccMiscs.CompositeCollection.Add(item.Misc);
+					}
 
+				result.Add(ccMiscs);
 				var ccOvertimes = new TitledCompositeCollection
 				{
 					Title = ResourceAccessor.Labels.GetString("OverTimes"),
 					CompositeCollection = new CompositeCollection()
 				};
-				if (ExpenseArticleOfOverTimeForSubGroups != null)
-					foreach (var item in ExpenseArticleOfOverTimeForSubGroups.ToList())
-				{
-					ccOvertimes.CompositeCollection.Add(item.SubGroup);
-				}
-				result.Add(ccOvertimes);
+				if(ExpenseArticleOfOverTimeForSubGroups != null)
+					foreach(var item in ExpenseArticleOfOverTimeForSubGroups.ToList())
+					{
+						ccOvertimes.CompositeCollection.Add(item.SubGroup);
+					}
 
-				
+				result.Add(ccOvertimes);
 				return result;
 			}
 		}
@@ -378,10 +456,10 @@ namespace PaySys.ModelAndBindLib.Model
 		}
 	}
 
-/// <summary>#10 مانده بدهی متفرقه اشخاص</summary>
-	public class EmployeeMiscRecharge
+	/// <summary>#10 مانده بدهی متفرقه اشخاص</summary>
+	public class MiscRecharge
 	{
-		public int EmployeeMiscRechargeId { set; get; }
+		public int MiscRechargeId { set; get; }
 
 		public float Value { get; set; }
 
@@ -450,6 +528,7 @@ namespace PaySys.ModelAndBindLib.Model
 		public float MaxFactor { get; set; }
 
 		public float SubtractFactor { get; set; }
+
 		public float PerKmFactor { get; set; }
 
 		public int Year { get; set; }
@@ -567,7 +646,7 @@ namespace PaySys.ModelAndBindLib.Model
 
 		public string AccountNoEmp { get; set; }
 
-		public bool IsCurrentContract { set; get; }
+		public bool IsCurrent { set; get; }
 
 		public virtual SubGroup SubGroup { set; get; }
 
@@ -636,7 +715,7 @@ namespace PaySys.ModelAndBindLib.Model
 
 		public virtual List<ContractMaster> ContractMasters { get; set; }
 
-		public virtual List<EmployeeMiscRecharge> EmployeeMiscRecharges { get; set; }
+		public virtual List<MiscRecharge> MiscRecharges { get; set; }
 
 		public virtual List<Mission> Missions { get; set; }
 
@@ -652,9 +731,10 @@ namespace PaySys.ModelAndBindLib.Model
 
 		public override bool Equals(object obj)
 		{
-			if(obj.GetType() != this.GetType())
+			if(obj?.GetType() != this.GetType())
 				return false;
-			return obj != null && ((Employee) obj).EmployeeId == EmployeeId;
+
+			return ((Employee) obj).EmployeeId == EmployeeId;
 		}
 	}
 
@@ -1016,5 +1096,14 @@ namespace PaySys.ModelAndBindLib.Model
 		None,
 		Payment,
 		Debt
+	}
+
+	public enum NavigationType
+	{
+		First = -2,
+		Previous = -1,
+		None = 0,
+		Next = 1,
+		Last = 2
 	}
 }

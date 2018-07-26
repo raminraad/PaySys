@@ -56,7 +56,10 @@
 				<MenuItem Header="ورود احکام مأموریت" />
 				<MenuItem Header="اصلاح بایگانی مأموریت ها" />
 				<MenuItem Header="تعریف عناوین کسور" />
-				<MenuItem x:Name="MnuMiscRechargesMng" Click="MnuMiscRechargesMng_OnClick" Header="ورود مانده بدهی ها" />
+				<MenuItem x:Name="MnuMiscRechargesMng"
+				          Click="MnuMiscRechargesMng_OnClick"
+				          Header="ورود مانده بدهی ها"
+				          Foreground="Red"/>
 				<MenuItem Header="محاسبات اضافه کاری گذشته" />
 				<MenuItem Header="فرمول عیدی پایان سال" />
 				<MenuItem Header="درج مدت شمول عیدی هر نفر به روز" />

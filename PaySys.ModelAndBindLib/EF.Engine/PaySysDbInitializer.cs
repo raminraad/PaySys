@@ -16,8 +16,8 @@ namespace PaySys.ModelAndBindLib.Engine
 
 		}
 
-		protected override void Seed(PaySysContext context)
-		{
-		}
+//		protected override void Seed(PaySysContext context)
+//		{
+//		}
 	}
 }

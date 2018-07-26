@@ -238,7 +238,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 				"هوراند",
 				"یامچی کهنمو "
 			};
-			Dictionary<string, string> jobTitleAndDescriptions = new Dictionary<string, string>()
+			var jobTitleAndDescriptions = new Dictionary<string, string>()
 			{
 				{"مهندس برق", "مهندسی برق یکی از مشاغل مهم و کلیدی صنعت برق و مخابرات به شمار می رود."},
 				{"مهندس معماری", "اگر از طراحی لذت برده و عاشق ساخت و ساز هم هستید، شغل مهندسی معماری می تواند برای شما ایده آل باشد."},
@@ -352,7 +352,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 				e.NationalCardNo = $"{f.Random.Number(999999999):d10}";
 				e.IdCardNo = $"{f.Random.Number(999999)}";
 			});
-			var seedEmployees = employeeFaker.Generate(40);
+			var seedEmployees = employeeFaker.Generate(200);
 			context.Employees.AddRange(seedEmployees);
 
 			#endregion
@@ -366,7 +366,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 				e.Code = $"{f.Random.Number(99999):D5}";
 				e.IsActive = true;
 			});
-			for(int i = 0; i < 10; i++)
+			for(var i = 0; i < 10; i++)
 				seedExpenseArticles.Add(expenseArticleFaker.Generate());
 
 			seedExpenseArticles.AddRange(seedExpenseArticles);
@@ -382,7 +382,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 				e.Distance = f.Random.Int(20, 999);
 				e.Percentage = f.Random.Number(100);
 			});
-			for(int i = 0; i < 50; i++)
+			for(var i = 0; i < 50; i++)
 			{
 				seedCities.Add(CityFaker.Generate());
 			}
@@ -419,7 +419,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 			});
 			foreach(var mainGroup in seedMainGroups)
 				foreach(var subGroup in mainGroup.SubGroups)
-					for(int i = 0; i < 10; i++)
+					for(var i = 0; i < 10; i++)
 					{
 						contractFieldTitleFaker.RuleFor(field => field.Title, _faker.PickRandom(contractFields));
 						var newContractField = contractFieldTitleFaker.Generate();
@@ -495,7 +495,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 			});
 			var seedTaxRows = new List<TaxRow>();
 			foreach(var taxTable in seedTaxTables)
-				for(int i = 0; i < 10; i++)
+				for(var i = 0; i < 10; i++)
 				{
 					TaxRowFaker.RuleFor(row => row.TaxTable, taxTable);
 					seedTaxRows.Add(TaxRowFaker.Generate());
@@ -525,7 +525,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 						seedMissionFormulas.Add(MissionFormulaFaker.Generate());
 					}
 			foreach(var missionFormula in seedMissionFormulas)
-				for(int i = 0; i < 10; i++)
+				for(var i = 0; i < 10; i++)
 				{
 					if(_faker.Random.Bool())
 					{
@@ -691,7 +691,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 				e.SacrificeStand = f.PickRandom(Enum.GetValues(typeof(SacrificeStand)).Cast<SacrificeStand>().Where(sex => sex != SacrificeStand.Unknown));
 				e.SubGroup = f.PickRandom(f.PickRandom(seedMainGroups).SubGroups);
 			});
-			var seedContractMasters = contractMasterFaker.Generate(30);
+			var seedContractMasters = contractMasterFaker.Generate(200);
 			context.ContractMasters.AddRange(seedContractMasters);
 
 			#endregion
@@ -723,8 +723,34 @@ namespace PaySys.ModelAndBindLib.Migrations
 			{
 				var lastCnt = empContract.LastOrDefault();
 				if(lastCnt != null)
-					lastCnt.IsCurrentContract = true;
+					lastCnt.IsCurrent = true;
 			}
+
+			#endregion
+
+			#region MiscRecharges
+			var seedMiscRecharges=new List<MiscRecharge>();
+			var miscRechargeFaker = new Faker<MiscRecharge>("fa").StrictMode(false).Rules((f, e) =>
+			{
+				e.Value = f.Random.Number(100) * 1000;
+			});
+			var firstTenContracts = seedContractMasters.Where(master => master.IsCurrent).Take(10);
+			foreach(var contract in firstTenContracts)
+			{
+				var contractMiscs = contract.SubGroup.Miscs.Take(_faker.Random.Number(contract.SubGroup.Miscs.Count));
+				foreach(var misc in contractMiscs)
+				{
+					miscRechargeFaker.RuleFor(r => r.Employee, contract.Employee).RuleFor(r => r.Misc, misc);
+					for(var y = 95; y <= 97; y++)
+						for(var m = 5; m <= 11; m++)
+						{
+							miscRechargeFaker.RuleFor(r => r.Year, y).RuleFor(r => r.Month, m);
+							seedMiscRecharges.Add(miscRechargeFaker);
+						}
+				}
+
+			}
+			context.MiscRecharges.AddRange(seedMiscRecharges);
 
 			#endregion
 

@@ -20,7 +20,7 @@ namespace PaySys.ModelAndBindLib.Engine
 		public DbSet<Parameter> Parameters { set; get; }
 		public DbSet<ParameterInvolvedContractField> ParameterInvolvedContractFields { set; get; }
 		public DbSet<ExpenseArticle> ExpenseArticles { set; get; }
-		public DbSet<EmployeeMiscRecharge> EmployeeMiscRecharges { set; get; }
+		public DbSet<MiscRecharge> MiscRecharges { set; get; }
 		public DbSet<ContractField> ContractFields { set; get; }
 		public DbSet<MissionFormula> MissionFormulas { set; get; }
 		public DbSet<MissionFormulaInvolvedContractField> MissionFormulaInvolvedContractFields { set; get; }

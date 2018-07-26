@@ -3,7 +3,7 @@ namespace PaySys.ModelAndBindLib.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Init : DbMigration
+    public partial class InitDb : DbMigration
     {
         public override void Up()
         {
@@ -62,7 +62,7 @@ namespace PaySys.ModelAndBindLib.Migrations
                         SacrificeStand = c.Int(nullable: false),
                         AccountNoGov = c.String(),
                         AccountNoEmp = c.String(),
-                        IsCurrentContract = c.Boolean(nullable: false),
+                        IsCurrent = c.Boolean(nullable: false),
                         Employee_EmployeeId = c.Int(),
                         SubGroup_SubGroupId = c.Int(),
                         Job_JobId = c.Int(),
@@ -156,7 +156,6 @@ namespace PaySys.ModelAndBindLib.Migrations
                     {
                         MiscId = c.Int(nullable: false, identity: true),
                         Year = c.Int(nullable: false),
-                        Month = c.Int(nullable: false),
                         Index = c.Int(nullable: false),
                         MiscTitle_MiscTitleId = c.Int(),
                         SubGroup_SubGroupId = c.Int(),
@@ -168,17 +167,17 @@ namespace PaySys.ModelAndBindLib.Migrations
                 .Index(t => t.SubGroup_SubGroupId);
             
             CreateTable(
-                "dbo.EmployeeMiscRecharges",
+                "dbo.MiscRecharges",
                 c => new
                     {
-                        EmployeeMiscRechargeId = c.Int(nullable: false, identity: true),
+                        MiscRechargeId = c.Int(nullable: false, identity: true),
                         Value = c.Single(nullable: false),
                         Year = c.Int(nullable: false),
                         Month = c.Int(nullable: false),
                         Employee_EmployeeId = c.Int(),
                         Misc_MiscId = c.Int(),
                     })
-                .PrimaryKey(t => t.EmployeeMiscRechargeId)
+                .PrimaryKey(t => t.MiscRechargeId)
                 .ForeignKey("dbo.Employees", t => t.Employee_EmployeeId)
                 .ForeignKey("dbo.Miscs", t => t.Misc_MiscId)
                 .Index(t => t.Employee_EmployeeId)
@@ -486,14 +485,14 @@ namespace PaySys.ModelAndBindLib.Migrations
             DropForeignKey("dbo.ParameterInvolvedContractFields", "ContractField_ContractFieldId", "dbo.ContractFields");
             DropForeignKey("dbo.ParameterInvolvedMiscs", "Misc_MiscId", "dbo.Miscs");
             DropForeignKey("dbo.Miscs", "MiscTitle_MiscTitleId", "dbo.MiscTitles");
-            DropForeignKey("dbo.ExpenseArticleOfMiscForSubGroups", "Misc_MiscId", "dbo.Miscs");
-            DropForeignKey("dbo.EmployeeMiscRecharges", "Misc_MiscId", "dbo.Miscs");
+            DropForeignKey("dbo.MiscRecharges", "Misc_MiscId", "dbo.Miscs");
             DropForeignKey("dbo.PayslipEmployeeOvertimes", "Employee_EmployeeId", "dbo.Employees");
             DropForeignKey("dbo.PayslipEmployeeMiscs", "Misc_MiscId", "dbo.Miscs");
             DropForeignKey("dbo.PayslipEmployeeMiscs", "Employee_EmployeeId", "dbo.Employees");
             DropForeignKey("dbo.Missions", "Employee_EmployeeId", "dbo.Employees");
-            DropForeignKey("dbo.EmployeeMiscRecharges", "Employee_EmployeeId", "dbo.Employees");
+            DropForeignKey("dbo.MiscRecharges", "Employee_EmployeeId", "dbo.Employees");
             DropForeignKey("dbo.ContractMasters", "Employee_EmployeeId", "dbo.Employees");
+            DropForeignKey("dbo.ExpenseArticleOfMiscForSubGroups", "Misc_MiscId", "dbo.Miscs");
             DropForeignKey("dbo.ExpenseArticleOfMiscForSubGroups", "ExpenseArticle_ExpenseArticleId", "dbo.ExpenseArticles");
             DropForeignKey("dbo.ExpenseArticleOfContractFieldForSubGroups", "ExpenseArticle_ExpenseArticleId", "dbo.ExpenseArticles");
             DropForeignKey("dbo.ExpenseArticleOfContractFieldForSubGroups", "ContractField_ContractFieldId", "dbo.ContractFields");
@@ -519,8 +518,8 @@ namespace PaySys.ModelAndBindLib.Migrations
             DropIndex("dbo.PayslipEmployeeOvertimes", new[] { "Employee_EmployeeId" });
             DropIndex("dbo.PayslipEmployeeMiscs", new[] { "Misc_MiscId" });
             DropIndex("dbo.PayslipEmployeeMiscs", new[] { "Employee_EmployeeId" });
-            DropIndex("dbo.EmployeeMiscRecharges", new[] { "Misc_MiscId" });
-            DropIndex("dbo.EmployeeMiscRecharges", new[] { "Employee_EmployeeId" });
+            DropIndex("dbo.MiscRecharges", new[] { "Misc_MiscId" });
+            DropIndex("dbo.MiscRecharges", new[] { "Employee_EmployeeId" });
             DropIndex("dbo.Miscs", new[] { "SubGroup_SubGroupId" });
             DropIndex("dbo.Miscs", new[] { "MiscTitle_MiscTitleId" });
             DropIndex("dbo.ExpenseArticleOfMiscForSubGroups", new[] { "SubGroup_SubGroupId" });
@@ -556,7 +555,7 @@ namespace PaySys.ModelAndBindLib.Migrations
             DropTable("dbo.PayslipEmployeeOvertimes");
             DropTable("dbo.PayslipEmployeeMiscs");
             DropTable("dbo.Employees");
-            DropTable("dbo.EmployeeMiscRecharges");
+            DropTable("dbo.MiscRecharges");
             DropTable("dbo.Miscs");
             DropTable("dbo.ExpenseArticleOfMiscForSubGroups");
             DropTable("dbo.ExpenseArticles");

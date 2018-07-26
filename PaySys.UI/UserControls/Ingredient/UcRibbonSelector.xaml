@@ -6,22 +6,24 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:PaySys.UI.UC"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Model;assembly=PaySys.ModelAndBindLib"
+             xmlns:commands="clr-namespace:PaySys.UI.Commands"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="450"
              DataContextChanged="UcRibbonSelector_OnDataContextChanged"
              FlowDirection="RightToLeft">
 	<UserControl.CommandBindings>
-		<CommandBinding Command="NavigationCommands.FirstPage"
+		<CommandBinding Command="commands:PaySysCommands.NavigateNext"
 		                Executed="Navigate_OnExecuted"
 		                CanExecute="Navigate_OnCanExecute"/>
-		<CommandBinding Command="NavigationCommands.PreviousPage"
+		<CommandBinding Command="commands:PaySysCommands.NavigatePrevious"
 		                Executed="Navigate_OnExecuted"
 		                CanExecute="Navigate_OnCanExecute"/>
-		<CommandBinding Command="NavigationCommands.NextPage"
+		<CommandBinding Command="commands:PaySysCommands.NavigateFirst"
 		                Executed="Navigate_OnExecuted"
 		                CanExecute="Navigate_OnCanExecute"/>
-		<CommandBinding Command="NavigationCommands.LastPage"
+		<CommandBinding Command="commands:PaySysCommands.NavigateLast"
 		                Executed="Navigate_OnExecuted"
 		                CanExecute="Navigate_OnCanExecute"/>
 	</UserControl.CommandBindings>
@@ -45,24 +47,22 @@
 				<RowDefinition Height="Auto"/>
 				<RowDefinition/>
 			</Grid.RowDefinitions>
-			<Button Grid.Column="0"
+            <Button Grid.Column="0"
+			        Grid.Row="0"
 			        Grid.RowSpan="2"
-			        Command="NavigationCommands.LastPage"
+					Command="commands:PaySysCommands.NavigateLast"
+					CommandParameter="{x:Static model:NavigationType.Last}"
 			        x:Name="ButtonLast"
 			        Content="««">
-				<Button.CommandParameter>
-					<system:Int32> 2 </system:Int32>
-				</Button.CommandParameter>
+				
 			</Button>
 			<Button Grid.Row="0"
 			        Grid.Column="1"
 			        Grid.RowSpan="2"
-			        Command="NavigationCommands.NextPage"
+					Command="commands:PaySysCommands.NavigateNext"
+			        CommandParameter="{x:Static model:NavigationType.Next}"
 			        x:Name="ButtonNext"
 			        Content="«">
-				<Button.CommandParameter>
-					<system:Int32> 1 </system:Int32>
-				</Button.CommandParameter>
 			</Button>
 			<TextBlock Grid.Row="0"
 			           Grid.Column="2"
@@ -72,21 +72,17 @@
 			        Grid.Column="3"
 			        Grid.RowSpan="2"
 			        x:Name="ButtonPrevious"
-			        Command="NavigationCommands.PreviousPage"
+					Command="commands:PaySysCommands.NavigatePrevious"
+			        CommandParameter="{x:Static model:NavigationType.Previous}"
 			        Content="»">
-				<Button.CommandParameter>
-					<system:Int32> -1 </system:Int32>
-				</Button.CommandParameter>
-			</Button>
+				</Button>
 			<Button Grid.Row="0"
 			        Grid.Column="4"
 			        Grid.RowSpan="2"
 			        x:Name="ButtonFirst"
-			        Command="NavigationCommands.FirstPage"
+					Command="commands:PaySysCommands.NavigateFirst"
+			        CommandParameter="{x:Static model:NavigationType.First}"
 			        Content="»»">
-				<Button.CommandParameter>
-					<system:Int32> -2 </system:Int32>
-				</Button.CommandParameter>
 			</Button>
 			<ProgressBar x:Name="ProgressBarOfItems"
 			             Grid.Row="1"

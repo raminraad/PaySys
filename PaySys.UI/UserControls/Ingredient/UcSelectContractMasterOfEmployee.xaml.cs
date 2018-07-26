@@ -59,10 +59,10 @@ namespace PaySys.UI.UC
 			//	CmbContractMaster.DataContext = _contractMastersOfCurrentEmployee;
 
 			//			if (_contractMastersOfCurrentEmployee.Count > 0)
-			//				CmbContractMaster.SelectedItem = _contractMastersOfCurrentEmployee.FirstOrDefault(c => c.IsCurrentContract);
+			//				CmbContractMaster.SelectedItem = _contractMastersOfCurrentEmployee.FirstOrDefault(c => c.IsCurrent);
 			if (CmbContractMaster.Items.Count > 0)
 				CmbContractMaster.SelectedItem = ContractMastersAll.Where(c => c.Employee.Equals(SelectedEmployee))
-					.FirstOrDefault(c => c.IsCurrentContract);
+					.FirstOrDefault(c => c.IsCurrent);
 		}
 
 		//		public static readonly DependencyProperty SelectedContractMasterProperty = DependencyProperty.Register("SelectedContractMaster", typeof(ContractMaster), typeof(UcSelectContractMasterOfEmployee), new PropertyMetadata(default(ContractMaster)));

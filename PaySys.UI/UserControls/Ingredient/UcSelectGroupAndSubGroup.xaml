@@ -7,7 +7,6 @@
              xmlns:local="clr-namespace:PaySys.UI.UC"
              xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Model;assembly=PaySys.ModelAndBindLib"
              xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
-             d:DataContext="{d:DesignInstance Type=model:MainGroup, IsDesignTimeCreatable=True}"
              mc:Ignorable="d"
              FlowDirection="RightToLeft"
              d:DesignHeight="100"
@@ -39,6 +38,7 @@
 		           Grid.Column="0"
 		           Text="{x:Static fa:Labels.MainGroup}"/>
 		<ComboBox x:Name="ComboBoxMainGroup"
+		          d:DataContext="{d:DesignInstance Type=model:MainGroup, IsDesignTimeCreatable=True}"
 		          IsSynchronizedWithCurrentItem="True"
 		          ItemsSource="{Binding}"
 		          DisplayMemberPath="Title"
@@ -50,7 +50,9 @@
 		           Grid.Column="0"
 		           Text="{x:Static fa:Labels.SubGroup}"/>
 		<ComboBox x:Name="ComboBoxSubGroup"
-		          ItemsSource="{Binding /SubGroups}"
+				  DataContextChanged="ComboBoxSubGroup_OnDataContextChanged"
+		          DataContext="{Binding /SubGroups}"
+				  ItemsSource="{Binding}"
 				  SelectionChanged="ComboBoxSubGroup_OnSelectionChanged"
 		          DisplayMemberPath="Title"
 		          Grid.Row="1"

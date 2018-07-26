@@ -133,6 +133,15 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to حرکت خودکار به رکورد بعدی.
+        /// </summary>
+        public static string AutoMoveNext {
+            get {
+                return ResourceManager.GetString("AutoMoveNext", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to انصراف.
         /// </summary>
         public static string Cancel {

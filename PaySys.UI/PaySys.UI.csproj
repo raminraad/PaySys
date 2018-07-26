@@ -71,7 +71,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Commands\PaySysCommandLibrary.cs" />
+    <Compile Include="Commands\PaySysCommands.cs" />
     <Compile Include="Dialogs\WinSelectItem.xaml.cs">
       <DependentUpon>WinSelectItem.xaml</DependentUpon>
     </Compile>
@@ -109,7 +109,7 @@
     <Compile Include="UserControls\Tab\UcContractMng.xaml.cs">
       <DependentUpon>UcContractMng.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Ingredient\UcMiscRechargesOfOneEmployee.xaml.cs">
+    <Compile Include="UserControls\Tab\UcMiscRechargesOfOneEmployee.xaml.cs">
       <DependentUpon>UcMiscRechargesOfOneEmployee.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Tab\UcEmployeeMng.xaml.cs">
@@ -205,7 +205,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Ingredient\UcMiscRechargesOfOneEmployee.xaml">
+    <Page Include="UserControls\Tab\UcMiscRechargesOfOneEmployee.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

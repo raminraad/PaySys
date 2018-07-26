@@ -17,7 +17,7 @@ namespace PaySys.ModelAndBindLib.BindingConverter
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="values">ContractNo,DateExport,DateExecution,IsCurrentContract</param>
+		/// <param name="values">ContractNo,DateExport,DateExecution,IsCurrent</param>
 		/// <param name="targetType"></param>
 		/// <param name="parameter"></param>
 		/// <param name="culture"></param>

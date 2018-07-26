@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -42,12 +43,38 @@ namespace PaySys.UI.UC
 
 		private void ComboBoxSubGroup_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
+			var newEventArgs = new RoutedEventArgs(SelectedSubGroupChangedEvent, sender);
+			RaiseEvent(newEventArgs);
 			OnPropertyChanged(nameof(this.SelectedSubGroup));
 		}
 
 		private void ComboBoxMainGroup_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
+			var newEventArgs = new RoutedEventArgs(SelectedMainGroupChangedEvent, sender);
+			RaiseEvent(newEventArgs);
 			OnPropertyChanged(nameof(this.SelectedMainGroup));
+		}
+
+		private void ComboBoxSubGroup_OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+		{
+			if ((e.NewValue as IList)?.Count > 0)
+				ComboBoxSubGroup.SelectedItem = (e.NewValue as IEnumerable<object>).FirstOrDefault();
+		}
+
+		public static readonly RoutedEvent SelectedSubGroupChangedEvent = EventManager.RegisterRoutedEvent("SelectedSubGroupChanged", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(UcSelectGroupAndSubGroup));
+
+		public event RoutedEventHandler SelectedSubGroupChanged
+		{
+			add => AddHandler(SelectedSubGroupChangedEvent, value);
+			remove => RemoveHandler(SelectedSubGroupChangedEvent, value);
+		}
+
+		public static readonly RoutedEvent SelectedMainGroupChangedEvent = EventManager.RegisterRoutedEvent("SelectedMainGroupChanged", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(UcSelectGroupAndSubGroup));
+
+		public event RoutedEventHandler SelectedMainGroupChanged
+		{
+			add => AddHandler(SelectedMainGroupChangedEvent, value);
+			remove => RemoveHandler(SelectedMainGroupChangedEvent, value);
 		}
 	}
 }
