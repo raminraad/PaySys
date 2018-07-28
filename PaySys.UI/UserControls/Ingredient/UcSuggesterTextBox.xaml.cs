@@ -90,7 +90,7 @@ namespace PaySys.UI.UC
 		{
 			if(e.Key == Key.Escape)
 			{
-				// Cancel the selection
+				// DiscardChanges the selection
 				suggestionListBox.ItemsSource = null;
 				suggestionListBox.Visibility = Visibility.Collapsed;
 			}

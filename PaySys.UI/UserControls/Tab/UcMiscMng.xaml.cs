@@ -141,6 +141,8 @@ namespace PaySys.UI.UC
 		private void RemoveMisc_Execute(object target, ExecutedRoutedEventArgs e)
 		{
 			var item = e.Parameter as Misc;
+			if(item == null)
+				return;
 			var itemIsPayment = item.MiscTitle.IsPayment;
 			var listTitle = ResourceAccessor.Labels.GetString(itemIsPayment ? "MiscPayments" : "MiscDebts");
 			if(PaySysMessage.GetDeleteSubGroupMiscConfirmation(item.MiscTitle.Title, listTitle) != MessageBoxResult.Yes)

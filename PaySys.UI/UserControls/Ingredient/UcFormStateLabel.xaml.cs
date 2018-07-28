@@ -23,7 +23,7 @@ namespace PaySys.UI.UC
 	public partial class UcFormStateLabel : INotifyPropertyChanged
 	{
 		private FormCurrentState _currentState = FormCurrentState.Unknown;
-
+		public Type FormType { set; get; }
 		public UcFormStateLabel()
 		{
 			InitializeComponent();
@@ -32,8 +32,26 @@ namespace PaySys.UI.UC
 //				new Thickness(), FrameworkPropertyMetadataOptions.AffectsMeasure);
 		}
 
+		//#RoutedEvent
+		public static readonly RoutedEvent FormCurrentStateChangedEvent = EventManager.RegisterRoutedEvent("FormCurrentStateChanged", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(UcFormStateLabel));
+
+		public event RoutedEventHandler FormCurrentStateChanged
+		{
+			add { AddHandler(FormCurrentStateChangedEvent, value); }
+			remove { RemoveHandler(FormCurrentStateChangedEvent, value); }
+		}
+
+		public static readonly RoutedEvent PreviewFormCurrentStateChangedEvent = EventManager.RegisterRoutedEvent("PreviewFormCurrentStateChanged", RoutingStrategy.Tunnel, typeof(RoutedEventHandler), typeof(UcFormStateLabel));
+
+		public event RoutedEventHandler PreviewFormCurrentStateChanged
+		{
+			add { AddHandler(FormCurrentStateChangedEvent, value); }
+			remove { RemoveHandler(FormCurrentStateChangedEvent, value); }
+		}
+
+
 		/// <summary>
-		/// Enabled attribute of Save and Cancel buttons
+		/// Enabled attribute of Save and DiscardChanges buttons
 		/// </summary>
 		public bool EnabledOfSaveCancelButtons { set; get; }
 
@@ -87,13 +105,19 @@ namespace PaySys.UI.UC
 				}
 
 				EnabledOfSaveCancelButtons = value == FormCurrentState.Edit || value == FormCurrentState.Add || value == FormCurrentState.AddMaster || value == FormCurrentState.AddDetails;
-
 				EnabledOfCrudButtons = ReadOnlyOfEditControls = !EnabledOfSaveCancelButtons;
-
 				OnPropertyChanged(nameof(EnabledOfSaveCancelButtons));
 				OnPropertyChanged(nameof(EnabledOfCrudButtons));
 				OnPropertyChanged(nameof(ReadOnlyOfEditControls));
 				_currentState = value;
+
+				var previewStateChangedArgs = new FormCurrentStateChangedEventArgs(PreviewFormCurrentStateChangedEvent,this){FormCurrentState = value,FormType = this.FormType};
+				RaiseEvent(previewStateChangedArgs);
+				if (!previewStateChangedArgs.Handled)
+				{
+					var stateChangedArgs = new FormCurrentStateChangedEventArgs(FormCurrentStateChangedEvent,this){FormCurrentState = value,FormType = this.FormType};
+					RaiseEvent(stateChangedArgs);
+				}
 			}
 		}
 

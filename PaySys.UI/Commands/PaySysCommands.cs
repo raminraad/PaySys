@@ -35,7 +35,7 @@ namespace PaySys.UI.Commands
 			new KeyGesture(Key.S, ModifierKeys.Control)
 		});
 
-		public static RoutedUICommand Cancel { get; } = new RoutedUICommand("Discard changes", nameof(Cancel), typeof(PaySysCommands));
+		public static RoutedUICommand DiscardChanges { get; } = new RoutedUICommand("Discard changes", nameof(DiscardChanges), typeof(PaySysCommands));
 
 		public static RoutedUICommand Reload { get; } = new RoutedUICommand("Reload data from DB-Context", nameof(Reload), typeof(PaySysCommands), new InputGestureCollection
 		{
@@ -54,8 +54,6 @@ namespace PaySys.UI.Commands
 		});
 
 		public static RoutedUICommand Delete { get; } = new RoutedUICommand("Delete item", nameof(Delete), typeof(PaySysCommands));
-
-		
 
 		#endregion
 	}

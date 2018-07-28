@@ -22,7 +22,7 @@ namespace PaySys.UI
 			textBox.Text = value;
 
 			buttonOk.Text = ResourceAccessor.Labels.GetString("Ok"); ;
-			buttonCancel.Text = ResourceAccessor.Labels.GetString("Cancel"); ;
+			buttonCancel.Text = ResourceAccessor.Labels.GetString("DiscardChanges"); ;
 			buttonOk.DialogResult = DialogResult.OK;
 			buttonCancel.DialogResult = DialogResult.Cancel;
 

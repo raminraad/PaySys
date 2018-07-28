@@ -75,6 +75,7 @@
     <Compile Include="Dialogs\WinSelectItem.xaml.cs">
       <DependentUpon>WinSelectItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EventArgs\FormCurrentStateChangedEventArgs.cs" />
     <Compile Include="ExtensionMethods\UcMethods.cs" />
     <Compile Include="Modals\InputBox.cs" />
     <Compile Include="Modals\PaySysMessage.cs" />

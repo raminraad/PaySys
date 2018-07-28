@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
+using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
 using System.Drawing.Imaging;
 using System.Linq;
@@ -25,32 +28,78 @@ namespace PaySys.UI.UC
 	/// </summary>
 	public partial class UcMiscRechargeMng : UserControl
 	{
-		private PaySysContext Context
-		{
-			get;
-		} = new PaySysContext();
+		private PaySysContext Context { set;get; } = new PaySysContext();
 
 		public UcMiscRechargeMng()
 		{
 			InitializeComponent();
+			AddHandler(UcFormStateLabel.PreviewFormCurrentStateChangedEvent, new RoutedEventHandler(ChildFormStateChanged));
+			AddHandler(UcMiscRechargesOfOneEmployee.SaveEvent, new RoutedEventHandler(Save));
+			AddHandler(UcMiscRechargesOfOneEmployee.PreviewDiscardChangesEvent, new RoutedEventHandler(DiscardChanges));
+			AddHandler(UcMiscRechargesOfOneEmployee.PreviewReloadEvent, new RoutedEventHandler(Reload));
 		}
 
-		private void CommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
+
+		private void Reload(object sender, RoutedEventArgs routedEventArgs)
+		{
+			Context=new PaySysContext();
+		}
+
+
+		private void DiscardChanges(object sender, RoutedEventArgs routedEventArgs)
+		{
+			Context.DiscardChanges();
+		}
+
+		private void Save(object sender, RoutedEventArgs routedEventArgs)
 		{
 			foreach(var rec in SmpUcSelectGroupAndSubGroup.SelectedSubGroup.TempMiscRechargesOfEmployees)
 			{
 				if(rec.MiscRechargeId == 0 && Math.Abs(rec.Value) > 0)
 					Context.MiscRecharges.Add(rec);
-				if(rec.MiscRechargeId != 0 && rec.Value==0)
+				if(rec.MiscRechargeId != 0 && rec.Value == 0)
 					Context.MiscRecharges.Remove(rec);
 			}
+
 			Context.SaveChanges();
 			MessageBox.Show(ResourceAccessor.Messages.GetString("SaveSuccessful"));
 		}
 
+		private void ChildFormStateChanged(object sender, RoutedEventArgs e)
+		{
+			FormCurrentStateChangedEventArgs e2 = (FormCurrentStateChangedEventArgs) e;
+			switch(e2.FormCurrentState)
+			{
+				case FormCurrentState.Unknown:
+					break;
+				case FormCurrentState.Select:
+					SmpUcSelectGroupAndSubGroup.IsEnabled = true;
+					TabItemGroupByMiscTitle.IsEnabled = true;
+					break;
+				case FormCurrentState.Edit:
+					if(e2.FormType == SmpUcMiscRechargesOfOneEmployee.GetType())
+					{
+						SmpUcSelectGroupAndSubGroup.IsEnabled = false;
+						TabItemGroupByMiscTitle.IsEnabled = false;
+					}
+					break;
+				case FormCurrentState.Add:
+					break;
+				case FormCurrentState.AddMaster:
+					break;
+				case FormCurrentState.AddDetails:
+					break;
+				case FormCurrentState.Delete:
+					break;
+				default:
+					throw new ArgumentOutOfRangeException();
+			}
+		}
+
 		private void UcMiscRechargeMng_OnLoaded(object sender, RoutedEventArgs e)
 		{
-			SmpUcSelectGroupAndSubGroup.DataContext = Context.MainGroups.ToList();
+			Context.MainGroups.Load();
+			SmpUcSelectGroupAndSubGroup.DataContext = Context.MainGroups.Local;
 		}
 
 		private void SmpUcSelectGroupAndSubGroup_OnSelectedSubGroupChanged(object sender, RoutedEventArgs e)
@@ -59,18 +108,24 @@ namespace PaySys.UI.UC
 			var sgCnts = sg.ContractMasters.Where(master => master.IsCurrent);
 			var sgEmps = sgCnts.Select(c => c.Employee);
 			var sgRecs = sgEmps.SelectMany(emp => emp.MiscRecharges);
-
 			var newQuery = sgEmps.GroupJoin(sgRecs, emp => emp, rec => rec.Employee, (emp, recEnum) => new
 			{
 				Employee = emp,
-				MiscRecharges = 
-				from m in sg.Miscs.Where(misc => misc.Year == 97)
-				join r in recEnum.Where(r => r.Year == 97 && r.Month == 007) on m equals r.Misc into empRecs
-				from subRec in empRecs.DefaultIfEmpty(new MiscRecharge{Misc = m,Value = 0,Employee = emp,Month = 007,Year = m.Year,MiscRechargeId = 0})
-				select subRec
+				MiscRecharges = from m in sg.Miscs.Where(misc => misc.Year == 97)
+				                join r in recEnum.Where(r => r.Year == 97 && r.Month == 007) on m equals r.Misc into empRecs
+				                from subRec in empRecs.DefaultIfEmpty(new MiscRecharge
+				                {
+					                Misc = m,
+					                Value = 0,
+					                Employee = emp,
+					                Month = 007,
+					                Year = m.Year,
+					                MiscRechargeId = 0
+				                })
+				                select subRec
 			});
-			
 			sg.TempMiscRechargesOfEmployees = newQuery.SelectMany(arg => arg.MiscRecharges).ToList();
 		}
+
 	}
 }
