@@ -29,9 +29,43 @@ namespace PaySys.UI.UC
 		{
 			InitializeComponent();
 		}
+		public int SelectedMainGroupId
+		{
+			get => (ComboBoxMainGroup.SelectedItem as MainGroup).MainGroupId;
+			set
+			{
+				var mainGroups = ComboBoxMainGroup.ItemsSource as IEnumerable<MainGroup>;
+				ComboBoxMainGroup.SelectedItem = mainGroups.FirstOrDefault( mg => mg.MainGroupId.Equals( value ) ) ?? mainGroups.FirstOrDefault();
+			}
+		}
 
-		public MainGroup SelectedMainGroup => ComboBoxMainGroup.SelectedItem as MainGroup;
-		public SubGroup SelectedSubGroup => ComboBoxSubGroup.SelectedItem as SubGroup;
+		public int SelectedSubGroupId
+		{
+			get => (ComboBoxSubGroup.SelectedItem as SubGroup).SubGroupId;
+			set
+			{
+				var SubGroups = ComboBoxSubGroup.ItemsSource as IEnumerable<SubGroup>;
+				ComboBoxSubGroup.SelectedItem = SubGroups.FirstOrDefault( mg => mg.SubGroupId.Equals( value ) ) ?? SubGroups.FirstOrDefault();
+			}
+		}
+
+		public MainGroup SelectedMainGroup
+		{
+			get => ComboBoxMainGroup.SelectedItem as MainGroup;
+			set
+			{
+				if ((ComboBoxMainGroup.ItemsSource as IEnumerable<object>).Contains( value )) ComboBoxMainGroup.SelectedItem = value ;
+			}
+		}
+
+		public SubGroup SelectedSubGroup
+		{
+			get => ComboBoxSubGroup.SelectedItem as SubGroup;
+			set
+			{
+				if ((ComboBoxSubGroup.ItemsSource as IEnumerable<object>).Contains( value )) ComboBoxSubGroup.SelectedItem = value ;
+			}
+		}
 
 		public event PropertyChangedEventHandler PropertyChanged;
 

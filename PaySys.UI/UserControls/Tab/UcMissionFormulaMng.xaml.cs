@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using PaySys.CalcLib.Delegates;
 using PaySys.Globalization;
+using PaySys.ModelAndBindLib;
 using PaySys.ModelAndBindLib.Model;
 using PaySys.UI.Dialogs;
 using PaySys.UI.ExtensionMethods;
@@ -49,7 +50,7 @@ namespace PaySys.UI.UC
 		{
 			var dialog = new WinSelectItem(ResourceAccessor.Messages.GetString("SelectContractField"))
 			{
-				ListViewItemsSource = CurrentSubGroup.ContractFields.Where(contractField => contractField.Year == 97 && !((List<MissionFormulaInvolvedContractField>) ListViewContractField.ItemsSource).Select(involvedContractField => involvedContractField.ContractField).Contains(contractField))
+				ListViewItemsSource = CurrentSubGroup.ContractFields.Where(contractField => contractField.Year == PaySysSetting.CurrentYear && !((List<MissionFormulaInvolvedContractField>) ListViewContractField.ItemsSource).Select(involvedContractField => involvedContractField.ContractField).Contains(contractField))
 			};
 			if(dialog.ShowDialog() == true)
 			{

@@ -71,10 +71,10 @@ namespace PaySys.ModelAndBindLib.Model
 		[NotMapped]
 		public TaxTable CurrenTaxTable
 		{
-			get => TaxTables.FirstOrDefault(table => table.Year == 97);
+			get => TaxTables.FirstOrDefault(table => table.Year == PaySysSetting.CurrentYear);
 			set
 			{
-				var taxTable = TaxTables.FirstOrDefault(table => table.Year == 97);
+				var taxTable = TaxTables.FirstOrDefault(table => table.Year == PaySysSetting.CurrentYear);
 				if(taxTable != null)
 					taxTable = value;
 			}
@@ -83,10 +83,10 @@ namespace PaySys.ModelAndBindLib.Model
 		[NotMapped]
 		public HandselFormula CurrenHandselFormula
 		{
-			get => HandselFormulas.FirstOrDefault(table => table.Year == 97);
+			get => HandselFormulas.FirstOrDefault(table => table.Year == PaySysSetting.CurrentYear);
 			set
 			{
-				var handselFormula = HandselFormulas.FirstOrDefault(table => table.Year == 97);
+				var handselFormula = HandselFormulas.FirstOrDefault(table => table.Year == PaySysSetting.CurrentYear);
 				if(handselFormula != null)
 					handselFormula = value;
 			}
@@ -95,10 +95,10 @@ namespace PaySys.ModelAndBindLib.Model
 		[NotMapped]
 		public MissionFormula CurrenMissionFormula
 		{
-			get => MissionFormulas.FirstOrDefault(table => table.Year == 97);
+			get => MissionFormulas.FirstOrDefault(table => table.Year == PaySysSetting.CurrentYear);
 			set
 			{
-				var MissionFormula = MissionFormulas.FirstOrDefault(table => table.Year == 97);
+				var MissionFormula = MissionFormulas.FirstOrDefault(table => table.Year == PaySysSetting.CurrentYear);
 				if(MissionFormula != null)
 					MissionFormula = value;
 			}
@@ -218,7 +218,7 @@ namespace PaySys.ModelAndBindLib.Model
 
 		public int Index { get; set; }
 
-		public virtual MiscTitle MiscTitle { get; set; }
+		public virtual MiscTitle MiscTitle { get; set; }	
 
 		public virtual List<ParameterInvolvedMisc> ParameterInvolvedMiscs { get; set; }
 
@@ -233,12 +233,12 @@ namespace PaySys.ModelAndBindLib.Model
 		[NotMapped]
 		public ExpenseArticle CurrentExpenseArticle
 		{
-			get => ExpenseArticleOfMiscForSubGroups?.FirstOrDefault(exp => exp.Month == 007)?.ExpenseArticle;
+			get => ExpenseArticleOfMiscForSubGroups?.FirstOrDefault(exp => exp.Month == PaySysSetting.CurrentMonth)?.ExpenseArticle;
 			set
 			{
 				if(CurrentExpenseArticle != null)
 				{
-					ExpenseArticleOfMiscForSubGroups.FirstOrDefault(exp => exp.Month == 007).ExpenseArticle = value;
+					ExpenseArticleOfMiscForSubGroups.FirstOrDefault(exp => exp.Month == PaySysSetting.CurrentMonth).ExpenseArticle = value;
 				}
 				else
 				{
@@ -248,7 +248,7 @@ namespace PaySys.ModelAndBindLib.Model
 					{
 						SubGroup = SubGroup,
 						Misc = this,
-						Month = 007,
+						Month = PaySysSetting.CurrentMonth,
 						ExpenseArticle = value
 					};
 					ExpenseArticleOfMiscForSubGroups.Add(newLink);
@@ -492,12 +492,12 @@ namespace PaySys.ModelAndBindLib.Model
 		[NotMapped]
 		public ExpenseArticle CurrentExpenseArticle
 		{
-			get => ExpenseArticleOfContractFieldForSubGroups?.FirstOrDefault(exp => exp.Month == 007)?.ExpenseArticle;
+			get => ExpenseArticleOfContractFieldForSubGroups?.FirstOrDefault(exp => exp.Month == PaySysSetting.CurrentMonth)?.ExpenseArticle;
 			set
 			{
 				if(CurrentExpenseArticle != null)
 				{
-					ExpenseArticleOfContractFieldForSubGroups.FirstOrDefault(exp => exp.Month == 007).ExpenseArticle = value;
+					ExpenseArticleOfContractFieldForSubGroups.FirstOrDefault(exp => exp.Month == PaySysSetting.CurrentMonth).ExpenseArticle = value;
 				}
 				else
 				{
@@ -505,7 +505,7 @@ namespace PaySys.ModelAndBindLib.Model
 					{
 						SubGroup = SubGroup,
 						ContractField = this,
-						Month = 007,
+						Month = PaySysSetting.CurrentMonth,
 						ExpenseArticle = value
 					};
 					if(ExpenseArticleOfContractFieldForSubGroups == null)

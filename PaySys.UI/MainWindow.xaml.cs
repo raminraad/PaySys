@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using PaySys.Globalization;
+using PaySys.ModelAndBindLib;
 using PaySys.ModelAndBindLib.Engine;
 using PaySys.UI.UC;
 using PaySys.UI.UC.Tab;
@@ -16,7 +17,8 @@ namespace PaySys
 		public MainWindow()
 		{
 			InitializeComponent();
-//			context.Database.Initialize(true);
+			PaySysSetting.CurrentYear = 97;
+			PaySysSetting.CurrentMonth = 007;
 			WindowStartupLocation = WindowStartupLocation.CenterScreen;
 			WindowState = WindowState.Maximized;
 		}

@@ -18,6 +18,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using PaySys.Globalization;
+using PaySys.ModelAndBindLib;
 using PaySys.ModelAndBindLib.Engine;
 using PaySys.ModelAndBindLib.Model;
 
@@ -42,7 +43,13 @@ namespace PaySys.UI.UC
 
 		private void Reload(object sender, RoutedEventArgs routedEventArgs)
 		{
+			var currentMgId = SmpUcSelectGroupAndSubGroup.SelectedMainGroup.MainGroupId;
+			var currentSgId = SmpUcSelectGroupAndSubGroup.SelectedSubGroup.SubGroupId;
 			Context=new PaySysContext();
+			Context.MainGroups.Load();
+			SmpUcSelectGroupAndSubGroup.DataContext = Context.MainGroups.Local;
+			SmpUcSelectGroupAndSubGroup.SelectedMainGroupId=currentMgId;
+			SmpUcSelectGroupAndSubGroup.SelectedSubGroupId = currentSgId;
 		}
 
 
@@ -96,29 +103,25 @@ namespace PaySys.UI.UC
 			}
 		}
 
-		private void UcMiscRechargeMng_OnLoaded(object sender, RoutedEventArgs e)
-		{
-			Context.MainGroups.Load();
-			SmpUcSelectGroupAndSubGroup.DataContext = Context.MainGroups.Local;
-		}
-
 		private void SmpUcSelectGroupAndSubGroup_OnSelectedSubGroupChanged(object sender, RoutedEventArgs e)
 		{
 			var sg = SmpUcSelectGroupAndSubGroup.SelectedSubGroup;
+			if( sg == null )
+				return;
 			var sgCnts = sg.ContractMasters.Where(master => master.IsCurrent);
 			var sgEmps = sgCnts.Select(c => c.Employee);
 			var sgRecs = sgEmps.SelectMany(emp => emp.MiscRecharges);
 			var newQuery = sgEmps.GroupJoin(sgRecs, emp => emp, rec => rec.Employee, (emp, recEnum) => new
 			{
 				Employee = emp,
-				MiscRecharges = from m in sg.Miscs.Where(misc => misc.Year == 97)
-				                join r in recEnum.Where(r => r.Year == 97 && r.Month == 007) on m equals r.Misc into empRecs
+				MiscRecharges = from m in sg.Miscs.Where(misc => misc.Year == PaySysSetting.CurrentYear)
+				                join r in recEnum.Where(r => r.Year == PaySysSetting.CurrentYear && r.Month == PaySysSetting.CurrentMonth) on m equals r.Misc into empRecs
 				                from subRec in empRecs.DefaultIfEmpty(new MiscRecharge
 				                {
 					                Misc = m,
 					                Value = 0,
 					                Employee = emp,
-					                Month = 007,
+					                Month = PaySysSetting.CurrentMonth,
 					                Year = m.Year,
 					                MiscRechargeId = 0
 				                })
@@ -127,5 +130,10 @@ namespace PaySys.UI.UC
 			sg.TempMiscRechargesOfEmployees = newQuery.SelectMany(arg => arg.MiscRecharges).ToList();
 		}
 
+		private void UcMiscRechargeMng_OnInitialized( object sender, EventArgs e )
+		{
+			Context.MainGroups.Load();
+			SmpUcSelectGroupAndSubGroup.DataContext = Context.MainGroups.Local;
+		}
 	}
 }

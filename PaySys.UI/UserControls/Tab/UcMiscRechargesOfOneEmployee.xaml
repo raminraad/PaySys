@@ -58,16 +58,33 @@
 		         Grid.ColumnSpan="3">
 			<Button Name="ButtonEdit"
 			        Command="commands:PaySysCommands.Edit"
-			        Content="{x:Static fa:Labels.Edit}" />
+			        CommandTarget="{Binding ElementName=ListViewMiscRecharges}"
+			        Content="{x:Static fa:Labels.Edit}">
+				<!--<Button.CommandBindings>
+					<CommandBinding Command="commands:PaySysCommands.Edit"
+					                Executed="CommandBinding_OnExecuted"
+					                PreviewCanExecute="CommandBinding_OnCanExecute" />
+				</Button.CommandBindings>-->
+			</Button>
 			<Button Name="ButtonSave"
 			        Command="commands:PaySysCommands.Save"
+			        CommandTarget="{Binding ElementName=ListViewMiscRecharges}"
 			        Content="{x:Static fa:Labels.Save}" />
-			<Button Name="ButtonCancel"
+			<Button Name="ButtonDiscardChanges"
 			        Command="commands:PaySysCommands.DiscardChanges"
-			        Content="{x:Static fa:Labels.Cancel}" />
+			        CommandTarget="{Binding ElementName=ListViewMiscRecharges}"
+			        Content="{x:Static fa:Labels.Cancel}">
+				<!--<Button.CommandBindings>
+					<CommandBinding
+						Command="commands:PaySysCommands.DiscardChanges"
+						Executed="CommandBinding_OnExecuted"
+						PreviewCanExecute="CommandBinding_OnCanExecute" />
+				</Button.CommandBindings>-->
+			</Button>
 			<Separator />
 			<Button Name="ButtonReload"
 			        Command="commands:PaySysCommands.Reload"
+			        CommandTarget="{Binding ElementName=ListViewMiscRecharges}"
 			        Content="{x:Static fa:Labels.Refresh}" />
 		</ToolBar>
 		<local:UcRibbonSelector Grid.Row="1"
@@ -79,6 +96,7 @@
 		<ListView
 			x:Name="ListViewMiscRecharges"
 			Grid.Row="3"
+				SelectionMode="Single"
 			KeyboardNavigation.TabNavigation="Cycle"
 			DataContext="{Binding Source={StaticResource CvsRechargesOfEmployee}}"
 			ItemsSource="{Binding}"
@@ -87,7 +105,7 @@
 			<ListView.ItemContainerStyle>
 				<Style TargetType="ListBoxItem">
 					<Setter Property="IsTabStop"
-					        Value="False" />
+					        Value="True" />
 				</Style>
 			</ListView.ItemContainerStyle>
 			<ListView.ItemTemplate>

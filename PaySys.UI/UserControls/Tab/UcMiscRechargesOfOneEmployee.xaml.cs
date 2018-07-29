@@ -63,21 +63,22 @@ namespace PaySys.UI.UC
 			remove { RemoveHandler( SaveEvent, value ); }
 		}
 
-		public static readonly RoutedEvent PreviewDiscardChangesEvent = EventManager.RegisterRoutedEvent("PreviewDiscardChanges", RoutingStrategy.Tunnel, typeof(RoutedEventHandler), typeof(UcMiscRechargesOfOneEmployee));
+		public static readonly RoutedEvent PreviewDiscardChangesEvent = EventManager.RegisterRoutedEvent( "PreviewDiscardChanges", RoutingStrategy.Tunnel, typeof(RoutedEventHandler), typeof(UcMiscRechargesOfOneEmployee) );
 
 		public event RoutedEventHandler PreviewDiscardChanges
 		{
-			add { AddHandler(SaveEvent, value); }
-			remove { RemoveHandler(SaveEvent, value); }
+			add { AddHandler( SaveEvent, value ); }
+			remove { RemoveHandler( SaveEvent, value ); }
 		}
 
-		public static readonly RoutedEvent DiscardChangesEvent = EventManager.RegisterRoutedEvent("DiscardChanges", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(UcMiscRechargesOfOneEmployee));
+		public static readonly RoutedEvent DiscardChangesEvent = EventManager.RegisterRoutedEvent( "DiscardChanges", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(UcMiscRechargesOfOneEmployee) );
 
 		public event RoutedEventHandler DiscardChanges
 		{
-			add { AddHandler(SaveEvent, value); }
-			remove { RemoveHandler(SaveEvent, value); }
+			add { AddHandler( SaveEvent, value ); }
+			remove { RemoveHandler( SaveEvent, value ); }
 		}
+
 		#endregion
 
 		private void CvsFilterCurrentEmployeesMiscRecharges( object sender, FilterEventArgs e )
@@ -92,7 +93,7 @@ namespace PaySys.UI.UC
 		private void ButtonSet_OnClick( object sender, RoutedEventArgs e )
 		{
 			var sg = DataContext as SubGroup;
-			var recs = sg.TempMiscRechargesOfEmployees.Where( r => r.Employee == SmpUcRibbonSelector.SelectedItem );
+			var recs = sg?.TempMiscRechargesOfEmployees.Where( r => Equals( r.Employee, SmpUcRibbonSelector.SelectedItem ) );
 		}
 
 		private void SmpUcRibbonSelector_OnSelectedItemChanged( object sender, RoutedEventArgs e )
@@ -128,6 +129,7 @@ namespace PaySys.UI.UC
 			else if( e.Command as RoutedUICommand == PaySysCommands.Save )
 			{
 				//Todo: implement data validation
+
 				if( true )
 				{
 					SmpUcFormStateLabel.CurrentState = FormCurrentState.Select;
@@ -139,9 +141,12 @@ namespace PaySys.UI.UC
 			}
 			else if( e.Command as RoutedUICommand == PaySysCommands.Reload )
 			{
+				//Toreview : Some calculations like left join of misc recharges of sub groups are done multiple times now. increase performance by removing redundancy.
+
+				var selectedEmployeeId = ( SmpUcRibbonSelector.SelectedItem as Employee ).EmployeeId;
 				var reloadArgs = new RoutedEventArgs( PreviewReloadEvent );
 				RaiseEvent( reloadArgs );
-
+				SmpUcRibbonSelector.SelectedItem = ( DataContext as SubGroup )?.CurrentEmployees.FirstOrDefault( emp => emp.EmployeeId == selectedEmployeeId ) ?? ( DataContext as SubGroup )?.CurrentEmployees.FirstOrDefault();
 				foreach( var textBox in ListViewMiscRecharges.FindVisualChildren<TextBox>() )
 					textBox.GetBindingExpression( TextBox.TextProperty )?.UpdateTarget();
 
@@ -152,7 +157,7 @@ namespace PaySys.UI.UC
 
 		private void UcMiscRechargesOfOneEmployee_OnInitialized( object sender, EventArgs e )
 		{
-			( this.Resources["CvsRechargesOfEmployee"] as CollectionViewSource ).Filter += CvsFilterCurrentEmployeesMiscRecharges;
+			( Resources["CvsRechargesOfEmployee"] as CollectionViewSource ).Filter += CvsFilterCurrentEmployeesMiscRecharges;
 			SmpUcFormStateLabel.CurrentState = FormCurrentState.Select;
 		}
 	}

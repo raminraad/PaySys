@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.Windows.Shell;
 using PaySys.CalcLib.Delegates;
 using PaySys.Globalization;
+using PaySys.ModelAndBindLib;
 using PaySys.ModelAndBindLib.Model;
 using PaySys.UI.Dialogs;
 using MessageBox = System.Windows.Forms.MessageBox;
@@ -24,7 +25,7 @@ namespace PaySys.UI.UC
 		{
 			InitializeComponent();
 			_enterTitleMessage = ResourceAccessor.Messages.GetString("EnterContractFieldTitle");
-			ListViewGroupContractField.Items.Filter = o => ((ContractField) o).Year == 97;
+			ListViewGroupContractField.Items.Filter = o => ((ContractField) o).Year == PaySysSetting.CurrentYear;
 		}
 
 		public DelegateSaveContext SaveContext { set; get; }
@@ -37,7 +38,7 @@ namespace PaySys.UI.UC
 				CurrentSubGroup.ContractFields.Add(new ContractField
 				{
 					Title = newTitle,
-					Year = 97
+					Year = PaySysSetting.CurrentYear
 				});
 				SaveContext.Invoke();
 				CollectionViewSource.GetDefaultView(ListViewGroupContractField.ItemsSource).Refresh();

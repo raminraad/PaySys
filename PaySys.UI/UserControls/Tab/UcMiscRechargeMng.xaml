@@ -14,7 +14,7 @@
 	d:DataContext="{d:DesignInstance d:Type=model:SubGroup, IsDesignTimeCreatable=True}"
 	d:DesignHeight="300"
 	d:DesignWidth="600"
-	Loaded="UcMiscRechargeMng_OnLoaded">
+	Initialized="UcMiscRechargeMng_OnInitialized">
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="1*" />

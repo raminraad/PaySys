@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Markup;
 using PaySys.ModelAndBindLib.Model;
 using Binding = System.Windows.Data.Binding;
+using Label = System.Windows.Controls.Label;
 using UserControl = System.Windows.Controls.UserControl;
 
 namespace PaySys.UI.UC
@@ -25,7 +26,7 @@ namespace PaySys.UI.UC
 			InitializeComponent();
 		}
 
-		public TextBlock TitleTextBlock => TextBlockTitle;
+		public Label TitleLabel => LabelTitle;
 
 		public string TitleDisplayMember { set; get; }
 
@@ -115,7 +116,7 @@ namespace PaySys.UI.UC
 			}
 			var binding = new Binding(TitleDisplayMember);
 			binding.Source = DataContext;
-			TextBlockTitle.SetBinding(TextBlock.TextProperty, binding);
+			LabelTitle.SetBinding(System.Windows.Controls.Label.ContentProperty, binding);
 		}
 
 		private void ListViewHolder_OnSelectionChanged(object sender, SelectionChangedEventArgs e)

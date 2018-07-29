@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Bogus;
 using PaySys.CalcLib.Delegates;
 using PaySys.Globalization;
+using PaySys.ModelAndBindLib;
 using PaySys.ModelAndBindLib.Model;
 using PaySys.UI.Commands;
 using PaySys.UI.Dialogs;
@@ -43,8 +44,8 @@ namespace PaySys.UI.UC
 		public UcMiscMng()
 		{
 			InitializeComponent();
-			ListViewMiscDebt.Items.Filter = o => ((Misc) o).Year == 97;
-			ListViewMiscPayment.Items.Filter = o => ((Misc) o).Year == 97;
+			ListViewMiscDebt.Items.Filter = o => ((Misc) o).Year == PaySysSetting.CurrentYear;
+			ListViewMiscPayment.Items.Filter = o => ((Misc) o).Year == PaySysSetting.CurrentYear;
 		}
 
 		public DelegateSaveContext SaveContext { set; get; }
@@ -114,7 +115,7 @@ namespace PaySys.UI.UC
 			CurrentSubGroup.Miscs.Add(new Misc
 			{
 				MiscTitle = newMiscTitle,
-				Year = 97
+				Year = PaySysSetting.CurrentYear
 			});
 			if(newMiscTitle.MiscTitleId == 0)
 				MiscTitlesAll.Add(newMiscTitle);
@@ -127,7 +128,8 @@ namespace PaySys.UI.UC
 
 		private void AddMisc_CanExecute(object target, CanExecuteRoutedEventArgs e)
 		{
-			//Todo: Optimize performance by using Misc Title list of sub group one-time loaded not every time.
+			//ToReview: Optimize performance by using Misc Title list of sub group one-time loaded not every time.
+
 			var newItemIsPayment = (target as Control).Name.Equals("ListViewMiscPayment");
 			if(newItemIsPayment)
 				e.CanExecute = !String.IsNullOrEmpty(SmpUcSuggesterTextBoxMiscTitlePayments.SelectedValue) && !CurrentSubGroup.MiscsOfTypePayment.Select(misc => misc.MiscTitle.Title).Contains(SmpUcSuggesterTextBoxMiscTitlePayments.SelectedValue);

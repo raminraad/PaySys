@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using PaySys.ModelAndBindLib;
 using PaySys.ModelAndBindLib.Engine;
 using PaySys.ModelAndBindLib.Model;
 
@@ -93,7 +94,7 @@ namespace PaySys.UI.UC
 		{
 			SmpUcShowContractMaster.CommitContext();
 			var newContract = SmpUcShowContractMaster.CurrentContractMaster;
-			var ContractFields = _context.ContractFields.Where(gft => gft.SubGroup.SubGroupId==newContract.SubGroup.SubGroupId && gft.Year == 97).ToList();
+			var ContractFields = _context.ContractFields.Where(gft => gft.SubGroup.SubGroupId==newContract.SubGroup.SubGroupId && gft.Year == PaySysSetting.CurrentYear).ToList();
 			ContractFields.ForEach(gft => newContract.ContractDetails.Add(new ContractDetail { ContractField = gft }));
 			_context.ContractMasters.Add(newContract);
 			_context.SaveChanges();

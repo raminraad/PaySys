@@ -33,7 +33,7 @@ namespace PaySys.UI.UC
 		{
 			InitializeComponent();
 
-//			ListViewTaxItem.Items.Filter = o => ((Misc) o).Year == 97 && ((Misc) o).Month == 007;
+//			ListViewTaxItem.Items.Filter = o => ((Misc) o).Year == PaySysSetting.CurrentYear && ((Misc) o).Month == PaySysSetting.CurrentMonth;
 		}
 
 		public static readonly DependencyProperty CurrentSubGroupProperty = DependencyProperty.Register("CurrentSubGroup", typeof(SubGroup), typeof(UcTaxTableMng), new PropertyMetadata(default(SubGroup)));

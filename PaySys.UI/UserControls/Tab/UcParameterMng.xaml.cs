@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using PaySys.CalcLib.Delegates;
 using PaySys.Globalization;
+using PaySys.ModelAndBindLib;
 using PaySys.ModelAndBindLib.Model;
 using PaySys.UI.Dialogs;
 using PaySys.UI.Modals;
@@ -35,7 +36,7 @@ namespace PaySys.UI.UC
 		public UcParameterMng()
 		{
 			InitializeComponent();
-			ListViewParameter.Items.Filter = o => ((Parameter)o).Year == 97&& ((Parameter)o).Month == 007;
+			ListViewParameter.Items.Filter = o => ((Parameter)o).Year == PaySysSetting.CurrentYear&& ((Parameter)o).Month == PaySysSetting.CurrentMonth;
 		}
 
 		public static readonly DependencyProperty CurrentSubGroupProperty = DependencyProperty.Register("CurrentSubGroup", typeof(SubGroup), typeof(UcParameterMng), new PropertyMetadata(default(SubGroup)));
@@ -63,7 +64,7 @@ namespace PaySys.UI.UC
 		{
 			var dialog = new WinSelectItem(ResourceAccessor.Messages.GetString("SelectContractField"))
 			{
-				ListViewItemsSource = CurrentSubGroup.ContractFields.Where(contractField => contractField.Year == 97 && !((List<ParameterInvolvedContractField>) ListViewParameterInvolvedContractFields.ItemsSource).Select(involvedContractField => involvedContractField.ContractField).Contains(contractField))
+				ListViewItemsSource = CurrentSubGroup.ContractFields.Where(contractField => contractField.Year == PaySysSetting.CurrentYear && !((List<ParameterInvolvedContractField>) ListViewParameterInvolvedContractFields.ItemsSource).Select(involvedContractField => involvedContractField.ContractField).Contains(contractField))
 			};
 			if(dialog.ShowDialog() == true)
 			{
@@ -81,7 +82,7 @@ namespace PaySys.UI.UC
 		{
 			var dialog = new WinSelectItem(ResourceAccessor.Messages.GetString("SelectMiscPayment"),"MiscTitle.Title")
 			{
-				ListViewItemsSource = CurrentSubGroup.MiscsOfTypePayment.Where(misc => misc.Year == 97 && !((List<ParameterInvolvedMisc>) ListViewParameterInvolvedMiscPayments.ItemsSource).Select(involvedMisc => involvedMisc.Misc).Contains(misc))
+				ListViewItemsSource = CurrentSubGroup.MiscsOfTypePayment.Where(misc => misc.Year == PaySysSetting.CurrentYear && !((List<ParameterInvolvedMisc>) ListViewParameterInvolvedMiscPayments.ItemsSource).Select(involvedMisc => involvedMisc.Misc).Contains(misc))
 			};
 			if(dialog.ShowDialog() == true)
 			{
