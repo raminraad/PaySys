@@ -10,6 +10,7 @@
 	xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
 	xmlns:commands="clr-namespace:PaySys.UI.Commands"
 	mc:Ignorable="d"
+	
 	d:DataContext="{d:DesignInstance Type=model:SubGroup, IsDesignTimeCreatable=True}"
 	FlowDirection="RightToLeft"
 	Background="WhiteSmoke"

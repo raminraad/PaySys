@@ -18,10 +18,10 @@ namespace PaySys.UI.UC
 	/// <summary>Interaction logic for UcRibbonSelector.xaml</summary>
 	public partial class UcRibbonSelector : UserControl, IComponentConnector
 	{
-		public static readonly DependencyProperty SelectedItemProperty = DependencyProperty.Register("SelectedItem", typeof(object), typeof(UcRibbonSelector), new PropertyMetadata(default(object)));
-		public static readonly RoutedEvent SelectedItemChangedEvent = EventManager.RegisterRoutedEvent("SelectedSubGroupChanged", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(UcRibbonSelector));
+		public static readonly DependencyProperty SelectedItemProperty = DependencyProperty.Register( "SelectedItem", typeof(object), typeof(UcRibbonSelector), new PropertyMetadata( default(object) ) );
+		public static readonly RoutedEvent SelectedItemChangedEvent = EventManager.RegisterRoutedEvent( "SelectedSubGroupChanged", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(UcRibbonSelector) );
 
-public static readonly RoutedEvent ListDataContextChangedEvent = EventManager.RegisterRoutedEvent("ListDataContextChanged", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(UcRibbonSelector));
+		public static readonly RoutedEvent ListDataContextChangedEvent = EventManager.RegisterRoutedEvent( "ListDataContextChanged", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(UcRibbonSelector) );
 		private string _displayMember;
 
 		public UcRibbonSelector()
@@ -38,56 +38,60 @@ public static readonly RoutedEvent ListDataContextChangedEvent = EventManager.Re
 				var cvs = CollectionViewSource.GetDefaultView( ListViewHolder.DataContext );
 				if( cvs == null )
 					return;
+
 				cvs.SortDescriptions.Clear();
 				cvs.SortDescriptions.Add( new SortDescription( value, ListSortDirection.Ascending ) );
-				cvs.Refresh();
+				cvs.MoveCurrentToFirst();
+
+//				cvs.Refresh();
 			}
 		}
+
 		public string TitleDisplayMember { set; get; }
 
 		public object SelectedItem
 		{
-			get => GetValue(SelectedItemProperty);
-			set => SetValue(SelectedItemProperty, value);
+			get => GetValue( SelectedItemProperty );
+			set => SetValue( SelectedItemProperty, value );
 		}
 
 		public event RoutedEventHandler SelectedItemChanged
 		{
-			add => AddHandler(SelectedItemChangedEvent, value);
-			remove => RemoveHandler(SelectedItemChangedEvent, value);
+			add => AddHandler( SelectedItemChangedEvent, value );
+			remove => RemoveHandler( SelectedItemChangedEvent, value );
 		}
 
 		public event RoutedEventHandler ListDataContextChanged
 		{
-			add => AddHandler(ListDataContextChangedEvent, value);
-			remove => RemoveHandler(ListDataContextChangedEvent, value);
+			add => AddHandler( ListDataContextChangedEvent, value );
+			remove => RemoveHandler( ListDataContextChangedEvent, value );
 		}
 
-		private void Navigate_OnExecuted(object sender, ExecutedRoutedEventArgs e)
+		private void Navigate_OnExecuted( object sender, ExecutedRoutedEventArgs e )
 		{
-			switch((NavigationType) e.Parameter)
+			switch( (NavigationType) e.Parameter )
 			{
 				case NavigationType.First:
-					CollectionViewSource.GetDefaultView(ListViewHolder.ItemsSource).MoveCurrentToFirst();
+					CollectionViewSource.GetDefaultView( ListViewHolder.ItemsSource ).MoveCurrentToFirst();
 					break;
 				case NavigationType.Previous:
-					CollectionViewSource.GetDefaultView(ListViewHolder.ItemsSource).MoveCurrentToPrevious();
+					CollectionViewSource.GetDefaultView( ListViewHolder.ItemsSource ).MoveCurrentToPrevious();
 					break;
 				case NavigationType.Next:
-					CollectionViewSource.GetDefaultView(ListViewHolder.ItemsSource).MoveCurrentToNext();
+					CollectionViewSource.GetDefaultView( ListViewHolder.ItemsSource ).MoveCurrentToNext();
 					break;
 				case NavigationType.Last:
-					CollectionViewSource.GetDefaultView(ListViewHolder.ItemsSource).MoveCurrentToLast();
+					CollectionViewSource.GetDefaultView( ListViewHolder.ItemsSource ).MoveCurrentToLast();
 					break;
 			}
 		}
 
-		private void Navigate_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
+		private void Navigate_OnCanExecute( object sender, CanExecuteRoutedEventArgs e )
 		{
-			if(e.Parameter == null)
+			if( e.Parameter == null )
 				return;
 
-			switch((NavigationType) e.Parameter)
+			switch( (NavigationType) e.Parameter )
 			{
 				case NavigationType.First:
 				case NavigationType.Previous:
@@ -95,61 +99,61 @@ public static readonly RoutedEvent ListDataContextChangedEvent = EventManager.Re
 					break;
 				case NavigationType.Next:
 				case NavigationType.Last:
-					e.CanExecute = ListViewHolder?.SelectedIndex < (DataContext as IEnumerable<object>)?.Count() - 1;
+					e.CanExecute = ListViewHolder?.SelectedIndex < ( DataContext as IEnumerable<object> )?.Count() - 1;
 					break;
 			}
 		}
 
-		public bool Move(NavigationType direction = NavigationType.None)
+		public bool Move( NavigationType direction = NavigationType.None )
 		{
-			if(direction == NavigationType.None)
+			if( direction == NavigationType.None )
 				return false;
 
-			switch(direction)
+			switch( direction )
 			{
 				case NavigationType.First:
-					if(ButtonFirst.IsEnabled)
-						ButtonFirst.Command.Execute(direction);
+					if( ButtonFirst.IsEnabled )
+						ButtonFirst.Command.Execute( direction );
 					return true;
 				case NavigationType.Previous:
-					if (ButtonPrevious.IsEnabled)
-						ButtonPrevious.Command.Execute(direction);
+					if( ButtonPrevious.IsEnabled )
+						ButtonPrevious.Command.Execute( direction );
 					return true;
 				case NavigationType.Next:
-					if (ButtonNext.IsEnabled)
-						ButtonNext.Command.Execute(direction);
+					if( ButtonNext.IsEnabled )
+						ButtonNext.Command.Execute( direction );
 					return true;
 				case NavigationType.Last:
-					if (ButtonLast.IsEnabled)
-						ButtonLast.Command.Execute(direction);
+					if( ButtonLast.IsEnabled )
+						ButtonLast.Command.Execute( direction );
 					return true;
 				default:
-					throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
+					throw new ArgumentOutOfRangeException( nameof(direction), direction, null );
 			}
 		}
 
-		private void UcRibbonSelector_OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+		private void UcRibbonSelector_OnDataContextChanged( object sender, DependencyPropertyChangedEventArgs e )
 		{
-			if(e.NewValue != null)
+			if( e.NewValue != null )
 			{
-				var itemsCount = (e.NewValue as IEnumerable<object>).Count();
+				var itemsCount = ( e.NewValue as IEnumerable<object> ).Count();
 				ProgressBarOfItems.Maximum = itemsCount > 0 ? itemsCount - 1 : 0;
 			}
-			var binding = new Binding(TitleDisplayMember);
+			var binding = new Binding( TitleDisplayMember );
 			binding.Source = DataContext;
-			LabelTitle.SetBinding(System.Windows.Controls.Label.ContentProperty, binding);
+			LabelTitle.SetBinding( System.Windows.Controls.Label.ContentProperty, binding );
 		}
 
-		private void ListViewHolder_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+		private void ListViewHolder_OnSelectionChanged( object sender, SelectionChangedEventArgs e )
 		{
-			var newEventArgs = new RoutedEventArgs(SelectedItemChangedEvent, sender);
-			RaiseEvent(newEventArgs);
+			var newEventArgs = new RoutedEventArgs( SelectedItemChangedEvent, sender );
+			RaiseEvent( newEventArgs );
 		}
 
 		private void ListViewHolder_OnDataContextChanged( object sender, DependencyPropertyChangedEventArgs e )
 		{
-			var newEventArgs = new RoutedEventArgs(ListDataContextChangedEvent, sender);
-			RaiseEvent(newEventArgs);
+			var newEventArgs = new RoutedEventArgs( ListDataContextChangedEvent, sender );
+			RaiseEvent( newEventArgs );
 		}
 	}
 }

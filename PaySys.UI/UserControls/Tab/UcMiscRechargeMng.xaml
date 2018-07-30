@@ -44,8 +44,9 @@
 			<TabItem
 				x:Name="TabItemGroupByMiscTitle"
 				Header="{x:Static fa:Labels.GroupByMiscTitle}">
-				<local:UcMiscRechargesOfOneMisc x:Name="SmpUcMiscRechargesOfOneMisc"
-				                                    DataContext="{Binding ElementName=SmpUcSelectGroupAndSubGroup,Path=SelectedSubGroup}" />
+				<local:UcMiscRechargesOfOneMisc
+					x:Name="SmpUcMiscRechargesOfOneMisc"
+					DataContext="{Binding ElementName=SmpUcSelectGroupAndSubGroup,Path=SelectedSubGroup}" />
 			</TabItem>
 		</TabControl>
 	</Grid>

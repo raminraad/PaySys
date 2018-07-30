@@ -75,6 +75,7 @@
 		</ToolBar>
 		<local:UcRibbonSelector Grid.Row="1"
 		                        Grid.Column="1"
+								ListDataContextChanged="SmpUcRibbonSelector_OnListDataContextChanged"
 		                        x:Name="SmpUcRibbonSelector"
 		                        SelectedItemChanged="SmpUcRibbonSelector_OnSelectedItemChanged"
 		                        DataContext="{Binding CurrentMiscs, Mode=OneWay}"

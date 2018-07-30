@@ -1,18 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using PaySys.ModelAndBindLib.Model;
 using PaySys.UI.Commands;
 using PaySys.UI.ExtensionMethods;
@@ -20,13 +12,19 @@ using PaySys.UI.ExtensionMethods;
 namespace PaySys.UI.UC
 {
 	/// <summary>
-	/// Interaction logic for UcMiscRechargesOfOneMisc.xaml
+	///     Interaction logic for
+	///     UcMiscRechargesOfOneMisc.xaml
 	/// </summary>
-	public partial class UcMiscRechargesOfOneMisc : UserControl
+	public partial class UcMiscRechargesOfOneMisc
 	{
 		public UcMiscRechargesOfOneMisc()
 		{
 			InitializeComponent();
+		}
+
+		private void SmpUcRibbonSelector_OnListDataContextChanged( object sender, RoutedEventArgs e )
+		{
+			SmpUcRibbonSelector.SortDescription = "MiscTitle.Title";
 		}
 
 		#region Events
@@ -74,9 +72,7 @@ namespace PaySys.UI.UC
 			}
 			else if( e.Command as RoutedUICommand == PaySysCommands.Save )
 			{
-				//Todo: implement data validation
-
-				if( true )
+				if( true )//Todo: implement data validation
 				{
 					SmpUcFormStateLabel.CurrentState = FormCurrentState.Select;
 					var saveArgs = new RoutedEventArgs( PreviewSaveEvent );
@@ -89,10 +85,10 @@ namespace PaySys.UI.UC
 			{
 				//Toreview : Some calculations like left join of misc recharges of sub groups are done multiple times now. increase performance by removing redundancy.
 
-				var selectedEmployeeId = ( SmpUcRibbonSelector.SelectedItem as Employee ).EmployeeId;
+				var selectedMiscId = ( SmpUcRibbonSelector.SelectedItem as Misc ).MiscId;
 				var reloadArgs = new RoutedEventArgs( PreviewReloadEvent );
 				RaiseEvent( reloadArgs );
-				SmpUcRibbonSelector.SelectedItem = ( DataContext as SubGroup )?.CurrentEmployees.FirstOrDefault( emp => emp.EmployeeId == selectedEmployeeId ) ?? ( DataContext as SubGroup )?.CurrentEmployees.FirstOrDefault();
+				SmpUcRibbonSelector.SelectedItem = ( DataContext as SubGroup )?.CurrentMiscs.FirstOrDefault( misc => misc.MiscId == selectedMiscId ) ?? ( DataContext as SubGroup )?.CurrentMiscs.FirstOrDefault();
 				foreach( var textBox in ListViewMiscRecharges.FindVisualChildren<TextBox>() )
 					textBox.GetBindingExpression( TextBox.TextProperty )?.UpdateTarget();
 
@@ -104,9 +100,8 @@ namespace PaySys.UI.UC
 		private void UcMiscRechargesOfOneMisc_OnInitialized( object sender, EventArgs e )
 		{
 			var cvs = Resources["CvsRechargesOfMisc"] as CollectionViewSource;
-			cvs.SortDescriptions.Add( new SortDescription("Employee.DspLuffName",ListSortDirection.Ascending) );
+			cvs.SortDescriptions.Add( new SortDescription( "Employee.DspLuffName", ListSortDirection.Ascending ) );
 			cvs.Filter += CvsFilterMiscRechargesOfCurrentMisc;
-			SmpUcRibbonSelector.SortDescription = "MiscTitle.Title";
 			SmpUcFormStateLabel.CurrentState = FormCurrentState.Select;
 		}
 

@@ -22,6 +22,11 @@ namespace PaySys.UI.UC
 			InitializeComponent();
 		}
 
+		private void SmpUcRibbonSelector_OnListDataContextChanged( object sender, RoutedEventArgs e )
+		{
+			SmpUcRibbonSelector.SortDescription = "DspLuffName";
+		}
+
 		#region Events
 
 		private void CvsFilterMiscRechargesOfCurrentEmployee( object sender, FilterEventArgs e )
@@ -97,9 +102,9 @@ namespace PaySys.UI.UC
 		private void UcMiscRechargesOfOneEmployee_OnInitialized( object sender, EventArgs e )
 		{
 			var cvs = Resources["CvsRechargesOfEmployee"] as CollectionViewSource;
-			cvs.SortDescriptions.Add( new SortDescription("Misc.MiscTitle.Title",ListSortDirection.Ascending) );
+			cvs.SortDescriptions.Add( new SortDescription( "Misc.MiscTitle.Title", ListSortDirection.Ascending ) );
 			cvs.Filter += CvsFilterMiscRechargesOfCurrentEmployee;
-			
+
 			SmpUcFormStateLabel.CurrentState = FormCurrentState.Select;
 		}
 
@@ -156,10 +161,5 @@ namespace PaySys.UI.UC
 		}
 
 		#endregion
-
-		private void SmpUcRibbonSelector_OnListDataContextChanged( object sender, RoutedEventArgs e )
-		{
-			SmpUcRibbonSelector.SortDescription = "DspLuffName";
-		}
 	}
 }
