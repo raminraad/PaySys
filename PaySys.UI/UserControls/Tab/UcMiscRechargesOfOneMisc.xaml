@@ -1,24 +1,24 @@
 ﻿<UserControl
-	x:Name="SmpUcMiscRechargesOfOneEmployee"
-	x:Class="PaySys.UI.UC.UcMiscRechargesOfOneEmployee"
+	x:Name="SmpUcMiscRechargesOfOneMisc"
+	x:Class="PaySys.UI.UC.UcMiscRechargesOfOneMisc"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:local="clr-namespace:PaySys.UI.UC"
 	xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Model;assembly=PaySys.ModelAndBindLib"
-	xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
 	xmlns:commands="clr-namespace:PaySys.UI.Commands"
+	xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
 	mc:Ignorable="d"
 	d:DataContext="{d:DesignInstance Type=model:SubGroup, IsDesignTimeCreatable=True}"
 	FlowDirection="RightToLeft"
 	Background="WhiteSmoke"
 	d:DesignHeight="300"
 	d:DesignWidth="600"
-	Initialized="UcMiscRechargesOfOneEmployee_OnInitialized">
+	Initialized="UcMiscRechargesOfOneMisc_OnInitialized">
 	<UserControl.Resources>
 		<CollectionViewSource
-			x:Key="CvsRechargesOfEmployee"
+			x:Key="CvsRechargesOfMisc"
 			Source="{Binding TempMiscRechargesOfEmployees}" />
 	</UserControl.Resources>
 	<UserControl.CommandBindings>
@@ -58,8 +58,7 @@
 			<Button Name="ButtonEdit"
 			        Command="commands:PaySysCommands.Edit"
 			        CommandTarget="{Binding ElementName=ListViewMiscRecharges}"
-			        Content="{x:Static fa:Labels.Edit}">
-			</Button>
+			        Content="{x:Static fa:Labels.Edit}" />
 			<Button Name="ButtonSave"
 			        Command="commands:PaySysCommands.Save"
 			        CommandTarget="{Binding ElementName=ListViewMiscRecharges}"
@@ -67,8 +66,7 @@
 			<Button Name="ButtonDiscardChanges"
 			        Command="commands:PaySysCommands.DiscardChanges"
 			        CommandTarget="{Binding ElementName=ListViewMiscRecharges}"
-			        Content="{x:Static fa:Labels.Cancel}">
-			</Button>
+			        Content="{x:Static fa:Labels.Cancel}" />
 			<Separator />
 			<Button Name="ButtonReload"
 			        Command="commands:PaySysCommands.Reload"
@@ -79,15 +77,14 @@
 		                        Grid.Column="1"
 		                        x:Name="SmpUcRibbonSelector"
 		                        SelectedItemChanged="SmpUcRibbonSelector_OnSelectedItemChanged"
-								ListDataContextChanged="SmpUcRibbonSelector_OnListDataContextChanged"
-		                        DataContext="{Binding CurrentEmployees, Mode=OneWay}"
-		                        TitleDisplayMember="/DspFullName" />
+		                        DataContext="{Binding CurrentMiscs, Mode=OneWay}"
+		                        TitleDisplayMember="/MiscTitle.Title" />
 		<ListView
 			x:Name="ListViewMiscRecharges"
 			Grid.Row="3"
-				SelectionMode="Single"
+			SelectionMode="Single"
 			KeyboardNavigation.TabNavigation="Cycle"
-			DataContext="{Binding Source={StaticResource CvsRechargesOfEmployee}}"
+			DataContext="{Binding Source={StaticResource CvsRechargesOfMisc}}"
 			ItemsSource="{Binding}"
 			Grid.Column="1"
 			d:DataContext="{d:DesignInstance Type=model:MiscRecharge, IsDesignTimeCreatable=True}">
@@ -103,7 +100,7 @@
 					<StackPanel
 						Orientation="Horizontal">
 						<TextBlock
-							Text="{Binding Misc.MiscTitle.Title,Mode=OneWay}"
+							Text="{Binding Employee.DspFullName,Mode=OneWay}"
 							VerticalAlignment="Center"
 							Width="100" />
 						<TextBox x:Name="TextBoxValue"
@@ -121,7 +118,7 @@
 		           Grid.ColumnSpan="3">
 			<local:UcFormStateLabel
 				x:Name="SmpUcFormStateLabel"
-				FormType="{x:Type local:UcMiscRechargesOfOneEmployee}" />
+				FormType="{x:Type local:UcMiscRechargesOfOneMisc}" />
 		</StatusBar>
 	</Grid>
 </UserControl>

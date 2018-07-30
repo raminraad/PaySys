@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,6 +20,8 @@ namespace PaySys.UI.UC
 	{
 		public static readonly DependencyProperty SelectedItemProperty = DependencyProperty.Register("SelectedItem", typeof(object), typeof(UcRibbonSelector), new PropertyMetadata(default(object)));
 		public static readonly RoutedEvent SelectedItemChangedEvent = EventManager.RegisterRoutedEvent("SelectedSubGroupChanged", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(UcRibbonSelector));
+
+public static readonly RoutedEvent ListDataContextChangedEvent = EventManager.RegisterRoutedEvent("ListDataContextChanged", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(UcRibbonSelector));
 		private string _displayMember;
 
 		public UcRibbonSelector()
@@ -28,6 +31,18 @@ namespace PaySys.UI.UC
 
 		public Label TitleLabel => LabelTitle;
 
+		public string SortDescription
+		{
+			set
+			{
+				var cvs = CollectionViewSource.GetDefaultView( ListViewHolder.DataContext );
+				if( cvs == null )
+					return;
+				cvs.SortDescriptions.Clear();
+				cvs.SortDescriptions.Add( new SortDescription( value, ListSortDirection.Ascending ) );
+				cvs.Refresh();
+			}
+		}
 		public string TitleDisplayMember { set; get; }
 
 		public object SelectedItem
@@ -40,6 +55,12 @@ namespace PaySys.UI.UC
 		{
 			add => AddHandler(SelectedItemChangedEvent, value);
 			remove => RemoveHandler(SelectedItemChangedEvent, value);
+		}
+
+		public event RoutedEventHandler ListDataContextChanged
+		{
+			add => AddHandler(ListDataContextChangedEvent, value);
+			remove => RemoveHandler(ListDataContextChangedEvent, value);
 		}
 
 		private void Navigate_OnExecuted(object sender, ExecutedRoutedEventArgs e)
@@ -122,6 +143,12 @@ namespace PaySys.UI.UC
 		private void ListViewHolder_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			var newEventArgs = new RoutedEventArgs(SelectedItemChangedEvent, sender);
+			RaiseEvent(newEventArgs);
+		}
+
+		private void ListViewHolder_OnDataContextChanged( object sender, DependencyPropertyChangedEventArgs e )
+		{
+			var newEventArgs = new RoutedEventArgs(ListDataContextChangedEvent, sender);
 			RaiseEvent(newEventArgs);
 		}
 	}

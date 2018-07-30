@@ -34,16 +34,19 @@
 		<TabControl Grid.Row="1"
 		            Grid.Column="0"
 		            Grid.ColumnSpan="3">
-
 			<TabItem
 				x:Name="TabItemGroupByEmployee"
 				Header="{x:Static fa:Labels.GroupByEmployees}">
-				<local:UcMiscRechargesOfOneEmployee x:Name="SmpUcMiscRechargesOfOneEmployee"
+				<local:UcMiscRechargesOfOneEmployee
+					x:Name="SmpUcMiscRechargesOfOneEmployee"
 					DataContext="{Binding ElementName=SmpUcSelectGroupAndSubGroup,Path=SelectedSubGroup}" />
 			</TabItem>
 			<TabItem
 				x:Name="TabItemGroupByMiscTitle"
-				Header="{x:Static fa:Labels.GroupByMiscTitle}" />
+				Header="{x:Static fa:Labels.GroupByMiscTitle}">
+				<local:UcMiscRechargesOfOneMisc x:Name="SmpUcMiscRechargesOfOneMisc"
+				                                    DataContext="{Binding ElementName=SmpUcSelectGroupAndSubGroup,Path=SelectedSubGroup}" />
+			</TabItem>
 		</TabControl>
 	</Grid>
 </UserControl>

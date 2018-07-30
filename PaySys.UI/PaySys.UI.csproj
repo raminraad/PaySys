@@ -137,6 +137,9 @@
     <Compile Include="UserControls\Tab\UcMiscRechargeMng.xaml.cs">
       <DependentUpon>UcMiscRechargeMng.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Tab\UcMiscRechargesOfOneMisc.xaml.cs">
+      <DependentUpon>UcMiscRechargesOfOneMisc.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Tab\UcMissionFormulaMng.xaml.cs">
       <DependentUpon>UcMissionFormulaMng.xaml</DependentUpon>
     </Compile>
@@ -239,6 +242,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Tab\UcMiscRechargeMng.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Tab\UcMiscRechargesOfOneMisc.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

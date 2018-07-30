@@ -108,6 +108,7 @@
 			          IsSynchronizedWithCurrentItem="True"
 			          ItemsSource="{Binding}"
 			          SelectedItem="{Binding ElementName=SmpUcRibbonSelector,Path=SelectedItem,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+					  DataContextChanged="ListViewHolder_OnDataContextChanged"
 			          SelectionChanged="ListViewHolder_OnSelectionChanged">
 				<ListView.ItemTemplate>
 					<DataTemplate>

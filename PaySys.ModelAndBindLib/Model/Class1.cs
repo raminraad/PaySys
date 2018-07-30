@@ -124,6 +124,16 @@ namespace PaySys.ModelAndBindLib.Model
 				return miscRechargesOfCurrentEmployees;
 			}
 		}
+
+		[NotMapped]
+		public IEnumerable<Misc> CurrentMiscs
+		{
+			get
+			{
+				var currentMiscs = Miscs.Where( m => m.Year == PaySysSetting.CurrentYear );
+				return currentMiscs;
+			}
+		}
 		
 		[NotMapped]
 		public List<MiscRecharge> TempMiscRechargesOfEmployees

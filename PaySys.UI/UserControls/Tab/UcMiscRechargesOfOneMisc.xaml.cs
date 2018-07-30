@@ -1,10 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 using PaySys.ModelAndBindLib.Model;
 using PaySys.UI.Commands;
 using PaySys.UI.ExtensionMethods;
@@ -12,25 +20,24 @@ using PaySys.UI.ExtensionMethods;
 namespace PaySys.UI.UC
 {
 	/// <summary>
-	///     Interaction logic for
-	///     UcMiscRechargesOfOneEmployee.xaml
+	/// Interaction logic for UcMiscRechargesOfOneMisc.xaml
 	/// </summary>
-	public partial class UcMiscRechargesOfOneEmployee
+	public partial class UcMiscRechargesOfOneMisc : UserControl
 	{
-		public UcMiscRechargesOfOneEmployee()
+		public UcMiscRechargesOfOneMisc()
 		{
 			InitializeComponent();
 		}
 
 		#region Events
 
-		private void CvsFilterMiscRechargesOfCurrentEmployee( object sender, FilterEventArgs e )
+		private void CvsFilterMiscRechargesOfCurrentMisc( object sender, FilterEventArgs e )
 		{
 			var rec = e.Item as MiscRecharge;
 			if( rec == null )
 				return;
 
-			e.Accepted = rec.Employee.Equals( SmpUcRibbonSelector.SelectedItem );
+			e.Accepted = rec.Misc.Equals( SmpUcRibbonSelector.SelectedItem );
 		}
 
 		private void SmpUcRibbonSelector_OnSelectedItemChanged( object sender, RoutedEventArgs e )
@@ -94,12 +101,12 @@ namespace PaySys.UI.UC
 			}
 		}
 
-		private void UcMiscRechargesOfOneEmployee_OnInitialized( object sender, EventArgs e )
+		private void UcMiscRechargesOfOneMisc_OnInitialized( object sender, EventArgs e )
 		{
-			var cvs = Resources["CvsRechargesOfEmployee"] as CollectionViewSource;
-			cvs.SortDescriptions.Add( new SortDescription("Misc.MiscTitle.Title",ListSortDirection.Ascending) );
-			cvs.Filter += CvsFilterMiscRechargesOfCurrentEmployee;
-			
+			var cvs = Resources["CvsRechargesOfMisc"] as CollectionViewSource;
+			cvs.SortDescriptions.Add( new SortDescription("Employee.DspLuffName",ListSortDirection.Ascending) );
+			cvs.Filter += CvsFilterMiscRechargesOfCurrentMisc;
+			SmpUcRibbonSelector.SortDescription = "MiscTitle.Title";
 			SmpUcFormStateLabel.CurrentState = FormCurrentState.Select;
 		}
 
@@ -107,7 +114,7 @@ namespace PaySys.UI.UC
 
 		#region Routed Events
 
-		public static readonly RoutedEvent PreviewSaveEvent = EventManager.RegisterRoutedEvent( "PreviewSave", RoutingStrategy.Tunnel, typeof(RoutedEventHandler), typeof(UcMiscRechargesOfOneEmployee) );
+		public static readonly RoutedEvent PreviewSaveEvent = EventManager.RegisterRoutedEvent( "PreviewSave", RoutingStrategy.Tunnel, typeof(RoutedEventHandler), typeof(UcMiscRechargesOfOneMisc) );
 
 		public event RoutedEventHandler PreviewSave
 		{
@@ -115,7 +122,7 @@ namespace PaySys.UI.UC
 			remove => RemoveHandler( SaveEvent, value );
 		}
 
-		public static readonly RoutedEvent SaveEvent = EventManager.RegisterRoutedEvent( "Save", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(UcMiscRechargesOfOneEmployee) );
+		public static readonly RoutedEvent SaveEvent = EventManager.RegisterRoutedEvent( "Save", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(UcMiscRechargesOfOneMisc) );
 
 		public event RoutedEventHandler Save
 		{
@@ -123,7 +130,7 @@ namespace PaySys.UI.UC
 			remove => RemoveHandler( SaveEvent, value );
 		}
 
-		public static readonly RoutedEvent PreviewReloadEvent = EventManager.RegisterRoutedEvent( "PreviewReload", RoutingStrategy.Tunnel, typeof(RoutedEventHandler), typeof(UcMiscRechargesOfOneEmployee) );
+		public static readonly RoutedEvent PreviewReloadEvent = EventManager.RegisterRoutedEvent( "PreviewReload", RoutingStrategy.Tunnel, typeof(RoutedEventHandler), typeof(UcMiscRechargesOfOneMisc) );
 
 		public event RoutedEventHandler PreviewReload
 		{
@@ -131,7 +138,7 @@ namespace PaySys.UI.UC
 			remove => RemoveHandler( SaveEvent, value );
 		}
 
-		public static readonly RoutedEvent ReloadEvent = EventManager.RegisterRoutedEvent( "Reload", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(UcMiscRechargesOfOneEmployee) );
+		public static readonly RoutedEvent ReloadEvent = EventManager.RegisterRoutedEvent( "Reload", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(UcMiscRechargesOfOneMisc) );
 
 		public event RoutedEventHandler Reload
 		{
@@ -139,7 +146,7 @@ namespace PaySys.UI.UC
 			remove => RemoveHandler( SaveEvent, value );
 		}
 
-		public static readonly RoutedEvent PreviewDiscardChangesEvent = EventManager.RegisterRoutedEvent( "PreviewDiscardChanges", RoutingStrategy.Tunnel, typeof(RoutedEventHandler), typeof(UcMiscRechargesOfOneEmployee) );
+		public static readonly RoutedEvent PreviewDiscardChangesEvent = EventManager.RegisterRoutedEvent( "PreviewDiscardChanges", RoutingStrategy.Tunnel, typeof(RoutedEventHandler), typeof(UcMiscRechargesOfOneMisc) );
 
 		public event RoutedEventHandler PreviewDiscardChanges
 		{
@@ -147,7 +154,7 @@ namespace PaySys.UI.UC
 			remove => RemoveHandler( SaveEvent, value );
 		}
 
-		public static readonly RoutedEvent DiscardChangesEvent = EventManager.RegisterRoutedEvent( "DiscardChanges", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(UcMiscRechargesOfOneEmployee) );
+		public static readonly RoutedEvent DiscardChangesEvent = EventManager.RegisterRoutedEvent( "DiscardChanges", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(UcMiscRechargesOfOneMisc) );
 
 		public event RoutedEventHandler DiscardChanges
 		{
@@ -156,10 +163,5 @@ namespace PaySys.UI.UC
 		}
 
 		#endregion
-
-		private void SmpUcRibbonSelector_OnListDataContextChanged( object sender, RoutedEventArgs e )
-		{
-			SmpUcRibbonSelector.SortDescription = "DspLuffName";
-		}
 	}
 }
