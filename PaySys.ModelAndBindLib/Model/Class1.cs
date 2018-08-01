@@ -118,9 +118,9 @@ namespace PaySys.ModelAndBindLib.Model
 		{
 			get
 			{
-				var currentContractsOfSubGroup = this.ContractMasters.Where(master => master.IsCurrent);
-				var currentEmployeeOfSubGroup = currentContractsOfSubGroup.SelectMany(master => CurrentEmployees);
-				var miscRechargesOfCurrentEmployees = currentEmployeeOfSubGroup.SelectMany(employee => employee.MiscRecharges);
+				var currentContractsOfSubGroup = ContractMasters.Where(master => master.IsCurrent);
+				var currentEmployeesOfSubGroup = currentContractsOfSubGroup.Select(m => m.Employee);
+				var miscRechargesOfCurrentEmployees = currentEmployeesOfSubGroup.SelectMany(employee => employee.MiscRecharges);
 				return miscRechargesOfCurrentEmployees;
 			}
 		}
@@ -140,65 +140,6 @@ namespace PaySys.ModelAndBindLib.Model
 		{
 			set;
 			get;
-		}
-
-		[Obsolete]
-		[NotMapped]
-		public Dictionary<Employee, IEnumerable<MiscRecharge>> TempMiscRechargesOfEmployee_0
-		{
-			get
-			{
-				var result = new Dictionary<Employee, IEnumerable<MiscRecharge>>();
-				var subGroup = this;
-				var currentContractsOfSubGroup = this.ContractMasters.Where(master => master.IsCurrent);
-
-				foreach(var contractMaster in currentContractsOfSubGroup)
-				{
-					var employee = contractMaster.Employee;
-					var query = (from msc in subGroup.Miscs
-					             join rec in employee.MiscRecharges on msc.MiscId equals rec.Misc.MiscId into empRecs
-					             from empRec in empRecs.DefaultIfEmpty(new MiscRecharge()
-					             {
-						             MiscRechargeId = 0,
-						             Employee = employee,
-						             Misc = msc,
-						             Year = msc.Year,
-						             Value = 0
-					             })
-					             select empRec);
-					result.Add(employee, query);
-				}
-				return result;
-			}
-		}
-
-		[Obsolete]
-		[NotMapped]
-		public IEnumerable<MiscRecharge> TempMiscRechargesOfEmployee_1
-		{
-			get
-			{
-				
-				var subGroup = this;
-				var currentContractsOfSubGroup = this.ContractMasters.Where(master => master.IsCurrent);
-				IEnumerable<Employee> currentEmployeesOfSubGroup = currentContractsOfSubGroup.Select(master => master.Employee);
-
-				var rechargesOfCurrentEmployees = currentEmployeesOfSubGroup.SelectMany(employee => employee.MiscRecharges);
-
-
-				var query = from msc in subGroup.Miscs
-				            join rec in rechargesOfCurrentEmployees on msc.MiscId equals rec.Misc.MiscId into empRecs
-				            from empRec in empRecs.DefaultIfEmpty(new MiscRecharge()
-				            {
-					            MiscRechargeId = 0,
-					            Employee = null,
-					            Misc = msc,
-					            Year = msc.Year,
-					            Value = 0
-				            })
-				            select new MiscRecharge{Employee = empRec.Employee};
-				return null;
-			}
 		}
 
 		public override bool Equals(object obj)
@@ -264,6 +205,14 @@ namespace PaySys.ModelAndBindLib.Model
 					ExpenseArticleOfMiscForSubGroups.Add(newLink);
 				}
 			}
+		}
+
+		public override bool Equals(object obj)
+		{
+			if(obj?.GetType() != GetType())
+				return false;
+
+			return ((Misc) obj).MiscId == MiscId;
 		}
 	}
 
@@ -603,7 +552,7 @@ namespace PaySys.ModelAndBindLib.Model
 
 		public int CompareTo(object obj)
 		{
-			return this.ValueTo.CompareTo(((TaxRow) obj).ValueTo);
+			return ValueTo.CompareTo(((TaxRow) obj).ValueTo);
 		}
 
 		#endregion
@@ -734,14 +683,14 @@ namespace PaySys.ModelAndBindLib.Model
 		public virtual List<PayslipEmployeeOvertime> PayslipEmployeeOvertimes { get; set; }
 
 		[NotMapped]
-		public string DspFullName => $"{FName} {LName}";
+		public string DspFullName => $"{EmployeeId} : {FName} {LName}";//Todo: Remove EmployeeId from result
 
 		[NotMapped]
 		public string DspLuffName => $"{LName} {FName}";
 
 		public override bool Equals(object obj)
 		{
-			if(obj?.GetType() != this.GetType())
+			if(obj?.GetType() != GetType())
 				return false;
 
 			return ((Employee) obj).EmployeeId == EmployeeId;

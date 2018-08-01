@@ -11,6 +11,7 @@ using System.Windows.Markup;
 using PaySys.ModelAndBindLib.Model;
 using Binding = System.Windows.Data.Binding;
 using Label = System.Windows.Controls.Label;
+using MessageBox = System.Windows.Forms.MessageBox;
 using UserControl = System.Windows.Controls.UserControl;
 
 namespace PaySys.UI.UC
@@ -48,7 +49,20 @@ namespace PaySys.UI.UC
 		}
 
 		public string TitleDisplayMember { set; get; }
+		public object PreviousSelectedItem { get; private set; }
 
+		public bool SelectPreviousSelectedItem()
+		{
+			if( PreviousSelectedItem == null || DataContext == null )
+				return false;
+
+			if( !( DataContext as IEnumerable<object> ).Contains( PreviousSelectedItem ) )
+				return false;
+
+			SelectedItem = PreviousSelectedItem;
+			return true;
+		}
+		
 		public object SelectedItem
 		{
 			get => GetValue( SelectedItemProperty );
@@ -146,6 +160,8 @@ namespace PaySys.UI.UC
 
 		private void ListViewHolder_OnSelectionChanged( object sender, SelectionChangedEventArgs e )
 		{
+			if( e.RemovedItems.Count > 0 )
+				PreviousSelectedItem = e.RemovedItems[0];
 			var newEventArgs = new RoutedEventArgs( SelectedItemChangedEvent, sender );
 			RaiseEvent( newEventArgs );
 		}

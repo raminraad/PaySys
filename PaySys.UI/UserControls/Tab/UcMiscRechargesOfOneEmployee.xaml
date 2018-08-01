@@ -10,8 +10,8 @@
 	xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
 	xmlns:commands="clr-namespace:PaySys.UI.Commands"
 	mc:Ignorable="d"
-	
 	d:DataContext="{d:DesignInstance Type=model:SubGroup, IsDesignTimeCreatable=True}"
+	DataContextChanged="UcMiscRechargesOfOneEmployee_OnDataContextChanged"
 	FlowDirection="RightToLeft"
 	Background="WhiteSmoke"
 	d:DesignHeight="300"
@@ -19,27 +19,8 @@
 	Initialized="UcMiscRechargesOfOneEmployee_OnInitialized">
 	<UserControl.Resources>
 		<CollectionViewSource
-			x:Key="CvsRechargesOfEmployee"
-			Source="{Binding TempMiscRechargesOfEmployees}" />
+			x:Key="CvsMiscRecharges" />
 	</UserControl.Resources>
-	<UserControl.CommandBindings>
-		<CommandBinding
-			Command="commands:PaySysCommands.Edit"
-			Executed="CommandBinding_OnExecuted"
-			CanExecute="CommandBinding_OnCanExecute" />
-		<CommandBinding
-			Command="commands:PaySysCommands.Save"
-			Executed="CommandBinding_OnExecuted"
-			PreviewCanExecute="CommandBinding_OnCanExecute" />
-		<CommandBinding
-			Command="commands:PaySysCommands.DiscardChanges"
-			Executed="CommandBinding_OnExecuted"
-			PreviewCanExecute="CommandBinding_OnCanExecute" />
-		<CommandBinding
-			Command="commands:PaySysCommands.Reload"
-			Executed="CommandBinding_OnExecuted"
-			CanExecute="CommandBinding_OnCanExecute" />
-	</UserControl.CommandBindings>
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="*" />
@@ -47,55 +28,35 @@
 			<ColumnDefinition Width="*" />
 		</Grid.ColumnDefinitions>
 		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="*" />
 			<RowDefinition Height="6*" />
 			<RowDefinition Height="30" />
 			<RowDefinition Height="30" />
 		</Grid.RowDefinitions>
-		<ToolBar Grid.Row="0"
-		         Grid.ColumnSpan="3">
-			<Button Name="ButtonEdit"
-			        Command="commands:PaySysCommands.Edit"
-			        CommandTarget="{Binding ElementName=ListViewMiscRecharges}"
-			        Content="{x:Static fa:Labels.Edit}">
-			</Button>
-			<Button Name="ButtonSave"
-			        Command="commands:PaySysCommands.Save"
-			        CommandTarget="{Binding ElementName=ListViewMiscRecharges}"
-			        Content="{x:Static fa:Labels.Save}" />
-			<Button Name="ButtonDiscardChanges"
-			        Command="commands:PaySysCommands.DiscardChanges"
-			        CommandTarget="{Binding ElementName=ListViewMiscRecharges}"
-			        Content="{x:Static fa:Labels.Cancel}">
-			</Button>
-			<Separator />
-			<Button Name="ButtonReload"
-			        Command="commands:PaySysCommands.Reload"
-			        CommandTarget="{Binding ElementName=ListViewMiscRecharges}"
-			        Content="{x:Static fa:Labels.Refresh}" />
-		</ToolBar>
 		<local:UcRibbonSelector Grid.Row="1"
 		                        Grid.Column="1"
 		                        x:Name="SmpUcRibbonSelector"
 		                        SelectedItemChanged="SmpUcRibbonSelector_OnSelectedItemChanged"
-								ListDataContextChanged="SmpUcRibbonSelector_OnListDataContextChanged"
+		                        ListDataContextChanged="SmpUcRibbonSelector_OnListDataContextChanged"
 		                        DataContext="{Binding CurrentEmployees, Mode=OneWay}"
 		                        TitleDisplayMember="/DspFullName" />
 		<ListView
 			x:Name="ListViewMiscRecharges"
 			Grid.Row="3"
-				SelectionMode="Single"
+			SelectionMode="Single"
 			KeyboardNavigation.TabNavigation="Cycle"
-			DataContext="{Binding Source={StaticResource CvsRechargesOfEmployee}}"
+			DataContext="{Binding Source={StaticResource CvsMiscRecharges}}"
 			ItemsSource="{Binding}"
 			Grid.Column="1"
 			d:DataContext="{d:DesignInstance Type=model:MiscRecharge, IsDesignTimeCreatable=True}">
 			<ListView.ItemContainerStyle>
-				<Style TargetType="ListBoxItem">
+				<Style TargetType="ListViewItem">
 					<Setter Property="IsTabStop"
-					        Value="True" />
+					        Value="False" />
+					<EventSetter Event="GotFocus"
+					             Handler="ListItemGotFocus" />
 				</Style>
 			</ListView.ItemContainerStyle>
 			<ListView.ItemTemplate>
@@ -111,7 +72,7 @@
 						         Text="{Binding Value,UpdateSourceTrigger=PropertyChanged,StringFormat=N0}"
 						         MaxLength="12"
 						         VerticalContentAlignment="Center"
-						         IsReadOnly="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditControls}"
+						         IsReadOnly="{Binding ElementName=SmpUcMiscRechargesOfOneEmployee,Path=ReadOnlyOfListItems}"
 						         Width="100" />
 					</StackPanel>
 				</DataTemplate>
@@ -119,10 +80,6 @@
 		</ListView>
 		<StatusBar Grid.Column="0"
 		           Grid.Row="5"
-		           Grid.ColumnSpan="3">
-			<local:UcFormStateLabel
-				x:Name="SmpUcFormStateLabel"
-				FormType="{x:Type local:UcMiscRechargesOfOneEmployee}" />
-		</StatusBar>
+		           Grid.ColumnSpan="3" />
 	</Grid>
 </UserControl>
