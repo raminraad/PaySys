@@ -1,6 +1,7 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
+using System.Windows;
 using PaySys.ModelAndBindLib.Model;
 
 namespace PaySys.ModelAndBindLib.Engine
@@ -12,6 +13,19 @@ namespace PaySys.ModelAndBindLib.Engine
 			Database.SetInitializer(new PaySysDbInitializer());
 
 			//			Database.Initialize(true);
+		}
+
+		public void ShowChanges()
+		{
+			var changes = ChangeTracker.Entries().Where(entry => entry.State != EntityState.Unchanged);
+			var changesCount = changes.Count();
+			int i = 0;
+			foreach(var entry in changes)
+			{
+				var msg = $"Change {++i}/{changesCount}";
+				msg+=$"\n\t{entry.Entity.GetType().Name} : {entry.State}";
+				MessageBox.Show( msg );
+			}
 		}
 
 		public int DiscardChanges()

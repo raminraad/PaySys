@@ -466,6 +466,24 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to مأموریت.
+        /// </summary>
+        public static string Mission {
+            get {
+                return ResourceManager.GetString("Mission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to اطلاعات حکم مأموریت.
+        /// </summary>
+        public static string MissionDetail {
+            get {
+                return ResourceManager.GetString("MissionDetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to فرمول مأموریت.
         /// </summary>
         public static string MissionFormula {
@@ -480,6 +498,15 @@ namespace PaySys.Globalization.Fa {
         public static string MissionFormulaInvolvedContractFields {
             get {
                 return ResourceManager.GetString("MissionFormulaInvolvedContractFields", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to احکام مأموریت.
+        /// </summary>
+        public static string Missions {
+            get {
+                return ResourceManager.GetString("Missions", resourceCulture);
             }
         }
         
@@ -556,11 +583,29 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to مشخصات فردی.
+        /// </summary>
+        public static string PersonalInfo {
+            get {
+                return ResourceManager.GetString("PersonalInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to بارگذاری.
         /// </summary>
         public static string Refresh {
             get {
                 return ResourceManager.GetString("Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to بارگذاری.
+        /// </summary>
+        public static string Reload {
+            get {
+                return ResourceManager.GetString("Reload", resourceCulture);
             }
         }
         
@@ -723,6 +768,15 @@ namespace PaySys.Globalization.Fa {
         public static string tabMiscRechargesMng {
             get {
                 return ResourceManager.GetString("tabMiscRechargesMng", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to احکام مأموریت.
+        /// </summary>
+        public static string TabMissionMng {
+            get {
+                return ResourceManager.GetString("TabMissionMng", resourceCulture);
             }
         }
         

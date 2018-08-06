@@ -1,0 +1,170 @@
+﻿<UserControl x:Name="SmpUcMissionMng"
+             x:Class="PaySys.UI.UC.UcMissionMng"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:PaySys.UI.UC"
+             xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
+             xmlns:uc="clr-namespace:PaySys.UI.UC"
+             xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Model;assembly=PaySys.ModelAndBindLib"
+             xmlns:commands="clr-namespace:PaySys.UI.Commands"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=model:Mission, IsDesignTimeCreatable=True}"
+             DataContext="{Binding ElementName=SmpUcMissionMng,Path=MissionsAll}"
+             FlowDirection="RightToLeft"
+             d:DesignHeight="500"
+             d:DesignWidth="600">
+	<UserControl.CommandBindings>
+		<CommandBinding
+			Command="commands:PaySysCommands.Add"
+			CanExecute="Add_CanExecute"
+			Executed="Add_Executed" />
+		<CommandBinding
+			Command="commands:PaySysCommands.Edit"
+			CanExecute="Edit_CanExecute"
+			Executed="Edit_Executed" />
+		<CommandBinding
+			Command="commands:PaySysCommands.Delete"
+			CanExecute="Delete_CanExecute"
+			Executed="Delete_Executed" />
+		<CommandBinding
+			Command="commands:PaySysCommands.Save"
+			CanExecute="Save_CanExecute"
+			Executed="Save_Executed" />
+		<CommandBinding
+			Command="commands:PaySysCommands.DiscardChanges"
+			CanExecute="DiscardChanges_CanExecute"
+			Executed="DiscardChanges_Executed" />
+		<CommandBinding
+			Command="commands:PaySysCommands.Reload"
+			CanExecute="Reload_CanExecute"
+			Executed="Reload_Executed" />
+	</UserControl.CommandBindings>
+	<Grid x:Name="GridMain">
+		<Grid.RowDefinitions>
+			<RowDefinition Name="RowToolbar"
+			               Height="Auto" />
+			<RowDefinition Name="RowTitle"
+			               Height="Auto" />
+			<RowDefinition Name="RowDatagrid"
+			               Height="2*" />
+			<RowDefinition Name="RowDetail"
+			               Height="*" />
+			<RowDefinition Name="RowStatusBar"
+			               Height="30" />
+		</Grid.RowDefinitions>
+		<ToolBar Grid.Row="0">
+			<ToolBar.Resources>
+				<Style x:Key="ToolbarButtonStyle"
+				       TargetType="Button">
+					<Setter Property="Margin"
+					        Value="2,0" />
+				</Style>
+			</ToolBar.Resources>
+			<Button Name="ButtonAdd"
+			        Command="commands:PaySysCommands.Add"
+			        CommandTarget="{Binding ElementName=ListViewMissions}"
+			        Content="{x:Static fa:Labels.Add}"
+			        Style="{StaticResource ToolbarButtonStyle}"
+			        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}" />
+			<Button Name="ButtonEdit"
+			        Command="commands:PaySysCommands.Edit"
+			        CommandTarget="{Binding ElementName=ListViewMissions}"
+			        Content="{x:Static fa:Labels.Edit}"
+			        Style="{StaticResource ToolbarButtonStyle}"
+			        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}" />
+			<Button Name="ButtonDelete"
+			        Command="commands:PaySysCommands.Delete"
+			        CommandTarget="{Binding ElementName=ListViewMissions}"
+			        Content="{x:Static fa:Labels.Delete}"
+			        Style="{StaticResource ToolbarButtonStyle}"
+			        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}" />
+			<Separator />
+			<Button Name="ButtonSave"
+			        Command="commands:PaySysCommands.Save"
+			        CommandTarget="{Binding ElementName=ListViewMissions}"
+			        Content="{x:Static fa:Labels.Save}"
+			        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSaveCancelButtons}"
+			        Style="{StaticResource ToolbarButtonStyle}" />
+			<Button Name="ButtonDiscardChanges"
+			        Command="commands:PaySysCommands.DiscardChanges"
+			        CommandTarget="{Binding ElementName=ListViewMissions}"
+			        Content="{x:Static fa:Labels.Cancel}"
+			        Style="{StaticResource ToolbarButtonStyle}"
+			        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSaveCancelButtons}" />
+			<Separator />
+			<Button Name="ButtonReload"
+			        Command="commands:PaySysCommands.Reload"
+			        CommandTarget="{Binding ElementName=ListViewMissions}"
+			        Content="{x:Static fa:Labels.Reload}"
+			        Style="{StaticResource ToolbarButtonStyle}"
+			        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}" />
+		</ToolBar>
+		<TextBlock Grid.Row="1"
+		           FontSize="20"
+		           HorizontalAlignment="Center"
+		           VerticalAlignment="Center"
+		           Margin="0,10"
+		           Text="{x:Static fa:Labels.Missions}" />
+		<ListView x:Name="ListViewMissions"
+		          Grid.Row="2"
+		          d:DataContext="{d:DesignInstance Type=model:Mission, IsDesignTimeCreatable=True}"
+		          ItemsSource="{Binding}"
+		          Margin="60,20"
+		          IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}">
+			<ListView.View>
+				<GridView>
+					<GridViewColumn
+						Header="{x:Static fa:FieldicMission.MissionContractNo}"
+						DisplayMemberBinding="{Binding MissionContractNo}" />
+					<GridViewColumn
+						Header="{x:Static fa:FieldicMission.Title}"
+						DisplayMemberBinding="{Binding Title}" />
+					<GridViewColumn
+						Header="{x:Static fa:FieldicMission.City}"
+						DisplayMemberBinding="{Binding City.Title}" />
+					<GridViewColumn
+						Header="{x:Static fa:FieldicMission.DateStart}"
+						DisplayMemberBinding="{Binding DateStart}" />
+					<GridViewColumn
+						Header="{x:Static fa:FieldicMission.TimeStart}"
+						DisplayMemberBinding="{Binding TimeStart}" />
+					<GridViewColumn
+						Header="{x:Static fa:FieldicMission.TimeEnd}"
+						DisplayMemberBinding="{Binding TimeEnd}" />
+					<GridViewColumn
+						Header="{x:Static fa:FieldicMission.DateEnd}"
+						DisplayMemberBinding="{Binding DateEnd}" />
+					<GridViewColumn
+						Header="{x:Static fa:FieldicMission.AmountResident}"
+						DisplayMemberBinding="{Binding AmountResident}" />
+					<GridViewColumn
+						Header="{x:Static fa:FieldicMission.AmountNonResident}"
+						DisplayMemberBinding="{Binding AmountNonResident}" />
+					<GridViewColumn
+						Header="{x:Static fa:FieldicMission.VehicleType}"
+						DisplayMemberBinding="{Binding VehicleType}" />
+					<GridViewColumn
+						Header="{x:Static fa:FieldicMission.TravelExpense}"
+						DisplayMemberBinding="{Binding TravelExpense}" />
+				</GridView>
+			</ListView.View>
+		</ListView>
+		<TabControl Grid.Row="3">
+			<TabItem
+				x:Name="TabItemUcMissionDetail"
+				Header="{x:Static fa:Labels.MissionDetail}">
+				<local:UcMissionDetail
+					x:Name="SmpUcMissionDetail"
+					DataContext="{Binding ElementName =ListViewMissions,Path=SelectedItem}"
+					ReadOnlyOfFields="{Binding ElementName =SmpUcFormStateLabel,Path=ReadOnlyOfEditControls}"
+					Margin="10" />
+			</TabItem>
+		</TabControl>
+		<StatusBar Grid.Row="4">
+			<local:UcFormStateLabel
+				x:Name="SmpUcFormStateLabel" />
+		</StatusBar>
+	</Grid>
+</UserControl>

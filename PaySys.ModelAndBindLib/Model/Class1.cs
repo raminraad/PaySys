@@ -612,6 +612,8 @@ namespace PaySys.ModelAndBindLib.Model
 		public virtual Employee Employee { get; set; }
 
 		public virtual Job Job { get; set; }
+		public virtual List<Mission> Missions { get; set; }
+
 
 		public virtual List<ContractDetail> ContractDetails { get; set; }
 
@@ -676,11 +678,12 @@ namespace PaySys.ModelAndBindLib.Model
 
 		public virtual List<MiscRecharge> MiscRecharges { get; set; }
 
-		public virtual List<Mission> Missions { get; set; }
-
 		public virtual List<PayslipEmployeeMisc> PayslipEmployeeMiscs { get; set; }
 
 		public virtual List<PayslipEmployeeOvertime> PayslipEmployeeOvertimes { get; set; }
+
+		[NotMapped]
+		public IEnumerable<Mission> MissionsOfCurrentYear => ContractMasters.SelectMany( c => c.Missions.Where( m => DateTool.GetDay( m.DateStart )==PaySysSetting.CurrentYear ) );
 
 		[NotMapped]
 		public string DspFullName => $"{EmployeeId} : {FName} {LName}";//Todo: Remove EmployeeId from result
@@ -1036,6 +1039,11 @@ namespace PaySys.ModelAndBindLib.Model
 		//todo: fill enum
 		[Description("وارد نشده")]
 		Unknown = 0,
+		Cap,
+		Plane,
+		Train,
+		Personal,
+		PublicTransport
 	}
 
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]

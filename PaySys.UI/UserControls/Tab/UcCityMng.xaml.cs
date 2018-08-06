@@ -78,9 +78,10 @@ namespace PaySys.UI.UC.Tab
 
 		private void BtnCancel_OnClick(object sender, RoutedEventArgs e)
 		{
+			if (SmpUcFormStateLabel.CurrentState==FormCurrentState.Add)
 			Cities.Remove((City) ListViewCities.SelectedItem);
 			foreach(var textBox in this.FindVisualChildren<TextBox>())
-				textBox.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
+				textBox.GetBindingExpression(TextBox.TextProperty)?.UpdateTarget();
 
 			SmpUcFormStateLabel.CurrentState = FormCurrentState.Select;
 		}

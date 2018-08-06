@@ -70,6 +70,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FieldicJob.resx</DependentUpon>
     </Compile>
+    <Compile Include="Fa\FieldicMission.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FieldicMission.resx</DependentUpon>
+    </Compile>
     <Compile Include="Fa\FieldicMissionFormula.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -113,6 +118,11 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>FieldicJob.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Fa\FieldicMission.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FieldicMission.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Fa\FieldicMissionFormula.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>FieldicMissionFormula.Designer.cs</LastGenOutput>
@@ -120,6 +130,7 @@
     <EmbeddedResource Include="Fa\Labels.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Labels.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Fa\Messages.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

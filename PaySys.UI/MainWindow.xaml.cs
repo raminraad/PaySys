@@ -17,8 +17,8 @@ namespace PaySys
 		public MainWindow()
 		{
 			InitializeComponent();
-			PaySysSetting.CurrentYear = 97;
-			PaySysSetting.CurrentMonth = 007;
+			PaySysSetting.CurrentYear = 1397;
+			PaySysSetting.CurrentMonth = 7;
 			WindowStartupLocation = WindowStartupLocation.CenterScreen;
 			WindowState = WindowState.Maximized;
 		}
@@ -114,6 +114,19 @@ namespace PaySys
 			};
 			TabCntMain.Items.Add(tabItem);
 			TabCntMain.Items.Refresh();
+		}
+
+		private void MnuMissionMng_OnClick( object sender, RoutedEventArgs e )
+		{
+			var uc = new UcMissionMng();
+			var tabItem = new TabItem
+			{
+				Content = uc,
+				Header = ResourceAccessor.Labels.GetString("tabMissionMng")
+			};
+			TabCntMain.Items.Add(tabItem);
+			TabCntMain.Items.Refresh();
+			TabCntMain.SelectedItem = uc;
 		}
 	}
 }

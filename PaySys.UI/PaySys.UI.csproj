@@ -80,6 +80,12 @@
     <Compile Include="Modals\InputBox.cs" />
     <Compile Include="Modals\PaySysMessage.cs" />
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="UserControls\Ingredient\UcEmployeeDetail.xaml.cs">
+      <DependentUpon>UcEmployeeDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Ingredient\UcMissionDetail.xaml.cs">
+      <DependentUpon>UcMissionDetail.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Ingredient\UcRibbonSelector.xaml.cs">
       <DependentUpon>UcRibbonSelector.xaml</DependentUpon>
     </Compile>
@@ -143,6 +149,9 @@
     <Compile Include="UserControls\Tab\UcMissionFormulaMng.xaml.cs">
       <DependentUpon>UcMissionFormulaMng.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Tab\UcMissionMng.xaml.cs">
+      <DependentUpon>UcMissionMng.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Tab\UcParameterMng.xaml.cs">
       <DependentUpon>UcParameterMng.xaml</DependentUpon>
     </Compile>
@@ -168,6 +177,14 @@
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\Ingredient\UcEmployeeDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Ingredient\UcMissionDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Ingredient\UcRibbonSelector.xaml">
       <SubType>Designer</SubType>
@@ -250,6 +267,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Tab\UcMissionFormulaMng.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Tab\UcMissionMng.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

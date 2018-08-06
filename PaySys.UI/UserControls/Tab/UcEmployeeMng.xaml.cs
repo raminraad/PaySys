@@ -1,113 +1,109 @@
-﻿using System;
+﻿#region
+
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Globalization;
 using System.Linq;
-using System.Reflection;
-using System.Resources;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Data;
 using PaySys.Globalization;
 using PaySys.ModelAndBindLib.Engine;
 using PaySys.ModelAndBindLib.Model;
-using PaySys.UI.Modals;
+
+#endregion
 
 namespace PaySys.UI.UC
 {
-	/// <summary>Interaction logic for UcEmployeeMng.xaml</summary>
+	/// <summary>
+	///     Interaction logic for
+	///     UcEmployeeMng.xaml
+	/// </summary>
 	public partial class UcEmployeeMng : UserControl
 	{
 		private readonly PaySysContext _context = new PaySysContext();
-//		private List<Employee> _lstMain;
-		private ObservableCollection<Employee> _lstMain;
-		public Employee CurrentItem { get; set; }
 
 		public UcEmployeeMng()
 		{
 			InitializeComponent();
 			RefreshDtgMain();
-			UcFormState.CurrentState = FormCurrentState.Select;
+			SmpUcFormStateLabel.CurrentState = FormCurrentState.Select;
 		}
 
-		private void DtgMain_OnSelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
-		{
-			GridDetail.DataContext = CurrentItem = (Employee) DtgMain.SelectedItem;
-		}
+//		private List<Employee> EmployeesAll;
+		public ObservableCollection<Employee> EmployeesAll { set; get; }
 
-		private void BtnFilter_OnClick(object sender, RoutedEventArgs e)
+		private void BtnFilter_OnClick( object sender, RoutedEventArgs e )
 		{
 			RefreshDtgMain();
 		}
 
 		private void RefreshDtgMain()
 		{
-			var index = DtgMain.SelectedIndex;
-			if(TxtFilter.Text.Trim()==string.Empty)
-				_lstMain = new ObservableCollection<Employee>(_context.Employees.ToList());
+			var index = DataGridEmployees.SelectedIndex;
+			if( TxtFilter.Text.Trim() == string.Empty )
+			{
+				EmployeesAll = new ObservableCollection<Employee>( _context.Employees.ToList() );
+			}
 			else
 			{
-				var filters = TxtFilter.Text.Split(' ');
+				var filters = TxtFilter.Text.Split( ' ' );
 				var lists = new List<List<Employee>>();
-				foreach (var strFilter in filters)
-					lists.Add((from x in _context.Employees
-						where x.FName.Contains(strFilter) || x.LName.Contains(strFilter) || x.DossierNo.Contains(strFilter)
-						select x).ToList());
+				foreach( var strFilter in filters )
+					lists.Add( ( from x in _context.Employees
+					             where x.FName.Contains( strFilter ) || x.LName.Contains( strFilter ) || x.DossierNo.Contains( strFilter )
+					             select x ).ToList() );
+
 				var filteredList = _context.Employees.ToList();
-				lists.ForEach(x => filteredList.RemoveAll(employee => filteredList.Except(x).Contains(employee)));
-				_lstMain = new ObservableCollection<Employee>(filteredList);
+				lists.ForEach( x => filteredList.RemoveAll( employee => filteredList.Except( x ).Contains( employee ) ) );
+				EmployeesAll = new ObservableCollection<Employee>( filteredList );
 			}
-			DtgMain.DataContext = _lstMain;
-			if (DtgMain.Items.Count > index)
-				DtgMain.SelectedIndex = index;
+
+			DataGridEmployees.GetBindingExpression( DataContextProperty )?.UpdateTarget();
+
+			if( DataGridEmployees.Items.Count > index )
+				DataGridEmployees.SelectedIndex = index;
 		}
 
-		private void BtnEmployeeAdd_OnClick(object sender, RoutedEventArgs e)
+		private void BtnEmployeeAdd_OnClick( object sender, RoutedEventArgs e )
 		{
-			UcFormState.CurrentState = FormCurrentState.Add;
-			GridDetail.DataContext = new Employee();
-		}
-
-		private void BtnEmployeeEdit_OnClick(object sender, RoutedEventArgs e)
-		{
-			UcFormState.CurrentState = FormCurrentState.Edit;
-		}
-
-		private void BtnEmployeeDelete_OnClick(object sender, RoutedEventArgs e)
-		{
-			if (PaySysMessage.GetDeleteItemConfirmation() != MessageBoxResult.Yes)
-				return;
-			var index = DtgMain.SelectedIndex;
-			_context.Employees.Remove(CurrentItem);
-			_lstMain.Remove(CurrentItem);
-			if (DtgMain.Items.Count > index)
-				DtgMain.SelectedIndex = index;
-			_context.SaveChanges();
-		}
-
-		private void BtnEmployeeSave_OnClick(object sender, RoutedEventArgs e)
-		{
-			foreach (var control in GridDetail.Children.OfType<Control>())
+			SmpUcFormStateLabel.CurrentState = FormCurrentState.Add;
+			var newItem = new Employee
 			{
-				control.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
-				control.GetBindingExpression(Selector.SelectedItemProperty)?.UpdateSource();
-			}
-			if (UcFormState.CurrentState==FormCurrentState.Add)
-				_context.Employees.Add((Employee)GridDetail.DataContext);
-			_context.SaveChanges();
-			RefreshDtgMain();
-			UcFormState.CurrentState = FormCurrentState.Select;
+				FName = ResourceAccessor.Labels.GetString( "New" )
+			};
+			EmployeesAll.Add( newItem );
+			DataGridEmployees.SelectedItem = newItem;
+			DataGridEmployees.ScrollIntoView( newItem );
 		}
 
-		private void BtnEmployeeCancel_OnClick(object sender, RoutedEventArgs e)
+		private void BtnEmployeeEdit_OnClick( object sender, RoutedEventArgs e )
 		{
-			GridDetail.DataContext = null;
-			DtgMain_OnSelectedCellsChanged(null, null);
-			UcFormState.CurrentState = FormCurrentState.Select;
+			SmpUcFormStateLabel.CurrentState = FormCurrentState.Edit;
 		}
 
-		private void BtnEmployeeRefresh_OnClick(object sender, RoutedEventArgs e)
+		private void BtnEmployeeDelete_OnClick( object sender, RoutedEventArgs e )
+		{
+			//Todo
+		}
+
+		private void BtnEmployeeSave_OnClick( object sender, RoutedEventArgs e )
+		{
+			SmpUcEmployeeDetail.UpdateSource();
+
+			_context.SaveChanges();
+			SmpUcFormStateLabel.CurrentState = FormCurrentState.Select;
+		}
+
+		private void BtnEmployeeCancel_OnClick( object sender, RoutedEventArgs e )
+		{
+			if( SmpUcFormStateLabel.CurrentState == FormCurrentState.Add )
+				EmployeesAll.Remove( (Employee) DataGridEmployees.SelectedItem );
+
+			SmpUcEmployeeDetail.UpdateTarget();
+
+			SmpUcFormStateLabel.CurrentState = FormCurrentState.Select;
+		}
+
+		private void BtnEmployeeRefresh_OnClick( object sender, RoutedEventArgs e )
 		{
 			RefreshDtgMain();
 		}

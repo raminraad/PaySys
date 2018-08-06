@@ -36,7 +36,7 @@
 			<Button Name="BtnContractMasterRefresh"
 					IsEnabled="{Binding ElementName=SmpUcFormState,Path=EnabledOfCrudButtons}"
 					Click="BtnContractMasterRefresh_OnClick"
-					Content="{x:Static fa:Labels.Refresh}" />
+					Content="{x:Static fa:Labels.Reload}" />
 			<Separator />
 			<Button Name="BtnContractMasterSave"
 					IsEnabled="{Binding ElementName=SmpUcFormState,Path=EnabledOfSaveCancelButtons}"

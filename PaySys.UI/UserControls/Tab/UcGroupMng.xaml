@@ -43,7 +43,7 @@
 			<Separator/>
 			<Button Name="BtnRefresh"
 			        Click="BtnRefresh_OnClick"
-			        Content="{x:Static fa:Labels.Refresh}"/>
+			        Content="{x:Static fa:Labels.Reload}"/>
 			<Separator/>
 		</ToolBar>
 		<TextBlock Grid.Row="1"

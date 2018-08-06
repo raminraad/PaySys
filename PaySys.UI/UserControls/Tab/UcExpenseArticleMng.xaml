@@ -55,7 +55,7 @@
 			        Content="{x:Static fa:Labels.Delete}"/>
 			<Button Name="BtnRefresh"
 			        Style="{StaticResource ToolbarButtonStyle}"
-			        Content="{x:Static fa:Labels.Refresh}"
+			        Content="{x:Static fa:Labels.Reload}"
 					Click="BtnRefresh_OnClick"/>
 		</ToolBar>
 		<TreeView x:Name="TreeViewExpenseArticles"

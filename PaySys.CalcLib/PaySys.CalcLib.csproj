@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\DateTool.cs" />
     <Compile Include="Converters\EnumDescriptionTypeConverter.cs" />
     <Compile Include="Delegates\ContextDelegates.cs" />
     <Compile Include="ExtensionMethods\EnumBindingSourceExtension.cs" />

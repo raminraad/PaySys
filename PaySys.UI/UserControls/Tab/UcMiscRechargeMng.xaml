@@ -59,7 +59,7 @@
 			<Separator />
 			<Button Name="ButtonReload"
 			        Command="commands:PaySysCommands.Reload"
-			        Content="{x:Static fa:Labels.Refresh}" />
+			        Content="{x:Static fa:Labels.Reload}" />
 		</ToolBar>
 		<local:UcSelectGroupAndSubGroup
 			x:Name="SmpUcSelectGroupAndSubGroup"

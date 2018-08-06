@@ -77,7 +77,7 @@
 			<Button Name="BtnRefresh"
 			        Style="{StaticResource ToolbarButtonStyle}"
 			        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}"
-			        Content="{x:Static fa:Labels.Refresh}"
+			        Content="{x:Static fa:Labels.Reload}"
 			        Click="BtnRefresh_OnClick"/>
 			<Separator/>
 			<Button x:Name="BtnSaveCommand"></Button>

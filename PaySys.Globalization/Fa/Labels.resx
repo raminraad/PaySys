@@ -360,4 +360,22 @@
   <data name="AutoMoveNext" xml:space="preserve">
     <value>حرکت خودکار به رکورد بعدی</value>
   </data>
+  <data name="Mission" xml:space="preserve">
+    <value>مأموریت</value>
+  </data>
+  <data name="Missions" xml:space="preserve">
+    <value>احکام مأموریت</value>
+  </data>
+  <data name="TabMissionMng" xml:space="preserve">
+    <value>احکام مأموریت</value>
+  </data>
+  <data name="PersonalInfo" xml:space="preserve">
+    <value>مشخصات فردی</value>
+  </data>
+  <data name="MissionDetail" xml:space="preserve">
+    <value>اطلاعات حکم مأموریت</value>
+  </data>
+  <data name="Reload" xml:space="preserve">
+    <value>بارگذاری</value>
+  </data>
 </root>

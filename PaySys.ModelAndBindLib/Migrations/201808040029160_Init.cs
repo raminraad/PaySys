@@ -3,7 +3,7 @@ namespace PaySys.ModelAndBindLib.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitDb : DbMigration
+    public partial class Init : DbMigration
     {
         public override void Up()
         {
@@ -34,15 +34,12 @@ namespace PaySys.ModelAndBindLib.Migrations
                         TravelExpense = c.Double(nullable: false),
                         MissionContractNo = c.String(),
                         City_CityId = c.Int(),
-                        Employee_EmployeeId = c.Int(),
                         ContractMaster_ContractMasterId = c.Int(),
                     })
                 .PrimaryKey(t => t.MissionId)
                 .ForeignKey("dbo.Cities", t => t.City_CityId)
-                .ForeignKey("dbo.Employees", t => t.Employee_EmployeeId)
                 .ForeignKey("dbo.ContractMasters", t => t.ContractMaster_ContractMasterId)
                 .Index(t => t.City_CityId)
-                .Index(t => t.Employee_EmployeeId)
                 .Index(t => t.ContractMaster_ContractMasterId);
             
             CreateTable(
@@ -489,7 +486,6 @@ namespace PaySys.ModelAndBindLib.Migrations
             DropForeignKey("dbo.PayslipEmployeeOvertimes", "Employee_EmployeeId", "dbo.Employees");
             DropForeignKey("dbo.PayslipEmployeeMiscs", "Misc_MiscId", "dbo.Miscs");
             DropForeignKey("dbo.PayslipEmployeeMiscs", "Employee_EmployeeId", "dbo.Employees");
-            DropForeignKey("dbo.Missions", "Employee_EmployeeId", "dbo.Employees");
             DropForeignKey("dbo.MiscRecharges", "Employee_EmployeeId", "dbo.Employees");
             DropForeignKey("dbo.ContractMasters", "Employee_EmployeeId", "dbo.Employees");
             DropForeignKey("dbo.ExpenseArticleOfMiscForSubGroups", "Misc_MiscId", "dbo.Miscs");
@@ -535,7 +531,6 @@ namespace PaySys.ModelAndBindLib.Migrations
             DropIndex("dbo.ContractMasters", new[] { "SubGroup_SubGroupId" });
             DropIndex("dbo.ContractMasters", new[] { "Employee_EmployeeId" });
             DropIndex("dbo.Missions", new[] { "ContractMaster_ContractMasterId" });
-            DropIndex("dbo.Missions", new[] { "Employee_EmployeeId" });
             DropIndex("dbo.Missions", new[] { "City_CityId" });
             DropTable("dbo.ContractDifferences");
             DropTable("dbo.Jobs");
