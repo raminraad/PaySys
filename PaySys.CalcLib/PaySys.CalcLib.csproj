@@ -43,17 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Converters\DateTool.cs" />
     <Compile Include="Converters\EnumDescriptionTypeConverter.cs" />
     <Compile Include="Delegates\ContextDelegates.cs" />
     <Compile Include="ExtensionMethods\EnumBindingSourceExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\PaySys.Globalization\PaySys.Globalization.csproj">
-      <Project>{9833315b-63e2-4717-8615-b3e625acaea8}</Project>
-      <Name>PaySys.Globalization</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

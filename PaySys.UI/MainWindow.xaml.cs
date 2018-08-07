@@ -1,7 +1,10 @@
-﻿using System.Linq;
+﻿using System;
+using System.Globalization;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using PaySys.Globalization;
+using PaySys.Globalization.fa;
 using PaySys.ModelAndBindLib;
 using PaySys.ModelAndBindLib.Engine;
 using PaySys.UI.UC;

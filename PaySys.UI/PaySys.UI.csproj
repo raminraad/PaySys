@@ -80,6 +80,9 @@
     <Compile Include="Modals\InputBox.cs" />
     <Compile Include="Modals\PaySysMessage.cs" />
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="TempWindow.xaml.cs">
+      <DependentUpon>TempWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Ingredient\UcEmployeeDetail.xaml.cs">
       <DependentUpon>UcEmployeeDetail.xaml</DependentUpon>
     </Compile>
@@ -174,6 +177,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="TempWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

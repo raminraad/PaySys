@@ -21,26 +21,11 @@ namespace PaySys.ModelAndBindLib.Migrations
 		{
 			AutomaticMigrationsEnabled = false;
 		}
+/*
 
 		protected override void Seed( PaySysContext context )
 		{
-			#region MyRegion
-
-			//  This method will be called after migrating to the latest version.
-
-			//  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-			//  to avoid creating duplicate seed data. E.g.
-			//
-			//    context.People.AddOrUpdate(
-			//      p => p.DspFullName,
-			//      new Person { DspFullName = "Andrew Peters" },
-			//      new Person { DspFullName = "Brice Lambson" },
-			//      new Person { DspFullName = "Rowan Miller" }
-			//    );
-			//
-
-			#endregion
-
+			
 			#region Debug
 
 //						if (Debugger.IsAttached == false)
@@ -795,16 +780,14 @@ namespace PaySys.ModelAndBindLib.Migrations
 				e.MissionContractNo = f.Random.Number( 99999 ).ToString( "d5" );
 				e.VehicleType = f.PickRandom( Enum.GetValues( typeof(VehicleType) ).Cast<VehicleType>().Where( v => v != VehicleType.Unknown ) );
 				e.TravelExpense = f.Random.Number( 1000 ) * 1000;
-				e.TimeStart = $"{f.Random.Number( 8 ) + 8:d2}{f.Random.Number( 60 ):d2}{f.Random.Number( 60 ):d2}";
-				e.TimeEnd = $"{f.Random.Number( 8 ) + 8:d2}{f.Random.Number( 60 ):d2}{f.Random.Number( 60 ):d2}";
 			} );
 
 			foreach( var contract in seedContractMasters )
 			{
 				var startMonth = _faker.Random.Number( 9 ) + 1;
 				MissionFaker.RuleFor( r => r.ContractMaster, contract );
-				MissionFaker.RuleFor( r => r.DateStart, $"1397{startMonth:d2}{_faker.Random.Number( 29 ) + 1:d2}" );
-				MissionFaker.RuleFor( r => r.DateEnd, $"1397{startMonth + 1:d2}{_faker.Random.Number( 29 ) + 1:d2}" );
+				MissionFaker.RuleFor( r => r.StartDateTime, $"1397{startMonth:d2}{_faker.Random.Number( 29 ) + 1:d2}" );
+				MissionFaker.RuleFor( r => r.EndDateTime, $"1397{startMonth + 1:d2}{_faker.Random.Number( 29 ) + 1:d2}" );
 
 				for( var i = 0; i < 10; i++ )
 					seedMissions.Add( MissionFaker.Generate(  ) );
@@ -816,5 +799,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 
 			base.Seed( context );
 		}
+*/
+
 	}
 }

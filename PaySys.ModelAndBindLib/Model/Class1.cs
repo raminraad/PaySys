@@ -583,11 +583,11 @@ namespace PaySys.ModelAndBindLib.Model
 
 		public string ContractNo { get; set; }
 
-		public string DateExport { get; set; }
+		public DateTime DateExport { get; set; }
 
-		public string DateExecution { get; set; }
+		public DateTime DateExecution { get; set; }
 
-		public string DateEmployment { get; set; }
+		public DateTime DateEmployment { get; set; }
 
 		public MaritalStatus MaritalStatus { get; set; }
 
@@ -648,7 +648,7 @@ namespace PaySys.ModelAndBindLib.Model
 
 		public string NationalCardNo { set; get; }
 
-		public string BirthDate { get; set; }
+		public DateTime BirthDate { get; set; }
 
 		public string BirthPlace { get; set; }
 
@@ -670,7 +670,7 @@ namespace PaySys.ModelAndBindLib.Model
 
 		public string IdCardExportPlace { get; set; }
 
-		public string IdCardExportDate { set; get; }
+		public DateTime IdCardExportDate { set; get; }
 
 		public string IdCardNo { get; set; }
 
@@ -683,7 +683,7 @@ namespace PaySys.ModelAndBindLib.Model
 		public virtual List<PayslipEmployeeOvertime> PayslipEmployeeOvertimes { get; set; }
 
 		[NotMapped]
-		public IEnumerable<Mission> MissionsOfCurrentYear => ContractMasters.SelectMany( c => c.Missions.Where( m => DateTool.GetDay( m.DateStart )==PaySysSetting.CurrentYear ) );
+		public IEnumerable<Mission> MissionsOfCurrentYear => ContractMasters.SelectMany( c => c.Missions.Where( m => m.StartDateTime==PaySysSetting.CurrentYear ) );
 
 		[NotMapped]
 		public string DspFullName => $"{EmployeeId} : {FName} {LName}";//Todo: Remove EmployeeId from result
@@ -729,9 +729,9 @@ namespace PaySys.ModelAndBindLib.Model
 		[ForeignKey("Contract1St")]
 		public int ContractMasterId { get; set; }
 
-		public string DateFrom { get; set; }
+		public DateTime DateFrom { get; set; }
 
-		public string DateTo { get; set; }
+		public DateTime DateTo { get; set; }
 
 		public double FirstMonth { get; set; }
 
@@ -781,13 +781,9 @@ namespace PaySys.ModelAndBindLib.Model
 
 		public string Title { get; set; }
 
-		public string DateStart { get; set; }
+		public DateTime StartDateTime { get; set; }
 
-		public string DateEnd { get; set; }
-
-		public string TimeStart { get; set; }
-
-		public string TimeEnd { get; set; }
+		public DateTime EndDateTime { get; set; }
 
 		/// <summary>مدت با بیتوته</summary>
 		public int AmountResident { get; set; }

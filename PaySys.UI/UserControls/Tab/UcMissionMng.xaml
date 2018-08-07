@@ -126,7 +126,7 @@
 						DisplayMemberBinding="{Binding City.Title}" />
 					<GridViewColumn
 						Header="{x:Static fa:FieldicMission.DateStart}"
-						DisplayMemberBinding="{Binding DateStart}" />
+						DisplayMemberBinding="{Binding StartDateTime}" />
 					<GridViewColumn
 						Header="{x:Static fa:FieldicMission.TimeStart}"
 						DisplayMemberBinding="{Binding TimeStart}" />
@@ -135,7 +135,7 @@
 						DisplayMemberBinding="{Binding TimeEnd}" />
 					<GridViewColumn
 						Header="{x:Static fa:FieldicMission.DateEnd}"
-						DisplayMemberBinding="{Binding DateEnd}" />
+						DisplayMemberBinding="{Binding EndDateTime}" />
 					<GridViewColumn
 						Header="{x:Static fa:FieldicMission.AmountResident}"
 						DisplayMemberBinding="{Binding AmountResident}" />

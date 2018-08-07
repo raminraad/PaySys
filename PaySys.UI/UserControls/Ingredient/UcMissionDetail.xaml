@@ -111,7 +111,7 @@
 		<TextBox Grid.Row="2"
 				 Grid.Column="1"
 				 IsReadOnly="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields}"
-				 Text="{Binding DateStart,UpdateSourceTrigger=Explicit,Converter={StaticResource DateFrmtCnv}}" />
+				 Text="{Binding StartDateTime,UpdateSourceTrigger=Explicit,Converter={StaticResource DateFrmtCnv}}" />
 		<TextBox Grid.Row="2"
 				 Grid.Column="3"
 				 IsReadOnly="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields}"
@@ -119,7 +119,7 @@
 		<TextBox Grid.Row="2"
 				 Grid.Column="5"
 				 IsReadOnly="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields}"
-				 Text="{Binding DateEnd,UpdateSourceTrigger=Explicit,Converter={StaticResource DateFrmtCnv}}" />
+				 Text="{Binding EndDateTime,UpdateSourceTrigger=Explicit,Converter={StaticResource DateFrmtCnv}}" />
 		<TextBox Grid.Row="2"
 				 Grid.Column="7"
 				 IsReadOnly="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields}"
