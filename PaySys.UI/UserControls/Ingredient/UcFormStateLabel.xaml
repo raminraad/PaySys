@@ -4,7 +4,7 @@
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			 xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
-			 xmlns:resources1="clr-namespace:PaySys.Globalization.fa;assembly=PaySys.Globalization"
+			 xmlns:resources1="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
 			 Height="30"
 			 FlowDirection="RightToLeft">
 	<StackPanel Orientation="Horizontal">

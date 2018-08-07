@@ -366,7 +366,7 @@
   <data name="Missions" xml:space="preserve">
     <value>احکام مأموریت</value>
   </data>
-  <data name="TabMissionMng" xml:space="preserve">
+  <data name="tabMissionMng" xml:space="preserve">
     <value>احکام مأموریت</value>
   </data>
   <data name="PersonalInfo" xml:space="preserve">

@@ -1,55 +1,55 @@
-﻿using System;
-using System.Collections.Generic;
+﻿#region
+
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Arash.PersianDateControls;
+using Xceed.Wpf.Toolkit;
+
+#endregion
 
 namespace PaySys.UI.UC
 {
-    /// <summary>
-    /// Interaction logic for UcMissionDetail.xaml
-    /// </summary>
-    public partial class UcMissionDetail : UserControl
-    {
-        public UcMissionDetail()
-        {
-            InitializeComponent();
-        }
+	/// <summary>
+	///     Interaction logic for
+	///     UcMissionDetail.xaml
+	/// </summary>
+	public partial class UcMissionDetail : UserControl
+	{
+		public static readonly DependencyProperty ReadOnlyOfFieldsProperty = DependencyProperty.Register( "ReadOnlyOfFields", typeof(bool), typeof(UcMissionDetail), new PropertyMetadata( default(bool) ) );
 
-	    public static readonly DependencyProperty ReadOnlyOfFieldsProperty = DependencyProperty.Register( "ReadOnlyOfFields", typeof(bool), typeof(UcMissionDetail), new PropertyMetadata( default(bool) ) );
+		public UcMissionDetail()
+		{
+			InitializeComponent();
+		}
 
-	    public bool ReadOnlyOfFields
-	    {
-		    get { return (bool) GetValue( ReadOnlyOfFieldsProperty ); }
-		    set { SetValue( ReadOnlyOfFieldsProperty, value ); }
-	    }
+		public bool ReadOnlyOfFields
+		{
+			get => (bool) GetValue( ReadOnlyOfFieldsProperty );
+			set => SetValue( ReadOnlyOfFieldsProperty, value );
+		}
 
-	    public void UpdateSource()
-	    {
-		    foreach (var control in GridDetail.Children.OfType<Control>())
-		    {
-			    control.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
-			    control.GetBindingExpression(Selector.SelectedItemProperty)?.UpdateSource();
-		    }
-	    }
+		public void UpdateSource()
+		{
+			foreach( var control in GridDetail.Children.OfType<Control>() )
+			{
+				control.GetBindingExpression( PersianDatePicker.SelectedDateProperty )?.UpdateSource();
+				control.GetBindingExpression( TextBox.TextProperty )?.UpdateSource();
+				control.GetBindingExpression( Selector.SelectedItemProperty )?.UpdateSource();
+				control.GetBindingExpression( TimePicker.ValueProperty)?.UpdateSource();
+			}
+		}
 
-	    public void UpdateTarget()
-	    {
-		    foreach (var control in GridDetail.Children.OfType<Control>())
-		    {
-			    control.GetBindingExpression(TextBox.TextProperty)?.UpdateTarget();
-			    control.GetBindingExpression(Selector.SelectedItemProperty)?.UpdateTarget();
-		    }
-	    }
-    }
+		public void UpdateTarget()
+		{
+			foreach( var control in GridDetail.Children.OfType<Control>() )
+			{
+				control.GetBindingExpression( TextBox.TextProperty )?.UpdateTarget();
+				control.GetBindingExpression( Selector.SelectedItemProperty )?.UpdateTarget();
+				control.GetBindingExpression( PersianDatePicker.SelectedDateProperty )?.UpdateTarget();
+				control.GetBindingExpression( TimePicker.ValueProperty)?.UpdateTarget();
+			}
+		}
+	}
 }

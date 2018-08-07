@@ -105,7 +105,6 @@ namespace PaySys.UI.UC
 		private void Save_Executed( object sender, ExecutedRoutedEventArgs e )
 		{
 			SmpUcMissionDetail.UpdateSource();
-			Context.ChangeTracker.DetectChanges();
 			Context.ShowChanges();
 			Context.SaveChanges();
 			SmpUcFormStateLabel.CurrentState = FormCurrentState.Select;

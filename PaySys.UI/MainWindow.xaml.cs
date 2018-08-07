@@ -4,7 +4,6 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using PaySys.Globalization;
-using PaySys.Globalization.fa;
 using PaySys.ModelAndBindLib;
 using PaySys.ModelAndBindLib.Engine;
 using PaySys.UI.UC;
@@ -128,8 +127,8 @@ namespace PaySys
 				Header = ResourceAccessor.Labels.GetString("tabMissionMng")
 			};
 			TabCntMain.Items.Add(tabItem);
+			TabCntMain.SelectedItem = tabItem;
 			TabCntMain.Items.Refresh();
-			TabCntMain.SelectedItem = uc;
 		}
 	}
 }

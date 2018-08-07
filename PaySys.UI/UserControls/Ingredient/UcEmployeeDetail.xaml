@@ -14,6 +14,7 @@
 			 xmlns:bindingConverter="clr-namespace:PaySys.ModelAndBindLib.BindingConverter;assembly=PaySys.ModelAndBindLib"
 			 FlowDirection="RightToLeft">
 	<UserControl.Resources>
+		<bindingConverter:NegateBooleanConverter x:Key="NegateBooleanConverter" />
 		<bindingConverter:DateFormatterConverter x:Key="DateFrmtCnv" />
 	</UserControl.Resources>
 	<Grid x:Name="GridDetail">
@@ -114,7 +115,7 @@
 				 Grid.Column="5"
 				 Text="{Binding FatherName,UpdateSourceTrigger=Explicit}" />
 		<ComboBox Grid.Row="1"
-				  IsReadOnly="{Binding ElementName=SmpUcEmployeeDetail,Path=ReadOnlyOfFields}"
+				  IsEnabled="{Binding ElementName=SmpUcEmployeeDetail,Path=ReadOnlyOfFields,Converter={StaticResource NegateBooleanConverter}}"
 				  Grid.Column="7"
 				  ItemsSource="{Binding Source={extensionMethods:EnumBindingSource {x:Type model:Sex}}}"
 				  SelectedItem="{Binding Sex,UpdateSourceTrigger=Explicit}" />

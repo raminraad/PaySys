@@ -1,35 +1,75 @@
-﻿<UserControl x:Name="SmpUcMissionDetail"
-			 x:Class="PaySys.UI.UC.UcMissionDetail"
-			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-			 xmlns:local="clr-namespace:PaySys.UI.UC"
-			 mc:Ignorable="d"
-			 xmlns:bindingConverter="clr-namespace:PaySys.ModelAndBindLib.BindingConverter;assembly=PaySys.ModelAndBindLib"
-			 xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
-			 xmlns:extensionMethods="clr-namespace:PaySys.CalcLib.ExtensionMethods;assembly=PaySys.CalcLib"
-			 xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Model;assembly=PaySys.ModelAndBindLib"
-             d:DataContext="{d:DesignInstance Type=model:Mission, IsDesignTimeCreatable=True}"
-			 d:DesignHeight="250"
-			 d:DesignWidth="900"
-			 FlowDirection="RightToLeft">
+﻿<UserControl
+	x:Name="SmpUcMissionDetail"
+	x:Class="PaySys.UI.UC.UcMissionDetail"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:PaySys.UI.UC"
+	mc:Ignorable="d"
+	xmlns:bindingConverter="clr-namespace:PaySys.ModelAndBindLib.BindingConverter;assembly=PaySys.ModelAndBindLib"
+	xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
+	xmlns:extensionMethods="clr-namespace:PaySys.CalcLib.ExtensionMethods;assembly=PaySys.CalcLib"
+	xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Model;assembly=PaySys.ModelAndBindLib"
+	xmlns:persianDateControls="clr-namespace:Arash.PersianDateControls;assembly=PersianDateControls"
+	xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+	d:DataContext="{d:DesignInstance Type=model:Mission, IsDesignTimeCreatable=True}"
+	d:DesignHeight="250"
+	d:DesignWidth="900"
+	FlowDirection="RightToLeft">
 	<UserControl.Resources>
-		<bindingConverter:DateFormatterConverter x:Key="DateFrmtCnv" />
+		<bindingConverter:DateTimeToPersianDateConverter
+			x:Key="GregToPersDateConverter" />
+		<bindingConverter:NegateBooleanConverter
+			x:Key="NegateBooleanConverter" />
 	</UserControl.Resources>
 	<Grid x:Name="GridDetail">
 		<Grid.Resources>
 			<Style TargetType="Label">
-				<Setter Property="VerticalContentAlignment"
-						Value="Center" />
+				<Setter
+					Property="VerticalContentAlignment"
+					Value="Center" />
 			</Style>
 			<Style TargetType="TextBox">
 				<Setter Property="Margin"
-						Value="0,15,40,15" />
+				        Value="0,15,40,15" />
+			</Style>
+			<Style
+				TargetType="persianDateControls:PersianDatePicker">
+				<Setter
+					Property="HorizontalAlignment"
+					Value="Left" />
+				<Setter Property="IsEnabled"
+				        Value="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields,Converter={StaticResource NegateBooleanConverter}}" />
+				<Setter Property="Background"
+				        Value="{x:Static SystemColors.ControlLightLightBrush}" />
+				<Setter Property="Height"
+				        Value="25" />
+				<Setter Property="FontSize"
+				        Value="12" />
+				<Setter Property="FontFamily"
+				        Value="B Yekan" />
+			</Style>
+			<Style TargetType="xctk:TimePicker">
+				<Setter
+					Property="HorizontalAlignment"
+					Value="Left" />
+				<Setter Property="Width"
+				        Value="110" />
+				<Setter Property="IsEnabled"
+				        Value="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields,Converter={StaticResource NegateBooleanConverter}}" />
+				<Setter Property="Background"
+				        Value="{x:Static SystemColors.ControlLightLightBrush}" />
+				<Setter Property="Height"
+				        Value="25" />
+				<Setter Property="FontSize"
+				        Value="12" />
+				<Setter Property="FontFamily"
+				        Value="B Yekan" />
 			</Style>
 			<Style TargetType="ComboBox">
 				<Setter Property="Margin"
-						Value="0,15,40,15" />
+				        Value="0,15,40,15" />
 			</Style>
 		</Grid.Resources>
 		<Grid.RowDefinitions>
@@ -49,84 +89,93 @@
 			<ColumnDefinition Width="*" />
 		</Grid.ColumnDefinitions>
 		<Label Grid.Column="0"
-			   Content="{x:Static fa:FieldicMission.MissionContractNo}" />
+		       Content="{x:Static fa:FieldicMission.MissionContractNo}" />
 		<Label Grid.Column="2"
-			   Grid.Row="0"
-			   Content="{x:Static fa:FieldicMission.Title}" />
+		       Grid.Row="0"
+		       Content="{x:Static fa:FieldicMission.Title}" />
 		<Label Grid.Column="0"
-			   Grid.Row="1"
-			   Content="{x:Static fa:FieldicMission.City}" />
+		       Grid.Row="1"
+		       Content="{x:Static fa:FieldicMission.City}" />
 		<Label Grid.Row="1"
-			   Grid.Column="2"
-			   Content="{x:Static fa:FieldicMission.VehicleType}" />
+		       Grid.Column="2"
+		       Content="{x:Static fa:FieldicMission.VehicleType}" />
 		<Label Grid.Row="1"
-			   Grid.Column="4"
-			   Content="{x:Static fa:FieldicMission.AmountResident}" />
+		       Grid.Column="4"
+		       Content="{x:Static fa:FieldicMission.AmountResident}" />
 		<Label Grid.Row="1"
-			   Grid.Column="6"
-			   Content="{x:Static fa:FieldicMission.AmountNonResident}" />
+		       Grid.Column="6"
+		       Content="{x:Static fa:FieldicMission.AmountNonResident}" />
 		<Label Grid.Column="0"
-			   Grid.Row="2"
-			   Content="{x:Static fa:FieldicMission.DateStart}" />
+		       Grid.Row="2"
+		       Content="{x:Static fa:FieldicMission.DateStart}" />
 		<Label Grid.Row="2"
-			   Grid.Column="2"
-			   Content="{x:Static fa:FieldicMission.TimeStart}" />
+		       Grid.Column="2"
+		       Content="{x:Static fa:FieldicMission.TimeStart}" />
 		<Label Grid.Row="2"
-			   Grid.Column="4"
-			   Content="{x:Static fa:FieldicMission.DateEnd}" />
+		       Grid.Column="4"
+		       Content="{x:Static fa:FieldicMission.DateEnd}" />
 		<Label Grid.Row="2"
-			   Grid.Column="6"
-			   Content="{x:Static fa:FieldicMission.TimeEnd}" />
+		       Grid.Column="6"
+		       Content="{x:Static fa:FieldicMission.TimeEnd}" />
 		<Label Grid.Column="0"
-			   Grid.Row="3"
-			   Content="{x:Static fa:FieldicMission.TravelExpense}" />
-		<TextBox 
-				 Grid.Row="0"
-				 Grid.Column="1"
-				 IsReadOnly="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields}"
-				 Text="{Binding MissionContractNo,UpdateSourceTrigger=Explicit}" />
-		<TextBox 
-				 Grid.Row="0"
-				 Grid.Column="3"
-				 Grid.ColumnSpan="5"
-			IsReadOnly="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields}"
-				 Text="{Binding Title,UpdateSourceTrigger=Explicit}" />
+		       Grid.Row="3"
+		       Content="{x:Static fa:FieldicMission.TravelExpense}" />
+		<TextBox Grid.Row="0"
+		         Grid.Column="1"
+		         IsReadOnly="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields}"
+		         Text="{Binding MissionContractNo,UpdateSourceTrigger=Explicit}" />
+		<TextBox Grid.Row="0"
+		         Grid.Column="3"
+		         Grid.ColumnSpan="5"
+		         IsReadOnly="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields}"
+		         Text="{Binding Title,UpdateSourceTrigger=Explicit}" />
 		<TextBox Grid.Row="1"
-				 Grid.Column="1"
-				 IsReadOnly="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields}"
-				 Text="{Binding City,UpdateSourceTrigger=Explicit}" />
+		         Grid.Column="1"
+		         IsReadOnly="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields}"
+		         Text="{Binding City,UpdateSourceTrigger=Explicit}" />
 		<ComboBox Grid.Row="1"
 		          Grid.Column="3"
-		          IsReadOnly="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields}"
+		          IsEnabled="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields,Converter={StaticResource NegateBooleanConverter}}"
 		          ItemsSource="{Binding Source={extensionMethods:EnumBindingSource {x:Type model:VehicleType}}}"
 		          SelectedItem="{Binding VehicleType,UpdateSourceTrigger=Explicit}" />
 		<TextBox Grid.Row="1"
-				 Grid.Column="5"
-				 IsReadOnly="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields}"
-				 Text="{Binding AmountResident,UpdateSourceTrigger=Explicit}" />
+		         Grid.Column="5"
+		         IsReadOnly="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields}"
+		         Text="{Binding AmountResident,UpdateSourceTrigger=Explicit}" />
 		<TextBox Grid.Row="1"
 		         Grid.Column="7"
 		         IsReadOnly="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields}"
 		         Text="{Binding AmountNonResident,UpdateSourceTrigger=Explicit}" />
-		<TextBox Grid.Row="2"
-				 Grid.Column="1"
-				 IsReadOnly="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields}"
-				 Text="{Binding StartDateTime,UpdateSourceTrigger=Explicit,Converter={StaticResource DateFrmtCnv}}" />
-		<TextBox Grid.Row="2"
-				 Grid.Column="3"
-				 IsReadOnly="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields}"
-				 Text="{Binding TimeStart,UpdateSourceTrigger=Explicit}" />
-		<TextBox Grid.Row="2"
-				 Grid.Column="5"
-				 IsReadOnly="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields}"
-				 Text="{Binding EndDateTime,UpdateSourceTrigger=Explicit,Converter={StaticResource DateFrmtCnv}}" />
-		<TextBox Grid.Row="2"
-				 Grid.Column="7"
-				 IsReadOnly="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields}"
-				 Text="{Binding TimeEnd,UpdateSourceTrigger=Explicit}" />
+		<persianDateControls:PersianDatePicker
+			Grid.Row="2"
+			Grid.Column="1"
+			SelectedDate="{Binding StartDate,Mode=TwoWay,UpdateSourceTrigger=Explicit,Converter={StaticResource GregToPersDateConverter}}"
+			DisplayDate="{Binding StartDate,Mode=TwoWay,UpdateSourceTrigger=Explicit,Converter={StaticResource GregToPersDateConverter}}" />
+		<xctk:TimePicker Grid.Row="2"
+		                 Grid.Column="3"
+		                 IsReadOnly="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields}"
+		                 Value="{Binding StartTime,Mode=TwoWay,UpdateSourceTrigger=Explicit}"
+		                 FontFamily="B Yekan"
+		                 Format="Custom"
+		                 FormatString="HH:mm"
+		                 TimeInterval="00:15:00" />
+		<persianDateControls:PersianDatePicker
+			Grid.Row="2"
+			Grid.Column="5"
+			SelectedDate="{Binding EndDate,Mode=TwoWay,UpdateSourceTrigger=Explicit,Converter={StaticResource GregToPersDateConverter}}"
+			DisplayDate="{Binding EndDate,Mode=TwoWay,UpdateSourceTrigger=Explicit,Converter={StaticResource GregToPersDateConverter}}" />
+		<xctk:TimePicker Grid.Row="2"
+		                 Grid.Column="7"
+		                 IsReadOnly="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields}"
+		                 Value="{Binding EndTime,Mode=TwoWay,UpdateSourceTrigger=Explicit}"
+		                 FontFamily="B Yekan"
+		                 Format="Custom"
+		                 FormatString="HH:mm"
+		                 TimeInterval="00:15:00" />
 		<TextBox Grid.Row="3"
-				 Grid.Column="1"
-				 IsReadOnly="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields}"
-				 Text="{Binding TravelExpense,UpdateSourceTrigger=Explicit}" />
+		         Grid.Column="1"
+		         IsReadOnly="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields}"
+		         Text="{Binding TravelExpense,UpdateSourceTrigger=Explicit}" />
+
 	</Grid>
 </UserControl>

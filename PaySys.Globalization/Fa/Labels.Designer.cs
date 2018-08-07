@@ -774,9 +774,9 @@ namespace PaySys.Globalization.Fa {
         /// <summary>
         ///   Looks up a localized string similar to احکام مأموریت.
         /// </summary>
-        public static string TabMissionMng {
+        public static string tabMissionMng {
             get {
-                return ResourceManager.GetString("TabMissionMng", resourceCulture);
+                return ResourceManager.GetString("tabMissionMng", resourceCulture);
             }
         }
         

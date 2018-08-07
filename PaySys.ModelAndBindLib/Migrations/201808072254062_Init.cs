@@ -24,10 +24,10 @@ namespace PaySys.ModelAndBindLib.Migrations
                     {
                         MissionId = c.Int(nullable: false, identity: true),
                         Title = c.String(),
-                        DateStart = c.String(),
-                        DateEnd = c.String(),
-                        TimeStart = c.String(),
-                        TimeEnd = c.String(),
+                        StartDate = c.DateTime(nullable: false),
+                        EndDate = c.DateTime(nullable: false),
+                        StartTime = c.DateTime(nullable: false),
+                        EndTime = c.DateTime(nullable: false),
                         AmountResident = c.Int(nullable: false),
                         AmountNonResident = c.Int(nullable: false),
                         VehicleType = c.Int(nullable: false),
@@ -48,9 +48,9 @@ namespace PaySys.ModelAndBindLib.Migrations
                     {
                         ContractMasterId = c.Int(nullable: false, identity: true),
                         ContractNo = c.String(),
-                        DateExport = c.String(),
-                        DateExecution = c.String(),
-                        DateEmployment = c.String(),
+                        DateExport = c.DateTime(nullable: false),
+                        DateExecution = c.DateTime(nullable: false),
+                        DateEmployment = c.DateTime(nullable: false),
                         MaritalStatus = c.Int(nullable: false),
                         HardshipFactor = c.Double(nullable: false),
                         InsuranceNo = c.String(),
@@ -188,7 +188,7 @@ namespace PaySys.ModelAndBindLib.Migrations
                         FName = c.String(),
                         LName = c.String(),
                         NationalCardNo = c.String(),
-                        BirthDate = c.String(),
+                        BirthDate = c.DateTime(nullable: false),
                         BirthPlace = c.String(),
                         FatherName = c.String(),
                         HomeTel = c.String(),
@@ -199,7 +199,7 @@ namespace PaySys.ModelAndBindLib.Migrations
                         PostalCode = c.String(),
                         PersonnelCode = c.String(),
                         IdCardExportPlace = c.String(),
-                        IdCardExportDate = c.String(),
+                        IdCardExportDate = c.DateTime(nullable: false),
                         IdCardNo = c.String(),
                     })
                 .PrimaryKey(t => t.EmployeeId);
@@ -439,8 +439,8 @@ namespace PaySys.ModelAndBindLib.Migrations
                 c => new
                     {
                         ContractMasterId = c.Int(nullable: false),
-                        DateFrom = c.String(),
-                        DateTo = c.String(),
+                        DateFrom = c.DateTime(nullable: false),
+                        DateTo = c.DateTime(nullable: false),
                         FirstMonth = c.Double(nullable: false),
                         PayYear = c.Int(nullable: false),
                         PayMonth = c.Int(nullable: false),

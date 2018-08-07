@@ -3,7 +3,9 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
+using System.Diagnostics;
 using System.Linq;
+using Arash;
 using Bogus;
 using PaySys.ModelAndBindLib.Engine;
 using PaySys.ModelAndBindLib.Model;
@@ -21,17 +23,13 @@ namespace PaySys.ModelAndBindLib.Migrations
 		{
 			AutomaticMigrationsEnabled = false;
 		}
-/*
 
 		protected override void Seed( PaySysContext context )
 		{
-			
 			#region Debug
 
-//						if (Debugger.IsAttached == false)
-//						{
-//							Debugger.Launch();
-//						}
+//			if( Debugger.IsAttached == false )
+//				Debugger.Launch();
 
 			#endregion
 
@@ -367,8 +365,8 @@ namespace PaySys.ModelAndBindLib.Migrations
 				e.IdCardExportPlace = f.Address.City();
 				e.CellNo = $"{f.PickRandom( mobilePrefix )}{f.Phone.PhoneNumber( "#######" )}";
 				e.HomeTel = f.Phone.PhoneNumber();
-				e.BirthDate = $"13{f.Random.Number( 30 ) + 30:d2}{f.Random.Number( 11 ) + 1:d2}{f.Random.Number( 29 ) + 1:d2}";
-				e.IdCardExportDate = $"13{f.Random.Number( 30 ) + 30:d2}{f.Random.Number( 11 ) + 1:d2}{f.Random.Number( 29 ) + 1:d2}";
+				e.BirthDate = f.Date.Between( new PersianDate( 1330, 1, 1 ).ToDateTime(), new PersianDate( 1370, 12, 29 ).ToDateTime() );
+				e.IdCardExportDate = f.Date.Between( new PersianDate( 1330, 1, 1 ).ToDateTime(), new PersianDate( 1370, 12, 29 ).ToDateTime() );
 				e.DossierNo = $"{f.Random.Number( 999999 ):d6}";
 				e.PersonnelCode = $"{f.Random.Number( 999999 ):d6}";
 				e.FatherName = f.Name.FirstName();
@@ -696,9 +694,9 @@ namespace PaySys.ModelAndBindLib.Migrations
 				e.AccountNoEmp = $"{f.PickRandom( creditCardNoPrefix )}-{f.Random.Number( 9999 ):d4}-{f.Random.Number( 9999 ):d4}-{f.Random.Number( 9999 ):d4}";
 				e.AccountNoGov = $"{f.PickRandom( creditCardNoPrefix )}-{f.Random.Number( 9999 ):d4}-{f.Random.Number( 9999 ):d4}-{f.Random.Number( 9999 ):d4}";
 				e.ContractNo = $"{f.Random.Number( 99999 ):d5}";
-				e.DateEmployment = $"13{f.Random.Number( 20 ) + 40:d2}{f.Random.Number( 11 ) + 1:d2}{f.Random.Number( 29 ) + 1:d2}";
-				e.DateExecution = $"13{f.Random.Number( 20 ) + 40:d2}{f.Random.Number( 11 ) + 1:d2}{f.Random.Number( 29 ) + 1:d2}";
-				e.DateExport = $"13{f.Random.Number( 20 ) + 40:d2}{f.Random.Number( 11 ) + 1:d2}{f.Random.Number( 29 ) + 1:d2}";
+				e.DateEmployment = f.Date.Between( e.Employee.BirthDate.AddYears( 20 ), DateTime.Now );
+				e.DateExport = f.Date.Between( e.DateEmployment, DateTime.Now );
+				e.DateExecution = f.Date.Between( e.DateExport, DateTime.Now );
 				e.EducationStand = f.PickRandom( Enum.GetValues( typeof(EducationStand) ).Cast<EducationStand>().Where( sex => sex != EducationStand.Unknown ) );
 				e.EmploymentType = f.PickRandom( Enum.GetValues( typeof(EmploymentType) ).Cast<EmploymentType>().Where( sex => sex != EmploymentType.Unknown ) );
 				e.HardshipFactor = f.Random.Number( 100 );
@@ -785,12 +783,14 @@ namespace PaySys.ModelAndBindLib.Migrations
 			foreach( var contract in seedContractMasters )
 			{
 				var startMonth = _faker.Random.Number( 9 ) + 1;
-				MissionFaker.RuleFor( r => r.ContractMaster, contract );
-				MissionFaker.RuleFor( r => r.StartDateTime, $"1397{startMonth:d2}{_faker.Random.Number( 29 ) + 1:d2}" );
-				MissionFaker.RuleFor( r => r.EndDateTime, $"1397{startMonth + 1:d2}{_faker.Random.Number( 29 ) + 1:d2}" );
+				MissionFaker.RuleFor( m => m.ContractMaster, contract );
+				MissionFaker.RuleFor( m => m.StartDate, _faker.Date.Between( contract.DateEmployment, DateTime.Now ) );
+				MissionFaker.RuleFor( m => m.EndDate, ( f, m ) => f.Date.Between( m.StartDate, DateTime.Now ) );
+				MissionFaker.RuleFor( m => m.StartTime, _faker.Date.Past(  ) );
+				MissionFaker.RuleFor( m => m.EndTime, _faker.Date.Past(  ) );
 
 				for( var i = 0; i < 10; i++ )
-					seedMissions.Add( MissionFaker.Generate(  ) );
+					seedMissions.Add( MissionFaker.Generate() );
 			}
 
 			context.Missions.AddRange( seedMissions );
@@ -799,7 +799,5 @@ namespace PaySys.ModelAndBindLib.Migrations
 
 			base.Seed( context );
 		}
-*/
-
 	}
 }

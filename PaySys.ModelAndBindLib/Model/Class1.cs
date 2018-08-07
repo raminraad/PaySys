@@ -683,7 +683,7 @@ namespace PaySys.ModelAndBindLib.Model
 		public virtual List<PayslipEmployeeOvertime> PayslipEmployeeOvertimes { get; set; }
 
 		[NotMapped]
-		public IEnumerable<Mission> MissionsOfCurrentYear => ContractMasters.SelectMany( c => c.Missions.Where( m => m.StartDateTime==PaySysSetting.CurrentYear ) );
+		public IEnumerable<Mission> MissionsOfCurrentYear => ContractMasters.SelectMany( c => c.Missions.Where( m => m.StartDate >= PaySysSetting.CurrentYearStartGreg && m.StartDate <= PaySysSetting.CurrentYearEndGreg ) );
 
 		[NotMapped]
 		public string DspFullName => $"{EmployeeId} : {FName} {LName}";//Todo: Remove EmployeeId from result
@@ -781,9 +781,13 @@ namespace PaySys.ModelAndBindLib.Model
 
 		public string Title { get; set; }
 
-		public DateTime StartDateTime { get; set; }
+		public DateTime StartDate { get; set; }
 
-		public DateTime EndDateTime { get; set; }
+		public DateTime EndDate { get; set; }
+
+		public DateTime StartTime { get; set; }
+
+		public DateTime EndTime { get; set; }
 
 		/// <summary>مدت با بیتوته</summary>
 		public int AmountResident { get; set; }
@@ -1024,8 +1028,11 @@ namespace PaySys.ModelAndBindLib.Model
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum ValueType
 	{
+		[Description("وارد نشده")]
 		Unknown = 0,
+		[Description("مطلق")]
 		Absolute,
+		[Description("درصد")]
 		Percent
 	}
 
@@ -1035,10 +1042,15 @@ namespace PaySys.ModelAndBindLib.Model
 		//todo: fill enum
 		[Description("وارد نشده")]
 		Unknown = 0,
+		[Description("تاکسی")]
 		Cap,
+		[Description("هواپیما")]
 		Plane,
+		[Description("قطار")]
 		Train,
+		[Description("خودرو شخصی")]
 		Personal,
+		[Description("نقلیه عمومی")]
 		PublicTransport
 	}
 
