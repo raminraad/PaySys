@@ -41,7 +41,7 @@ namespace PaySys.UI.UC
 
 		private void SmpUcRibbonSelector_OnListDataContextChanged( object sender, RoutedEventArgs e )
 		{
-			SmpUcRibbonSelector.SortDescription = "DspLuffName";
+			SmpUcRibbonSelector.SortDescription = "LuffName";
 		}
 
 		public void RefreshCvsOfSubGroupMiscRecharges()

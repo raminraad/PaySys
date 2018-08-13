@@ -1,4 +1,6 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Windows;
@@ -10,12 +12,10 @@ using PaySys.ModelAndBindLib.Engine;
 using PaySys.ModelAndBindLib.Model;
 using PaySys.UI.Commands;
 
+#endregion
+
 namespace PaySys.UI.UC
 {
-	/// <summary>
-	///     Interaction logic for
-	///     UcMiscRechargeMng.xaml
-	/// </summary>
 	public partial class UcMiscRechargeMng : UserControl
 	{
 		public UcMiscRechargeMng()
@@ -62,10 +62,7 @@ namespace PaySys.UI.UC
 			}
 		}
 
-		private void Edit( object sender, ExecutedRoutedEventArgs e )
-		{
-			SmpUcFormStateLabel.CurrentState = FormCurrentState.Edit;
-		}
+		private void Edit( object sender, ExecutedRoutedEventArgs e ) { SmpUcFormStateLabel.CurrentState = FormCurrentState.Edit; }
 
 		private void DiscardChanges( object sender, ExecutedRoutedEventArgs e )
 		{
@@ -76,10 +73,7 @@ namespace PaySys.UI.UC
 			SmpUcMiscRechargesOfOneMisc.RefreshCvsOfSubGroupMiscRecharges();
 		}
 
-		private void SmpUcSelectGroupAndSubGroup_OnSelectedSubGroupChanged( object sender, RoutedEventArgs e )
-		{
-			LeftJoinAndAssignSubGroupMiscRecharges();
-		}
+		private void SmpUcSelectGroupAndSubGroup_OnSelectedSubGroupChanged( object sender, RoutedEventArgs e ) { LeftJoinAndAssignSubGroupMiscRecharges(); }
 
 		private void LeftJoinAndAssignSubGroupMiscRecharges()
 		{
@@ -93,7 +87,7 @@ namespace PaySys.UI.UC
 			var newQuery = sgEmps.GroupJoin( sgRecs, emp => emp, rec => rec.Employee, ( emp, recEnum ) => new
 			{
 				Employee = emp,
-				MiscRecharges = from m in sg.Miscs.Where( misc => misc.Year == PaySysSetting.CurrentYear )
+				MiscRecharges = from m in sg.Miscs.Where( misc => misc.Year == PaySysSetting.CurrentYear && misc.Month == PaySysSetting.CurrentMonth )
 				                join r in recEnum.Where( r => r.Year == PaySysSetting.CurrentYear && r.Month == PaySysSetting.CurrentMonth ) on m equals r.Misc into empRecs
 				                from subRec in empRecs.DefaultIfEmpty( new MiscRecharge
 				                {
@@ -107,7 +101,6 @@ namespace PaySys.UI.UC
 				                select subRec
 			} );
 			sg.TempMiscRechargesOfEmployees = newQuery.SelectMany( arg => arg.MiscRecharges ).ToList();
-
 			SmpUcMiscRechargesOfOneEmployee.DataContext = sg;
 			SmpUcMiscRechargesOfOneMisc.DataContext = sg;
 		}

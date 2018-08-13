@@ -313,6 +313,15 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to کارمندان.
+        /// </summary>
+        public static string Employees {
+            get {
+                return ResourceManager.GetString("Employees", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ماده هزینه.
         /// </summary>
         public static string ExpenseArticle {
@@ -376,11 +385,38 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to به تفکیک عناوین (کسور).
+        /// </summary>
+        public static string GroupByMiscTitleDebt {
+            get {
+                return ResourceManager.GetString("GroupByMiscTitleDebt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to به تفکیک عناوین (پرداخت ها).
+        /// </summary>
+        public static string GroupByMiscTitlePayment {
+            get {
+                return ResourceManager.GetString("GroupByMiscTitlePayment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to به تفکیک عناوین.
         /// </summary>
         public static string GroupByTitles {
             get {
                 return ResourceManager.GetString("GroupByTitles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to به تفکیک عناوین (متغیرها).
+        /// </summary>
+        public static string GroupByVariableTitle {
+            get {
+                return ResourceManager.GetString("GroupByVariableTitle", resourceCulture);
             }
         }
         
@@ -507,6 +543,15 @@ namespace PaySys.Globalization.Fa {
         public static string Missions {
             get {
                 return ResourceManager.GetString("Missions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to متغیرهای ماهانه.
+        /// </summary>
+        public static string MonthlyVariables {
+            get {
+                return ResourceManager.GetString("MonthlyVariables", resourceCulture);
             }
         }
         
@@ -781,6 +826,15 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to داده های ماهانه.
+        /// </summary>
+        public static string tabMonthlyDataMng {
+            get {
+                return ResourceManager.GetString("tabMonthlyDataMng", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to جدول مالیاتی.
         /// </summary>
         public static string TaxTable {
@@ -835,11 +889,38 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to کسر از مقدار.
+        /// </summary>
+        public static string ValueSubtraction {
+            get {
+                return ResourceManager.GetString("ValueSubtraction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to نوع مقدار.
         /// </summary>
         public static string ValueType {
             get {
                 return ResourceManager.GetString("ValueType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to متغیرها.
+        /// </summary>
+        public static string Variables {
+            get {
+                return ResourceManager.GetString("Variables", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to مقدار متغیر.
+        /// </summary>
+        public static string VariableValue {
+            get {
+                return ResourceManager.GetString("VariableValue", resourceCulture);
             }
         }
     }

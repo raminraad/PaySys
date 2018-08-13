@@ -65,7 +65,7 @@
 									DisplayMemberBinding="{Binding Title}" />
 					<GridViewColumn Header="{x:Static fa:Labels.ExpenseArticle}"
 									Width="150"
-									DisplayMemberBinding="{Binding CurrentExpenseArticle.DspCodeTitle}" />
+									DisplayMemberBinding="{Binding CurrentExpenseArticle.CodeTitle}" />
 				</GridView>
 			</ListView.View>
 		</ListView>

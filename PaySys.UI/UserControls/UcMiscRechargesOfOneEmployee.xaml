@@ -41,7 +41,7 @@
 		                        SelectedItemChanged="SmpUcRibbonSelector_OnSelectedItemChanged"
 		                        ListDataContextChanged="SmpUcRibbonSelector_OnListDataContextChanged"
 		                        DataContext="{Binding CurrentEmployees, Mode=OneWay}"
-		                        TitleDisplayMember="/DspFullName" />
+		                        TitleDisplayMember="/FullName" />
 		<ListView
 			x:Name="ListViewMiscRecharges"
 			Grid.Row="3"

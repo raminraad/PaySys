@@ -32,9 +32,9 @@ namespace PaySys.ModelAndBindLib.BindingConverter
 			var result = string.Empty;
 			result += $"{misc.MiscTitle.Title}";
 			result += "  [";
-			result += $"{misc.CurrentExpenseArticle.Code}";
+			result += $"{misc.ExpenseArticle.Code}";
 			result += " : ";
-			result += $"{misc.CurrentExpenseArticle.Title}";
+			result += $"{misc.ExpenseArticle.Title}";
 			result += "]";
 			return result;
 		}

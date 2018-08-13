@@ -33,6 +33,7 @@
 			<Style TargetType="TextBox">
 				<Setter Property="Margin"
 				        Value="0,15,40,15" />
+				<Setter Property="VerticalContentAlignment" Value="Center"/>
 			</Style>
 			<Style
 				TargetType="persianDateControls:PersianDatePicker">
@@ -70,6 +71,8 @@
 			<Style TargetType="ComboBox">
 				<Setter Property="Margin"
 				        Value="0,15,40,15" />
+				<Setter Property="VerticalContentAlignment"
+						Value="Center" />
 			</Style>
 		</Grid.Resources>
 		<Grid.RowDefinitions>

@@ -67,7 +67,7 @@ namespace PaySys.UI.UC
 
 		private void UcMiscRechargesOfOneMisc_OnInitialized( object sender, EventArgs e )
 		{
-			CvsOfSubGroupMiscRecharges.SortDescriptions.Add( new SortDescription( "Employee.DspLuffName", ListSortDirection.Ascending ) );
+			CvsOfSubGroupMiscRecharges.SortDescriptions.Add( new SortDescription( "Employee.LuffName", ListSortDirection.Ascending ) );
 			CvsOfSubGroupMiscRecharges.Filter += CvsFilterMiscRechargesOfCurrentMisc;
 		}
 

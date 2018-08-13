@@ -168,4 +168,10 @@
   <data name="Sex" xml:space="preserve">
     <value>جنسیت</value>
   </data>
+  <data name="FullName" xml:space="preserve">
+    <value>نام و نام خانوادگی</value>
+  </data>
+  <data name="LuffName" xml:space="preserve">
+    <value>نام خانوادگی - نام</value>
+  </data>
 </root>

@@ -65,7 +65,7 @@
 					<StackPanel
 						Orientation="Horizontal">
 						<TextBlock
-							Text="{Binding Employee.DspFullName,Mode=OneWay}"
+							Text="{Binding Employee.FullName,Mode=OneWay}"
 							VerticalAlignment="Center"
 							Width="100" />
 						<TextBox x:Name="TextBoxValue"

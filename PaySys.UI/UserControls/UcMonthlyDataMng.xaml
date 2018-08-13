@@ -1,0 +1,96 @@
+﻿<UserControl x:Name="SmpUcMonthlyDataMng"
+             x:Class="PaySys.UI.UC.UcMonthlyDataMng"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:PaySys.UI.UC"
+             xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
+             xmlns:commands="clr-namespace:PaySys.UI.Commands"
+             xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Model;assembly=PaySys.ModelAndBindLib"
+             mc:Ignorable="d"
+             FlowDirection="RightToLeft"
+             d:DataContext="{d:DesignInstance d:Type=model:SubGroup, IsDesignTimeCreatable=True}"
+             d:DesignHeight="300"
+             d:DesignWidth="600"
+             Initialized="UcMiscRechargeMng_OnInitialized">
+	<UserControl.CommandBindings>
+		<CommandBinding Command="commands:PaySysCommands.Edit"
+		                Executed="Edit"
+		                CanExecute="CommandBinding_OnCanExecute" />
+		<CommandBinding Command="commands:PaySysCommands.Save"
+		                Executed="Save"
+		                PreviewCanExecute="CommandBinding_OnCanExecute" />
+		<CommandBinding Command="commands:PaySysCommands.DiscardChanges"
+		                Executed="DiscardChanges"
+		                PreviewCanExecute="CommandBinding_OnCanExecute" />
+		<CommandBinding Command="commands:PaySysCommands.Reload"
+		                Executed="Reload"
+		                CanExecute="CommandBinding_OnCanExecute" />
+	</UserControl.CommandBindings>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="4*" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="5*" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+		<ToolBar Grid.Row="0"
+		         Grid.ColumnSpan="3">
+			<Button Name="ButtonEdit"
+			        Command="commands:PaySysCommands.Edit"
+			        Content="{x:Static fa:Labels.Edit}" />
+			<Button Name="ButtonSave"
+			        Command="commands:PaySysCommands.Save"
+			        Content="{x:Static fa:Labels.Save}" />
+			<Button Name="ButtonDiscardChanges"
+			        Command="commands:PaySysCommands.DiscardChanges"
+			        Content="{x:Static fa:Labels.Cancel}" />
+			<Separator />
+			<Button Name="ButtonReload"
+			        Command="commands:PaySysCommands.Reload"
+			        Content="{x:Static fa:Labels.Reload}" />
+		</ToolBar>
+		<local:UcSelectGroupAndSubGroup x:Name="SmpUcSelectGroupAndSubGroup"
+		                                Width="400"
+		                                Grid.Row="1"
+		                                Grid.Column="1"
+		                                IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}"
+		                                SelectedSubGroupChanged="SmpUcSelectGroupAndSubGroup_OnSelectedSubGroupChanged" />
+		<TabControl Grid.Row="2"
+		            Grid.Column="0"
+		            Grid.ColumnSpan="3">
+			<TabItem x:Name="TabItemGroupByEmployee"
+			         Header="{x:Static fa:Labels.GroupByEmployees}">
+				<local:UcMonthlyDataOfOneEmployee x:Name="SmpUcMonthlyDataOfOneEmployee"
+				                                  ReadOnlyOfListItems="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditControls}" />
+			</TabItem>
+			<TabItem x:Name="TabItemGroupByVariableTitle"
+			         Header="{x:Static fa:Labels.GroupByVariableTitle}">
+				<local:UcMonthlyDataOfOneVariable x:Name="SmpUcMonthlyDataOfOneVariable"
+				                                  ReadOnlyOfListItems="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditControls}" />
+			</TabItem>
+			<TabItem x:Name="TabItemGroupByMiscPayment"
+			         Header="{x:Static fa:Labels.GroupByMiscTitlePayment}">
+				<local:UcMonthlyDataOfOneMiscPayment x:Name="SmpUcMonthlyDataOfOneMiscPayment"
+				                                     ReadOnlyOfListItems="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditControls}" />
+			</TabItem>
+			<TabItem x:Name="TabItemGroupByMiscDebt"
+			         Header="{x:Static fa:Labels.GroupByMiscTitleDebt}">
+				<local:UcMonthlyDataOfOneMiscDebt x:Name="SmpUcMonthlyDataOfOneMiscDebt"
+				                                ReadOnlyOfListItems="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditControls}" />
+			</TabItem>
+		</TabControl>
+		<StatusBar Grid.Column="0"
+		           Grid.Row="3"
+		           Grid.ColumnSpan="3">
+			<local:UcFormStateLabel x:Name="SmpUcFormStateLabel"
+			                        FormType="{x:Type local:UcMiscRechargeMng}" />
+		</StatusBar>
+	</Grid>
+</UserControl>

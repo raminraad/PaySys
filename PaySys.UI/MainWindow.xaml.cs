@@ -130,5 +130,18 @@ namespace PaySys
 			TabCntMain.SelectedItem = tabItem;
 			TabCntMain.Items.Refresh();
 		}
+
+		private void MnuMonthlyDataMng_OnClick( object sender, RoutedEventArgs e )
+		{
+			var uc = new UcMonthlyDataMng();
+			var tabItem = new TabItem
+			{
+				Content = uc,
+				Header = ResourceAccessor.Labels.GetString("tabMonthlyDataMng")
+			};
+			TabCntMain.Items.Add(tabItem);
+			TabCntMain.SelectedItem = tabItem;
+			TabCntMain.Items.Refresh();
+		}
 	}
 }

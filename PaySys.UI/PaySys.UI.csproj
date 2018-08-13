@@ -109,82 +109,97 @@
     <Compile Include="TempWindow.xaml.cs">
       <DependentUpon>TempWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Ingredient\UcEmployeeDetail.xaml.cs">
+    <Compile Include="UserControls\UcEmployeeDetail.xaml.cs">
       <DependentUpon>UcEmployeeDetail.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Ingredient\UcMissionDetail.xaml.cs">
+    <Compile Include="UserControls\UcMissionDetail.xaml.cs">
       <DependentUpon>UcMissionDetail.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Ingredient\UcRibbonSelector.xaml.cs">
+    <Compile Include="UserControls\UcMonthlyDataOfOneEmployee.xaml.cs">
+      <DependentUpon>UcMonthlyDataOfOneEmployee.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UcMonthlyDataOfOneMiscDebt.xaml.cs">
+      <DependentUpon>UcMonthlyDataOfOneMiscDebt.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UcMonthlyDataOfOneMiscPayment.xaml.cs">
+      <DependentUpon>UcMonthlyDataOfOneMiscPayment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UcMonthlyDataOfOneVariable.xaml.cs">
+      <DependentUpon>UcMonthlyDataOfOneVariable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UcRibbonSelector.xaml.cs">
       <DependentUpon>UcRibbonSelector.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Ingredient\UcSelectGroupAndSubGroup.xaml.cs">
+    <Compile Include="UserControls\UcSelectGroupAndSubGroup.xaml.cs">
       <DependentUpon>UcSelectGroupAndSubGroup.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Ingredient\UcSuggesterTextBox.xaml.cs">
+    <Compile Include="UserControls\UcSuggesterTextBox.xaml.cs">
       <DependentUpon>UcSuggesterTextBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Ingredient\UcFormStateLabel.xaml.cs">
+    <Compile Include="UserControls\UcFormStateLabel.xaml.cs">
       <DependentUpon>UcFormStateLabel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Ingredient\UcSelectContractMasterOfEmployee.xaml.cs">
+    <Compile Include="UserControls\UcSelectContractMasterOfEmployee.xaml.cs">
       <DependentUpon>UcSelectContractMasterOfEmployee.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Ingredient\UcSelectEmployee.xaml.cs">
+    <Compile Include="UserControls\UcSelectEmployee.xaml.cs">
       <DependentUpon>UcSelectEmployee.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Ingredient\UcShowContractDetails.xaml.cs">
+    <Compile Include="UserControls\UcShowContractDetails.xaml.cs">
       <DependentUpon>UcShowContractDetails.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Ingredient\UcShowContractMaster.xaml.cs">
+    <Compile Include="UserControls\UcShowContractMaster.xaml.cs">
       <DependentUpon>UcShowContractMaster.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Tab\UcCityMng.xaml.cs">
+    <Compile Include="UserControls\UcCityMng.xaml.cs">
       <DependentUpon>UcCityMng.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Tab\UcContractMng.xaml.cs">
+    <Compile Include="UserControls\UcContractMng.xaml.cs">
       <DependentUpon>UcContractMng.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Tab\UcMiscRechargesOfOneEmployee.xaml.cs">
+    <Compile Include="UserControls\UcMiscRechargesOfOneEmployee.xaml.cs">
       <DependentUpon>UcMiscRechargesOfOneEmployee.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Tab\UcEmployeeMng.xaml.cs">
+    <Compile Include="UserControls\UcEmployeeMng.xaml.cs">
       <DependentUpon>UcEmployeeMng.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Tab\UcContractFieldTitlesMng.xaml.cs">
+    <Compile Include="UserControls\UcContractFieldTitlesMng.xaml.cs">
       <DependentUpon>UcContractFieldTitlesMng.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Tab\UcExpenseArticleMng.xaml.cs">
+    <Compile Include="UserControls\UcExpenseArticleMng.xaml.cs">
       <DependentUpon>UcExpenseArticleMng.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Tab\UcGroupMng.xaml.cs">
+    <Compile Include="UserControls\UcGroupMng.xaml.cs">
       <DependentUpon>UcGroupMng.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Tab\UcHandselFormulaMng.xaml.cs">
+    <Compile Include="UserControls\UcHandselFormulaMng.xaml.cs">
       <DependentUpon>UcHandselFormulaMng.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Tab\UcJobMng.xaml.cs">
+    <Compile Include="UserControls\UcJobMng.xaml.cs">
       <DependentUpon>UcJobMng.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Tab\UcMiscMng.xaml.cs">
+    <Compile Include="UserControls\UcMiscMng.xaml.cs">
       <DependentUpon>UcMiscMng.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Tab\UcMiscRechargeMng.xaml.cs">
+    <Compile Include="UserControls\UcMiscRechargeMng.xaml.cs">
       <DependentUpon>UcMiscRechargeMng.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Tab\UcMiscRechargesOfOneMisc.xaml.cs">
+    <Compile Include="UserControls\UcMiscRechargesOfOneMisc.xaml.cs">
       <DependentUpon>UcMiscRechargesOfOneMisc.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Tab\UcMissionFormulaMng.xaml.cs">
+    <Compile Include="UserControls\UcMissionFormulaMng.xaml.cs">
       <DependentUpon>UcMissionFormulaMng.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Tab\UcMissionMng.xaml.cs">
+    <Compile Include="UserControls\UcMissionMng.xaml.cs">
       <DependentUpon>UcMissionMng.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Tab\UcParameterMng.xaml.cs">
+    <Compile Include="UserControls\UcMonthlyDataMng.xaml.cs">
+      <DependentUpon>UcMonthlyDataMng.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UcParameterMng.xaml.cs">
       <DependentUpon>UcParameterMng.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Tab\UcTaxTableMng.xaml.cs">
+    <Compile Include="UserControls\UcTaxTableMng.xaml.cs">
       <DependentUpon>UcTaxTableMng.xaml</DependentUpon>
     </Compile>
     <Page Include="Dialogs\WinSelectItem.xaml">
@@ -211,107 +226,127 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControls\Ingredient\UcEmployeeDetail.xaml">
+    <Page Include="UserControls\UcEmployeeDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Ingredient\UcMissionDetail.xaml">
+    <Page Include="UserControls\UcMissionDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Ingredient\UcRibbonSelector.xaml">
+    <Page Include="UserControls\UcMonthlyDataOfOneEmployee.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Ingredient\UcSelectGroupAndSubGroup.xaml">
+    <Page Include="UserControls\UcMonthlyDataOfOneMiscDebt.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Ingredient\UcSuggesterTextBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserControls\Ingredient\UcFormStateLabel.xaml">
+    <Page Include="UserControls\UcMonthlyDataOfOneMiscPayment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Ingredient\UcSelectContractMasterOfEmployee.xaml">
+    <Page Include="UserControls\UcMonthlyDataOfOneVariable.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Ingredient\UcSelectEmployee.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserControls\Ingredient\UcShowContractDetails.xaml">
+    <Page Include="UserControls\UcRibbonSelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Ingredient\UcShowContractMaster.xaml">
+    <Page Include="UserControls\UcSelectGroupAndSubGroup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Tab\UcCityMng.xaml">
+    <Page Include="UserControls\UcSuggesterTextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UcFormStateLabel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Tab\UcContractMng.xaml">
+    <Page Include="UserControls\UcSelectContractMasterOfEmployee.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Tab\UcMiscRechargesOfOneEmployee.xaml">
+    <Page Include="UserControls\UcSelectEmployee.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UcShowContractDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Tab\UcEmployeeMng.xaml">
+    <Page Include="UserControls\UcShowContractMaster.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Tab\UcContractFieldTitlesMng.xaml">
+    <Page Include="UserControls\UcCityMng.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Tab\UcExpenseArticleMng.xaml">
+    <Page Include="UserControls\UcContractMng.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Tab\UcGroupMng.xaml">
+    <Page Include="UserControls\UcMiscRechargesOfOneEmployee.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Tab\UcHandselFormulaMng.xaml">
+    <Page Include="UserControls\UcEmployeeMng.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Tab\UcJobMng.xaml">
+    <Page Include="UserControls\UcContractFieldTitlesMng.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Tab\UcMiscMng.xaml">
+    <Page Include="UserControls\UcExpenseArticleMng.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Tab\UcMiscRechargeMng.xaml">
+    <Page Include="UserControls\UcGroupMng.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Tab\UcMiscRechargesOfOneMisc.xaml">
+    <Page Include="UserControls\UcHandselFormulaMng.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Tab\UcMissionFormulaMng.xaml">
+    <Page Include="UserControls\UcJobMng.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Tab\UcMissionMng.xaml">
+    <Page Include="UserControls\UcMiscMng.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Tab\UcParameterMng.xaml">
+    <Page Include="UserControls\UcMiscRechargeMng.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Tab\UcTaxTableMng.xaml">
+    <Page Include="UserControls\UcMiscRechargesOfOneMisc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UcMissionFormulaMng.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UcMissionMng.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UcMonthlyDataMng.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UcParameterMng.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UcTaxTableMng.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

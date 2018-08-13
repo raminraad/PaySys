@@ -133,6 +133,15 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to نام و نام خانوادگی.
+        /// </summary>
+        public static string FullName {
+            get {
+                return ResourceManager.GetString("FullName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to تلفن منزل.
         /// </summary>
         public static string HomeTel {
@@ -174,6 +183,15 @@ namespace PaySys.Globalization.Fa {
         public static string LName {
             get {
                 return ResourceManager.GetString("LName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نام خانوادگی - نام.
+        /// </summary>
+        public static string LuffName {
+            get {
+                return ResourceManager.GetString("LuffName", resourceCulture);
             }
         }
         

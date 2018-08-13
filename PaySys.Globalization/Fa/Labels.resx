@@ -378,4 +378,31 @@
   <data name="Reload" xml:space="preserve">
     <value>بارگذاری</value>
   </data>
+  <data name="GroupByMiscTitleDebt" xml:space="preserve">
+    <value>به تفکیک عناوین (کسور)</value>
+  </data>
+  <data name="GroupByMiscTitlePayment" xml:space="preserve">
+    <value>به تفکیک عناوین (پرداخت ها)</value>
+  </data>
+  <data name="GroupByVariableTitle" xml:space="preserve">
+    <value>به تفکیک عناوین (متغیرها)</value>
+  </data>
+  <data name="MonthlyVariables" xml:space="preserve">
+    <value>متغیرهای ماهانه</value>
+  </data>
+  <data name="Variables" xml:space="preserve">
+    <value>متغیرها</value>
+  </data>
+  <data name="tabMonthlyDataMng" xml:space="preserve">
+    <value>داده های ماهانه</value>
+  </data>
+  <data name="ValueSubtraction" xml:space="preserve">
+    <value>کسر از مقدار</value>
+  </data>
+  <data name="Employees" xml:space="preserve">
+    <value>کارمندان</value>
+  </data>
+  <data name="VariableValue" xml:space="preserve">
+    <value>مقدار متغیر</value>
+  </data>
 </root>

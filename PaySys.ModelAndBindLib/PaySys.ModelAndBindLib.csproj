@@ -45,6 +45,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages.manual\PersianDate.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -69,9 +70,9 @@
     <Compile Include="EF.Engine\PaySysContext.cs" />
     <Compile Include="EF.Engine\PaySysDbInitializer.cs" />
     <Compile Include="EF.Migrations\Configuration.cs" />
-    <Compile Include="Migrations\201808072254062_Init.cs" />
-    <Compile Include="Migrations\201808072254062_Init.Designer.cs">
-      <DependentUpon>201808072254062_Init.cs</DependentUpon>
+    <Compile Include="Migrations\201808131801018_Init.cs" />
+    <Compile Include="Migrations\201808131801018_Init.Designer.cs">
+      <DependentUpon>201808131801018_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Visual\TitledCompositeCollection.cs" />
     <Compile Include="Model\Class1.cs" />
@@ -94,8 +95,8 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201808072254062_Init.resx">
-      <DependentUpon>201808072254062_Init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201808131801018_Init.resx">
+      <DependentUpon>201808131801018_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

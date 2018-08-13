@@ -124,7 +124,7 @@
 					                DisplayMemberBinding="{Binding MiscTitle.Title}"/>
 					<GridViewColumn Header="{x:Static fa:Labels.ExpenseArticle}"
 					                Width="150"
-					                DisplayMemberBinding="{Binding CurrentExpenseArticle.DspCodeTitle}"/>
+					                DisplayMemberBinding="{Binding ExpenseArticle.CodeTitle}"/>
 					<GridViewColumn Header="{x:Static fa:Labels.Operations}"
 					                Width="50">
 						<GridViewColumn.CellTemplate>
@@ -158,7 +158,7 @@
 									DisplayMemberBinding="{Binding MiscTitle.Title}"/>
 					<GridViewColumn Header="{x:Static fa:Labels.ExpenseArticle}"
 					                Width="150"
-					                DisplayMemberBinding="{Binding CurrentExpenseArticle.DspCodeTitle}"/>
+					                DisplayMemberBinding="{Binding ExpenseArticle.CodeTitle}"/>
 					<GridViewColumn Header="{x:Static fa:Labels.Operations}"
 					                Width="50">
 						<GridViewColumn.CellTemplate>

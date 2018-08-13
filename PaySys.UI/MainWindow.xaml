@@ -9,10 +9,20 @@
 		Title="MainWindow"
 		Height="350"
 		Width="525">
-	<Window.Resources></Window.Resources>
 	<DockPanel FlowDirection="RightToLeft">
 		<Menu Name="MnuMain"
+			  FontFamily="{StaticResource DefaultFont}"
+			  FontSize="18"
+			  HorizontalContentAlignment="Stretch"
 			  DockPanel.Dock="Top">
+			<Menu.Resources>
+				<Style TargetType="MenuItem">
+					<Setter Property="Height"
+					        Value="30" />
+					<Setter Property="Foreground"
+					        Value="Green" />
+				</Style>
+			</Menu.Resources>
 			<MenuItem Header="اطلاعات پایه">
 				<MenuItem x:Name="MnuEmployeeMng"
 						  Header="اطلاعات پرسنل"
@@ -47,16 +57,15 @@
 				<MenuItem Header="گزارش بانکی فیش های درآمد" />
 			</MenuItem>
 			<MenuItem Header="عملیات ماه جاری">
-				<MenuItem Header="ورود اطلاعات بصورت انفرادی" />
+				<MenuItem Header="ورود اطلاعات بصورت انفرادی" x:Name="MnuMonthlyDataMng" Click="MnuMonthlyDataMng_OnClick"  Foreground="Red" />
 				<MenuItem Header="ورود اطلاعات بصورت گروهی" />
 				<MenuItem Header="تعریف عناوین پرداختهای متفرقه" />
 				<MenuItem Header="ورود اطلاعات متفرقه ماهانه" />
 				<MenuItem Header="ورود مابه التفاوت احکام" />
 				<MenuItem Header="اطلاح بایگانی تفاوت ها" />
 				<MenuItem x:Name="MnuMissionMng" Header="ورود احکام مأموریت"
-				          Foreground="Red"
-						  Click="MnuMissionMng_OnClick"
-						  />
+				          Click="MnuMissionMng_OnClick"
+				          />
 				<MenuItem Header="اصلاح بایگانی مأموریت ها" />
 				<MenuItem Header="تعریف عناوین کسور" />
 				<MenuItem x:Name="MnuMiscRechargesMng"

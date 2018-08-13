@@ -14,5 +14,6 @@
 				<Setter Property="Height"
 				        Value="30"/>
 			</Style>
+		<FontFamily x:Key="DefaultFont">PFont</FontFamily>
     </Application.Resources>
 </Application>

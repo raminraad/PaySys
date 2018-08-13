@@ -61,7 +61,7 @@ namespace PaySys.UI.UC
 			selectExpenseArticleDialog.ListViewItemsSource = ExpenseArticlesAll;
 			if(selectExpenseArticleDialog.ShowDialog() == true)
 			{
-				_selectedMisc.CurrentExpenseArticle = (ExpenseArticle) selectExpenseArticleDialog.SelectedItem;
+				_selectedMisc.ExpenseArticle = (ExpenseArticle) selectExpenseArticleDialog.SelectedItem;
 				SaveContext.Invoke();
 				SelectedListView.GetBindingExpression(ItemsControl.ItemsSourceProperty)?.UpdateTarget();
 			}
