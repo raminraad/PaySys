@@ -10,10 +10,40 @@
          <SolidColorBrush x:Key="FormStateColorSelect" Color="DarkSlateGray"/>
          <SolidColorBrush x:Key="FormStateColorDelete" Color="Crimson"/>
          <SolidColorBrush x:Key="FormStateColorUnknown" Color="Black"/>
-		<Style x:Key="StyleOfCombobox" TargetType="ComboBox">
-				<Setter Property="Height"
-				        Value="30"/>
-			</Style>
-		<FontFamily x:Key="DefaultFont">PFont</FontFamily>
-    </Application.Resources>
+	    <FontFamily x:Key="DefaultFont">PFont</FontFamily>
+	    <Style x:Key="StyleOfCombobox" TargetType="ComboBox">
+		    <Setter Property="Height"
+		            Value="30"/>
+	    </Style>
+	    <Style x:Key="StyleOfListTitle"
+	           TargetType="TextBlock">
+		    <Setter Property="HorizontalAlignment"
+		            Value="Center" />
+		    <Setter Property="VerticalAlignment"
+		            Value="Bottom" />
+		    <Setter Property="FontSize"
+		            Value="18" />
+		    <Setter Property="FontFamily"
+		            Value="{StaticResource DefaultFont}" />
+		    <Setter Property="FontWeight"
+		            Value="Black" />
+	    </Style>
+	    <Style TargetType="GridViewColumnHeader">
+		    <Setter Property="FontFamily"
+		            Value="{StaticResource DefaultFont}" />
+		    <Setter Property="FontSize"
+		            Value="18" />
+	    </Style>
+	    <Style x:Key="StyleOfTextBox"
+	           TargetType="TextBox">
+		    <Setter Property="Width"
+		            Value="200" />
+		    <Setter Property="Height"
+		            Value="30" />
+		    <Setter Property="VerticalContentAlignment"
+		            Value="Center" />
+		    <Setter Property="VerticalAlignment"
+		            Value="Center" />
+	    </Style>
+	</Application.Resources>
 </Application>

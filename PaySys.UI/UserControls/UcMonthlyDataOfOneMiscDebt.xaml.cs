@@ -37,9 +37,12 @@ namespace PaySys.UI.UC
 
 		private void UcMonthlyDataOfOneMiscDebt_OnDataContextChanged( object sender, DependencyPropertyChangedEventArgs e )
 		{
-			Cvs.Source = ( e.NewValue as SubGroup )?.TempMiscValuesOfEmployees.Where( m => !m.Misc.MiscTitle.IsPayment );
+			RefreshCvs( e.NewValue );
 		}
-
+		public void RefreshCvs(object source=null)
+		{
+			Cvs.Source = ( ( source ?? DataContext ) as SubGroup )?.TempMiscValuesOfEmployees.Where( m => !m.Misc.MiscTitle.IsPayment );
+		}
 		#region CLR Events
 
 		private void FilterCvs( object sender, FilterEventArgs e )
@@ -53,7 +56,7 @@ namespace PaySys.UI.UC
 
 		private void SmpUcRibbonSelector_OnSelectedItemChanged( object sender, RoutedEventArgs e )
 		{
-			CollectionViewSource.GetDefaultView( ListViewItems.ItemsSource )?.Refresh();
+			CollectionViewSource.GetDefaultView( ListViewOfItems.ItemsSource )?.Refresh();
 		}
 
 		private void UcMonthlyDataOfOneMiscDebt_OnInitialized( object sender, EventArgs e )
@@ -64,7 +67,7 @@ namespace PaySys.UI.UC
 
 		private void ListItemGotFocus( object sender, RoutedEventArgs e )
 		{
-			ListViewItems.SelectedItem = ( sender as ListViewItem ).Content;
+			ListViewOfItems.SelectedItem = ( sender as ListViewItem ).Content;
 			( sender as ListViewItem ).FindVisualChildren<TextBox>().FirstOrDefault()?.SelectAll();
 		}
 

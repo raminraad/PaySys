@@ -19,23 +19,6 @@
              Initialized="UcMonthlyDataOfOneMiscPayment_OnInitialized">
 	<UserControl.Resources>
 		<CollectionViewSource x:Key="Cvs" />
-		<Style TargetType="GridViewColumnHeader">
-			<Setter Property="FontFamily"
-			        Value="{StaticResource DefaultFont}" />
-			<Setter Property="FontSize"
-			        Value="18" />
-		</Style>
-		<Style x:Key="StyleOfTextBox"
-		       TargetType="TextBox">
-			<Setter Property="Width"
-			        Value="200" />
-			<Setter Property="Height"
-			        Value="30" />
-			<Setter Property="VerticalContentAlignment"
-			        Value="Center" />
-			<Setter Property="VerticalAlignment"
-			        Value="Center" />
-		</Style>
 	</UserControl.Resources>
 	<Grid>
 		<Grid.Resources>
@@ -101,7 +84,7 @@
 		           Grid.Column="1"
 		           Text="{x:Static fa:Labels.Employees}"
 		           Style="{StaticResource StyleOfTitle}" />
-		<ListView x:Name="ListViewItems"
+		<ListView x:Name="ListViewOfItems"
 		          Grid.Row="4"
 		          Grid.Column="1"
 		          DataContext="{Binding Source={StaticResource Cvs}}"
@@ -116,6 +99,7 @@
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
 									<TextBox Text="{Binding Value,StringFormat=N0}"
+									         IsReadOnly="{Binding ElementName=SmpUcMonthlyDataOfOneMiscPayment,Path=ReadOnlyOfListItems}"
 									         Style="{StaticResource StyleOfTextBox}" />
 								</DataTemplate>
 							</GridViewColumn.CellTemplate>
@@ -124,6 +108,7 @@
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
 									<TextBox Text="{Binding ValueSubtraction,StringFormat=N0}"
+									         IsReadOnly="{Binding ElementName=SmpUcMonthlyDataOfOneMiscPayment,Path=ReadOnlyOfListItems}"
 									         Style="{StaticResource StyleOfTextBox}" />
 								</DataTemplate>
 							</GridViewColumn.CellTemplate>

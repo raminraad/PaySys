@@ -1,81 +1,65 @@
 ﻿<UserControl x:Name="SmpUcMonthlyDataOfOneVariable"
-			 x:Class="PaySys.UI.UC.UcMonthlyDataOfOneVariable"
-			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-			 xmlns:local="clr-namespace:PaySys.UI.UC"
-			 xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Model;assembly=PaySys.ModelAndBindLib"
-			 xmlns:commands="clr-namespace:PaySys.UI.Commands"
-			 xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
-			 xmlns:persianDateControls="clr-namespace:Arash.PersianDateControls;assembly=PersianDateControls"
-			 xmlns:bindingConverter="clr-namespace:PaySys.ModelAndBindLib.BindingConverter;assembly=PaySys.ModelAndBindLib"
-			 mc:Ignorable="d"
-			 d:DataContext="{d:DesignInstance Type=model:SubGroup, IsDesignTimeCreatable=True}"
-			 DataContextChanged="UcMonthlyDataOfOneVariable_OnDataContextChanged"
-			 FlowDirection="RightToLeft"
-			 d:DesignHeight="300"
-			 d:DesignWidth="600"
-			 Initialized="UcMonthlyDataOfOneVariable_OnInitialized">
+             x:Class="PaySys.UI.UC.UcMonthlyDataOfOneVariable"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:PaySys.UI.UC"
+             xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Model;assembly=PaySys.ModelAndBindLib"
+             xmlns:commands="clr-namespace:PaySys.UI.Commands"
+             xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
+             xmlns:persianDateControls="clr-namespace:Arash.PersianDateControls;assembly=PersianDateControls"
+             xmlns:bindingConverter="clr-namespace:PaySys.ModelAndBindLib.BindingConverter;assembly=PaySys.ModelAndBindLib"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=model:SubGroup, IsDesignTimeCreatable=True}"
+             DataContextChanged="UcMonthlyDataOfOneVariable_OnDataContextChanged"
+             FlowDirection="RightToLeft"
+             d:DesignHeight="300"
+             d:DesignWidth="600"
+             Initialized="UcMonthlyDataOfOneVariable_OnInitialized">
 	<UserControl.Resources>
 		<bindingConverter:DateTimeToPersianDateConverter x:Key="GregToPersDateConverter" />
 		<CollectionViewSource x:Key="Cvs" />
-		<Style TargetType="GridViewColumnHeader">
-			<Setter Property="FontFamily"
-					Value="{StaticResource DefaultFont}" />
-			<Setter Property="FontSize"
-					Value="18" />
-		</Style>
-		<Style x:Key="StyleOfTextBox"
-			   TargetType="TextBox">
-			<Setter Property="Width"
-					Value="200" />
-			<Setter Property="Height"
-					Value="30" />
-			<Setter Property="VerticalContentAlignment"
-					Value="Center" />
-			<Setter Property="VerticalAlignment"
-					Value="Center" />
-		</Style>
+		<bindingConverter:NegateBooleanConverter x:Key="NegateBooleanConverter" />
 	</UserControl.Resources>
 	<Grid>
 		<Grid.Resources>
 			<Style TargetType="ListView">
 				<Setter Property="Margin"
-						Value="10" />
+				        Value="10" />
 				<Setter Property="SelectionMode"
-						Value="Single" />
+				        Value="Single" />
 				<Setter Property="KeyboardNavigation.TabNavigation"
-						Value="Cycle" />
+				        Value="Cycle" />
 				<Setter Property="ItemContainerStyle">
 					<Setter.Value>
 						<Style TargetType="ListViewItem">
 							<Setter Property="IsTabStop"
-									Value="False" />
+							        Value="False" />
 							<EventSetter Event="GotFocus"
-										 Handler="ListItemGotFocus" />
+							             Handler="ListItemGotFocus" />
 							<Setter Property="FontFamily"
-									Value="{StaticResource DefaultFont}" />
+							        Value="{StaticResource DefaultFont}" />
 							<Setter Property="FontSize"
-									Value="16" />
+							        Value="16" />
 							<Setter Property="VerticalAlignment"
-									Value="Center" />
+							        Value="Center" />
 						</Style>
 					</Setter.Value>
 				</Setter>
 			</Style>
 			<Style x:Key="StyleOfTitle"
-				   TargetType="TextBlock">
+			       TargetType="TextBlock">
 				<Setter Property="HorizontalAlignment"
-						Value="Center" />
+				        Value="Center" />
 				<Setter Property="VerticalAlignment"
-						Value="Bottom" />
+				        Value="Bottom" />
 				<Setter Property="FontSize"
-						Value="18" />
+				        Value="18" />
 				<Setter Property="FontFamily"
-						Value="{StaticResource DefaultFont}" />
+				        Value="{StaticResource DefaultFont}" />
 				<Setter Property="FontWeight"
-						Value="Black" />
+				        Value="Black" />
 			</Style>
 		</Grid.Resources>
 		<Grid.ColumnDefinitions>
@@ -92,39 +76,42 @@
 			<RowDefinition Height="30" />
 		</Grid.RowDefinitions>
 		<local:UcRibbonSelector Grid.Row="1"
-								Grid.Column="1"
-								ListDataContextChanged="SmpUcRibbonSelector_OnListDataContextChanged"
-								x:Name="SmpUcRibbonSelector"
-								SelectedItemChanged="SmpUcRibbonSelector_OnSelectedItemChanged"
-								DataContext="{Binding CurrentVariables, Mode=OneWay}"
-								TitleDisplayMember="/VariableTitle.Title" />
+		                        Grid.Column="1"
+		                        ListDataContextChanged="SmpUcRibbonSelector_OnListDataContextChanged"
+		                        x:Name="SmpUcRibbonSelector"
+		                        SelectedItemChanged="SmpUcRibbonSelector_OnSelectedItemChanged"
+		                        DataContext="{Binding CurrentVariables, Mode=OneWay}"
+		                        TitleDisplayMember="/VariableTitle.Title" />
 		<TextBlock Grid.Row="3"
-				   Grid.Column="1"
-				   Text="{x:Static fa:Labels.Employees}"
-				   Style="{StaticResource StyleOfTitle}" />
-		<ListView x:Name="ListViewItems"
-				  Grid.Row="4"
-				  Grid.Column="1"
-				  DataContext="{Binding Source={StaticResource Cvs}}"
-				  ItemsSource="{Binding}"
-				  d:DataContext="{d:DesignInstance Type=model:VariableValueForEmployee, IsDesignTimeCreatable=True}">
+		           Grid.Column="1"
+		           Text="{x:Static fa:Labels.Employees}"
+		           Style="{StaticResource StyleOfTitle}" />
+		<ListView x:Name="ListViewOfItems"
+		          Grid.Row="4"
+		          Grid.Column="1"
+		          DataContext="{Binding Source={StaticResource Cvs}}"
+		          ItemsSource="{Binding}"
+		          d:DataContext="{d:DesignInstance Type=model:VariableValueForEmployee, IsDesignTimeCreatable=True}">
 			<ListView.View>
 				<GridView>
 					<GridView.Columns>
 						<GridViewColumn Header="{x:Static fa:FieldicEmployee.FullName}"
-										DisplayMemberBinding="{Binding Employee.FullName}" />
+						                DisplayMemberBinding="{Binding Employee.FullName}" />
 						<GridViewColumn Header="{x:Static fa:Labels.VariableValue}">
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
 									<StackPanel>
 										<TextBox Text="{Binding NumericValue,StringFormat=N0}"
 										         Visibility="{Binding ValueIsNumeric}"
+										         IsReadOnly="{Binding ElementName=SmpUcMonthlyDataOfOneVariable,Path=ReadOnlyOfListItems}"
 										         Style="{StaticResource StyleOfTextBox}" />
 										<TextBox Text="{Binding StringValue}"
 										         Visibility="{Binding ValueIsString}"
+										         IsReadOnly="{Binding ElementName=SmpUcMonthlyDataOfOneVariable,Path=ReadOnlyOfListItems}"
 										         Style="{StaticResource StyleOfTextBox}" />
 										<persianDateControls:PersianDatePicker SelectedDate="{Binding DateValue,Mode=TwoWay,Converter={StaticResource GregToPersDateConverter}}"
 										                                       DisplayDate="{Binding DateValue,Mode=TwoWay,Converter={StaticResource GregToPersDateConverter}}"
+										                                       IsEnabled="{Binding ElementName=SmpUcMonthlyDataOfOneVariable,Path=ReadOnlyOfListItems,Converter={StaticResource NegateBooleanConverter}}"
 										                                       Visibility="{Binding ValueIsDate}"
 										                                       FontFamily="{StaticResource DefaultFont}" />
 									</StackPanel>
@@ -136,9 +123,9 @@
 				</GridView>
 			</ListView.View>
 		</ListView>
-		
+
 		<StatusBar Grid.Column="0"
-				   Grid.Row="5"
-				   Grid.ColumnSpan="3" />
+		           Grid.Row="5"
+		           Grid.ColumnSpan="3" />
 	</Grid>
 </UserControl>

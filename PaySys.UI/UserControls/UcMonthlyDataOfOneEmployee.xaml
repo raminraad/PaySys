@@ -22,23 +22,7 @@
 		<CollectionViewSource x:Key="CvsOfEmployeeMiscPaymentValues" />
 		<CollectionViewSource x:Key="CvsOfEmployeeMiscDebtValues" />
 		<CollectionViewSource x:Key="CvsOfEmployeeVariableValues" />
-		<Style TargetType="GridViewColumnHeader">
-			<Setter Property="FontFamily"
-			        Value="{StaticResource DefaultFont}" />
-			<Setter Property="FontSize"
-			        Value="18" />
-		</Style>
-		<Style x:Key="StyleOfTextBox"
-		       TargetType="TextBox">
-			<Setter Property="Width"
-			        Value="200" />
-			<Setter Property="Height"
-			        Value="30" />
-			<Setter Property="VerticalContentAlignment"
-			        Value="Center" />
-			<Setter Property="VerticalAlignment"
-			        Value="Center" />
-		</Style>
+		<bindingConverter:NegateBooleanConverter x:Key="NegateBooleanConverter" />
 	</UserControl.Resources>
 	<Grid>
 		<Grid.Resources>
@@ -66,19 +50,6 @@
 					</Setter.Value>
 				</Setter>
 			</Style>
-			<Style x:Key="StyleOfTitle"
-			       TargetType="TextBlock">
-				<Setter Property="HorizontalAlignment"
-				        Value="Center" />
-				<Setter Property="VerticalAlignment"
-				        Value="Bottom" />
-				<Setter Property="FontSize"
-				        Value="18" />
-				<Setter Property="FontFamily"
-				        Value="{StaticResource DefaultFont}" />
-				<Setter Property="FontWeight"
-				        Value="Black" />
-			</Style>
 		</Grid.Resources>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="*" />
@@ -103,18 +74,18 @@
 		<TextBlock Grid.Row="3"
 		           Grid.Column="0"
 		           Text="{x:Static fa:Labels.MonthlyVariables}"
-		           Style="{StaticResource StyleOfTitle}" />
+		           Style="{StaticResource StyleOfListTitle}" />
 		<TextBlock Grid.Row="3"
 		           Grid.Column="1"
 		           Text="{x:Static fa:Labels.MiscPayments}"
-		           Style="{StaticResource StyleOfTitle}" />
+				   Style="{StaticResource StyleOfListTitle}" />
 		<TextBlock Grid.Row="3"
 		           Grid.Column="2"
 		           Text="{x:Static fa:Labels.MiscDebts}"
-		           Style="{StaticResource StyleOfTitle}" />
+				   Style="{StaticResource StyleOfListTitle}" />
 		<ListView x:Name="ListViewVariables"
 		          Grid.Row="4"
-		          Grid.Column="0"
+		          Grid.Column="0" 
 		          DataContext="{Binding Source={StaticResource CvsOfEmployeeVariableValues}}"
 		          ItemsSource="{Binding}"
 		          d:DataContext="{d:DesignInstance Type=model:VariableValueForEmployee, IsDesignTimeCreatable=True}">
@@ -129,12 +100,15 @@
 									<StackPanel>
 										<TextBox Text="{Binding NumericValue,StringFormat=N0}"
 										         Visibility="{Binding ValueIsNumeric}"
+										         IsReadOnly="{Binding ElementName=SmpUcMonthlyDataOfOneEmployee,Path=ReadOnlyOfListItems}"
 										         Style="{StaticResource StyleOfTextBox}" />
 										<TextBox Text="{Binding StringValue}"
 										         Visibility="{Binding ValueIsString}"
+										         IsReadOnly="{Binding ElementName=SmpUcMonthlyDataOfOneEmployee,Path=ReadOnlyOfListItems}"
 										         Style="{StaticResource StyleOfTextBox}" />
 										<persianDateControls:PersianDatePicker SelectedDate="{Binding DateValue,Mode=TwoWay,Converter={StaticResource GregToPersDateConverter}}"
 										                                       DisplayDate="{Binding DateValue,Mode=TwoWay,Converter={StaticResource GregToPersDateConverter}}"
+										                                       IsEnabled="{Binding ElementName=SmpUcMonthlyDataOfOneEmployee,Path=ReadOnlyOfListItems,Converter={StaticResource NegateBooleanConverter}}"
 										                                       Visibility="{Binding ValueIsDate}" 
 																			   FontFamily="{StaticResource DefaultFont}"/>
 									</StackPanel>
@@ -161,6 +135,7 @@
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
 									<TextBox Text="{Binding Value,StringFormat=N0}"
+									         IsReadOnly="{Binding ElementName=SmpUcMonthlyDataOfOneEmployee,Path=ReadOnlyOfListItems}"
 									         Style="{StaticResource StyleOfTextBox}"/>
 								</DataTemplate>
 							</GridViewColumn.CellTemplate>
@@ -169,6 +144,7 @@
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
 									<TextBox Text="{Binding ValueSubtraction,StringFormat=N0}"
+									         IsReadOnly="{Binding ElementName=SmpUcMonthlyDataOfOneEmployee,Path=ReadOnlyOfListItems}"
 											 Style="{StaticResource StyleOfTextBox}" />
 								</DataTemplate>
 							</GridViewColumn.CellTemplate>
@@ -193,6 +169,7 @@
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
 									<TextBox Text="{Binding Value,StringFormat=N0}"
+									         IsReadOnly="{Binding ElementName=SmpUcMonthlyDataOfOneEmployee,Path=ReadOnlyOfListItems}"
 									         Style="{StaticResource StyleOfTextBox}" />
 								</DataTemplate>
 							</GridViewColumn.CellTemplate>

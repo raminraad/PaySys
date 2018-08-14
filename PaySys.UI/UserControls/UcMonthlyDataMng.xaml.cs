@@ -11,6 +11,7 @@ using PaySys.ModelAndBindLib;
 using PaySys.ModelAndBindLib.Engine;
 using PaySys.ModelAndBindLib.Model;
 using PaySys.UI.Commands;
+using ValueType = PaySys.ModelAndBindLib.Model.ValueType;
 
 #endregion
 
@@ -23,7 +24,11 @@ namespace PaySys.UI.UC
 			InitializeComponent();
 		}
 
-		private PaySysContext Context { set; get; } = new PaySysContext();
+		private PaySysContext Context
+		{
+			set;
+			get;
+		} = new PaySysContext();
 
 		private void Reload( object sender, ExecutedRoutedEventArgs e )
 		{
@@ -46,12 +51,50 @@ namespace PaySys.UI.UC
 
 			if( true )
 			{
-				foreach( var rec in SmpUcSelectGroupAndSubGroup.SelectedSubGroup.TempMiscRechargesOfEmployees )
+				foreach( var v in SmpUcSelectGroupAndSubGroup.SelectedSubGroup.TempVariableValuesOfEmployees )
 				{
-					if( rec.MiscRechargeId == 0 && Math.Abs( rec.Value ) > 0 )
-						Context.MiscRecharges.Add( rec );
-					if( rec.MiscRechargeId != 0 && rec.Value == 0 )
-						Context.MiscRecharges.Remove( rec );
+					if( v.VariableValueForEmployeeId == 0 )
+						switch( v.SubGroupVariable.VariableTitle.ValueType )
+						{
+							case ValueType.Absolute:
+							case ValueType.Percent:
+								if( v.NumericValue.HasValue )
+									Context.VariableValueForEmployees.Add( v );
+								break;
+							case ValueType.Date:
+								if( v.DateValue.HasValue )
+									Context.VariableValueForEmployees.Add( v );
+								break;
+							case ValueType.String:
+								if( !string.IsNullOrEmpty( v.StringValue ) )
+									Context.VariableValueForEmployees.Add( v );
+								break;
+						}
+					else if( v.VariableValueForEmployeeId != 0 )
+						switch( v.SubGroupVariable.VariableTitle.ValueType )
+						{
+							case ValueType.Absolute:
+							case ValueType.Percent:
+								if( !v.NumericValue.HasValue )
+									Context.VariableValueForEmployees.Remove( v );
+								break;
+							case ValueType.Date:
+								if( !v.DateValue.HasValue )
+									Context.VariableValueForEmployees.Remove( v );
+								break;
+							case ValueType.String:
+								if( string.IsNullOrEmpty( v.StringValue ) )
+									Context.VariableValueForEmployees.Remove( v );
+								break;
+						}
+				}
+
+				foreach( var m in SmpUcSelectGroupAndSubGroup.SelectedSubGroup.TempMiscValuesOfEmployees )
+				{
+					if( m.MiscValueForEmployeeId == 0 && (m.Value != 0 ||m.ValueSubtraction != 0) )
+						Context.MiscValueForEmployees.Add( m );
+					if( m.MiscValueForEmployeeId != 0 && (m.Value != 0 ||m.ValueSubtraction != 0) )
+						Context.MiscValueForEmployees.Remove( m );
 				}
 
 				Context.SaveChanges();
@@ -70,9 +113,10 @@ namespace PaySys.UI.UC
 			SmpUcFormStateLabel.CurrentState = FormCurrentState.Select;
 			Context.DiscardChanges();
 			LeftJoinAndAssignSubGroupMonthlyData();
-//			SmpUcMonthlyDataOfOneEmployee.RefreshCvs();
-//			SmpUcMonthlyDataOfOneVariable.RefreshCvs();
-
+			SmpUcMonthlyDataOfOneEmployee.RefreshCvs();
+			SmpUcMonthlyDataOfOneVariable.RefreshCvs();
+			SmpUcMonthlyDataOfOneMiscPayment.RefreshCvs();
+			SmpUcMonthlyDataOfOneMiscDebt.RefreshCvs();
 		}
 
 		private void SmpUcSelectGroupAndSubGroup_OnSelectedSubGroupChanged( object sender, RoutedEventArgs e )
@@ -91,19 +135,19 @@ namespace PaySys.UI.UC
 			var sgRecs = sgEmps.SelectMany( emp => emp.MiscRecharges );
 			var newQuery = sgEmps.GroupJoin( sgRecs, emp => emp, rec => rec.Employee, ( emp, recEnum ) => new
 			{
-				Employee = emp,
-				MiscRecharges = from m in sg.Miscs.Where( misc => misc.Year == PaySysSetting.CurrentYear && misc.Month == PaySysSetting.CurrentMonth )
-				                join r in recEnum.Where( r => r.Year == PaySysSetting.CurrentYear && r.Month == PaySysSetting.CurrentMonth ) on m equals r.Misc into empRecs
-				                from subRec in empRecs.DefaultIfEmpty( new MiscRecharge
-				                {
-					                Misc = m,
-					                Value = 0,
-					                Employee = emp,
-					                Month = PaySysSetting.CurrentMonth,
-					                Year = m.Year,
-					                MiscRechargeId = 0
-				                } )
-				                select subRec
+					Employee = emp,
+					MiscRecharges = from m in sg.Miscs.Where( misc => misc.Year == PaySysSetting.CurrentYear && misc.Month == PaySysSetting.CurrentMonth )
+					                join r in recEnum.Where( r => r.Year == PaySysSetting.CurrentYear && r.Month == PaySysSetting.CurrentMonth ) on m equals r.Misc into empRecs
+					                from subRec in empRecs.DefaultIfEmpty( new MiscRecharge
+					                {
+							                Misc = m,
+							                Value = 0,
+							                Employee = emp,
+							                Month = PaySysSetting.CurrentMonth,
+							                Year = m.Year,
+							                MiscRechargeId = 0
+					                } )
+					                select subRec
 			} );
 
 			sg.TempMiscRechargesOfEmployees = newQuery.SelectMany( arg => arg.MiscRecharges ).ToList();
@@ -121,39 +165,40 @@ namespace PaySys.UI.UC
 			var sgMiscs = sgEmps.SelectMany( emp => emp.MiscValueForEmployees );
 			var empVarsJoin = sgEmps.GroupJoin( sgVars, emp => emp, var => var.Employee, ( emp, vars ) => new
 			{
-				Employee = emp,
-				VariableValues = from sgV in sg.CurrentVariables
-				                join v in vars.Where( r => r.Year == PaySysSetting.CurrentYear && r.Month == PaySysSetting.CurrentMonth ) on sgV equals v.SubGroupVariable into empVars
-				                from subRec in empVars.DefaultIfEmpty( new VariableValueForEmployee
-				                {
-					                SubGroupVariable = sgV,
+					Employee = emp,
+					VariableValues = from sgV in sg.CurrentVariables
+					                 join v in vars.Where( r => r.Year == PaySysSetting.CurrentYear && r.Month == PaySysSetting.CurrentMonth ) on sgV equals v.SubGroupVariable into empVars
+					                 from subRec in empVars.DefaultIfEmpty( new VariableValueForEmployee
+					                 {
+							                 SubGroupVariable = sgV,
+
 //					                Value = null,
-									NumericValue = null,
-									StringValue = null,
-									DateValue = null,
-					                Employee = emp,
-					                Month = PaySysSetting.CurrentMonth,
-					                Year = PaySysSetting.CurrentYear,
-					                VariableValueForEmployeeId = 0
-				                } )
-				                select subRec
+							                 NumericValue = null,
+							                 StringValue = null,
+							                 DateValue = null,
+							                 Employee = emp,
+							                 Month = PaySysSetting.CurrentMonth,
+							                 Year = PaySysSetting.CurrentYear,
+							                 VariableValueForEmployeeId = 0
+					                 } )
+					                 select subRec
 			} );
 			var empMiscsJoin = sgEmps.GroupJoin( sgMiscs, emp => emp, var => var.Employee, ( emp, miscs ) => new
 			{
-				Employee = emp,
-				MiscValues = from sgM in sg.CurrentMiscs
-				                 join m in miscs.Where( r => r.Year == PaySysSetting.CurrentYear && r.Month == PaySysSetting.CurrentMonth ) on sgM equals m.Misc into empMiscs
-				                 from subVar in empMiscs.DefaultIfEmpty( new MiscValueForEmployee
-				                 {
-					                 Misc = sgM,
-					                 Value = 0,
-					                 ValueSubtraction = 0,
-					                 Employee = emp,
-					                 Month = PaySysSetting.CurrentMonth,
-					                 Year = PaySysSetting.CurrentYear,
-					                 MiscValueForEmployeeId = 0
-				                 } )
-				                 select subVar
+					Employee = emp,
+					MiscValues = from sgM in sg.CurrentMiscs
+					             join m in miscs.Where( r => r.Year == PaySysSetting.CurrentYear && r.Month == PaySysSetting.CurrentMonth ) on sgM equals m.Misc into empMiscs
+					             from subVar in empMiscs.DefaultIfEmpty( new MiscValueForEmployee
+					             {
+							             Misc = sgM,
+							             Value = 0,
+							             ValueSubtraction = 0,
+							             Employee = emp,
+							             Month = PaySysSetting.CurrentMonth,
+							             Year = PaySysSetting.CurrentYear,
+							             MiscValueForEmployeeId = 0
+					             } )
+					             select subVar
 			} );
 
 			sg.TempVariableValuesOfEmployees = empVarsJoin.SelectMany( arg => arg.VariableValues ).ToList();

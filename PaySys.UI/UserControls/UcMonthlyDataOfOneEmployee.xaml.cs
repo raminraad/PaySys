@@ -6,8 +6,10 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using Arash.PersianDateControls;
 using PaySys.ModelAndBindLib.Model;
 using PaySys.UI.ExtensionMethods;
+using ValueType = PaySys.ModelAndBindLib.Model.ValueType;
 
 #endregion
 
@@ -41,11 +43,15 @@ namespace PaySys.UI.UC
 
 		private void UcMonthlyDataOfOneEmployee_OnDataContextChanged( object sender, DependencyPropertyChangedEventArgs e )
 		{
-			CvsOfEmployeeVariableValues.Source = ( e.NewValue as SubGroup )?.TempVariableValuesOfEmployees;
-			CvsOfEmployeeMiscPaymentValues.Source = ( e.NewValue as SubGroup )?.TempMiscValuesOfEmployees.Where( m => m.Misc.MiscTitle.IsPayment );
-			CvsOfEmployeeMiscDebtValues.Source = ( e.NewValue as SubGroup )?.TempMiscValuesOfEmployees.Where( m => !m.Misc.MiscTitle.IsPayment );
+			RefreshCvs( e.NewValue );
 		}
-
+		public void RefreshCvs(object source=null)
+		{
+			var newSource = ( ( source ?? DataContext ) as SubGroup );
+			CvsOfEmployeeVariableValues.Source = newSource?.TempVariableValuesOfEmployees;;
+			CvsOfEmployeeMiscPaymentValues.Source = newSource?.TempMiscValuesOfEmployees.Where( m => m.Misc.MiscTitle.IsPayment );
+			CvsOfEmployeeMiscDebtValues.Source = newSource?.TempMiscValuesOfEmployees.Where( m => !m.Misc.MiscTitle.IsPayment );
+		}
 		#region CLR Events
 
 		private void FilterVariablesOfSelectedEmployee( object sender, FilterEventArgs e )
@@ -87,7 +93,14 @@ namespace PaySys.UI.UC
 
 		private void ListItemGotFocus( object sender, RoutedEventArgs e )
 		{
-			ListViewVariables.SelectedItem = ( sender as ListViewItem ).Content;
+			var listView = ItemsControl.ItemsControlFromItemContainer(sender as ListViewItem) as ListView;
+			if( sender == null || listView ==null)
+				return;
+
+			listView.SelectedItem = ( sender as ListViewItem )?.Content;
+			if( Equals( listView, ListViewVariables ) && (listView.SelectedItem as VariableValueForEmployee)?.SubGroupVariable?.VariableTitle?.ValueType==ValueType.Date)
+				( sender as ListViewItem ).FindVisualChildren<PersianDatePicker>().FirstOrDefault()?.FindVisualChildren<TextBox>()?.FirstOrDefault()?.SelectAll();
+			else
 			( sender as ListViewItem ).FindVisualChildren<TextBox>().FirstOrDefault()?.SelectAll();
 		}
 

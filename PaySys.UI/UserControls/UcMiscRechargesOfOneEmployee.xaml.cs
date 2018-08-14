@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using PaySys.ModelAndBindLib.Model;
 using PaySys.UI.ExtensionMethods;
+using Xceed.Wpf.DataGrid;
 
 #endregion
 
@@ -36,7 +37,7 @@ namespace PaySys.UI.UC
 
 		public void UcMiscRechargesOfOneEmployee_OnDataContextChanged( object sender, DependencyPropertyChangedEventArgs e )
 		{
-			CvsOfSubGroupMiscRecharges.Source = ( e.NewValue as SubGroup )?.TempMiscRechargesOfEmployees;
+			RefreshCvs( e.NewValue );
 		}
 
 		private void SmpUcRibbonSelector_OnListDataContextChanged( object sender, RoutedEventArgs e )
@@ -44,9 +45,9 @@ namespace PaySys.UI.UC
 			SmpUcRibbonSelector.SortDescription = "LuffName";
 		}
 
-		public void RefreshCvsOfSubGroupMiscRecharges()
+		public void RefreshCvs(object source=null)
 		{
-			CvsOfSubGroupMiscRecharges.Source = ( DataContext as SubGroup )?.TempMiscRechargesOfEmployees;
+			CvsOfSubGroupMiscRecharges.Source = ( ( source ?? DataContext ) as SubGroup )?.TempMiscRechargesOfEmployees;
 		}
 
 		#region CLR Events

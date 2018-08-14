@@ -50,7 +50,7 @@ namespace PaySys.UI.UC
 			{
 				foreach( var rec in SmpUcSelectGroupAndSubGroup.SelectedSubGroup.TempMiscRechargesOfEmployees )
 				{
-					if( rec.MiscRechargeId == 0 && Math.Abs( rec.Value ) > 0 )
+					if( rec.MiscRechargeId == 0 && rec.Value != 0 )
 						Context.MiscRecharges.Add( rec );
 					if( rec.MiscRechargeId != 0 && rec.Value == 0 )
 						Context.MiscRecharges.Remove( rec );
@@ -69,8 +69,8 @@ namespace PaySys.UI.UC
 			SmpUcFormStateLabel.CurrentState = FormCurrentState.Select;
 			Context.DiscardChanges();
 			LeftJoinAndAssignSubGroupMiscRecharges();
-			SmpUcMiscRechargesOfOneEmployee.RefreshCvsOfSubGroupMiscRecharges();
-			SmpUcMiscRechargesOfOneMisc.RefreshCvsOfSubGroupMiscRecharges();
+			SmpUcMiscRechargesOfOneEmployee.RefreshCvs();
+			SmpUcMiscRechargesOfOneMisc.RefreshCvs();
 		}
 
 		private void SmpUcSelectGroupAndSubGroup_OnSelectedSubGroupChanged( object sender, RoutedEventArgs e ) { LeftJoinAndAssignSubGroupMiscRecharges(); }

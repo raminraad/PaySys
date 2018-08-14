@@ -44,7 +44,7 @@ namespace PaySys.ModelAndBindLib.Engine
 
 		public DbSet<TaxRow> TaxRows { set; get; }
 
-		public DbSet<MiscValueForEmployee> EmployeeMiscs { set; get; }
+		public DbSet<MiscValueForEmployee> MiscValueForEmployees { set; get; }
 
 		public DbSet<ContractMaster> ContractMasters { set; get; }
 

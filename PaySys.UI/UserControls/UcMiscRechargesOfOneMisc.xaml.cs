@@ -34,9 +34,9 @@ namespace PaySys.UI.UC
 
 		private CollectionViewSource CvsOfSubGroupMiscRecharges => Resources["CvsMiscRecharges"] as CollectionViewSource;
 
-		public void RefreshCvsOfSubGroupMiscRecharges()
+		public void RefreshCvs(object source=null)
 		{
-			CvsOfSubGroupMiscRecharges.Source = ( DataContext as SubGroup )?.TempMiscRechargesOfEmployees;
+			CvsOfSubGroupMiscRecharges.Source = ( ( source ?? DataContext ) as SubGroup )?.TempMiscRechargesOfEmployees;
 		}
 
 		private void SmpUcRibbonSelector_OnListDataContextChanged( object sender, RoutedEventArgs e )
@@ -46,7 +46,7 @@ namespace PaySys.UI.UC
 
 		private void UcMiscRechargesOfOneMisc_OnDataContextChanged( object sender, DependencyPropertyChangedEventArgs e )
 		{
-			CvsOfSubGroupMiscRecharges.Source = ( e.NewValue as SubGroup )?.TempMiscRechargesOfEmployees;
+			RefreshCvs( e.NewValue );
 		}
 
 		#region CLR Events

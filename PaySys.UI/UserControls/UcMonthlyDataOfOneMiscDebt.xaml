@@ -19,23 +19,6 @@
              Initialized="UcMonthlyDataOfOneMiscDebt_OnInitialized">
 	<UserControl.Resources>
 		<CollectionViewSource x:Key="Cvs" />
-		<Style TargetType="GridViewColumnHeader">
-			<Setter Property="FontFamily"
-			        Value="{StaticResource DefaultFont}" />
-			<Setter Property="FontSize"
-			        Value="18" />
-		</Style>
-		<Style x:Key="StyleOfTextBox"
-		       TargetType="TextBox">
-			<Setter Property="Width"
-			        Value="200" />
-			<Setter Property="Height"
-			        Value="30" />
-			<Setter Property="VerticalContentAlignment"
-			        Value="Center" />
-			<Setter Property="VerticalAlignment"
-			        Value="Center" />
-		</Style>
 	</UserControl.Resources>
 	<Grid>
 		<Grid.Resources>
@@ -63,19 +46,6 @@
 					</Setter.Value>
 				</Setter>
 			</Style>
-			<Style x:Key="StyleOfTitle"
-			       TargetType="TextBlock">
-				<Setter Property="HorizontalAlignment"
-				        Value="Center" />
-				<Setter Property="VerticalAlignment"
-				        Value="Bottom" />
-				<Setter Property="FontSize"
-				        Value="18" />
-				<Setter Property="FontFamily"
-				        Value="{StaticResource DefaultFont}" />
-				<Setter Property="FontWeight"
-				        Value="Black" />
-			</Style>
 		</Grid.Resources>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="*" />
@@ -100,8 +70,8 @@
 		<TextBlock Grid.Row="3"
 		           Grid.Column="1"
 		           Text="{x:Static fa:Labels.Employees}"
-		           Style="{StaticResource StyleOfTitle}" />
-		<ListView x:Name="ListViewItems"
+		           Style="{StaticResource StyleOfListTitle}" />
+		<ListView x:Name="ListViewOfItems"
 		          Grid.Row="4"
 		          Grid.Column="1"
 		          DataContext="{Binding Source={StaticResource Cvs}}"
@@ -116,6 +86,7 @@
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
 									<TextBox Text="{Binding Value,StringFormat=N0}"
+									         IsReadOnly="{Binding ElementName=SmpUcMonthlyDataOfOneMiscDebt,Path=ReadOnlyOfListItems}"
 									         Style="{StaticResource StyleOfTextBox}" />
 								</DataTemplate>
 							</GridViewColumn.CellTemplate>
