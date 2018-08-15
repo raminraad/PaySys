@@ -34,22 +34,14 @@
 		<TextBlock Grid.Row="1"
 		           Grid.Column="1"
 		           Grid.ColumnSpan="2"
-		           FontSize="20"
-		           HorizontalAlignment="Center"
-		           VerticalAlignment="Center"
-		           Text="{x:Static fa:Labels.Cities}"/>
+		           Text="{x:Static fa:Labels.Cities}"
+		           Style="{StaticResource StyleOfListTitle}"
+		           />
 		<ToolBar Grid.Row="0"
 		         Grid.ColumnSpan="4"
 		         Grid.Column="0">
-			<ToolBar.Resources>
-				<Style x:Key="ToolbarButtonStyle"
-				       TargetType="Button">
-					<Setter Property="Margin"
-					        Value="2,0"/>
-				</Style>
-			</ToolBar.Resources>
 			<Button Name="BtnAdd"
-			        Style="{StaticResource ToolbarButtonStyle}"
+			        Style="{StaticResource StyleOfToolbarButton}"
 			        Content="{x:Static fa:Labels.Add}"
 					IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}"
 			        Click="BtnAdd_OnClick"/>
@@ -57,25 +49,25 @@
 			        Content="{x:Static fa:Labels.Edit}"
 					IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}"
 			        Click="BtnEdit_OnClick"
-					Style="{StaticResource ToolbarButtonStyle}"/>
+					Style="{StaticResource StyleOfToolbarButton}"/>
 			<Button Name="BtnDelete"
-			        Style="{StaticResource ToolbarButtonStyle}"
+			        Style="{StaticResource StyleOfToolbarButton}"
 					IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}"
 					Content="{x:Static fa:Labels.Delete}"/>
 			<Separator/>
 			<Button Name="BtnSave"
-			        Style="{StaticResource ToolbarButtonStyle}"
+			        Style="{StaticResource StyleOfToolbarButton}"
 			        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSaveCancelButtons}"
 					Click="BtnSave_OnClick"
 			        Content="{x:Static fa:Labels.Save}" />
 			<Button Name="BtnCancel"
-			        Style="{StaticResource ToolbarButtonStyle}"
+			        Style="{StaticResource StyleOfToolbarButton}"
 			        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSaveCancelButtons}"
 					Click="BtnCancel_OnClick"
 			        Content="{x:Static fa:Labels.Cancel}" />
 			<Separator/>
 			<Button Name="BtnRefresh"
-			        Style="{StaticResource ToolbarButtonStyle}"
+			        Style="{StaticResource StyleOfToolbarButton}"
 			        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}"
 			        Content="{x:Static fa:Labels.Reload}"
 			        Click="BtnRefresh_OnClick"/>
@@ -130,29 +122,35 @@
 				<ColumnDefinition Width="*"/>
 				<ColumnDefinition Width="3*"/>
 			</Grid.ColumnDefinitions>
-			<TextBlock Grid.Column="0"
+			<Label Grid.Column="0"
 			           Grid.Row="0"
-			           Text="{x:Static fa:FieldicCity.Title}"/>
-			<TextBlock Grid.Column="0"
+				   Style="{StaticResource StyleOfDataFieldLabel}"
+			           Content="{x:Static fa:FieldicCity.Title}"/>
+			<Label Grid.Column="0"
 			           Grid.Row="1"
-			           Text="{x:Static fa:FieldicCity.Distance}"/>
-			<TextBlock Grid.Column="0"
+				   Style="{StaticResource StyleOfDataFieldLabel}"
+				   Content="{x:Static fa:FieldicCity.Distance}"/>
+			<Label Grid.Column="0"
 			           Grid.Row="2"
-			           Text="{x:Static fa:FieldicCity.Percentage}"/>
+				   Style="{StaticResource StyleOfDataFieldLabel}"
+				   Content="{x:Static fa:FieldicCity.Percentage}"/>
 			<TextBox x:Name="TextBoxTitle"
 			         Grid.Row="0"
 			         Grid.Column="1"
-			         IsReadOnly="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditControls}"
+					 Style="{StaticResource StyleOfDataFieldTextBox}"
+					 IsReadOnly="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
 			         Text="{Binding Title,UpdateSourceTrigger=Explicit}"/>
 			<TextBox x:Name="TextBoxDistance"
 			         Grid.Row="1"
 			         Grid.Column="1"
-			         IsReadOnly="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditControls}"
+					 Style="{StaticResource StyleOfDataFieldTextBox}"
+					 IsReadOnly="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
 			         Text="{Binding Distance,UpdateSourceTrigger=Explicit}"/>
 			<TextBox x:Name="TextBoxPercentage"
 			         Grid.Row="2"
 			         Grid.Column="1"
-			         IsReadOnly="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditControls}"
+					 Style="{StaticResource StyleOfDataFieldTextBox}"
+					 IsReadOnly="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
 			         Text="{Binding Percentage,UpdateSourceTrigger=Explicit}"/>
 		</Grid>
 		<StatusBar Grid.Column="0"

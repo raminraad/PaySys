@@ -63,7 +63,12 @@ namespace PaySys.UI.UC
 		/// <summary>
 		/// ReadOnly attribute of controls that are used to edit fields (like textbox,combo,...) of models in Grid/Textbox forms
 		/// </summary>
-		public bool ReadOnlyOfEditControls { set; get; }
+		public bool ReadOnlyOfEditFields { set; get; }
+
+		/// <summary>
+		/// ReadOnly attribute of controls that should be enabled just in Add mode
+		/// </summary>
+		public bool ReadOnlyOfAddFields { set; get; }
 
 		public FormCurrentState CurrentState
 		{
@@ -105,10 +110,12 @@ namespace PaySys.UI.UC
 				}
 
 				EnabledOfSaveCancelButtons = value == FormCurrentState.Edit || value == FormCurrentState.Add || value == FormCurrentState.AddMaster || value == FormCurrentState.AddDetails;
-				EnabledOfCrudButtons = ReadOnlyOfEditControls = !EnabledOfSaveCancelButtons;
+				ReadOnlyOfAddFields = !(value == FormCurrentState.Add || value == FormCurrentState.AddMaster || value == FormCurrentState.AddDetails);
+				EnabledOfCrudButtons = ReadOnlyOfEditFields = !EnabledOfSaveCancelButtons;
 				OnPropertyChanged(nameof(EnabledOfSaveCancelButtons));
 				OnPropertyChanged(nameof(EnabledOfCrudButtons));
-				OnPropertyChanged(nameof(ReadOnlyOfEditControls));
+				OnPropertyChanged(nameof(ReadOnlyOfEditFields));
+				OnPropertyChanged(nameof(ReadOnlyOfAddFields));
 				_currentState = value;
 
 				var previewStateChangedArgs = new FormCurrentStateChangedEventArgs(PreviewFormCurrentStateChangedEvent,this){FormCurrentState = value,FormType = this.FormType};

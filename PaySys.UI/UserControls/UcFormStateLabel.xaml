@@ -9,8 +9,10 @@
 			 FlowDirection="RightToLeft">
 	<StackPanel Orientation="Horizontal">
 		<Label FontWeight="Bold"
+			   Style="{StaticResource StyleOfDataFieldLabel}"
 			   Content="{x:Static fa:Labels.FormCurrentState}"/>
 		<Label Name="LblState"
+			   Style="{StaticResource StyleOfDataFieldLabel}"
 			   Content="---"
 			   FontWeight="Bold" />
 	</StackPanel>

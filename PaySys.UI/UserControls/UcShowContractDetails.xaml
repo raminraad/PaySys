@@ -6,9 +6,17 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:PaySys.UI.UC"
              xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
+             xmlns:ctrl="clr-namespace:Itenso.Windows.Controls.ListViewLayout;assembly=Itenso.Windows.Controls.ListViewLayout"
+             xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Model;assembly=PaySys.ModelAndBindLib"
+             xmlns:bindingConverter="clr-namespace:PaySys.ModelAndBindLib.BindingConverter;assembly=PaySys.ModelAndBindLib"
+             d:DataContext="{d:DesignInstance Type=model:ContractMaster, IsDesignTimeCreatable=True}"
              mc:Ignorable="d"
+             FlowDirection="RightToLeft"
              d:DesignHeight="300"
              d:DesignWidth="300">
+	<UserControl.Resources>
+		<bindingConverter:DoublePlusParameterConverter x:Key="DoublePlusParameterConverter" />
+	</UserControl.Resources>
 	<Border BorderBrush="Black"
 	        BorderThickness="2"
 	        CornerRadius="10"
@@ -16,8 +24,8 @@
 		<StackPanel Name="PanelMain">
 			<StackPanel Name="PanelTitle"
 			            Margin="0,0,0,15">
-				<Label Content="{x:Static fa:Labels.ContractDetails}"
-				       HorizontalContentAlignment="Center" />
+				<TextBlock Text="{x:Static fa:Labels.ContractDetails}"
+				           Style="{StaticResource StyleOfListTitle}" />
 				<Line StrokeThickness="1"
 				      Width="50"
 				      X1="0"
@@ -37,32 +45,32 @@
 				      Margin="0,1.5,0,0" />
 			</StackPanel>
 			<ListView Name="ListViewContractDetails"
-			          ItemsSource="{Binding ContractDetails,UpdateSourceTrigger=PropertyChanged}"
-			          BorderThickness="0">
-				<ListView.ItemTemplate>
-					<DataTemplate>
-						<Grid Name="StackPanelDataItem">
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="100" />
-								<ColumnDefinition Width="250" />
-							</Grid.ColumnDefinitions>
-							<Grid.RowDefinitions>
-								<RowDefinition Height="*" />
-							</Grid.RowDefinitions>
-							<TextBlock Name="LblContractDetailTitle"
-							           Text="{Binding ContractField.Title}"
-							           Grid.Column="0"
-							           VerticalAlignment="Center" />
-							<TextBox Name="TxtContractDetailValue"
-									 Text="{Binding Value}"
-							         Grid.Column="1"
-							         VerticalContentAlignment="Center"
-							         Margin="2"
-							         Height="25"
-							         IsReadOnly="{Binding ElementName=SmpUcShowContractDetail,Path=ReadOnlyFields}" />
-						</Grid>
-					</DataTemplate>
-				</ListView.ItemTemplate>
+			          DataContext="{Binding ContractDetails,UpdateSourceTrigger=PropertyChanged}"
+			          ItemsSource="{Binding}"
+			          ctrl:ListViewLayoutManager.Enabled="true">
+				<ListView.View>
+					<GridView>
+						<GridView.Columns>
+							<GridViewColumn x:Name="TitleColumn"
+							                Header="{x:Static fa:FieldicContractField.Title}"
+							                DisplayMemberBinding="{Binding ContractField.Title}"
+							                ctrl:ProportionalColumn.Width="2" />
+							<GridViewColumn x:Name="ValueColumn"
+							                Header="{x:Static fa:Labels.Value}"
+							                ctrl:ProportionalColumn.Width="3">
+								<GridViewColumn.CellTemplate>
+									<DataTemplate>
+										<TextBox Name="TxtContractDetailValue"
+										         Text="{Binding Value,StringFormat=N0}"
+										         Style="{StaticResource StyleOfDataFieldTextBox}"
+										         Width="200"
+										         IsReadOnly="{Binding ElementName=SmpUcShowContractDetail,Path=ReadOnlyOfEditFields}" />
+									</DataTemplate>
+								</GridViewColumn.CellTemplate>
+							</GridViewColumn>
+						</GridView.Columns>
+					</GridView>
+				</ListView.View>
 			</ListView>
 		</StackPanel>
 	</Border>

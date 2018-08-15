@@ -76,14 +76,14 @@
 				Header="{x:Static fa:Labels.GroupByEmployees}">
 				<local:UcMiscRechargesOfOneEmployee
 					x:Name="SmpUcMiscRechargesOfOneEmployee"
-					ReadOnlyOfListItems="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditControls}" />
+					ReadOnlyOfListItems="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}" />
 			</TabItem>
 			<TabItem
 				x:Name="TabItemGroupByMiscTitle"
 				Header="{x:Static fa:Labels.GroupByMiscTitle}">
 				<local:UcMiscRechargesOfOneMisc
 					x:Name="SmpUcMiscRechargesOfOneMisc"
-					ReadOnlyOfListItems="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditControls}" />
+					ReadOnlyOfListItems="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}" />
 			</TabItem>
 		</TabControl>
 		<StatusBar Grid.Column="0"

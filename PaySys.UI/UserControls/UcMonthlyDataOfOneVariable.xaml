@@ -39,7 +39,7 @@
 							<EventSetter Event="GotFocus"
 							             Handler="ListItemGotFocus" />
 							<Setter Property="FontFamily"
-							        Value="{StaticResource DefaultFont}" />
+							        Value="{StaticResource FontFamilyOfDataFields}" />
 							<Setter Property="FontSize"
 							        Value="16" />
 							<Setter Property="VerticalAlignment"
@@ -57,7 +57,7 @@
 				<Setter Property="FontSize"
 				        Value="18" />
 				<Setter Property="FontFamily"
-				        Value="{StaticResource DefaultFont}" />
+				        Value="{StaticResource FontFamilyOfDataFields}" />
 				<Setter Property="FontWeight"
 				        Value="Black" />
 			</Style>
@@ -104,16 +104,16 @@
 										<TextBox Text="{Binding NumericValue,StringFormat=N0}"
 										         Visibility="{Binding ValueIsNumeric}"
 										         IsReadOnly="{Binding ElementName=SmpUcMonthlyDataOfOneVariable,Path=ReadOnlyOfListItems}"
-										         Style="{StaticResource StyleOfTextBox}" />
+										         Style="{StaticResource StyleOfDataFieldTextBox}" />
 										<TextBox Text="{Binding StringValue}"
 										         Visibility="{Binding ValueIsString}"
 										         IsReadOnly="{Binding ElementName=SmpUcMonthlyDataOfOneVariable,Path=ReadOnlyOfListItems}"
-										         Style="{StaticResource StyleOfTextBox}" />
+										         Style="{StaticResource StyleOfDataFieldTextBox}" />
 										<persianDateControls:PersianDatePicker SelectedDate="{Binding DateValue,Mode=TwoWay,Converter={StaticResource GregToPersDateConverter}}"
 										                                       DisplayDate="{Binding DateValue,Mode=TwoWay,Converter={StaticResource GregToPersDateConverter}}"
 										                                       IsEnabled="{Binding ElementName=SmpUcMonthlyDataOfOneVariable,Path=ReadOnlyOfListItems,Converter={StaticResource NegateBooleanConverter}}"
 										                                       Visibility="{Binding ValueIsDate}"
-										                                       FontFamily="{StaticResource DefaultFont}" />
+										                                       FontFamily="{StaticResource FontFamilyOfDataFields}" />
 									</StackPanel>
 
 								</DataTemplate>

@@ -30,13 +30,13 @@ namespace PaySys.UI.UC
             InitializeComponent();
         }
 
-		public static readonly DependencyProperty ReadOnlyFieldsProperty = DependencyProperty.Register("ReadOnlyOfEditControls", typeof(bool), typeof(UcShowContractDetails), new PropertyMetadata(default(bool)));
+		public static readonly DependencyProperty ReadOnlyOfEditFieldsProperty = DependencyProperty.Register("ReadOnlyOfEditFields", typeof(bool), typeof(UcShowContractDetails), new PropertyMetadata(default(bool)));
 
-	    public bool ReadOnlyFields
+	    public bool ReadOnlyOfEditFields
 
 	    {
-		    get { return (bool)GetValue(ReadOnlyFieldsProperty); }
-		    set { SetValue(ReadOnlyFieldsProperty, value); }
+		    get { return (bool)GetValue(ReadOnlyOfEditFieldsProperty); }
+		    set { SetValue(ReadOnlyOfEditFieldsProperty, value); }
 	    }
 
 		public ContractMaster CurrentContractMaster

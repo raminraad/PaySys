@@ -14,24 +14,24 @@
              d:DesignWidth="600     "
              FlowDirection="RightToLeft">
 	<UserControl.Resources>
-		<cnv:ColorPalletEnumToStringConverter x:Key="CnvColor"/>
-		<cnv:DateFormatterConverter x:Key="DateFrmtCnv"/>
-		<cnv:NegateBooleanConverter x:Key="CnvNegateBool"/>
+		<cnv:ColorPalletEnumToStringConverter x:Key="CnvColor" />
+		<cnv:DateFormatterConverter x:Key="DateFrmtCnv" />
+		<cnv:NegateBooleanConverter x:Key="CnvNegateBool" />
 	</UserControl.Resources>
 	<Border BorderBrush="Black"
 	        BorderThickness="2"
 	        CornerRadius="10">
 		<Grid x:Name="GridMain">
 			<Grid.RowDefinitions>
-				<RowDefinition Height="2*"/>
-				<RowDefinition Height="15*"/>
+				<RowDefinition Height="2*" />
+				<RowDefinition Height="15*" />
 			</Grid.RowDefinitions>
 			<StackPanel Name="PanelTitle"
 			            Grid.Row="0"
 			            Grid.ColumnSpan="2"
 			            Margin="0,0,0,0.2">
-				<Label Content="{x:Static fa:Labels.ContractMaster}"
-				       HorizontalContentAlignment="Center"/>
+				<TextBlock Text="{x:Static fa:Labels.ContractMaster}"
+				           Style="{StaticResource StyleOfListTitle}" />
 				<Line StrokeThickness="1"
 				      Width="50"
 				      X1="0"
@@ -39,7 +39,7 @@
 				      X2="50"
 				      Y2="0"
 				      HorizontalAlignment="Center"
-				      Stroke="Black"/>
+				      Stroke="Black" />
 				<Line StrokeThickness="1"
 				      Width="50"
 				      X1="5"
@@ -48,76 +48,81 @@
 				      Y2="0"
 				      HorizontalAlignment="Center"
 				      Stroke="DimGray"
-				      Margin="0,1.5,0,0"/>
+				      Margin="0,1.5,0,0" />
 			</StackPanel>
 			<Grid Name="GridFields"
 			      Grid.Column="0"
 			      Grid.Row="1">
 				<Grid.RowDefinitions>
-					<RowDefinition Height="5"/>
-					<RowDefinition Height="1*"/>
-					<RowDefinition Height="5"/>
-					<RowDefinition Height="1*"/>
-					<RowDefinition Height="5"/>
-					<RowDefinition Height="1*"/>
-					<RowDefinition Height="5"/>
-					<RowDefinition Height="1*"/>
-					<RowDefinition Height="5"/>
-					<RowDefinition Height="1*"/>
-					<RowDefinition Height="5"/>
-					<RowDefinition Height="1*"/>
-					<RowDefinition Height="5"/>
-					<RowDefinition Height="1*"/>
-					<RowDefinition Height="5"/>
-					<RowDefinition Height="1*"/>
-					<RowDefinition/>
+					<RowDefinition Height="5" />
+					<RowDefinition Height="1*" />
+					<RowDefinition Height="5" />
+					<RowDefinition Height="1*" />
+					<RowDefinition Height="5" />
+					<RowDefinition Height="1*" />
+					<RowDefinition Height="5" />
+					<RowDefinition Height="1*" />
+					<RowDefinition Height="5" />
+					<RowDefinition Height="1*" />
+					<RowDefinition Height="5" />
+					<RowDefinition Height="1*" />
+					<RowDefinition Height="5" />
+					<RowDefinition Height="1*" />
+					<RowDefinition Height="5" />
+					<RowDefinition Height="1*" />
+					<RowDefinition />
 				</Grid.RowDefinitions>
 				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="20"/>
-					<ColumnDefinition Width="2*"/>
-					<ColumnDefinition Width="3*"/>
-					<ColumnDefinition Width="20"/>
-					<ColumnDefinition Width="2*"/>
-					<ColumnDefinition Width="3*"/>
-					<ColumnDefinition Width="20"/>
+					<ColumnDefinition Width="20" />
+					<ColumnDefinition Width="2*" />
+					<ColumnDefinition Width="3*" />
+					<ColumnDefinition Width="20" />
+					<ColumnDefinition Width="2*" />
+					<ColumnDefinition Width="3*" />
+					<ColumnDefinition Width="20" />
 				</Grid.ColumnDefinitions>
 				<!--				Line 0-->
-				<TextBlock Grid.Row="1"
-				           Grid.Column="1"
-				           Text="{x:Static fa:FieldicContractMaster.ContractNo}"/>
+				<Label Grid.Row="1"
+				       Grid.Column="1"
+				       Style="{StaticResource StyleOfDataFieldLabel}"
+				       Content="{x:Static fa:FieldicContractMaster.ContractNo}" />
 				<TextBox x:Name="TxtContractNo"
 				         Grid.Row="1"
 				         Grid.Column="2"
-				         IsReadOnly="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyFields}"
-				         Text="{Binding ContractNo,UpdateSourceTrigger=Explicit}"/>
+				         Style="{StaticResource StyleOfDataFieldTextBox}"
+							IsReadOnly="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfEditFields}"
+				         Text="{Binding ContractNo,UpdateSourceTrigger=Explicit}" />
 
 				<!--				Line 1-->
-				<TextBlock Grid.Row="3"
-				           Grid.Column="1"
-				           Text="{x:Static fa:FieldicContractMaster.DateExport}"/>
+				<Label Grid.Row="3"
+				       Grid.Column="1"
+				       Style="{StaticResource StyleOfDataFieldLabel}"
+				       Content="{x:Static fa:FieldicContractMaster.DateExport}" />
 				<TextBox x:Name="TxtDateExport"
 				         Grid.Row="3"
 				         Grid.Column="2"
 				         Text="{Binding DateExport,UpdateSourceTrigger=Explicit,Converter={StaticResource DateFrmtCnv}}"
-				         IsReadOnly="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyFields}"/>
-				<TextBlock Grid.Row="3"
-				           Grid.Column="4"
-				           Text="{x:Static fa:FieldicContractMaster.DateExecution}"/>
+				         IsReadOnly="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfEditFields}" />
+				<Label Grid.Row="3"
+				       Grid.Column="4"
+				       Style="{StaticResource StyleOfDataFieldLabel}"
+				       Content="{x:Static fa:FieldicContractMaster.DateExecution}" />
 				<TextBox x:Name="TxtDateExecution"
 				         Grid.Row="3"
 				         Grid.Column="5"
 				         Text="{Binding DateExecution,UpdateSourceTrigger=Explicit,Converter={StaticResource DateFrmtCnv}}"
-				         IsReadOnly="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyFields}"/>
+				         IsReadOnly="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfEditFields}" />
 				<!--				Line 2-->
-				<TextBlock Grid.Row="5"
-				           Grid.Column="1"
-				           Text="{x:Static fa:Labels.MainGroup}"/>
+				<Label Grid.Row="5"
+				       Grid.Column="1"
+				       Style="{StaticResource StyleOfDataFieldLabel}"
+				       Content="{x:Static fa:Labels.MainGroup}" />
 				<ComboBox Name="CmbMainGroup"
 				          Grid.Row="5"
 				          Grid.Column="2"
 				          SelectedItem="{Binding Path=SubGroup.MainGroup,UpdateSourceTrigger=Explicit}"
 				          SelectionChanged="CmbMainGroup_OnSelectionChanged"
-				          IsEnabled="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyAddFields,Converter={StaticResource CnvNegateBool}}">
+				          IsEnabled="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfAddFields,Converter={StaticResource CnvNegateBool}}">
 					<ComboBox.ItemTemplate>
 						<DataTemplate>
 							<StackPanel Orientation="Horizontal"
@@ -127,22 +132,23 @@
 								           RadiusY="4"
 								           Width="10"
 								           Height="10"
-								           VerticalAlignment="Center"/>
+								           VerticalAlignment="Center" />
 								<TextBlock Margin="2,0,2,0"
 								           VerticalAlignment="Center"
-								           Text="{Binding Title}"/>
+								           Text="{Binding Title}" />
 							</StackPanel>
 						</DataTemplate>
 					</ComboBox.ItemTemplate>
 				</ComboBox>
-				<TextBlock Grid.Row="5"
-				           Grid.Column="4"
-				           Text="{x:Static fa:Labels.SubGroup}"/>
+				<Label Grid.Row="5"
+				       Grid.Column="4"
+				       Style="{StaticResource StyleOfDataFieldLabel}"
+				       Content="{x:Static fa:Labels.SubGroup}" />
 				<ComboBox Name="CmbSubGroup"
 				          Grid.Row="5"
 				          Grid.Column="5"
 				          SelectedItem="{Binding SubGroup,UpdateSourceTrigger=Explicit}"
-				          IsEnabled="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyAddFields,Converter={StaticResource CnvNegateBool}}">
+				          IsEnabled="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfAddFields,Converter={StaticResource CnvNegateBool}}">
 					<ComboBox.ItemTemplate>
 						<DataTemplate>
 							<StackPanel Orientation="Horizontal"
@@ -152,49 +158,54 @@
 								           RadiusY="10"
 								           Width="10"
 								           Height="10"
-								           VerticalAlignment="Center"/>
+								           VerticalAlignment="Center" />
 								<TextBlock Margin="2,0,2,0"
 								           VerticalAlignment="Center"
-								           Text="{Binding Title}"/>
+								           Text="{Binding Title}" />
 							</StackPanel>
 						</DataTemplate>
 					</ComboBox.ItemTemplate>
 				</ComboBox>
 				<!--				Line 3-->
-				<TextBlock Grid.Row="7"
-				           Grid.Column="1"
-				           Text="{x:Static fa:FieldicContractMaster.DateEmployment}"/>
+				<Label Grid.Row="7"
+				       Grid.Column="1"
+				       Style="{StaticResource StyleOfDataFieldLabel}"
+				       Content="{x:Static fa:FieldicContractMaster.DateEmployment}" />
 				<TextBox x:Name="TxtDateEmployment"
 				         Grid.Row="7"
 				         Grid.Column="2"
 				         Text="{Binding DateEmployment,UpdateSourceTrigger=Explicit,Converter={StaticResource DateFrmtCnv}}"
-				         IsReadOnly="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyFields}"/>
-				<TextBlock Grid.Row="7"
-				           Grid.Column="4"
-				           Text="{x:Static fa:FieldicContractMaster.EmploymentType}"/>
+				         IsReadOnly="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfEditFields}" />
+				<Label Grid.Row="7"
+				       Grid.Column="4"
+				       Style="{StaticResource StyleOfDataFieldLabel}"
+				       Content="{x:Static fa:FieldicContractMaster.EmploymentType}" />
 				<ComboBox Name="CmbEmploymentType"
 				          Grid.Row="7"
 				          Grid.Column="5"
 				          ItemsSource="{Binding Source={extensionMethod:EnumBindingSource {x:Type model:EmploymentType}}}"
 				          SelectedItem="{Binding EmploymentType,UpdateSourceTrigger=Explicit}"
-				          IsEnabled="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyFields,Converter={StaticResource CnvNegateBool}}"/>
+				          IsEnabled="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfEditFields,Converter={StaticResource CnvNegateBool}}" />
 				<!--				Line 4-->
-				<TextBlock Grid.Row="9"
-				           Grid.Column="1"
-				           Text="{x:Static fa:FieldicContractMaster.InsuranceNo}"/>
+				<Label Grid.Row="9"
+				       Grid.Column="1"
+				       Style="{StaticResource StyleOfDataFieldLabel}"
+				       Content="{x:Static fa:FieldicContractMaster.InsuranceNo}" />
 				<TextBox x:Name="TxtInsuranceNo"
 				         Grid.Row="9"
 				         Grid.Column="2"
-				         Text="{Binding InsuranceNo,UpdateSourceTrigger=Explicit}"
-				         IsReadOnly="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyFields}"/>
-				<TextBlock Grid.Row="9"
-				           Grid.Column="4"
-				           Text="{x:Static fa:FieldicContractMaster.Job}"/>
+						 Style="{StaticResource StyleOfDataFieldTextBox}"
+						 Text="{Binding InsuranceNo,UpdateSourceTrigger=Explicit}"
+				         IsReadOnly="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfEditFields}" />
+				<Label Grid.Row="9"
+				       Grid.Column="4"
+				       Style="{StaticResource StyleOfDataFieldLabel}"
+				       Content="{x:Static fa:FieldicContractMaster.Job}" />
 				<ComboBox Name="CmbJob"
 				          Grid.Row="9"
 				          Grid.Column="5"
 				          SelectedItem="{Binding Job,UpdateSourceTrigger=Explicit}"
-				          IsEnabled="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyFields,Converter={StaticResource CnvNegateBool}}">
+				          IsEnabled="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfEditFields,Converter={StaticResource CnvNegateBool}}">
 					<ComboBox.ItemTemplate>
 						<DataTemplate>
 							<StackPanel Orientation="Horizontal"
@@ -204,68 +215,77 @@
 								           RadiusY="10"
 								           Width="10"
 								           Height="10"
-								           VerticalAlignment="Center"/>
+								           VerticalAlignment="Center" />
 								<TextBlock Margin="2,0,2,0"
 								           VerticalAlignment="Center"
-								           Text="{Binding Title}"/>
+								           Text="{Binding Title}" />
 							</StackPanel>
 						</DataTemplate>
 					</ComboBox.ItemTemplate>
 				</ComboBox>
 				<!--				Line 5-->
-				<TextBlock Grid.Row="11"
-				           Grid.Column="1"
-				           Text="{x:Static fa:FieldicContractMaster.EducationStand}"/>
+				<Label Grid.Row="11"
+				       Grid.Column="1"
+				       Style="{StaticResource StyleOfDataFieldLabel}"
+				       Content="{x:Static fa:FieldicContractMaster.EducationStand}" />
 				<ComboBox Name="CmbEducationStand"
 				          Grid.Row="11"
 				          Grid.Column="2"
 				          ItemsSource="{Binding Source={extensionMethod:EnumBindingSource {x:Type model:EducationStand}}}"
 				          SelectedItem="{Binding EducationStand,UpdateSourceTrigger=Explicit}"
-				          IsEnabled="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyFields,Converter={StaticResource CnvNegateBool}}"/>
-				<TextBlock Grid.Row="11"
-				           Grid.Column="4"
-				           Text="{x:Static fa:FieldicContractMaster.SacrificeStand}"/>
+				          IsEnabled="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfEditFields,Converter={StaticResource CnvNegateBool}}" />
+				<Label Grid.Row="11"
+				       Grid.Column="4"
+				       Style="{StaticResource StyleOfDataFieldLabel}"
+				       Content="{x:Static fa:FieldicContractMaster.SacrificeStand}" />
 				<ComboBox Name="CmbSacrificeStand"
 				          Grid.Row="11"
 				          Grid.Column="5"
 				          ItemsSource="{Binding Source={extensionMethod:EnumBindingSource {x:Type model:SacrificeStand}}}"
 				          SelectedItem="{Binding SacrificeStand,UpdateSourceTrigger=Explicit}"
-				          IsEnabled="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyFields,Converter={StaticResource CnvNegateBool}}"/>
+				          IsEnabled="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfEditFields,Converter={StaticResource CnvNegateBool}}" />
 				<!--				Line 6-->
-				<TextBlock Grid.Row="13"
-				           Grid.Column="1"
-				           Text="{x:Static fa:FieldicContractMaster.MaritalStatus}"/>
+				<Label Grid.Row="13"
+				       Grid.Column="1"
+				       Style="{StaticResource StyleOfDataFieldLabel}"
+				       Content="{x:Static fa:FieldicContractMaster.MaritalStatus}" />
 				<ComboBox Name="CmbMaritalStatus"
 				          Grid.Row="13"
 				          Grid.Column="2"
 				          ItemsSource="{Binding Source={extensionMethod:EnumBindingSource {x:Type model:MaritalStatus}}}"
 				          SelectedItem="{Binding MaritalStatus,UpdateSourceTrigger=Explicit}"
-				          IsEnabled="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyFields,Converter={StaticResource CnvNegateBool}}"/>
-				<TextBlock Grid.Row="13"
-				           Grid.Column="4"
-				           Text="{x:Static fa:FieldicContractMaster.HardshipFactor}"/>
+				          IsEnabled="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfEditFields,Converter={StaticResource CnvNegateBool}}" />
+				<Label Grid.Row="13"
+				       Grid.Column="4"
+				       Style="{StaticResource StyleOfDataFieldLabel}"
+				       Content="{x:Static fa:FieldicContractMaster.HardshipFactor}" />
 				<TextBox x:Name="TxtHardshipFactor"
 				         Grid.Row="13"
 				         Grid.Column="5"
-				         Text="{Binding  HardshipFactor,UpdateSourceTrigger=Explicit}"
-				         IsReadOnly="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyFields}"/>
+						 Style="{StaticResource StyleOfDataFieldTextBox}"
+						 Text="{Binding  HardshipFactor,UpdateSourceTrigger=Explicit}"
+				         IsReadOnly="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfEditFields}" />
 				<!--				Line 7-->
-				<TextBlock Grid.Row="15"
-				           Grid.Column="1"
-				           Text="{x:Static fa:FieldicContractMaster.AccountNoGov}"/>
+				<Label Grid.Row="15"
+				       Grid.Column="1"
+				       Style="{StaticResource StyleOfDataFieldLabel}"
+				       Content="{x:Static fa:FieldicContractMaster.AccountNoGov}" />
 				<TextBox x:Name="TxtAccountNoGov"
 				         Grid.Row="15"
 				         Grid.Column="2"
-				         Text="{Binding AccountNoGov,UpdateSourceTrigger=Explicit}"
-				         IsReadOnly="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyFields}"/>
-				<TextBlock Grid.Row="15"
-				           Grid.Column="4"
-				           Text="{x:Static fa:FieldicContractMaster.AccountNoEmp}"/>
+						 Style="{StaticResource StyleOfDataFieldTextBox}"
+						 Text="{Binding AccountNoGov,UpdateSourceTrigger=Explicit}"
+				         IsReadOnly="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfEditFields}" />
+				<Label Grid.Row="15"
+				       Grid.Column="4"
+				       Style="{StaticResource StyleOfDataFieldLabel}"
+				       Content="{x:Static fa:FieldicContractMaster.AccountNoEmp}" />
 				<TextBox x:Name="TxtAccountNoEmp"
 				         Grid.Row="15"
 				         Grid.Column="5"
-				         Text="{Binding AccountNoEmp,UpdateSourceTrigger=Explicit}"
-				         IsReadOnly="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyFields}"/>
+						 Style="{StaticResource StyleOfDataFieldTextBox}"
+						 Text="{Binding AccountNoEmp,UpdateSourceTrigger=Explicit}"
+				         IsReadOnly="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfEditFields}" />
 			</Grid>
 		</Grid>
 	</Border>

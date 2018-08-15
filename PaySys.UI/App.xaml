@@ -10,7 +10,12 @@
          <SolidColorBrush x:Key="FormStateColorSelect" Color="DarkSlateGray"/>
          <SolidColorBrush x:Key="FormStateColorDelete" Color="Crimson"/>
          <SolidColorBrush x:Key="FormStateColorUnknown" Color="Black"/>
-	    <FontFamily x:Key="DefaultFont">PFont</FontFamily>
+	    <FontFamily x:Key="FontFamilyOfDataFields">PFont</FontFamily>
+		<system:Double x:Key="FontSizeOfDataFields">16</system:Double>
+	    <system:Double x:Key="FontSizeOfListTitle">20</system:Double>
+	    <system:Double x:Key="FontSizeOfSelectionItem">24</system:Double>
+	    <system:Double x:Key="HeightOfDataFieldTextBox">30</system:Double>
+	    <system:Double x:Key="HeightOfSelectionItem">34</system:Double>
 	    <Style x:Key="StyleOfCombobox" TargetType="ComboBox">
 		    <Setter Property="Height"
 		            Value="30"/>
@@ -22,28 +27,138 @@
 		    <Setter Property="VerticalAlignment"
 		            Value="Bottom" />
 		    <Setter Property="FontSize"
-		            Value="18" />
+					Value="{StaticResource FontSizeOfListTitle}" />
 		    <Setter Property="FontFamily"
-		            Value="{StaticResource DefaultFont}" />
+		            Value="{StaticResource FontFamilyOfDataFields}" />
 		    <Setter Property="FontWeight"
 		            Value="Black" />
 	    </Style>
 	    <Style TargetType="GridViewColumnHeader">
 		    <Setter Property="FontFamily"
-		            Value="{StaticResource DefaultFont}" />
+		            Value="{StaticResource FontFamilyOfDataFields}" />
 		    <Setter Property="FontSize"
-		            Value="18" />
+		            Value="{StaticResource FontSizeOfDataFields}" />
 	    </Style>
-	    <Style x:Key="StyleOfTextBox"
+	    <Style TargetType="ListView">
+		    <Setter Property="FontFamily"
+		            Value="{StaticResource FontFamilyOfDataFields}" />
+		    <Setter Property="FontSize"
+		            Value="{StaticResource FontSizeOfDataFields}" />
+	    </Style>
+		<Style x:Key="StyleOfListViewItem" TargetType="ListViewItem">
+		    <Setter Property="IsTabStop"
+		            Value="False" />
+		    <Setter Property="FontFamily"
+		            Value="{StaticResource FontFamilyOfDataFields}" />
+		    <Setter Property="FontSize"
+		            Value="{StaticResource FontSizeOfDataFields}" />
+		    <Setter Property="VerticalAlignment"
+		            Value="Center" />
+	    </Style>
+		<Style x:Key="StyleOfDataFieldTextBox"
 	           TargetType="TextBox">
-		    <Setter Property="Width"
-		            Value="200" />
 		    <Setter Property="Height"
-		            Value="30" />
+		            Value="{StaticResource HeightOfDataFieldTextBox}" />
+			<Setter Property="FontFamily"
+			        Value="{StaticResource FontFamilyOfDataFields}" />
+			<Setter Property="FontSize"
+			        Value="{StaticResource FontSizeOfDataFields}" />
+			<Setter Property="VerticalContentAlignment"
+		            Value="Center" />
+		    <Setter Property="VerticalAlignment"
+		            Value="Center" />
+	    </Style>
+	    <Style x:Key="StyleOfDataFieldMultiColumnTextBox"
+	           TargetType="TextBox">
+		    <Setter Property="FontFamily"
+		            Value="{StaticResource FontFamilyOfDataFields}" />
+		    <Setter Property="FontSize"
+		            Value="{StaticResource FontSizeOfDataFields}" />
+		    <Setter Property="VerticalContentAlignment"
+		            Value="Top" />
+		    <Setter Property="VerticalAlignment"
+		            Value="Stretch" />
+		    <Setter Property="TextWrapping"
+		            Value="Wrap" />
+		</Style>
+		<Style x:Key="StyleOfDataFieldLabel"
+	           TargetType="Label">
+		    <Setter Property="FontFamily"
+		            Value="{StaticResource FontFamilyOfDataFields}" />
+		    <Setter Property="FontSize"
+		            Value="{StaticResource FontSizeOfDataFields}" />
+		    <Setter Property="VerticalAlignment"
+		            Value="Stretch" />
+		    <Setter Property="VerticalContentAlignment"
+		            Value="Center" />
+	    </Style>
+		<Style x:Key="StyleOfDataFieldTextBlock"
+	           TargetType="TextBlock">
+			<Setter Property="FontFamily"
+		            Value="{StaticResource FontFamilyOfDataFields}" />
+			<Setter Property="FontSize"
+		            Value="{StaticResource FontSizeOfDataFields}" />
+			<Setter Property="VerticalAlignment"
+			        Value="Center" />
+			<Setter Property="Height" Value="{StaticResource HeightOfDataFieldTextBox}"/>
+		</Style>
+	    <Style TargetType="ComboBox">
+		    <Setter Property="Height"
+		            Value="{StaticResource HeightOfDataFieldTextBox}" />
+		    <Setter Property="FontFamily"
+		            Value="{StaticResource FontFamilyOfDataFields}" />
+		    <Setter Property="FontSize"
+		            Value="{StaticResource FontSizeOfDataFields}" />
 		    <Setter Property="VerticalContentAlignment"
 		            Value="Center" />
 		    <Setter Property="VerticalAlignment"
 		            Value="Center" />
 	    </Style>
+		<Style TargetType="MenuItem">
+		    <Setter Property="Height"
+		            Value="30" />
+		    <Setter Property="Foreground"
+		            Value="Green" />
+		    <Setter Property="FontFamily"
+		            Value="{StaticResource FontFamilyOfDataFields}" />
+		    <Setter Property="FontSize"
+		            Value="{StaticResource FontSizeOfDataFields}" />
+	    </Style>
+	    <Style x:Key="StyleOfToolbarButton"
+	           TargetType="Button">
+		    <Setter Property="Margin"
+		            Value="2,0" />
+			<Setter Property="FontFamily" Value="{StaticResource FontFamilyOfDataFields}"/>
+		    <Setter Property="FontSize"
+		            Value="{StaticResource FontSizeOfDataFields}" />
+		</Style>
+	    <Style x:Key="StyleOfSelectionItemLabel"
+	           TargetType="Label">
+		    <Setter Property="FontFamily"
+		            Value="{StaticResource FontFamilyOfDataFields}" />
+		    <Setter Property="FontSize"
+					Value="{StaticResource FontSizeOfSelectionItem}" />
+		    <Setter Property="VerticalContentAlignment"
+		            Value="Center" />
+		    <Setter Property="HorizontalContentAlignment"
+		            Value="Left" />
+	    </Style>
+	    <Style x:Key="StyleOfSelectionItemComboBox" 
+	           TargetType="ComboBox">
+		    <Setter Property="Height"
+					Value="{StaticResource HeightOfSelectionItem}" />
+		    <Setter Property="FontFamily"
+		            Value="{StaticResource FontFamilyOfDataFields}" />
+		    <Setter Property="FontSize"
+		            Value="{StaticResource FontSizeOfDataFields}" />
+		    <Setter Property="VerticalContentAlignment"
+		            Value="Center" />
+		    <Setter Property="VerticalAlignment"
+		            Value="Center" />
+		    <Setter Property="Margin"
+		            Value="5" />
+		    <Setter Property="HorizontalContentAlignment"
+		            Value="Center" />
+		</Style>
 	</Application.Resources>
 </Application>

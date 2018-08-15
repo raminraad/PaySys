@@ -57,23 +57,17 @@
 		<ToolBar Grid.Row="0"
 		         Grid.ColumnSpan="4"
 		         Grid.Column="0">
-			<ToolBar.Resources>
-				<Style x:Key="ToolbarButtonStyle"
-				       TargetType="Button">
-					<Setter Property="Margin"
-					        Value="2,0"/>
-				</Style>
-			</ToolBar.Resources>
+			
 			<Button Name="BtnEdit"
 			        Content="{x:Static fa:Labels.Edit}"
 			        Click="BtnEdit_OnClick"
-			        Style="{StaticResource ToolbarButtonStyle}"/>
+			        Style="{StaticResource StyleOfToolbarButton}"/>
 			<Button Name="BtnSave"
-			        Style="{StaticResource ToolbarButtonStyle}"
+			        Style="{StaticResource StyleOfToolbarButton}"
 			        Content="{x:Static fa:Labels.Save}"
 			        Click="BtnSave_Click"/>
 			<Button Name="BtnCancel"
-			        Style="{StaticResource ToolbarButtonStyle}"
+			        Style="{StaticResource StyleOfToolbarButton}"
 			        Content="{x:Static fa:Labels.Cancel}"
 			        Click="BtnCancel_Click"/>
 		</ToolBar>

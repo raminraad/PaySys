@@ -37,7 +37,7 @@
 							<EventSetter Event="GotFocus"
 							             Handler="ListItemGotFocus" />
 							<Setter Property="FontFamily"
-							        Value="{StaticResource DefaultFont}" />
+							        Value="{StaticResource FontFamilyOfDataFields}" />
 							<Setter Property="FontSize"
 							        Value="16" />
 							<Setter Property="VerticalAlignment"
@@ -87,7 +87,7 @@
 								<DataTemplate>
 									<TextBox Text="{Binding Value,StringFormat=N0}"
 									         IsReadOnly="{Binding ElementName=SmpUcMonthlyDataOfOneMiscDebt,Path=ReadOnlyOfListItems}"
-									         Style="{StaticResource StyleOfTextBox}" />
+									         Style="{StaticResource StyleOfDataFieldTextBox}" />
 								</DataTemplate>
 							</GridViewColumn.CellTemplate>
 						</GridViewColumn>

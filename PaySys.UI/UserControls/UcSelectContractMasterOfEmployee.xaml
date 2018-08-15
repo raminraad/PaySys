@@ -23,25 +23,22 @@
 		<local:UcSelectEmployee x:Name="UcSelectEmp" />
 		<Grid Grid.Row="1">
 			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="2*" />
-				<ColumnDefinition Width="5*" />
+				<ColumnDefinition Width="1*" />
+				<ColumnDefinition Width="3*" />
 			</Grid.ColumnDefinitions>
 			<Label Content="{x:Static fa:Labels.Contract}"
-			       HorizontalContentAlignment="Left"
-			       VerticalContentAlignment="Center" />
+				   Style="{StaticResource StyleOfSelectionItemLabel}"/>
 			<ComboBox Grid.Column="1"
 			          Name="CmbContractMaster"
-			          Height="30"
+					  Style="{StaticResource StyleOfSelectionItemComboBox}"
 			          TextSearch.Text="ContractNo"
 			          TextSearch.TextPath="ContractNo"
 			          IsTextSearchEnabled="True"
-			          Margin="5"
 			          ItemsSource="{Binding}"
-			          HorizontalContentAlignment="Stretch"
 			          SelectionChanged="CmbContractMaster_OnSelectionChanged">
 				<ComboBox.ItemTemplate>
 					<DataTemplate>
-						<TextBlock Margin="2">
+						<TextBlock>
 							<TextBlock.Text>
 								<MultiBinding
 									Converter="{StaticResource ContractMasterConverter}">
@@ -67,15 +64,15 @@
 											<ColumnDefinition />
 											<ColumnDefinition />
 										</Grid.ColumnDefinitions>
-										<TextBlock>
-											<TextBlock.Text>
+										<Label Style="{StaticResource StyleOfDataFieldLabel}">
+											<Label.Content>
 												<MultiBinding Converter="{StaticResource ContractMasterConverter}">
 													<Binding Path="ContractNo" />
 													<Binding Path="DateExport" />
 													<Binding Path="DateExecution" />
 													<Binding Path="IsCurrentContract" />
 												</MultiBinding>
-   											</TextBlock.Text></TextBlock>
+   											</Label.Content></Label>
 									</Grid>
 									<ControlTemplate.Triggers>
 										<Trigger Property="ComboBoxItem.IsSelected"

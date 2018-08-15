@@ -106,7 +106,7 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to عنوان.
+        ///   Looks up a localized string similar to عنوان فیلد حکم.
         /// </summary>
         public static string Title {
             get {

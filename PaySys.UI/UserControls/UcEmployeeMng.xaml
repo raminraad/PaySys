@@ -124,14 +124,14 @@
 				<local:UcEmployeeDetail
 					x:Name="SmpUcEmployeeDetail"
 					DataContext="{Binding ElementName =DataGridEmployees,Path=SelectedItem}"
-					ReadOnlyOfFields="{Binding ElementName =SmpUcFormStateLabel,Path=ReadOnlyOfEditControls}" 
+					ReadOnlyOfFields="{Binding ElementName =SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}" 
 					Margin="50,10"/>
 			</TabItem>
 			<TabItem x:Name="TabItemUcMissionList"
 			         Header="{x:Static fa:Labels.Missions}">
 				<local:UcEmployeeDetail x:Name="SmpUcMissionList"
 				                        DataContext="{Binding ElementName =DataGridEmployees,Path=SelectedItem}"
-				                        ReadOnlyOfFields="{Binding ElementName =SmpUcFormStateLabel,Path=ReadOnlyOfEditControls}"
+				                        ReadOnlyOfFields="{Binding ElementName =SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
 				                        Margin="50,10" />
 			</TabItem>
 		</TabControl>

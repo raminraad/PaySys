@@ -68,22 +68,22 @@
 			<TabItem x:Name="TabItemGroupByEmployee"
 			         Header="{x:Static fa:Labels.GroupByEmployees}">
 				<local:UcMonthlyDataOfOneEmployee x:Name="SmpUcMonthlyDataOfOneEmployee"
-				                                  ReadOnlyOfListItems="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditControls}" />
+				                                  ReadOnlyOfListItems="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}" />
 			</TabItem>
 			<TabItem x:Name="TabItemGroupByVariableTitle"
 			         Header="{x:Static fa:Labels.GroupByVariableTitle}">
 				<local:UcMonthlyDataOfOneVariable x:Name="SmpUcMonthlyDataOfOneVariable"
-				                                  ReadOnlyOfListItems="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditControls}" />
+				                                  ReadOnlyOfListItems="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}" />
 			</TabItem>
 			<TabItem x:Name="TabItemGroupByMiscPayment"
 			         Header="{x:Static fa:Labels.GroupByMiscTitlePayment}">
 				<local:UcMonthlyDataOfOneMiscPayment x:Name="SmpUcMonthlyDataOfOneMiscPayment"
-				                                     ReadOnlyOfListItems="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditControls}" />
+				                                     ReadOnlyOfListItems="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}" />
 			</TabItem>
 			<TabItem x:Name="TabItemGroupByMiscDebt"
 			         Header="{x:Static fa:Labels.GroupByMiscTitleDebt}">
 				<local:UcMonthlyDataOfOneMiscDebt x:Name="SmpUcMonthlyDataOfOneMiscDebt"
-				                                ReadOnlyOfListItems="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditControls}" />
+				                                ReadOnlyOfListItems="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}" />
 			</TabItem>
 		</TabControl>
 		<StatusBar Grid.Column="0"

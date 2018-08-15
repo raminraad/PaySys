@@ -55,30 +55,23 @@
 			               Height="30" />
 		</Grid.RowDefinitions>
 		<ToolBar Grid.Row="0">
-			<ToolBar.Resources>
-				<Style x:Key="ToolbarButtonStyle"
-				       TargetType="Button">
-					<Setter Property="Margin"
-					        Value="2,0" />
-				</Style>
-			</ToolBar.Resources>
 			<Button Name="ButtonAdd"
 			        Command="commands:PaySysCommands.Add"
 			        CommandTarget="{Binding ElementName=ListViewMissions}"
 			        Content="{x:Static fa:Labels.Add}"
-			        Style="{StaticResource ToolbarButtonStyle}"
+			        Style="{StaticResource StyleOfToolbarButton}"
 			        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}" />
 			<Button Name="ButtonEdit"
 			        Command="commands:PaySysCommands.Edit"
 			        CommandTarget="{Binding ElementName=ListViewMissions}"
 			        Content="{x:Static fa:Labels.Edit}"
-			        Style="{StaticResource ToolbarButtonStyle}"
+			        Style="{StaticResource StyleOfToolbarButton}"
 			        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}" />
 			<Button Name="ButtonDelete"
 			        Command="commands:PaySysCommands.Delete"
 			        CommandTarget="{Binding ElementName=ListViewMissions}"
 			        Content="{x:Static fa:Labels.Delete}"
-			        Style="{StaticResource ToolbarButtonStyle}"
+			        Style="{StaticResource StyleOfToolbarButton}"
 			        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}" />
 			<Separator />
 			<Button Name="ButtonSave"
@@ -86,19 +79,19 @@
 			        CommandTarget="{Binding ElementName=ListViewMissions}"
 			        Content="{x:Static fa:Labels.Save}"
 			        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSaveCancelButtons}"
-			        Style="{StaticResource ToolbarButtonStyle}" />
+			        Style="{StaticResource StyleOfToolbarButton}" />
 			<Button Name="ButtonDiscardChanges"
 			        Command="commands:PaySysCommands.DiscardChanges"
 			        CommandTarget="{Binding ElementName=ListViewMissions}"
 			        Content="{x:Static fa:Labels.Cancel}"
-			        Style="{StaticResource ToolbarButtonStyle}"
+			        Style="{StaticResource StyleOfToolbarButton}"
 			        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSaveCancelButtons}" />
 			<Separator />
 			<Button Name="ButtonReload"
 			        Command="commands:PaySysCommands.Reload"
 			        CommandTarget="{Binding ElementName=ListViewMissions}"
 			        Content="{x:Static fa:Labels.Reload}"
-			        Style="{StaticResource ToolbarButtonStyle}"
+			        Style="{StaticResource StyleOfToolbarButton}"
 			        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}" />
 		</ToolBar>
 		<TextBlock Grid.Row="1"
@@ -158,7 +151,7 @@
 				<local:UcMissionDetail
 					x:Name="SmpUcMissionDetail"
 					DataContext="{Binding ElementName =ListViewMissions,Path=SelectedItem}"
-					ReadOnlyOfFields="{Binding ElementName =SmpUcFormStateLabel,Path=ReadOnlyOfEditControls}"
+					ReadOnlyOfFields="{Binding ElementName =SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
 					Margin="10" />
 			</TabItem>
 		</TabControl>
