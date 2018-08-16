@@ -14,58 +14,27 @@
 			  DockPanel.Dock="Top">
 			<MenuItem Header="اطلاعات پایه">
 				<MenuItem x:Name="MnuEmployeeMng"
-						  Header="اطلاعات پرسنل"
+						  Header="اطلاعات کارمندان"
 						  Click="MnuEmployeeMng_OnClick" />
 				<MenuItem x:Name="MnuGroupMng"
 						  Header="گروه های استخدامی"
 						  Click="MenuItem_OnClick" />
-				<MenuItem x:Name="mnuItem"
-						  Header="تعریف عناوین کارکنان" />
-				<MenuItem x:Name="mnuItem2"
-						  Header="عناوین فیلدهای احکام" />
-				<MenuItem x:Name="mnuItem3"
-						  Header="تعریف مقادیر گروهی" />
-				<MenuItem Header="تعریف پارامترهای گروهی" />
 				<MenuItem x:Name="MnuContractMng"
 						  Header="ورود اطلاعات احکام" 
 						  Click="MnuContractMng_OnClick"/>
-				<MenuItem Header="تعریف مبانی مالیات">
-					<MenuItem Header="جدول مالیات" />
-					<MenuItem Header="اطلاعات اصلی" />
-				</MenuItem>
 				<MenuItem x:Name="MnuCityMng" Click="MnuCityMng_OnClick" Header="تعریف شهرهای مأموریت" />
 				<MenuItem x:Name="MnuJobMng" Click="MnuJobMng_OnClick" Header="تعریف عناوین شغل ها" />
-				<MenuItem Header="تغییر کد پرسنلی" />
-				<MenuItem Header="تغییر گروه" />
-				<MenuItem Header="ورود اطلاعات سیستم" />
 				<MenuItem x:Name="MenuItemExpenseArticlesMng" Header="تعریف مواد هزینه" Click="MenuItemExpenseArticlesMng_OnClick" />
-				<MenuItem Header="تفکیک مواد هزینه حقوق" />
-				<MenuItem Header="موقعیت فیلدها در بازنشستگی" />
-				<MenuItem Header="ثبت فیش های درآمدی" />
-				<MenuItem Header="چاپ لیست فیش ها" />
-				<MenuItem Header="گزارش بانکی فیش های درآمد" />
 			</MenuItem>
 			<MenuItem Header="عملیات ماه جاری">
-				<MenuItem Header="ورود اطلاعات بصورت انفرادی" x:Name="MnuMonthlyDataMng" Click="MnuMonthlyDataMng_OnClick"  />
-				<MenuItem Header="ورود اطلاعات بصورت گروهی" />
-				<MenuItem Header="تعریف عناوین پرداختهای متفرقه" />
-				<MenuItem Header="ورود اطلاعات متفرقه ماهانه" />
-				<MenuItem Header="ورود مابه التفاوت احکام" />
-				<MenuItem Header="اطلاح بایگانی تفاوت ها" />
+				<MenuItem Header="ورود داده های ماهانه" x:Name="MnuMonthlyDataMng" Click="MnuMonthlyDataMng_OnClick"  />
 				<MenuItem x:Name="MnuMissionMng" Header="ورود احکام مأموریت"
-				          Click="MnuMissionMng_OnClick"
-				          />
-				<MenuItem Header="اصلاح بایگانی مأموریت ها" />
-				<MenuItem Header="تعریف عناوین کسور" />
+				          Click="MnuMissionMng_OnClick"/>
 				<MenuItem x:Name="MnuMiscRechargesMng"
 				          Click="MnuMiscRechargesMng_OnClick"
-				          Header="ورود مانده بدهی ها"
-				          />
-				<MenuItem Header="محاسبات اضافه کاری گذشته" />
-				<MenuItem Header="فرمول عیدی پایان سال" />
-				<MenuItem Header="درج مدت شمول عیدی هر نفر به روز" />
-				<MenuItem Header="درج مبالغ کسور مساعده عیدی" />
-				<MenuItem Header="چاپ لیست عیدی پایان سال" />
+				          Header="ورود مانده بدهی ها"/>
+				<MenuItem Header="ورود مابه التفاوت احکام" />
+				<MenuItem Header="اصلاح بایگانی تفاوت ها" />
 			</MenuItem>
 			<MenuItem Header="گزارش گیری">
 				<MenuItem Header="انجام محاسبات حقوق و اضافه کار" />

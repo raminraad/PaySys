@@ -53,7 +53,7 @@
 			<Setter Property="Height"
 			        Value="30" />
 			<Setter Property="Foreground"
-			        Value="Green" />
+					Value="#004529" />
 			<Setter Property="FontFamily"
 			        Value="{StaticResource FontFamilyOfDataFields}" />
 			<Setter Property="FontSize"

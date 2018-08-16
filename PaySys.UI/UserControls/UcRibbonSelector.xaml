@@ -75,8 +75,8 @@
 			       Grid.Column="2"
 				   Style="{StaticResource StyleOfSelectionItemLabel}"
 				   FontSize="18"
-				   Background="#ecdf6f"
-			       Foreground="Black"
+				   Background="#a6d96a"
+				   Foreground="#004529"
 			       x:Name="LabelTitle" />
 			<Button Grid.Row="0"
 			        Grid.Column="3"
