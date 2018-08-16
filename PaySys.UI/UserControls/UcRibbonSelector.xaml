@@ -53,7 +53,7 @@
 					Width="30px" />
 			</Grid.ColumnDefinitions>
 			<Grid.RowDefinitions>
-				<RowDefinition Height="30" />
+				<RowDefinition Height="35" />
 				<RowDefinition Height="Auto" />
 				<RowDefinition />
 			</Grid.RowDefinitions>
@@ -73,11 +73,10 @@
 			        Content="«" />
 			<Label Grid.Row="0"
 			       Grid.Column="2"
-				   Background="#dcde38 "
+				   Style="{StaticResource StyleOfSelectionItemLabel}"
+				   FontSize="18"
+				   Background="#ecdf6f"
 			       Foreground="Black"
-						 FontSize="14"
-			       VerticalAlignment="Stretch"
-			       VerticalContentAlignment="Center"
 			       x:Name="LabelTitle" />
 			<Button Grid.Row="0"
 			        Grid.Column="3"

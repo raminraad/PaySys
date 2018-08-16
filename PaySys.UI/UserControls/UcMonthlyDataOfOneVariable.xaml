@@ -18,9 +18,7 @@
              d:DesignWidth="600"
              Initialized="UcMonthlyDataOfOneVariable_OnInitialized">
 	<UserControl.Resources>
-		<bindingConverter:DateTimeToPersianDateConverter x:Key="GregToPersDateConverter" />
 		<CollectionViewSource x:Key="Cvs" />
-		<bindingConverter:NegateBooleanConverter x:Key="NegateBooleanConverter" />
 	</UserControl.Resources>
 	<Grid>
 		<Grid.Resources>
@@ -96,6 +94,7 @@
 				<GridView>
 					<GridView.Columns>
 						<GridViewColumn Header="{x:Static fa:FieldicEmployee.FullName}"
+										Width="Auto"
 						                DisplayMemberBinding="{Binding Employee.FullName}" />
 						<GridViewColumn Header="{x:Static fa:Labels.VariableValue}">
 							<GridViewColumn.CellTemplate>
@@ -103,17 +102,23 @@
 									<StackPanel>
 										<TextBox Text="{Binding NumericValue,StringFormat=N0}"
 										         Visibility="{Binding ValueIsNumeric}"
+												 Width="200"
+										         Margin="0"
 										         IsReadOnly="{Binding ElementName=SmpUcMonthlyDataOfOneVariable,Path=ReadOnlyOfListItems}"
 										         Style="{StaticResource StyleOfDataFieldTextBox}" />
 										<TextBox Text="{Binding StringValue}"
 										         Visibility="{Binding ValueIsString}"
-										         IsReadOnly="{Binding ElementName=SmpUcMonthlyDataOfOneVariable,Path=ReadOnlyOfListItems}"
+										         Width="200"
+										         Margin="0"
+												 IsReadOnly="{Binding ElementName=SmpUcMonthlyDataOfOneVariable,Path=ReadOnlyOfListItems}"
 										         Style="{StaticResource StyleOfDataFieldTextBox}" />
 										<persianDateControls:PersianDatePicker SelectedDate="{Binding DateValue,Mode=TwoWay,Converter={StaticResource GregToPersDateConverter}}"
 										                                       DisplayDate="{Binding DateValue,Mode=TwoWay,Converter={StaticResource GregToPersDateConverter}}"
 										                                       IsEnabled="{Binding ElementName=SmpUcMonthlyDataOfOneVariable,Path=ReadOnlyOfListItems,Converter={StaticResource NegateBooleanConverter}}"
 										                                       Visibility="{Binding ValueIsDate}"
-										                                       FontFamily="{StaticResource FontFamilyOfDataFields}" />
+										                                       Width="100"
+										                                       Margin="0"
+										                                       Style="{StaticResource StyleOfDataFieldDatePicker}"/>
 									</StackPanel>
 
 								</DataTemplate>

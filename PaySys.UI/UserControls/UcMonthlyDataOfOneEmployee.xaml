@@ -18,11 +18,9 @@
 			 d:DesignWidth="600"
 			 Initialized="UcMonthlyDataOfOneEmployee_OnInitialized">
 	<UserControl.Resources>
-		<bindingConverter:DateTimeToPersianDateConverter x:Key="GregToPersDateConverter" />
 		<CollectionViewSource x:Key="CvsOfEmployeeMiscPaymentValues" />
 		<CollectionViewSource x:Key="CvsOfEmployeeMiscDebtValues" />
 		<CollectionViewSource x:Key="CvsOfEmployeeVariableValues" />
-		<bindingConverter:NegateBooleanConverter x:Key="NegateBooleanConverter" />
 	</UserControl.Resources>
 	<Grid>
 		<Grid.Resources>
@@ -98,6 +96,7 @@
 				<GridView>
 					<GridView.Columns>
 						<GridViewColumn Header="{x:Static fa:Labels.Title}"
+										Width="Auto"
 										DisplayMemberBinding="{Binding SubGroupVariable.VariableTitle.Title}" />
 						<GridViewColumn Header="{x:Static fa:Labels.Value}">
 							<GridViewColumn.CellTemplate>
@@ -105,17 +104,23 @@
 									<StackPanel>
 										<TextBox Text="{Binding NumericValue,StringFormat=N0}"
 												 Visibility="{Binding ValueIsNumeric}"
+												 Width="200"
+										         Margin="0"
 												 IsReadOnly="{Binding ElementName=SmpUcMonthlyDataOfOneEmployee,Path=ReadOnlyOfListItems}"
 												 Style="{StaticResource StyleOfDataFieldTextBox}" />
 										<TextBox Text="{Binding StringValue}"
 												 Visibility="{Binding ValueIsString}"
+												 Width="200"
+										         Margin="0"
 												 IsReadOnly="{Binding ElementName=SmpUcMonthlyDataOfOneEmployee,Path=ReadOnlyOfListItems}"
 												 Style="{StaticResource StyleOfDataFieldTextBox}" />
 										<persianDateControls:PersianDatePicker SelectedDate="{Binding DateValue,Mode=TwoWay,Converter={StaticResource GregToPersDateConverter}}"
 																			   DisplayDate="{Binding DateValue,Mode=TwoWay,Converter={StaticResource GregToPersDateConverter}}"
 																			   IsEnabled="{Binding ElementName=SmpUcMonthlyDataOfOneEmployee,Path=ReadOnlyOfListItems,Converter={StaticResource NegateBooleanConverter}}"
 																			   Visibility="{Binding ValueIsDate}"
-																			   FontFamily="{StaticResource FontFamilyOfDataFields}" />
+																			   Style="{StaticResource StyleOfDataFieldDatePicker}"
+										                                       Width="100"
+										                                       Margin="0"/>
 									</StackPanel>
 								</DataTemplate>
 							</GridViewColumn.CellTemplate>
@@ -141,6 +146,8 @@
 								<DataTemplate>
 									<TextBox Text="{Binding Value,StringFormat=N0}"
 											 IsReadOnly="{Binding ElementName=SmpUcMonthlyDataOfOneEmployee,Path=ReadOnlyOfListItems}"
+									         Width="200"
+									         Margin="0"
 											 Style="{StaticResource StyleOfDataFieldTextBox}" />
 								</DataTemplate>
 							</GridViewColumn.CellTemplate>
@@ -150,6 +157,8 @@
 								<DataTemplate>
 									<TextBox Text="{Binding ValueSubtraction,StringFormat=N0}"
 											 IsReadOnly="{Binding ElementName=SmpUcMonthlyDataOfOneEmployee,Path=ReadOnlyOfListItems}"
+									         Width="200"
+									         Margin="0"
 											 Style="{StaticResource StyleOfDataFieldTextBox}" />
 								</DataTemplate>
 							</GridViewColumn.CellTemplate>
@@ -175,6 +184,8 @@
 								<DataTemplate>
 									<TextBox Text="{Binding Value,StringFormat=N0}"
 											 IsReadOnly="{Binding ElementName=SmpUcMonthlyDataOfOneEmployee,Path=ReadOnlyOfListItems}"
+									         Width="200"
+									         Margin="0"
 											 Style="{StaticResource StyleOfDataFieldTextBox}" />
 								</DataTemplate>
 							</GridViewColumn.CellTemplate>

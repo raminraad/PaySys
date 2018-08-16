@@ -33,7 +33,7 @@ namespace PaySys.UI.UC
 		{
 			InitializeComponent();
 			RefreshContracsAll();
-			_employeesAll = SmpUcSelectContOfEmp.EmployeesAll = new ObservableCollection<Employee>(_context.Employees.OrderBy(  e => e.LName ));
+			_employeesAll = SmpUcSelectContOfEmp.EmployeesAll = new ObservableCollection<Employee>(_context.Employees);
 			SmpUcShowContractMaster.MainGroups = new ObservableCollection<MainGroup>(_context.MainGroups);
 			SmpUcShowContractMaster.SubGroups = new ObservableCollection<SubGroup>(_context.SubGroups);
 			SmpUcShowContractMaster.Jobs = new ObservableCollection<Job>(_context.Jobs);

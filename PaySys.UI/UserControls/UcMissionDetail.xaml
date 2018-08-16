@@ -17,64 +17,7 @@
 	d:DesignHeight="250"
 	d:DesignWidth="900"
 	FlowDirection="RightToLeft">
-	<UserControl.Resources>
-		<bindingConverter:DateTimeToPersianDateConverter
-			x:Key="GregToPersDateConverter" />
-		<bindingConverter:NegateBooleanConverter
-			x:Key="NegateBooleanConverter" />
-	</UserControl.Resources>
 	<Grid x:Name="GridDetail">
-		<Grid.Resources>
-			<Style TargetType="Label">
-				<Setter
-					Property="VerticalContentAlignment"
-					Value="Center" />
-			</Style>
-			<Style TargetType="TextBox">
-				<Setter Property="Margin"
-				        Value="0,15,40,15" />
-				<Setter Property="VerticalContentAlignment" Value="Center"/>
-			</Style>
-			<Style
-				TargetType="persianDateControls:PersianDatePicker">
-				<Setter
-					Property="HorizontalAlignment"
-					Value="Left" />
-				<Setter Property="IsEnabled"
-				        Value="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields,Converter={StaticResource NegateBooleanConverter}}" />
-				<Setter Property="Background"
-				        Value="{x:Static SystemColors.ControlLightLightBrush}" />
-				<Setter Property="Height"
-				        Value="25" />
-				<Setter Property="FontSize"
-				        Value="12" />
-				<Setter Property="FontFamily"
-				        Value="B Yekan" />
-			</Style>
-			<Style TargetType="xctk:TimePicker">
-				<Setter
-					Property="HorizontalAlignment"
-					Value="Left" />
-				<Setter Property="Width"
-				        Value="110" />
-				<Setter Property="IsEnabled"
-				        Value="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields,Converter={StaticResource NegateBooleanConverter}}" />
-				<Setter Property="Background"
-				        Value="{x:Static SystemColors.ControlLightLightBrush}" />
-				<Setter Property="Height"
-				        Value="25" />
-				<Setter Property="FontSize"
-				        Value="12" />
-				<Setter Property="FontFamily"
-				        Value="B Yekan" />
-			</Style>
-			<Style TargetType="ComboBox">
-				<Setter Property="Margin"
-				        Value="0,15,40,15" />
-				<Setter Property="VerticalContentAlignment"
-						Value="Center" />
-			</Style>
-		</Grid.Resources>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="*" />
 			<RowDefinition Height="*" />
@@ -125,59 +68,64 @@
 		       Content="{x:Static fa:FieldicMission.TravelExpense}" />
 		<TextBox Grid.Row="0"
 		         Grid.Column="1"
+				 Style="{StaticResource StyleOfDataFieldTextBox}"
 		         IsReadOnly="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields}"
 		         Text="{Binding MissionContractNo,UpdateSourceTrigger=Explicit}" />
 		<TextBox Grid.Row="0"
 		         Grid.Column="3"
 		         Grid.ColumnSpan="5"
-		         IsReadOnly="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields}"
+				 Style="{StaticResource StyleOfDataFieldTextBox}"
+				 IsReadOnly="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields}"
 		         Text="{Binding Title,UpdateSourceTrigger=Explicit}" />
 		<TextBox Grid.Row="1"
 		         Grid.Column="1"
-		         IsReadOnly="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields}"
+				 Style="{StaticResource StyleOfDataFieldTextBox}"
+				 IsReadOnly="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields}"
 		         Text="{Binding City,UpdateSourceTrigger=Explicit}" />
 		<ComboBox Grid.Row="1"
 		          Grid.Column="3"
-		          IsEnabled="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields,Converter={StaticResource NegateBooleanConverter}}"
+				  Style="{StaticResource StyleOfDataFieldComboBox}"
+				  IsEnabled="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields,Converter={StaticResource NegateBooleanConverter}}"
 		          ItemsSource="{Binding Source={extensionMethods:EnumBindingSource {x:Type model:VehicleType}}}"
 		          SelectedItem="{Binding VehicleType,UpdateSourceTrigger=Explicit}" />
 		<TextBox Grid.Row="1"
 		         Grid.Column="5"
-		         IsReadOnly="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields}"
+				 Style="{StaticResource StyleOfDataFieldTextBox}"
+				 IsReadOnly="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields}"
 		         Text="{Binding AmountResident,UpdateSourceTrigger=Explicit}" />
 		<TextBox Grid.Row="1"
 		         Grid.Column="7"
-		         IsReadOnly="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields}"
+				 Style="{StaticResource StyleOfDataFieldTextBox}"
+				 IsReadOnly="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields}"
 		         Text="{Binding AmountNonResident,UpdateSourceTrigger=Explicit}" />
 		<persianDateControls:PersianDatePicker
 			Grid.Row="2"
 			Grid.Column="1"
+			Style="{StaticResource StyleOfDataFieldDatePicker}"
+			IsEnabled="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields,Converter={StaticResource NegateBooleanConverter}}"
 			SelectedDate="{Binding StartDate,Mode=TwoWay,UpdateSourceTrigger=Explicit,Converter={StaticResource GregToPersDateConverter}}"
 			DisplayDate="{Binding StartDate,Mode=TwoWay,UpdateSourceTrigger=Explicit,Converter={StaticResource GregToPersDateConverter}}" />
 		<xctk:TimePicker Grid.Row="2"
 		                 Grid.Column="3"
 		                 IsReadOnly="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields}"
 		                 Value="{Binding StartTime,Mode=TwoWay,UpdateSourceTrigger=Explicit}"
-		                 FontFamily="B Yekan"
-		                 Format="Custom"
-		                 FormatString="HH:mm"
-		                 TimeInterval="00:15:00" />
+		                 Style="{StaticResource StyleOfDataFieldTimePicker}" />
 		<persianDateControls:PersianDatePicker
 			Grid.Row="2"
 			Grid.Column="5"
+			Style="{StaticResource StyleOfDataFieldDatePicker}"
+			IsEnabled="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields,Converter={StaticResource NegateBooleanConverter}}"
 			SelectedDate="{Binding EndDate,Mode=TwoWay,UpdateSourceTrigger=Explicit,Converter={StaticResource GregToPersDateConverter}}"
 			DisplayDate="{Binding EndDate,Mode=TwoWay,UpdateSourceTrigger=Explicit,Converter={StaticResource GregToPersDateConverter}}" />
 		<xctk:TimePicker Grid.Row="2"
 		                 Grid.Column="7"
 		                 IsReadOnly="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields}"
 		                 Value="{Binding EndTime,Mode=TwoWay,UpdateSourceTrigger=Explicit}"
-		                 FontFamily="B Yekan"
-		                 Format="Custom"
-		                 FormatString="HH:mm"
-		                 TimeInterval="00:15:00" />
+						 Style="{StaticResource StyleOfDataFieldTimePicker}" />
 		<TextBox Grid.Row="3"
 		         Grid.Column="1"
-		         IsReadOnly="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields}"
+				 Style="{StaticResource StyleOfDataFieldTextBox}"
+				 IsReadOnly="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields}"
 		         Text="{Binding TravelExpense,UpdateSourceTrigger=Explicit}" />
 
 	</Grid>

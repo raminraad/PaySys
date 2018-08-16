@@ -9,14 +9,14 @@
              xmlns:extensionMethod="clr-namespace:PaySys.CalcLib.ExtensionMethods;assembly=PaySys.CalcLib"
              xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Model;assembly=PaySys.ModelAndBindLib"
              xmlns:cnv="clr-namespace:PaySys.ModelAndBindLib.BindingConverter;assembly=PaySys.ModelAndBindLib"
+             xmlns:persianDateControls="clr-namespace:Arash.PersianDateControls;assembly=PersianDateControls"
+             d:DataContext="{d:DesignInstance Type=model:ContractMaster, IsDesignTimeCreatable=True}"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="600     "
              FlowDirection="RightToLeft">
 	<UserControl.Resources>
 		<cnv:ColorPalletEnumToStringConverter x:Key="CnvColor" />
-		<cnv:DateFormatterConverter x:Key="DateFrmtCnv" />
-		<cnv:NegateBooleanConverter x:Key="CnvNegateBool" />
 	</UserControl.Resources>
 	<Border BorderBrush="Black"
 	        BorderThickness="2"
@@ -90,7 +90,7 @@
 				         Grid.Row="1"
 				         Grid.Column="2"
 				         Style="{StaticResource StyleOfDataFieldTextBox}"
-							IsReadOnly="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfEditFields}"
+				         IsReadOnly="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfAddFields}"
 				         Text="{Binding ContractNo,UpdateSourceTrigger=Explicit}" />
 
 				<!--				Line 1-->
@@ -98,20 +98,22 @@
 				       Grid.Column="1"
 				       Style="{StaticResource StyleOfDataFieldLabel}"
 				       Content="{x:Static fa:FieldicContractMaster.DateExport}" />
-				<TextBox x:Name="TxtDateExport"
-				         Grid.Row="3"
-				         Grid.Column="2"
-				         Text="{Binding DateExport,UpdateSourceTrigger=Explicit,Converter={StaticResource DateFrmtCnv}}"
-				         IsReadOnly="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfEditFields}" />
+				<persianDateControls:PersianDatePicker Grid.Row="3"
+				                                       Grid.Column="2"
+				                                       Style="{StaticResource StyleOfDataFieldDatePicker}"
+				                                       IsEnabled="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfEditFields,Converter={StaticResource NegateBooleanConverter}}"
+				                                       SelectedDate="{Binding DateExport,Mode=TwoWay,UpdateSourceTrigger=Explicit,Converter={StaticResource GregToPersDateConverter}}"
+				                                       DisplayDate="{Binding DateExport,Mode=TwoWay,UpdateSourceTrigger=Explicit,Converter={StaticResource GregToPersDateConverter}}" />
 				<Label Grid.Row="3"
 				       Grid.Column="4"
 				       Style="{StaticResource StyleOfDataFieldLabel}"
 				       Content="{x:Static fa:FieldicContractMaster.DateExecution}" />
-				<TextBox x:Name="TxtDateExecution"
-				         Grid.Row="3"
-				         Grid.Column="5"
-				         Text="{Binding DateExecution,UpdateSourceTrigger=Explicit,Converter={StaticResource DateFrmtCnv}}"
-				         IsReadOnly="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfEditFields}" />
+				<persianDateControls:PersianDatePicker Grid.Row="3"
+				                                       Grid.Column="5"
+				                                       Style="{StaticResource StyleOfDataFieldDatePicker}"
+				                                       IsEnabled="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfEditFields,Converter={StaticResource NegateBooleanConverter}}"
+				                                       SelectedDate="{Binding DateExecution,Mode=TwoWay,UpdateSourceTrigger=Explicit,Converter={StaticResource GregToPersDateConverter}}"
+				                                       DisplayDate="{Binding DateExecution,Mode=TwoWay,UpdateSourceTrigger=Explicit,Converter={StaticResource GregToPersDateConverter}}" />
 				<!--				Line 2-->
 				<Label Grid.Row="5"
 				       Grid.Column="1"
@@ -120,9 +122,10 @@
 				<ComboBox Name="CmbMainGroup"
 				          Grid.Row="5"
 				          Grid.Column="2"
+				          Style="{StaticResource StyleOfDataFieldComboBox}"
 				          SelectedItem="{Binding Path=SubGroup.MainGroup,UpdateSourceTrigger=Explicit}"
 				          SelectionChanged="CmbMainGroup_OnSelectionChanged"
-				          IsEnabled="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfAddFields,Converter={StaticResource CnvNegateBool}}">
+				          IsEnabled="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfAddFields,Converter={StaticResource NegateBooleanConverter}}">
 					<ComboBox.ItemTemplate>
 						<DataTemplate>
 							<StackPanel Orientation="Horizontal"
@@ -147,8 +150,9 @@
 				<ComboBox Name="CmbSubGroup"
 				          Grid.Row="5"
 				          Grid.Column="5"
+				          Style="{StaticResource StyleOfDataFieldComboBox}"
 				          SelectedItem="{Binding SubGroup,UpdateSourceTrigger=Explicit}"
-				          IsEnabled="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfAddFields,Converter={StaticResource CnvNegateBool}}">
+				          IsEnabled="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfAddFields,Converter={StaticResource NegateBooleanConverter}}">
 					<ComboBox.ItemTemplate>
 						<DataTemplate>
 							<StackPanel Orientation="Horizontal"
@@ -171,11 +175,12 @@
 				       Grid.Column="1"
 				       Style="{StaticResource StyleOfDataFieldLabel}"
 				       Content="{x:Static fa:FieldicContractMaster.DateEmployment}" />
-				<TextBox x:Name="TxtDateEmployment"
-				         Grid.Row="7"
-				         Grid.Column="2"
-				         Text="{Binding DateEmployment,UpdateSourceTrigger=Explicit,Converter={StaticResource DateFrmtCnv}}"
-				         IsReadOnly="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfEditFields}" />
+				<persianDateControls:PersianDatePicker Grid.Row="7"
+				                                       Grid.Column="2"
+				                                       Style="{StaticResource StyleOfDataFieldDatePicker}"
+				                                       IsEnabled="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfEditFields,Converter={StaticResource NegateBooleanConverter}}"
+				                                       SelectedDate="{Binding DateEmployment,Mode=TwoWay,UpdateSourceTrigger=Explicit,Converter={StaticResource GregToPersDateConverter}}"
+				                                       DisplayDate="{Binding DateEmployment,Mode=TwoWay,UpdateSourceTrigger=Explicit,Converter={StaticResource GregToPersDateConverter}}" />
 				<Label Grid.Row="7"
 				       Grid.Column="4"
 				       Style="{StaticResource StyleOfDataFieldLabel}"
@@ -183,9 +188,10 @@
 				<ComboBox Name="CmbEmploymentType"
 				          Grid.Row="7"
 				          Grid.Column="5"
+				          Style="{StaticResource StyleOfDataFieldComboBox}"
 				          ItemsSource="{Binding Source={extensionMethod:EnumBindingSource {x:Type model:EmploymentType}}}"
 				          SelectedItem="{Binding EmploymentType,UpdateSourceTrigger=Explicit}"
-				          IsEnabled="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfEditFields,Converter={StaticResource CnvNegateBool}}" />
+				          IsEnabled="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfEditFields,Converter={StaticResource NegateBooleanConverter}}" />
 				<!--				Line 4-->
 				<Label Grid.Row="9"
 				       Grid.Column="1"
@@ -194,8 +200,8 @@
 				<TextBox x:Name="TxtInsuranceNo"
 				         Grid.Row="9"
 				         Grid.Column="2"
-						 Style="{StaticResource StyleOfDataFieldTextBox}"
-						 Text="{Binding InsuranceNo,UpdateSourceTrigger=Explicit}"
+				         Style="{StaticResource StyleOfDataFieldTextBox}"
+				         Text="{Binding InsuranceNo,UpdateSourceTrigger=Explicit}"
 				         IsReadOnly="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfEditFields}" />
 				<Label Grid.Row="9"
 				       Grid.Column="4"
@@ -204,8 +210,9 @@
 				<ComboBox Name="CmbJob"
 				          Grid.Row="9"
 				          Grid.Column="5"
+				          Style="{StaticResource StyleOfDataFieldComboBox}"
 				          SelectedItem="{Binding Job,UpdateSourceTrigger=Explicit}"
-				          IsEnabled="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfEditFields,Converter={StaticResource CnvNegateBool}}">
+				          IsEnabled="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfEditFields,Converter={StaticResource NegateBooleanConverter}}">
 					<ComboBox.ItemTemplate>
 						<DataTemplate>
 							<StackPanel Orientation="Horizontal"
@@ -231,9 +238,10 @@
 				<ComboBox Name="CmbEducationStand"
 				          Grid.Row="11"
 				          Grid.Column="2"
+				          Style="{StaticResource StyleOfDataFieldComboBox}"
 				          ItemsSource="{Binding Source={extensionMethod:EnumBindingSource {x:Type model:EducationStand}}}"
 				          SelectedItem="{Binding EducationStand,UpdateSourceTrigger=Explicit}"
-				          IsEnabled="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfEditFields,Converter={StaticResource CnvNegateBool}}" />
+				          IsEnabled="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfEditFields,Converter={StaticResource NegateBooleanConverter}}" />
 				<Label Grid.Row="11"
 				       Grid.Column="4"
 				       Style="{StaticResource StyleOfDataFieldLabel}"
@@ -241,9 +249,10 @@
 				<ComboBox Name="CmbSacrificeStand"
 				          Grid.Row="11"
 				          Grid.Column="5"
+				          Style="{StaticResource StyleOfDataFieldComboBox}"
 				          ItemsSource="{Binding Source={extensionMethod:EnumBindingSource {x:Type model:SacrificeStand}}}"
 				          SelectedItem="{Binding SacrificeStand,UpdateSourceTrigger=Explicit}"
-				          IsEnabled="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfEditFields,Converter={StaticResource CnvNegateBool}}" />
+				          IsEnabled="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfEditFields,Converter={StaticResource NegateBooleanConverter}}" />
 				<!--				Line 6-->
 				<Label Grid.Row="13"
 				       Grid.Column="1"
@@ -252,9 +261,10 @@
 				<ComboBox Name="CmbMaritalStatus"
 				          Grid.Row="13"
 				          Grid.Column="2"
+				          Style="{StaticResource StyleOfDataFieldComboBox}"
 				          ItemsSource="{Binding Source={extensionMethod:EnumBindingSource {x:Type model:MaritalStatus}}}"
 				          SelectedItem="{Binding MaritalStatus,UpdateSourceTrigger=Explicit}"
-				          IsEnabled="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfEditFields,Converter={StaticResource CnvNegateBool}}" />
+				          IsEnabled="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfEditFields,Converter={StaticResource NegateBooleanConverter}}" />
 				<Label Grid.Row="13"
 				       Grid.Column="4"
 				       Style="{StaticResource StyleOfDataFieldLabel}"
@@ -262,8 +272,8 @@
 				<TextBox x:Name="TxtHardshipFactor"
 				         Grid.Row="13"
 				         Grid.Column="5"
-						 Style="{StaticResource StyleOfDataFieldTextBox}"
-						 Text="{Binding  HardshipFactor,UpdateSourceTrigger=Explicit}"
+				         Style="{StaticResource StyleOfDataFieldTextBox}"
+				         Text="{Binding  HardshipFactor,UpdateSourceTrigger=Explicit}"
 				         IsReadOnly="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfEditFields}" />
 				<!--				Line 7-->
 				<Label Grid.Row="15"
@@ -273,8 +283,8 @@
 				<TextBox x:Name="TxtAccountNoGov"
 				         Grid.Row="15"
 				         Grid.Column="2"
-						 Style="{StaticResource StyleOfDataFieldTextBox}"
-						 Text="{Binding AccountNoGov,UpdateSourceTrigger=Explicit}"
+				         Style="{StaticResource StyleOfDataFieldTextBox}"
+				         Text="{Binding AccountNoGov,UpdateSourceTrigger=Explicit}"
 				         IsReadOnly="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfEditFields}" />
 				<Label Grid.Row="15"
 				       Grid.Column="4"
@@ -283,8 +293,8 @@
 				<TextBox x:Name="TxtAccountNoEmp"
 				         Grid.Row="15"
 				         Grid.Column="5"
-						 Style="{StaticResource StyleOfDataFieldTextBox}"
-						 Text="{Binding AccountNoEmp,UpdateSourceTrigger=Explicit}"
+				         Style="{StaticResource StyleOfDataFieldTextBox}"
+				         Text="{Binding AccountNoEmp,UpdateSourceTrigger=Explicit}"
 				         IsReadOnly="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfEditFields}" />
 			</Grid>
 		</Grid>

@@ -59,15 +59,15 @@
 		            Orientation="Horizontal"
 		            HorizontalAlignment="Center"
 		            Margin="0,20">
-			<TextBlock
-				Text="{x:Static fa:Labels.Search}"
-				Margin="5" />
+			<Label
+				Content="{x:Static fa:Labels.Search}"
+				Style="{StaticResource StyleOfSelectionItemLabel}" />
 			<TextBox x:Name="TxtFilter"
+			         Style="{StaticResource StyleOfSelectionItemTextBox}"
 			         Width="400" />
 			<Button x:Name="BtnFilter"
 			        Content="{x:Static fa:Labels.Reload}"
-			        VerticalAlignment="Stretch"
-			        Width="50"
+			        Style="{StaticResource StyleOfToolbarButton}"
 			        Click="BtnFilter_OnClick" />
 		</StackPanel>
 		<DataGrid x:Name="DataGridEmployees"
@@ -80,6 +80,7 @@
 		          Margin="40,20"
 		          AutoGenerateColumns="False"
 		          IsSynchronizedWithCurrentItem="True"
+				  FontFamily="{StaticResource FontFamilyOfDataFields}"
 		          IsReadOnly="True"
 		          IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}"
 		          SelectionMode="Single">
@@ -118,8 +119,7 @@
 			</DataGrid.Columns>
 		</DataGrid>
 		<TabControl Grid.Row="3">
-			<TabItem
-				x:Name="TabItemUcEmployeeDetail"
+			<TabItem x:Name="TabItemUcEmployeeDetail"
 				Header="{x:Static fa:Labels.PersonalInfo}">
 				<local:UcEmployeeDetail
 					x:Name="SmpUcEmployeeDetail"

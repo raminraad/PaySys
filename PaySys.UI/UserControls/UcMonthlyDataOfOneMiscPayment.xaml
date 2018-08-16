@@ -94,11 +94,14 @@
 				<GridView>
 					<GridView.Columns>
 						<GridViewColumn Header="{x:Static fa:FieldicEmployee.FullName}"
+										Width="Auto"
 						                DisplayMemberBinding="{Binding Employee.FullName}" />
 						<GridViewColumn Header="{x:Static fa:Labels.Value}">
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
 									<TextBox Text="{Binding Value,StringFormat=N0}"
+											 Width="200"
+									         Margin="0"
 									         IsReadOnly="{Binding ElementName=SmpUcMonthlyDataOfOneMiscPayment,Path=ReadOnlyOfListItems}"
 									         Style="{StaticResource StyleOfDataFieldTextBox}" />
 								</DataTemplate>
@@ -109,6 +112,8 @@
 								<DataTemplate>
 									<TextBox Text="{Binding ValueSubtraction,StringFormat=N0}"
 									         IsReadOnly="{Binding ElementName=SmpUcMonthlyDataOfOneMiscPayment,Path=ReadOnlyOfListItems}"
+											 Width="200"
+									         Margin="0"
 									         Style="{StaticResource StyleOfDataFieldTextBox}" />
 								</DataTemplate>
 							</GridViewColumn.CellTemplate>

@@ -81,13 +81,16 @@
 				<GridView>
 					<GridView.Columns>
 						<GridViewColumn Header="{x:Static fa:FieldicEmployee.FullName}"
+										Width="Auto"
 						                DisplayMemberBinding="{Binding Employee.FullName}" />
 						<GridViewColumn Header="{x:Static fa:Labels.Value}">
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
 									<TextBox Text="{Binding Value,StringFormat=N0}"
+											 Width="200"
 									         IsReadOnly="{Binding ElementName=SmpUcMonthlyDataOfOneMiscDebt,Path=ReadOnlyOfListItems}"
-									         Style="{StaticResource StyleOfDataFieldTextBox}" />
+									         Style="{StaticResource StyleOfDataFieldTextBox}"
+									         Margin="0"/>
 								</DataTemplate>
 							</GridViewColumn.CellTemplate>
 						</GridViewColumn>

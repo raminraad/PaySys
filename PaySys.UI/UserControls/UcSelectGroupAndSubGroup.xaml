@@ -15,28 +15,29 @@
 		<Grid.Resources>
 			<Style TargetType="TextBlock">
 				<Setter Property="Margin"
-				        Value="5"/>
+				        Value="5" />
 				<Setter Property="VerticalAlignment"
-				        Value="Center"/>
+				        Value="Center" />
 			</Style>
 			<Style TargetType="ComboBox">
 				<Setter Property="Margin"
-				        Value="5"/>
+				        Value="5" />
 				<Setter Property="VerticalAlignment"
-				        Value="Center"/>
+				        Value="Center" />
 			</Style>
 		</Grid.Resources>
 		<Grid.RowDefinitions>
-			<RowDefinition/>
-			<RowDefinition/>
+			<RowDefinition />
+			<RowDefinition />
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="Auto"/>
-			<ColumnDefinition/>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition />
 		</Grid.ColumnDefinitions>
-		<TextBlock Grid.Row="0"
-		           Grid.Column="0"
-		           Text="{x:Static fa:Labels.MainGroup}"/>
+		<Label Grid.Row="0"
+		       Grid.Column="0"
+		       Style="{StaticResource StyleOfSelectionItemLabel}"
+		       Content="{x:Static fa:Labels.MainGroup}" />
 		<ComboBox x:Name="ComboBoxMainGroup"
 		          d:DataContext="{d:DesignInstance Type=model:MainGroup, IsDesignTimeCreatable=True}"
 		          IsSynchronizedWithCurrentItem="True"
@@ -44,19 +45,20 @@
 		          DisplayMemberPath="Title"
 		          Grid.Row="0"
 		          Grid.Column="1"
-				  SelectionChanged="ComboBoxMainGroup_OnSelectionChanged"
-		          Style="{StaticResource StyleOfCombobox}"/>
-		<TextBlock Grid.Row="1"
-		           Grid.Column="0"
-		           Text="{x:Static fa:Labels.SubGroup}"/>
+		          SelectionChanged="ComboBoxMainGroup_OnSelectionChanged"
+		          Style="{StaticResource StyleOfSelectionItemComboBox}" />
+		<Label Grid.Row="1"
+		       Grid.Column="0"
+		       Style="{StaticResource StyleOfSelectionItemLabel}"
+		       Content="{x:Static fa:Labels.SubGroup}" />
 		<ComboBox x:Name="ComboBoxSubGroup"
-				  DataContextChanged="ComboBoxSubGroup_OnDataContextChanged"
+		          DataContextChanged="ComboBoxSubGroup_OnDataContextChanged"
 		          DataContext="{Binding /SubGroups}"
-				  ItemsSource="{Binding}"
-				  SelectionChanged="ComboBoxSubGroup_OnSelectionChanged"
+		          ItemsSource="{Binding}"
+		          SelectionChanged="ComboBoxSubGroup_OnSelectionChanged"
 		          DisplayMemberPath="Title"
 		          Grid.Row="1"
 		          Grid.Column="1"
-		          Style="{StaticResource StyleOfCombobox}"/>
+		          Style="{StaticResource StyleOfSelectionItemComboBox}" />
 	</Grid>
 </UserControl>
