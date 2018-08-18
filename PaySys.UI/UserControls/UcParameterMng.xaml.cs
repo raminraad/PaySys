@@ -64,13 +64,13 @@ namespace PaySys.UI.UC
 		{
 			var dialog = new WinSelectItem(ResourceAccessor.Messages.GetString("SelectContractField"))
 			{
-				ListViewItemsSource = CurrentSubGroup.ContractFields.Where(contractField => contractField.Year == PaySysSetting.CurrentYear && !((List<ParameterInvolvedContractField>) ListViewParameterInvolvedContractFields.ItemsSource).Select(involvedContractField => involvedContractField.ContractField).Contains(contractField))
+				ListViewItemsSource = CurrentSubGroup.SubGroupContractFields.Where(contractField => contractField.Year == PaySysSetting.CurrentYear && !((List<ParameterInvolvedContractField>) ListViewParameterInvolvedContractFields.ItemsSource).Select(involvedContractField => involvedContractField.SubGroupContractField).Contains(contractField))
 			};
 			if(dialog.ShowDialog() == true)
 			{
 				((Parameter) ListViewParameter.SelectedItem).ParameterInvolvedContractFields.Add(new ParameterInvolvedContractField
 				{
-					ContractField = (ContractField) dialog.SelectedItem,
+					SubGroupContractField = (SubGroupContractField) dialog.SelectedItem,
 					Parameter = (Parameter) ListViewParameter.SelectedItem
 				});
 				SaveContext.Invoke();

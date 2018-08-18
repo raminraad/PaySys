@@ -26,11 +26,11 @@ namespace PaySys.ModelAndBindLib.BindingConverter
 		/// <returns></returns>
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			var contractField = value as ContractField;
+			var contractField = value as SubGroupContractField;
 			if (contractField == null)
 				return string.Empty;
 			var result=string.Empty;
-			result += $"{contractField.Title}";
+			result += $"{contractField.ContractFieldTitle.Title}";
 			result += "  [";
 			result += $"{contractField.CurrentExpenseArticle.Code}";
 			result += " : ";

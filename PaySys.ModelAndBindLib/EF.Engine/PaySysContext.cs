@@ -36,7 +36,7 @@ namespace PaySys.ModelAndBindLib.Engine
 
 		public DbSet<MiscRecharge> MiscRecharges { set; get; }
 
-		public DbSet<ContractField> ContractFields { set; get; }
+		public DbSet<SubGroupContractField> SubGroupContractFields { set; get; }
 
 		public DbSet<MissionFormula> MissionFormulas { set; get; }
 
@@ -71,6 +71,8 @@ namespace PaySys.ModelAndBindLib.Engine
 		public DbSet<SubGroupVariable> SubGroupVariables { set; get; }
 
 		public DbSet<VariableValueForEmployee> VariableValueForEmployees { set; get; }
+		public DbSet<ParameterTitle> ParameterTitles { set; get; }
+		public DbSet<ContractFieldTitle> ContractFieldTitles { set; get; }
 
 		public void ShowChanges()
 		{

@@ -23,11 +23,16 @@ namespace PaySys.ModelAndBindLib.Model
 
 		public string Title { get; set; }
 
+		public string Alias { get; set; }
+
 		public ColorPallet ItemColor { get; set; }
 
 		public virtual List<SubGroup> SubGroups { get; set; }
 
-		public override bool Equals( object obj ) { return ( obj as MainGroup )?.MainGroupId == MainGroupId && string.Equals( Title, ( (MainGroup) obj ).Title ); }
+		public override bool Equals( object obj )
+		{
+			return ( obj as MainGroup )?.MainGroupId == MainGroupId && string.Equals( Title, ( (MainGroup) obj ).Title );
+		}
 	}
 
 	/// <summary> #02 زیرگروه </summary>
@@ -35,11 +40,17 @@ namespace PaySys.ModelAndBindLib.Model
 	{
 		public int SubGroupId { get; set; }
 
+		public string Alias { get; set; }
+
+		private string WorkshopCode { set; get; }
+
 		public string Title { get; set; }
 
 		public ColorPallet ItemColor { get; set; }
 
 		public bool Is31 { set; get; }
+
+		public bool IsFreeZone { get; set; }
 
 		[Required]
 		public virtual MainGroup MainGroup { set; get; }
@@ -58,7 +69,7 @@ namespace PaySys.ModelAndBindLib.Model
 
 		public virtual List<SubGroupVariable> SubGroupVariables { get; set; }
 
-		public virtual List<ContractField> ContractFields { get; set; }
+		public virtual List<SubGroupContractField> SubGroupContractFields { get; set; }
 
 		[NotMapped]
 		public List<Misc> MiscsOfTypePayment => Miscs.Where( misc => misc.MiscTitle.IsPayment ).ToList();
@@ -103,10 +114,7 @@ namespace PaySys.ModelAndBindLib.Model
 		}
 
 		[NotMapped]
-		public IEnumerable<Employee> CurrentEmployees
-		{
-			get { return ContractMasters.Where( master => master.IsCurrent ).Select( master => master.Employee ).ToList(); }
-		}
+		public IEnumerable<Employee> CurrentEmployees { get { return ContractMasters.Where( master => master.IsCurrent ).Select( master => master.Employee ).ToList(); } }
 
 		[NotMapped]
 		public IEnumerable<MiscRecharge> CurrentMiscRecharges
@@ -121,7 +129,7 @@ namespace PaySys.ModelAndBindLib.Model
 		}
 
 		[NotMapped]
-		public IEnumerable<Misc> CurrentMiscs=>Miscs.Where( m => m.Year == PaySysSetting.CurrentYear );
+		public IEnumerable<Misc> CurrentMiscs => Miscs.Where( m => m.Year == PaySysSetting.CurrentYear );
 
 		[NotMapped]
 		public IEnumerable<Misc> CurrentMiscPayments => Miscs.Where( m => m.Year == PaySysSetting.CurrentYear && m.MiscTitle.IsPayment );
@@ -130,15 +138,21 @@ namespace PaySys.ModelAndBindLib.Model
 		public IEnumerable<Misc> CurrentMiscDebts => Miscs.Where( m => m.Year == PaySysSetting.CurrentYear && !m.MiscTitle.IsPayment );
 
 		[NotMapped]
-		public IEnumerable<SubGroupVariable> CurrentVariables=>SubGroupVariables.Where( v => v.IncludesCurrentDate );
+		public IEnumerable<SubGroupVariable> CurrentVariables => SubGroupVariables.Where( v => v.IncludesCurrentDate );
 
 		[NotMapped]
 		public List<MiscRecharge> TempMiscRechargesOfEmployees { set; get; }
+
 		[NotMapped]
 		public List<MiscValueForEmployee> TempMiscValuesOfEmployees { set; get; }
+
 		[NotMapped]
 		public List<VariableValueForEmployee> TempVariableValuesOfEmployees { set; get; }
-		public override bool Equals( object obj ) { return ( obj as SubGroup )?.SubGroupId == SubGroupId && string.Equals( Title, ( (SubGroup) obj ).Title ); }
+
+		public override bool Equals( object obj )
+		{
+			return ( obj as SubGroup )?.SubGroupId == SubGroupId && string.Equals( Title, ( (SubGroup) obj ).Title );
+		}
 	}
 
 	/// <summary> #03 عناوین کسور و پرداختهای متفرقه </summary>
@@ -147,6 +161,8 @@ namespace PaySys.ModelAndBindLib.Model
 		public int MiscTitleId { get; set; }
 
 		public string Title { get; set; }
+
+		public string Alias { get; set; }
 
 		public bool IsPayment { get; set; }
 
@@ -202,21 +218,17 @@ namespace PaySys.ModelAndBindLib.Model
 
 		public double Value { get; set; }
 
-		public ValueType ValueType { get; set; }
-
-		public string Title { get; set; }
-
-		public string Alias { get; set; }
-
 		public int Year { get; set; }
 
 		public int Month { get; set; }
 
+		public virtual SubGroup SubGroup { set; get; }
+
+		public virtual ParameterTitle ParameterTitle { get; set; }
+
 		public virtual List<ParameterInvolvedMisc> ParameterInvolvedMiscs { set; get; }
 
 		public virtual List<ParameterInvolvedContractField> ParameterInvolvedContractFields { get; set; }
-
-		public virtual SubGroup SubGroup { get; set; }
 	}
 
 	/// <summary> #08 فیلدهای احکام دخیل در محاسبات مؤلفه ها </summary>
@@ -224,7 +236,7 @@ namespace PaySys.ModelAndBindLib.Model
 	{
 		public int ParameterInvolvedContractFieldId { get; set; }
 
-		public virtual ContractField ContractField { get; set; }
+		public virtual SubGroupContractField SubGroupContractField { get; set; }
 
 		public virtual Parameter Parameter { get; set; }
 	}
@@ -256,24 +268,22 @@ namespace PaySys.ModelAndBindLib.Model
 			{
 				//todo: Apply current date in following calculations
 
-
 				var result = new ObservableCollection<TitledCompositeCollection>();
 				var ccContractFields = new TitledCompositeCollection
 				{
-					Title = ResourceAccessor.Labels.GetString( "ContractFields" ),
-					CompositeCollection = new CompositeCollection()
+						Title = ResourceAccessor.Labels.GetString( "SubGroupContractFields" ),
+						CompositeCollection = new CompositeCollection()
 				};
 				if( ExpenseArticleOfContractFieldForSubGroups != null )
 					foreach( var item in ExpenseArticleOfContractFieldForSubGroups.ToList() )
-						ccContractFields.CompositeCollection.Add( item.ContractField );
+						ccContractFields.CompositeCollection.Add( item.SubGroupContractField );
 
 				result.Add( ccContractFields );
 
-
 				var ccMiscs = new TitledCompositeCollection
 				{
-					Title = ResourceAccessor.Labels.GetString( "MiscPayments" ),
-					CompositeCollection = new CompositeCollection()
+						Title = ResourceAccessor.Labels.GetString( "MiscPayments" ),
+						CompositeCollection = new CompositeCollection()
 				};
 
 				foreach( var item in Miscs )
@@ -281,14 +291,12 @@ namespace PaySys.ModelAndBindLib.Model
 
 				result.Add( ccMiscs );
 
-
 				var ccVariables = new TitledCompositeCollection
 				{
-					Title = ResourceAccessor.Labels.GetString( "MonthlyVariables" ),
-					CompositeCollection = new CompositeCollection()
+						Title = ResourceAccessor.Labels.GetString( "MonthlyVariables" ),
+						CompositeCollection = new CompositeCollection()
 				};
 
-				
 				foreach( var item in this.SubGroupVariables )
 					ccVariables.CompositeCollection.Add( item );
 
@@ -332,19 +340,19 @@ namespace PaySys.ModelAndBindLib.Model
 	}
 
 	/// <summary> #13 فیلدهای احکام زیرگروه در سال </summary>
-	public class ContractField
+	public class SubGroupContractField
 	{
-		public int ContractFieldId { get; set; }
-
-		public string Title { get; set; }
+		public int SubGroupContractFieldId { get; set; }
 
 		public int Year { get; set; }
 
 		public virtual SubGroup SubGroup { get; set; }
+		public virtual ContractFieldTitle ContractFieldTitle { get; set; }
 
 		public virtual List<ParameterInvolvedContractField> ParameterInvolvedContractFields { get; set; }
 
 		public virtual List<ContractDetail> ContractDetails { get; set; }
+
 		public virtual List<MissionFormulaInvolvedContractField> MissionFormulaInvolvedContractFields { get; set; }
 
 		public virtual List<ExpenseArticleOfContractFieldForSubGroup> ExpenseArticleOfContractFieldForSubGroups { get; set; }
@@ -363,9 +371,9 @@ namespace PaySys.ModelAndBindLib.Model
 				{
 					var newLink = new ExpenseArticleOfContractFieldForSubGroup
 					{
-						ContractField = this,
-						Month = PaySysSetting.CurrentMonth,
-						ExpenseArticle = value
+							SubGroupContractField = this,
+							Month = PaySysSetting.CurrentMonth,
+							ExpenseArticle = value
 					};
 					if( ExpenseArticleOfContractFieldForSubGroups == null )
 						ExpenseArticleOfContractFieldForSubGroups = new List<ExpenseArticleOfContractFieldForSubGroup>();
@@ -450,7 +458,10 @@ namespace PaySys.ModelAndBindLib.Model
 
 		#region Implementation of IComparable
 
-		public int CompareTo( object obj ) { return ValueTo.CompareTo( ( (TaxRow) obj ).ValueTo ); }
+		public int CompareTo( object obj )
+		{
+			return ValueTo.CompareTo( ( (TaxRow) obj ).ValueTo );
+		}
 
 		#endregion
 	}
@@ -514,7 +525,10 @@ namespace PaySys.ModelAndBindLib.Model
 
 		public virtual List<ContractDetail> ContractDetails { get; set; }
 
-		public override bool Equals( object obj ) { return obj is ContractMaster && ( (ContractMaster) obj ).ContractMasterId == ContractMasterId && string.Equals( ContractNo, ( (ContractMaster) obj ).ContractNo ); }
+		public override bool Equals( object obj )
+		{
+			return obj is ContractMaster && ( (ContractMaster) obj ).ContractMasterId == ContractMasterId && string.Equals( ContractNo, ( (ContractMaster) obj ).ContractNo );
+		}
 	}
 
 	/// <summary> #21 جزئیات احکام </summary>
@@ -524,7 +538,7 @@ namespace PaySys.ModelAndBindLib.Model
 
 		public double Value { get; set; }
 
-		public virtual ContractField ContractField { get; set; }
+		public virtual SubGroupContractField SubGroupContractField { get; set; }
 
 		public virtual ContractMaster ContractMaster { get; set; }
 	}
@@ -708,8 +722,7 @@ namespace PaySys.ModelAndBindLib.Model
 
 		public virtual ExpenseArticle ExpenseArticle { set; get; }
 
-		public virtual ContractField ContractField { set; get; }
-
+		public virtual SubGroupContractField SubGroupContractField { set; get; }
 	}
 
 	/// <summary> #34 فیلدهای احکام دخیل در فرمول مأموریت </summary>
@@ -717,7 +730,7 @@ namespace PaySys.ModelAndBindLib.Model
 	{
 		public int MissionFormulaInvolvedContractFieldId { get; set; }
 
-		public virtual ContractField ContractField { get; set; }
+		public virtual SubGroupContractField SubGroupContractField { get; set; }
 
 		public virtual MissionFormula MissionFormula { get; set; }
 	}
@@ -734,7 +747,6 @@ namespace PaySys.ModelAndBindLib.Model
 		public ValueType ValueType { get; set; }
 
 		public virtual List<SubGroupVariable> SubGroupVariables { get; set; }
-
 	}
 
 	/// <summary> #36 متغیرهای ماهانه زیرگروه در بازه زمانی </summary>
@@ -749,18 +761,20 @@ namespace PaySys.ModelAndBindLib.Model
 		public int ToYear { get; set; }
 
 		public int ToMonth { get; set; }
+
 		public virtual ExpenseArticle ExpenseArticle { set; get; }
 
 		public virtual SubGroup SubGroup { get; set; }
 
 		public virtual VariableTitle VariableTitle { get; set; }
+
 		public virtual List<VariableValueForEmployee> VariableValueForEmployees { get; set; }
 
 		public bool IncludesDate( int year, int month )
 		{
 			var fromDate = ( FromYear * 100 ) + FromMonth;
 			var toDate = ( ToYear * 100 ) + ToMonth;
-			var currentDate = (year * 100) + month;
+			var currentDate = ( year * 100 ) + month;
 			return currentDate >= fromDate && currentDate <= toDate;
 		}
 
@@ -780,7 +794,7 @@ namespace PaySys.ModelAndBindLib.Model
 		public int Year { get; set; }
 
 		public int Month { get; set; }
-		
+
 		public DateTime? DateValue { get; set; }
 
 		public virtual Employee Employee { get; set; }
@@ -792,7 +806,7 @@ namespace PaySys.ModelAndBindLib.Model
 		{
 			get
 			{
-				switch (SubGroupVariable.VariableTitle.ValueType)
+				switch( SubGroupVariable.VariableTitle.ValueType )
 				{
 					case ValueType.Unknown:
 						return null;
@@ -809,7 +823,7 @@ namespace PaySys.ModelAndBindLib.Model
 			}
 			set
 			{
-				switch (SubGroupVariable.VariableTitle.ValueType)
+				switch( SubGroupVariable.VariableTitle.ValueType )
 				{
 					case ValueType.Unknown:
 						break;
@@ -834,14 +848,44 @@ namespace PaySys.ModelAndBindLib.Model
 		}
 
 		[NotMapped]
-		public Visibility ValueIsNumeric => (SubGroupVariable.VariableTitle.ValueType == ValueType.Absolute || SubGroupVariable.VariableTitle.ValueType == ValueType.Percent)?Visibility.Visible : Visibility.Collapsed;
+		public Visibility ValueIsNumeric => ( SubGroupVariable.VariableTitle.ValueType == ValueType.Absolute || SubGroupVariable.VariableTitle.ValueType == ValueType.Percent ) ? Visibility.Visible : Visibility.Collapsed;
 
 		[NotMapped]
-		public Visibility ValueIsString => SubGroupVariable.VariableTitle.ValueType == ValueType.String?Visibility.Visible : Visibility.Collapsed;
-		[NotMapped]
-		public Visibility ValueIsDate => SubGroupVariable.VariableTitle.ValueType == ValueType.Date?Visibility.Visible : Visibility.Collapsed;
+		public Visibility ValueIsString => SubGroupVariable.VariableTitle.ValueType == ValueType.String ? Visibility.Visible : Visibility.Collapsed;
 
+		[NotMapped]
+		public Visibility ValueIsDate => SubGroupVariable.VariableTitle.ValueType == ValueType.Date ? Visibility.Visible : Visibility.Collapsed;
 	}
+
+	/// <summary>
+	/// #38 عناوین مؤلفه های گروهی
+	/// </summary>
+	public class ParameterTitle
+	{
+		public int ParameterTitleId { get; set; }
+
+		public string Title { get; set; }
+
+		public ValueType ValueType { get; set; }
+
+		public string Alias { get; set; }
+
+		public virtual List<ParameterTitle> ParameterTitles { get; set; }
+	}
+/// <summary>
+	/// #39 عناوین فیلدهای احکام
+	/// </summary>
+	public class ContractFieldTitle
+	{
+		public int ContractFieldTitleId { get; set; }
+
+		public string Title { get; set; }
+		public string Alias { get; set; }
+
+		public virtual List<SubGroupContractField> SubGroupContractFields { get; set; }
+	}
+
+	#region Enums
 
 	[TypeConverter( typeof(EnumDescriptionTypeConverter) )]
 	public enum SacrificeStand
@@ -1031,4 +1075,6 @@ namespace PaySys.ModelAndBindLib.Model
 		Next = 1,
 		Last = 2
 	}
+
+	#endregion
 }

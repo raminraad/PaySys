@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
+using System.Diagnostics;
 using System.Linq;
 using Arash;
 using Bogus;
@@ -27,14 +28,92 @@ namespace PaySys.ModelAndBindLib.Migrations
 		{
 			#region Debug
 
-//			if( Debugger.IsAttached == false )
-//				Debugger.Launch();
+			if( Debugger.IsAttached == false )
+				Debugger.Launch();
 
 			#endregion
 
 			#region Static Arrays
 
-			var contractFields = new[] {"بیمه تکمیلی سهم دولت", "بیمه تبعی یک", "بیمه تبعی دو", "بیمه مازاد", "درصد معاف مالیات", "شماره حساب سهم دولت", "شماره حساب سهم پرسنل", "مبلغ کل بیمه تکمیلی", "اضافه کار عادی", "اضافه کار جمعه", "بازنشستگی گذشته", "بیمه عمر", "کسور متفرقه", "مقرری ماه اول", "بدهی اضافه کار", "معافیت وام مسکن", "مازاد سی سال", "پرداختهای متفرقه", "مدت پرداخت بروز", "سهم بیمه تکمیلی", "روزهای کارکرد", "ساعات شیفت کاری", "بدهی اضافه کار", "مدت مرخصی ذخیره", "ضریب پایان کار", "حق جذب", "عائله مندی", "سختی کار", "خوار و بار", "ایاب و ذهاب", "فوق العاده اشتغال خارج از كشور", "فوق العاده شغل", "فوق العاده مخصوص", "بدي آب و هوا", "تفاوت تطبيق", "حق سرپرستي", "همطرازي", "هزينه سفر"};
+			var alphabets = new[] {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+
+			var contractFieldTitles = new Dictionary<string,string>()
+			{
+					{"CFT01","بیمه تکمیلی سهم دولت"},
+					{"CFT02","بیمه تبعی یک"},
+					{"CFT03","بیمه تبعی دو"},
+					{"CFT04","بیمه مازاد"},
+					{"CFT05","درصد معاف مالیات"},
+					{"CFT06","شماره حساب سهم دولت"},
+					{"CFT07","شماره حساب سهم پرسنل"},
+					{"CFT08","مبلغ کل بیمه تکمیلی"},
+					{"CFT09","اضافه کار عادی"},
+					{"CFT10","اضافه کار جمعه"},
+					{"CFT11","بازنشستگی گذشته"},
+					{"CFT12","بیمه عمر"},
+					{"CFT13","کسور متفرقه"},
+					{"CFT14","مقرری ماه اول"},
+					{"CFT15","بدهی اضافه کار"},
+					{"CFT16","معافیت وام مسکن"},
+					{"CFT17","مازاد سی سال"},
+					{"CFT18","پرداختهای متفرقه"},
+					{"CFT19","مدت پرداخت بروز"},
+					{"CFT20","سهم بیمه تکمیلی"},
+					{"CFT21","روزهای کارکرد"},
+					{"CFT22","ساعات شیفت کاری"},
+					{"CFT23","بدهی اضافه کار"},
+					{"CFT24","مدت مرخصی ذخیره"},
+					{"CFT25","ضریب پایان کار"},
+					{"CFT26","حق جذب"},
+					{"CFT27","عائله مندی"},
+					{"CFT28","سختی کار"},
+					{"CFT29","خوار و بار"},
+					{"CFT30","ایاب و ذهاب"},
+					{"CFT31","فوق العاده اشتغال خارج از كشور"},
+					{"CFT32","فوق العاده شغل"},
+					{"CFT33","فوق العاده مخصوص"},
+					{"CFT34","بدي آب و هوا"},
+					{"CFT35","تفاوت تطبيق"},
+					{"CFT36","حق سرپرستي"}
+			};
+
+			var mainGroupContractFields = new[]
+			{
+					new {CFT="CFT01",MG=alphabets[0]},
+					new {CFT="CFT02",MG=alphabets[0]},
+					new {CFT="CFT03",MG=alphabets[0]},
+					new {CFT="CFT04",MG=alphabets[0]},
+					new {CFT="CFT05",MG=alphabets[0]},
+					new {CFT="CFT06",MG=alphabets[0]},
+					new {CFT="CFT07",MG=alphabets[0]},
+					new {CFT="CFT08",MG=alphabets[0]},
+					new {CFT="CFT09",MG=alphabets[1]},
+					new {CFT="CFT10",MG=alphabets[1]},
+					new {CFT="CFT11",MG=alphabets[1]},
+					new {CFT="CFT12",MG=alphabets[1]},
+					new {CFT="CFT13",MG=alphabets[1]},
+					new {CFT="CFT14",MG=alphabets[1]},
+					new {CFT="CFT25",MG=alphabets[2]},
+					new {CFT="CFT26",MG=alphabets[2]},
+					new {CFT="CFT27",MG=alphabets[2]},
+					new {CFT="CFT28",MG=alphabets[2]},
+					new {CFT="CFT29",MG=alphabets[2]},
+					new {CFT="CFT30",MG=alphabets[2]},
+					new {CFT="CFT31",MG=alphabets[2]},
+					new {CFT="CFT29",MG=alphabets[3]},
+					new {CFT="CFT30",MG=alphabets[3]},
+					new {CFT="CFT31",MG=alphabets[3]},
+					new {CFT="CFT32",MG=alphabets[3]},
+					new {CFT="CFT33",MG=alphabets[3]},
+					new {CFT="CFT34",MG=alphabets[3]},
+					new {CFT="CFT35",MG=alphabets[3]},
+					new {CFT="CFT29",MG=alphabets[4]},
+					new {CFT="CFT30",MG=alphabets[4]},
+					new {CFT="CFT31",MG=alphabets[4]},
+					new {CFT="CFT32",MG=alphabets[4]},
+					new {CFT="CFT33",MG=alphabets[4]}
+			}.ToList();			  
+
 			var miscTitlesPayment = new[] {"پاداش", "عیدی", "حق الزحمه", "تشویقی", "مساعده", "حق العمل", "حسن انجام کار", "هزینه تحصیل", "بورسیه"};
 			var miscTitlesDebt = new[] {"جریمه", "توبیخی", "بدهی قبلی", "وام مسکن", "وام ضروری", "کسر کار", "اضافه مرخصی", "خسارت اموال", "هزینه های متفرقه"};
 			var expenseArticles = new[] {"دیون", "اداری", "پاداشها", "درآمدها", "بودجه مازاد", "هزینه های پرسنل", "سرمایه ای", "تفاوت تطبيق", "مزایا و کمکها", "حقوق و دستمزد", "هزینه های سری", "پرداختهای انتقالی"};
@@ -44,152 +123,156 @@ namespace PaySys.ModelAndBindLib.Migrations
 			var cityNames = new[] {"آبش‌احمد", "آچاچی", "آذرشهر", "آقکند", "اسکو", "اهر", "ایلخچی", "باسمنج", "بخشایش", "بستان‌آباد", "بناب", "بناب مرند", "تبریز", "ترک", "تیمورلو (آذرشهر)", "ترکمانچای", "تسوج", "تیکمه‌داش", "جلفا", "جوان‌قلعه", "خاروانا", "خامنه", "خداجو", "خسروشاه", "خمارلو", "خواجه", "دوزدوزان", "زرنق", "زنوز", "سراب", "سردرود", "سهند", "سیس", "سیه‌رود", "شبستر", "شربیان", "شرفخانه", "شندآباد", "صوفیان", "عجب‌شیر", "قره‌آغاج (چاراویماق)", "کشکسرای", "کلوانق", "کلیبر", "کوزه‌کنان", "گوگان", "لیلان", "مبارک‌شهر", "مراغه", "مرند", "ملکان", "ممقان", "مهربان", "میانه", "نظرکهریزی", "وایقان", "ورزقان", "هادیشهر", "هریس", "هشترود", "هوراند", "یامچی کهنمو "};
 			var jobTitleAndDescriptions = new Dictionary<string, string>
 			{
-				{"مهندس برق", "مهندسی برق یکی از مشاغل مهم و کلیدی صنعت برق و مخابرات به شمار می رود."},
-				{"مهندس معماری", "اگر از طراحی لذت برده و عاشق ساخت و ساز هم هستید، شغل مهندسی معماری می تواند برای شما ایده آل باشد."},
-				{"مهندس شیمی", "مهندس شیمی فردی است که یافته های شیمیدان ها را به صورت عملی و کاربردی درآورده و در صنایع مختلف آنها را بکار می گیرد. در واقع مهندسی شیمی، فرآیند بکارگیری علم شیمی است."},
-				{"مهندس سخت افزار", "مهندس سخت افزار کامپیوتر به تحقیق، طراحی، توسعه، تعمیر و آزمایش تجهیزات کامپیوتر مانند چیپ ها، صفحه مدارها، مونیتورها یا روترها می پردازد."},
-				{"مهندس هوا فضا", "اگر شما عاشق هواپیما و فضاپیماها بوده و می خواهید برای پیشرفت و توسعه آنها کاری بکنید، شغل مهندسی هوافضا می تواند برای شما مناسب باشد."},
-				{"مهندس دریا", "به دلیل داشتن مرزهای آبی گسترده و اهمیت بسیار زیاد حمل و نقل آبی در رشد و توسعه کشور، تخصص ها و مشاغل زیادی در حوزه دریایی ایجاد شده است. مهندسی دریا یکی از اصلی ترین آنها می باشد. مهندسی دریا چندین تخصص را در بر می گیرد که هر کدام حیطه وظایف مجزایی دارند."},
-				{"مهندس کشاورزی", "مهندس کشاورزی فعالیت های مختلفی را انجام می دهد. او به توسعه استفاده از ماشین آلات کشاورزی و پیاده سازی فرآیندهای صحیح و علمی کشاورزی، باغبانی و جنگلداری می پردازد. مهندس کشاورزی باید دارای دانش و مهارت کافی برای کار کردن در صنایع مختلف کشاورزی و یا بخش بازرگانی و تجارت محصولات کشاورزی باشد."},
-				{"مهندس بهداشت حرفه ای", "بهداشت حرفه‌ای یا سلامت شغلی یا سلامت کار شاخه‌ای است ازعلم بهداشت وعبارتست از شناسائی، ارزیابی و کنترل عوامل زیان آور موجود در محیط کار به همراه یکسری مراقبت های بهداشتی درمانی به منظور سالم سازی محیط کار و حفظ سلامت نیروی کار. بهداشت حرفه‌ای ترکیبی از علوم پزشکی ومهندسی می‌باشد."},
-				{"مهندس عمران", "به عنوان مهندس عمران، شما به طراحی و مدیریت انواع پروژه های ساختمانی از تعمیر پل گرفته تا ساخت یک استادیوم ورزشی جدید می پردازید. برای مهندسی عمران باید در ریاضیات و مهارت های فناوری اطلاعات, عالی باشید. همچنین باید بتوانید به خوبی طرح ها و ایده های خود را برای دیگران بیان کرده و در نتیجه باید مهارت های ارتباطی بسیار خوبی داشته باشید. برای دست یابی به شغل مهندسی عمران باید مدارک معتبر دانشگاهی کسب نمایید."},
-				{"مهندس صنایع", "در بازار رقابتی امروز، شرکت ها و سازمان ها برای بقا و رسیدن به اهداف خود باید از منابع موجود خود اعم از مالی و غیرمالی به صورت بهینه استفاده کنند تا هزینه های خود را به حداقل برسانند. علاوه بر این موارد تلاش در جهت افزایش کیفیت محصولات و خدمات در کنار بکارگیری نوآوری های مختلف، در موفقیت آنها بسیار موثر است. مهندسی صنایع ابزاری اساسی و موثر است که به مدیران و صاحبان شرکت ها و سازمان ها در انجام موارد فوق یاری می رساند."},
-				{"مهندس نفت", "مهندس نفت روش های استخراج نفت و گاز از زیر زمین را طراحی کرده و توسعه می دهد.محل کار مهندس نفت در دفاتر کاری، پالایشگاه ها، محل های حفاری و یا آزمایشگاه های تحقیقاتی می باشد."},
-				{"مهندس رباتیک", "مهندس رباتیک فردی است که پاسخگوی  نیاز صنعت در تحقیق و توسعه، طراحی، تولید، نگهداری و تعمیرات ربات ها می باشد."},
-				{"مهندس معدن", "مهندسی معدن مجموعه علوم، روش ها و فنونی است که از اکتشاف یک معدن آغاز و تا فرآوری آن ادامه دارد. البته معدن باید از نظر اقتصادی ارزش و صرفه کافی را داشته باشد تا بتوان کار اکتشاف و استخراج (که فرآیندهایی پرهزینه هستند) را در آن انجام داد. از آنجا که از سالیان بسیار قبل، انسان ها به دنبال کشف طلا و برخی از مواد معدنی ارزشمند بوده اند، شغل مهندسی معدن دارای قدمت زیادی است."},
-				{"مهندسی پزشکی", "مهندسی پزشکی کاربرد علوم مهندسی در حوزه پزشکی برای تشخیص و درمان بیماری ها است. حوزه مهندسی پزشکی به دنبال برطرف کردن نیازهای پزشکی در زمینه طراحی، ساخت و نگهداری تجهیزات و ابزارهای پزشکی برای کاربردهای پیشگیری، تشخیص و درمان بیماریها به کمک علوم مهندسی است."},
-				{"مهندس بهداشت محیط", "مهندسی بهداشت محیط -بهداشت محیط کنترل همه عواملی است که اثر سویی بر پایدار ماندن سلامت انسان می‌گذارند. این شامل بیماری‌های زیادی می‌شود که از طریق آب، هوا، مواد غذایی و بسیاری از عوامل محیطی دیگر سلامت انسان را تهدید می‌کنند. برای رسیدن به این هدف، بهره‌گیری اصول مهندسی و دانش زیست‌محیطی به منظور کنترل، اصلاح و بهبود عوامل فیزیکی، شیمیایی و بیولوژیک محیط جهت حفظ و ارتقاء سلامتی و رفاه و آسایش انسان ضرورت می‌یابد."},
-				{"مهندس راه آهن", "حمل و نقل یکی از عوامل اصلی و تعیین کننده در دنیای امروز است که در اقتصاد، فرهنگ و در همه شئون مهندس راه آهن – اجتماعی جوامع، نقش چشمگیر و حیاتی دارد. در میان انواع حمل ‌و نقل، حمل‌ و نقل ریلی از مزیت ‌های بسیاری برخوردار است و کشورهای صنعتی و نیمه‌ صنعتی از گذشته های دور به این پدیده پرارزش پرداخته و شبکه حمل و نقل خود را با حمل و نقل ریلی تجهیز کرده‌اند. تاجایی که امروزه خیلی از کشورها به مرحله‌ای رسیده‌اند که چندان به دنبال توسعه کمّی نیستند بلکه به دنبال هماهنگ کردن و هم سو کردن صنعت حمل و نقل ریلی با دیگر پدیده‌ های علمی و صنعتی پیشرو مانند الکترونیک و سیستم ‌های ارتباط جمعی می‌ باشند. در واقع هدف آن ها رسیدن سریع از مبدا به مقصد و امکان جابجایی پرحجم مسافر و کالا است."},
-				{"مهندس مکانیک", "مهندس مکانیک، اصول اساسی نیرو، انرژی، حرکت و گرما را می‌آموزد و با دانش تخصصی خود، سیستم‌های مکانیکی و دستگاه‌ها و فرایندهای گرمایی را طراحی کرده و می‌سازد. مهندس مکانیک گستره وسیعی از دستگاه‌ها، فرآورده‌ها و فرایندها را تولید می‌کند؛ از قالب ساخت سوزن ته‌گرد تا مدل‌سازی حرکت ماهواره‌ها در فضای خارج از جو، موتورها و سیستم‌های کنترل خودرو و هواپیما، نیروگاه‌های الکتریکی، دستگاه‌های پزشکی و اجزا و قطعه‌های گوناگون و…."},
-				{"مهندس مواد (مهندس متالورژی)", "مهندس مواد دست اندر کار استخراج، عمل آوری، و امتحان موادی است که در تولیدفراورده های گوناگون، از چیپهای کامپیوتری و صفحات تلوزیون گرفته تا فلز بکار رفته در خودروها به کار می روند. مهندس مواد با فلزات، سرامیک ها، مواد پلاستیکی، نیمه هادیها، و ترکیباتی از موادی که به آنها کامپوزیت (مواد مرکب) می‌گویند، برای بوجود آوردن موادی که دارای خصوصیات خاص مکانیکی، الکتریکی و شیمیائی باشند کار می کند. از جمله کارهای مهندس مواد انتخاب مواد برای کاربردهای جدید نیز میباشد."},
-				{"مهندس پلیمر", "شما به عنوان مهندس پلیمر محصولاتی را طراحی، تولید و یا اصلاح می کنید که در همه جا وجود داشته و همه ما تا حد زیادی به آنها وابسته هستیم و شاید در دنیای امروز زندگی بدون مواد و محصولات پلیمری بسیار سخت باشد. نمونه ای ساده از این محصولات عبارتند از مسواک، تیوب خمیردندان، دمپایی پلاستیکی، بسیاری از لباس ها، ظروف پلاستیکی و ملامینی آشپزخانه، جلد برخی از کتاب ها، بسیاری از قطعات تلویزیون، کامپیوتر و …"}
+					{"مهندس برق", "مهندسی برق یکی از مشاغل مهم و کلیدی صنعت برق و مخابرات به شمار می رود."},
+					{"مهندس معماری", "اگر از طراحی لذت برده و عاشق ساخت و ساز هم هستید، شغل مهندسی معماری می تواند برای شما ایده آل باشد."},
+					{"مهندس شیمی", "مهندس شیمی فردی است که یافته های شیمیدان ها را به صورت عملی و کاربردی درآورده و در صنایع مختلف آنها را بکار می گیرد. در واقع مهندسی شیمی، فرآیند بکارگیری علم شیمی است."},
+					{"مهندس سخت افزار", "مهندس سخت افزار کامپیوتر به تحقیق، طراحی، توسعه، تعمیر و آزمایش تجهیزات کامپیوتر مانند چیپ ها، صفحه مدارها، مونیتورها یا روترها می پردازد."},
+					{"مهندس هوا فضا", "اگر شما عاشق هواپیما و فضاپیماها بوده و می خواهید برای پیشرفت و توسعه آنها کاری بکنید، شغل مهندسی هوافضا می تواند برای شما مناسب باشد."},
+					{"مهندس دریا", "به دلیل داشتن مرزهای آبی گسترده و اهمیت بسیار زیاد حمل و نقل آبی در رشد و توسعه کشور، تخصص ها و مشاغل زیادی در حوزه دریایی ایجاد شده است. مهندسی دریا یکی از اصلی ترین آنها می باشد. مهندسی دریا چندین تخصص را در بر می گیرد که هر کدام حیطه وظایف مجزایی دارند."},
+					{"مهندس کشاورزی", "مهندس کشاورزی فعالیت های مختلفی را انجام می دهد. او به توسعه استفاده از ماشین آلات کشاورزی و پیاده سازی فرآیندهای صحیح و علمی کشاورزی، باغبانی و جنگلداری می پردازد. مهندس کشاورزی باید دارای دانش و مهارت کافی برای کار کردن در صنایع مختلف کشاورزی و یا بخش بازرگانی و تجارت محصولات کشاورزی باشد."},
+					{"مهندس بهداشت حرفه ای", "بهداشت حرفه‌ای یا سلامت شغلی یا سلامت کار شاخه‌ای است ازعلم بهداشت وعبارتست از شناسائی، ارزیابی و کنترل عوامل زیان آور موجود در محیط کار به همراه یکسری مراقبت های بهداشتی درمانی به منظور سالم سازی محیط کار و حفظ سلامت نیروی کار. بهداشت حرفه‌ای ترکیبی از علوم پزشکی ومهندسی می‌باشد."},
+					{"مهندس عمران", "به عنوان مهندس عمران، شما به طراحی و مدیریت انواع پروژه های ساختمانی از تعمیر پل گرفته تا ساخت یک استادیوم ورزشی جدید می پردازید. برای مهندسی عمران باید در ریاضیات و مهارت های فناوری اطلاعات, عالی باشید. همچنین باید بتوانید به خوبی طرح ها و ایده های خود را برای دیگران بیان کرده و در نتیجه باید مهارت های ارتباطی بسیار خوبی داشته باشید. برای دست یابی به شغل مهندسی عمران باید مدارک معتبر دانشگاهی کسب نمایید."},
+					{"مهندس صنایع", "در بازار رقابتی امروز، شرکت ها و سازمان ها برای بقا و رسیدن به اهداف خود باید از منابع موجود خود اعم از مالی و غیرمالی به صورت بهینه استفاده کنند تا هزینه های خود را به حداقل برسانند. علاوه بر این موارد تلاش در جهت افزایش کیفیت محصولات و خدمات در کنار بکارگیری نوآوری های مختلف، در موفقیت آنها بسیار موثر است. مهندسی صنایع ابزاری اساسی و موثر است که به مدیران و صاحبان شرکت ها و سازمان ها در انجام موارد فوق یاری می رساند."},
+					{"مهندس نفت", "مهندس نفت روش های استخراج نفت و گاز از زیر زمین را طراحی کرده و توسعه می دهد.محل کار مهندس نفت در دفاتر کاری، پالایشگاه ها، محل های حفاری و یا آزمایشگاه های تحقیقاتی می باشد."},
+					{"مهندس رباتیک", "مهندس رباتیک فردی است که پاسخگوی  نیاز صنعت در تحقیق و توسعه، طراحی، تولید، نگهداری و تعمیرات ربات ها می باشد."},
+					{"مهندس معدن", "مهندسی معدن مجموعه علوم، روش ها و فنونی است که از اکتشاف یک معدن آغاز و تا فرآوری آن ادامه دارد. البته معدن باید از نظر اقتصادی ارزش و صرفه کافی را داشته باشد تا بتوان کار اکتشاف و استخراج (که فرآیندهایی پرهزینه هستند) را در آن انجام داد. از آنجا که از سالیان بسیار قبل، انسان ها به دنبال کشف طلا و برخی از مواد معدنی ارزشمند بوده اند، شغل مهندسی معدن دارای قدمت زیادی است."},
+					{"مهندسی پزشکی", "مهندسی پزشکی کاربرد علوم مهندسی در حوزه پزشکی برای تشخیص و درمان بیماری ها است. حوزه مهندسی پزشکی به دنبال برطرف کردن نیازهای پزشکی در زمینه طراحی، ساخت و نگهداری تجهیزات و ابزارهای پزشکی برای کاربردهای پیشگیری، تشخیص و درمان بیماریها به کمک علوم مهندسی است."},
+					{"مهندس بهداشت محیط", "مهندسی بهداشت محیط -بهداشت محیط کنترل همه عواملی است که اثر سویی بر پایدار ماندن سلامت انسان می‌گذارند. این شامل بیماری‌های زیادی می‌شود که از طریق آب، هوا، مواد غذایی و بسیاری از عوامل محیطی دیگر سلامت انسان را تهدید می‌کنند. برای رسیدن به این هدف، بهره‌گیری اصول مهندسی و دانش زیست‌محیطی به منظور کنترل، اصلاح و بهبود عوامل فیزیکی، شیمیایی و بیولوژیک محیط جهت حفظ و ارتقاء سلامتی و رفاه و آسایش انسان ضرورت می‌یابد."},
+					{"مهندس راه آهن", "حمل و نقل یکی از عوامل اصلی و تعیین کننده در دنیای امروز است که در اقتصاد، فرهنگ و در همه شئون مهندس راه آهن – اجتماعی جوامع، نقش چشمگیر و حیاتی دارد. در میان انواع حمل ‌و نقل، حمل‌ و نقل ریلی از مزیت ‌های بسیاری برخوردار است و کشورهای صنعتی و نیمه‌ صنعتی از گذشته های دور به این پدیده پرارزش پرداخته و شبکه حمل و نقل خود را با حمل و نقل ریلی تجهیز کرده‌اند. تاجایی که امروزه خیلی از کشورها به مرحله‌ای رسیده‌اند که چندان به دنبال توسعه کمّی نیستند بلکه به دنبال هماهنگ کردن و هم سو کردن صنعت حمل و نقل ریلی با دیگر پدیده‌ های علمی و صنعتی پیشرو مانند الکترونیک و سیستم ‌های ارتباط جمعی می‌ باشند. در واقع هدف آن ها رسیدن سریع از مبدا به مقصد و امکان جابجایی پرحجم مسافر و کالا است."},
+					{"مهندس مکانیک", "مهندس مکانیک، اصول اساسی نیرو، انرژی، حرکت و گرما را می‌آموزد و با دانش تخصصی خود، سیستم‌های مکانیکی و دستگاه‌ها و فرایندهای گرمایی را طراحی کرده و می‌سازد. مهندس مکانیک گستره وسیعی از دستگاه‌ها، فرآورده‌ها و فرایندها را تولید می‌کند؛ از قالب ساخت سوزن ته‌گرد تا مدل‌سازی حرکت ماهواره‌ها در فضای خارج از جو، موتورها و سیستم‌های کنترل خودرو و هواپیما، نیروگاه‌های الکتریکی، دستگاه‌های پزشکی و اجزا و قطعه‌های گوناگون و…."},
+					{"مهندس مواد (مهندس متالورژی)", "مهندس مواد دست اندر کار استخراج، عمل آوری، و امتحان موادی است که در تولیدفراورده های گوناگون، از چیپهای کامپیوتری و صفحات تلوزیون گرفته تا فلز بکار رفته در خودروها به کار می روند. مهندس مواد با فلزات، سرامیک ها، مواد پلاستیکی، نیمه هادیها، و ترکیباتی از موادی که به آنها کامپوزیت (مواد مرکب) می‌گویند، برای بوجود آوردن موادی که دارای خصوصیات خاص مکانیکی، الکتریکی و شیمیائی باشند کار می کند. از جمله کارهای مهندس مواد انتخاب مواد برای کاربردهای جدید نیز میباشد."},
+					{"مهندس پلیمر", "شما به عنوان مهندس پلیمر محصولاتی را طراحی، تولید و یا اصلاح می کنید که در همه جا وجود داشته و همه ما تا حد زیادی به آنها وابسته هستیم و شاید در دنیای امروز زندگی بدون مواد و محصولات پلیمری بسیار سخت باشد. نمونه ای ساده از این محصولات عبارتند از مسواک، تیوب خمیردندان، دمپایی پلاستیکی، بسیاری از لباس ها، ظروف پلاستیکی و ملامینی آشپزخانه، جلد برخی از کتاب ها، بسیاری از قطعات تلویزیون، کامپیوتر و …"}
 			};
 			var variableTitlesA = new Dictionary<string, string>
 			{
-				{"A01", "شماره پرسنلی"},
-				{"A02", "نام و نام خانوادگی"},
-				{"A03", "شماره حکم"},
-				{"A04", "جمع کل حکم"},
-				{"A05", "پرداختهای متفرقه"},
-				{"A06", "کسور متفرقه"},
-				{"A07", "بیمه تکمیلی سهم دولت"},
-				{"A08", "تعداد بیمه تبعی 1"},
-				{"A09", "تعداد بیمه تبعی 2"},
-				{"A10", "تعداد بیمه مازاد"},
-				{"A11", "درصد معاف مالیات"},
-				{"A12", "شماره حساب"},
-				{"A13", "کارکرد بروز"},
-				{"A14", "شماره حساب سهم دولت"},
-				{"A15", "شماره حساب سهم پرسنل"},
-				{"A16", "مبلغ کل بیمه تکمیلی"},
-				{"A17", "ساعات اضافه کار عادی"},
-				{"A18", "ساعات اضافه کار جمعه"},
-				{"A19", "بازنشستگی گذشته"},
-				{"A20", "بیمه عمر"},
-				{"A21", "بدهی های متفرقه"},
-				{"A22", "مقرری ماه اول"},
-				{"A23", "بدهی اضافه کار"},
-				{"A24", "معافیت وام مسکن"},
-				{"A25", "تاریخ مازاد 30 سال"}
+					{"A01", "شماره پرسنلی"},
+					{"A02", "نام و نام خانوادگی"},
+					{"A03", "شماره حکم"},
+					{"A04", "جمع کل حکم"},
+					{"A05", "پرداختهای متفرقه"},
+					{"A06", "کسور متفرقه"},
+					{"A07", "بیمه تکمیلی سهم دولت"},
+					{"A08", "تعداد بیمه تبعی 1"},
+					{"A09", "تعداد بیمه تبعی 2"},
+					{"A10", "تعداد بیمه مازاد"},
+					{"A11", "درصد معاف مالیات"},
+					{"A12", "شماره حساب"},
+					{"A13", "کارکرد بروز"},
+					{"A14", "شماره حساب سهم دولت"},
+					{"A15", "شماره حساب سهم پرسنل"},
+					{"A16", "مبلغ کل بیمه تکمیلی"},
+					{"A17", "ساعات اضافه کار عادی"},
+					{"A18", "ساعات اضافه کار جمعه"},
+					{"A19", "بازنشستگی گذشته"},
+					{"A20", "بیمه عمر"},
+					{"A21", "بدهی های متفرقه"},
+					{"A22", "مقرری ماه اول"},
+					{"A23", "بدهی اضافه کار"},
+					{"A24", "معافیت وام مسکن"},
+					{"A25", "تاریخ مازاد 30 سال"}
 			};
 			var variableTitlesB = new Dictionary<string, string>
 			{
-				{"B01", "تعداد بیمه عادی"},
-				{"B02", "تعداد بیمه مازاد"},
-				{"B03", "شماره حساب"},
-				{"B04", "مدت پرداخت بروز"},
-				{"B05", "سهم بیمه تکمیلی"},
-				{"B06", "بیمه عمر"},
-				{"B07", "بدهی های متفرقه"}
+					{"B01", "تعداد بیمه عادی"},
+					{"B02", "تعداد بیمه مازاد"},
+					{"B03", "شماره حساب"},
+					{"B04", "مدت پرداخت بروز"},
+					{"B05", "سهم بیمه تکمیلی"},
+					{"B06", "بیمه عمر"},
+					{"B07", "بدهی های متفرقه"}
 			};
 			var variableTitlesC = new Dictionary<string, string>
 			{
-				{"C01", "درصد معاف از مالیات"},
-				{"C02", "بیمه تکمیلی سهم دولت"},
-				{"C03", "روزهای کارکرد"},
-				{"C04", "تعطیل کاری"},
-				{"C05", "اضافه کار عادی"},
-				{"C06", "ساعات شیفت کاری"},
-				{"C07", "شماره حساب"},
-				{"C08", "شماره حساب سهم دولت"},
-				{"C09", "شماره حساب سهم پرسنل"},
-				{"C10", "بیمه عمر"},
-				{"C11", "بدهی های متفرقه"},
-				{"C12", "بدهی اضافه کار"},
-				{"C13", "معافیت وام مسکن"},
-				{"C14", "کسر کل بیمه تکمیلی"},
-				{"C15", "تاریخ ورود به خدمت"},
-				{"C16", "تاریخ خاتمه خدمت"},
-				{"C17", "مدت مرخصی ذخیره"},
-				{"C18", "ضریب پایان کار"}
+					{"C01", "درصد معاف از مالیات"},
+					{"C02", "بیمه تکمیلی سهم دولت"},
+					{"C03", "روزهای کارکرد"},
+					{"C04", "تعطیل کاری"},
+					{"C05", "اضافه کار عادی"},
+					{"C06", "ساعات شیفت کاری"},
+					{"C07", "شماره حساب"},
+					{"C08", "شماره حساب سهم دولت"},
+					{"C09", "شماره حساب سهم پرسنل"},
+					{"C10", "بیمه عمر"},
+					{"C11", "بدهی های متفرقه"},
+					{"C12", "بدهی اضافه کار"},
+					{"C13", "معافیت وام مسکن"},
+					{"C14", "کسر کل بیمه تکمیلی"},
+					{"C15", "تاریخ ورود به خدمت"},
+					{"C16", "تاریخ خاتمه خدمت"},
+					{"C17", "مدت مرخصی ذخیره"},
+					{"C18", "ضریب پایان کار"}
 			};
+
+			var groupTitles = new Dictionary<string, List<String>>
+			{
+					{
+							"استخدام کشوری", new List<string>
+							{
+									"کارمندان ثابت",
+									"کارمندان رسمی"
+							}
+					},
+					{
+							"بازنشستگان", new List<string>
+							{
+									"بازنشستگان",
+									"موظفین"
+							}
+					},
+					{
+							"مشمولین قانون کار", new List<string>
+							{
+									"کارگران رسمی",
+									"کارگران قراردادی",
+									"کارگران خدمات شهری",
+									"کارگران خدمات اداری"
+							}
+					},
+					{
+							"پیمانی", new List<string>
+							{
+									"پیمانی اداری",
+									"پیمانی خدماتی"
+							}
+					},
+					{
+							"استخدام کشوری تأمین اجتماعی", new List<string>
+							{
+									"رسمی تأمین اجتماعی الف",
+									"رسمی تأمین اجتماعی ب"
+							}
+					}
+			};
+			var groupColors = new[] {ColorPallet.Goldenrod, ColorPallet.Teal, ColorPallet.CornflowerBlue, ColorPallet.ForestGreen, ColorPallet.Maroon, ColorPallet.Navy};
 
 			#endregion
 
 			#region MainGroups & SubGroups
 
-			var seedMainGroups = new List<MainGroup>
+			var seedMainGroups = new List<MainGroup>();
+			int index = 0;
+			foreach( var g in groupTitles )
 			{
-				new MainGroup
+				var indexOfGroup = groupTitles.Keys.ToList().IndexOf( g.Key );
+				var newGroupMain = new MainGroup
 				{
-					Title = "استخدام کشوری",
-					ItemColor = ColorPallet.Goldenrod,
-					SubGroups = new List<SubGroup>
+						Title = g.Key,
+						Alias = $"{alphabets[indexOfGroup]}",
+						ItemColor = groupColors[indexOfGroup],
+						SubGroups = new List<SubGroup>()
+				};
+				foreach( var s in g.Value )
+					newGroupMain.SubGroups.Add( new SubGroup
 					{
-						new SubGroup
-						{
-							Title = "کارمندان ثابت",
-							ItemColor = ColorPallet.Goldenrod
-						},
-						new SubGroup
-						{
-							Title = "کارمندان رسمی",
-							ItemColor = ColorPallet.Goldenrod
-						},
-						new SubGroup
-						{
-							Title = "شهردار",
-							ItemColor = ColorPallet.Goldenrod
-						}
-					}
-				},
-				new MainGroup
-				{
-					Title = "بازنشستگان",
-					ItemColor = ColorPallet.Teal,
-					SubGroups = new List<SubGroup>
-					{
-						new SubGroup
-						{
-							Title = "بازنشستگان",
-							ItemColor = ColorPallet.Teal
-						},
-						new SubGroup
-						{
-							Title = "موظفین",
-							ItemColor = ColorPallet.Teal
-						}
-					}
-				},
-				new MainGroup
-				{
-					Title = "تأمین اجتماعی",
-					ItemColor = ColorPallet.CornflowerBlue,
-					SubGroups = new List<SubGroup>
-					{
-						new SubGroup
-						{
-							Title = "کارگران خدمات شهری",
-							ItemColor = ColorPallet.CornflowerBlue
-						},
-						new SubGroup
-						{
-							Title = "کارگران خدمات اداری",
-							ItemColor = ColorPallet.CornflowerBlue
-						}
-					}
-				}
-			};
+							Alias = $"{alphabets[indexOfGroup]}{indexOfGroup + 1:D2}",
+							Title = s,
+							ItemColor = newGroupMain.ItemColor,
+							Is31 = _faker.Random.Bool(),
+							IsFreeZone = _faker.Random.Bool()
+					} );
+				seedMainGroups.Add( newGroupMain );
+			}
+
 			context.MainGroups.AddRange( seedMainGroups );
 
 			#endregion
@@ -239,14 +322,14 @@ namespace PaySys.ModelAndBindLib.Migrations
 			#region Cities
 
 			var seedCities = new List<City>();
-			var CityFaker = new Faker<City>( "fa" ).StrictMode( false ).Rules( ( f, e ) =>
+			var cityFaker = new Faker<City>( "fa" ).StrictMode( false ).Rules( ( f, e ) =>
 			{
 				e.Title = f.PickRandom( cityNames.Where( s => !seedCities.Select( city => city.Title ).Contains( s ) ) );
 				e.Distance = f.Random.Int( 20, 999 );
 				e.Percentage = f.Random.Number( 100 );
 			} );
 			for( var i = 0; i < 50; i++ )
-				seedCities.Add( CityFaker.Generate() );
+				seedCities.Add( cityFaker.Generate() );
 
 			context.Cities.AddRange( seedCities );
 
@@ -270,25 +353,36 @@ namespace PaySys.ModelAndBindLib.Migrations
 
 			#endregion
 
-			#region ContractFields
+			#region ContractFieldTitles
 
-			var seedContractFields = new List<ContractField>();
-			var contractFieldTitleFaker = new Faker<ContractField>( "fa" ).StrictMode( false ).Rules( ( f, e ) =>
+			var seedContractFieldTitles = new List<ContractFieldTitle>();
+			foreach( var cft in contractFieldTitles )
+				seedContractFieldTitles.Add( new ContractFieldTitle()
+				{
+						Alias = cft.Key,
+						Title = cft.Value
+				} );
+
+			context.ContractFieldTitles.AddRange( seedContractFieldTitles );
+
+			#endregion
+
+			#region SubGroupContractFields
+
+			var seedSubGroupContractFields = new List<SubGroupContractField>();
+			foreach( var scf in mainGroupContractFields )
 			{
-				e.SubGroup = f.PickRandom( f.PickRandom( seedMainGroups ).SubGroups );
-				e.Year = 1397;
-			} );
-			foreach( var mainGroup in seedMainGroups )
-				foreach( var subGroup in mainGroup.SubGroups )
-					for( var i = 0; i < 10; i++ )
+				var mg = seedMainGroups.First( g => g.Alias == scf.MG );
+				foreach( var sg in mg.SubGroups )
+					seedSubGroupContractFields.Add( new SubGroupContractField
 					{
-						contractFieldTitleFaker.RuleFor( field => field.Title, _faker.PickRandom( contractFields ) );
-						var newContractField = contractFieldTitleFaker.Generate();
-						if( !seedContractFields.Where( field => field.SubGroup.Equals( subGroup ) ).Select( field => field.Title ).Contains( newContractField.Title ) )
-							seedContractFields.Add( newContractField );
-					}
+							ContractFieldTitle = seedContractFieldTitles.First(t=>t.Alias==scf.CFT),
+							Year = PaySysSetting.CurrentYear,
+							SubGroup = sg
+					} );
+			}
 
-			context.ContractFields.AddRange( seedContractFields );
+			context.SubGroupContractFields.AddRange( seedSubGroupContractFields );
 
 			#endregion
 
@@ -298,14 +392,14 @@ namespace PaySys.ModelAndBindLib.Migrations
 			foreach( var title in miscTitlesPayment )
 				seedMiscTitles.Add( new MiscTitle
 				{
-					Title = title,
-					IsPayment = true
+						Title = title,
+						IsPayment = true
 				} );
 			foreach( var title in miscTitlesDebt )
 				seedMiscTitles.Add( new MiscTitle
 				{
-					Title = title,
-					IsPayment = false
+						Title = title,
+						IsPayment = false
 				} );
 
 			context.MiscTitles.AddRange( seedMiscTitles );
@@ -336,18 +430,21 @@ namespace PaySys.ModelAndBindLib.Migrations
 
 			#region TaxTables
 
-			var TaxTableFaker = new Faker<TaxTable>( "fa" ).StrictMode( false ).Rules( ( f, e ) => { e.Month = 007; } );
+			var taxTableFaker = new Faker<TaxTable>( "fa" ).StrictMode( false ).Rules( ( f, e ) =>
+			{
+				e.Month = 007;
+			} );
 			var seedTaxTables = new List<TaxTable>();
 			foreach( var mainGroup in seedMainGroups )
 				foreach( var subGroup in mainGroup.SubGroups )
 					for( var i = 1395; i <= 1397; i++ )
 					{
-						TaxTableFaker.RuleFor( TaxTable => TaxTable.SubGroup, subGroup ).RuleFor( TaxTable => TaxTable.Year, i );
-						seedTaxTables.Add( TaxTableFaker.Generate() );
+						taxTableFaker.RuleFor( tt => tt.SubGroup, subGroup ).RuleFor( tt => tt.Year, i );
+						seedTaxTables.Add( taxTableFaker.Generate() );
 					}
 
 			context.TaxTables.AddRange( seedTaxTables );
-			var TaxRowFaker = new Faker<TaxRow>( "fa" ).StrictMode( false ).Rules( ( f, e ) =>
+			var taxRowFaker = new Faker<TaxRow>( "fa" ).StrictMode( false ).Rules( ( f, e ) =>
 			{
 				e.ValueTo = f.Random.Number( 20000 ) * 1000;
 				e.Factor = f.Random.Number( 10 );
@@ -356,8 +453,8 @@ namespace PaySys.ModelAndBindLib.Migrations
 			foreach( var taxTable in seedTaxTables )
 				for( var i = 0; i < 10; i++ )
 				{
-					TaxRowFaker.RuleFor( row => row.TaxTable, taxTable );
-					seedTaxRows.Add( TaxRowFaker.Generate() );
+					taxRowFaker.RuleFor( row => row.TaxTable, taxTable );
+					seedTaxRows.Add( taxRowFaker.Generate() );
 				}
 
 			context.TaxRows.AddRange( seedTaxRows );
@@ -366,7 +463,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 
 			#region MissionFormulas
 
-			var MissionFormulaFaker = new Faker<MissionFormula>( "fa" ).StrictMode( false ).Rules( ( f, e ) =>
+			var missionFormulaFaker = new Faker<MissionFormula>( "fa" ).StrictMode( false ).Rules( ( f, e ) =>
 			{
 				e.Month = 007;
 				e.DivideFactor = f.Random.Number( 30 );
@@ -380,18 +477,19 @@ namespace PaySys.ModelAndBindLib.Migrations
 				foreach( var subGroup in mainGroup.SubGroups )
 					for( var i = 1395; i <= 1397; i++ )
 					{
-						MissionFormulaFaker.RuleFor( missionFormula => missionFormula.SubGroup, subGroup ).RuleFor( missionFormula => missionFormula.Year, i );
-						seedMissionFormulas.Add( MissionFormulaFaker.Generate() );
+						missionFormulaFaker.RuleFor( missionFormula => missionFormula.SubGroup, subGroup ).RuleFor( missionFormula => missionFormula.Year, i );
+						seedMissionFormulas.Add( missionFormulaFaker.Generate() );
 					}
+
 			foreach( var missionFormula in seedMissionFormulas )
 				for( var i = 0; i < 10; i++ )
 					if( _faker.Random.Bool() )
 					{
 						var item = new MissionFormulaInvolvedContractField();
-						var validContractFields = missionFormula.SubGroup.ContractFields.Where( field => !missionFormula.MissionFormulaInvolvedContractFields.Select( invFld => invFld.ContractField ).Contains( field ) );
+						var validContractFields = missionFormula.SubGroup.SubGroupContractFields.Where( field => !missionFormula.MissionFormulaInvolvedContractFields.Select( invFld => invFld.SubGroupContractField ).Contains( field ) );
 						if( validContractFields.Any() )
 						{
-							item.ContractField = _faker.PickRandom( validContractFields );
+							item.SubGroupContractField = _faker.PickRandom( validContractFields );
 							item.MissionFormula = missionFormula;
 							missionFormula.MissionFormulaInvolvedContractFields.Add( item );
 						}
@@ -403,7 +501,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 
 			#region HandselFormulaFaker
 
-			var HandselFormulaFaker = new Faker<HandselFormula>( "fa" ).StrictMode( false ).Rules( ( f, e ) =>
+			var handselFormulaFaker = new Faker<HandselFormula>( "fa" ).StrictMode( false ).Rules( ( f, e ) =>
 			{
 				e.Month = 007;
 				e.DaysCount = f.Random.Number( 60 );
@@ -417,8 +515,8 @@ namespace PaySys.ModelAndBindLib.Migrations
 				foreach( var subGroup in mainGroup.SubGroups )
 					for( var i = 1395; i <= 1397; i++ )
 					{
-						HandselFormulaFaker.RuleFor( HandselFormula => HandselFormula.SubGroup, subGroup ).RuleFor( HandselFormula => HandselFormula.Year, i );
-						seedHandselFormulas.Add( HandselFormulaFaker.Generate() );
+						handselFormulaFaker.RuleFor( handselFormula => handselFormula.SubGroup, subGroup ).RuleFor( handselFormula => handselFormula.Year, i );
+						seedHandselFormulas.Add( handselFormulaFaker.Generate() );
 					}
 
 			context.HandselFormulas.AddRange( seedHandselFormulas );
@@ -427,34 +525,34 @@ namespace PaySys.ModelAndBindLib.Migrations
 
 			#region Parameters
 
-			var ParameterFaker = new Faker<Parameter>( "fa" ).StrictMode( false ).Rules( ( f, e ) =>
+			var parameterFaker = new Faker<Parameter>( "fa" ).StrictMode( false ).Rules( ( f, e ) =>
 			{
 				e.Year = 1397;
 				e.Month = 007;
-				e.Alias = f.Finance.AccountName().Replace( " ", string.Empty );
-				e.Title = f.PickRandom( parameterTitles );
-				e.ValueType = f.PickRandom( Enum.GetValues( typeof(ValueType) ).Cast<ValueType>().Where( valueType => valueType != ValueType.Unknown ) );
+				e.ParameterTitle.Alias = f.Finance.AccountName().Replace( " ", string.Empty );
+				e.ParameterTitle.Title = f.PickRandom( parameterTitles );
+				e.ParameterTitle.ValueType = f.PickRandom( Enum.GetValues( typeof(ValueType) ).Cast<ValueType>().Where( valueType => valueType != ValueType.Unknown ) );
 				e.Value = f.Random.Number( 999999 );
 				e.ParameterInvolvedContractFields = new List<ParameterInvolvedContractField>();
 				e.ParameterInvolvedMiscs = new List<ParameterInvolvedMisc>();
 			} );
 			var seedParameters = new List<Parameter>();
-			foreach( var mainGroup in seedMainGroups )
+			/*foreach( var mainGroup in seedMainGroups )
 				foreach( var subGroup in mainGroup.SubGroups )
 					for( var i = 0; i < 10; i++ )
 					{
 						ParameterFaker.RuleFor( parameter => parameter.SubGroup, subGroup );
 						seedParameters.Add( ParameterFaker.Generate() );
-					}
+					}*/
 
 			#region ParameterInvolvedContractFields
 
 			foreach( var parameter in seedParameters )
-				foreach( var contractField in parameter.SubGroup.ContractFields )
-					if( _faker.Random.Bool() && !parameter.ParameterInvolvedContractFields.Select( inv => inv.ContractField ).Contains( contractField ) )
+				foreach( var contractField in parameter.SubGroup.SubGroupContractFields )
+					if( _faker.Random.Bool() && !parameter.ParameterInvolvedContractFields.Select( inv => inv.SubGroupContractField ).Contains( contractField ) )
 						parameter.ParameterInvolvedContractFields.Add( new ParameterInvolvedContractField
 						{
-							ContractField = contractField
+								SubGroupContractField = contractField
 						} );
 
 			#endregion
@@ -466,7 +564,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 					if( _faker.Random.Bool() && !parameter.ParameterInvolvedMiscs.Select( inv => inv.Misc ).Contains( misc ) )
 						parameter.ParameterInvolvedMiscs.Add( new ParameterInvolvedMisc
 						{
-							Misc = misc
+								Misc = misc
 						} );
 
 			#endregion
@@ -480,12 +578,12 @@ namespace PaySys.ModelAndBindLib.Migrations
 			var seedExpenseArticleOfContractFieldForSubGroups = new List<ExpenseArticleOfContractFieldForSubGroup>();
 			foreach( var mainGroup in seedMainGroups )
 				foreach( var subGroup in mainGroup.SubGroups )
-					foreach( var contractField in subGroup.ContractFields )
+					foreach( var contractField in subGroup.SubGroupContractFields )
 						seedExpenseArticleOfContractFieldForSubGroups.Add( new ExpenseArticleOfContractFieldForSubGroup
 						{
-							Month = 007,
-							ContractField = contractField,
-							ExpenseArticle = _faker.PickRandom( seedExpenseArticles )
+								Month = 007,
+								SubGroupContractField = contractField,
+								ExpenseArticle = _faker.PickRandom( seedExpenseArticles )
 						} );
 
 			context.ExpenseArticleOfContractFieldForSubGroups.AddRange( seedExpenseArticleOfContractFieldForSubGroups );
@@ -519,13 +617,16 @@ namespace PaySys.ModelAndBindLib.Migrations
 
 			#region ContractDetail
 
-			var contractDetailFaker = new Faker<ContractDetail>( "fa" ).StrictMode( false ).Rules( ( f, e ) => { e.Value = f.Random.Number( 100 ) * 10000; } );
+			var contractDetailFaker = new Faker<ContractDetail>( "fa" ).StrictMode( false ).Rules( ( f, e ) =>
+			{
+				e.Value = f.Random.Number( 100 ) * 10000;
+			} );
 			var seedContractDetails = new List<ContractDetail>();
 			foreach( var contMast in seedContractMasters )
-				foreach( var grpCntField in seedContractFields.Where( c => c.SubGroup.Equals( contMast.SubGroup ) ) )
+				foreach( var grpCntField in seedSubGroupContractFields.Where( c => c.SubGroup.Equals( contMast.SubGroup ) ) )
 				{
 					contractDetailFaker.RuleFor( detail => detail.ContractMaster, contMast );
-					contractDetailFaker.RuleFor( detail => detail.ContractField, grpCntField );
+					contractDetailFaker.RuleFor( detail => detail.SubGroupContractField, grpCntField );
 					var contractDetail = contractDetailFaker.Generate();
 					seedContractDetails.Add( contractDetail );
 				}
@@ -552,7 +653,10 @@ namespace PaySys.ModelAndBindLib.Migrations
 			#region MiscRecharges
 
 			var seedMiscRecharges = new List<MiscRecharge>();
-			var miscRechargeFaker = new Faker<MiscRecharge>( "fa" ).StrictMode( false ).Rules( ( f, e ) => { e.Value = f.Random.Number( 100 ) * 1000; } );
+			var miscRechargeFaker = new Faker<MiscRecharge>( "fa" ).StrictMode( false ).Rules( ( f, e ) =>
+			{
+				e.Value = f.Random.Number( 100 ) * 1000;
+			} );
 			var firstTenContracts = seedContractMasters.Where( master => master.IsCurrent ).Take( 10 );
 			foreach( var contract in firstTenContracts )
 			{
@@ -576,7 +680,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 			#region Missions
 
 			var seedMissions = new List<Mission>();
-			var MissionFaker = new Faker<Mission>( "fa" ).StrictMode( false ).Rules( ( f, e ) =>
+			var missionFaker = new Faker<Mission>( "fa" ).StrictMode( false ).Rules( ( f, e ) =>
 			{
 				e.AmountNonResident = f.Random.Number( 15 );
 				e.AmountResident = f.Random.Number( 15 );
@@ -589,14 +693,14 @@ namespace PaySys.ModelAndBindLib.Migrations
 			foreach( var contract in seedContractMasters )
 			{
 				var startMonth = _faker.Random.Number( 9 ) + 1;
-				MissionFaker.RuleFor( m => m.ContractMaster, contract );
-				MissionFaker.RuleFor( m => m.StartDate, _faker.Date.Between( contract.DateEmployment, DateTime.Now ) );
-				MissionFaker.RuleFor( m => m.EndDate, ( f, m ) => f.Date.Between( m.StartDate, DateTime.Now ) );
-				MissionFaker.RuleFor( m => m.StartTime, _faker.Date.Past() );
-				MissionFaker.RuleFor( m => m.EndTime, _faker.Date.Past() );
+				missionFaker.RuleFor( m => m.ContractMaster, contract );
+				missionFaker.RuleFor( m => m.StartDate, _faker.Date.Between( contract.DateEmployment, DateTime.Now ) );
+				missionFaker.RuleFor( m => m.EndDate, ( f, m ) => f.Date.Between( m.StartDate, DateTime.Now ) );
+				missionFaker.RuleFor( m => m.StartTime, _faker.Date.Past() );
+				missionFaker.RuleFor( m => m.EndTime, _faker.Date.Past() );
 
 				for( var i = 0; i < 10; i++ )
-					seedMissions.Add( MissionFaker.Generate() );
+					seedMissions.Add( missionFaker.Generate() );
 			}
 
 			context.Missions.AddRange( seedMissions );
@@ -610,9 +714,9 @@ namespace PaySys.ModelAndBindLib.Migrations
 			foreach( var v in variableTitlesA.Union( variableTitlesB ).Union( variableTitlesC ) )
 				seedVariableTitles.Add( new VariableTitle
 				{
-					Title = v.Value,
-					Alias = v.Key,
-					ValueType = _faker.PickRandom( Enum.GetValues( typeof(ValueType) ).Cast<ValueType>().Where( type => type != ValueType.Unknown ) )
+						Title = v.Value,
+						Alias = v.Key,
+						ValueType = _faker.PickRandom( Enum.GetValues( typeof(ValueType) ).Cast<ValueType>().Where( type => type != ValueType.Unknown ) )
 				} );
 
 			context.VariableTitles.AddRange( seedVariableTitles );
@@ -620,60 +724,22 @@ namespace PaySys.ModelAndBindLib.Migrations
 			#endregion
 
 			#region SubGroupVariable
-
-			var seedSubGroupVariables = new List<SubGroupVariable>();
-			var mainGroupId = 1;
-			foreach( var mainGroup in seedMainGroups )
+			var subGroupVariableFaker = new Faker<SubGroupVariable>( "fa" ).StrictMode( false ).Rules( ( f, e ) =>
 			{
+				e.ExpenseArticle = _faker.PickRandom( seedExpenseArticles );
+				e.FromMonth = 1;
+				e.FromYear = 1397;
+				e.ToMonth = 12;
+				e.ToYear = 1397;
+			} );
+			var seedSubGroupVariables = new List<SubGroupVariable>();
+			foreach( var mainGroup in seedMainGroups )
 				foreach( var subGroup in mainGroup.SubGroups )
-					switch( mainGroupId )
+					foreach( var var in seedVariableTitles.Where( t => t.Alias.StartsWith( mainGroup.Alias ) ) )
 					{
-						case 1:
-							foreach( var v in seedVariableTitles.Where( t => t.Alias.StartsWith( "A" ) ) )
-								seedSubGroupVariables.Add( new SubGroupVariable
-								{
-									SubGroup = subGroup,
-									VariableTitle = v,
-									ExpenseArticle = _faker.PickRandom( seedExpenseArticles ),
-									FromMonth = 1,
-									FromYear = 1397,
-									ToMonth = 12,
-									ToYear = 1397
-								} );
-
-							break;
-						case 2:
-							foreach( var v in seedVariableTitles.Where( t => t.Alias.StartsWith( "B" ) ) )
-								seedSubGroupVariables.Add( new SubGroupVariable
-								{
-									SubGroup = subGroup,
-									VariableTitle = v,
-									ExpenseArticle = _faker.PickRandom( seedExpenseArticles ),
-									FromMonth = 1,
-									FromYear = 1397,
-									ToMonth = 12,
-									ToYear = 1397
-								} );
-
-							break;
-						case 3:
-							foreach( var v in seedVariableTitles.Where( t => t.Alias.StartsWith( "C" ) ) )
-								seedSubGroupVariables.Add( new SubGroupVariable
-								{
-									SubGroup = subGroup,
-									VariableTitle = v,
-									ExpenseArticle = _faker.PickRandom( seedExpenseArticles ),
-									FromMonth = 1,
-									FromYear = 1397,
-									ToMonth = 12,
-									ToYear = 1397
-								} );
-
-							break;
+						subGroupVariableFaker.RuleFor( sv => sv.SubGroup, subGroup ).RuleFor( sv => sv.VariableTitle, var );
+						seedSubGroupVariables.Add( subGroupVariableFaker.Generate() );
 					}
-
-				mainGroupId++;
-			}
 
 			context.SubGroupVariables.AddRange( seedSubGroupVariables );
 
@@ -683,13 +749,13 @@ namespace PaySys.ModelAndBindLib.Migrations
 
 			var seedVariableValues = new List<VariableValueForEmployee>();
 			var variableValueFaker = new Faker<VariableValueForEmployee>( "fa" ).StrictMode( false );
-			
+
 			foreach( var contract in seedContractMasters )
 			{
-				if( _faker.Random.Bool() )
+				if( _faker.Random.Bool() || contract.SubGroup.SubGroupVariables==null)
 					continue;
 
-				var variables = contract.SubGroup.SubGroupVariables.Take( _faker.Random.Number( contract.SubGroup.SubGroupVariables.Count ) );
+				var variables = contract.SubGroup.SubGroupVariables?.Take( _faker.Random.Number( contract.SubGroup.SubGroupVariables.Count ) );
 				foreach( var variable in variables )
 				{
 					variableValueFaker.RuleFor( r => r.Employee, contract.Employee ).RuleFor( r => r.SubGroupVariable, variable );
@@ -703,11 +769,11 @@ namespace PaySys.ModelAndBindLib.Migrations
 									case ValueType.Unknown:
 										return null;
 									case ValueType.Absolute:
-										return  f.Random.Number( 100 ) * 1000;
+										return f.Random.Number( 100 ) * 1000;
 									case ValueType.Percent:
 										return f.Random.Number( 100 );
 									case ValueType.Date:
-										return f.Date.Past(3,DateTime.Now);
+										return f.Date.Past( 3, DateTime.Now );
 									case ValueType.String:
 										return f.Commerce.ProductAdjective();
 									default:

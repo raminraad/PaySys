@@ -53,7 +53,7 @@
 						<GridView.Columns>
 							<GridViewColumn x:Name="TitleColumn"
 							                Header="{x:Static fa:FieldicContractField.Title}"
-							                DisplayMemberBinding="{Binding ContractField.Title}"
+							                DisplayMemberBinding="{Binding SubGroupContractField.Title}"
 							                ctrl:ProportionalColumn.Width="2" />
 							<GridViewColumn x:Name="ValueColumn"
 							                Header="{x:Static fa:Labels.Value}"

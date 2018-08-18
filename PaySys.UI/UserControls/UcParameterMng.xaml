@@ -95,7 +95,7 @@
 				<GridView>
 					<GridViewColumn Header="{x:Static fa:Labels.ParameterTitle}"
 					                Width="300"
-					                DisplayMemberBinding="{Binding Title}"/>
+					                DisplayMemberBinding="{Binding ParameterTitle.Title}"/>
 					<GridViewColumn Header="{x:Static fa:Labels.Value}"
 					                Width="100"
 					                DisplayMemberBinding="{Binding Value}"/>
@@ -108,7 +108,7 @@
 		<ListView x:Name="ListViewParameterInvolvedContractFields"
 		          Grid.Row="3"
 		          Grid.Column="3"
-		          DisplayMemberPath="ContractField.Title"
+		          DisplayMemberPath="SubGroupContractField.Title"
 		          ItemsSource="{Binding ElementName=ListViewParameter,Path=SelectedItem.ParameterInvolvedContractFields}"/>
 		<ListView x:Name="ListViewParameterInvolvedMiscPayments"
 		          Grid.Row="3"

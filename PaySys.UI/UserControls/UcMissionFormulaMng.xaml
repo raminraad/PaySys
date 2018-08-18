@@ -94,7 +94,7 @@
 				  MaxWidth="300"
 				  TabIndex="5"
 				  IsTabStop="True"
-				  DisplayMemberPath="ContractField.Title"
+				  DisplayMemberPath="SubGroupContractField.Title"
 				  x:Name="ListViewContractField"
 				  ItemsSource="{Binding ElementName=SmpMissionFormulaMng,Path=CurrentSubGroup.CurrenMissionFormula.MissionFormulaInvolvedContractFields,UpdateSourceTrigger=PropertyChanged}" />
 		<TextBlock Grid.Row="3"

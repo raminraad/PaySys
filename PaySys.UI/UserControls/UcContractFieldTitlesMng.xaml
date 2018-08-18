@@ -31,10 +31,11 @@
 		           Style="{StaticResource StyleOfListTitle}"
 		           Text="{x:Static fa:Labels.ContractFieldTitles}" />
 		<ToolBar Grid.Row="0"
-		         Grid.ColumnSpan="5">
-			<Button Name="BtnAddMainGroup"
+		         Grid.Column="0"
+		         Grid.ColumnSpan="3">
+			<Button Name="BtnAdd"
 			        Style="{StaticResource StyleOfToolbarButton}"
-			        Click="BtnAddMainGroup_OnClick"
+			        Click="BtnAdd_OnClick"
 			        Content="{x:Static fa:Labels.Add}" />
 			<Button Name="BtnEdit"
 			        Content="{x:Static fa:Labels.EditTitle}"
@@ -53,7 +54,7 @@
 		          Grid.Row="3"
 		          Grid.Column="1"
 		          MaxWidth="300"
-		          ItemsSource="{Binding ElementName=SmpUcContractFieldTitlesMng,Path=CurrentSubGroup.ContractFields,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+		          ItemsSource="{Binding ElementName=SmpUcContractFieldTitlesMng,Path=CurrentSubGroup.SubGroupContractFields,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
 			<ListView.View>
 				<GridView>
 					<GridViewColumn Header="{x:Static fa:Labels.Title}"
