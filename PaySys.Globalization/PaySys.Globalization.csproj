@@ -80,6 +80,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FieldicMissionFormula.resx</DependentUpon>
     </Compile>
+    <Compile Include="Fa\FieldicSubGroup.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FieldicSubGroup.resx</DependentUpon>
+    </Compile>
     <Compile Include="Fa\Labels.Designer.cs">
       <DependentUpon>Labels.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -126,6 +131,10 @@
     <EmbeddedResource Include="Fa\FieldicMissionFormula.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>FieldicMissionFormula.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fa\FieldicSubGroup.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FieldicSubGroup.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Fa\Labels.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

@@ -206,6 +206,9 @@
     <Compile Include="UserControls\UcTaxTableMng.xaml.cs">
       <DependentUpon>UcTaxTableMng.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UcTextPair.xaml.cs">
+      <DependentUpon>UcTextPair.xaml</DependentUpon>
+    </Compile>
     <Page Include="Dialogs\WinSelectItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -351,6 +354,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\UcTaxTableMng.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UcTextPair.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

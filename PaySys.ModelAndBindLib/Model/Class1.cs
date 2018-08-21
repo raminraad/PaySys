@@ -42,7 +42,7 @@ namespace PaySys.ModelAndBindLib.Model
 
 		public string Alias { get; set; }
 
-		private string WorkshopCode { set; get; }
+		public string WorkshopCode { set; get; }
 
 		public string Title { get; set; }
 
@@ -129,6 +129,9 @@ namespace PaySys.ModelAndBindLib.Model
 		}
 
 		[NotMapped]
+		public IEnumerable<Parameter> CurrentParameters => Parameters.Where( m => m.Year == PaySysSetting.CurrentYear && m.Month==PaySysSetting.CurrentMonth );
+
+		[NotMapped]
 		public IEnumerable<Misc> CurrentMiscs => Miscs.Where( m => m.Year == PaySysSetting.CurrentYear );
 
 		[NotMapped]
@@ -139,6 +142,10 @@ namespace PaySys.ModelAndBindLib.Model
 
 		[NotMapped]
 		public IEnumerable<SubGroupVariable> CurrentVariables => SubGroupVariables.Where( v => v.IncludesCurrentDate );
+
+		[NotMapped]
+		public IEnumerable<SubGroupContractField> CurrentSubGroupContractFields => SubGroupContractFields.Where( c => c.Year==PaySysSetting.CurrentYear);
+
 
 		[NotMapped]
 		public List<MiscRecharge> TempMiscRechargesOfEmployees { set; get; }
@@ -162,6 +169,8 @@ namespace PaySys.ModelAndBindLib.Model
 
 		public string Title { get; set; }
 
+		public int Index { get; set; }
+
 		public string Alias { get; set; }
 
 		public bool IsPayment { get; set; }
@@ -177,8 +186,6 @@ namespace PaySys.ModelAndBindLib.Model
 		public int Year { get; set; }
 
 		public int Month { get; set; }
-
-		public int Index { get; set; }
 
 		public virtual List<ParameterInvolvedMisc> ParameterInvolvedMiscs { get; set; }
 
@@ -214,6 +221,9 @@ namespace PaySys.ModelAndBindLib.Model
 	/// <summary> #07 مقادیر مؤلفه های محاسباتی زیرگروه در سال و ماه </summary>
 	public class Parameter
 	{
+		private Dictionary<SubGroupContractField, bool> _tempParameterInvolvedContractFieldsLeftJoined;
+		private Dictionary<Misc, bool> _tempParameterInvolvedMiscPaymentsLeftJoined;
+
 		public int ParameterId { get; set; }
 
 		public double Value { get; set; }
@@ -229,6 +239,34 @@ namespace PaySys.ModelAndBindLib.Model
 		public virtual List<ParameterInvolvedMisc> ParameterInvolvedMiscs { set; get; }
 
 		public virtual List<ParameterInvolvedContractField> ParameterInvolvedContractFields { get; set; }
+
+		[NotMapped]
+		public Dictionary<SubGroupContractField, bool> TempParameterInvolvedContractFieldsLeftJoined
+		{
+			get
+			{
+				var cfs = ParameterInvolvedContractFields.Select( p => p.SubGroupContractField ).ToList();
+				_tempParameterInvolvedContractFieldsLeftJoined = new Dictionary<SubGroupContractField, bool>();
+				cfs.ForEach( p => _tempParameterInvolvedContractFieldsLeftJoined.Add( p, true ) );
+				SubGroup.CurrentSubGroupContractFields.Except( cfs ).ToList().ForEach( p => _tempParameterInvolvedContractFieldsLeftJoined.Add( p, false ) );
+				return _tempParameterInvolvedContractFieldsLeftJoined;
+			}
+			set => _tempParameterInvolvedContractFieldsLeftJoined = value;
+		}
+
+		[NotMapped]
+		public Dictionary<Misc, bool> TempParameterInvolvedMiscPaymentsLeftJoined
+		{
+			get
+			{
+				var mp = ParameterInvolvedMiscs.Select( m => m.Misc ).ToList();
+				_tempParameterInvolvedMiscPaymentsLeftJoined = new Dictionary<Misc, bool>();
+				mp.ForEach( m => _tempParameterInvolvedMiscPaymentsLeftJoined.Add( m, true ) );
+				SubGroup.CurrentMiscPayments.Except( mp ).ToList().ForEach( m => _tempParameterInvolvedMiscPaymentsLeftJoined.Add( m, false ) );
+				return _tempParameterInvolvedMiscPaymentsLeftJoined;
+			}
+			set => _tempParameterInvolvedMiscPaymentsLeftJoined = value;
+		}
 	}
 
 	/// <summary> #08 فیلدهای احکام دخیل در محاسبات مؤلفه ها </summary>
@@ -257,9 +295,6 @@ namespace PaySys.ModelAndBindLib.Model
 		public virtual List<ExpenseArticleOfContractFieldForSubGroup> ExpenseArticleOfContractFieldForSubGroups { get; set; }
 
 		public virtual List<SubGroupVariable> SubGroupVariables { get; set; }
-
-		[NotMapped]
-		public string CodeTitle => $"{Code}:{Title}";
 
 		[NotMapped]
 		public ObservableCollection<TitledCompositeCollection> InvolversUngrouped
@@ -878,10 +913,11 @@ namespace PaySys.ModelAndBindLib.Model
 	public class ContractFieldTitle
 	{
 		public int ContractFieldTitleId { get; set; }
-
 		public string Title { get; set; }
 		public string Alias { get; set; }
-
+		public bool IsEditable { get; set; }
+		public int Index { get; set; }
+		public int IndexInRetirementReport { get; set; }
 		public virtual List<SubGroupContractField> SubGroupContractFields { get; set; }
 	}
 

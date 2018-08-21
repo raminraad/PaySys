@@ -1,119 +1,145 @@
 ﻿<UserControl x:Name="SmpUcParameterMng"
-             x:Class="PaySys.UI.UC.UcParameterMng"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:PaySys.UI.UC"
-             xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
-             mc:Ignorable="d"
-             FlowDirection="RightToLeft"
-             d:DesignHeight="300"
-             d:DesignWidth="900">
+			 x:Class="PaySys.UI.UC.UcParameterMng"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:local="clr-namespace:PaySys.UI.UC"
+			 xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
+			 xmlns:commands="clr-namespace:PaySys.UI.Commands"
+			 xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Model;assembly=PaySys.ModelAndBindLib"
+			 mc:Ignorable="d"
+			 FlowDirection="RightToLeft"
+			 d:DesignHeight="300"
+			 d:DesignWidth="900">
 	<Grid>
 		<Grid.Resources>
 			<Style TargetType="TextBlock">
 				<Setter Property="FontSize"
-				        Value="16"/>
+						Value="16" />
 				<Setter Property="HorizontalAlignment"
-				        Value="Center"/>
+						Value="Center" />
 				<Setter Property="VerticalAlignment"
-				        Value="Center"/>
+						Value="Center" />
 			</Style>
 		</Grid.Resources>
 		<Grid.RowDefinitions>
 			<RowDefinition x:Name="RowToolbar"
-			               Height="Auto"/>
-			<RowDefinition Height="1*"/>
-			<RowDefinition Height="1*"/>
-			<RowDefinition Height="5*"/>
-			<RowDefinition Height="1*"/>
+						   Height="Auto" />
+			<RowDefinition Height="37*" />
+			<RowDefinition Height="38*" />
+			<RowDefinition Height="187*" />
+			<RowDefinition Height="37*" />
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="2*"/>
-			<ColumnDefinition Width="50*"/>
-			<ColumnDefinition Width="2*"/>
-			<ColumnDefinition Width="16*"/>
-			<ColumnDefinition Width="2*"/>
-			<ColumnDefinition Width="16*"/>
-			<ColumnDefinition Width="2*"/>
+			<ColumnDefinition Width="2*" />
+			<ColumnDefinition Width="50*" />
+			<ColumnDefinition Width="2*" />
+			<ColumnDefinition Width="16*" />
+			<ColumnDefinition Width="2*" />
+			<ColumnDefinition Width="16*" />
+			<ColumnDefinition Width="2*" />
 		</Grid.ColumnDefinitions>
-		<ToolBar Grid.Row="0"
-		         Grid.Column="0"
-		         Grid.ColumnSpan="7">
-			<Button x:Name="BtnEditValue"
-			        Margin="2,0"
-			        Content="{x:Static fa:Labels.EditValue}"
-			        Click="BtnEditValue_OnClick"/>
-			<Button x:Name="BtnAddParameterInvolvedContractField"
-			        Margin="2,0"
-			        Click="BtnAddParameterInvolvedContractField_OnClick">
-				<TextBlock FontSize="12"
-				           Text="{x:Static fa:Labels.AddParameterInvolvedContractField}"
-				           Width="100"
-				           TextWrapping="Wrap"/>
-			</Button>
-			<Button x:Name="BtnAddParameterInvolvedMiscPayment"
-			        Margin="2,0"
-			        Click="BtnAddParameterInvolvedMiscPayment_OnClick">
-				<TextBlock FontSize="12"
-				           Text="{x:Static fa:Labels.AddParameterInvolvedMiscPayment}"
-				           Width="100"
-				           TextWrapping="Wrap"/>
-			</Button>
-			<Button x:Name="BtnDeleteParameterInvolvedContractField"
-			        Margin="2,0"
-			        Click="BtnDeleteParameterInvolvedContractField_OnClick">
-				<TextBlock FontSize="12"
-				           Text="{x:Static fa:Labels.DeleteParameterInvolvedContractField}"
-				           Width="100"
-				           TextWrapping="Wrap"/>
-			</Button>
-			<Button x:Name="BtnDeleteParameterInvolvedMiscPayment"
-			        Margin="2,0"
-			        Click="BtnDeleteParameterInvolvedMiscPayment_OnClick">
-				<TextBlock FontSize="12"
-				           Text="{x:Static fa:Labels.DeleteParameterInvolvedMiscPayment}"
-				           Width="100"
-				           TextWrapping="Wrap"/>
-			</Button>
-		</ToolBar>
 		<TextBlock Grid.Row="2"
-		           Grid.Column="1"
-		           Text="{x:Static fa:Labels.Parameters}"/>
+				   Grid.Column="1"
+				   Style="{StaticResource StyleOfListTitle}"
+				   Text="{x:Static fa:Labels.Parameters}" />
 		<TextBlock Grid.Row="2"
-		           Grid.Column="3"
-		           Text="{x:Static fa:Labels.ParameterInvolvedContractFields}"/>
+				   Grid.Column="3"
+				   Style="{StaticResource StyleOfListTitle}"
+				   Text="{x:Static fa:Labels.ParameterInvolvedContractFields}" />
 		<TextBlock Grid.Row="2"
-		           Grid.Column="5"
-		           Text="{x:Static fa:Labels.ParameterInvolvedMiscPayments}"/>
+				   Grid.Column="5"
+				   Style="{StaticResource StyleOfListTitle}"
+				   Text="{x:Static fa:Labels.ParameterInvolvedMiscPayments}" />
 		<ListView x:Name="ListViewParameter"
-		          Grid.Row="3"
-		          Grid.Column="1"
-		          ItemsSource="{Binding ElementName=SmpUcParameterMng,Path=CurrentSubGroup.Parameters,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+				  Grid.Row="3"
+				  Grid.Column="1"
+				  ItemsSource="{Binding ElementName=SmpUcParameterMng,Path=CurrentSubGroup.Parameters,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
 			<ListView.View>
 				<GridView>
 					<GridViewColumn Header="{x:Static fa:Labels.ParameterTitle}"
-					                Width="300"
-					                DisplayMemberBinding="{Binding ParameterTitle.Title}"/>
+									Width="300"
+									DisplayMemberBinding="{Binding ParameterTitle.Title}" />
 					<GridViewColumn Header="{x:Static fa:Labels.Value}"
-					                Width="100"
-					                DisplayMemberBinding="{Binding Value}"/>
+									Width="250">
+						<GridViewColumn.CellTemplate>
+							<DataTemplate>
+								<TextBox Text="{Binding Value}"
+										 Width="200"
+										 Margin="0"
+										 IsReadOnly="{Binding ElementName=SmpUcParameterMng,Path=ReadOnlyOfFields}"
+										 Style="{StaticResource StyleOfDataFieldTextBox}"
+										 Tag="{Binding}" />
+							</DataTemplate>
+						</GridViewColumn.CellTemplate>
+					</GridViewColumn>
 					<GridViewColumn Header="{x:Static fa:Labels.ValueType}"
-					                Width="150"
-					                DisplayMemberBinding="{Binding ValueType}"/>
+									Width="Auto"
+									DisplayMemberBinding="{Binding ParameterTitle.ValueType}" />
 				</GridView>
 			</ListView.View>
 		</ListView>
 		<ListView x:Name="ListViewParameterInvolvedContractFields"
-		          Grid.Row="3"
-		          Grid.Column="3"
-		          DisplayMemberPath="SubGroupContractField.Title"
-		          ItemsSource="{Binding ElementName=ListViewParameter,Path=SelectedItem.ParameterInvolvedContractFields}"/>
+				  Grid.Row="3"
+				  Grid.Column="3"
+				  ItemsSource="{Binding ElementName=ListViewParameter,Path=SelectedItem.TempParameterInvolvedContractFieldsLeftJoined}">
+			<ListView.CommandBindings>
+				<CommandBinding Command="commands:PaySysCommands.AddItem"
+								CanExecute="AddContractField_CanExecute"
+								Executed="AddContractField_Execute" />
+			</ListView.CommandBindings>
+			<ListView.View>
+				<GridView>
+					<GridViewColumn Header="{x:Static fa:Labels.Title}"
+									Width="Auto"
+									DisplayMemberBinding="{Binding Key.ContractFieldTitle.Title}" />
+					<GridViewColumn Header="{x:Static fa:Labels.IsInvolved}"
+									Width="Auto">
+						<GridViewColumn.CellTemplate>
+							<DataTemplate>
+								<CheckBox FlowDirection="LeftToRight"
+										  IsChecked="{Binding Value,Mode=OneWay}"
+										  Checked="ContractField_Checked"
+								          IsEnabled="{Binding ElementName=SmpUcParameterMng,Path=ReadOnlyOfFields,Converter={StaticResource NegateBooleanConverter}}"
+											Unchecked="ContractField_UnChecked"
+										  Tag="{Binding Key}" />
+							</DataTemplate>
+						</GridViewColumn.CellTemplate>
+					</GridViewColumn>
+				</GridView>
+			</ListView.View>
+		</ListView>
 		<ListView x:Name="ListViewParameterInvolvedMiscPayments"
-		          Grid.Row="3"
-		          Grid.Column="5"
+				  Grid.Row="3"
+				  Grid.Column="5"
 				  DisplayMemberPath="Misc.MiscTitle.Title"
-		          ItemsSource="{Binding ElementName=ListViewParameter,Path=SelectedItem.ParameterInvolvedMiscs}"/>
+				  ItemsSource="{Binding ElementName=ListViewParameter,Path=SelectedItem.TempParameterInvolvedMiscPaymentsLeftJoined}">
+			<ListView.CommandBindings>
+				<CommandBinding Command="commands:PaySysCommands.AddItem"
+								CanExecute="AddMiscPayment_CanExecute"
+								Executed="AddMiscPayment_Execute" />
+			</ListView.CommandBindings>
+			<ListView.View>
+				<GridView>
+					<GridViewColumn Header="{x:Static fa:Labels.Title}"
+					                Width="Auto"
+					                DisplayMemberBinding="{Binding Key.MiscTitle.Title}" />
+					<GridViewColumn Header="{x:Static fa:Labels.IsInvolved}"
+					                Width="Auto">
+						<GridViewColumn.CellTemplate>
+							<DataTemplate>
+								<CheckBox FlowDirection="LeftToRight"
+								          IsChecked="{Binding Value,Mode=OneWay}"
+								          Checked="MiscPayment_Checked"
+								          IsEnabled="{Binding ElementName=SmpUcParameterMng,Path=ReadOnlyOfFields,Converter={StaticResource NegateBooleanConverter}}"
+										  Unchecked="MiscPayment_UnChecked"
+								          Tag="{Binding Key}" />
+							</DataTemplate>
+						</GridViewColumn.CellTemplate>
+					</GridViewColumn>
+				</GridView>
+			</ListView.View>
+		</ListView>
 	</Grid>
 </UserControl>

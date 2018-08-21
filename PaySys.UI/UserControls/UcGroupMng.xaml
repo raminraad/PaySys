@@ -5,80 +5,150 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:PaySys.UI.UC"
              xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
+             xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Model;assembly=PaySys.ModelAndBindLib"
+             xmlns:commands="clr-namespace:PaySys.UI.Commands"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d"
+             Initialized="UcGroupMng_OnInitialized"
              d:DesignHeight="600"
              d:DesignWidth="1000"
              FlowDirection="RightToLeft">
-	<Grid>
+	<UserControl.CommandBindings>
+		<CommandBinding Command="{x:Static commands:PaySysCommands.Add}"
+		                CanExecute="AddSubGroup_CanExecute"
+		                Executed="AddSubGroup_Executed" />
+		<CommandBinding Command="{x:Static commands:PaySysCommands.Edit}"
+		                CanExecute="Edit_CanExecute"
+		                Executed="Edit_Executed" />
+		<CommandBinding Command="{x:Static commands:PaySysCommands.Save}"
+		                CanExecute="Save_CanExecute"
+		                Executed="Save_Executed" />
+		<CommandBinding Command="{x:Static commands:PaySysCommands.DiscardChanges}"
+		                CanExecute="DiscardChanges_CanExecute"
+		                Executed="DiscardChanges_Executed" />
+	</UserControl.CommandBindings>
+	<Grid x:Name="GridMain">
 		<Grid.RowDefinitions>
 			<RowDefinition x:Name="RowToolbar"
-			               Height="Auto"/>
-			<RowDefinition Height="1*"/>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="3*"/>
-			<RowDefinition Height="1*"/>
-			<RowDefinition Height="5*"/>
-			<RowDefinition Height="5*"/>
+			               Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="30*" />
+			<RowDefinition Height="2*" />
+			<RowDefinition Height="50*" />
+			<RowDefinition Height="50*" />
+			<RowDefinition Height="10*" />
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="8*"/>
-			<ColumnDefinition Width="4*"/>
-			<ColumnDefinition Width="1*"/>
-			<ColumnDefinition Width="4*"/>
-			<ColumnDefinition Width="8*"/>
+			<ColumnDefinition Width="6*" />
+			<ColumnDefinition Width="10*" />
+			<ColumnDefinition Width="1*" />
+			<ColumnDefinition Width="14*" />
+			<ColumnDefinition Width="6*" />
 		</Grid.ColumnDefinitions>
 		<ToolBar Grid.Row="0"
 		         Grid.ColumnSpan="5">
-			<Button Name="BtnAddMainGroup"
-			        Content="{x:Static fa:Labels.AddMainGroup}"
-			        Click="BtnAddMainGroup_OnClick"/>
-			<Button Name="BtnAddSubGroup"
+			<Button Name="ButtonAddSubGroup"
 			        Content="{x:Static fa:Labels.AddSubGroup}"
-			        Click="BtnAddSubGroup_OnClick"/>
-			<Button Name="BtnEdit"
+			        Command="{x:Static commands:PaySysCommands.Add}" />
+			<Button Name="ButtonEdit"
 			        Content="{x:Static fa:Labels.Edit}"
-			        Click="BtnEdit_OnClick"/>
-			<Button Name="BtnDelete"
-			        Content="{x:Static fa:Labels.Delete}"/>
-			<Separator/>
-			<Button Name="BtnRefresh"
-			        Click="BtnRefresh_OnClick"
-			        Content="{x:Static fa:Labels.Reload}"/>
-			<Separator/>
+			        Command="{x:Static commands:PaySysCommands.Edit}" />
+			<Button Name="ButtonDelete"
+			        Command="{x:Static commands:PaySysCommands.Delete}"
+			        Content="{x:Static fa:Labels.Delete}" />
+			<Separator />
+			<Button Name="ButtonSave"
+			        Command="commands:PaySysCommands.Save"
+			        Content="{x:Static fa:Labels.Save}" />
+			<Button Name="ButtonDiscardChanges"
+			        Command="commands:PaySysCommands.DiscardChanges"
+			        Content="{x:Static fa:Labels.Cancel}" />
 		</ToolBar>
 		<TextBlock Grid.Row="1"
 		           Grid.Column="1"
 		           HorizontalAlignment="Center"
 		           VerticalAlignment="Bottom"
-		           Text="{x:Static fa:Labels.MainGroupsList}"/>
+		           Text="{x:Static fa:Labels.MainGroupsList}" />
 		<TextBlock Grid.Row="1"
 		           Grid.Column="3"
 		           HorizontalAlignment="Center"
 		           VerticalAlignment="Bottom"
-		           Text="{x:Static fa:Labels.SubGroupsList}"/>
+		           Text="{x:Static fa:Labels.SubGroupsList}" />
 		<ListView x:Name="ListViewMainGroups"
-		          ItemsSource="{Binding}"
+		          ItemsSource="{Binding UpdateSourceTrigger=PropertyChanged}"
+		          d:DataContext="{d:DesignInstance Type=model:MainGroup, IsDesignTimeCreatable=True}"
 		          Grid.Row="3"
 		          Grid.Column="1"
-		          Focusable="True"
-		          GotFocus="ListViewGroupMain_OnGotFocus">
-			<ListView.ItemTemplate>
-				<DataTemplate>
-					<TextBlock Text="{Binding Path=Title}"/>
-				</DataTemplate>
-			</ListView.ItemTemplate>
+		          Focusable="True">
+			<ListView.View>
+				<GridView>
+					<GridView.Columns>
+						<GridViewColumn Header="{x:Static fa:FieldicSubGroup.Title}">
+							<GridViewColumn.CellTemplate>
+								<DataTemplate>
+									<TextBlock Text="{Binding Path=Title}" />
+								</DataTemplate>
+							</GridViewColumn.CellTemplate>
+						</GridViewColumn>
+					</GridView.Columns>
+				</GridView>
+			</ListView.View>
 		</ListView>
 		<ListView x:Name="ListViewSubGroups"
-		          ItemsSource="{Binding ElementName=ListViewMainGroups,Path=SelectedItem.SubGroups,Mode=TwoWay}"
+		          ItemsSource="{Binding ElementName=ListViewMainGroups,Path=SelectedItem.SubGroups,Mode=TwoWay,UpdateSourceTrigger=Explicit}"
+		          d:DataContext="{d:DesignInstance Type=model:SubGroup, IsDesignTimeCreatable=True}"
 		          Grid.Row="3"
 		          Grid.Column="3"
-		          Focusable="True"
-		          GotFocus="ListViewSubGroup_OnGotFocus">
-			<ListView.ItemTemplate>
-				<DataTemplate>
-					<TextBlock Text="{Binding Path=Title}"/>
-				</DataTemplate>
-			</ListView.ItemTemplate>
+		          Focusable="True">
+
+			<ListView.View>
+				<GridView>
+					<GridView.Columns>
+						<GridViewColumn Header="{x:Static fa:FieldicSubGroup.Title}"
+						                Width="220">
+							<GridViewColumn.CellTemplate>
+								<DataTemplate>
+										<local:UcTextPair Text="{Binding Path=Title,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+										                  ReadOnly="{Binding ElementName = SmpUcFormStateLabel , Path=ReadOnlyOfEditFields}"
+										                  Width="200" />
+								</DataTemplate>
+							</GridViewColumn.CellTemplate>
+						</GridViewColumn>
+						<GridViewColumn Header="{x:Static fa:FieldicSubGroup.WorkshopCode}"
+						                Width="120">
+							<GridViewColumn.CellTemplate>
+								<DataTemplate>
+										<local:UcTextPair Text="{Binding Path=WorkshopCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+										                  ReadOnly="{Binding ElementName = SmpUcFormStateLabel , Path=ReadOnlyOfEditFields}" 
+										                  Width="100"/>
+								</DataTemplate>
+							</GridViewColumn.CellTemplate>
+						</GridViewColumn>
+						<GridViewColumn Header="{x:Static fa:FieldicSubGroup.Is31}"
+						                Width="120">
+							<GridViewColumn.CellTemplate>
+								<DataTemplate>
+									<CheckBox FlowDirection="LeftToRight"
+									          IsChecked="{Binding 
+Path=Is31,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+									          IsEnabled="{Binding ElementName = SmpUcFormStateLabel , Path=ReadOnlyOfEditFields,Converter={StaticResource NegateBooleanConverter}}" />
+								</DataTemplate>
+							</GridViewColumn.CellTemplate>
+						</GridViewColumn>
+						<GridViewColumn Header="{x:Static fa:FieldicSubGroup.IsFreeZone}"
+						                Width="120">
+							<GridViewColumn.CellTemplate>
+								<DataTemplate>
+									<CheckBox FlowDirection="LeftToRight"
+									          IsChecked="{Binding Path=IsFreeZone,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+									          IsEnabled="{Binding ElementName = SmpUcFormStateLabel , Path=ReadOnlyOfEditFields,Converter={StaticResource NegateBooleanConverter}}" />
+								</DataTemplate>
+							</GridViewColumn.CellTemplate>
+						</GridViewColumn>
+					</GridView.Columns>
+				</GridView>
+			</ListView.View>
 		</ListView>
 		<TabControl x:Name="TabControlMainGroupDatails"
 		            Grid.Row="5"
@@ -88,33 +158,37 @@
 			<TabControl.Resources>
 				<Style TargetType="TabItem">
 					<Setter Property="Width"
-					        Value="150"/>
+					        Value="150" />
 				</Style>
 			</TabControl.Resources>
 			<TabItem x:Name="TabItemContractFieldTitlesMng"
-			         Header="{x:Static fa:Labels.ContractFieldTitles}">
+			         Header="{x:Static fa:Labels.ContractFieldTitles}"
+			         Width="{StaticResource WidthOfTabOneOf7}">
 				<local:UcContractFieldTitlesMng x:Name="SmpUcContractFieldTitlesMng"
-				                                CurrentSubGroup="{Binding ElementName=ListViewSubGroups,Path=SelectedItem}"/>
+				                                CurrentSubGroup="{Binding ElementName=ListViewSubGroups,Path=SelectedItem}" />
 			</TabItem>
 			<TabItem x:Name="TabItemMisc"
-			         Header="{x:Static fa:Labels.MiscTitles}">
+			         Header="{x:Static fa:Labels.MiscTitles}"
+			         Width="{StaticResource WidthOfTabOneOf5}">
 				<local:UcMiscMng x:Name="SmpUcMiscMng"
-				                 CurrentSubGroup="{Binding ElementName=ListViewSubGroups,Path=SelectedItem}"/>
+				                 CurrentSubGroup="{Binding ElementName=ListViewSubGroups,Path=SelectedItem}" />
 			</TabItem>
 			<TabItem x:Name="TabItemParameters"
-			         Header="{x:Static fa:Labels.Parameters}">
+			         Header="{x:Static fa:Labels.Parameters}"
+			         Width="{StaticResource WidthOfTabOneOf7}">
 				<local:UcParameterMng x:Name="SmpUcParameterMng"
-				                      CurrentSubGroup="{Binding ElementName=ListViewSubGroups,Path=SelectedItem}"/>
+				                      ReadOnlyOfFields="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
+				                      CurrentSubGroup="{Binding ElementName=ListViewSubGroups,Path=SelectedItem}" />
 			</TabItem>
 			<TabItem x:Name="TabItemTaxTable"
 			         Header="{x:Static fa:Labels.TaxTable}">
 				<local:UcTaxTableMng x:Name="SmpUcTaxTableMng"
-				                     CurrentSubGroup="{Binding ElementName=ListViewSubGroups,Path=SelectedItem}"/>
+				                     CurrentSubGroup="{Binding ElementName=ListViewSubGroups,Path=SelectedItem}" />
 			</TabItem>
 			<TabItem x:Name="TabItemHandselFormula"
 			         Header="{x:Static fa:Labels.HandselFormula}">
 				<local:UcHandselFormulaMng x:Name="SmpUcHandselFormula"
-				                           CurrentSubGroup="{Binding ElementName=ListViewSubGroups,Path=SelectedItem}"/>
+				                           CurrentSubGroup="{Binding ElementName=ListViewSubGroups,Path=SelectedItem}" />
 			</TabItem>
 			<TabItem x:Name="TabItemMissionFormula"
 			         Header="{x:Static fa:Labels.MissionFormula}">
@@ -122,5 +196,10 @@
 				                           CurrentSubGroup="{Binding ElementName=ListViewSubGroups,Path=SelectedItem}" />
 			</TabItem>
 		</TabControl>
+		<StatusBar Grid.Column="0"
+		           Grid.Row="7"
+		           Grid.ColumnSpan="5">
+			<local:UcFormStateLabel x:Name="SmpUcFormStateLabel" />
+		</StatusBar>
 	</Grid>
 </UserControl>

@@ -40,13 +40,11 @@ namespace PaySys.UI.UC
 			var messageCode = ResourceAccessor.Messages.GetString("EnterExpenseArticleCode");
 			var title = string.Empty;
 			var code = string.Empty;
-			if(InputBox.Show(messageTitle, ref title) == DialogResult.OK)
 				if(InputBox.Show(messageCode, ref code) == DialogResult.OK)
 				{
 					_context.ExpenseArticles.Add(new ExpenseArticle()
 					{
 						Code = code,
-						Title = title
 					});
 					_context.SaveChanges();
 					TreeViewExpenseArticles.ItemsSource = _context.ExpenseArticles.ToList();
@@ -58,12 +56,9 @@ namespace PaySys.UI.UC
 			var selectedItem = TreeViewExpenseArticles.SelectedItem as ExpenseArticle;
 			var messageTitle = ResourceAccessor.Messages.GetString("EnterExpenseArticleTitle");
 			var messageCode = ResourceAccessor.Messages.GetString("EnterExpenseArticleCode");
-			var title = selectedItem.Title;
-			var code = selectedItem.Code;
-			if(InputBox.Show(messageTitle, ref title) == DialogResult.OK)
+			var code = selectedItem?.Code;
 				if(InputBox.Show(messageCode, ref code) == DialogResult.OK)
 				{
-					selectedItem.Title = title;
 					selectedItem.Code = code;
 					_context.SaveChanges();
 					TreeViewExpenseArticles.ItemsSource = _context.ExpenseArticles.ToList();

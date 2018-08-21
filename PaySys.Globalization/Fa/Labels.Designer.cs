@@ -439,6 +439,15 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to دخیل در محاسبات.
+        /// </summary>
+        public static string IsInvolved {
+            get {
+                return ResourceManager.GetString("IsInvolved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to شغل ها.
         /// </summary>
         public static string Jobs {

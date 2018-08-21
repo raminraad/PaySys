@@ -17,6 +17,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 {
 	internal sealed class Configuration : DbMigrationsConfiguration<PaySysContext>
 	{
+		
 		private readonly Faker _faker = new Faker( "fa" );
 
 		public Configuration()
@@ -28,14 +29,20 @@ namespace PaySys.ModelAndBindLib.Migrations
 		{
 			#region Debug
 
-			if( Debugger.IsAttached == false )
-				Debugger.Launch();
+//			if( Debugger.IsAttached == false )
+//				Debugger.Launch();
 
 			#endregion
 
 			#region Static Arrays
 
-			var alphabets = new[] {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+			PaySysSetting.CurrentYear = 1397;
+			PaySysSetting.CurrentMonth = 007;
+
+			var alphabets = new[]
+			{
+					"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
+			};
 
 			var contractFieldTitles = new Dictionary<string,string>()
 			{
@@ -114,13 +121,95 @@ namespace PaySys.ModelAndBindLib.Migrations
 					new {CFT="CFT33",MG=alphabets[4]}
 			}.ToList();			  
 
-			var miscTitlesPayment = new[] {"پاداش", "عیدی", "حق الزحمه", "تشویقی", "مساعده", "حق العمل", "حسن انجام کار", "هزینه تحصیل", "بورسیه"};
-			var miscTitlesDebt = new[] {"جریمه", "توبیخی", "بدهی قبلی", "وام مسکن", "وام ضروری", "کسر کار", "اضافه مرخصی", "خسارت اموال", "هزینه های متفرقه"};
-			var expenseArticles = new[] {"دیون", "اداری", "پاداشها", "درآمدها", "بودجه مازاد", "هزینه های پرسنل", "سرمایه ای", "تفاوت تطبيق", "مزایا و کمکها", "حقوق و دستمزد", "هزینه های سری", "پرداختهای انتقالی"};
-			var parameterTitles = new[] {"درصد مأموریت با بیتوته", "درصد مأموریت بدون بیتوته", "ضریب نرخ کارکرد", "نرخ بیمه حق العمل", "ضریب فوق العاده", "نرخ مزایای متفرقه", "میزان بیمه سنواتی", "درصد تعدیل مازاد", "نرخ افزایش درآمد", "میزان کسور متفرقه", "کسر هزار ریال", "نرخ کارکرد", "ضریب دریافت علی الحساب", "درصد معافیت", "نرخ تورم", "میزان ده درصد", "ضریب افزایشی", "کاهش بیست درصد"};
-			var mobilePrefix = new[] {"0912", "0935", "0919", "0933", "0918"};
-			var creditCardNoPrefix = new[] {"627353", "610433", "621986", "621986", "502229", "622106", "627412", "603770", "603770", "627648", "603799"};
-			var cityNames = new[] {"آبش‌احمد", "آچاچی", "آذرشهر", "آقکند", "اسکو", "اهر", "ایلخچی", "باسمنج", "بخشایش", "بستان‌آباد", "بناب", "بناب مرند", "تبریز", "ترک", "تیمورلو (آذرشهر)", "ترکمانچای", "تسوج", "تیکمه‌داش", "جلفا", "جوان‌قلعه", "خاروانا", "خامنه", "خداجو", "خسروشاه", "خمارلو", "خواجه", "دوزدوزان", "زرنق", "زنوز", "سراب", "سردرود", "سهند", "سیس", "سیه‌رود", "شبستر", "شربیان", "شرفخانه", "شندآباد", "صوفیان", "عجب‌شیر", "قره‌آغاج (چاراویماق)", "کشکسرای", "کلوانق", "کلیبر", "کوزه‌کنان", "گوگان", "لیلان", "مبارک‌شهر", "مراغه", "مرند", "ملکان", "ممقان", "مهربان", "میانه", "نظرکهریزی", "وایقان", "ورزقان", "هادیشهر", "هریس", "هشترود", "هوراند", "یامچی کهنمو "};
+			var miscTitlesPayment = new[]
+			{
+					"پاداش", "عیدی", "حق الزحمه", "تشویقی", "مساعده", "حق العمل", "حسن انجام کار", "هزینه تحصیل", "بورسیه"
+			};
+			var miscTitlesDebt = new[]
+			{
+					"جریمه", "توبیخی", "بدهی قبلی", "وام مسکن", "وام ضروری", "کسر کار", "اضافه مرخصی", "خسارت اموال", "هزینه های متفرقه"
+			};
+			var expenseArticleTitles = new[]
+			{
+					"X X X",
+					"X X X",
+					"X X X"
+			};
+			var parameterTitles = new Dictionary<string,string>
+			{
+					{"PRM01","درصد مأموریت با بیتوته"},
+					{"PRM02","درصد مأموریت بدون بیتوته"},
+					{"PRM03","ضریب نرخ کارکرد"},
+					{"PRM04","نرخ بیمه حق العمل"},
+					{"PRM05","ضریب فوق العاده"},
+					{"PRM06","نرخ مزایای متفرقه"},
+					{"PRM07","میزان بیمه سنواتی"},
+					{"PRM08","درصد تعدیل مازاد"},
+					{"PRM09","نرخ افزایش درآمد"},
+					{"PRM10","میزان کسور متفرقه"},
+					{"PRM11","کسر هزار ریال"},
+					{"PRM12","نرخ کارکرد"},
+					{"PRM13","ضریب دریافت علی الحساب"},
+					{"PRM14","درصد معافیت"},
+					{"PRM15","نرخ تورم"},
+					{"PRM16","میزان ده درصد"},
+					{"PRM17","ضریب افزایشی"},
+					{"PRM18","کاهش بیست درصد"}
+			};
+			var mainGroupParameters = new[]
+			{
+					new {CFT="PRM01",MG=alphabets[0]},
+					new {CFT="PRM02",MG=alphabets[0]},
+					new {CFT="PRM03",MG=alphabets[0]},
+					new {CFT="PRM04",MG=alphabets[0]},
+					new {CFT="PRM05",MG=alphabets[0]},
+					new {CFT="PRM06",MG=alphabets[0]},
+					new {CFT="PRM07",MG=alphabets[0]},
+					new {CFT="PRM08",MG=alphabets[0]},
+					new {CFT="PRM09",MG=alphabets[0]},
+					new {CFT="PRM10",MG=alphabets[0]},
+					new {CFT="PRM01",MG=alphabets[1]},
+					new {CFT="PRM02",MG=alphabets[1]},
+					new {CFT="PRM03",MG=alphabets[1]},
+					new {CFT="PRM04",MG=alphabets[1]},
+					new {CFT="PRM05",MG=alphabets[1]},
+					new {CFT="PRM06",MG=alphabets[1]},
+					new {CFT="PRM07",MG=alphabets[1]},
+					new {CFT="PRM08",MG=alphabets[1]},
+					new {CFT="PRM01",MG=alphabets[2]},
+					new {CFT="PRM02",MG=alphabets[2]},
+					new {CFT="PRM03",MG=alphabets[2]},
+					new {CFT="PRM04",MG=alphabets[2]},
+					new {CFT="PRM05",MG=alphabets[2]},
+					new {CFT="PRM06",MG=alphabets[2]},
+					new {CFT="PRM07",MG=alphabets[2]},
+					new {CFT="PRM08",MG=alphabets[2]},
+					new {CFT="PRM11",MG=alphabets[3]},
+					new {CFT="PRM12",MG=alphabets[3]},
+					new {CFT="PRM13",MG=alphabets[3]},
+					new {CFT="PRM14",MG=alphabets[3]},
+					new {CFT="PRM15",MG=alphabets[3]},
+					new {CFT="PRM16",MG=alphabets[3]},
+					new {CFT="PRM17",MG=alphabets[3]},
+					new {CFT="PRM18",MG=alphabets[3]},
+					new {CFT="PRM11",MG=alphabets[4]},
+					new {CFT="PRM12",MG=alphabets[4]},
+					new {CFT="PRM13",MG=alphabets[4]},
+					new {CFT="PRM14",MG=alphabets[4]},
+					new {CFT="PRM15",MG=alphabets[4]}
+			}.ToList();		  
+			var mobilePrefix = new[]
+			{
+					"0912", "0935", "0919", "0933", "0918"
+			};
+			var creditCardNoPrefix = new[]
+			{
+					"627353", "610433", "621986", "621986", "502229", "622106", "627412", "603770", "603770", "627648", "603799"
+			};
+			var cityNames = new[]
+			{
+					"آبش‌احمد", "آچاچی", "آذرشهر", "آقکند", "اسکو", "اهر", "ایلخچی", "باسمنج", "بخشایش", "بستان‌آباد", "بناب", "بناب مرند", "تبریز", "ترک", "تیمورلو (آذرشهر)", "ترکمانچای", "تسوج", "تیکمه‌داش", "جلفا", "جوان‌قلعه", "خاروانا", "خامنه", "خداجو", "خسروشاه", "خمارلو", "خواجه", "دوزدوزان", "زرنق", "زنوز", "سراب", "سردرود", "سهند", "سیس", "سیه‌رود", "شبستر", "شربیان", "شرفخانه", "شندآباد", "صوفیان", "عجب‌شیر", "قره‌آغاج (چاراویماق)", "کشکسرای", "کلوانق", "کلیبر", "کوزه‌کنان", "گوگان", "لیلان", "مبارک‌شهر", "مراغه", "مرند", "ملکان", "ممقان", "مهربان", "میانه", "نظرکهریزی", "وایقان", "ورزقان", "هادیشهر", "هریس", "هشترود", "هوراند", "یامچی کهنمو "
+			};
 			var jobTitleAndDescriptions = new Dictionary<string, string>
 			{
 					{"مهندس برق", "مهندسی برق یکی از مشاغل مهم و کلیدی صنعت برق و مخابرات به شمار می رود."},
@@ -203,7 +292,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 					{"C18", "ضریب پایان کار"}
 			};
 
-			var groupTitles = new Dictionary<string, List<String>>
+			var groupTitles = new Dictionary<string, List<string>>
 			{
 					{
 							"استخدام کشوری", new List<string>
@@ -250,7 +339,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 			#region MainGroups & SubGroups
 
 			var seedMainGroups = new List<MainGroup>();
-			int index = 0;
+			var index = 0;
 			foreach( var g in groupTitles )
 			{
 				var indexOfGroup = groupTitles.Keys.ToList().IndexOf( g.Key );
@@ -308,7 +397,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 			var seedExpenseArticles = new List<ExpenseArticle>();
 			var expenseArticleFaker = new Faker<ExpenseArticle>( "fa" ).StrictMode( false ).Rules( ( f, e ) =>
 			{
-				e.Title = f.PickRandom( expenseArticles.Where( s => !seedExpenseArticles.Select( x => x.Title ).Contains( s ) ) );
+				e.Title = f.PickRandom( expenseArticleTitles);
 				e.Code = $"{f.Random.Number( 99999 ):D5}";
 				e.IsActive = true;
 			} );
@@ -410,8 +499,8 @@ namespace PaySys.ModelAndBindLib.Migrations
 
 			var miscFaker = new Faker<Misc>( "fa" ).StrictMode( false ).Rules( ( f, e ) =>
 			{
-				e.Year = 1397;
-				e.Month = 007;
+				e.Year = PaySysSetting.CurrentYear;
+				e.Month = PaySysSetting.CurrentMonth;
 				e.ExpenseArticle = f.PickRandom( seedExpenseArticles );
 				e.MiscTitle = f.PickRandom( seedMiscTitles );
 			} );
@@ -420,7 +509,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 				foreach( var subGroup in mainGroup.SubGroups )
 					for( var i = 0; i < 10; i++ )
 					{
-						miscFaker.RuleFor( parameter => parameter.SubGroup, subGroup );
+						miscFaker.RuleFor( m => m.SubGroup, subGroup );
 						seedMiscs.Add( miscFaker.Generate() );
 					}
 
@@ -432,12 +521,12 @@ namespace PaySys.ModelAndBindLib.Migrations
 
 			var taxTableFaker = new Faker<TaxTable>( "fa" ).StrictMode( false ).Rules( ( f, e ) =>
 			{
-				e.Month = 007;
+				e.Month = PaySysSetting.CurrentMonth;
 			} );
 			var seedTaxTables = new List<TaxTable>();
 			foreach( var mainGroup in seedMainGroups )
 				foreach( var subGroup in mainGroup.SubGroups )
-					for( var i = 1395; i <= 1397; i++ )
+					for( var i = 1395; i <= PaySysSetting.CurrentYear; i++ )
 					{
 						taxTableFaker.RuleFor( tt => tt.SubGroup, subGroup ).RuleFor( tt => tt.Year, i );
 						seedTaxTables.Add( taxTableFaker.Generate() );
@@ -465,7 +554,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 
 			var missionFormulaFaker = new Faker<MissionFormula>( "fa" ).StrictMode( false ).Rules( ( f, e ) =>
 			{
-				e.Month = 007;
+				e.Month = PaySysSetting.CurrentMonth;
 				e.DivideFactor = f.Random.Number( 30 );
 				e.AddFactor = f.Random.Number( 250000 );
 				e.MaxFactor = f.Random.Number( 1000000 );
@@ -475,7 +564,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 			var seedMissionFormulas = new List<MissionFormula>();
 			foreach( var mainGroup in seedMainGroups )
 				foreach( var subGroup in mainGroup.SubGroups )
-					for( var i = 1395; i <= 1397; i++ )
+					for( var i = 1395; i <= PaySysSetting.CurrentYear; i++ )
 					{
 						missionFormulaFaker.RuleFor( missionFormula => missionFormula.SubGroup, subGroup ).RuleFor( missionFormula => missionFormula.Year, i );
 						seedMissionFormulas.Add( missionFormulaFaker.Generate() );
@@ -503,7 +592,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 
 			var handselFormulaFaker = new Faker<HandselFormula>( "fa" ).StrictMode( false ).Rules( ( f, e ) =>
 			{
-				e.Month = 007;
+				e.Month = PaySysSetting.CurrentMonth;
 				e.DaysCount = f.Random.Number( 60 );
 				e.TaxRate = f.Random.Number( 10 );
 				e.Max = f.Random.Number( 5000 ) * 1000;
@@ -513,7 +602,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 			var seedHandselFormulas = new List<HandselFormula>();
 			foreach( var mainGroup in seedMainGroups )
 				foreach( var subGroup in mainGroup.SubGroups )
-					for( var i = 1395; i <= 1397; i++ )
+					for( var i = 1395; i <= PaySysSetting.CurrentYear; i++ )
 					{
 						handselFormulaFaker.RuleFor( handselFormula => handselFormula.SubGroup, subGroup ).RuleFor( handselFormula => handselFormula.Year, i );
 						seedHandselFormulas.Add( handselFormulaFaker.Generate() );
@@ -523,55 +612,52 @@ namespace PaySys.ModelAndBindLib.Migrations
 
 			#endregion
 
+			#region ParameterTitles
+
+			var seedParameterTitles = new List<ParameterTitle>();
+			foreach( var prm in parameterTitles )
+				seedParameterTitles.Add( new ParameterTitle()
+				{
+						Alias = prm.Key,
+						Title = prm.Value,
+						ValueType=ValueType.Absolute
+				} );
+
+			context.ParameterTitles.AddRange( seedParameterTitles );
+
+			#endregion
+
 			#region Parameters
 
-			var parameterFaker = new Faker<Parameter>( "fa" ).StrictMode( false ).Rules( ( f, e ) =>
-			{
-				e.Year = 1397;
-				e.Month = 007;
-				e.ParameterTitle.Alias = f.Finance.AccountName().Replace( " ", string.Empty );
-				e.ParameterTitle.Title = f.PickRandom( parameterTitles );
-				e.ParameterTitle.ValueType = f.PickRandom( Enum.GetValues( typeof(ValueType) ).Cast<ValueType>().Where( valueType => valueType != ValueType.Unknown ) );
-				e.Value = f.Random.Number( 999999 );
-				e.ParameterInvolvedContractFields = new List<ParameterInvolvedContractField>();
-				e.ParameterInvolvedMiscs = new List<ParameterInvolvedMisc>();
-			} );
 			var seedParameters = new List<Parameter>();
-			/*foreach( var mainGroup in seedMainGroups )
-				foreach( var subGroup in mainGroup.SubGroups )
-					for( var i = 0; i < 10; i++ )
+			foreach( var prm in mainGroupParameters )
+			{
+				var mg = seedMainGroups.First( g => g.Alias == prm.MG );
+				foreach( var sg in mg.SubGroups )
+					seedParameters.Add( new Parameter
 					{
-						ParameterFaker.RuleFor( parameter => parameter.SubGroup, subGroup );
-						seedParameters.Add( ParameterFaker.Generate() );
-					}*/
-
-			#region ParameterInvolvedContractFields
-
-			foreach( var parameter in seedParameters )
-				foreach( var contractField in parameter.SubGroup.SubGroupContractFields )
-					if( _faker.Random.Bool() && !parameter.ParameterInvolvedContractFields.Select( inv => inv.SubGroupContractField ).Contains( contractField ) )
-						parameter.ParameterInvolvedContractFields.Add( new ParameterInvolvedContractField
-						{
-								SubGroupContractField = contractField
-						} );
-
-			#endregion
-
-			#region ParameterInvolvedMiscs
-
-			foreach( var parameter in seedParameters )
-				foreach( var misc in parameter.SubGroup.Miscs )
-					if( _faker.Random.Bool() && !parameter.ParameterInvolvedMiscs.Select( inv => inv.Misc ).Contains( misc ) )
-						parameter.ParameterInvolvedMiscs.Add( new ParameterInvolvedMisc
-						{
-								Misc = misc
-						} );
-
-			#endregion
+							ParameterTitle = seedParameterTitles.First(t=>t.Alias==prm.CFT),
+							Year = PaySysSetting.CurrentYear,
+							Month = PaySysSetting.CurrentMonth,
+							SubGroup = sg,
+							Value = _faker.Random.Number( 999999 )
+					} );
+			}
 
 			context.Parameters.AddRange( seedParameters );
 
 			#endregion
+
+			var seedParameterInvolvedContractFields =new List<ParameterInvolvedContractField>();
+			foreach( var p in seedParameters )
+				foreach( var c in p.SubGroup.SubGroupContractFields )
+					if( _faker.Random.Number( 1000 )%3!=0 )
+						seedParameterInvolvedContractFields.Add( new ParameterInvolvedContractField
+						{
+								Parameter = p,
+								SubGroupContractField = c
+						} );
+			context.ParameterInvolvedContractFields.AddRange( seedParameterInvolvedContractFields );
 
 			#region ExpenseArticleOfContractFieldForSubGroups
 
@@ -581,7 +667,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 					foreach( var contractField in subGroup.SubGroupContractFields )
 						seedExpenseArticleOfContractFieldForSubGroups.Add( new ExpenseArticleOfContractFieldForSubGroup
 						{
-								Month = 007,
+								Month = PaySysSetting.CurrentMonth,
 								SubGroupContractField = contractField,
 								ExpenseArticle = _faker.PickRandom( seedExpenseArticles )
 						} );
@@ -664,7 +750,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 				foreach( var misc in contractMiscs )
 				{
 					miscRechargeFaker.RuleFor( r => r.Employee, contract.Employee ).RuleFor( r => r.Misc, misc );
-					for( var y = 1395; y <= 1397; y++ )
+					for( var y = 1395; y <= PaySysSetting.CurrentYear; y++ )
 						for( var m = 5; m <= 11; m++ )
 						{
 							miscRechargeFaker.RuleFor( r => r.Year, y ).RuleFor( r => r.Month, m );
@@ -728,9 +814,9 @@ namespace PaySys.ModelAndBindLib.Migrations
 			{
 				e.ExpenseArticle = _faker.PickRandom( seedExpenseArticles );
 				e.FromMonth = 1;
-				e.FromYear = 1397;
+				e.FromYear = PaySysSetting.CurrentYear;
 				e.ToMonth = 12;
-				e.ToYear = 1397;
+				e.ToYear = PaySysSetting.CurrentYear;
 			} );
 			var seedSubGroupVariables = new List<SubGroupVariable>();
 			foreach( var mainGroup in seedMainGroups )
@@ -759,7 +845,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 				foreach( var variable in variables )
 				{
 					variableValueFaker.RuleFor( r => r.Employee, contract.Employee ).RuleFor( r => r.SubGroupVariable, variable );
-					for( var y = 1395; y <= 1397; y++ )
+					for( var y = 1395; y <= PaySysSetting.CurrentYear; y++ )
 						for( var m = 5; m <= 11; m++ )
 						{
 							variableValueFaker.RuleFor( r => r.Year, y ).RuleFor( r => r.Month, m ).RuleFor( v => v.Value, ( f, v ) =>

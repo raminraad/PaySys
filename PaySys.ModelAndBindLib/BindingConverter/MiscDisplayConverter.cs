@@ -33,8 +33,6 @@ namespace PaySys.ModelAndBindLib.BindingConverter
 			result += $"{misc.MiscTitle.Title}";
 			result += "  [";
 			result += $"{misc.ExpenseArticle.Code}";
-			result += " : ";
-			result += $"{misc.ExpenseArticle.Title}";
 			result += "]";
 			return result;
 		}

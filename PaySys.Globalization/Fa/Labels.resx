@@ -405,4 +405,7 @@
   <data name="VariableValue" xml:space="preserve">
     <value>مقدار متغیر</value>
   </data>
+  <data name="IsInvolved" xml:space="preserve">
+    <value>دخیل در محاسبات</value>
+  </data>
 </root>

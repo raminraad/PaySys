@@ -123,6 +123,7 @@
 				          Grid.Row="5"
 				          Grid.Column="2"
 				          Style="{StaticResource StyleOfDataFieldComboBox}"
+				          d:DataContext="{d:DesignInstance Type=model:MainGroup, IsDesignTimeCreatable=True}"
 				          SelectedItem="{Binding Path=SubGroup.MainGroup,UpdateSourceTrigger=Explicit}"
 				          SelectionChanged="CmbMainGroup_OnSelectionChanged"
 				          IsEnabled="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfAddFields,Converter={StaticResource NegateBooleanConverter}}">

@@ -33,8 +33,6 @@ namespace PaySys.ModelAndBindLib.BindingConverter
 			result += $"{contractField.ContractFieldTitle.Title}";
 			result += "  [";
 			result += $"{contractField.CurrentExpenseArticle.Code}";
-			result += " : ";
-			result += $"{contractField.CurrentExpenseArticle.Title}";
 			result += "]";
 			return result;
 		}
