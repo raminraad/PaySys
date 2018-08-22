@@ -4,11 +4,11 @@ namespace PaySys.UI.Commands
 {
 	public static class PaySysCommands
 	{
-		#region Add/Remove item to/from list
+		#region Add/Delete item to/from list
 
 		public static RoutedUICommand AddItem { get; } = new RoutedUICommand("Add item to list", "AddItem", typeof(PaySysCommands));
 
-		public static RoutedUICommand RemoveItem { get; } = new RoutedUICommand("Remove item from list", "RemoveItem", typeof(PaySysCommands), new InputGestureCollection
+		public static RoutedUICommand DeleteItem { get; } = new RoutedUICommand("Delete item from list", "DeleteItem", typeof(PaySysCommands), new InputGestureCollection
 		{
 			new KeyGesture(Key.Delete, ModifierKeys.Control),
 			new KeyGesture(Key.Delete)

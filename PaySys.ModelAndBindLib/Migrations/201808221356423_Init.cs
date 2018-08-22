@@ -57,6 +57,7 @@ namespace PaySys.ModelAndBindLib.Migrations
                         EducationStand = c.Int(nullable: false),
                         EmploymentType = c.Int(nullable: false),
                         SacrificeStand = c.Int(nullable: false),
+                        ServiceStand = c.Int(nullable: false),
                         AccountNoGov = c.String(),
                         AccountNoEmp = c.String(),
                         IsCurrent = c.Boolean(nullable: false),
@@ -78,39 +79,31 @@ namespace PaySys.ModelAndBindLib.Migrations
                     {
                         ContractDetailId = c.Int(nullable: false, identity: true),
                         Value = c.Double(nullable: false),
+                        ContractField_ContractFieldId = c.Int(),
                         ContractMaster_ContractMasterId = c.Int(),
-                        SubGroupContractField_SubGroupContractFieldId = c.Int(),
                     })
                 .PrimaryKey(t => t.ContractDetailId)
+                .ForeignKey("dbo.ContractFields", t => t.ContractField_ContractFieldId)
                 .ForeignKey("dbo.ContractMasters", t => t.ContractMaster_ContractMasterId)
-                .ForeignKey("dbo.SubGroupContractFields", t => t.SubGroupContractField_SubGroupContractFieldId)
-                .Index(t => t.ContractMaster_ContractMasterId)
-                .Index(t => t.SubGroupContractField_SubGroupContractFieldId);
+                .Index(t => t.ContractField_ContractFieldId)
+                .Index(t => t.ContractMaster_ContractMasterId);
             
             CreateTable(
-                "dbo.SubGroupContractFields",
+                "dbo.ContractFields",
                 c => new
                     {
-                        SubGroupContractFieldId = c.Int(nullable: false, identity: true),
+                        ContractFieldId = c.Int(nullable: false, identity: true),
                         Year = c.Int(nullable: false),
-                        ContractFieldTitle_ContractFieldTitleId = c.Int(),
-                        SubGroup_SubGroupId = c.Int(),
-                    })
-                .PrimaryKey(t => t.SubGroupContractFieldId)
-                .ForeignKey("dbo.ContractFieldTitles", t => t.ContractFieldTitle_ContractFieldTitleId)
-                .ForeignKey("dbo.SubGroups", t => t.SubGroup_SubGroupId)
-                .Index(t => t.ContractFieldTitle_ContractFieldTitleId)
-                .Index(t => t.SubGroup_SubGroupId);
-            
-            CreateTable(
-                "dbo.ContractFieldTitles",
-                c => new
-                    {
-                        ContractFieldTitleId = c.Int(nullable: false, identity: true),
                         Title = c.String(),
                         Alias = c.String(),
+                        IsEditable = c.Boolean(nullable: false),
+                        Index = c.Int(nullable: false),
+                        IndexInRetirementReport = c.Int(nullable: false),
+                        MainGroup_MainGroupId = c.Int(),
                     })
-                .PrimaryKey(t => t.ContractFieldTitleId);
+                .PrimaryKey(t => t.ContractFieldId)
+                .ForeignKey("dbo.MainGroups", t => t.MainGroup_MainGroupId)
+                .Index(t => t.MainGroup_MainGroupId);
             
             CreateTable(
                 "dbo.ExpenseArticleOfContractFieldForSubGroups",
@@ -118,14 +111,17 @@ namespace PaySys.ModelAndBindLib.Migrations
                     {
                         ExpenseArticleOfContractFieldForSubGroupId = c.Int(nullable: false, identity: true),
                         Month = c.Int(nullable: false),
+                        ContractField_ContractFieldId = c.Int(),
                         ExpenseArticle_ExpenseArticleId = c.Int(),
-                        SubGroupContractField_SubGroupContractFieldId = c.Int(),
+                        SubGroup_SubGroupId = c.Int(),
                     })
                 .PrimaryKey(t => t.ExpenseArticleOfContractFieldForSubGroupId)
+                .ForeignKey("dbo.ContractFields", t => t.ContractField_ContractFieldId)
                 .ForeignKey("dbo.ExpenseArticles", t => t.ExpenseArticle_ExpenseArticleId)
-                .ForeignKey("dbo.SubGroupContractFields", t => t.SubGroupContractField_SubGroupContractFieldId)
+                .ForeignKey("dbo.SubGroups", t => t.SubGroup_SubGroupId)
+                .Index(t => t.ContractField_ContractFieldId)
                 .Index(t => t.ExpenseArticle_ExpenseArticleId)
-                .Index(t => t.SubGroupContractField_SubGroupContractFieldId);
+                .Index(t => t.SubGroup_SubGroupId);
             
             CreateTable(
                 "dbo.ExpenseArticles",
@@ -145,7 +141,6 @@ namespace PaySys.ModelAndBindLib.Migrations
                         MiscId = c.Int(nullable: false, identity: true),
                         Year = c.Int(nullable: false),
                         Month = c.Int(nullable: false),
-                        Index = c.Int(nullable: false),
                         ExpenseArticle_ExpenseArticleId = c.Int(),
                         SubGroup_SubGroupId = c.Int(),
                         MiscTitle_MiscTitleId = c.Int(),
@@ -228,34 +223,43 @@ namespace PaySys.ModelAndBindLib.Migrations
                         Month = c.Int(nullable: false),
                         DateValue = c.DateTime(),
                         Employee_EmployeeId = c.Int(),
-                        SubGroupVariable_SubGroupVariableId = c.Int(),
+                        Variable_VariableId = c.Int(),
                     })
                 .PrimaryKey(t => t.VariableValueForEmployeeId)
                 .ForeignKey("dbo.Employees", t => t.Employee_EmployeeId)
-                .ForeignKey("dbo.SubGroupVariables", t => t.SubGroupVariable_SubGroupVariableId)
+                .ForeignKey("dbo.Variables", t => t.Variable_VariableId)
                 .Index(t => t.Employee_EmployeeId)
-                .Index(t => t.SubGroupVariable_SubGroupVariableId);
+                .Index(t => t.Variable_VariableId);
             
             CreateTable(
-                "dbo.SubGroupVariables",
+                "dbo.Variables",
                 c => new
                     {
-                        SubGroupVariableId = c.Int(nullable: false, identity: true),
+                        VariableId = c.Int(nullable: false, identity: true),
+                        Index = c.Int(nullable: false),
                         FromYear = c.Int(nullable: false),
                         FromMonth = c.Int(nullable: false),
                         ToYear = c.Int(nullable: false),
                         ToMonth = c.Int(nullable: false),
-                        ExpenseArticle_ExpenseArticleId = c.Int(),
-                        SubGroup_SubGroupId = c.Int(),
-                        VariableTitle_VariableTitleId = c.Int(),
+                        Title = c.String(),
+                        Alias = c.String(),
+                        ValueType = c.Int(nullable: false),
+                        MainGroup_MainGroupId = c.Int(),
                     })
-                .PrimaryKey(t => t.SubGroupVariableId)
-                .ForeignKey("dbo.ExpenseArticles", t => t.ExpenseArticle_ExpenseArticleId)
-                .ForeignKey("dbo.SubGroups", t => t.SubGroup_SubGroupId)
-                .ForeignKey("dbo.VariableTitles", t => t.VariableTitle_VariableTitleId)
-                .Index(t => t.ExpenseArticle_ExpenseArticleId)
-                .Index(t => t.SubGroup_SubGroupId)
-                .Index(t => t.VariableTitle_VariableTitleId);
+                .PrimaryKey(t => t.VariableId)
+                .ForeignKey("dbo.MainGroups", t => t.MainGroup_MainGroupId)
+                .Index(t => t.MainGroup_MainGroupId);
+            
+            CreateTable(
+                "dbo.MainGroups",
+                c => new
+                    {
+                        MainGroupId = c.Int(nullable: false, identity: true),
+                        Title = c.String(),
+                        Alias = c.String(),
+                        ItemColor = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.MainGroupId);
             
             CreateTable(
                 "dbo.SubGroups",
@@ -263,14 +267,23 @@ namespace PaySys.ModelAndBindLib.Migrations
                     {
                         SubGroupId = c.Int(nullable: false, identity: true),
                         Alias = c.String(),
+                        WorkshopCode = c.String(),
                         Title = c.String(),
                         ItemColor = c.Int(nullable: false),
                         Is31 = c.Boolean(nullable: false),
-                        IsFreeZone = c.Boolean(nullable: false),
+                        ExpenseArticleOfEmployer_ExpenseArticleId = c.Int(),
+                        ExpenseArticleOfMission_ExpenseArticleId = c.Int(),
+                        ExpenseArticleOfOvertime_ExpenseArticleId = c.Int(),
                         MainGroup_MainGroupId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.SubGroupId)
+                .ForeignKey("dbo.ExpenseArticles", t => t.ExpenseArticleOfEmployer_ExpenseArticleId)
+                .ForeignKey("dbo.ExpenseArticles", t => t.ExpenseArticleOfMission_ExpenseArticleId)
+                .ForeignKey("dbo.ExpenseArticles", t => t.ExpenseArticleOfOvertime_ExpenseArticleId)
                 .ForeignKey("dbo.MainGroups", t => t.MainGroup_MainGroupId, cascadeDelete: true)
+                .Index(t => t.ExpenseArticleOfEmployer_ExpenseArticleId)
+                .Index(t => t.ExpenseArticleOfMission_ExpenseArticleId)
+                .Index(t => t.ExpenseArticleOfOvertime_ExpenseArticleId)
                 .Index(t => t.MainGroup_MainGroupId);
             
             CreateTable(
@@ -290,17 +303,6 @@ namespace PaySys.ModelAndBindLib.Migrations
                 .PrimaryKey(t => t.HandselFormulaId)
                 .ForeignKey("dbo.SubGroups", t => t.SubGroup_SubGroupId)
                 .Index(t => t.SubGroup_SubGroupId);
-            
-            CreateTable(
-                "dbo.MainGroups",
-                c => new
-                    {
-                        MainGroupId = c.Int(nullable: false, identity: true),
-                        Title = c.String(),
-                        Alias = c.String(),
-                        ItemColor = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.MainGroupId);
             
             CreateTable(
                 "dbo.MissionFormulas",
@@ -325,14 +327,14 @@ namespace PaySys.ModelAndBindLib.Migrations
                 c => new
                     {
                         MissionFormulaInvolvedContractFieldId = c.Int(nullable: false, identity: true),
+                        ContractField_ContractFieldId = c.Int(),
                         MissionFormula_MissionFormulaId = c.Int(),
-                        SubGroupContractField_SubGroupContractFieldId = c.Int(),
                     })
                 .PrimaryKey(t => t.MissionFormulaInvolvedContractFieldId)
+                .ForeignKey("dbo.ContractFields", t => t.ContractField_ContractFieldId)
                 .ForeignKey("dbo.MissionFormulas", t => t.MissionFormula_MissionFormulaId)
-                .ForeignKey("dbo.SubGroupContractFields", t => t.SubGroupContractField_SubGroupContractFieldId)
-                .Index(t => t.MissionFormula_MissionFormulaId)
-                .Index(t => t.SubGroupContractField_SubGroupContractFieldId);
+                .Index(t => t.ContractField_ContractFieldId)
+                .Index(t => t.MissionFormula_MissionFormulaId);
             
             CreateTable(
                 "dbo.Parameters",
@@ -356,14 +358,14 @@ namespace PaySys.ModelAndBindLib.Migrations
                 c => new
                     {
                         ParameterInvolvedContractFieldId = c.Int(nullable: false, identity: true),
+                        ContractField_ContractFieldId = c.Int(),
                         Parameter_ParameterId = c.Int(),
-                        SubGroupContractField_SubGroupContractFieldId = c.Int(),
                     })
                 .PrimaryKey(t => t.ParameterInvolvedContractFieldId)
+                .ForeignKey("dbo.ContractFields", t => t.ContractField_ContractFieldId)
                 .ForeignKey("dbo.Parameters", t => t.Parameter_ParameterId)
-                .ForeignKey("dbo.SubGroupContractFields", t => t.SubGroupContractField_SubGroupContractFieldId)
-                .Index(t => t.Parameter_ParameterId)
-                .Index(t => t.SubGroupContractField_SubGroupContractFieldId);
+                .Index(t => t.ContractField_ContractFieldId)
+                .Index(t => t.Parameter_ParameterId);
             
             CreateTable(
                 "dbo.ParameterInvolvedMiscs",
@@ -420,22 +422,12 @@ namespace PaySys.ModelAndBindLib.Migrations
                 .Index(t => t.TaxTable_TaxTableId);
             
             CreateTable(
-                "dbo.VariableTitles",
-                c => new
-                    {
-                        VariableTitleId = c.Int(nullable: false, identity: true),
-                        Title = c.String(),
-                        Alias = c.String(),
-                        ValueType = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.VariableTitleId);
-            
-            CreateTable(
                 "dbo.MiscTitles",
                 c => new
                     {
                         MiscTitleId = c.Int(nullable: false, identity: true),
                         Title = c.String(),
+                        Index = c.Int(nullable: false),
                         Alias = c.String(),
                         IsPayment = c.Boolean(nullable: false),
                     })
@@ -479,30 +471,32 @@ namespace PaySys.ModelAndBindLib.Migrations
             DropForeignKey("dbo.ContractDifferences", "ContractMasterId", "dbo.ContractMasters");
             DropForeignKey("dbo.Missions", "ContractMaster_ContractMasterId", "dbo.ContractMasters");
             DropForeignKey("dbo.ContractMasters", "Job_JobId", "dbo.Jobs");
-            DropForeignKey("dbo.ExpenseArticleOfContractFieldForSubGroups", "SubGroupContractField_SubGroupContractFieldId", "dbo.SubGroupContractFields");
+            DropForeignKey("dbo.ContractDetails", "ContractMaster_ContractMasterId", "dbo.ContractMasters");
             DropForeignKey("dbo.Miscs", "MiscTitle_MiscTitleId", "dbo.MiscTitles");
             DropForeignKey("dbo.MiscRecharges", "Misc_MiscId", "dbo.Miscs");
-            DropForeignKey("dbo.VariableValueForEmployees", "SubGroupVariable_SubGroupVariableId", "dbo.SubGroupVariables");
-            DropForeignKey("dbo.SubGroupVariables", "VariableTitle_VariableTitleId", "dbo.VariableTitles");
+            DropForeignKey("dbo.VariableValueForEmployees", "Variable_VariableId", "dbo.Variables");
+            DropForeignKey("dbo.Variables", "MainGroup_MainGroupId", "dbo.MainGroups");
             DropForeignKey("dbo.TaxRows", "TaxTable_TaxTableId", "dbo.TaxTables");
             DropForeignKey("dbo.TaxTables", "SubGroup_SubGroupId", "dbo.SubGroups");
-            DropForeignKey("dbo.SubGroupVariables", "SubGroup_SubGroupId", "dbo.SubGroups");
-            DropForeignKey("dbo.SubGroupContractFields", "SubGroup_SubGroupId", "dbo.SubGroups");
             DropForeignKey("dbo.Parameters", "SubGroup_SubGroupId", "dbo.SubGroups");
             DropForeignKey("dbo.Parameters", "ParameterTitle_ParameterTitleId", "dbo.ParameterTitles");
             DropForeignKey("dbo.ParameterTitles", "ParameterTitle_ParameterTitleId", "dbo.ParameterTitles");
             DropForeignKey("dbo.ParameterInvolvedMiscs", "Parameter_ParameterId", "dbo.Parameters");
             DropForeignKey("dbo.ParameterInvolvedMiscs", "Misc_MiscId", "dbo.Miscs");
-            DropForeignKey("dbo.ParameterInvolvedContractFields", "SubGroupContractField_SubGroupContractFieldId", "dbo.SubGroupContractFields");
             DropForeignKey("dbo.ParameterInvolvedContractFields", "Parameter_ParameterId", "dbo.Parameters");
+            DropForeignKey("dbo.ParameterInvolvedContractFields", "ContractField_ContractFieldId", "dbo.ContractFields");
             DropForeignKey("dbo.MissionFormulas", "SubGroup_SubGroupId", "dbo.SubGroups");
-            DropForeignKey("dbo.MissionFormulaInvolvedContractFields", "SubGroupContractField_SubGroupContractFieldId", "dbo.SubGroupContractFields");
             DropForeignKey("dbo.MissionFormulaInvolvedContractFields", "MissionFormula_MissionFormulaId", "dbo.MissionFormulas");
+            DropForeignKey("dbo.MissionFormulaInvolvedContractFields", "ContractField_ContractFieldId", "dbo.ContractFields");
             DropForeignKey("dbo.Miscs", "SubGroup_SubGroupId", "dbo.SubGroups");
             DropForeignKey("dbo.SubGroups", "MainGroup_MainGroupId", "dbo.MainGroups");
             DropForeignKey("dbo.HandselFormulas", "SubGroup_SubGroupId", "dbo.SubGroups");
+            DropForeignKey("dbo.SubGroups", "ExpenseArticleOfOvertime_ExpenseArticleId", "dbo.ExpenseArticles");
+            DropForeignKey("dbo.SubGroups", "ExpenseArticleOfMission_ExpenseArticleId", "dbo.ExpenseArticles");
+            DropForeignKey("dbo.SubGroups", "ExpenseArticleOfEmployer_ExpenseArticleId", "dbo.ExpenseArticles");
+            DropForeignKey("dbo.ExpenseArticleOfContractFieldForSubGroups", "SubGroup_SubGroupId", "dbo.SubGroups");
             DropForeignKey("dbo.ContractMasters", "SubGroup_SubGroupId", "dbo.SubGroups");
-            DropForeignKey("dbo.SubGroupVariables", "ExpenseArticle_ExpenseArticleId", "dbo.ExpenseArticles");
+            DropForeignKey("dbo.ContractFields", "MainGroup_MainGroupId", "dbo.MainGroups");
             DropForeignKey("dbo.VariableValueForEmployees", "Employee_EmployeeId", "dbo.Employees");
             DropForeignKey("dbo.MiscValueForEmployees", "Misc_MiscId", "dbo.Miscs");
             DropForeignKey("dbo.MiscValueForEmployees", "Employee_EmployeeId", "dbo.Employees");
@@ -510,9 +504,8 @@ namespace PaySys.ModelAndBindLib.Migrations
             DropForeignKey("dbo.ContractMasters", "Employee_EmployeeId", "dbo.Employees");
             DropForeignKey("dbo.Miscs", "ExpenseArticle_ExpenseArticleId", "dbo.ExpenseArticles");
             DropForeignKey("dbo.ExpenseArticleOfContractFieldForSubGroups", "ExpenseArticle_ExpenseArticleId", "dbo.ExpenseArticles");
-            DropForeignKey("dbo.SubGroupContractFields", "ContractFieldTitle_ContractFieldTitleId", "dbo.ContractFieldTitles");
-            DropForeignKey("dbo.ContractDetails", "SubGroupContractField_SubGroupContractFieldId", "dbo.SubGroupContractFields");
-            DropForeignKey("dbo.ContractDetails", "ContractMaster_ContractMasterId", "dbo.ContractMasters");
+            DropForeignKey("dbo.ExpenseArticleOfContractFieldForSubGroups", "ContractField_ContractFieldId", "dbo.ContractFields");
+            DropForeignKey("dbo.ContractDetails", "ContractField_ContractFieldId", "dbo.ContractFields");
             DropForeignKey("dbo.Missions", "City_CityId", "dbo.Cities");
             DropIndex("dbo.ContractDifferences", new[] { "Contract2Nd_ContractMasterId" });
             DropIndex("dbo.ContractDifferences", new[] { "ContractMasterId" });
@@ -521,19 +514,20 @@ namespace PaySys.ModelAndBindLib.Migrations
             DropIndex("dbo.ParameterTitles", new[] { "ParameterTitle_ParameterTitleId" });
             DropIndex("dbo.ParameterInvolvedMiscs", new[] { "Parameter_ParameterId" });
             DropIndex("dbo.ParameterInvolvedMiscs", new[] { "Misc_MiscId" });
-            DropIndex("dbo.ParameterInvolvedContractFields", new[] { "SubGroupContractField_SubGroupContractFieldId" });
             DropIndex("dbo.ParameterInvolvedContractFields", new[] { "Parameter_ParameterId" });
+            DropIndex("dbo.ParameterInvolvedContractFields", new[] { "ContractField_ContractFieldId" });
             DropIndex("dbo.Parameters", new[] { "SubGroup_SubGroupId" });
             DropIndex("dbo.Parameters", new[] { "ParameterTitle_ParameterTitleId" });
-            DropIndex("dbo.MissionFormulaInvolvedContractFields", new[] { "SubGroupContractField_SubGroupContractFieldId" });
             DropIndex("dbo.MissionFormulaInvolvedContractFields", new[] { "MissionFormula_MissionFormulaId" });
+            DropIndex("dbo.MissionFormulaInvolvedContractFields", new[] { "ContractField_ContractFieldId" });
             DropIndex("dbo.MissionFormulas", new[] { "SubGroup_SubGroupId" });
             DropIndex("dbo.HandselFormulas", new[] { "SubGroup_SubGroupId" });
             DropIndex("dbo.SubGroups", new[] { "MainGroup_MainGroupId" });
-            DropIndex("dbo.SubGroupVariables", new[] { "VariableTitle_VariableTitleId" });
-            DropIndex("dbo.SubGroupVariables", new[] { "SubGroup_SubGroupId" });
-            DropIndex("dbo.SubGroupVariables", new[] { "ExpenseArticle_ExpenseArticleId" });
-            DropIndex("dbo.VariableValueForEmployees", new[] { "SubGroupVariable_SubGroupVariableId" });
+            DropIndex("dbo.SubGroups", new[] { "ExpenseArticleOfOvertime_ExpenseArticleId" });
+            DropIndex("dbo.SubGroups", new[] { "ExpenseArticleOfMission_ExpenseArticleId" });
+            DropIndex("dbo.SubGroups", new[] { "ExpenseArticleOfEmployer_ExpenseArticleId" });
+            DropIndex("dbo.Variables", new[] { "MainGroup_MainGroupId" });
+            DropIndex("dbo.VariableValueForEmployees", new[] { "Variable_VariableId" });
             DropIndex("dbo.VariableValueForEmployees", new[] { "Employee_EmployeeId" });
             DropIndex("dbo.MiscValueForEmployees", new[] { "Misc_MiscId" });
             DropIndex("dbo.MiscValueForEmployees", new[] { "Employee_EmployeeId" });
@@ -542,12 +536,12 @@ namespace PaySys.ModelAndBindLib.Migrations
             DropIndex("dbo.Miscs", new[] { "MiscTitle_MiscTitleId" });
             DropIndex("dbo.Miscs", new[] { "SubGroup_SubGroupId" });
             DropIndex("dbo.Miscs", new[] { "ExpenseArticle_ExpenseArticleId" });
-            DropIndex("dbo.ExpenseArticleOfContractFieldForSubGroups", new[] { "SubGroupContractField_SubGroupContractFieldId" });
+            DropIndex("dbo.ExpenseArticleOfContractFieldForSubGroups", new[] { "SubGroup_SubGroupId" });
             DropIndex("dbo.ExpenseArticleOfContractFieldForSubGroups", new[] { "ExpenseArticle_ExpenseArticleId" });
-            DropIndex("dbo.SubGroupContractFields", new[] { "SubGroup_SubGroupId" });
-            DropIndex("dbo.SubGroupContractFields", new[] { "ContractFieldTitle_ContractFieldTitleId" });
-            DropIndex("dbo.ContractDetails", new[] { "SubGroupContractField_SubGroupContractFieldId" });
+            DropIndex("dbo.ExpenseArticleOfContractFieldForSubGroups", new[] { "ContractField_ContractFieldId" });
+            DropIndex("dbo.ContractFields", new[] { "MainGroup_MainGroupId" });
             DropIndex("dbo.ContractDetails", new[] { "ContractMaster_ContractMasterId" });
+            DropIndex("dbo.ContractDetails", new[] { "ContractField_ContractFieldId" });
             DropIndex("dbo.ContractMasters", new[] { "Job_JobId" });
             DropIndex("dbo.ContractMasters", new[] { "SubGroup_SubGroupId" });
             DropIndex("dbo.ContractMasters", new[] { "Employee_EmployeeId" });
@@ -556,7 +550,6 @@ namespace PaySys.ModelAndBindLib.Migrations
             DropTable("dbo.ContractDifferences");
             DropTable("dbo.Jobs");
             DropTable("dbo.MiscTitles");
-            DropTable("dbo.VariableTitles");
             DropTable("dbo.TaxRows");
             DropTable("dbo.TaxTables");
             DropTable("dbo.ParameterTitles");
@@ -565,10 +558,10 @@ namespace PaySys.ModelAndBindLib.Migrations
             DropTable("dbo.Parameters");
             DropTable("dbo.MissionFormulaInvolvedContractFields");
             DropTable("dbo.MissionFormulas");
-            DropTable("dbo.MainGroups");
             DropTable("dbo.HandselFormulas");
             DropTable("dbo.SubGroups");
-            DropTable("dbo.SubGroupVariables");
+            DropTable("dbo.MainGroups");
+            DropTable("dbo.Variables");
             DropTable("dbo.VariableValueForEmployees");
             DropTable("dbo.MiscValueForEmployees");
             DropTable("dbo.Employees");
@@ -576,8 +569,7 @@ namespace PaySys.ModelAndBindLib.Migrations
             DropTable("dbo.Miscs");
             DropTable("dbo.ExpenseArticles");
             DropTable("dbo.ExpenseArticleOfContractFieldForSubGroups");
-            DropTable("dbo.ContractFieldTitles");
-            DropTable("dbo.SubGroupContractFields");
+            DropTable("dbo.ContractFields");
             DropTable("dbo.ContractDetails");
             DropTable("dbo.ContractMasters");
             DropTable("dbo.Missions");

@@ -27,10 +27,10 @@
 				<ColumnDefinition Width="3*" />
 			</Grid.ColumnDefinitions>
 			<Label Content="{x:Static fa:Labels.Contract}"
-				   Style="{StaticResource StyleOfSelectionItemLabel}"/>
+			       Style="{StaticResource StyleOfSelectionItemLabel}" />
 			<ComboBox Grid.Column="1"
 			          Name="CmbContractMaster"
-					  Style="{StaticResource StyleOfSelectionItemComboBox}"
+			          Style="{StaticResource StyleOfSelectionItemComboBox}"
 			          TextSearch.Text="ContractNo"
 			          TextSearch.TextPath="ContractNo"
 			          IsTextSearchEnabled="True"
@@ -40,8 +40,7 @@
 					<DataTemplate>
 						<TextBlock>
 							<TextBlock.Text>
-								<MultiBinding
-									Converter="{StaticResource ContractMasterConverter}">
+								<MultiBinding Converter="{StaticResource ContractMasterConverter}">
 									<Binding Path="ContractNo" />
 									<Binding Path="DateExport" />
 									<Binding Path="DateExecution" />
@@ -72,7 +71,8 @@
 													<Binding Path="DateExecution" />
 													<Binding Path="IsCurrentContract" />
 												</MultiBinding>
-   											</Label.Content></Label>
+											</Label.Content>
+										</Label>
 									</Grid>
 									<ControlTemplate.Triggers>
 										<Trigger Property="ComboBoxItem.IsSelected"

@@ -40,7 +40,7 @@ namespace PaySys.UI.UC
 			SubGroup
 		}
 
-		private PaySysContext Context
+		public PaySysContext Context
 		{
 			set;
 			get;
@@ -50,7 +50,6 @@ namespace PaySys.UI.UC
 			InitializeComponent();
 			Reload();
 
-			SmpUcContractFieldTitlesMng.SaveContext += () => Context.SaveChanges();
 			SmpUcMiscMng.SaveContext += () => Context.SaveChanges();
 			SmpUcParameterMng.SaveContext += () => Context.SaveChanges();
 			SmpUcTaxTableMng.SaveContext += () => Context.SaveChanges();
@@ -61,8 +60,6 @@ namespace PaySys.UI.UC
 			SmpUcMiscMng.ExpenseArticlesAll = Context.ExpenseArticles.ToList();
 			SmpUcMiscMng.MiscTitlesAll = Context.MiscTitles.ToList();
 
-			SmpUcParameterMng.MiscTitlesAll=Context.MiscTitles.ToList();
-			SmpUcParameterMng.ContractFieldTitlesTitlesAll=Context.ContractFieldTitles.ToList();
 		}
 
 		private void Reload()

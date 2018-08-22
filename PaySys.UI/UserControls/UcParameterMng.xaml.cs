@@ -41,9 +41,6 @@ namespace PaySys.UI.UC
 		public static readonly DependencyProperty ReadOnlyOfFieldsProperty = DependencyProperty.Register( "ReadOnlyOfFields", typeof(bool), typeof(UcParameterMng), new PropertyMetadata( default(bool) ) );
 
 		public bool ReadOnlyOfFields { get { return (bool) GetValue( ReadOnlyOfFieldsProperty ); } set { SetValue( ReadOnlyOfFieldsProperty, value ); } }
-		public List<MiscTitle> MiscTitlesAll { get; set; }
-
-		public List<ContractFieldTitle> ContractFieldTitlesTitlesAll { get; set; }
 
 		public static readonly DependencyProperty CurrentSubGroupProperty = DependencyProperty.Register( "CurrentSubGroup", typeof(SubGroup), typeof(UcParameterMng), new PropertyMetadata( default(SubGroup) ) );
 
@@ -61,7 +58,7 @@ namespace PaySys.UI.UC
 		{
 			( (Parameter) ListViewParameter.SelectedItem ).ParameterInvolvedContractFields.Add( new ParameterInvolvedContractField
 			{
-					SubGroupContractField = CurrentSubGroup.SubGroupContractFields.First( c => c.ContractFieldTitle.Title == e.Parameter.ToString() ),
+					ContractField = CurrentSubGroup.CurrentContractFields.First( c => c.Title == e.Parameter.ToString() ),
 					Parameter = (Parameter) ListViewParameter.SelectedItem
 			} );
 			SaveContext.Invoke();
@@ -75,19 +72,19 @@ namespace PaySys.UI.UC
 		private void ContractField_Checked( object sender, RoutedEventArgs e )
 		{
 			var prm = ListViewParameter.SelectedItem as Parameter;
-			var cf = ( e.Source as System.Windows.Controls.Control )?.Tag as SubGroupContractField;
+			var cf = ( e.Source as System.Windows.Controls.Control )?.Tag as ContractField;
 			prm?.ParameterInvolvedContractFields.Add( new ParameterInvolvedContractField
 			{
 					Parameter = prm,
-					SubGroupContractField = cf
+					ContractField = cf
 			} );
 		}
 
 		private void ContractField_UnChecked( object sender, RoutedEventArgs e )
 		{
 			var prm = ListViewParameter.SelectedItem as Parameter;
-			var cf = ( e.Source as System.Windows.Controls.Control )?.Tag as SubGroupContractField;
-			prm?.ParameterInvolvedContractFields.Remove( prm?.ParameterInvolvedContractFields.FirstOrDefault( f => f.SubGroupContractField.Equals( cf ) ) );
+			var cf = ( e.Source as System.Windows.Controls.Control )?.Tag as ContractField;
+			prm?.ParameterInvolvedContractFields.Remove( prm?.ParameterInvolvedContractFields.FirstOrDefault( f => f.ContractField.Equals( cf ) ) );
 		}
 
 		private void MiscPayment_Checked( object sender, RoutedEventArgs e )

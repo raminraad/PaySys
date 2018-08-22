@@ -53,7 +53,7 @@ namespace PaySys.UI.UC
 			if( var == null )
 				return;
 
-			e.Accepted = var.SubGroupVariable.Equals( SmpUcRibbonSelector.SelectedItem );
+			e.Accepted = var.Variable.Equals( SmpUcRibbonSelector.SelectedItem );
 		}
 
 		private void SmpUcRibbonSelector_OnSelectedItemChanged( object sender, RoutedEventArgs e )

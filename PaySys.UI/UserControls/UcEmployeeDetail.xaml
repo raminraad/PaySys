@@ -15,20 +15,6 @@
 			 xmlns:persianDateControls="clr-namespace:Arash.PersianDateControls;assembly=PersianDateControls"
 			 FlowDirection="RightToLeft">
 	<Grid x:Name="GridDetail">
-		<Grid.Resources>
-			<Style TargetType="Label">
-				<Setter Property="VerticalContentAlignment"
-				        Value="Center" />
-			</Style>
-			<Style TargetType="TextBox">
-				<Setter Property="Margin"
-				        Value="0,15,40,15" />
-			</Style>
-			<Style TargetType="ComboBox">
-				<Setter Property="Margin"
-						Value="0,15,40,15" />
-			</Style>
-		</Grid.Resources>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="*" />
 			<RowDefinition Height="*" />

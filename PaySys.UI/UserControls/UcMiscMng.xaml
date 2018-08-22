@@ -116,7 +116,7 @@
 				<CommandBinding Command="commands:PaySysCommands.AddItem"
 				                CanExecute="AddMisc_CanExecute"
 				                Executed="AddMisc_Execute" />
-				<CommandBinding Command="commands:PaySysCommands.RemoveItem"
+				<CommandBinding Command="commands:PaySysCommands.DeleteItem"
 				                Executed="RemoveMisc_Execute" />
 			</ListView.CommandBindings>
 			<ListView.View>
@@ -132,7 +132,7 @@
 						<GridViewColumn.CellTemplate>
 							<DataTemplate>
 								<Button Content="{x:Static fa:Labels.Delete}"
-								        Command="commands:PaySysCommands.RemoveItem"
+								        Command="commands:PaySysCommands.DeleteItem"
 								        CommandParameter="{Binding}"
 								        Tag="{Binding}" />
 							</DataTemplate>
@@ -150,7 +150,7 @@
 				<CommandBinding Command="commands:PaySysCommands.AddItem"
 				                CanExecute="AddMisc_CanExecute"
 				                Executed="AddMisc_Execute" />
-				<CommandBinding Command="commands:PaySysCommands.RemoveItem"
+				<CommandBinding Command="commands:PaySysCommands.DeleteItem"
 				                Executed="RemoveMisc_Execute" />
 			</ListView.CommandBindings>
 			<ListView.View>
@@ -166,7 +166,7 @@
 						<GridViewColumn.CellTemplate>
 							<DataTemplate>
 								<Button Content="{x:Static fa:Labels.Delete}"
-								        Command="commands:PaySysCommands.RemoveItem"
+								        Command="commands:PaySysCommands.DeleteItem"
 								        CommandParameter="{Binding}"
 								        Tag="{Binding}" />
 							</DataTemplate>

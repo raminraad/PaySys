@@ -54,7 +54,7 @@ namespace PaySys.UI.UC
 				foreach( var v in SmpUcSelectGroupAndSubGroup.SelectedSubGroup.TempVariableValuesOfEmployees )
 				{
 					if( v.VariableValueForEmployeeId == 0 )
-						switch( v.SubGroupVariable.VariableTitle.ValueType )
+						switch( v.Variable.ValueType )
 						{
 							case ValueType.Absolute:
 							case ValueType.Percent:
@@ -71,7 +71,7 @@ namespace PaySys.UI.UC
 								break;
 						}
 					else if( v.VariableValueForEmployeeId != 0 )
-						switch( v.SubGroupVariable.VariableTitle.ValueType )
+						switch( v.Variable.ValueType )
 						{
 							case ValueType.Absolute:
 							case ValueType.Percent:
@@ -167,10 +167,10 @@ namespace PaySys.UI.UC
 			{
 					Employee = emp,
 					VariableValues = from sgV in sg.CurrentVariables
-					                 join v in vars.Where( r => r.Year == PaySysSetting.CurrentYear && r.Month == PaySysSetting.CurrentMonth ) on sgV equals v.SubGroupVariable into empVars
+					                 join v in vars.Where( r => r.Year == PaySysSetting.CurrentYear && r.Month == PaySysSetting.CurrentMonth ) on sgV equals v.Variable into empVars
 					                 from subRec in empVars.DefaultIfEmpty( new VariableValueForEmployee
 					                 {
-							                 SubGroupVariable = sgV,
+							                 Variable = sgV,
 
 //					                Value = null,
 							                 NumericValue = null,

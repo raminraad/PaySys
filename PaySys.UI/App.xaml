@@ -10,6 +10,7 @@
 	<Application.Resources>
 		<bindingConverter:DateTimeToPersianDateConverter x:Key="GregToPersDateConverter" />
 		<bindingConverter:NegateBooleanConverter x:Key="NegateBooleanConverter" />
+		<bindingConverter:DisplayCodeOfExpenseArticleConverter x:Key="DisplayCodeOfExpenseArticleConverter" />
 		<bindingConverter:BoolToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
 		<SolidColorBrush x:Key="FormStateColorAdd"
@@ -27,7 +28,14 @@
 		<system:Double x:Key="FontSizeOfListTitle"> 20 </system:Double>
 		<system:Double x:Key="FontSizeOfSelectionItem"> 24 </system:Double>
 		<system:Double x:Key="HeightOfDataField"> 30 </system:Double>
-		<system:Double x:Key="WidthOfDataField"> 200 </system:Double>
+		<system:Double x:Key="WidthOfDataFieldOfText"> 200 </system:Double>
+		<system:Double x:Key="WidthOfDataFieldOfCode"> 80 </system:Double>
+		<system:Double x:Key="WidthOfDataFieldOfPrice"> 120 </system:Double>
+		<system:Double x:Key="WidthOfDataFieldOfButton"> 40 </system:Double>
+		<system:Double x:Key="WidthOfDataColumnOfText"> 220 </system:Double>
+		<system:Double x:Key="WidthOfDataColumnOfCode"> 100 </system:Double>
+		<system:Double x:Key="WidthOfDataColumnOfPrice"> 140 </system:Double>
+		<system:Double x:Key="WidthOfDataColumnOfOperationsWithButtonCountOf1"> 60 </system:Double>
 		<system:Double x:Key="WidthOfTabOneOf4"> 350 </system:Double>
 		<system:Double x:Key="WidthOfTabOneOf5"> 300 </system:Double>
 		<system:Double x:Key="WidthOfTabOneOf6"> 250 </system:Double>
@@ -119,7 +127,7 @@
 			<Setter Property="Height"
 			        Value="{StaticResource HeightOfDataField}" />
 			<Setter Property="Width"
-			        Value="{StaticResource WidthOfDataField}" />
+			        Value="{StaticResource WidthOfDataFieldOfText}" />
 			<Setter Property="FontFamily"
 			        Value="{StaticResource FontFamilyOfDataFields}" />
 			<Setter Property="FontSize"
@@ -203,7 +211,7 @@
 			<Setter Property="Height"
 			        Value="{StaticResource HeightOfDataField}" />
 			<Setter Property="Width"
-			        Value="{StaticResource WidthOfDataField}" />
+			        Value="{StaticResource WidthOfDataFieldOfText}" />
 			<Setter Property="FontFamily"
 			        Value="{StaticResource FontFamilyOfDataFields}" />
 			<Setter Property="FontSize"
@@ -218,7 +226,7 @@
 			<Setter Property="Height"
 			        Value="{StaticResource HeightOfDataField}" />
 			<Setter Property="Width"
-			        Value="{StaticResource WidthOfDataField}" />
+			        Value="{StaticResource WidthOfDataFieldOfText}" />
 			<Setter Property="FontFamily"
 			        Value="{StaticResource FontFamilyOfDataFields}" />
 			<Setter Property="FontSize"

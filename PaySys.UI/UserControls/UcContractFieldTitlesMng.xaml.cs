@@ -8,7 +8,6 @@ using PaySys.CalcLib.Delegates;
 using PaySys.Globalization;
 using PaySys.ModelAndBindLib;
 using PaySys.ModelAndBindLib.Model;
-using PaySys.UI.Dialogs;
 using MessageBox = System.Windows.Forms.MessageBox;
 using MessageBoxOptions = System.Windows.Forms.MessageBoxOptions;
 using UserControl = System.Windows.Controls.UserControl;
@@ -25,17 +24,19 @@ namespace PaySys.UI.UC
 		{
 			InitializeComponent();
 			_enterTitleMessage = ResourceAccessor.Messages.GetString("EnterContractFieldTitle");
-			ListViewGroupContractField.Items.Filter = o => ((SubGroupContractField) o).Year == PaySysSetting.CurrentYear;
+			ListViewGroupContractField.Items.Filter = o => ((ContractField) o).Year == PaySysSetting.CurrentYear;
 		}
 
-		public DelegateSaveContext SaveContext { set; get; }
+		public static readonly DependencyProperty ReadOnlyOfFieldsProperty = DependencyProperty.Register( "ReadOnlyOfFields", typeof(bool), typeof(UcContractFieldTitlesMng), new PropertyMetadata( default(bool) ) );
 
-		private void BtnAdd_OnClick(object sender, RoutedEventArgs e)
+		public bool ReadOnlyOfFields { get { return (bool) GetValue( ReadOnlyOfFieldsProperty ); } set { SetValue( ReadOnlyOfFieldsProperty, value ); } }
+
+		private void ButtonAdd_OnClick(object sender, RoutedEventArgs e)
 		{
 			/*var newTitle = string.Empty;
 			if(InputBox.Show(_enterTitleMessage, ref newTitle) == DialogResult.OK)
 			{
-				CurrentSubGroup.SubGroupContractFields.Add(new SubGroupContractField
+				CurrentSubGroup.MainGroup.ContractFields.Add(new ContractField
 				{
 					ContractFieldTitle = newTitle,
 					Year = PaySysSetting.CurrentYear
@@ -45,9 +46,9 @@ namespace PaySys.UI.UC
 			}*/
 		}
 
-		private void BtnEdit_OnClick(object sender, RoutedEventArgs e)
+		private void ButtonEdit_OnClick(object sender, RoutedEventArgs e)
 		{
-			/*var selectedTitle = ListViewGroupContractField.SelectedItem as SubGroupContractField;
+			/*var selectedTitle = ListViewGroupContractField.SelectedItem as ContractField;
 			var newTitle = selectedTitle?.ContractFieldTitle.Title;
 			if(InputBox.Show(_enterTitleMessage, ref newTitle) == DialogResult.OK)
 			{
@@ -57,30 +58,14 @@ namespace PaySys.UI.UC
 			}*/
 		}
 
-		private void BtnDelete_OnClick(object sender, RoutedEventArgs e)
+		private void ButtonDelete_OnClick(object sender, RoutedEventArgs e)
 		{
 			if(MessageBox.Show(ResourceAccessor.Messages.GetString("DeleteConfirmationOfItem"), "", MessageBoxButtons.YesNo,
 			                   MessageBoxIcon.Question, MessageBoxDefaultButton.Button2, MessageBoxOptions.RightAlign) ==
 			   DialogResult.Yes)
 			{
-				CurrentSubGroup.SubGroupContractFields.Remove((SubGroupContractField) ListViewGroupContractField.SelectedItem);
-				SaveContext.Invoke();
-				CollectionViewSource.GetDefaultView(ListViewGroupContractField.ItemsSource).Refresh();
-			}
-		}
-
-		private void BtnChangeExpenseArticle_OnClick(object sender, RoutedEventArgs e)
-		{
-			WinSelectItem selectExpenseArticleDialog =
-				new WinSelectItem(ResourceAccessor.Messages.GetString("SelectExpenseArticle"))
-				{
-					ListViewItemsSource = ExpenseArticlesAll
-				};
-			if(selectExpenseArticleDialog.ShowDialog() == true)
-			{
-				var selectedContractField = ListViewGroupContractField.SelectedItem as SubGroupContractField;
-				selectedContractField.CurrentExpenseArticle = (ExpenseArticle) selectExpenseArticleDialog.SelectedItem;
-				SaveContext.Invoke();
+				CurrentSubGroup.MainGroup.ContractFields.Remove((ContractField) ListViewGroupContractField.SelectedItem);
+				
 				CollectionViewSource.GetDefaultView(ListViewGroupContractField.ItemsSource).Refresh();
 			}
 		}
@@ -108,6 +93,5 @@ namespace PaySys.UI.UC
 		}
 
 		#endregion
-
 	}
 }

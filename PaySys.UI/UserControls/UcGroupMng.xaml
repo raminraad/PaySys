@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="PaySys.UI.UC.UcGroupMng"
+﻿<UserControl x:Name="SmpUcGroupMng" x:Class="PaySys.UI.UC.UcGroupMng"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -109,9 +109,9 @@
 						                Width="220">
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
-										<local:UcTextPair Text="{Binding Path=Title,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-										                  ReadOnly="{Binding ElementName = SmpUcFormStateLabel , Path=ReadOnlyOfEditFields}"
-										                  Width="200" />
+									<local:UcTextPair Text="{Binding Path=Title,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+									                  ReadOnly="{Binding ElementName = SmpUcFormStateLabel , Path=ReadOnlyOfEditFields}"
+									                  Width="200" />
 								</DataTemplate>
 							</GridViewColumn.CellTemplate>
 						</GridViewColumn>
@@ -119,9 +119,9 @@
 						                Width="120">
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
-										<local:UcTextPair Text="{Binding Path=WorkshopCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-										                  ReadOnly="{Binding ElementName = SmpUcFormStateLabel , Path=ReadOnlyOfEditFields}" 
-										                  Width="100"/>
+									<local:UcTextPair Text="{Binding Path=WorkshopCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+									                  ReadOnly="{Binding ElementName = SmpUcFormStateLabel , Path=ReadOnlyOfEditFields}"
+									                  Width="100" />
 								</DataTemplate>
 							</GridViewColumn.CellTemplate>
 						</GridViewColumn>
@@ -130,8 +130,7 @@
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
 									<CheckBox FlowDirection="LeftToRight"
-									          IsChecked="{Binding 
-Path=Is31,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+									          IsChecked="{Binding Path=Is31,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
 									          IsEnabled="{Binding ElementName = SmpUcFormStateLabel , Path=ReadOnlyOfEditFields,Converter={StaticResource NegateBooleanConverter}}" />
 								</DataTemplate>
 							</GridViewColumn.CellTemplate>
@@ -165,7 +164,10 @@ Path=Is31,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
 			         Header="{x:Static fa:Labels.ContractFieldTitles}"
 			         Width="{StaticResource WidthOfTabOneOf7}">
 				<local:UcContractFieldTitlesMng x:Name="SmpUcContractFieldTitlesMng"
-				                                CurrentSubGroup="{Binding ElementName=ListViewSubGroups,Path=SelectedItem}" />
+												CurrentSubGroup="{Binding ElementName=ListViewSubGroups,Path=SelectedItem}"
+				                                ExpenseArticlesAll="{Binding ElementName=SmpUcGroupMng,Path=Context.ExpenseArticles}"
+				                                ReadOnlyOfFields="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
+				                                />
 			</TabItem>
 			<TabItem x:Name="TabItemMisc"
 			         Header="{x:Static fa:Labels.MiscTitles}"

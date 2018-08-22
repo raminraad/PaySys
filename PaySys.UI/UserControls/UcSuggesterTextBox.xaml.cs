@@ -114,10 +114,14 @@ namespace PaySys.UI.UC
 			{
 				// Use Linq to Query ItemsSource for resultdata
 				string condition = string.Format("{0}%", autoTextBox.Text);
-				IEnumerable<string> results = ItemsSource.Where(s => s.ToLower().Contains(autoTextBox.Text.Trim().ToLower()));
-				if(results.Count() > 0)
+				IEnumerable<string> results = ItemsSource?.Where(s => s.ToLower().Contains(autoTextBox.Text.Trim().ToLower()));
+				if( results == null )
+					return;
+
+				var itemsSource = results.ToList();
+				if(itemsSource.Any())
 				{
-					suggestionListBox.ItemsSource = results;
+					suggestionListBox.ItemsSource = itemsSource;
 					suggestionListBox.Visibility = Visibility.Visible;
 					suggestionListBox.SelectedIndex = -1;
 				}

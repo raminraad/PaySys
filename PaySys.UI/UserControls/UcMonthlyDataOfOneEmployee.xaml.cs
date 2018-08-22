@@ -81,7 +81,7 @@ namespace PaySys.UI.UC
 
 		private void UcMonthlyDataOfOneEmployee_OnInitialized( object sender, EventArgs e )
 		{
-			CvsOfEmployeeVariableValues.SortDescriptions.Add( new SortDescription( "SubGroupVariable.VariableTitle.Title", ListSortDirection.Ascending ) );
+			CvsOfEmployeeVariableValues.SortDescriptions.Add( new SortDescription( "Variable.VariableTitle.Title", ListSortDirection.Ascending ) );
 			CvsOfEmployeeVariableValues.Filter += FilterVariablesOfSelectedEmployee;
 
 			CvsOfEmployeeMiscPaymentValues.SortDescriptions.Add( new SortDescription( "Misc.MiscTitle.Title", ListSortDirection.Ascending ) );
@@ -98,7 +98,7 @@ namespace PaySys.UI.UC
 				return;
 
 			listView.SelectedItem = ( sender as ListViewItem )?.Content;
-			if( Equals( listView, ListViewVariables ) && (listView.SelectedItem as VariableValueForEmployee)?.SubGroupVariable?.VariableTitle?.ValueType==ValueType.Date)
+			if( Equals( listView, ListViewVariables ) && (listView.SelectedItem as VariableValueForEmployee)?.Variable?.ValueType==ValueType.Date)
 				( sender as ListViewItem ).FindVisualChildren<PersianDatePicker>().FirstOrDefault()?.FindVisualChildren<TextBox>()?.FirstOrDefault()?.SelectAll();
 			else
 			( sender as ListViewItem ).FindVisualChildren<TextBox>().FirstOrDefault()?.SelectAll();

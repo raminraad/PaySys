@@ -97,7 +97,7 @@
 					<GridView.Columns>
 						<GridViewColumn Header="{x:Static fa:Labels.Title}"
 										Width="Auto"
-										DisplayMemberBinding="{Binding SubGroupVariable.VariableTitle.Title}" />
+										DisplayMemberBinding="{Binding Variable.VariableTitle.Title}" />
 						<GridViewColumn Header="{x:Static fa:Labels.Value}">
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>

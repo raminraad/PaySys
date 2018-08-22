@@ -17,7 +17,6 @@ namespace PaySys.ModelAndBindLib.Migrations
 {
 	internal sealed class Configuration : DbMigrationsConfiguration<PaySysContext>
 	{
-		
 		private readonly Faker _faker = new Faker( "fa" );
 
 		public Configuration()
@@ -39,87 +38,84 @@ namespace PaySys.ModelAndBindLib.Migrations
 			PaySysSetting.CurrentYear = 1397;
 			PaySysSetting.CurrentMonth = 007;
 
-			var alphabets = new[]
+			var alphabets = new[] {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+
+			var contractFields = new List<Tuple<int, bool, string, string, string>>
 			{
-					"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
+					Tuple.Create(01,false, alphabets[0],"CA01","حقـــوق" ),
+					Tuple.Create(02,true, alphabets[0],"CA02","فوق العاده شغل" ),
+					Tuple.Create(03,true, alphabets[0],"CA03","تسهیلات زندگی" ),
+					Tuple.Create(04,true, alphabets[0],"CA04","فوق العاده تعدیل" ),
+					Tuple.Create(05,true, alphabets[0],"CA05","عائله مندی" ),
+					Tuple.Create(06,true, alphabets[0],"CA06","حق اولاد" ),
+					Tuple.Create(07,true, alphabets[0],"CA07","فوق العاده ویژه" ),
+					Tuple.Create(08,true, alphabets[0],"CA08","سایر:جذب2" ),
+					Tuple.Create(09,true, alphabets[0],"CA09","فوق العاده جذب" ),
+					Tuple.Create(10,true, alphabets[0],"CA10","جیره غیر نقدی" ),
+					Tuple.Create(11,true, alphabets[0],"CA11","تفاوت گروه ت ش" ),
+					Tuple.Create(12,true, alphabets[0],"CA12","سختی کار" ),
+					Tuple.Create(13,true, alphabets[0],"CA13","تفاوت حداقل" ),
+					Tuple.Create(14,true, alphabets[0],"CA14","حق مسکن" ),
+					Tuple.Create(15,true, alphabets[0],"CA15","کارانه" ),
+					Tuple.Create(16,true, alphabets[0],"CA16","فوق العاده تلاش" ),
+					Tuple.Create(17,true, alphabets[0],"CA17","نوبت کاری" ),
+					Tuple.Create(18,true, alphabets[0],"CA18","فوق العاده ذیحسابی" ),
+					Tuple.Create(19,true, alphabets[0],"CA19","کارشناسی ارشد" ),
+					Tuple.Create(20,true, alphabets[0],"CA20","برجستگی" ),
+					Tuple.Create(21,true, alphabets[0],"CA21","گروه تشویقی" ),
+					Tuple.Create(22,true, alphabets[0],"CA22","تفاوت ضریب تعدیل" ),
+					Tuple.Create(23,true, alphabets[0],"CA23","تاریخ مازاد سی سال خدمت" ),
+								   
+					Tuple.Create(01,false, alphabets[1],"CB01","حقـــوق" ),
+					Tuple.Create(02,true, alphabets[1],"CB02","عائله مندی" ),
+					Tuple.Create(03,true, alphabets[1],"CB03","حق اولاد" ),
+								   
+					Tuple.Create(01,false, alphabets[2],"CC01","حقـــوق"),							   
+					Tuple.Create(02,true, alphabets[2],"CC02","سنوات خدمت"),
+					Tuple.Create(03,true, alphabets[2],"CC03","فوق العاده تعدیل"),
+					Tuple.Create(04,true, alphabets[2],"CC04","جیره غیر نقدی"),
+					Tuple.Create(05,true, alphabets[2],"CC05","حق اولاد"),
+					Tuple.Create(06,true, alphabets[2],"CC06","تفاوت ضریب تعدیل"),
+					Tuple.Create(07,true, alphabets[2],"CC07","حق مسکن"),
+					Tuple.Create(08,true, alphabets[2],"CC08","هزینه شب کاری"),
+					Tuple.Create(09,true, alphabets[2],"CC09","فوق العاده شغل"),
+					Tuple.Create(10,true, alphabets[2],"CC10","تسهیلات زندگی"),
+					Tuple.Create(11,true, alphabets[2],"CC11","حداقل حقوق"),
+					Tuple.Create(12,true, alphabets[2],"CC12","حق عائله مندی"),
+					Tuple.Create(13,true, alphabets[2],"CC13","نوبت کاری"),
+					Tuple.Create(14,true, alphabets[2],"CC14","سختی کار"),
+					Tuple.Create(15,true, alphabets[2],"CC15","فوق العاده جذب"),
+					Tuple.Create(16,true, alphabets[2],"CC16","فوق العاده 20%"),
+					Tuple.Create(17,true, alphabets[2],"CC17","کارانه"),
+					Tuple.Create(18,true, alphabets[2],"CC18","بن کارگری"),
+					Tuple.Create(19,true, alphabets[2],"CC19","حمایت قضایی"),
+					Tuple.Create(20,true, alphabets[2],"CC20","کارشناسی ارشد"),
+					Tuple.Create(21,true, alphabets[2],"CC21","فوق العاده تشویق"),
+					Tuple.Create(22,true, alphabets[2],"CC22","ایثارگری"),
+									
+					Tuple.Create(01,false, alphabets[3],"CD01","حقـــوق"),
+								   
+					Tuple.Create(01,false, alphabets[4],"CE01","حقـــوق"),
 			};
 
-			var contractFieldTitles = new Dictionary<string,string>()
+			var variables = new List<Tuple<int,string,string>>
 			{
-					{"CFT01","بیمه تکمیلی سهم دولت"},
-					{"CFT02","بیمه تبعی یک"},
-					{"CFT03","بیمه تبعی دو"},
-					{"CFT04","بیمه مازاد"},
-					{"CFT05","درصد معاف مالیات"},
-					{"CFT06","شماره حساب سهم دولت"},
-					{"CFT07","شماره حساب سهم پرسنل"},
-					{"CFT08","مبلغ کل بیمه تکمیلی"},
-					{"CFT09","اضافه کار عادی"},
-					{"CFT10","اضافه کار جمعه"},
-					{"CFT11","بازنشستگی گذشته"},
-					{"CFT12","بیمه عمر"},
-					{"CFT13","کسور متفرقه"},
-					{"CFT14","مقرری ماه اول"},
-					{"CFT15","بدهی اضافه کار"},
-					{"CFT16","معافیت وام مسکن"},
-					{"CFT17","مازاد سی سال"},
-					{"CFT18","پرداختهای متفرقه"},
-					{"CFT19","مدت پرداخت بروز"},
-					{"CFT20","سهم بیمه تکمیلی"},
-					{"CFT21","روزهای کارکرد"},
-					{"CFT22","ساعات شیفت کاری"},
-					{"CFT23","بدهی اضافه کار"},
-					{"CFT24","مدت مرخصی ذخیره"},
-					{"CFT25","ضریب پایان کار"},
-					{"CFT26","حق جذب"},
-					{"CFT27","عائله مندی"},
-					{"CFT28","سختی کار"},
-					{"CFT29","خوار و بار"},
-					{"CFT30","ایاب و ذهاب"},
-					{"CFT31","فوق العاده اشتغال خارج از كشور"},
-					{"CFT32","فوق العاده شغل"},
-					{"CFT33","فوق العاده مخصوص"},
-					{"CFT34","بدي آب و هوا"},
-					{"CFT35","تفاوت تطبيق"},
-					{"CFT36","حق سرپرستي"}
+					Tuple.Create(01,"V01","بیمه تکمیلی سهم کارفرما" ),
+					Tuple.Create(02,"V02","بیمه تکمیلی سهم پرسنل" ),
+					Tuple.Create(03,"V03","تعداد بیمه درمانی تبعی 1" ),
+					Tuple.Create(04,"V04","تعداد بیمه درمانی تبعی 2" ),
+					Tuple.Create(05,"V05","تعداد بیمه درمانی تبعی 3" ),
+					Tuple.Create(06,"V06","شماره حساب بانکی"),
+					Tuple.Create(07,"V07","شماره حساب پس انداز سهم کارفرما"),
+					Tuple.Create(08,"V08","شماره حساب پس انداز سهم پرسنل" ),
+					Tuple.Create(09,"V09","کارکرد ماهانه"),
+					Tuple.Create(10,"V10","ساعات اضافه کار"),
+					Tuple.Create(11,"V11","روزهای تعطیل کاری"),
+					Tuple.Create(12,"V12","مساعده اضافه کار"),
+					Tuple.Create(13,"V13","بدهی بازنشستگی"),
+					Tuple.Create(14,"V14","بدهی مقرری ماه اول" ),
+					Tuple.Create(15,"V15","بیمه عمر سهم پرسنل" ),
 			};
-
-			var mainGroupContractFields = new[]
-			{
-					new {CFT="CFT01",MG=alphabets[0]},
-					new {CFT="CFT02",MG=alphabets[0]},
-					new {CFT="CFT03",MG=alphabets[0]},
-					new {CFT="CFT04",MG=alphabets[0]},
-					new {CFT="CFT05",MG=alphabets[0]},
-					new {CFT="CFT06",MG=alphabets[0]},
-					new {CFT="CFT07",MG=alphabets[0]},
-					new {CFT="CFT08",MG=alphabets[0]},
-					new {CFT="CFT09",MG=alphabets[1]},
-					new {CFT="CFT10",MG=alphabets[1]},
-					new {CFT="CFT11",MG=alphabets[1]},
-					new {CFT="CFT12",MG=alphabets[1]},
-					new {CFT="CFT13",MG=alphabets[1]},
-					new {CFT="CFT14",MG=alphabets[1]},
-					new {CFT="CFT25",MG=alphabets[2]},
-					new {CFT="CFT26",MG=alphabets[2]},
-					new {CFT="CFT27",MG=alphabets[2]},
-					new {CFT="CFT28",MG=alphabets[2]},
-					new {CFT="CFT29",MG=alphabets[2]},
-					new {CFT="CFT30",MG=alphabets[2]},
-					new {CFT="CFT31",MG=alphabets[2]},
-					new {CFT="CFT29",MG=alphabets[3]},
-					new {CFT="CFT30",MG=alphabets[3]},
-					new {CFT="CFT31",MG=alphabets[3]},
-					new {CFT="CFT32",MG=alphabets[3]},
-					new {CFT="CFT33",MG=alphabets[3]},
-					new {CFT="CFT34",MG=alphabets[3]},
-					new {CFT="CFT35",MG=alphabets[3]},
-					new {CFT="CFT29",MG=alphabets[4]},
-					new {CFT="CFT30",MG=alphabets[4]},
-					new {CFT="CFT31",MG=alphabets[4]},
-					new {CFT="CFT32",MG=alphabets[4]},
-					new {CFT="CFT33",MG=alphabets[4]}
-			}.ToList();			  
 
 			var miscTitlesPayment = new[]
 			{
@@ -129,75 +125,81 @@ namespace PaySys.ModelAndBindLib.Migrations
 			{
 					"جریمه", "توبیخی", "بدهی قبلی", "وام مسکن", "وام ضروری", "کسر کار", "اضافه مرخصی", "خسارت اموال", "هزینه های متفرقه"
 			};
-			var expenseArticleTitles = new[]
+			var expenseArticleTitles = new[] {"X X X", "X X X", "X X X"};
+			var parameterTitles = new Dictionary<string, string>
 			{
-					"X X X",
-					"X X X",
-					"X X X"
+					{"P01", "بیمه عمر کارفرما"},
+					{"P02", "پس انداز سهم کارفرما"},
+					{"P03", "بیمه درمانی تبعی 3"},
+					{"P04", "بیمه درمانی تبعی 2"},
+					{"P05", "بیمه تبعی 1 سهم کارفرما"},
+					{"P06", "بیمه تبعی 1 سهم پرسنل"},
+					{"P07", "سقف حقوق مشمول بیمه"},
+					{"P08", "تقسیم اضافه کار عادی"},
+					{"P09", "تقسیم اضافه کار تعطیل"},
+					{"P10", "نرخ مالیات متفرقه"},
+					{"P11", "نرخ بازنشستگی کارفرما"},
+					{"P12", "نرخ بازنشستگی پرسنل"},
+
+					{"P13", "ساعات کار هفتگی"},
+					{"P14", "ضریب اضافه کار و تعطیل"},
+					{"P16", "نرخ بیمه سهم کارفرما"},
+					{"P17", "نرخ بیمه سهم پرسنل"},
+					{"P18", "نرخ بیمه بیکاری"},
+					{"P19", "نرخ بیمه کارهای سخت"},
+					{"P20", "حداقل مزد سال جاری"},
 			};
-			var parameterTitles = new Dictionary<string,string>
+			var mainGroupParameters = new List<Tuple<string,string>>
 			{
-					{"PRM01","درصد مأموریت با بیتوته"},
-					{"PRM02","درصد مأموریت بدون بیتوته"},
-					{"PRM03","ضریب نرخ کارکرد"},
-					{"PRM04","نرخ بیمه حق العمل"},
-					{"PRM05","ضریب فوق العاده"},
-					{"PRM06","نرخ مزایای متفرقه"},
-					{"PRM07","میزان بیمه سنواتی"},
-					{"PRM08","درصد تعدیل مازاد"},
-					{"PRM09","نرخ افزایش درآمد"},
-					{"PRM10","میزان کسور متفرقه"},
-					{"PRM11","کسر هزار ریال"},
-					{"PRM12","نرخ کارکرد"},
-					{"PRM13","ضریب دریافت علی الحساب"},
-					{"PRM14","درصد معافیت"},
-					{"PRM15","نرخ تورم"},
-					{"PRM16","میزان ده درصد"},
-					{"PRM17","ضریب افزایشی"},
-					{"PRM18","کاهش بیست درصد"}
+					Tuple.Create(alphabets[0],"P01"),
+					Tuple.Create(alphabets[0],"P02"),
+					Tuple.Create(alphabets[0],"P03"),
+					Tuple.Create(alphabets[0],"P04"),
+					Tuple.Create(alphabets[0],"P05"),
+					Tuple.Create(alphabets[0],"P06"),
+					Tuple.Create(alphabets[0],"P07"),
+					Tuple.Create(alphabets[0],"P08"),
+					Tuple.Create(alphabets[0],"P09"),
+					Tuple.Create(alphabets[0],"P10"),
+					Tuple.Create(alphabets[0],"P11"),
+					Tuple.Create(alphabets[0],"P12"),
+
+					Tuple.Create(alphabets[2],"P01"),
+					Tuple.Create(alphabets[2],"P02"),
+					Tuple.Create(alphabets[2],"P13"),
+					Tuple.Create(alphabets[2],"P14"),
+					Tuple.Create(alphabets[2],"P10"),
+					Tuple.Create(alphabets[2],"P16"),
+					Tuple.Create(alphabets[2],"P17"),
+					Tuple.Create(alphabets[2],"P18"),
+					Tuple.Create(alphabets[2],"P19"),
+					Tuple.Create(alphabets[2],"P20"),
+
+					Tuple.Create(alphabets[3],"P01"),
+					Tuple.Create(alphabets[3],"P02"),
+					Tuple.Create(alphabets[3],"P13"),
+					Tuple.Create(alphabets[3],"P14"),
+					Tuple.Create(alphabets[3],"P10"),
+					Tuple.Create(alphabets[3],"P16"),
+					Tuple.Create(alphabets[3],"P17"),
+					Tuple.Create(alphabets[3],"P18"),
+					Tuple.Create(alphabets[3],"P19"),
+					Tuple.Create(alphabets[3],"P20"),
+
+					Tuple.Create(alphabets[4],"P01"),
+					Tuple.Create(alphabets[4],"P02"),
+					Tuple.Create(alphabets[4],"P13"),
+					Tuple.Create(alphabets[4],"P14"),
+					Tuple.Create(alphabets[4],"P10"),
+					Tuple.Create(alphabets[4],"P16"),
+					Tuple.Create(alphabets[4],"P17"),
+					Tuple.Create(alphabets[4],"P18"),
+					Tuple.Create(alphabets[4],"P19"),
+					Tuple.Create(alphabets[4],"P20"),
+					
 			};
-			var mainGroupParameters = new[]
-			{
-					new {CFT="PRM01",MG=alphabets[0]},
-					new {CFT="PRM02",MG=alphabets[0]},
-					new {CFT="PRM03",MG=alphabets[0]},
-					new {CFT="PRM04",MG=alphabets[0]},
-					new {CFT="PRM05",MG=alphabets[0]},
-					new {CFT="PRM06",MG=alphabets[0]},
-					new {CFT="PRM07",MG=alphabets[0]},
-					new {CFT="PRM08",MG=alphabets[0]},
-					new {CFT="PRM09",MG=alphabets[0]},
-					new {CFT="PRM10",MG=alphabets[0]},
-					new {CFT="PRM01",MG=alphabets[1]},
-					new {CFT="PRM02",MG=alphabets[1]},
-					new {CFT="PRM03",MG=alphabets[1]},
-					new {CFT="PRM04",MG=alphabets[1]},
-					new {CFT="PRM05",MG=alphabets[1]},
-					new {CFT="PRM06",MG=alphabets[1]},
-					new {CFT="PRM07",MG=alphabets[1]},
-					new {CFT="PRM08",MG=alphabets[1]},
-					new {CFT="PRM01",MG=alphabets[2]},
-					new {CFT="PRM02",MG=alphabets[2]},
-					new {CFT="PRM03",MG=alphabets[2]},
-					new {CFT="PRM04",MG=alphabets[2]},
-					new {CFT="PRM05",MG=alphabets[2]},
-					new {CFT="PRM06",MG=alphabets[2]},
-					new {CFT="PRM07",MG=alphabets[2]},
-					new {CFT="PRM08",MG=alphabets[2]},
-					new {CFT="PRM11",MG=alphabets[3]},
-					new {CFT="PRM12",MG=alphabets[3]},
-					new {CFT="PRM13",MG=alphabets[3]},
-					new {CFT="PRM14",MG=alphabets[3]},
-					new {CFT="PRM15",MG=alphabets[3]},
-					new {CFT="PRM16",MG=alphabets[3]},
-					new {CFT="PRM17",MG=alphabets[3]},
-					new {CFT="PRM18",MG=alphabets[3]},
-					new {CFT="PRM11",MG=alphabets[4]},
-					new {CFT="PRM12",MG=alphabets[4]},
-					new {CFT="PRM13",MG=alphabets[4]},
-					new {CFT="PRM14",MG=alphabets[4]},
-					new {CFT="PRM15",MG=alphabets[4]}
-			}.ToList();		  
+			
+
 			var mobilePrefix = new[]
 			{
 					"0912", "0935", "0919", "0933", "0918"
@@ -232,95 +234,34 @@ namespace PaySys.ModelAndBindLib.Migrations
 					{"مهندس مواد (مهندس متالورژی)", "مهندس مواد دست اندر کار استخراج، عمل آوری، و امتحان موادی است که در تولیدفراورده های گوناگون، از چیپهای کامپیوتری و صفحات تلوزیون گرفته تا فلز بکار رفته در خودروها به کار می روند. مهندس مواد با فلزات، سرامیک ها، مواد پلاستیکی، نیمه هادیها، و ترکیباتی از موادی که به آنها کامپوزیت (مواد مرکب) می‌گویند، برای بوجود آوردن موادی که دارای خصوصیات خاص مکانیکی، الکتریکی و شیمیائی باشند کار می کند. از جمله کارهای مهندس مواد انتخاب مواد برای کاربردهای جدید نیز میباشد."},
 					{"مهندس پلیمر", "شما به عنوان مهندس پلیمر محصولاتی را طراحی، تولید و یا اصلاح می کنید که در همه جا وجود داشته و همه ما تا حد زیادی به آنها وابسته هستیم و شاید در دنیای امروز زندگی بدون مواد و محصولات پلیمری بسیار سخت باشد. نمونه ای ساده از این محصولات عبارتند از مسواک، تیوب خمیردندان، دمپایی پلاستیکی، بسیاری از لباس ها، ظروف پلاستیکی و ملامینی آشپزخانه، جلد برخی از کتاب ها، بسیاری از قطعات تلویزیون، کامپیوتر و …"}
 			};
-			var variableTitlesA = new Dictionary<string, string>
-			{
-					{"A01", "شماره پرسنلی"},
-					{"A02", "نام و نام خانوادگی"},
-					{"A03", "شماره حکم"},
-					{"A04", "جمع کل حکم"},
-					{"A05", "پرداختهای متفرقه"},
-					{"A06", "کسور متفرقه"},
-					{"A07", "بیمه تکمیلی سهم دولت"},
-					{"A08", "تعداد بیمه تبعی 1"},
-					{"A09", "تعداد بیمه تبعی 2"},
-					{"A10", "تعداد بیمه مازاد"},
-					{"A11", "درصد معاف مالیات"},
-					{"A12", "شماره حساب"},
-					{"A13", "کارکرد بروز"},
-					{"A14", "شماره حساب سهم دولت"},
-					{"A15", "شماره حساب سهم پرسنل"},
-					{"A16", "مبلغ کل بیمه تکمیلی"},
-					{"A17", "ساعات اضافه کار عادی"},
-					{"A18", "ساعات اضافه کار جمعه"},
-					{"A19", "بازنشستگی گذشته"},
-					{"A20", "بیمه عمر"},
-					{"A21", "بدهی های متفرقه"},
-					{"A22", "مقرری ماه اول"},
-					{"A23", "بدهی اضافه کار"},
-					{"A24", "معافیت وام مسکن"},
-					{"A25", "تاریخ مازاد 30 سال"}
-			};
-			var variableTitlesB = new Dictionary<string, string>
-			{
-					{"B01", "تعداد بیمه عادی"},
-					{"B02", "تعداد بیمه مازاد"},
-					{"B03", "شماره حساب"},
-					{"B04", "مدت پرداخت بروز"},
-					{"B05", "سهم بیمه تکمیلی"},
-					{"B06", "بیمه عمر"},
-					{"B07", "بدهی های متفرقه"}
-			};
-			var variableTitlesC = new Dictionary<string, string>
-			{
-					{"C01", "درصد معاف از مالیات"},
-					{"C02", "بیمه تکمیلی سهم دولت"},
-					{"C03", "روزهای کارکرد"},
-					{"C04", "تعطیل کاری"},
-					{"C05", "اضافه کار عادی"},
-					{"C06", "ساعات شیفت کاری"},
-					{"C07", "شماره حساب"},
-					{"C08", "شماره حساب سهم دولت"},
-					{"C09", "شماره حساب سهم پرسنل"},
-					{"C10", "بیمه عمر"},
-					{"C11", "بدهی های متفرقه"},
-					{"C12", "بدهی اضافه کار"},
-					{"C13", "معافیت وام مسکن"},
-					{"C14", "کسر کل بیمه تکمیلی"},
-					{"C15", "تاریخ ورود به خدمت"},
-					{"C16", "تاریخ خاتمه خدمت"},
-					{"C17", "مدت مرخصی ذخیره"},
-					{"C18", "ضریب پایان کار"}
-			};
-
 			var groupTitles = new Dictionary<string, List<string>>
 			{
 					{
-							"استخدام کشوری", new List<string>
+							"استخدام کشــوری", new List<string>
 							{
 									"کارمندان ثابت",
-									"کارمندان رسمی"
+									"شهـــــــردار"
 							}
 					},
 					{
-							"بازنشستگان", new List<string>
+							"بازنشستگـــان", new List<string>
 							{
 									"بازنشستگان",
-									"موظفین"
+									"موظفیــــن"
 							}
 					},
 					{
 							"مشمولین قانون کار", new List<string>
 							{
-									"کارگران رسمی",
-									"کارگران قراردادی",
-									"کارگران خدمات شهری",
-									"کارگران خدمات اداری"
+									"کارگران رسمـــــــــی",
+									"کارگران قراردادی فصلی",
+									"کارگران پیمانـــــــی"
 							}
 					},
 					{
-							"پیمانی", new List<string>
+							"پیمانـــــی", new List<string>
 							{
-									"پیمانی اداری",
+									"پیمانـی اداری",
 									"پیمانی خدماتی"
 							}
 					},
@@ -328,7 +269,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 							"استخدام کشوری تأمین اجتماعی", new List<string>
 							{
 									"رسمی تأمین اجتماعی الف",
-									"رسمی تأمین اجتماعی ب"
+									"رسمی تأمین اجتماعــی ب"
 							}
 					}
 			};
@@ -357,7 +298,8 @@ namespace PaySys.ModelAndBindLib.Migrations
 							Title = s,
 							ItemColor = newGroupMain.ItemColor,
 							Is31 = _faker.Random.Bool(),
-							IsFreeZone = _faker.Random.Bool()
+							MainGroup = newGroupMain,
+							WorkshopCode = string.Empty,
 					} );
 				seedMainGroups.Add( newGroupMain );
 			}
@@ -397,7 +339,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 			var seedExpenseArticles = new List<ExpenseArticle>();
 			var expenseArticleFaker = new Faker<ExpenseArticle>( "fa" ).StrictMode( false ).Rules( ( f, e ) =>
 			{
-				e.Title = f.PickRandom( expenseArticleTitles);
+				e.Title = f.PickRandom( expenseArticleTitles );
 				e.Code = $"{f.Random.Number( 99999 ):D5}";
 				e.IsActive = true;
 			} );
@@ -442,36 +384,24 @@ namespace PaySys.ModelAndBindLib.Migrations
 
 			#endregion
 
-			#region ContractFieldTitles
+			#region ContractFields
 
-			var seedContractFieldTitles = new List<ContractFieldTitle>();
-			foreach( var cft in contractFieldTitles )
-				seedContractFieldTitles.Add( new ContractFieldTitle()
-				{
-						Alias = cft.Key,
-						Title = cft.Value
-				} );
-
-			context.ContractFieldTitles.AddRange( seedContractFieldTitles );
-
-			#endregion
-
-			#region SubGroupContractFields
-
-			var seedSubGroupContractFields = new List<SubGroupContractField>();
-			foreach( var scf in mainGroupContractFields )
+			var seedContractFields = new List<ContractField>();
+			foreach( var cf in contractFields )
 			{
-				var mg = seedMainGroups.First( g => g.Alias == scf.MG );
-				foreach( var sg in mg.SubGroups )
-					seedSubGroupContractFields.Add( new SubGroupContractField
-					{
-							ContractFieldTitle = seedContractFieldTitles.First(t=>t.Alias==scf.CFT),
-							Year = PaySysSetting.CurrentYear,
-							SubGroup = sg
-					} );
+				seedContractFields.Add( new ContractField
+				{
+						Index = cf.Item1,
+						IndexInRetirementReport = cf.Item1,
+						IsEditable = cf.Item2,
+						MainGroup = seedMainGroups.First( g => g.Alias == cf.Item3 ),
+						Alias = cf.Item4,
+						Title = cf.Item5,
+						Year = PaySysSetting.CurrentYear,
+				} );
 			}
 
-			context.SubGroupContractFields.AddRange( seedSubGroupContractFields );
+			context.ContractFields.AddRange( seedContractFields );
 
 			#endregion
 
@@ -575,10 +505,10 @@ namespace PaySys.ModelAndBindLib.Migrations
 					if( _faker.Random.Bool() )
 					{
 						var item = new MissionFormulaInvolvedContractField();
-						var validContractFields = missionFormula.SubGroup.SubGroupContractFields.Where( field => !missionFormula.MissionFormulaInvolvedContractFields.Select( invFld => invFld.SubGroupContractField ).Contains( field ) );
+						var validContractFields = missionFormula.SubGroup.ContractFields.Where( field => !missionFormula.MissionFormulaInvolvedContractFields.Select( invFld => invFld.ContractField ).Contains( field ) ).ToList();
 						if( validContractFields.Any() )
 						{
-							item.SubGroupContractField = _faker.PickRandom( validContractFields );
+							item.ContractField = _faker.PickRandom( validContractFields );
 							item.MissionFormula = missionFormula;
 							missionFormula.MissionFormulaInvolvedContractFields.Add( item );
 						}
@@ -620,7 +550,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 				{
 						Alias = prm.Key,
 						Title = prm.Value,
-						ValueType=ValueType.Absolute
+						ValueType = ValueType.Absolute
 				} );
 
 			context.ParameterTitles.AddRange( seedParameterTitles );
@@ -632,15 +562,14 @@ namespace PaySys.ModelAndBindLib.Migrations
 			var seedParameters = new List<Parameter>();
 			foreach( var prm in mainGroupParameters )
 			{
-				var mg = seedMainGroups.First( g => g.Alias == prm.MG );
-				foreach( var sg in mg.SubGroups )
+				foreach( var sg in seedMainGroups.First( g => g.Alias == prm.Item1 ).SubGroups )
 					seedParameters.Add( new Parameter
 					{
-							ParameterTitle = seedParameterTitles.First(t=>t.Alias==prm.CFT),
+							ParameterTitle = seedParameterTitles.First( t => t.Alias == prm.Item2 ),
 							Year = PaySysSetting.CurrentYear,
 							Month = PaySysSetting.CurrentMonth,
 							SubGroup = sg,
-							Value = _faker.Random.Number( 999999 )
+							Value = _faker.Random.Number( 999999 ),
 					} );
 			}
 
@@ -648,14 +577,14 @@ namespace PaySys.ModelAndBindLib.Migrations
 
 			#endregion
 
-			var seedParameterInvolvedContractFields =new List<ParameterInvolvedContractField>();
+			var seedParameterInvolvedContractFields = new List<ParameterInvolvedContractField>();
 			foreach( var p in seedParameters )
-				foreach( var c in p.SubGroup.SubGroupContractFields )
-					if( _faker.Random.Number( 1000 )%3!=0 )
+				foreach( var c in p.SubGroup.ContractFields )
+					if( _faker.Random.Number( 1000 ) % 3 != 0 )
 						seedParameterInvolvedContractFields.Add( new ParameterInvolvedContractField
 						{
 								Parameter = p,
-								SubGroupContractField = c
+								ContractField = c
 						} );
 			context.ParameterInvolvedContractFields.AddRange( seedParameterInvolvedContractFields );
 
@@ -664,12 +593,13 @@ namespace PaySys.ModelAndBindLib.Migrations
 			var seedExpenseArticleOfContractFieldForSubGroups = new List<ExpenseArticleOfContractFieldForSubGroup>();
 			foreach( var mainGroup in seedMainGroups )
 				foreach( var subGroup in mainGroup.SubGroups )
-					foreach( var contractField in subGroup.SubGroupContractFields )
+					foreach( var contractField in subGroup.ContractFields )
 						seedExpenseArticleOfContractFieldForSubGroups.Add( new ExpenseArticleOfContractFieldForSubGroup
 						{
 								Month = PaySysSetting.CurrentMonth,
-								SubGroupContractField = contractField,
-								ExpenseArticle = _faker.PickRandom( seedExpenseArticles )
+								ContractField = contractField,
+								ExpenseArticle = _faker.PickRandom( seedExpenseArticles ),
+								SubGroup = subGroup
 						} );
 
 			context.ExpenseArticleOfContractFieldForSubGroups.AddRange( seedExpenseArticleOfContractFieldForSubGroups );
@@ -709,10 +639,10 @@ namespace PaySys.ModelAndBindLib.Migrations
 			} );
 			var seedContractDetails = new List<ContractDetail>();
 			foreach( var contMast in seedContractMasters )
-				foreach( var grpCntField in seedSubGroupContractFields.Where( c => c.SubGroup.Equals( contMast.SubGroup ) ) )
+				foreach( var grpCntField in seedContractFields.Where( c => c.MainGroup.Equals( contMast.MainGroup ) ) )
 				{
 					contractDetailFaker.RuleFor( detail => detail.ContractMaster, contMast );
-					contractDetailFaker.RuleFor( detail => detail.SubGroupContractField, grpCntField );
+					contractDetailFaker.RuleFor( detail => detail.ContractField, grpCntField );
 					var contractDetail = contractDetailFaker.Generate();
 					seedContractDetails.Add( contractDetail );
 				}
@@ -795,39 +725,22 @@ namespace PaySys.ModelAndBindLib.Migrations
 
 			#region VariableTitles
 
-			var seedVariableTitles = new List<VariableTitle>();
+			var seedVariables = new List<Variable>();
 
-			foreach( var v in variableTitlesA.Union( variableTitlesB ).Union( variableTitlesC ) )
-				seedVariableTitles.Add( new VariableTitle
+			foreach( var v in variables )
+				seedVariables.Add( new Variable
 				{
-						Title = v.Value,
-						Alias = v.Key,
-						ValueType = _faker.PickRandom( Enum.GetValues( typeof(ValueType) ).Cast<ValueType>().Where( type => type != ValueType.Unknown ) )
+						Index = v.Item1,
+						Alias = v.Item2,
+						Title = v.Item3,
+						ValueType = _faker.PickRandom( Enum.GetValues( typeof(ValueType) ).Cast<ValueType>().Where( type => type != ValueType.Unknown ) ),
+						FromMonth = 1,
+						FromYear = 1397,
+						ToMonth = 12,
+						ToYear = 1397,
 				} );
 
-			context.VariableTitles.AddRange( seedVariableTitles );
-
-			#endregion
-
-			#region SubGroupVariable
-			var subGroupVariableFaker = new Faker<SubGroupVariable>( "fa" ).StrictMode( false ).Rules( ( f, e ) =>
-			{
-				e.ExpenseArticle = _faker.PickRandom( seedExpenseArticles );
-				e.FromMonth = 1;
-				e.FromYear = PaySysSetting.CurrentYear;
-				e.ToMonth = 12;
-				e.ToYear = PaySysSetting.CurrentYear;
-			} );
-			var seedSubGroupVariables = new List<SubGroupVariable>();
-			foreach( var mainGroup in seedMainGroups )
-				foreach( var subGroup in mainGroup.SubGroups )
-					foreach( var var in seedVariableTitles.Where( t => t.Alias.StartsWith( mainGroup.Alias ) ) )
-					{
-						subGroupVariableFaker.RuleFor( sv => sv.SubGroup, subGroup ).RuleFor( sv => sv.VariableTitle, var );
-						seedSubGroupVariables.Add( subGroupVariableFaker.Generate() );
-					}
-
-			context.SubGroupVariables.AddRange( seedSubGroupVariables );
+			context.Variables.AddRange( seedVariables );
 
 			#endregion
 
@@ -838,19 +751,18 @@ namespace PaySys.ModelAndBindLib.Migrations
 
 			foreach( var contract in seedContractMasters )
 			{
-				if( _faker.Random.Bool() || contract.SubGroup.SubGroupVariables==null)
+				if( _faker.Random.Bool() )
 					continue;
 
-				var variables = contract.SubGroup.SubGroupVariables?.Take( _faker.Random.Number( contract.SubGroup.SubGroupVariables.Count ) );
-				foreach( var variable in variables )
+				foreach( var variable in seedVariables )
 				{
-					variableValueFaker.RuleFor( r => r.Employee, contract.Employee ).RuleFor( r => r.SubGroupVariable, variable );
+					variableValueFaker.RuleFor( r => r.Employee, contract.Employee ).RuleFor( r => r.Variable, variable );
 					for( var y = 1395; y <= PaySysSetting.CurrentYear; y++ )
 						for( var m = 5; m <= 11; m++ )
 						{
 							variableValueFaker.RuleFor( r => r.Year, y ).RuleFor( r => r.Month, m ).RuleFor( v => v.Value, ( f, v ) =>
 							{
-								switch( v.SubGroupVariable.VariableTitle.ValueType )
+								switch( v.Variable.ValueType )
 								{
 									case ValueType.Unknown:
 										return null;
