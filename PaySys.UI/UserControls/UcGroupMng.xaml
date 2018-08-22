@@ -164,8 +164,7 @@
 			         Header="{x:Static fa:Labels.ContractFieldTitles}"
 			         Width="{StaticResource WidthOfTabOneOf7}">
 				<local:UcContractFieldTitlesMng x:Name="SmpUcContractFieldTitlesMng"
-												CurrentSubGroup="{Binding ElementName=ListViewSubGroups,Path=SelectedItem}"
-				                                ExpenseArticlesAll="{Binding ElementName=SmpUcGroupMng,Path=Context.ExpenseArticles}"
+												CurrentMainGroup="{Binding ElementName=ListViewMainGroups,Path=SelectedItem}"
 				                                ReadOnlyOfFields="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
 				                                />
 			</TabItem>

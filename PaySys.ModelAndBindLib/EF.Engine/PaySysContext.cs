@@ -1,6 +1,10 @@
 ﻿#region
 
+using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Core;
+using System.Data.Entity.Core.Objects;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Windows;
 using PaySys.ModelAndBindLib.Model;
@@ -104,5 +108,11 @@ namespace PaySys.ModelAndBindLib.Engine
 
 			return changesCount;
 		}
+
+		public IEnumerable<DbEntityEntry> GetChangesOfType<T>()
+		{
+			return ChangeTracker.Entries().Where( en => en.Entity.GetType().BaseType == typeof(T) && en.State!=EntityState.Unchanged);
+		}
+
 	}
 }

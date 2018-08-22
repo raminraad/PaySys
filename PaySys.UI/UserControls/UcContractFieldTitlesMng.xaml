@@ -13,22 +13,20 @@
              FlowDirection="RightToLeft"
              d:DesignHeight="300"
              d:DesignWidth="600">
-
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition x:Name="RowToolbar"
 			               Height="Auto" />
-			<RowDefinition Height="1*" />
-			<RowDefinition Height="1*" />
-			<RowDefinition Height="5*" />
-			<RowDefinition Height="1*" />
+			<RowDefinition Height="38*" />
+			<RowDefinition Height="191*" />
+			<RowDefinition Height="38*" />
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="2*" />
 			<ColumnDefinition Width="10*" />
 			<ColumnDefinition Width="2*" />
 		</Grid.ColumnDefinitions>
-		<TextBlock Grid.Row="2"
+		<TextBlock Grid.Row="1"
 		           Grid.Column="1"
 		           Style="{StaticResource StyleOfListTitle}"
 		           Text="{x:Static fa:Labels.ContractFieldTitles}" />
@@ -52,18 +50,18 @@
 			        Content="{x:Static fa:Labels.Delete}" />
 		</ToolBar>
 		<ListView x:Name="ListViewGroupContractField"
-		          Grid.Row="3"
+		          Grid.Row="2"
 		          Grid.Column="1"
 		          MaxWidth="400"
 		          d:DataContext="{d:DesignInstance Type=model:ContractField, IsDesignTimeCreatable=True}"
-		          ItemsSource="{Binding ElementName=SmpUcContractFieldTitlesMng,Path=CurrentSubGroup.SubGroupContractFields,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+		          ItemsSource="{Binding ElementName=SmpUcContractFieldTitlesMng ,Path=CurrentMainGroup.ContractFields,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
 			<ListView.View>
 				<GridView>
 					<GridViewColumn Header="{x:Static fa:Labels.Title}"
 					                Width="{StaticResource WidthOfDataColumnOfText}">
 						<GridViewColumn.CellTemplate>
 							<DataTemplate>
-								<local:UcTextPair Text="{Binding Path=ContractFieldTitle.Title,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+								<local:UcTextPair Text="{Binding Path=Title,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
 								                  ReadOnly="{Binding ElementName = SmpUcContractFieldTitlesMng , Path=ReadOnlyOfFields}"
 								                  Width="{StaticResource WidthOfDataFieldOfText}" />
 							</DataTemplate>
@@ -73,7 +71,7 @@
 					                Width="{StaticResource WidthOfDataColumnOfCode}">
 						<GridViewColumn.CellTemplate>
 							<DataTemplate>
-								<local:UcTextPair Text="{Binding Path=CurrentExpenseArticle.Code,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+								<local:UcTextPair Text="{Binding Path=TempCurrentExpenseArticleCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
 								                  ReadOnly="{Binding ElementName = SmpUcContractFieldTitlesMng , Path=ReadOnlyOfFields}"
 								                  Width="{StaticResource WidthOfDataFieldOfCode}" />
 							</DataTemplate>
@@ -84,8 +82,8 @@
 						<GridViewColumn.CellTemplate>
 							<DataTemplate>
 								<Button Content="{x:Static fa:Labels.Delete}"
-								        Width="{StaticResource WidthOfDataFieldOfButton}" 
-								        Command="{x:Static commands:PaySysCommands.DeleteItem}"/>
+								        Width="{StaticResource WidthOfDataFieldOfButton}"
+								        Command="{x:Static commands:PaySysCommands.DeleteItem}" />
 							</DataTemplate>
 						</GridViewColumn.CellTemplate>
 					</GridViewColumn>

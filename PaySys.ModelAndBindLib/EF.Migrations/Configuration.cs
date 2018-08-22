@@ -395,6 +395,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 						IndexInRetirementReport = cf.Item1,
 						IsEditable = cf.Item2,
 						MainGroup = seedMainGroups.First( g => g.Alias == cf.Item3 ),
+						TempCurrentExpenseArticleCodeChanged = false,
 						Alias = cf.Item4,
 						Title = cf.Item5,
 						Year = PaySysSetting.CurrentYear,

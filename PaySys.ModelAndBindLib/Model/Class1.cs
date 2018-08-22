@@ -388,6 +388,8 @@ namespace PaySys.ModelAndBindLib.Model
 	/// <summary> #13 فیلدهای احکام زیرگروه در سال </summary>
 	public class ContractField
 	{
+		private string _tempCurrentExpenseArticleCode=null;
+
 		public int ContractFieldId { get; set; }
 
 		public int Year { get; set; }
@@ -399,6 +401,8 @@ namespace PaySys.ModelAndBindLib.Model
 		public string Alias { get; set; }
 
 		public bool IsEditable { get; set; }
+
+		public bool TempCurrentExpenseArticleCodeChanged { set; get; }
 
 		public int Index { get; set; }
 
@@ -434,6 +438,17 @@ namespace PaySys.ModelAndBindLib.Model
 						ExpenseArticleOfContractFieldForSubGroups = new List<ExpenseArticleOfContractFieldForSubGroup>();
 					ExpenseArticleOfContractFieldForSubGroups.Add( newLink );
 				}
+			}
+		}
+
+		[NotMapped]
+		public string TempCurrentExpenseArticleCode
+		{
+			get => _tempCurrentExpenseArticleCode ?? ( _tempCurrentExpenseArticleCode = CurrentExpenseArticle.Code );
+			set
+			{
+				TempCurrentExpenseArticleCodeChanged = true;
+				_tempCurrentExpenseArticleCode = value;
 			}
 		}
 	}

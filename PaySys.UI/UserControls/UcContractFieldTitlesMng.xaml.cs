@@ -64,7 +64,7 @@ namespace PaySys.UI.UC
 			                   MessageBoxIcon.Question, MessageBoxDefaultButton.Button2, MessageBoxOptions.RightAlign) ==
 			   DialogResult.Yes)
 			{
-				CurrentSubGroup.MainGroup.ContractFields.Remove((ContractField) ListViewGroupContractField.SelectedItem);
+				CurrentMainGroup.ContractFields.Remove((ContractField) ListViewGroupContractField.SelectedItem);
 				
 				CollectionViewSource.GetDefaultView(ListViewGroupContractField.ItemsSource).Refresh();
 			}
@@ -72,25 +72,10 @@ namespace PaySys.UI.UC
 
 		#region DependencyProperties
 
-		public static readonly DependencyProperty CurrentSubGroupProperty =
-			DependencyProperty.Register("CurrentSubGroup", typeof(SubGroup), typeof(UcContractFieldTitlesMng),
-			                            new PropertyMetadata(default(SubGroup)));
+		public static readonly DependencyProperty CurrentMainGroupProperty = DependencyProperty.Register( "CurrentMainGroup", typeof(MainGroup), typeof(UcContractFieldTitlesMng), new PropertyMetadata( default(MainGroup) ) );
 
-		public SubGroup CurrentSubGroup
-		{
-			get => (SubGroup) GetValue(CurrentSubGroupProperty);
-			set => SetValue(CurrentSubGroupProperty, value);
-		}
+		public MainGroup CurrentMainGroup { get { return (MainGroup) GetValue( CurrentMainGroupProperty ); } set { SetValue( CurrentMainGroupProperty, value ); } }
 
-		public static readonly DependencyProperty ExpenseArticlesAllProperty =
-			DependencyProperty.Register("ExpenseArticlesAll", typeof(List<ExpenseArticle>), typeof(UcContractFieldTitlesMng),
-			                            new PropertyMetadata(default(List<ExpenseArticle>)));
-
-		public List<ExpenseArticle> ExpenseArticlesAll
-		{
-			get => (List<ExpenseArticle>) GetValue(ExpenseArticlesAllProperty);
-			set => SetValue(ExpenseArticlesAllProperty, value);
-		}
 
 		#endregion
 	}

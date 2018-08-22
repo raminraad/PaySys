@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -56,7 +58,7 @@ namespace PaySys.UI.UC
 			SmpUcHandselFormula.SaveContext += () => Context.SaveChanges();
 			SmpUcMissionFormulaMng.SaveContext += () => Context.SaveChanges();
 
-			SmpUcContractFieldTitlesMng.ExpenseArticlesAll = Context.ExpenseArticles.ToList();
+			Context.ExpenseArticles.ToList();
 			SmpUcMiscMng.ExpenseArticlesAll = Context.ExpenseArticles.ToList();
 			SmpUcMiscMng.MiscTitlesAll = Context.MiscTitles.ToList();
 
@@ -114,7 +116,25 @@ namespace PaySys.UI.UC
 		private void Save_Executed( object sender, ExecutedRoutedEventArgs e )
 		{
 			foreach (var control in GridMain.FindVisualChildren<Control>())
-				control.GetBindingExpression(UcTextPair.TextProperty)?.UpdateSource();
+				control.GetBindingExpression( UcTextPair.TextProperty )?.UpdateSource();
+
+			foreach( var cntEntity in Context.GetChangesOfType<ContractField>().Where( cnt => cnt.State == EntityState.Added || cnt.State == EntityState.Modified ) )
+			{
+				var cnt = cntEntity.Cast<ContractField>().Entity;
+				if( !cnt.TempCurrentExpenseArticleCodeChanged )
+					continue;
+
+				var exp = Context.ExpenseArticles.FirstOrDefault( x => x.Code == cnt.TempCurrentExpenseArticleCode );
+				if( exp == null )
+					cnt.CurrentExpenseArticle = Context.ExpenseArticles.Add( new ExpenseArticle
+					{
+							Code = cnt.TempCurrentExpenseArticleCode,
+							IsActive = true
+					} );
+				else
+					cnt.CurrentExpenseArticle = exp;
+			}
+
 			Context.SaveChanges();
 			MessageBox.Show( ResourceAccessor.Messages.GetString( "SaveSuccessful" ) );
 			SmpUcFormStateLabel.CurrentState = FormCurrentState.Select;
