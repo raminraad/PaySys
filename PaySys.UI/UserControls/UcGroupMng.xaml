@@ -109,7 +109,7 @@
 						                Width="220">
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
-									<local:UcTextPair Text="{Binding Path=Title,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+									<local:UcTextPair TextOfLabel="{Binding Path=Title,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
 									                  ReadOnly="{Binding ElementName = SmpUcFormStateLabel , Path=ReadOnlyOfEditFields}"
 									                  Width="200" />
 								</DataTemplate>
@@ -119,7 +119,8 @@
 						                Width="120">
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
-									<local:UcTextPair Text="{Binding Path=WorkshopCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+									<local:UcTextPair TextOfLabel="{Binding Path=WorkshopCode}"
+									                  TextOfTextBox="{Binding Path=WorkshopCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
 									                  ReadOnly="{Binding ElementName = SmpUcFormStateLabel , Path=ReadOnlyOfEditFields}"
 									                  Width="100" />
 								</DataTemplate>
@@ -154,45 +155,43 @@
 		            Grid.Column="0"
 		            Grid.RowSpan="2"
 		            Grid.ColumnSpan="5">
-			<TabControl.Resources>
-				<Style TargetType="TabItem">
-					<Setter Property="Width"
-					        Value="150" />
-				</Style>
-			</TabControl.Resources>
 			<TabItem x:Name="TabItemContractFieldTitlesMng"
 			         Header="{x:Static fa:Labels.ContractFieldTitles}"
-			         Width="{StaticResource WidthOfTabOneOf7}">
+			         Width="Auto">
 				<local:UcContractFieldTitlesMng x:Name="SmpUcContractFieldTitlesMng"
-												CurrentMainGroup="{Binding ElementName=ListViewMainGroups,Path=SelectedItem}"
 				                                ReadOnlyOfFields="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
+												CurrentMainGroup="{Binding ElementName=ListViewMainGroups,Path=SelectedItem}"
 				                                />
 			</TabItem>
 			<TabItem x:Name="TabItemMisc"
-			         Header="{x:Static fa:Labels.MiscTitles}"
-			         Width="{StaticResource WidthOfTabOneOf5}">
+					 Header="{x:Static fa:Labels.MiscMng}"
+			         Width="Auto">
 				<local:UcMiscMng x:Name="SmpUcMiscMng"
+				                 ReadOnlyOfFields="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
 				                 CurrentSubGroup="{Binding ElementName=ListViewSubGroups,Path=SelectedItem}" />
 			</TabItem>
 			<TabItem x:Name="TabItemParameters"
 			         Header="{x:Static fa:Labels.Parameters}"
-			         Width="{StaticResource WidthOfTabOneOf7}">
+			         Width="Auto">
 				<local:UcParameterMng x:Name="SmpUcParameterMng"
 				                      ReadOnlyOfFields="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
 				                      CurrentSubGroup="{Binding ElementName=ListViewSubGroups,Path=SelectedItem}" />
 			</TabItem>
 			<TabItem x:Name="TabItemTaxTable"
-			         Header="{x:Static fa:Labels.TaxTable}">
+			         Header="{x:Static fa:Labels.TaxTable}"
+			         Width="Auto">
 				<local:UcTaxTableMng x:Name="SmpUcTaxTableMng"
 				                     CurrentSubGroup="{Binding ElementName=ListViewSubGroups,Path=SelectedItem}" />
 			</TabItem>
 			<TabItem x:Name="TabItemHandselFormula"
-			         Header="{x:Static fa:Labels.HandselFormula}">
+			         Header="{x:Static fa:Labels.HandselFormula}"
+			         Width="Auto">
 				<local:UcHandselFormulaMng x:Name="SmpUcHandselFormula"
 				                           CurrentSubGroup="{Binding ElementName=ListViewSubGroups,Path=SelectedItem}" />
 			</TabItem>
 			<TabItem x:Name="TabItemMissionFormula"
-			         Header="{x:Static fa:Labels.MissionFormula}">
+			         Header="{x:Static fa:Labels.MissionFormula}"
+			         Width="Auto">
 				<local:UcMissionFormulaMng x:Name="SmpUcMissionFormulaMng"
 				                           CurrentSubGroup="{Binding ElementName=ListViewSubGroups,Path=SelectedItem}" />
 			</TabItem>

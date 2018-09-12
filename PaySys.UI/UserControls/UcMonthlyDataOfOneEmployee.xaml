@@ -66,7 +66,7 @@
 		<TextBlock Grid.Row="1"
 		           Grid.Column="1"
 		           Text="{x:Static fa:Labels.Employees}"
-		           Style="{StaticResource StyleOfListTitle}" />
+		           Style="{StaticResource StyleOfListTitleTextBlock}" />
 		<local:UcRibbonSelector Grid.Row="2"
 								Grid.Column="1"
 								ListDataContextChanged="SmpUcRibbonSelector_OnListDataContextChanged"
@@ -77,15 +77,15 @@
 		<TextBlock Grid.Row="4"
 				   Grid.Column="0"
 				   Text="{x:Static fa:Labels.MonthlyVariables}"
-				   Style="{StaticResource StyleOfListTitle}" />
+				   Style="{StaticResource StyleOfListTitleTextBlock}" />
 		<TextBlock Grid.Row="4"
 				   Grid.Column="1"
 				   Text="{x:Static fa:Labels.MiscPayments}"
-				   Style="{StaticResource StyleOfListTitle}" />
+				   Style="{StaticResource StyleOfListTitleTextBlock}" />
 		<TextBlock Grid.Row="4"
 				   Grid.Column="2"
 				   Text="{x:Static fa:Labels.MiscDebts}"
-				   Style="{StaticResource StyleOfListTitle}" />
+				   Style="{StaticResource StyleOfListTitleTextBlock}" />
 		<ListView x:Name="ListViewVariables"
 				  Grid.Row="5"
 				  Grid.Column="0"
@@ -102,7 +102,7 @@
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
 									<StackPanel>
-										<TextBox Text="{Binding NumericValue,StringFormat=N0}"
+										<TextBox Text="{Binding NumericValue,StringFormat={}{0:N0}}"
 												 Visibility="{Binding ValueIsNumeric}"
 												 Width="200"
 										         Margin="0"
@@ -144,7 +144,7 @@
 						<GridViewColumn Header="{x:Static fa:Labels.Value}">
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
-									<TextBox Text="{Binding Value,StringFormat=N0}"
+									<TextBox Text="{Binding Value,StringFormat={}{0:N0}}"
 											 IsReadOnly="{Binding ElementName=SmpUcMonthlyDataOfOneEmployee,Path=ReadOnlyOfListItems}"
 									         Width="200"
 									         Margin="0"
@@ -155,7 +155,7 @@
 						<GridViewColumn Header="{x:Static fa:Labels.ValueSubtraction}">
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
-									<TextBox Text="{Binding ValueSubtraction,StringFormat=N0}"
+									<TextBox Text="{Binding ValueSubtraction,StringFormat={}{0:N0}}"
 											 IsReadOnly="{Binding ElementName=SmpUcMonthlyDataOfOneEmployee,Path=ReadOnlyOfListItems}"
 									         Width="200"
 									         Margin="0"
@@ -182,7 +182,7 @@
 						<GridViewColumn Header="{x:Static fa:Labels.Value}">
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
-									<TextBox Text="{Binding Value,StringFormat=N0}"
+									<TextBox Text="{Binding Value,StringFormat={}{0:N0}}"
 											 IsReadOnly="{Binding ElementName=SmpUcMonthlyDataOfOneEmployee,Path=ReadOnlyOfListItems}"
 									         Width="200"
 									         Margin="0"

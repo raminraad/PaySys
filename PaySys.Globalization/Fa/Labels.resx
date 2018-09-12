@@ -408,4 +408,7 @@
   <data name="IsInvolved" xml:space="preserve">
     <value>دخیل در محاسبات</value>
   </data>
+  <data name="MiscMng" xml:space="preserve">
+    <value>بدهیها و پرداختهای متفرقه</value>
+  </data>
 </root>

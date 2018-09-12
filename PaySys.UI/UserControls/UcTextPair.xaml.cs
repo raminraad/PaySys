@@ -15,35 +15,49 @@ using System.Windows.Shapes;
 
 namespace PaySys.UI.UC
 {
-    /// <summary>
-    /// Interaction logic for UcTextPair.xaml
-    /// </summary>
-    public partial class UcTextPair : UserControl
-    {
-        public UcTextPair()
-        {
-            InitializeComponent();
-        }
+	/// <summary>
+	/// Interaction logic for UcTextPair.xaml
+	/// </summary>
+	public partial class UcTextPair : UserControl
+	{
+		public UcTextPair()
+		{
+			InitializeComponent();
+		}
 
-	    public static readonly DependencyProperty TextProperty = DependencyProperty.Register( "Text", typeof(string), typeof(UcTextPair), new PropertyMetadata( default(string) ) );
+		public static readonly DependencyProperty TextOfLabelProperty = DependencyProperty.Register( "TextOfLabel", typeof(string), typeof(UcTextPair), new PropertyMetadata( default(string) ) );
 
-	    public string Text { get { return (string) GetValue( TextProperty ); } set { SetValue( TextProperty, value ); } }
+		public string TextOfLabel
+		{
+			get { return (string) GetValue( TextOfLabelProperty ); }
+			set { SetValue( TextOfLabelProperty, value ); }
+		}
 
-	    public static readonly DependencyProperty ReadOnlyProperty = DependencyProperty.Register( "ReadOnly", typeof(bool), typeof(UcTextPair), new PropertyMetadata( default(bool) ) );
+		public static readonly DependencyProperty TextOfTextBoxProperty = DependencyProperty.Register( "TextOfTextBox", typeof(string), typeof(UcTextPair), new PropertyMetadata( default(string) ) );
 
-	    public bool ReadOnly { get { return (bool) GetValue( ReadOnlyProperty ); } set { SetValue( ReadOnlyProperty, value ); } }
+		public string TextOfTextBox
+		{
+			get { return (string) GetValue( TextOfTextBoxProperty ); }
+			set { SetValue( TextOfTextBoxProperty, value ); }
+		}
 
+		public static readonly DependencyProperty ReadOnlyProperty = DependencyProperty.Register( "ReadOnly", typeof(bool), typeof(UcTextPair), new PropertyMetadata( default(bool) ) );
 
-	    public void UpdateSource()
-	    {
-			    TextBoxData.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
-			    TextBlockData.GetBindingExpression(TextBlock.TextProperty)?.UpdateSource();
-	    }
+		public bool ReadOnly
+		{
+			get { return (bool) GetValue( ReadOnlyProperty ); }
+			set { SetValue( ReadOnlyProperty, value ); }
+		}
 
-	    public void UpdateTarget()
-	    {
-		    TextBoxData.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
-		    TextBlockData.GetBindingExpression(TextBlock.TextProperty).UpdateTarget();
-	    }
-    }
+		public void UpdateSource()
+		{
+			TextBoxData.GetBindingExpression( TextBox.TextProperty )?.UpdateSource();
+		}
+
+		public void UpdateTarget()
+		{
+			TextBoxData.GetBindingExpression( TextBox.TextProperty )?.UpdateTarget();
+			LabelData.GetBindingExpression( Label.ContentProperty )?.UpdateTarget();
+		}
+	}
 }

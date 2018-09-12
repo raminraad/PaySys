@@ -193,6 +193,8 @@ namespace PaySys.ModelAndBindLib.Model
 	/// <summary> #04 کسور و پرداختهای متفرقه زیرگروه در سال </summary>
 	public class Misc
 	{
+		private string _tempExpenseArticleCode=null;
+
 		public int MiscId { get; set; }
 
 		public int Year { get; set; }
@@ -210,6 +212,13 @@ namespace PaySys.ModelAndBindLib.Model
 		public virtual SubGroup SubGroup { set; get; }
 
 		public virtual ExpenseArticle ExpenseArticle { set; get; }
+
+		[NotMapped]
+		public string TempExpenseArticleCode
+		{
+			get => _tempExpenseArticleCode ?? ( _tempExpenseArticleCode = ExpenseArticle?.Code );
+			set => _tempExpenseArticleCode = value;
+		}
 
 		public override bool Equals( object obj )
 		{
@@ -243,6 +252,7 @@ namespace PaySys.ModelAndBindLib.Model
 		public int Year { get; set; }
 
 		public int Month { get; set; }
+		public ValueType ValueType => Value <= 100 ? ValueType.Percent : ValueType.Rial;
 
 		public virtual SubGroup SubGroup { set; get; }
 
@@ -314,7 +324,7 @@ namespace PaySys.ModelAndBindLib.Model
 				//todo: Apply current date in following calculations
 
 				var result = new ObservableCollection<TitledCompositeCollection>();
-				var ccContractFields = new TitledCompositeCollection
+				/*var ccContractFields = new TitledCompositeCollection
 				{
 						Title = ResourceAccessor.Labels.GetString( "ContractFields" ),
 						CompositeCollection = new CompositeCollection()
@@ -323,7 +333,7 @@ namespace PaySys.ModelAndBindLib.Model
 					foreach( var item in ExpenseArticleOfContractFieldForSubGroups.ToList() )
 						ccContractFields.CompositeCollection.Add( item.ContractField );
 
-				result.Add( ccContractFields );
+				result.Add( ccContractFields );*/
 
 				var ccMiscs = new TitledCompositeCollection
 				{
@@ -402,8 +412,6 @@ namespace PaySys.ModelAndBindLib.Model
 
 		public bool IsEditable { get; set; }
 
-		public bool TempCurrentExpenseArticleCodeChanged { set; get; }
-
 		public int Index { get; set; }
 
 		public int IndexInRetirementReport { get; set; }
@@ -415,6 +423,13 @@ namespace PaySys.ModelAndBindLib.Model
 		public virtual List<MissionFormulaInvolvedContractField> MissionFormulaInvolvedContractFields { get; set; }
 
 		public virtual List<ExpenseArticleOfContractFieldForSubGroup> ExpenseArticleOfContractFieldForSubGroups { get; set; }
+
+
+		[NotMapped]
+		public bool IsInUse => InvolversCount > 0;
+
+		[NotMapped]
+		public int InvolversCount => ParameterInvolvedContractFields.Count + MissionFormulaInvolvedContractFields.Count + ContractDetails.Count;
 
 		[NotMapped]
 		public ExpenseArticle CurrentExpenseArticle
@@ -444,12 +459,8 @@ namespace PaySys.ModelAndBindLib.Model
 		[NotMapped]
 		public string TempCurrentExpenseArticleCode
 		{
-			get => _tempCurrentExpenseArticleCode ?? ( _tempCurrentExpenseArticleCode = CurrentExpenseArticle.Code );
-			set
-			{
-				TempCurrentExpenseArticleCodeChanged = true;
-				_tempCurrentExpenseArticleCode = value;
-			}
+			get => _tempCurrentExpenseArticleCode ?? ( _tempCurrentExpenseArticleCode = CurrentExpenseArticle?.Code );
+			set => _tempCurrentExpenseArticleCode = value;
 		}
 	}
 
@@ -877,6 +888,7 @@ namespace PaySys.ModelAndBindLib.Model
 					case ValueType.Unknown:
 						return null;
 					case ValueType.Absolute:
+					case ValueType.Rial:
 					case ValueType.Percent:
 						return NumericValue;
 					case ValueType.Date:
@@ -894,6 +906,7 @@ namespace PaySys.ModelAndBindLib.Model
 					case ValueType.Unknown:
 						break;
 					case ValueType.Absolute:
+					case ValueType.Rial:
 					case ValueType.Percent:
 						if( value != null )
 							NumericValue = Convert.ToDouble( value );
@@ -914,7 +927,7 @@ namespace PaySys.ModelAndBindLib.Model
 		}
 
 		[NotMapped]
-		public Visibility ValueIsNumeric => ( Variable.ValueType == ValueType.Absolute || Variable.ValueType == ValueType.Percent ) ? Visibility.Visible : Visibility.Collapsed;
+		public Visibility ValueIsNumeric => ( Variable.ValueType == ValueType.Absolute || Variable.ValueType == ValueType.Percent || Variable.ValueType == ValueType.Rial ) ? Visibility.Visible : Visibility.Collapsed;
 
 		[NotMapped]
 		public Visibility ValueIsString => Variable.ValueType == ValueType.String ? Visibility.Visible : Visibility.Collapsed;
@@ -931,8 +944,6 @@ namespace PaySys.ModelAndBindLib.Model
 		public int ParameterTitleId { get; set; }
 
 		public string Title { get; set; }
-
-		public ValueType ValueType { get; set; }
 
 		public string Alias { get; set; }
 
@@ -1089,8 +1100,8 @@ namespace PaySys.ModelAndBindLib.Model
 		Absolute,
 		[Description( "درصد" )]
 		Percent,
-		[Description( "هوشمند" )]
-		Intelligent,
+		[Description( "ریـال" )]
+		Rial,
 		[Description( "تاریخ" )]
 		Date,
 		[Description( "رشته" )]

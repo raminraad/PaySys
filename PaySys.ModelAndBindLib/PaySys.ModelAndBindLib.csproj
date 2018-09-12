@@ -73,9 +73,13 @@
     <Compile Include="EF.Engine\PaySysContext.cs" />
     <Compile Include="EF.Engine\PaySysDbInitializer.cs" />
     <Compile Include="EF.Migrations\Configuration.cs" />
-    <Compile Include="Migrations\201808222054089_Init.cs" />
-    <Compile Include="Migrations\201808222054089_Init.Designer.cs">
-      <DependentUpon>201808222054089_Init.cs</DependentUpon>
+    <Compile Include="Migrations\201808251746000_Init.cs" />
+    <Compile Include="Migrations\201808251746000_Init.Designer.cs">
+      <DependentUpon>201808251746000_Init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808301051321_Update1.cs" />
+    <Compile Include="Migrations\201808301051321_Update1.Designer.cs">
+      <DependentUpon>201808301051321_Update1.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Visual\TitledCompositeCollection.cs" />
     <Compile Include="Model\Class1.cs" />
@@ -98,8 +102,11 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201808222054089_Init.resx">
-      <DependentUpon>201808222054089_Init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201808251746000_Init.resx">
+      <DependentUpon>201808251746000_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808301051321_Update1.resx">
+      <DependentUpon>201808301051321_Update1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

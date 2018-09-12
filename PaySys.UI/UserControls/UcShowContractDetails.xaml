@@ -12,7 +12,6 @@
              d:DataContext="{d:DesignInstance Type=model:ContractMaster, IsDesignTimeCreatable=True}"
              mc:Ignorable="d"
              FlowDirection="RightToLeft"
-             d:DesignHeight="300"
              d:DesignWidth="300">
 	<UserControl.Resources>
 		<bindingConverter:DoublePlusParameterConverter x:Key="DoublePlusParameterConverter" />
@@ -25,7 +24,7 @@
 			<StackPanel Name="PanelTitle"
 			            Margin="0,0,0,15">
 				<TextBlock Text="{x:Static fa:Labels.ContractDetails}"
-				           Style="{StaticResource StyleOfListTitle}" />
+				           Style="{StaticResource StyleOfListTitleTextBlock}" />
 				<Line StrokeThickness="1"
 				      Width="50"
 				      X1="0"
@@ -60,11 +59,11 @@
 							                ctrl:ProportionalColumn.Width="3">
 								<GridViewColumn.CellTemplate>
 									<DataTemplate>
-										<TextBox Name="TxtContractDetailValue"
-										         Text="{Binding Value,StringFormat=N0}"
-										         Style="{StaticResource StyleOfDataFieldTextBox}"
-										         Width="200"
-										         IsReadOnly="{Binding ElementName=SmpUcShowContractDetail,Path=ReadOnlyOfEditFields}" />
+										<local:UcTextPair x:Name="TxtContractDetailValue"
+										         TextOfLabel="{Binding Value,StringFormat={}{0:N0}}"
+										                  TextOfTextBox="{Binding Value}"
+										         Width="{StaticResource WidthOfDataFieldOfText}"
+										         ReadOnly="{Binding ElementName=SmpUcShowContractDetail,Path=ReadOnlyOfEditFields}" />
 									</DataTemplate>
 								</GridViewColumn.CellTemplate>
 							</GridViewColumn>

@@ -493,6 +493,15 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to بدهیها و پرداختهای متفرقه.
+        /// </summary>
+        public static string MiscMng {
+            get {
+                return ResourceManager.GetString("MiscMng", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to پرداخت های متفرقه.
         /// </summary>
         public static string MiscPayments {

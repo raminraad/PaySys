@@ -31,11 +31,6 @@ namespace PaySys.UI.UC
 //		private List<Employee> EmployeesAll;
 		public ObservableCollection<Employee> EmployeesAll { set; get; }
 
-		private void BtnFilter_OnClick( object sender, RoutedEventArgs e )
-		{
-			RefreshDtgMain();
-		}
-
 		private void RefreshDtgMain()
 		{
 			var index = DataGridEmployees.SelectedIndex;
@@ -46,11 +41,9 @@ namespace PaySys.UI.UC
 			else
 			{
 				var filters = TxtFilter.Text.Split( ' ' );
-				var lists = new List<List<Employee>>();
-				foreach( var strFilter in filters )
-					lists.Add( ( from x in _context.Employees
-					             where x.FName.Contains( strFilter ) || x.LName.Contains( strFilter ) || x.DossierNo.Contains( strFilter )
-					             select x ).ToList() );
+				var lists = filters.Select( strFilter => ( from x in _context.Employees
+				                                           where x.FName.Contains( strFilter ) || x.LName.Contains( strFilter ) || x.PersonnelCode.Contains( strFilter ) || x.DossierNo.Contains( strFilter ) || x.NationalCardNo.Contains( strFilter ) || x.IdCardNo.Contains( strFilter )
+				                                           select x ).ToList() ).ToList();
 
 				var filteredList = _context.Employees.ToList();
 				lists.ForEach( x => filteredList.RemoveAll( employee => filteredList.Except( x ).Contains( employee ) ) );
@@ -104,6 +97,11 @@ namespace PaySys.UI.UC
 		}
 
 		private void BtnEmployeeRefresh_OnClick( object sender, RoutedEventArgs e )
+		{
+			RefreshDtgMain();
+		}
+
+		private void TxtFilter_OnTextChanged( object sender, TextChangedEventArgs e )
 		{
 			RefreshDtgMain();
 		}

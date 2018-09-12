@@ -395,7 +395,6 @@ namespace PaySys.ModelAndBindLib.Migrations
 						IndexInRetirementReport = cf.Item1,
 						IsEditable = cf.Item2,
 						MainGroup = seedMainGroups.First( g => g.Alias == cf.Item3 ),
-						TempCurrentExpenseArticleCodeChanged = false,
 						Alias = cf.Item4,
 						Title = cf.Item5,
 						Year = PaySysSetting.CurrentYear,
@@ -550,8 +549,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 				seedParameterTitles.Add( new ParameterTitle()
 				{
 						Alias = prm.Key,
-						Title = prm.Value,
-						ValueType = ValueType.Absolute
+						Title = prm.Value
 				} );
 
 			context.ParameterTitles.AddRange( seedParameterTitles );
@@ -768,6 +766,7 @@ namespace PaySys.ModelAndBindLib.Migrations
 									case ValueType.Unknown:
 										return null;
 									case ValueType.Absolute:
+									case ValueType.Rial:
 										return f.Random.Number( 100 ) * 1000;
 									case ValueType.Percent:
 										return f.Random.Number( 100 );

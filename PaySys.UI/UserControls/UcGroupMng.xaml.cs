@@ -22,6 +22,7 @@ using PaySys.ModelAndBindLib.Engine;
 using PaySys.ModelAndBindLib.Model;
 using PaySys.UI.ExtensionMethods;
 using PaySys.UI.UC;
+using Binding = System.Windows.Data.Binding;
 using Control = System.Windows.Controls.Control;
 using ListView = System.Windows.Controls.ListView;
 using MessageBox = System.Windows.Forms.MessageBox;
@@ -35,41 +36,32 @@ namespace PaySys.UI.UC
 	/// </summary>
 	public partial class UcGroupMng : UserControl
 	{
-		private enum GroupType
-		{
-			None,
-			MainGroup,
-			SubGroup
-		}
+		public PaySysContext Context { set; get; } = new PaySysContext();
 
-		public PaySysContext Context
-		{
-			set;
-			get;
-		} = new PaySysContext();
 		public UcGroupMng()
 		{
 			InitializeComponent();
 			Reload();
 
 			SmpUcMiscMng.SaveContext += () => Context.SaveChanges();
-			SmpUcParameterMng.SaveContext += () => Context.SaveChanges();
 			SmpUcTaxTableMng.SaveContext += () => Context.SaveChanges();
 			SmpUcHandselFormula.SaveContext += () => Context.SaveChanges();
 			SmpUcMissionFormulaMng.SaveContext += () => Context.SaveChanges();
 
-			Context.ExpenseArticles.ToList();
 			SmpUcMiscMng.ExpenseArticlesAll = Context.ExpenseArticles.ToList();
 			SmpUcMiscMng.MiscTitlesAll = Context.MiscTitles.ToList();
-
 		}
 
 		private void Reload()
 		{
 			Context.MainGroups.Load();
 			DataContext = Context.MainGroups.Local;
-			foreach (var control in GridMain.FindVisualChildren<Control>())
-				control.GetBindingExpression(UcTextPair.TextProperty)?.UpdateTarget();
+			foreach( var control in GridMain.FindVisualChildren<UcTextPair>() )
+				control.UpdateTarget();
+//				control.GetBindingExpression( UcTextPair.TextOfTextBoxProperty )?.UpdateTarget();
+
+			Context.ContractFields.Load();
+			SmpUcContractFieldTitlesMng.ContractFieldsAll = Context.ContractFields.Local.ToList();
 		}
 
 		private void UcGroupMng_OnInitialized( object sender, EventArgs e )
@@ -85,22 +77,22 @@ namespace PaySys.UI.UC
 		private void AddSubGroup_Executed( object sender, ExecutedRoutedEventArgs e )
 		{
 			var title = string.Empty;
-			if (InputBox.Show(ResourceAccessor.Messages.GetString("EnterSubGroupName"), ref title) == DialogResult.OK)
+			if( InputBox.Show( ResourceAccessor.Messages.GetString( "EnterSubGroupName" ), ref title ) == DialogResult.OK )
 			{
-				var selectedMainGroup = (MainGroup)ListViewMainGroups.SelectedItem;
-				selectedMainGroup.SubGroups.Add(new SubGroup
+				var selectedMainGroup = (MainGroup) ListViewMainGroups.SelectedItem;
+				selectedMainGroup.SubGroups.Add( new SubGroup
 				{
 						Title = title,
 						ItemColor = selectedMainGroup.ItemColor
-				});
+				} );
 				Context.SaveChanges();
-				CollectionViewSource.GetDefaultView(ListViewSubGroups.ItemsSource).Refresh();
+				CollectionViewSource.GetDefaultView( ListViewSubGroups.ItemsSource ).Refresh();
 			}
 		}
 
 		private void Edit_CanExecute( object sender, CanExecuteRoutedEventArgs e )
 		{
-			e.CanExecute = ( ListViewSubGroups?.SelectedItem as SubGroup ) != null;
+			e.CanExecute = ListViewSubGroups?.SelectedItem as SubGroup != null;
 		}
 
 		private void Edit_Executed( object sender, ExecutedRoutedEventArgs e )
@@ -115,15 +107,15 @@ namespace PaySys.UI.UC
 
 		private void Save_Executed( object sender, ExecutedRoutedEventArgs e )
 		{
-			foreach (var control in GridMain.FindVisualChildren<Control>())
-				control.GetBindingExpression( UcTextPair.TextProperty )?.UpdateSource();
+//			foreach( var control in GridMain.FindVisualChildren<Control>() )
+//				control.GetBindingExpression( UcTextPair.TextOfLabelProperty )?.UpdateSource();
+			foreach( var control in GridMain.FindVisualChildren<UcTextPair>() )
+				control.UpdateSource();
 
-			foreach( var cntEntity in Context.GetChangesOfType<ContractField>().Where( cnt => cnt.State == EntityState.Added || cnt.State == EntityState.Modified ) )
+			var expChangedContractFields = Context.ContractFields.Local.Where( c => c.CurrentExpenseArticle?.Code != c.TempCurrentExpenseArticleCode ).ToList();
+
+			foreach( var cnt in expChangedContractFields )
 			{
-				var cnt = cntEntity.Cast<ContractField>().Entity;
-				if( !cnt.TempCurrentExpenseArticleCodeChanged )
-					continue;
-
 				var exp = Context.ExpenseArticles.FirstOrDefault( x => x.Code == cnt.TempCurrentExpenseArticleCode );
 				if( exp == null )
 					cnt.CurrentExpenseArticle = Context.ExpenseArticles.Add( new ExpenseArticle
@@ -135,10 +127,26 @@ namespace PaySys.UI.UC
 					cnt.CurrentExpenseArticle = exp;
 			}
 
+			var expChangedMiscs = Context.Miscs.Local.Where( c => c.ExpenseArticle?.Code != c.TempExpenseArticleCode ).ToList();
+
+			foreach( var msc in expChangedMiscs )
+			{
+				var exp = Context.ExpenseArticles.FirstOrDefault( x => x.Code == msc.TempExpenseArticleCode );
+				if( exp == null )
+					msc.ExpenseArticle = Context.ExpenseArticles.Add( new ExpenseArticle
+					{
+							Code = msc.TempExpenseArticleCode,
+							IsActive = true
+					} );
+				else
+					msc.ExpenseArticle = exp;
+			}
+
 			Context.SaveChanges();
-			MessageBox.Show( ResourceAccessor.Messages.GetString( "SaveSuccessful" ) );
 			SmpUcFormStateLabel.CurrentState = FormCurrentState.Select;
 		}
+
+		
 
 		private void DiscardChanges_CanExecute( object sender, CanExecuteRoutedEventArgs e )
 		{
@@ -154,7 +162,7 @@ namespace PaySys.UI.UC
 
 		private void Reload_CanExecute( object sender, CanExecuteRoutedEventArgs e )
 		{
-			e.CanExecute = SmpUcFormStateLabel?.EnabledOfCrudButtons??false;
+			e.CanExecute = SmpUcFormStateLabel?.EnabledOfCrudButtons ?? false;
 		}
 	}
 }

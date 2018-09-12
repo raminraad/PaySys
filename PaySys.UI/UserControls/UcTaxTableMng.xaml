@@ -11,65 +11,62 @@
              FlowDirection="RightToLeft"
              d:DesignHeight="300"
              d:DesignWidth="600">
-	<Grid>
-		<Grid.RowDefinitions>
-			<RowDefinition x:Name="RowToolbar"
-			               Height="Auto"/>
-			<RowDefinition Height="1*"/>
-			<RowDefinition Height="1*"/>
-			<RowDefinition Height="5*"/>
-			<RowDefinition Height="1*"/>
-		</Grid.RowDefinitions>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="2*"/>
-			<ColumnDefinition Width="5*"/>
-			<ColumnDefinition Width="2*"/>
-		</Grid.ColumnDefinitions>
-		<TextBlock Grid.Row="2"
-		           Grid.Column="1"
-		           FontSize="20"
-		           HorizontalAlignment="Center"
-		           VerticalAlignment="Center"
-		           Text="{x:Static fa:Labels.TaxValueCalculationTable}"/>
-		<ToolBar Grid.Row="0"
-		         Grid.ColumnSpan="3"
-		         Grid.Column="0">
-			<Button Name="BtnAddMainGroup"
-			        Margin="2,0"
-			        Content="{x:Static fa:Labels.Add}"
-			        Click="BtnAdd_OnClick"/>
-			<Button Name="BtnEditValueTo"
-			        Content="{x:Static fa:Labels.EditValue}"
-			        Margin="2,0"
-					Click="BtnEditValueTo_Click" />
-			<Button Name="BtnEditRate"
-			        Content="{x:Static fa:Labels.EditRate}"
-					Margin="2,0"
-					Click="BtnEditRate_OnClick"
-					/>
-			<Button Name="BtnDelete"
-			        Margin="2,0"
-			        Content="{x:Static fa:Labels.Delete}"
-			        Click="BtnDelete_OnClick"/>
-		</ToolBar>
-		<ListView x:Name="ListViewTaxItem"
-		          Grid.Row="3"
-		          Grid.Column="1"
-		          MaxWidth="300"
-		          ItemsSource="{Binding ElementName=SmpUcTaxTableMng,Path=CurrentSubGroup.CurrenTaxTable.TaxRowsForGrid,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
-			<ListView.View>
-				<GridView>
-					<GridViewColumn Header="{x:Static fa:Labels.From}"
-					                Width="80"
-					                DisplayMemberBinding="{Binding ValueFrom,StringFormat={}{0:N0}}"/>
-					<GridViewColumn Header="{x:Static fa:Labels.To}"
-					                Width="80"
-					                DisplayMemberBinding="{Binding ValueTo,StringFormat={}{0:N0}}"/>
-					<GridViewColumn Header="{x:Static fa:Labels.Factor}"
-					                Width="75"
-					                DisplayMemberBinding="{Binding Factor,StringFormat={}{0:N0}}"/>
-				</GridView>
-			</ListView.View>
-		</ListView>
-	</Grid>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="RowToolbar"
+                           Height="Auto" />
+            <RowDefinition Height="45*" />
+            <RowDefinition Height="229*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="5*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="1"
+                   Grid.Column="1"
+                   FontSize="20"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Text="{x:Static fa:Labels.TaxValueCalculationTable}" />
+        <ToolBar Grid.Row="0"
+                 Grid.ColumnSpan="3"
+                 Grid.Column="0">
+            <Button Name="BtnAddMainGroup"
+                    Margin="2,0"
+                    Content="{x:Static fa:Labels.Add}"
+                    Click="BtnAdd_OnClick" />
+            <Button Name="BtnEditValueTo"
+                    Content="{x:Static fa:Labels.EditValue}"
+                    Margin="2,0"
+                    Click="BtnEditValueTo_Click" />
+            <Button Name="BtnEditRate"
+                    Content="{x:Static fa:Labels.EditRate}"
+                    Margin="2,0"
+                    Click="BtnEditRate_OnClick" />
+            <Button Name="BtnDelete"
+                    Margin="2,0"
+                    Content="{x:Static fa:Labels.Delete}"
+                    Click="BtnDelete_OnClick" />
+        </ToolBar>
+        <ListView x:Name="ListViewTaxItem"
+                  Grid.Row="2"
+                  Grid.Column="1"
+                  MaxWidth="300"
+                  ItemsSource="{Binding ElementName=SmpUcTaxTableMng,Path=CurrentSubGroup.CurrenTaxTable.TaxRowsForGrid,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="{x:Static fa:Labels.From}"
+                                    Width="80"
+                                    DisplayMemberBinding="{Binding ValueFrom,StringFormat={}{0:N0}}" />
+                    <GridViewColumn Header="{x:Static fa:Labels.To}"
+                                    Width="80"
+                                    DisplayMemberBinding="{Binding ValueTo,StringFormat={}{0:N0},ValidatesOnExceptions=True,NotifyOnValidationError=True}" />
+                    <GridViewColumn Header="{x:Static fa:Labels.Factor}"
+                                    Width="75"
+                                    DisplayMemberBinding="{Binding Factor,StringFormat={}{0:N0}}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
 </UserControl>

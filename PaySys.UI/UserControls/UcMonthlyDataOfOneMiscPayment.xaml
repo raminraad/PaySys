@@ -99,7 +99,7 @@
 						<GridViewColumn Header="{x:Static fa:Labels.Value}">
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
-									<TextBox Text="{Binding Value,StringFormat=N0}"
+									<TextBox Text="{Binding Value,StringFormat={}{0:N0}}"
 											 Width="200"
 									         Margin="0"
 									         IsReadOnly="{Binding ElementName=SmpUcMonthlyDataOfOneMiscPayment,Path=ReadOnlyOfListItems}"
@@ -110,7 +110,7 @@
 						<GridViewColumn Header="{x:Static fa:Labels.ValueSubtraction}">
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
-									<TextBox Text="{Binding ValueSubtraction,StringFormat=N0}"
+									<TextBox Text="{Binding ValueSubtraction,StringFormat={}{0:N0}}"
 									         IsReadOnly="{Binding ElementName=SmpUcMonthlyDataOfOneMiscPayment,Path=ReadOnlyOfListItems}"
 											 Width="200"
 									         Margin="0"

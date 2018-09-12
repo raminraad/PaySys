@@ -27,7 +27,7 @@
 		</Grid.ColumnDefinitions>
 		<TextBlock Grid.Column="1"
 				   Grid.ColumnSpan="2"
-				   Style="{StaticResource StyleOfListTitle}"
+				   Style="{StaticResource StyleOfListTitleTextBlock}"
 				   Text="{x:Static fa:Labels.Jobs}"
 				   Grid.RowSpan="2" 
 				   />

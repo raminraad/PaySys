@@ -48,6 +48,9 @@ namespace PaySys.UI.UC
 			ListViewMiscPayment.Items.Filter = o => ((Misc) o).Year == PaySysSetting.CurrentYear;
 		}
 
+		public static readonly DependencyProperty ReadOnlyOfFieldsProperty = DependencyProperty.Register( "ReadOnlyOfFields", typeof(bool), typeof(UcMiscMng), new PropertyMetadata( default(bool) ) );
+
+		public bool ReadOnlyOfFields { get { return (bool) GetValue( ReadOnlyOfFieldsProperty ); } set { SetValue( ReadOnlyOfFieldsProperty, value ); } }
 		public DelegateSaveContext SaveContext { set; get; }
 
 		private void BtnEditMiscTitle_OnClick(object sender, RoutedEventArgs e)

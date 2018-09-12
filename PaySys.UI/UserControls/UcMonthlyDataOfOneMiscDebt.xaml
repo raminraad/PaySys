@@ -70,7 +70,7 @@
 		<TextBlock Grid.Row="3"
 		           Grid.Column="1"
 		           Text="{x:Static fa:Labels.Employees}"
-		           Style="{StaticResource StyleOfListTitle}" />
+		           Style="{StaticResource StyleOfListTitleTextBlock}" />
 		<ListView x:Name="ListViewOfItems"
 		          Grid.Row="4"
 		          Grid.Column="1"
@@ -86,7 +86,7 @@
 						<GridViewColumn Header="{x:Static fa:Labels.Value}">
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
-									<TextBox Text="{Binding Value,StringFormat=N0}"
+									<TextBox Text="{Binding Value,StringFormat={}{0:N0}}"
 											 Width="200"
 									         IsReadOnly="{Binding ElementName=SmpUcMonthlyDataOfOneMiscDebt,Path=ReadOnlyOfListItems}"
 									         Style="{StaticResource StyleOfDataFieldTextBox}"

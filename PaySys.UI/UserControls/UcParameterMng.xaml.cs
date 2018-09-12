@@ -23,19 +23,14 @@ using UserControl = System.Windows.Controls.UserControl;
 
 namespace PaySys.UI.UC
 {
-	/// <summary>
-	/// Interaction logic for UcParameterMng.xaml
-	/// </summary>
 	public partial class UcParameterMng : UserControl
 	{
-		public DelegateSaveContext SaveContext { set; get; }
-
 		public UcParameterMng()
 		{
 			InitializeComponent();
 			ListViewParameter.Items.Filter = o => ( (Parameter) o ).Year == PaySysSetting.CurrentYear && ( (Parameter) o ).Month == PaySysSetting.CurrentMonth;
 
-			ListViewParameterInvolvedContractFields.Items.SortDescriptions.Add( new SortDescription( "Key.ContractFieldTitle.Title", ListSortDirection.Ascending ) );
+			ListViewParameterInvolvedContractFields.Items.SortDescriptions.Add( new SortDescription( "Key.Title", ListSortDirection.Ascending ) );
 		}
 
 		public static readonly DependencyProperty ReadOnlyOfFieldsProperty = DependencyProperty.Register( "ReadOnlyOfFields", typeof(bool), typeof(UcParameterMng), new PropertyMetadata( default(bool) ) );
@@ -61,7 +56,6 @@ namespace PaySys.UI.UC
 					ContractField = CurrentSubGroup.CurrentContractFields.First( c => c.Title == e.Parameter.ToString() ),
 					Parameter = (Parameter) ListViewParameter.SelectedItem
 			} );
-			SaveContext.Invoke();
 			CollectionViewSource.GetDefaultView( ListViewParameterInvolvedContractFields.ItemsSource ).Refresh();
 		}
 

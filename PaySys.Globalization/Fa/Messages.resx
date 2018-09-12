@@ -123,6 +123,9 @@
   <data name="DeleteConfirmationOfMisc" xml:space="preserve">
     <value>«XXX» از لیست YYY حذف خواهد گردید. تأیید مینمایید؟</value>
   </data>
+  <data name="DeleteItemUsers" xml:space="preserve">
+    <value>لطفاً ابتدا رکوردهای استفاده کننده از آیتم را حذف نمایید.</value>
+  </data>
   <data name="EnterContractFieldTitle" xml:space="preserve">
     <value>لطفاً عنوان فیلد حکم را وارد نمایید.</value>
   </data>

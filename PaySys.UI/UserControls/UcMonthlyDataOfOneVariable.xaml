@@ -100,7 +100,7 @@
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
 									<StackPanel>
-										<TextBox Text="{Binding NumericValue,StringFormat=N0}"
+										<TextBox Text="{Binding NumericValue,StringFormat={}{0:N0}}"
 										         Visibility="{Binding ValueIsNumeric}"
 												 Width="200"
 										         Margin="0"

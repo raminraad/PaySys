@@ -61,16 +61,8 @@
 				                          ItemsSource="{Binding InvolversUngrouped}">
 					<StackPanel Orientation="Horizontal"
 					            Margin="5">
-
-						<TextBlock Text="{Binding Title}"
-						           FontSize="18"/>
-						<TextBlock Text=" ("
-						           FontSize="18"/>
 						<TextBlock Text="{Binding Code}"
 						           FontSize="18"/>
-						<TextBlock Text=")"
-						           FontSize="18"/>
-
 						<TextBlock Text="["
 						           Foreground="Goldenrod"
 						           Margin="5,0,0,0"/>
@@ -90,29 +82,29 @@
 				<DataTemplate DataType="{x:Type model:Misc}">
 					<StackPanel Orientation="Horizontal">
 						<TextBlock Text="{Binding SubGroup.Title}"
-						           Foreground="Green"
+								   Foreground="#55d862"
 						           Margin="5,0"/>
-						<TextBlock Text=" »»» "
-						           Foreground="Green"
+						<TextBlock Text=" > "
+								   Foreground="#dcdd9f"
 						           Margin="5,0"/>
-						<TextBlock Text="{Binding Title}"
-						           Foreground="Green"
+						<TextBlock Text="{Binding MiscTitle.Title}"
+								   Foreground="#b9ba09"
 						           Margin="5,0"/>
 					</StackPanel>
 				</DataTemplate>
-				<DataTemplate DataType="{x:Type model:ContractField}">
+				<!--<DataTemplate DataType="{x:Type model:ContractField}">
 					<StackPanel Orientation="Horizontal">
-						<TextBlock Text="{Binding SubGroup.Title}"
+						<TextBlock Text="{Binding MainGroup.Title}"
 						           Foreground="SlateBlue"
 						           Margin="5,0"/>
-						<TextBlock Text=" »»» "
+						<TextBlock Text=" > "
 						           Foreground="SlateBlue"
 						           Margin="5,0"/>
 						<TextBlock Text="{Binding Title}"
 						           Foreground="SlateBlue"
 						           Margin="5,0"/>
 					</StackPanel>
-				</DataTemplate>
+				</DataTemplate>-->
 				<DataTemplate DataType="{x:Type model:SubGroup}">
 					<TextBlock Text="{Binding Title}"
 					           Foreground="DarkRed"

@@ -97,7 +97,6 @@ namespace PaySys.ModelAndBindLib.Migrations
                         Title = c.String(),
                         Alias = c.String(),
                         IsEditable = c.Boolean(nullable: false),
-                        TempCurrentExpenseArticleCodeChanged = c.Boolean(nullable: false),
                         Index = c.Int(nullable: false),
                         IndexInRetirementReport = c.Int(nullable: false),
                         MainGroup_MainGroupId = c.Int(),

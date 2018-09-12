@@ -31,7 +31,7 @@
 			            Grid.ColumnSpan="2"
 			            Margin="0,0,0,0.2">
 				<TextBlock Text="{x:Static fa:Labels.ContractMaster}"
-				           Style="{StaticResource StyleOfListTitle}" />
+				           Style="{StaticResource StyleOfListTitleTextBlock}" />
 				<Line StrokeThickness="1"
 				      Width="50"
 				      X1="0"

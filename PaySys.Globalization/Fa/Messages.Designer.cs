@@ -79,6 +79,15 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to لطفاً ابتدا رکوردهای استفاده کننده از آیتم را حذف نمایید..
+        /// </summary>
+        public static string DeleteItemUsers {
+            get {
+                return ResourceManager.GetString("DeleteItemUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to لطفاً عنوان فیلد حکم را وارد نمایید..
         /// </summary>
         public static string EnterContractFieldTitle {

@@ -64,11 +64,8 @@
 				Style="{StaticResource StyleOfSelectionItemLabel}" />
 			<TextBox x:Name="TxtFilter"
 			         Style="{StaticResource StyleOfSelectionItemTextBox}"
+					 TextChanged="TxtFilter_OnTextChanged"
 			         Width="400" />
-			<Button x:Name="BtnFilter"
-			        Content="{x:Static fa:Labels.Reload}"
-			        Style="{StaticResource StyleOfToolbarButton}"
-			        Click="BtnFilter_OnClick" />
 		</StackPanel>
 		<DataGrid x:Name="DataGridEmployees"
 		          DataContext="{Binding ElementName = SmpUcEmployeeMng,Path=EmployeesAll}"
@@ -126,13 +123,6 @@
 					DataContext="{Binding ElementName =DataGridEmployees,Path=SelectedItem}"
 					ReadOnlyOfFields="{Binding ElementName =SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}" 
 					Margin="50,10"/>
-			</TabItem>
-			<TabItem x:Name="TabItemUcMissionList"
-			         Header="{x:Static fa:Labels.Missions}">
-				<local:UcEmployeeDetail x:Name="SmpUcMissionList"
-				                        DataContext="{Binding ElementName =DataGridEmployees,Path=SelectedItem}"
-				                        ReadOnlyOfFields="{Binding ElementName =SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
-				                        Margin="50,10" />
 			</TabItem>
 		</TabControl>
 		<StatusBar Grid.Row="4">

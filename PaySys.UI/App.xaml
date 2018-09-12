@@ -6,6 +6,7 @@
              xmlns:persianDateControls="clr-namespace:Arash.PersianDateControls;assembly=PersianDateControls"
              xmlns:bindingConverter="clr-namespace:PaySys.ModelAndBindLib.BindingConverter;assembly=PaySys.ModelAndBindLib"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:uc="clr-namespace:PaySys.UI.UC"
              StartupUri="MainWindow.xaml">
 	<Application.Resources>
 		<bindingConverter:DateTimeToPersianDateConverter x:Key="GregToPersDateConverter" />
@@ -28,13 +29,14 @@
 		<system:Double x:Key="FontSizeOfListTitle"> 20 </system:Double>
 		<system:Double x:Key="FontSizeOfSelectionItem"> 24 </system:Double>
 		<system:Double x:Key="HeightOfDataField"> 30 </system:Double>
-		<system:Double x:Key="WidthOfDataFieldOfText"> 200 </system:Double>
+		<system:Double x:Key="WidthOfDataFieldOfText"> 160 </system:Double>
 		<system:Double x:Key="WidthOfDataFieldOfCode"> 80 </system:Double>
 		<system:Double x:Key="WidthOfDataFieldOfPrice"> 120 </system:Double>
 		<system:Double x:Key="WidthOfDataFieldOfButton"> 40 </system:Double>
 		<system:Double x:Key="WidthOfDataColumnOfText"> 220 </system:Double>
 		<system:Double x:Key="WidthOfDataColumnOfCode"> 100 </system:Double>
 		<system:Double x:Key="WidthOfDataColumnOfPrice"> 140 </system:Double>
+		<system:Double x:Key="WidthOfDataColumnOfButton"> 60 </system:Double>
 		<system:Double x:Key="WidthOfDataColumnOfOperationsWithButtonCountOf1"> 60 </system:Double>
 		<system:Double x:Key="WidthOfTabOneOf4"> 350 </system:Double>
 		<system:Double x:Key="WidthOfTabOneOf5"> 300 </system:Double>
@@ -64,6 +66,12 @@
 			        Value="Center" />
 			<Setter Property="VerticalAlignment"
 			        Value="Center" />
+		</Style>
+		<Style TargetType="uc:UcSuggesterTextBox">
+			<Setter Property="VerticalAlignment"
+			        Value="Top" />
+			<Setter Property="HorizontalAlignment"
+			        Value="Stretch" />
 		</Style>
 		<Style TargetType="MenuItem">
 			<Setter Property="Height"
@@ -98,7 +106,7 @@
 			        Value="Center" />
 		</Style>
 
-		<Style x:Key="StyleOfListTitle"
+		<Style x:Key="StyleOfListTitleTextBlock"
 		       TargetType="TextBlock">
 			<Setter Property="HorizontalAlignment"
 			        Value="Center" />
@@ -110,6 +118,21 @@
 			        Value="{StaticResource FontFamilyOfDataFields}" />
 			<Setter Property="FontWeight"
 			        Value="Black" />
+			<Setter Property="TextWrapping" Value="Wrap"/>
+		</Style>
+		<Style x:Key="StyleOfListTitleLabel"
+		       TargetType="Label">
+			<Setter Property="HorizontalAlignment"
+			        Value="Center" />
+			<Setter Property="VerticalAlignment"
+			        Value="Bottom" />
+			<Setter Property="FontSize"
+			        Value="{StaticResource FontSizeOfListTitle}" />
+			<Setter Property="FontFamily"
+			        Value="{StaticResource FontFamilyOfDataFields}" />
+			<Setter Property="FontWeight"
+			        Value="Black" />
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
 		</Style>
 		<Style x:Key="StyleOfListViewItem"
 		       TargetType="ListViewItem">
@@ -211,7 +234,7 @@
 			<Setter Property="Height"
 			        Value="{StaticResource HeightOfDataField}" />
 			<Setter Property="Width"
-			        Value="{StaticResource WidthOfDataFieldOfText}" />
+			        Value="Auto" />
 			<Setter Property="FontFamily"
 			        Value="{StaticResource FontFamilyOfDataFields}" />
 			<Setter Property="FontSize"
