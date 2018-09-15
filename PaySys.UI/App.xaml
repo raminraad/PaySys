@@ -29,11 +29,11 @@
 		<system:Double x:Key="FontSizeOfListTitle"> 20 </system:Double>
 		<system:Double x:Key="FontSizeOfSelectionItem"> 24 </system:Double>
 		<system:Double x:Key="HeightOfDataField"> 30 </system:Double>
-		<system:Double x:Key="WidthOfDataFieldOfText"> 160 </system:Double>
+		<system:Double x:Key="WidthOfDataFieldOfText"> 240 </system:Double>
 		<system:Double x:Key="WidthOfDataFieldOfCode"> 80 </system:Double>
 		<system:Double x:Key="WidthOfDataFieldOfPrice"> 120 </system:Double>
 		<system:Double x:Key="WidthOfDataFieldOfButton"> 40 </system:Double>
-		<system:Double x:Key="WidthOfDataColumnOfText"> 220 </system:Double>
+		<system:Double x:Key="WidthOfDataColumnOfText"> 260 </system:Double>
 		<system:Double x:Key="WidthOfDataColumnOfCode"> 100 </system:Double>
 		<system:Double x:Key="WidthOfDataColumnOfPrice"> 140 </system:Double>
 		<system:Double x:Key="WidthOfDataColumnOfButton"> 60 </system:Double>

@@ -46,6 +46,7 @@
     <Compile Include="Converters\EnumDescriptionTypeConverter.cs" />
     <Compile Include="Delegates\ContextDelegates.cs" />
     <Compile Include="ExtensionMethods\EnumBindingSourceExtension.cs" />
+    <Compile Include="ExtensionMethods\EnumGetDescriptionExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

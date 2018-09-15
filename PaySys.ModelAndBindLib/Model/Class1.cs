@@ -10,6 +10,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Data;
 using PaySys.CalcLib.Converters;
+using PaySys.CalcLib.ExtensionMethods;
 using PaySys.Globalization;
 
 #endregion
@@ -289,6 +290,8 @@ namespace PaySys.ModelAndBindLib.Model
 			}
 			set => _tempParameterInvolvedMiscPaymentsLeftJoined = value;
 		}
+
+	    [NotMapped] public string ValueAndValueType => $"{Value:N0} {ValueType.GetDescription()}";
 	}
 
 	/// <summary> #08 فیلدهای احکام دخیل در محاسبات مؤلفه ها </summary>

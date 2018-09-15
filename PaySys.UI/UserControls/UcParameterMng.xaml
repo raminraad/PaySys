@@ -56,7 +56,7 @@
 					                Width="{StaticResource WidthOfDataColumnOfPrice}">
 						<GridViewColumn.CellTemplate>
 							<DataTemplate>
-								<local:UcTextPair TextOfLabel="{Binding Value,StringFormat={}{0:N0}}"
+								<local:UcTextPair TextOfLabel="{Binding ValueAndValueType}"
 								                  TextOfTextBox="{Binding Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
 								                  Width="{StaticResource WidthOfDataFieldOfPrice}"
 								                  Margin="0"
@@ -65,9 +65,6 @@
 							</DataTemplate>
 						</GridViewColumn.CellTemplate>
 					</GridViewColumn>
-					<GridViewColumn Header="{x:Static fa:Labels.ValueType}"
-					                Width="Auto"
-					                DisplayMemberBinding="{Binding ValueType}" />
 				</GridView>
 			</ListView.View>
 		</ListView>

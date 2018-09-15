@@ -144,6 +144,7 @@ namespace PaySys.UI.UC
 
 			Context.SaveChanges();
 			SmpUcFormStateLabel.CurrentState = FormCurrentState.Select;
+            SmpUcParameterMng.Refresh();
 		}
 
 		

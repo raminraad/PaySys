@@ -98,5 +98,10 @@ namespace PaySys.UI.UC
 			var m = ( e.Source as System.Windows.Controls.Control )?.Tag as Misc;
 			prm?.ParameterInvolvedMiscs.Remove( prm?.ParameterInvolvedMiscs.FirstOrDefault( f => f.Misc.Equals( m ) ) );
 		}
+
+	    public void Refresh()
+	    {
+            CollectionViewSource.GetDefaultView(ListViewParameter.ItemsSource).Refresh();
+	    }
 	}
 }
