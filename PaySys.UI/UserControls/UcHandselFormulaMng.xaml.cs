@@ -38,7 +38,7 @@ namespace PaySys.UI.UC
 			set => SetValue(CurrentSubGroupProperty, value);
 		}
 
-	    public bool ReadOnlyOfFields
+        public bool ReadOnlyOfFields
 	    {
 	        get { return (bool) GetValue(ReadOnlyOfFieldsProperty); }
 	        set { SetValue(ReadOnlyOfFieldsProperty, value); }

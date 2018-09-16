@@ -188,6 +188,7 @@
 			         Header="{x:Static fa:Labels.HandselFormula}"
 			         Width="Auto">
 				<local:UcHandselFormulaMng x:Name="SmpUcHandselFormula"
+                                           HorizontalAlignment="Center"
 				                           ReadOnlyOfFields="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
 				                           CurrentSubGroup="{Binding ElementName=ListViewSubGroups,Path=SelectedItem}" />
 			</TabItem>
