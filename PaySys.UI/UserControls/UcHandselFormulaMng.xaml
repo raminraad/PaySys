@@ -10,101 +10,68 @@
              mc:Ignorable="d"
              FlowDirection="RightToLeft"
              d:DesignHeight="300"
-             d:DesignWidth="600">
-	<Grid x:Name="GridMain"
-	      DataContext="{Binding ElementName=SmpUcHandselFormulaMng,Path=CurrentSubGroup.CurrenHandselFormula}">
-		<Grid.Resources>
-			<Style TargetType="TextBlock">
-				<Setter Property="HorizontalAlignment"
-				        Value="Left"/>
-				<Setter Property="VerticalAlignment"
-				        Value="Center"/>
-				<Setter Property="Margin"
-				        Value="10,0"/>
-			</Style>
-			<Style TargetType="TextBox">
-				<Setter Property="VerticalContentAlignment"
-				        Value="Center"/>
-				<Setter Property="Margin"
-				        Value="0,3"/>
-
-			</Style>
-		</Grid.Resources>
-		<Grid.RowDefinitions>
-			<RowDefinition x:Name="RowToolbar"
-			               Height="Auto"/>
-			<RowDefinition Height="*"/>
-			<RowDefinition Height="*"/>
-			<RowDefinition Height="*"/>
-			<RowDefinition Height="*"/>
-			<RowDefinition Height="*"/>
-			<RowDefinition Height="*"/>
-			<RowDefinition Height="*"/>
-			<RowDefinition Height="*"/>
-		</Grid.RowDefinitions>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="*"/>
-			<ColumnDefinition Width="Auto"/>
-			<ColumnDefinition Width="*"/>
-			<ColumnDefinition Width="*"/>
-		</Grid.ColumnDefinitions>
-		<TextBlock Grid.Row="2"
-		           Grid.Column="1"
-		           Grid.ColumnSpan="2"
-		           FontSize="20"
-		           HorizontalAlignment="Center"
-		           Text="{x:Static fa:Labels.HandselFormula}"/>
-		<ToolBar Grid.Row="0"
-		         Grid.ColumnSpan="4"
-		         Grid.Column="0">
-			
-			<Button Name="BtnEdit"
-			        Content="{x:Static fa:Labels.Edit}"
-			        Click="BtnEdit_OnClick"
-			        Style="{StaticResource StyleOfToolbarButton}"/>
-			<Button Name="BtnSave"
-			        Style="{StaticResource StyleOfToolbarButton}"
-			        Content="{x:Static fa:Labels.Save}"
-			        Click="BtnSave_Click"/>
-			<Button Name="BtnCancel"
-			        Style="{StaticResource StyleOfToolbarButton}"
-			        Content="{x:Static fa:Labels.Cancel}"
-			        Click="BtnCancel_Click"/>
-		</ToolBar>
-		<TextBlock Grid.Row="3"
-		           Grid.Column="1"
-		           Text="{x:Static fa:FieldicHandselFormula.DaysCount}"/>
-		<TextBlock Grid.Row="4"
-		           Grid.Column="1"
-		           Text="{x:Static fa:FieldicHandselFormula.Min}"/>
-		<TextBlock Grid.Row="5"
-		           Grid.Column="1"
-		           Text="{x:Static fa:FieldicHandselFormula.Max}"/>
-		<TextBlock Grid.Row="6"
-		           Grid.Column="1"
-		           Text="{x:Static fa:FieldicHandselFormula.TaxFreeValue}"/>
-		<TextBlock Grid.Row="7"
-		           Grid.Column="1"
-		           Text="{x:Static fa:FieldicHandselFormula.TaxRate}"/>
-		<TextBox x:Name="TextBoxDaysCount"
-		         Grid.Row="3"
-		         Grid.Column="2"
-		         Text="{Binding DaysCount,UpdateSourceTrigger=Explicit}"/>
-		<TextBox x:Name="TextBoxMin"
-		         Grid.Row="4"
-		         Grid.Column="2"
-				 Text="{Binding Min,UpdateSourceTrigger=Explicit}"/>
-		<TextBox x:Name="TextBoxMax"
-		         Grid.Row="5"
-		         Grid.Column="2"
-				 Text="{Binding Max,UpdateSourceTrigger=Explicit}"/>
-		<TextBox x:Name="TextBoxTaxFreeValue"
-		         Grid.Row="6"
-		         Grid.Column="2"
-				 Text="{Binding TaxFreeValue,UpdateSourceTrigger=Explicit}"/>
-		<TextBox x:Name="TextBoxTaxRate"
-		         Grid.Row="7"
-		         Grid.Column="2"
-				 Text="{Binding TaxRate,UpdateSourceTrigger=Explicit}"/>
-	</Grid>
+             d:DesignWidth="400">
+    <Grid x:Name="GridMain"
+          DataContext="{Binding ElementName=SmpUcHandselFormulaMng,Path=CurrentSubGroup.CurrenHandselFormula}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.ColumnSpan="2"
+                   Text="{x:Static fa:Labels.HandselFormula}"
+                   Style="{StaticResource StyleOfListTitleTextBlock}" />
+        <TextBlock Grid.Row="1"
+                   Grid.Column="0"
+                   Text="{x:Static fa:FieldicHandselFormula.DaysCount}"
+                   Style="{StaticResource StyleOfPassageTextBlock}" />
+        <TextBlock Grid.Row="2"
+                   Grid.Column="0"
+                   Text="{x:Static fa:FieldicHandselFormula.Min}"
+                   Style="{StaticResource StyleOfPassageTextBlock}" />
+        <TextBlock Grid.Row="3"
+                   Grid.Column="0"
+                   Text="{x:Static fa:FieldicHandselFormula.Max}"
+                   Style="{StaticResource StyleOfPassageTextBlock}" />
+        <TextBlock Grid.Row="4"
+                   Grid.Column="0"
+                   Text="{x:Static fa:FieldicHandselFormula.TaxFreeValue}"
+                   Style="{StaticResource StyleOfPassageTextBlock}" />
+        <TextBlock Grid.Row="5"
+                   Grid.Column="0"
+                   Text="{x:Static fa:FieldicHandselFormula.TaxRate}"
+                   Style="{StaticResource StyleOfPassageTextBlock}" />
+        <TextBox x:Name="TextBoxDaysCount"
+                 Grid.Row="1"
+                 Grid.Column="1"
+                 Text="{Binding DaysCount,UpdateSourceTrigger=Explicit}"
+                 Style="{StaticResource StyleOfDataFieldTextBox}" />
+        <TextBox x:Name="TextBoxMin"
+                 Grid.Row="2"
+                 Grid.Column="1"
+                 Text="{Binding Min,UpdateSourceTrigger=Explicit}"
+                 Style="{StaticResource StyleOfDataFieldTextBox}" />
+        <TextBox x:Name="TextBoxMax"
+                 Grid.Row="3"
+                 Grid.Column="1"
+                 Text="{Binding Max,UpdateSourceTrigger=Explicit}"
+                 Style="{StaticResource StyleOfDataFieldTextBox}" />
+        <TextBox x:Name="TextBoxTaxFreeValue"
+                 Grid.Row="4"
+                 Grid.Column="1"
+                 Text="{Binding TaxFreeValue,UpdateSourceTrigger=Explicit}"
+                 Style="{StaticResource StyleOfDataFieldTextBox}" />
+        <TextBox x:Name="TextBoxTaxRate"
+                 Grid.Row="5"
+                 Grid.Column="1"
+                 Text="{Binding TaxRate,UpdateSourceTrigger=Explicit}"
+                 Style="{StaticResource StyleOfDataFieldTextBox}" />
+    </Grid>
 </UserControl>

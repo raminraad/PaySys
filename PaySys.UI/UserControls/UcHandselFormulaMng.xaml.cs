@@ -14,7 +14,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using PaySys.CalcLib.Delegates;
 using PaySys.ModelAndBindLib.Model;
-using PaySys.UI.ExtensionMethods;
 
 namespace PaySys.UI.UC
 {
@@ -31,31 +30,18 @@ namespace PaySys.UI.UC
 		}
 
 		public static readonly DependencyProperty CurrentSubGroupProperty = DependencyProperty.Register("CurrentSubGroup", typeof(SubGroup), typeof(UcHandselFormulaMng), new PropertyMetadata(default(SubGroup)));
+	    public static readonly DependencyProperty ReadOnlyOfFieldsProperty = DependencyProperty.Register("ReadOnlyOfFields", typeof(bool), typeof(UcHandselFormulaMng), new PropertyMetadata(default(bool)));
 
-		public SubGroup CurrentSubGroup
+	    public SubGroup CurrentSubGroup
 		{
 			get => (SubGroup) GetValue(CurrentSubGroupProperty);
 			set => SetValue(CurrentSubGroupProperty, value);
 		}
 
-		private void BtnEdit_OnClick(object sender, RoutedEventArgs e)
-		{
-		}
-
-		private void BtnSave_Click(object sender, RoutedEventArgs e)
-		{
-			foreach(var textbox in GridMain.FindVisualChildren<TextBox>())
-				textbox.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
-
-			GridMain.GetBindingExpression(DataContextProperty)?.UpdateSource();
-			SaveContext.Invoke();
-		}
-
-		private void BtnCancel_Click(object sender, RoutedEventArgs e)
-		{
-			//			GridMain.GetBindingExpression(DataContextProperty)?.UpdateTarget();
-			foreach (var textbox in GridMain.FindVisualChildren<TextBox>())
-				textbox.GetBindingExpression(TextBox.TextProperty)?.UpdateTarget();
-		}
+	    public bool ReadOnlyOfFields
+	    {
+	        get { return (bool) GetValue(ReadOnlyOfFieldsProperty); }
+	        set { SetValue(ReadOnlyOfFieldsProperty, value); }
+	    }
 	}
 }

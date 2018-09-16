@@ -257,7 +257,20 @@
 			<Setter Property="VerticalAlignment"
 			        Value="Center" />
 		</Style>
-		<Style x:Key="StyleOfToolbarButton"
+	    <Style x:Key="StyleOfPassageTextBlock"
+	           TargetType="TextBlock">
+	        <Setter Property="Height"
+	                Value="{StaticResource HeightOfDataField}" />
+	        <Setter Property="Width"
+	                Value="Auto" />
+	        <Setter Property="FontFamily"
+	                Value="{StaticResource FontFamilyOfDataFields}" />
+	        <Setter Property="FontSize"
+	                Value="{StaticResource FontSizeOfDataFields}" />
+	        <Setter Property="VerticalAlignment"
+	                Value="Center" />
+	    </Style>
+        <Style x:Key="StyleOfToolbarButton"
 		       TargetType="Button">
 			<Setter Property="Margin"
 			        Value="2,0" />
