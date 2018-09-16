@@ -7,64 +7,61 @@
              xmlns:local="clr-namespace:PaySys.UI.UC"
              xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
              xmlns:bindingConverter="clr-namespace:PaySys.ModelAndBindLib.BindingConverter;assembly=PaySys.ModelAndBindLib"
+             xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Model;assembly=PaySys.ModelAndBindLib"
              mc:Ignorable="d"
              FlowDirection="RightToLeft"
              d:DesignHeight="300"
              d:DesignWidth="600">
+    <UserControl.Resources>
+        <CollectionViewSource x:Key="CvsTaxRows"
+                              Source="{Binding ElementName=SmpUcTaxTableMng,Path=CurrentSubGroup.CurrenTaxTable.TaxRows,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition x:Name="RowToolbar"
-                           Height="Auto" />
-            <RowDefinition Height="45*" />
-            <RowDefinition Height="229*" />
+            <RowDefinition />
+            <RowDefinition Height="5*" />
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*" />
-            <ColumnDefinition Width="5*" />
-            <ColumnDefinition Width="2*" />
-        </Grid.ColumnDefinitions>
-        <TextBlock Grid.Row="1"
-                   Grid.Column="1"
-                   FontSize="20"
+        <TextBlock FontSize="20"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    Text="{x:Static fa:Labels.TaxValueCalculationTable}" />
-        <ToolBar Grid.Row="0"
-                 Grid.ColumnSpan="3"
-                 Grid.Column="0">
-            <Button Name="BtnAddMainGroup"
-                    Margin="2,0"
-                    Content="{x:Static fa:Labels.Add}"
-                    Click="BtnAdd_OnClick" />
-            <Button Name="BtnEditValueTo"
-                    Content="{x:Static fa:Labels.EditValue}"
-                    Margin="2,0"
-                    Click="BtnEditValueTo_Click" />
-            <Button Name="BtnEditRate"
-                    Content="{x:Static fa:Labels.EditRate}"
-                    Margin="2,0"
-                    Click="BtnEditRate_OnClick" />
-            <Button Name="BtnDelete"
-                    Margin="2,0"
-                    Content="{x:Static fa:Labels.Delete}"
-                    Click="BtnDelete_OnClick" />
-        </ToolBar>
         <ListView x:Name="ListViewTaxItem"
-                  Grid.Row="2"
-                  Grid.Column="1"
-                  MaxWidth="300"
-                  ItemsSource="{Binding ElementName=SmpUcTaxTableMng,Path=CurrentSubGroup.CurrenTaxTable.TaxRowsForGrid,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                  Grid.Row="1"
+                  MaxWidth="500"
+                  d:DataContext="{d:DesignInstance Type=model:TaxRow, IsDesignTimeCreatable=True}"
+                  DataContext="{StaticResource CvsTaxRows}"
+                  ItemsSource="{Binding}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="{x:Static fa:Labels.From}"
-                                    Width="80"
-                                    DisplayMemberBinding="{Binding ValueFrom,StringFormat={}{0:N0}}" />
+                                    Width="{StaticResource WidthOfDataColumnOfPrice}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=TempValueTo, RelativeSource={RelativeSource PreviousData},StringFormat={}{0:N0}}"
+                                           Width="{StaticResource WidthOfDataFieldOfPrice}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                     <GridViewColumn Header="{x:Static fa:Labels.To}"
-                                    Width="80"
-                                    DisplayMemberBinding="{Binding ValueTo,StringFormat={}{0:N0},ValidatesOnExceptions=True,NotifyOnValidationError=True}" />
+                                    Width="{StaticResource WidthOfDataColumnOfPrice}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Text="{Binding Path=TempValueTo,UpdateSourceTrigger=LostFocus}"
+                                         IsReadOnly="{Binding ElementName=SmpUcTaxTableMng,Path=ReadOnlyOfFields}"
+                                         Width="{StaticResource WidthOfDataFieldOfPrice}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                     <GridViewColumn Header="{x:Static fa:Labels.Factor}"
-                                    Width="75"
-                                    DisplayMemberBinding="{Binding Factor,StringFormat={}{0:N0}}" />
+                                    Width="{StaticResource WidthOfDataColumnOfPrice}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Text="{Binding Path=Factor,StringFormat={}{0:N0}}"
+                                         IsReadOnly="{Binding ElementName=SmpUcTaxTableMng,Path=ReadOnlyOfFields}"
+                                         Width="{StaticResource WidthOfDataFieldOfPrice}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>

@@ -7,11 +7,13 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Data;
 using PaySys.CalcLib.Converters;
 using PaySys.CalcLib.ExtensionMethods;
 using PaySys.Globalization;
+using PaySys.ModelAndBindLib.Annotations;
 
 #endregion
 
@@ -524,9 +526,10 @@ namespace PaySys.ModelAndBindLib.Model
 	}
 
 	/// <summary> #16 سطر جدول مالیات </summary>
-	public class TaxRow : IComparable
+	public class TaxRow : IComparable,INotifyPropertyChanged
 	{
-		public int TaxRowId { get; set; }
+	    private double? _tempValueTo = null;
+        public int TaxRowId { get; set; }
 
 		public double ValueTo { get; set; }
 
@@ -534,7 +537,18 @@ namespace PaySys.ModelAndBindLib.Model
 
 		public virtual TaxTable TaxTable { get; set; }
 
-		[NotMapped]
+	    [NotMapped]
+	    public double? TempValueTo
+	    {
+	        get => _tempValueTo ?? (_tempValueTo = ValueTo);
+	        set
+	        {
+	            _tempValueTo = value;
+                OnPropertyChanged(nameof(TempValueTo));
+	        }
+	    }
+
+	    [NotMapped]
 		public double ValueFrom { get; set; }
 
 		[NotMapped]
@@ -548,6 +562,14 @@ namespace PaySys.ModelAndBindLib.Model
 		}
 
 		#endregion
+
+	    public event PropertyChangedEventHandler PropertyChanged;
+
+	    [NotifyPropertyChangedInvocator]
+	    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+	    {
+	        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+	    }
 	}
 
 	/// <summary> #18 مقادیر کسور و پرداختهای متفرقه برای اشخاص در سال و ماه </summary>

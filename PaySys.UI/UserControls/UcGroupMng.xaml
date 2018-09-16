@@ -181,6 +181,7 @@
 			         Header="{x:Static fa:Labels.TaxTable}"
 			         Width="Auto">
 				<local:UcTaxTableMng x:Name="SmpUcTaxTableMng"
+				                     ReadOnlyOfFields="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
 				                     CurrentSubGroup="{Binding ElementName=ListViewSubGroups,Path=SelectedItem}" />
 			</TabItem>
 			<TabItem x:Name="TabItemHandselFormula"
