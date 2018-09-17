@@ -24,7 +24,6 @@ namespace PaySys.UI.UC
 	/// </summary>
 	public partial class UcTaxTableMng : UserControl
 	{
-		public DelegateSaveContext SaveContext { set; get; }
 	    private CollectionViewSource CvsTaxRows => Resources["CvsTaxRows"] as CollectionViewSource;
         public UcTaxTableMng()
 		{

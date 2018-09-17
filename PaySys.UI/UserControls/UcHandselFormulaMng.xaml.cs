@@ -22,8 +22,6 @@ namespace PaySys.UI.UC
 	/// </summary>
 	public partial class UcHandselFormulaMng : UserControl
 	{
-		public DelegateSaveContext SaveContext { set; get; }
-
 		public UcHandselFormulaMng()
 		{
 			InitializeComponent();

@@ -50,7 +50,8 @@ namespace PaySys.ModelAndBindLib.Model
     /// <summary> #02 زیرگروه </summary>
     public class SubGroup
     {
-        private HandselFormula _currentOrNewHandselFormula;
+        private HandselFormula _currentOrNewHandselFormula=null;
+        private MissionFormula _currentOrNewMissionFormula=null;
         public int SubGroupId { get; set; }
 
         public string Alias { get; set; }
@@ -123,16 +124,13 @@ namespace PaySys.ModelAndBindLib.Model
         }
 
         [NotMapped]
-        public MissionFormula CurrenMissionFormula
+        public MissionFormula CurrentOrNewMissionFormula
         {
-            get => MissionFormulas.FirstOrDefault(table => table.Year == PaySysSetting.CurrentYear);
-
-            set
-            {
-                var MissionFormula = MissionFormulas.FirstOrDefault(table => table.Year == PaySysSetting.CurrentYear);
-                if (MissionFormula != null)
-                    MissionFormula = value;
-            }
+            set => _currentOrNewMissionFormula = value;
+            get => _currentOrNewMissionFormula ?? (_currentOrNewMissionFormula =
+                       MissionFormulas.FirstOrDefault(mf =>
+                           mf.Year == PaySysSetting.CurrentYear && mf.Month == PaySysSetting.CurrentMonth) ??
+                       new MissionFormula { Year = PaySysSetting.CurrentYear, Month = PaySysSetting.CurrentMonth, SubGroup = this });
         }
 
         [NotMapped]
@@ -255,8 +253,8 @@ namespace PaySys.ModelAndBindLib.Model
     /// <summary> #07 مقادیر مؤلفه های محاسباتی زیرگروه در سال و ماه </summary>
     public class Parameter
     {
-        private Dictionary<ContractField, bool> _tempParameterInvolvedContractFieldsLeftJoined;
-        private Dictionary<Misc, bool> _tempParameterInvolvedMiscPaymentsLeftJoined;
+        private Dictionary<ContractField, bool> _tempParameterInvolvedContractFieldsLeftJoined=null;
+        private Dictionary<Misc, bool> _tempParameterInvolvedMiscPaymentsLeftJoined=null;
 
         public int ParameterId { get; set; }
 
@@ -280,6 +278,8 @@ namespace PaySys.ModelAndBindLib.Model
         {
             get
             {
+                if (_tempParameterInvolvedContractFieldsLeftJoined != null)
+                    return _tempParameterInvolvedContractFieldsLeftJoined;
                 var cfs = ParameterInvolvedContractFields.Select(p => p.ContractField).ToList();
                 _tempParameterInvolvedContractFieldsLeftJoined = new Dictionary<ContractField, bool>();
                 cfs.ForEach(p => _tempParameterInvolvedContractFieldsLeftJoined.Add(p, true));
@@ -295,6 +295,8 @@ namespace PaySys.ModelAndBindLib.Model
         {
             get
             {
+                if (_tempParameterInvolvedMiscPaymentsLeftJoined != null)
+                    return _tempParameterInvolvedMiscPaymentsLeftJoined;
                 var mp = ParameterInvolvedMiscs.Select(m => m.Misc).ToList();
                 _tempParameterInvolvedMiscPaymentsLeftJoined = new Dictionary<Misc, bool>();
                 mp.ForEach(m => _tempParameterInvolvedMiscPaymentsLeftJoined.Add(m, true));
@@ -496,6 +498,7 @@ namespace PaySys.ModelAndBindLib.Model
     /// <summary> #14 فرمول مأموریت زیرگروه در سال و ماه </summary>
     public class MissionFormula
     {
+        private Dictionary<ContractField, bool> _tempMissionFormulaInvolvedContractFieldsLeftJoined=null;
         public int MissionFormulaId { get; set; }
 
         public double DivideFactor { get; set; }
@@ -515,6 +518,22 @@ namespace PaySys.ModelAndBindLib.Model
         public virtual SubGroup SubGroup { get; set; }
 
         public virtual List<MissionFormulaInvolvedContractField> MissionFormulaInvolvedContractFields { get; set; }
+        [NotMapped]
+        public Dictionary<ContractField, bool> TempMissionFormulaInvolvedContractFieldsLeftJoined
+        {
+            get
+            {
+                if (_tempMissionFormulaInvolvedContractFieldsLeftJoined != null)
+                    return _tempMissionFormulaInvolvedContractFieldsLeftJoined;
+                var cfs = MissionFormulaInvolvedContractFields.Select(p => p.ContractField).ToList();
+                _tempMissionFormulaInvolvedContractFieldsLeftJoined = new Dictionary<ContractField, bool>();
+                cfs.ForEach(p => _tempMissionFormulaInvolvedContractFieldsLeftJoined.Add(p, true));
+                SubGroup.MainGroup.CurrentContractFields.Except(cfs).ToList().ForEach(p =>
+                    _tempMissionFormulaInvolvedContractFieldsLeftJoined.Add(p, false));
+                return _tempMissionFormulaInvolvedContractFieldsLeftJoined;
+            }
+            set => _tempMissionFormulaInvolvedContractFieldsLeftJoined = value;
+        }
     }
 
     /// <summary> #15 جدول مالیات </summary>
