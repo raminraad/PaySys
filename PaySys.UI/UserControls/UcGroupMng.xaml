@@ -196,7 +196,8 @@
 			         Header="{x:Static fa:Labels.MissionFormula}"
 			         Width="Auto">
 				<local:UcMissionFormulaMng x:Name="SmpUcMissionFormulaMng"
-				                           CurrentSubGroup="{Binding ElementName=ListViewSubGroups,Path=SelectedItem}" />
+                                           ReadOnlyOfFields="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
+                                           CurrentSubGroup="{Binding ElementName=ListViewSubGroups,Path=SelectedItem}" />
 			</TabItem>
 		</TabControl>
 		<StatusBar Grid.Column="0"

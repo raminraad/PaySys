@@ -18,7 +18,6 @@ using PaySys.Globalization;
 using PaySys.ModelAndBindLib;
 using PaySys.ModelAndBindLib.Model;
 using PaySys.UI.Commands;
-using PaySys.UI.Dialogs;
 using PaySys.UI.Modals;
 using DialogResult = System.Windows.Forms.DialogResult;
 using MessageBoxDefaultButton = System.Windows.Forms.MessageBoxDefaultButton;
@@ -51,26 +50,8 @@ namespace PaySys.UI.UC
 		public static readonly DependencyProperty ReadOnlyOfFieldsProperty = DependencyProperty.Register( "ReadOnlyOfFields", typeof(bool), typeof(UcMiscMng), new PropertyMetadata( default(bool) ) );
 
 		public bool ReadOnlyOfFields { get { return (bool) GetValue( ReadOnlyOfFieldsProperty ); } set { SetValue( ReadOnlyOfFieldsProperty, value ); } }
-		public DelegateSaveContext SaveContext { set; get; }
 
-		private void BtnEditMiscTitle_OnClick(object sender, RoutedEventArgs e)
-		{
-			//Todo
-		}
-
-		private void BtnChangeExpenseArticle_OnClick(object sender, RoutedEventArgs e)
-		{
-			var selectExpenseArticleDialog = new WinSelectItem(ResourceAccessor.Messages.GetString("SelectExpenseArticle"));
-			selectExpenseArticleDialog.ListViewItemsSource = ExpenseArticlesAll;
-			if(selectExpenseArticleDialog.ShowDialog() == true)
-			{
-				_selectedMisc.ExpenseArticle = (ExpenseArticle) selectExpenseArticleDialog.SelectedItem;
-				SaveContext.Invoke();
-				SelectedListView.GetBindingExpression(ItemsControl.ItemsSourceProperty)?.UpdateTarget();
-			}
-		}
-
-		#region Properties
+	    #region Properties
 
 		public static readonly DependencyProperty CurrentSubGroupProperty = DependencyProperty.Register("CurrentSubGroup", typeof(SubGroup), typeof(UcMiscMng), new PropertyMetadata(default(SubGroup)));
 
@@ -122,7 +103,7 @@ namespace PaySys.UI.UC
 			});
 			if(newMiscTitle.MiscTitleId == 0)
 				MiscTitlesAll.Add(newMiscTitle);
-			SaveContext.Invoke();
+			
 			if(newItemIsPayment)
 				ListViewMiscPayment.GetBindingExpression(ItemsControl.ItemsSourceProperty)?.UpdateTarget();
 			else
@@ -154,7 +135,7 @@ namespace PaySys.UI.UC
 				return;
 
 			CurrentSubGroup.Miscs.Remove(item);
-			SaveContext.Invoke();
+			
 			if(itemIsPayment)
 				ListViewMiscPayment.GetBindingExpression(ItemsControl.ItemsSourceProperty)?.UpdateTarget();
 			else

@@ -68,6 +68,7 @@
     <Compile Include="BindingConverter\DisplayCodeOfExpenseArticleConverter.cs" />
     <Compile Include="BindingConverter\DoublePlusParameterConverter.cs" />
     <Compile Include="BindingConverter\FormStateToIsReadOnlyConverter.cs" />
+    <Compile Include="BindingConverter\MathAddWithParameterConverter.cs" />
     <Compile Include="BindingConverter\MiscDisplayConverter.cs" />
     <Compile Include="BindingConverter\NegateBooleanConverter.cs" />
     <Compile Include="EF.Engine\PaySysContext.cs" />

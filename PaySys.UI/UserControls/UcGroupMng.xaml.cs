@@ -44,11 +44,6 @@ namespace PaySys.UI.UC
             InitializeComponent();
             Reload();
 
-            SmpUcMiscMng.SaveContext += () => Context.SaveChanges();
-            SmpUcTaxTableMng.SaveContext += () => Context.SaveChanges();
-            SmpUcHandselFormula.SaveContext += () => Context.SaveChanges();
-            SmpUcMissionFormulaMng.SaveContext += () => Context.SaveChanges();
-
             SmpUcMiscMng.ExpenseArticlesAll = Context.ExpenseArticles.ToList();
             SmpUcMiscMng.MiscTitlesAll = Context.MiscTitles.ToList();
         }
@@ -149,8 +144,29 @@ namespace PaySys.UI.UC
             }
             #endregion
 
+            var currentSubGroup = (ListViewSubGroups.SelectedItem as SubGroup);
             #region HandselFormula
-            Context.HandselFormulas.AddOrUpdate((ListViewSubGroups.SelectedItem as SubGroup)?.CurrentOrNewHandselFormula);
+            Context.HandselFormulas.AddOrUpdate(currentSubGroup?.CurrentOrNewHandselFormula);
+            #endregion
+
+            #region MissionFormula
+            // Investigating user's checked or not checked ContractFields one by one:
+            foreach (var cf in currentSubGroup.CurrentOrNewMissionFormula.TempMissionFormulaInvolvedContractFieldsLeftJoined)
+            {
+                //User has checked this ContractField but it doesn't exist in involved contract fields list:
+                if(cf.Value&&!currentSubGroup.CurrentOrNewMissionFormula.MissionFormulaInvolvedContractFields.Select(f => f.ContractField).Contains(cf.Key))
+                    currentSubGroup.CurrentOrNewMissionFormula.MissionFormulaInvolvedContractFields.Add(new MissionFormulaInvolvedContractField
+                    {
+                        ContractField = cf.Key,
+//                        MissionFormula = currentSubGroup.CurrentOrNewMissionFormula,
+                    });
+
+                //User has unchecked this ContractField but it exists in involved contract fields list:
+                if (!cf.Value && currentSubGroup.CurrentOrNewMissionFormula.MissionFormulaInvolvedContractFields.Select(f => f.ContractField).Contains(cf.Key))
+                    currentSubGroup.CurrentOrNewMissionFormula.MissionFormulaInvolvedContractFields.Remove(currentSubGroup.CurrentOrNewMissionFormula.MissionFormulaInvolvedContractFields.First(f => f.ContractField==cf.Key));
+            }
+
+            Context.MissionFormulas.AddOrUpdate(currentSubGroup.CurrentOrNewMissionFormula);
             #endregion
 
             Context.SaveChanges();

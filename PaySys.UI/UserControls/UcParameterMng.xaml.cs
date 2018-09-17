@@ -9,7 +9,6 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Forms;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -29,8 +28,9 @@ namespace PaySys.UI.UC
 		{
 			InitializeComponent();
 			ListViewParameter.Items.Filter = o => ( (Parameter) o ).Year == PaySysSetting.CurrentYear && ( (Parameter) o ).Month == PaySysSetting.CurrentMonth;
-
+            
 			ListViewParameterInvolvedContractFields.Items.SortDescriptions.Add( new SortDescription( "Key.Title", ListSortDirection.Ascending ) );
+			ListViewParameterInvolvedMiscPayments.Items.SortDescriptions.Add( new SortDescription("Key.MiscTitle.Title", ListSortDirection.Ascending ) );
 		}
 
 		public static readonly DependencyProperty ReadOnlyOfFieldsProperty = DependencyProperty.Register( "ReadOnlyOfFields", typeof(bool), typeof(UcParameterMng), new PropertyMetadata( default(bool) ) );
@@ -41,29 +41,7 @@ namespace PaySys.UI.UC
 
 		public SubGroup CurrentSubGroup { get => (SubGroup) GetValue( CurrentSubGroupProperty ); set => SetValue( CurrentSubGroupProperty, value ); }
 
-		private void AddContractField_CanExecute( object sender, CanExecuteRoutedEventArgs e )
-		{
-		}
-
-		private void AddMiscPayment_CanExecute( object sender, CanExecuteRoutedEventArgs e )
-		{
-		}
-
-		private void AddContractField_Execute( object sender, ExecutedRoutedEventArgs e )
-		{
-			( (Parameter) ListViewParameter.SelectedItem ).ParameterInvolvedContractFields.Add( new ParameterInvolvedContractField
-			{
-					ContractField = CurrentSubGroup.CurrentContractFields.First( c => c.Title == e.Parameter.ToString() ),
-					Parameter = (Parameter) ListViewParameter.SelectedItem
-			} );
-			CollectionViewSource.GetDefaultView( ListViewParameterInvolvedContractFields.ItemsSource ).Refresh();
-		}
-
-		private void AddMiscPayment_Execute( object sender, ExecutedRoutedEventArgs e )
-		{
-		}
-
-		private void ContractField_Checked( object sender, RoutedEventArgs e )
+	    private void ContractField_Checked( object sender, RoutedEventArgs e )
 		{
 			var prm = ListViewParameter.SelectedItem as Parameter;
 			var cf = ( e.Source as System.Windows.Controls.Control )?.Tag as ContractField;

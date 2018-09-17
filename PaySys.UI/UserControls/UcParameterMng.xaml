@@ -19,11 +19,11 @@
 			<RowDefinition />
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="523*" />
-			<ColumnDefinition Width="22*" />
-			<ColumnDefinition Width="168*" />
-			<ColumnDefinition Width="20*" />
-			<ColumnDefinition Width="168*" />
+			<ColumnDefinition Width="50*" />
+			<ColumnDefinition Width="2*" />
+			<ColumnDefinition Width="17*" />
+			<ColumnDefinition Width="2*" />
+			<ColumnDefinition Width="17*" />
 		</Grid.ColumnDefinitions>
 		<TextBlock Grid.Row="1"
 		           Style="{StaticResource StyleOfListTitleTextBlock}"
@@ -72,11 +72,6 @@
 		          Grid.Row="2"
 		          Grid.Column="2"
 		          ItemsSource="{Binding ElementName=ListViewParameter,Path=SelectedItem.TempParameterInvolvedContractFieldsLeftJoined}">
-			<ListView.CommandBindings>
-				<CommandBinding Command="commands:PaySysCommands.AddItem"
-				                CanExecute="AddContractField_CanExecute"
-				                Executed="AddContractField_Execute" />
-			</ListView.CommandBindings>
 			<ListView.View>
 				<GridView>
 					<GridViewColumn Header="{x:Static fa:Labels.Title}"
@@ -88,8 +83,8 @@
 							<DataTemplate>
 								<CheckBox FlowDirection="LeftToRight"
 								          IsChecked="{Binding Value,Mode=OneWay}"
-								          Checked="ContractField_Checked"
 								          IsEnabled="{Binding ElementName=SmpUcParameterMng,Path=ReadOnlyOfFields,Converter={StaticResource NegateBooleanConverter}}"
+								          Checked="ContractField_Checked"
 								          Unchecked="ContractField_UnChecked"
 								          Tag="{Binding Key}" />
 							</DataTemplate>
@@ -103,11 +98,6 @@
 		          Grid.Column="4"
 		          DisplayMemberPath="Misc.MiscTitle.Title"
 		          ItemsSource="{Binding ElementName=ListViewParameter,Path=SelectedItem.TempParameterInvolvedMiscPaymentsLeftJoined}">
-			<ListView.CommandBindings>
-				<CommandBinding Command="commands:PaySysCommands.AddItem"
-				                CanExecute="AddMiscPayment_CanExecute"
-				                Executed="AddMiscPayment_Execute" />
-			</ListView.CommandBindings>
 			<ListView.View>
 				<GridView>
 					<GridViewColumn Header="{x:Static fa:Labels.Title}"

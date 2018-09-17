@@ -10,36 +10,36 @@
              xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Model;assembly=PaySys.ModelAndBindLib"
              mc:Ignorable="d"
              FlowDirection="RightToLeft"
+             HorizontalAlignment="Center"
              d:DesignHeight="300"
-             d:DesignWidth="600">
+             d:DesignWidth="550">
     <UserControl.Resources>
         <CollectionViewSource x:Key="CvsTaxRows"
                               Source="{Binding ElementName=SmpUcTaxTableMng,Path=CurrentSubGroup.CurrenTaxTable.TaxRows,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+        <bindingConverter:MathAddWithParameterConverter x:Key="CnvAdd" />
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition />
-            <RowDefinition Height="5*" />
         </Grid.RowDefinitions>
-        <TextBlock FontSize="20"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   Style="{StaticResource StyleOfListTitleTextBlock}"
+        <TextBlock Style="{StaticResource StyleOfListTitleTextBlock}"
                    Text="{x:Static fa:Labels.TaxValueCalculationTable}" />
         <ListView x:Name="ListViewTaxItem"
-                  Grid.Row="1"
                   MaxWidth="500"
                   d:DataContext="{d:DesignInstance Type=model:TaxRow, IsDesignTimeCreatable=True}"
                   DataContext="{StaticResource CvsTaxRows}"
-                  ItemsSource="{Binding}">
+                  ItemsSource="{Binding}"
+                  Grid.Row="1">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="{x:Static fa:Labels.From}"
                                     Width="{StaticResource WidthOfDataColumnOfPrice}">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Path=TempValueTo, RelativeSource={RelativeSource PreviousData},StringFormat={}{0:N0}}"
-                                           Width="{StaticResource WidthOfDataFieldOfPrice}" />
+                                <TextBlock
+                                    Text="{Binding Path=TempValueTo, RelativeSource={RelativeSource PreviousData},Converter={StaticResource CnvAdd},ConverterParameter=1,StringFormat={}{0:N0}}"
+                                    Width="{StaticResource WidthOfDataFieldOfPrice}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
