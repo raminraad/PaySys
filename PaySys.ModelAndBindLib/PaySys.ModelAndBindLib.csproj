@@ -82,6 +82,10 @@
     <Compile Include="Migrations\201808301051321_Update1.Designer.cs">
       <DependentUpon>201808301051321_Update1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809191644304_Update2.cs" />
+    <Compile Include="Migrations\201809191644304_Update2.Designer.cs">
+      <DependentUpon>201809191644304_Update2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\Visual\TitledCompositeCollection.cs" />
     <Compile Include="Model\Class1.cs" />
     <Compile Include="Model\PaySysSetting.cs" />
@@ -109,6 +113,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808301051321_Update1.resx">
       <DependentUpon>201808301051321_Update1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809191644304_Update2.resx">
+      <DependentUpon>201809191644304_Update2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

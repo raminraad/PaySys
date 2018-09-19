@@ -14,7 +14,7 @@
 			  DockPanel.Dock="Top">
 			<MenuItem Header="اطلاعات پایه">
 				<MenuItem x:Name="MnuEmployeeMng"
-						  Header="اطلاعات کارمندان"
+						  Header="اطلاعات پرسنل"
 						  Click="MnuEmployeeMng_OnClick" />
 				<MenuItem x:Name="MnuGroupMng"
 						  Header="گروه های استخدامی"

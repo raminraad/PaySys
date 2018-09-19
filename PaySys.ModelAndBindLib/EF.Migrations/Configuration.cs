@@ -280,7 +280,6 @@ namespace PaySys.ModelAndBindLib.Migrations
 			#region MainGroups & SubGroups
 
 			var seedMainGroups = new List<MainGroup>();
-			var index = 0;
 			foreach( var g in groupTitles )
 			{
 				var indexOfGroup = groupTitles.Keys.ToList().IndexOf( g.Key );
@@ -291,10 +290,11 @@ namespace PaySys.ModelAndBindLib.Migrations
 						ItemColor = groupColors[indexOfGroup],
 						SubGroups = new List<SubGroup>()
 				};
+			var indexOfSubGroup = 0;
 				foreach( var s in g.Value )
 					newGroupMain.SubGroups.Add( new SubGroup
 					{
-							Alias = $"{alphabets[indexOfGroup]}{indexOfGroup + 1:D2}",
+							Alias = $"{alphabets[indexOfGroup]}{++indexOfSubGroup :D2}",
 							Title = s,
 							ItemColor = newGroupMain.ItemColor,
 							Is31 = _faker.Random.Bool(),

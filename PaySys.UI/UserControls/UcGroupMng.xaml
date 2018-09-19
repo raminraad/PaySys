@@ -96,7 +96,7 @@
 			</ListView.View>
 		</ListView>
 		<ListView x:Name="ListViewSubGroups"
-		          ItemsSource="{Binding ElementName=ListViewMainGroups,Path=SelectedItem.SubGroups,Mode=TwoWay,UpdateSourceTrigger=Explicit}"
+		          ItemsSource="{Binding ElementName=ListViewMainGroups,Path=SelectedItem.(model:MainGroup.SubGroups),Mode=TwoWay,UpdateSourceTrigger=Explicit}"
 		          d:DataContext="{d:DesignInstance Type=model:SubGroup, IsDesignTimeCreatable=True}"
 		          Grid.Row="3"
 		          Grid.Column="3"
@@ -106,28 +106,29 @@
 				<GridView>
 					<GridView.Columns>
 						<GridViewColumn Header="{x:Static fa:FieldicSubGroup.Title}"
-						                Width="220">
+						                Width="{StaticResource WidthOfDataColumnOfText}">
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
-									<local:UcTextPair TextOfLabel="{Binding Path=Title,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+									<local:UcTextPair TextOfTextBox="{Binding Path=Title,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+									                  TextOfLabel="{Binding Path=Title}"
 									                  ReadOnly="{Binding ElementName = SmpUcFormStateLabel , Path=ReadOnlyOfEditFields}"
-									                  Width="200" />
+									                  Width="{StaticResource WidthOfDataFieldOfText}" />
 								</DataTemplate>
 							</GridViewColumn.CellTemplate>
 						</GridViewColumn>
 						<GridViewColumn Header="{x:Static fa:FieldicSubGroup.WorkshopCode}"
-						                Width="120">
+						                Width="{StaticResource WidthOfDataColumnOfCode}">
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
 									<local:UcTextPair TextOfLabel="{Binding Path=WorkshopCode}"
 									                  TextOfTextBox="{Binding Path=WorkshopCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
 									                  ReadOnly="{Binding ElementName = SmpUcFormStateLabel , Path=ReadOnlyOfEditFields}"
-									                  Width="100" />
+									                  Width="{StaticResource WidthOfDataColumnOfCode}" />
 								</DataTemplate>
 							</GridViewColumn.CellTemplate>
 						</GridViewColumn>
 						<GridViewColumn Header="{x:Static fa:FieldicSubGroup.Is31}"
-						                Width="120">
+						                Width="{StaticResource WidthOfDataColumnOfCode}">
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
 									<CheckBox FlowDirection="LeftToRight"
@@ -137,9 +138,9 @@
 							</GridViewColumn.CellTemplate>
 						</GridViewColumn>
 						<GridViewColumn Header="{x:Static fa:FieldicSubGroup.IsFreeZone}"
-						                Width="120">
+						                Width="{StaticResource WidthOfDataColumnOfCode}">
 							<GridViewColumn.CellTemplate>
-								<DataTemplate>
+								<DataTemplate DataType="model:SubGroup">
 									<CheckBox FlowDirection="LeftToRight"
 									          IsChecked="{Binding Path=IsFreeZone,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
 									          IsEnabled="{Binding ElementName = SmpUcFormStateLabel , Path=ReadOnlyOfEditFields,Converter={StaticResource NegateBooleanConverter}}" />

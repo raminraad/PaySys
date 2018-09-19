@@ -63,6 +63,7 @@ namespace PaySys.ModelAndBindLib.Model
         public ColorPallet ItemColor { get; set; }
 
         public bool Is31 { set; get; }
+        public bool IsFreeZone { set; get; }
 
         [Required]
         public virtual MainGroup MainGroup { set; get; }
@@ -72,7 +73,7 @@ namespace PaySys.ModelAndBindLib.Model
         public virtual List<MissionFormula> MissionFormulas { get; set; }
 
         public virtual List<TaxTable> TaxTables { get; set; }
-
+        
         public virtual List<HandselFormula> HandselFormulas { get; set; }
 
         public virtual List<ContractMaster> ContractMasters { get; set; }
@@ -179,9 +180,13 @@ namespace PaySys.ModelAndBindLib.Model
         [NotMapped]
         public List<ContractField> ContractFields => MainGroup.ContractFields;
 
+
         public override bool Equals(object obj)
         {
-            return string.Equals((obj as SubGroup)?.Alias, Alias);
+            if (obj?.GetType() != GetType())
+            return false;
+
+            return ((SubGroup) obj).Alias == Alias;
         }
     }
 

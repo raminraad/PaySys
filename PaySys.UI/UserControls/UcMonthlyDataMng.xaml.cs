@@ -160,7 +160,7 @@ namespace PaySys.UI.UC
 				return;
 
 			var sgCnts = sg.ContractMasters.Where( master => master.IsCurrent );
-			var sgEmps = sgCnts.Select( c => c.Employee );
+			var sgEmps = sgCnts.Select( c => c.Employee ).ToList();
 			var sgVars = sgEmps.SelectMany( emp => emp.VariableValueForEmployees );
 			var sgMiscs = sgEmps.SelectMany( emp => emp.MiscValueForEmployees );
 			var empVarsJoin = sgEmps.GroupJoin( sgVars, emp => emp, var => var.Employee, ( emp, vars ) => new

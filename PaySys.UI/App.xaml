@@ -13,8 +13,8 @@
 		<bindingConverter:NegateBooleanConverter x:Key="NegateBooleanConverter" />
 		<bindingConverter:DisplayCodeOfExpenseArticleConverter x:Key="DisplayCodeOfExpenseArticleConverter" />
 		<bindingConverter:BoolToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-
-		<SolidColorBrush x:Key="FormStateColorAdd"
+	    <bindingConverter:ColorPalletEnumToStringConverter x:Key="CnvColor" />
+        <SolidColorBrush x:Key="FormStateColorAdd"
 		                 Color="DarkGreen" />
 		<SolidColorBrush x:Key="FormStateColorEdit"
 		                 Color="Goldenrod" />
@@ -316,7 +316,7 @@
 			<Setter Property="Margin"
 			        Value="5" />
 			<Setter Property="HorizontalContentAlignment"
-			        Value="Center" />
+			        Value="Left" />
 		</Style>
 	</Application.Resources>
 </Application>
