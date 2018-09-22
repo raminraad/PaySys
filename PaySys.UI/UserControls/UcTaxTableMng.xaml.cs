@@ -37,20 +37,14 @@ namespace PaySys.UI.UC
 
 	    public SubGroup CurrentSubGroup
 		{
-			get
-			{
-				return (SubGroup) GetValue(CurrentSubGroupProperty);
-			}
-			set
-			{
-				SetValue(CurrentSubGroupProperty, value);
-			}
-		}
+			get => (SubGroup) GetValue(CurrentSubGroupProperty);
+	        set => SetValue(CurrentSubGroupProperty, value);
+	    }
 
 	    public bool ReadOnlyOfFields
 	    {
-	        get { return (bool) GetValue(ReadOnlyOfFieldsProperty); }
-	        set { SetValue(ReadOnlyOfFieldsProperty, value); }
+	        get => (bool) GetValue(ReadOnlyOfFieldsProperty);
+	        set => SetValue(ReadOnlyOfFieldsProperty, value);
 	    }
 	}
 }

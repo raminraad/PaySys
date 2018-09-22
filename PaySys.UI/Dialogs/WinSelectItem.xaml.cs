@@ -26,11 +26,8 @@ namespace PaySys.UI.Dialogs
 		public WinSelectItem(string SelectItemRequest, string ListViewDisplayMemberPath = "Title")
 		{
 			InitializeComponent();
-			if(string.IsNullOrEmpty(SelectItemRequest))
-			{
-				SelectItemRequest = ResourceAccessor.Messages.GetString("SelectItem");
-			}
-			TextBlockSelectItemRequest.Text=SelectItemRequest;
+			if(string.IsNullOrEmpty(SelectItemRequest)) SelectItemRequest = ResourceAccessor.Messages.GetString("SelectItem");
+		    TextBlockSelectItemRequest.Text=SelectItemRequest;
 			ListViewItems.DisplayMemberPath = ListViewDisplayMemberPath;
 		}
 

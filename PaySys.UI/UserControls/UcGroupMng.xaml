@@ -40,11 +40,11 @@
 			<RowDefinition Height="10*" />
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="6*" />
+			<ColumnDefinition Width="2*" />
 			<ColumnDefinition Width="10*" />
 			<ColumnDefinition Width="1*" />
-			<ColumnDefinition Width="14*" />
-			<ColumnDefinition Width="6*" />
+			<ColumnDefinition Width="18*" />
+			<ColumnDefinition Width="2*" />
 		</Grid.ColumnDefinitions>
 		<ToolBar Grid.Row="0"
 		         Grid.ColumnSpan="5">
@@ -84,7 +84,7 @@
 			<ListView.View>
 				<GridView>
 					<GridView.Columns>
-						<GridViewColumn Header="{x:Static fa:FieldicSubGroup.Title}">
+						<GridViewColumn Header="{x:Static fa:FieldicSubGroup.Title}" Width="{Binding ElementName=ListViewMainGroups,Path=ActualWidth}">
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
 									<TextBlock Text="{Binding Path=Title}" />
@@ -101,7 +101,6 @@
 		          Grid.Row="3"
 		          Grid.Column="3"
 		          Focusable="True">
-
 			<ListView.View>
 				<GridView>
 					<GridView.Columns>
@@ -123,7 +122,7 @@
 									<local:UcTextPair TextOfLabel="{Binding Path=WorkshopCode}"
 									                  TextOfTextBox="{Binding Path=WorkshopCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
 									                  ReadOnly="{Binding ElementName = SmpUcFormStateLabel , Path=ReadOnlyOfEditFields}"
-									                  Width="{StaticResource WidthOfDataColumnOfCode}" />
+									                  Width="{StaticResource WidthOfDataFieldOfCode}" />
 								</DataTemplate>
 							</GridViewColumn.CellTemplate>
 						</GridViewColumn>

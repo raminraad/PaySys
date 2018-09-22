@@ -26,8 +26,8 @@ namespace PaySys.UI.UC
 
 		public bool ReadOnlyOfListItems
 		{
-			get { return (bool) GetValue( ReadOnlyOfListItemsProperty ); }
-			set { SetValue( ReadOnlyOfListItemsProperty, value ); }
+			get => (bool) GetValue( ReadOnlyOfListItemsProperty );
+		    set => SetValue( ReadOnlyOfListItemsProperty, value );
 		}
 
 		private CollectionViewSource Cvs => Resources["Cvs"] as CollectionViewSource;

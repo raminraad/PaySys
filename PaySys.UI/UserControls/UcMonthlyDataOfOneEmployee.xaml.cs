@@ -47,7 +47,7 @@ namespace PaySys.UI.UC
 		}
 		public void RefreshCvs(object source=null)
 		{
-			var newSource = ( ( source ?? DataContext ) as SubGroup );
+			var newSource = ( source ?? DataContext ) as SubGroup;
 			CvsOfEmployeeVariableValues.Source = newSource?.TempVariableValuesOfEmployees;;
 			CvsOfEmployeeMiscPaymentValues.Source = newSource?.TempMiscValuesOfEmployees.Where( m => m.Misc.MiscTitle.IsPayment );
 			CvsOfEmployeeMiscDebtValues.Source = newSource?.TempMiscValuesOfEmployees.Where( m => !m.Misc.MiscTitle.IsPayment );

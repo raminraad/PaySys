@@ -37,16 +37,16 @@ namespace PaySys.UI.UC
 
 		public event RoutedEventHandler FormCurrentStateChanged
 		{
-			add { AddHandler(FormCurrentStateChangedEvent, value); }
-			remove { RemoveHandler(FormCurrentStateChangedEvent, value); }
+			add => AddHandler(FormCurrentStateChangedEvent, value);
+		    remove => RemoveHandler(FormCurrentStateChangedEvent, value);
 		}
 
 		public static readonly RoutedEvent PreviewFormCurrentStateChangedEvent = EventManager.RegisterRoutedEvent("PreviewFormCurrentStateChanged", RoutingStrategy.Tunnel, typeof(RoutedEventHandler), typeof(UcFormStateLabel));
 
 		public event RoutedEventHandler PreviewFormCurrentStateChanged
 		{
-			add { AddHandler(FormCurrentStateChangedEvent, value); }
-			remove { RemoveHandler(FormCurrentStateChangedEvent, value); }
+			add => AddHandler(FormCurrentStateChangedEvent, value);
+		    remove => RemoveHandler(FormCurrentStateChangedEvent, value);
 		}
 
 
@@ -118,11 +118,11 @@ namespace PaySys.UI.UC
 				OnPropertyChanged(nameof(ReadOnlyOfAddFields));
 				_currentState = value;
 
-				var previewStateChangedArgs = new FormCurrentStateChangedEventArgs(PreviewFormCurrentStateChangedEvent,this){FormCurrentState = value,FormType = this.FormType};
+				var previewStateChangedArgs = new FormCurrentStateChangedEventArgs(PreviewFormCurrentStateChangedEvent,this){FormCurrentState = value,FormType = FormType};
 				RaiseEvent(previewStateChangedArgs);
 				if (!previewStateChangedArgs.Handled)
 				{
-					var stateChangedArgs = new FormCurrentStateChangedEventArgs(FormCurrentStateChangedEvent,this){FormCurrentState = value,FormType = this.FormType};
+					var stateChangedArgs = new FormCurrentStateChangedEventArgs(FormCurrentStateChangedEvent,this){FormCurrentState = value,FormType = FormType};
 					RaiseEvent(stateChangedArgs);
 				}
 			}

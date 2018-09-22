@@ -38,7 +38,9 @@ namespace PaySys.UI.UC
 
 		public static readonly DependencyProperty ContractFieldsAllProperty = DependencyProperty.Register( "ContractFieldsAll", typeof(List<ContractField>), typeof(UcContractFieldTitlesMng), new PropertyMetadata( default(List<ContractField>) ) );
 
-		public List<ContractField> ContractFieldsAll { get { return (List<ContractField>) GetValue( ContractFieldsAllProperty ); } set { SetValue( ContractFieldsAllProperty, value ); } }
+		public List<ContractField> ContractFieldsAll { get => (List<ContractField>) GetValue( ContractFieldsAllProperty );
+		    set => SetValue( ContractFieldsAllProperty, value );
+		}
 
 		#endregion
 

@@ -35,8 +35,8 @@ namespace PaySys.UI.UC
 	    public bool ReadOnlyOfEditFields
 
 	    {
-		    get { return (bool)GetValue(ReadOnlyOfEditFieldsProperty); }
-		    set { SetValue(ReadOnlyOfEditFieldsProperty, value); }
+		    get => (bool)GetValue(ReadOnlyOfEditFieldsProperty);
+	        set => SetValue(ReadOnlyOfEditFieldsProperty, value);
 	    }
 
 		public ContractMaster CurrentContractMaster

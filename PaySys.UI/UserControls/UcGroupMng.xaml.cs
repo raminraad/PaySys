@@ -144,7 +144,7 @@ namespace PaySys.UI.UC
             }
             #endregion
 
-            var currentSubGroup = (ListViewSubGroups.SelectedItem as SubGroup);
+            var currentSubGroup = ListViewSubGroups.SelectedItem as SubGroup;
             #region HandselFormula
             Context.HandselFormulas.AddOrUpdate(currentSubGroup?.CurrentOrNewHandselFormula);
             #endregion

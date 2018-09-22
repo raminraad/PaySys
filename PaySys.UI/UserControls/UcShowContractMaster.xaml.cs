@@ -23,14 +23,14 @@ namespace PaySys.UI.UC
 
 		public bool ReadOnlyOfAddFields
 		{
-			get { return (bool) GetValue( ReadOnlyOfAddFieldsProperty ); }
-			set { SetValue( ReadOnlyOfAddFieldsProperty, value ); }
+			get => (bool) GetValue( ReadOnlyOfAddFieldsProperty );
+		    set => SetValue( ReadOnlyOfAddFieldsProperty, value );
 		}
 
 		public bool ReadOnlyOfEditFields
 		{
-			get { return (bool) GetValue( ReadOnlyOfEditFieldsProperty ); }
-			set { SetValue( ReadOnlyOfEditFieldsProperty, value ); }
+			get => (bool) GetValue( ReadOnlyOfEditFieldsProperty );
+		    set => SetValue( ReadOnlyOfEditFieldsProperty, value );
 		}
 		public ObservableCollection<MainGroup> MainGroups
 		{

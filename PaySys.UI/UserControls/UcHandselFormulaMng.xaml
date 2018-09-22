@@ -52,30 +52,32 @@
                    Grid.Column="0"
                    Text="{x:Static fa:FieldicHandselFormula.TaxRate}"
                    Style="{StaticResource StyleOfPassageTextBlock}" />
+        
+
         <TextBox x:Name="TextBoxDaysCount"
                  Grid.Row="1"
                  Grid.Column="1"
                  IsReadOnly="{Binding ElementName=SmpUcHandselFormulaMng,Path=ReadOnlyOfFields}"
-                 Text="{Binding DaysCount}" />
+                 Text="{Binding DaysCount,UpdateSourceTrigger=PropertyChanged}" />
         <TextBox x:Name="TextBoxMin"
                  Grid.Row="2"
                  Grid.Column="1"
                  IsReadOnly="{Binding ElementName=SmpUcHandselFormulaMng,Path=ReadOnlyOfFields}"
-                 Text="{Binding Min}" />
+                 Text="{Binding Min,UpdateSourceTrigger=PropertyChanged}" />
         <TextBox x:Name="TextBoxMax"
                  Grid.Row="3"
                  Grid.Column="1"
                  IsReadOnly="{Binding ElementName=SmpUcHandselFormulaMng,Path=ReadOnlyOfFields}"
-                 Text="{Binding Max}" />
+                 Text="{Binding Max,UpdateSourceTrigger=PropertyChanged}" />
         <TextBox x:Name="TextBoxTaxFreeValue"
                  Grid.Row="4"
                  Grid.Column="1"
                  IsReadOnly="{Binding ElementName=SmpUcHandselFormulaMng,Path=ReadOnlyOfFields}"
-                 Text="{Binding TaxFreeValue}" />
+                 Text="{Binding TaxFreeValue,UpdateSourceTrigger=PropertyChanged}" />
         <TextBox x:Name="TextBoxTaxRate"
                  Grid.Row="5"
                  Grid.Column="1"
                  IsReadOnly="{Binding ElementName=SmpUcHandselFormulaMng,Path=ReadOnlyOfFields}"
-                 Text="{Binding TaxRate}" />
+                 Text="{Binding TaxRate,UpdateSourceTrigger=PropertyChanged}" />
     </Grid>
 </UserControl>

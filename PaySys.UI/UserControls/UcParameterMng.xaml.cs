@@ -35,7 +35,9 @@ namespace PaySys.UI.UC
 
 		public static readonly DependencyProperty ReadOnlyOfFieldsProperty = DependencyProperty.Register( "ReadOnlyOfFields", typeof(bool), typeof(UcParameterMng), new PropertyMetadata( default(bool) ) );
 
-		public bool ReadOnlyOfFields { get { return (bool) GetValue( ReadOnlyOfFieldsProperty ); } set { SetValue( ReadOnlyOfFieldsProperty, value ); } }
+		public bool ReadOnlyOfFields { get => (bool) GetValue( ReadOnlyOfFieldsProperty );
+		    set => SetValue( ReadOnlyOfFieldsProperty, value );
+		}
 
 		public static readonly DependencyProperty CurrentSubGroupProperty = DependencyProperty.Register( "CurrentSubGroup", typeof(SubGroup), typeof(UcParameterMng), new PropertyMetadata( default(SubGroup) ) );
 

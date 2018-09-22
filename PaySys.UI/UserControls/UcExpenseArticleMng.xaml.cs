@@ -26,7 +26,7 @@ namespace PaySys.UI.UC
 	/// </summary>
 	public partial class UcExpenseArticleMng : UserControl
 	{
-		PaySysContext _context = new PaySysContext();
+	    private PaySysContext _context = new PaySysContext();
 
 		public UcExpenseArticleMng()
 		{

@@ -38,8 +38,8 @@ namespace PaySys.UI.UC
 
         public bool ReadOnlyOfFields
 	    {
-	        get { return (bool) GetValue(ReadOnlyOfFieldsProperty); }
-	        set { SetValue(ReadOnlyOfFieldsProperty, value); }
-	    }
+	        get => (bool) GetValue(ReadOnlyOfFieldsProperty);
+            set => SetValue(ReadOnlyOfFieldsProperty, value);
+        }
 	}
 }

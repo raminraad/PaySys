@@ -29,24 +29,24 @@ namespace PaySys.UI.UC
 
 		public string TextOfLabel
 		{
-			get { return (string) GetValue( TextOfLabelProperty ); }
-			set { SetValue( TextOfLabelProperty, value ); }
+			get => (string) GetValue( TextOfLabelProperty );
+		    set => SetValue( TextOfLabelProperty, value );
 		}
 
 		public static readonly DependencyProperty TextOfTextBoxProperty = DependencyProperty.Register( "TextOfTextBox", typeof(string), typeof(UcTextPair), new PropertyMetadata( default(string) ) );
 
 		public string TextOfTextBox
 		{
-			get { return (string) GetValue( TextOfTextBoxProperty ); }
-			set { SetValue( TextOfTextBoxProperty, value ); }
+			get => (string) GetValue( TextOfTextBoxProperty );
+		    set => SetValue( TextOfTextBoxProperty, value );
 		}
 
 		public static readonly DependencyProperty ReadOnlyProperty = DependencyProperty.Register( "ReadOnly", typeof(bool), typeof(UcTextPair), new PropertyMetadata( default(bool) ) );
 
 		public bool ReadOnly
 		{
-			get { return (bool) GetValue( ReadOnlyProperty ); }
-			set { SetValue( ReadOnlyProperty, value ); }
+			get => (bool) GetValue( ReadOnlyProperty );
+		    set => SetValue( ReadOnlyProperty, value );
 		}
 
 		public void UpdateSource()
@@ -57,7 +57,7 @@ namespace PaySys.UI.UC
 		public void UpdateTarget()
 		{
 			TextBoxData.GetBindingExpression( TextBox.TextProperty )?.UpdateTarget();
-			LabelData.GetBindingExpression( Label.ContentProperty )?.UpdateTarget();
+			LabelData.GetBindingExpression( ContentProperty )?.UpdateTarget();
 		}
 	}
 }

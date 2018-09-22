@@ -72,7 +72,7 @@
 			        Content="{x:Static fa:Labels.Reload}"
 			        Click="BtnRefresh_OnClick"/>
 			<Separator/>
-			<Button x:Name="BtnSaveCommand"></Button>
+			<Button x:Name="BtnSaveCommand" />
 		</ToolBar>
 		<ListView x:Name="ListViewCities"
 		          ItemsSource="{Binding ElementName=SmpUcCityMng,Path=Cities}"

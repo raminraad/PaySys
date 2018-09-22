@@ -49,7 +49,9 @@ namespace PaySys.UI.UC
 
 		public static readonly DependencyProperty ReadOnlyOfFieldsProperty = DependencyProperty.Register( "ReadOnlyOfFields", typeof(bool), typeof(UcMiscMng), new PropertyMetadata( default(bool) ) );
 
-		public bool ReadOnlyOfFields { get { return (bool) GetValue( ReadOnlyOfFieldsProperty ); } set { SetValue( ReadOnlyOfFieldsProperty, value ); } }
+		public bool ReadOnlyOfFields { get => (bool) GetValue( ReadOnlyOfFieldsProperty );
+		    set => SetValue( ReadOnlyOfFieldsProperty, value );
+		}
 
 	    #region Properties
 
@@ -116,9 +118,9 @@ namespace PaySys.UI.UC
 
 			var newItemIsPayment = (target as Control).Name.Equals("ListViewMiscPayment");
 			if(newItemIsPayment)
-				e.CanExecute = !String.IsNullOrEmpty(SmpUcSuggesterTextBoxMiscTitlePayments.SelectedValue) && !CurrentSubGroup.MiscsOfTypePayment.Select(misc => misc.MiscTitle.Title).Contains(SmpUcSuggesterTextBoxMiscTitlePayments.SelectedValue);
+				e.CanExecute = !string.IsNullOrEmpty(SmpUcSuggesterTextBoxMiscTitlePayments.SelectedValue) && !CurrentSubGroup.MiscsOfTypePayment.Select(misc => misc.MiscTitle.Title).Contains(SmpUcSuggesterTextBoxMiscTitlePayments.SelectedValue);
 			else
-				e.CanExecute = !String.IsNullOrEmpty(SmpUcSuggesterTextBoxMiscTitleDebts.SelectedValue) && !CurrentSubGroup.MiscsOfTypeDebt.Select(misc => misc.MiscTitle.Title).Contains(SmpUcSuggesterTextBoxMiscTitleDebts.SelectedValue);
+				e.CanExecute = !string.IsNullOrEmpty(SmpUcSuggesterTextBoxMiscTitleDebts.SelectedValue) && !CurrentSubGroup.MiscsOfTypeDebt.Select(misc => misc.MiscTitle.Title).Contains(SmpUcSuggesterTextBoxMiscTitleDebts.SelectedValue);
 			e.Handled = true;
 		}
 

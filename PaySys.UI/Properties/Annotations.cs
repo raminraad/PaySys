@@ -493,7 +493,7 @@ namespace PaySys.UI.Annotations
   {
     public PathReferenceAttribute() { }
 
-    public PathReferenceAttribute([NotNull, PathReference] string basePath)
+    public PathReferenceAttribute([NotNull][PathReference] string basePath)
     {
       BasePath = basePath;
     }

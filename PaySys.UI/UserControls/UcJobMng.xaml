@@ -67,7 +67,7 @@
 					IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}"
 					Content="{x:Static fa:Labels.Reload}" />
 			<Separator />
-			<Button x:Name="BtnSaveCommand"></Button>
+			<Button x:Name="BtnSaveCommand" />
 		</ToolBar>
 		<ListView x:Name="ListViewJobs"
 				  ItemsSource="{Binding ElementName=SmpUcJobMng,Path=Jobs}"

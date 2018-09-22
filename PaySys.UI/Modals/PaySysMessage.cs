@@ -14,13 +14,13 @@ namespace PaySys.UI.Modals
 
 		public static MessageBoxResult GetDeleteItemConfirmation()
 		{
-			String strmsg = ResourceAccessor.Messages.GetString("DeleteConfirmationOfItem", CultureInfo.CurrentCulture);
+			var strmsg = ResourceAccessor.Messages.GetString("DeleteConfirmationOfItem", CultureInfo.CurrentCulture);
 			return ShowDefaultYesNoMessage(strmsg);
 		}
 
 		public static MessageBoxResult GetDeleteSubGroupMiscConfirmation(string miscTitle,string miscsListTitle)
 		{
-			String strmsg = ResourceAccessor.Messages.GetString("DeleteConfirmationOfMisc", CultureInfo.CurrentCulture);
+			var strmsg = ResourceAccessor.Messages.GetString("DeleteConfirmationOfMisc", CultureInfo.CurrentCulture);
 			strmsg = strmsg.Replace("XXX", miscTitle).Replace("YYY", miscsListTitle);
 			return ShowDefaultYesNoMessage(strmsg);
 		}

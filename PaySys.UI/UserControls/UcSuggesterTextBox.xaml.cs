@@ -33,7 +33,7 @@ namespace PaySys.UI.UC
 			autoTextBox.TextChanged += autoTextBox_TextChanged;
 			autoTextBox.PreviewKeyDown += autoTextBox_PreviewKeyDown;
 			suggestionListBox.SelectionChanged += suggestionListBox_SelectionChanged;
-			this.PreviewKeyUp += Uc_PreviewKeyUp;
+			PreviewKeyUp += Uc_PreviewKeyUp;
 		}
 
 
@@ -47,14 +47,8 @@ namespace PaySys.UI.UC
 		/// <value>The items source.</value>
 		public IEnumerable<string> ItemsSource
 		{
-			get
-			{
-				return (IEnumerable<string>) GetValue(ItemsSourceProperty);
-			}
-			set
-			{
-				SetValue(ItemsSourceProperty, value);
-			}
+			get => (IEnumerable<string>) GetValue(ItemsSourceProperty);
+		    set => SetValue(ItemsSourceProperty, value);
 		}
 
 		// Using a DependencyProperty as the backing store for ItemsSource.  
@@ -67,14 +61,8 @@ namespace PaySys.UI.UC
 		/// <value>The selected value.</value>
 		public string SelectedValue
 		{
-			get
-			{
-				return (string) GetValue(SelectedValueProperty);
-			}
-			set
-			{
-				SetValue(SelectedValueProperty, value);
-			}
+			get => (string) GetValue(SelectedValueProperty);
+		    set => SetValue(SelectedValueProperty, value);
 		}
 
 		// Using a DependencyProperty as the backing store for SelectedValue.  
@@ -98,7 +86,7 @@ namespace PaySys.UI.UC
 			{
 				// Commit the selection
 				suggestionListBox.Visibility = Visibility.Collapsed;
-				e.Handled = (e.Key == Key.Enter);
+				e.Handled = e.Key == Key.Enter;
 			}
 		}
 
@@ -107,14 +95,14 @@ namespace PaySys.UI.UC
 		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The instance containing the event data.</param>
-		void autoTextBox_TextChanged(object sender, TextChangedEventArgs e)
+		private void autoTextBox_TextChanged(object sender, TextChangedEventArgs e)
 		{
 			// Only autocomplete when there is text
 			if(autoTextBox.Text.Length > 0)
 			{
 				// Use Linq to Query ItemsSource for resultdata
-				string condition = string.Format("{0}%", autoTextBox.Text);
-				IEnumerable<string> results = ItemsSource?.Where(s => s.ToLower().Contains(autoTextBox.Text.Trim().ToLower()));
+				var condition = string.Format("{0}%", autoTextBox.Text);
+				var results = ItemsSource?.Where(s => s.ToLower().Contains(autoTextBox.Text.Trim().ToLower()));
 				if( results == null )
 					return;
 
@@ -143,7 +131,7 @@ namespace PaySys.UI.UC
 		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The instance containing the event data.</param>
-		void autoTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+		private void autoTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
 		{
 			if(e.Key == Key.Down)
 			{
@@ -166,14 +154,13 @@ namespace PaySys.UI.UC
 			}
 			else if(e.Key == Key.Up)
 			{
-				if(suggestionListBox.Visibility == Visibility.Visible && suggestionListBox.SelectedIndex > 0)
-				{
-					suggestionListBox.SelectedIndex = suggestionListBox.SelectedIndex - 1;
-				}
+				if(suggestionListBox.Visibility == Visibility.Visible && suggestionListBox.SelectedIndex > 0) suggestionListBox.SelectedIndex = suggestionListBox.SelectedIndex - 1;
 			}
 			/*if(e.Key!=Key.Back &&  suggestionListBox.Items.Count == 0 && !string.IsNullOrEmpty(autoTextBox.Text))
 				e.Handled = true;*/ else if(string.IsNullOrEmpty(autoTextBox.Text) && e.Key == Key.Space)
-				e.Handled = true;
+			{
+			    e.Handled = true;
+			}
 		}
 
 		/// <summary>
@@ -186,11 +173,8 @@ namespace PaySys.UI.UC
 			if(suggestionListBox.ItemsSource != null)
 			{
 				autoTextBox.TextChanged -= autoTextBox_TextChanged;
-				if(suggestionListBox.SelectedIndex != -1)
-				{
-					autoTextBox.Text = suggestionListBox.SelectedItem.ToString();
-				}
-				autoTextBox.TextChanged += autoTextBox_TextChanged;
+				if(suggestionListBox.SelectedIndex != -1) autoTextBox.Text = suggestionListBox.SelectedItem.ToString();
+			    autoTextBox.TextChanged += autoTextBox_TextChanged;
 			}
 		}
 

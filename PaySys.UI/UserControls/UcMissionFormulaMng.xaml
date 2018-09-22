@@ -95,12 +95,12 @@
             <TextBlock Text="{x:Static fa:Labels.MissionFormulaInvolvedContractFields}"
                        Style="{StaticResource StyleOfListTitleTextBlock}" />
             <ListView Grid.Row="1" x:Name="ListViewMissionFormulaInvolvedContractFields"
-                      MaxWidth="400"
+                      MaxWidth="600"
                       ItemsSource="{Binding ElementName=SmpUcMissionFormulaMng,Path=CurrentSubGroup.CurrentOrNewMissionFormula.TempMissionFormulaInvolvedContractFieldsLeftJoined,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="{x:Static fa:Labels.Title}"
-                                        Width="Auto"
+                                        Width="{StaticResource WidthOfDataColumnOfText}"
                                         DisplayMemberBinding="{Binding Key.Title}" />
                         <GridViewColumn Header="{x:Static fa:Labels.IsInvolved}"
                                         Width="Auto">

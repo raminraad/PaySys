@@ -9,11 +9,11 @@ namespace PaySys.UI
 	{
 		public static DialogResult Show(string title, string promptText, ref string value)
 		{
-			Form form = new Form();
-			Label label = new Label();
-			TextBox textBox = new TextBox();
-			Button buttonOk = new Button();
-			Button buttonCancel = new Button();
+			var form = new Form();
+			var label = new Label();
+			var textBox = new TextBox();
+			var buttonOk = new Button();
+			var buttonCancel = new Button();
 
 			form.Text = title;
 			form.RightToLeftLayout = true;
@@ -46,7 +46,7 @@ namespace PaySys.UI
 			form.AcceptButton = buttonOk;
 			form.CancelButton = buttonCancel;
 
-			DialogResult dialogResult = form.ShowDialog();
+			var dialogResult = form.ShowDialog();
 			value = textBox.Text;
 			return dialogResult;
 		}

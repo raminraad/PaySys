@@ -47,7 +47,7 @@
                                     Width="{StaticResource WidthOfDataColumnOfPrice}">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBox Text="{Binding Path=TempValueTo,UpdateSourceTrigger=LostFocus}"
+                                <TextBox Text="{Binding Path=TempValueTo,UpdateSourceTrigger=PropertyChanged}"
                                          IsReadOnly="{Binding ElementName=SmpUcTaxTableMng,Path=ReadOnlyOfFields}"
                                          Width="{StaticResource WidthOfDataFieldOfPrice}" />
                             </DataTemplate>

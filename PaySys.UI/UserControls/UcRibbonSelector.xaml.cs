@@ -155,7 +155,7 @@ namespace PaySys.UI.UC
 			}
 			var binding = new Binding( TitleDisplayMember );
 			binding.Source = DataContext;
-			LabelTitle.SetBinding( System.Windows.Controls.Label.ContentProperty, binding );
+			LabelTitle.SetBinding( ContentProperty, binding );
 		}
 
 		private void ListViewHolder_OnSelectionChanged( object sender, SelectionChangedEventArgs e )

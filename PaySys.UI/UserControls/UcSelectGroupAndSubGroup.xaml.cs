@@ -79,14 +79,14 @@ namespace PaySys.UI.UC
 		{
 			var newEventArgs = new RoutedEventArgs(SelectedSubGroupChangedEvent, sender);
 			RaiseEvent(newEventArgs);
-			OnPropertyChanged(nameof(this.SelectedSubGroup));
+			OnPropertyChanged(nameof(SelectedSubGroup));
 		}
 
 		private void ComboBoxMainGroup_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			var newEventArgs = new RoutedEventArgs(SelectedMainGroupChangedEvent, sender);
 			RaiseEvent(newEventArgs);
-			OnPropertyChanged(nameof(this.SelectedMainGroup));
+			OnPropertyChanged(nameof(SelectedMainGroup));
 		}
 
 		private void ComboBoxSubGroup_OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
