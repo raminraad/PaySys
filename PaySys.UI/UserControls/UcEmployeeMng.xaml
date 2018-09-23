@@ -84,7 +84,7 @@
 			<DataGrid.Columns>
 				<DataGridTextColumn
 					Header="{x:Static fa:FieldicEmployee.EmployeeId}"
-					Binding="{Binding EmployeeId}"
+					Binding="{Binding Id}"
 					Visibility="Hidden" />
 				<DataGridTextColumn
 					Header="{x:Static fa:FieldicEmployee.PersonnelCode}"

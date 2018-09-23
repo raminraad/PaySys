@@ -31,21 +31,21 @@ namespace PaySys.UI.UC
 		}
 		public int SelectedMainGroupId
 		{
-			get => (ComboBoxMainGroup.SelectedItem as MainGroup).MainGroupId;
+			get => (ComboBoxMainGroup.SelectedItem as MainGroup).Id;
 			set
 			{
 				var mainGroups = ComboBoxMainGroup.ItemsSource as IEnumerable<MainGroup>;
-				ComboBoxMainGroup.SelectedItem = mainGroups.FirstOrDefault( mg => mg.MainGroupId.Equals( value ) ) ?? mainGroups.FirstOrDefault();
+				ComboBoxMainGroup.SelectedItem = mainGroups.FirstOrDefault( mg => mg.Id.Equals( value ) ) ?? mainGroups.FirstOrDefault();
 			}
 		}
 
 		public int SelectedSubGroupId
 		{
-			get => (ComboBoxSubGroup.SelectedItem as SubGroup).SubGroupId;
+			get => (ComboBoxSubGroup.SelectedItem as SubGroup).Id;
 			set
 			{
 				var SubGroups = ComboBoxSubGroup.ItemsSource as IEnumerable<SubGroup>;
-				ComboBoxSubGroup.SelectedItem = SubGroups.FirstOrDefault( mg => mg.SubGroupId.Equals( value ) ) ?? SubGroups.FirstOrDefault();
+				ComboBoxSubGroup.SelectedItem = SubGroups.FirstOrDefault( mg => mg.Id.Equals( value ) ) ?? SubGroups.FirstOrDefault();
 			}
 		}
 

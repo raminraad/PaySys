@@ -56,13 +56,13 @@ namespace PaySys.UI.UC
 
 	    private void BtnRefresh_OnClick(object sender, RoutedEventArgs e)
 	    {
-		    var selectedId = (ListViewJobs.SelectedItem as Job)?.JobId;
+		    var selectedId = (ListViewJobs.SelectedItem as Job)?.Id;
 		    Context = new PaySysContext();
 		    Context.Jobs.Load();
 		    Jobs = Context.Jobs.Local;
 		    ListViewJobs.GetBindingExpression(ItemsControl.ItemsSourceProperty).UpdateTarget();
 		    if (selectedId.HasValue)
-			    ListViewJobs.SelectedItem = Jobs.FirstOrDefault(Job => Job.JobId == selectedId.Value);
+			    ListViewJobs.SelectedItem = Jobs.FirstOrDefault(Job => Job.Id == selectedId.Value);
 	    }
 
 	    private void BtnSave_OnClick(object sender, RoutedEventArgs e)

@@ -103,7 +103,7 @@ namespace PaySys.UI.UC
 				MiscTitle = newMiscTitle,
 				Year = PaySysSetting.CurrentYear
 			});
-			if(newMiscTitle.MiscTitleId == 0)
+			if(newMiscTitle.Id == 0)
 				MiscTitlesAll.Add(newMiscTitle);
 			
 			if(newItemIsPayment)

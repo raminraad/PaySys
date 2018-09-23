@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace PaySys.ModelAndBindLib.Model
 {
-    public abstract class Validator : ValidationErrorContainer
+    public class Validator : ValidationErrorContainer
     {
-        public abstract void ValidateProperty(string propertyName);
+        public virtual void ValidateProperty(string propertyName)
+        {
+        }
     }
 }

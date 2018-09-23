@@ -11,6 +11,9 @@ namespace PaySys.ModelAndBindLib.Model
 {
     public abstract class ModelBase:Validator,INotifyPropertyChanged
     {
+        public int Id { get; set; }
+
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]

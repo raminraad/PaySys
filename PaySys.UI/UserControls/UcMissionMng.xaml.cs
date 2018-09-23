@@ -33,7 +33,7 @@ namespace PaySys.UI.UC
 
 		private void RefreshListView()
 		{
-			var selectedId = (ListViewMissions.SelectedItem as Mission)?.MissionId;
+			var selectedId = (ListViewMissions.SelectedItem as Mission)?.Id;
 			Context = new PaySysContext();
 			Context.Missions.Load();
 			MissionsAll = Context.Missions.Local;
@@ -41,7 +41,7 @@ namespace PaySys.UI.UC
 			GetBindingExpression( DataContextProperty )?.UpdateTarget();
 
 			if(selectedId.HasValue)
-				ListViewMissions.SelectedItem = MissionsAll.FirstOrDefault(m => m.MissionId == selectedId.Value);
+				ListViewMissions.SelectedItem = MissionsAll.FirstOrDefault(m => m.Id == selectedId.Value);
 		}
 
 		private void Add_CanExecute( object sender, CanExecuteRoutedEventArgs e )

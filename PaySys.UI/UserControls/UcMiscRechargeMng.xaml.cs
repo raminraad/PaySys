@@ -30,8 +30,8 @@ namespace PaySys.UI.UC
 		private void Reload( object sender, ExecutedRoutedEventArgs e )
 		{
 			SmpUcSelectGroupAndSubGroup.SelectedSubGroupChanged -= SmpUcSelectGroupAndSubGroup_OnSelectedSubGroupChanged;
-			var currentMgId = SmpUcSelectGroupAndSubGroup.SelectedMainGroup.MainGroupId;
-			var currentSgId = SmpUcSelectGroupAndSubGroup.SelectedSubGroup.SubGroupId;
+			var currentMgId = SmpUcSelectGroupAndSubGroup.SelectedMainGroup.Id;
+			var currentSgId = SmpUcSelectGroupAndSubGroup.SelectedSubGroup.Id;
 			Context = new PaySysContext();
 			Context.MainGroups.Load();
 			SmpUcSelectGroupAndSubGroup.DataContext = Context.MainGroups.Local;
@@ -50,9 +50,9 @@ namespace PaySys.UI.UC
 			{
 				foreach( var rec in SmpUcSelectGroupAndSubGroup.SelectedSubGroup.TempMiscRechargesOfEmployees )
 				{
-					if( rec.MiscRechargeId == 0 && rec.Value != 0 )
+					if( rec.Id == 0 && rec.Value != 0 )
 						Context.MiscRecharges.Add( rec );
-					if( rec.MiscRechargeId != 0 && rec.Value == 0 )
+					if( rec.Id != 0 && rec.Value == 0 )
 						Context.MiscRecharges.Remove( rec );
 				}
 
@@ -96,7 +96,7 @@ namespace PaySys.UI.UC
 					                Employee = emp,
 					                Month = PaySysSetting.CurrentMonth,
 					                Year = m.Year,
-					                MiscRechargeId = 0
+					                Id = 0
 				                } )
 				                select subRec
 			} );

@@ -58,13 +58,13 @@ namespace PaySys.UI.UC.Tab
 
 		private void BtnRefresh_OnClick(object sender, RoutedEventArgs e)
 		{
-			var selectedId = (ListViewCities.SelectedItem as City)?.CityId;
+			var selectedId = (ListViewCities.SelectedItem as City)?.Id;
 			Context = new PaySysContext();
 			Context.Cities.Load();
 			Cities = Context.Cities.Local;
 			ListViewCities.GetBindingExpression(ItemsControl.ItemsSourceProperty).UpdateTarget();
 			if(selectedId.HasValue)
-				ListViewCities.SelectedItem = Cities.FirstOrDefault(city => city.CityId == selectedId.Value);
+				ListViewCities.SelectedItem = Cities.FirstOrDefault(city => city.Id == selectedId.Value);
 		}
 
 		private void BtnSave_OnClick(object sender, RoutedEventArgs e)

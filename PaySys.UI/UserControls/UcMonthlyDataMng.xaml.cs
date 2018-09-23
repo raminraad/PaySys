@@ -33,8 +33,8 @@ namespace PaySys.UI.UC
 		private void Reload( object sender, ExecutedRoutedEventArgs e )
 		{
 			SmpUcSelectGroupAndSubGroup.SelectedSubGroupChanged -= SmpUcSelectGroupAndSubGroup_OnSelectedSubGroupChanged;
-			var currentMgId = SmpUcSelectGroupAndSubGroup.SelectedMainGroup.MainGroupId;
-			var currentSgId = SmpUcSelectGroupAndSubGroup.SelectedSubGroup.SubGroupId;
+			var currentMgId = SmpUcSelectGroupAndSubGroup.SelectedMainGroup.Id;
+			var currentSgId = SmpUcSelectGroupAndSubGroup.SelectedSubGroup.Id;
 			Context = new PaySysContext();
 			Context.MainGroups.Load();
 			SmpUcSelectGroupAndSubGroup.DataContext = Context.MainGroups.Local;
@@ -53,7 +53,7 @@ namespace PaySys.UI.UC
 			{
 				foreach( var v in SmpUcSelectGroupAndSubGroup.SelectedSubGroup.TempVariableValuesOfEmployees )
 				{
-					if( v.VariableValueForEmployeeId == 0 )
+					if( v.Id == 0 )
 						switch( v.Variable.ValueType )
 						{
 							case ValueType.Absolute:
@@ -70,7 +70,7 @@ namespace PaySys.UI.UC
 									Context.VariableValueForEmployees.Add( v );
 								break;
 						}
-					else if( v.VariableValueForEmployeeId != 0 )
+					else if( v.Id != 0 )
 						switch( v.Variable.ValueType )
 						{
 							case ValueType.Absolute:
@@ -91,9 +91,9 @@ namespace PaySys.UI.UC
 
 				foreach( var m in SmpUcSelectGroupAndSubGroup.SelectedSubGroup.TempMiscValuesOfEmployees )
 				{
-					if( m.MiscValueForEmployeeId == 0 && (m.Value != 0 ||m.ValueSubtraction != 0) )
+					if( m.Id == 0 && (m.Value != 0 ||m.ValueSubtraction != 0) )
 						Context.MiscValueForEmployees.Add( m );
-					if( m.MiscValueForEmployeeId != 0 && (m.Value != 0 ||m.ValueSubtraction != 0) )
+					if( m.Id != 0 && (m.Value != 0 ||m.ValueSubtraction != 0) )
 						Context.MiscValueForEmployees.Remove( m );
 				}
 
@@ -145,7 +145,7 @@ namespace PaySys.UI.UC
 							                Employee = emp,
 							                Month = PaySysSetting.CurrentMonth,
 							                Year = m.Year,
-							                MiscRechargeId = 0
+							                Id = 0
 					                } )
 					                select subRec
 			} );
@@ -179,7 +179,7 @@ namespace PaySys.UI.UC
 							                 Employee = emp,
 							                 Month = PaySysSetting.CurrentMonth,
 							                 Year = PaySysSetting.CurrentYear,
-							                 VariableValueForEmployeeId = 0
+							                 Id = 0
 					                 } )
 					                 select subRec
 			} );
@@ -196,7 +196,7 @@ namespace PaySys.UI.UC
 							             Employee = emp,
 							             Month = PaySysSetting.CurrentMonth,
 							             Year = PaySysSetting.CurrentYear,
-							             MiscValueForEmployeeId = 0
+							             Id = 0
 					             } )
 					             select subVar
 			} );

@@ -37,9 +37,9 @@ namespace PaySys.UI.UC
 		{
 			set
 			{
-				var selectedId = SelectedEmployee?.EmployeeId;
+				var selectedId = SelectedEmployee?.Id;
 				DataContext = value;
-				SelectedEmployee = EmployeesAll.FirstOrDefault(emp => emp.EmployeeId == selectedId);
+				SelectedEmployee = EmployeesAll.FirstOrDefault(emp => emp.Id == selectedId);
 			}
 			get => DataContext as ObservableCollection<Employee>;
 		}
