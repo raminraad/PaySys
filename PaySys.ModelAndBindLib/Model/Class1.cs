@@ -1,5 +1,6 @@
 ﻿#region
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -256,7 +257,7 @@ namespace PaySys.ModelAndBindLib.Model
     }
 
     /// <summary> #07 مقادیر مؤلفه های محاسباتی زیرگروه در سال و ماه </summary>
-    public class Parameter
+    public class Parameter:ValidationErrorContainer, INotifyDataErrorInfo
     {
         private Dictionary<ContractField, bool> _tempParameterInvolvedContractFieldsLeftJoined=null;
         private Dictionary<Misc, bool> _tempParameterInvolvedMiscPaymentsLeftJoined=null;
@@ -314,6 +315,16 @@ namespace PaySys.ModelAndBindLib.Model
 
         [NotMapped]
         public string ValueAndValueType => $"{Value:N0} {ValueType.GetDescription()}";
+
+        #region INotifyDataErrorInfo members
+        public IEnumerable GetErrors(string propertyName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool HasErrors { get; }
+        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
+        #endregion
     }
 
     /// <summary> #08 فیلدهای احکام دخیل در محاسبات مؤلفه ها </summary>
