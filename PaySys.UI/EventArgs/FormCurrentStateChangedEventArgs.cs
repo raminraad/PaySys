@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using PaySys.ModelAndBindLib.Model;
+using PaySys.ModelAndBindLib.Entities;
 
 namespace PaySys.UI.UC
 {

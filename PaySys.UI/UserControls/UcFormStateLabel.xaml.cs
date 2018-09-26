@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using PaySys.Globalization;
-using PaySys.ModelAndBindLib.Model;
+using PaySys.ModelAndBindLib.Entities;
 using PaySys.UI.Annotations;
 
 namespace PaySys.UI.UC

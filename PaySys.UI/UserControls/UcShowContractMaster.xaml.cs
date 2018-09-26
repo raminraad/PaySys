@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using Bogus;
-using PaySys.ModelAndBindLib.Model;
+using PaySys.ModelAndBindLib.Entities;
 using PaySys.UI.ExtensionMethods;
 
 namespace PaySys.UI.UC

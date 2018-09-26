@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 using PaySys.CalcLib.Delegates;
 using PaySys.Globalization;
 using PaySys.ModelAndBindLib;
-using PaySys.ModelAndBindLib.Model;
+using PaySys.ModelAndBindLib.Entities;
 using MessageBox = System.Windows.MessageBox;
 using UserControl = System.Windows.Controls.UserControl;
 

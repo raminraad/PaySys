@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using PaySys.ModelAndBindLib.Model;
+using PaySys.ModelAndBindLib.Entities;
 
 namespace PaySys.UI.UC
 {

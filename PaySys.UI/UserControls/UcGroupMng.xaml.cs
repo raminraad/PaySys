@@ -20,7 +20,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using PaySys.Globalization;
 using PaySys.ModelAndBindLib.Engine;
-using PaySys.ModelAndBindLib.Model;
+using PaySys.ModelAndBindLib.Entities;
 using PaySys.UI.ExtensionMethods;
 using PaySys.UI.UC;
 using Binding = System.Windows.Data.Binding;

@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace PaySys.ModelAndBindLib.Model
+namespace PaySys.ModelAndBindLib.Entities
 {
-    public class ValidationErrorContainer : IValidationErrorContainer
+    public class ValidationErrorContainer : IValidationErrorContainer,INotifyDataErrorInfo
     {
         protected string lastPropertyValidated = null;
 
@@ -85,5 +85,51 @@ namespace PaySys.ModelAndBindLib.Model
         }
 
         protected Dictionary<string, List<ValidationError>> errors = new Dictionary<string, List<ValidationError>>();
+
+        public virtual ValidationError CurrentValidationError
+        {
+            get
+            {
+                if (ErrorCount == 0)
+                    return null;
+
+                // Get the error list associated with the last property to be validated.
+                Debug.Assert(!String.IsNullOrEmpty(lastPropertyValidated));
+                List<ValidationError>.Enumerator p = errors[lastPropertyValidated].GetEnumerator();
+
+                // Decide which error needs to be returned.
+                ValidationError error = null;
+                while (p.MoveNext())
+                {
+                    error = p.Current;
+                    if (error.ID == "System.Windows.Controls.ExceptionValidationRule")
+                        break;
+                }
+                return error;
+            }
+        }
+
+        #region INotifyErrorDataInfo
+
+        // INotifyErrorDataInfo.
+        public System.Collections.IEnumerable GetErrors(string propertyName)
+        {
+            return GetPropertyErrors(propertyName);
+        }
+
+        // INotifyErrorDataInfo.
+        public bool HasErrors
+        {
+            get { return ErrorCount != 0; }
+        }
+
+        // Helper
+        private void RaiseErrorsChanged(string propertyName)
+        {
+            NotifyErrorsChanged(propertyName);
+        }
+        #endregion
+
+
     }
 }

@@ -10,7 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using Bogus.Extensions;
 using PaySys.Globalization;
-using PaySys.ModelAndBindLib.Model;
+using PaySys.ModelAndBindLib.Entities;
 
 namespace PaySys.ModelAndBindLib.BindingConverter
 {

@@ -73,21 +73,22 @@
     <Compile Include="BindingConverter\NegateBooleanConverter.cs" />
     <Compile Include="EF.Engine\PaySysContext.cs" />
     <Compile Include="EF.Engine\PaySysDbInitializer.cs" />
-    <Compile Include="EF.Migrations\Configuration.cs" />
-    <Compile Include="Migrations\201809230209082_Init.cs" />
-    <Compile Include="Migrations\201809230209082_Init.Designer.cs">
-      <DependentUpon>201809230209082_Init.cs</DependentUpon>
+    <Compile Include="EF.Configuration\Configuration.cs" />
+    <Compile Include="Migrations\201809252017124_Init.cs" />
+    <Compile Include="Migrations\201809252017124_Init.Designer.cs">
+      <DependentUpon>201809252017124_Init.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\Validation\IValidationErrorContainer.cs" />
-    <Compile Include="Model\ModelBase.cs" />
-    <Compile Include="Model\Validation\ValidationError.cs" />
-    <Compile Include="Model\Validation\ValidationErrorContainer.cs" />
-    <Compile Include="Model\Validation\Validator.cs" />
-    <Compile Include="Model\Visual\TitledCompositeCollection.cs" />
-    <Compile Include="Model\Class1.cs" />
-    <Compile Include="Model\PaySysSetting.cs" />
+    <Compile Include="Validation.INotifyDataErrorInfo\IValidationErrorContainer.cs" />
+    <Compile Include="Entities\Base\EntityBase.cs" />
+    <Compile Include="Validation.INotifyDataErrorInfo\ValidationError.cs" />
+    <Compile Include="Validation.INotifyDataErrorInfo\ValidationErrorContainer.cs" />
+    <Compile Include="Validation.INotifyDataErrorInfo\Validator.cs" />
+    <Compile Include="Helper\TitledCompositeCollection.cs" />
+    <Compile Include="Entities\Class1.cs" />
+    <Compile Include="Static\PaySysSetting.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validation.ValidationRule\ValidationRuleForNumericType.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PaySys.CalcLib\PaySys.CalcLib.csproj">
@@ -105,8 +106,8 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201809230209082_Init.resx">
-      <DependentUpon>201809230209082_Init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201809252017124_Init.resx">
+      <DependentUpon>201809252017124_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

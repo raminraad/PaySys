@@ -9,7 +9,7 @@ using System.Windows.Shell;
 using PaySys.CalcLib.Delegates;
 using PaySys.Globalization;
 using PaySys.ModelAndBindLib;
-using PaySys.ModelAndBindLib.Model;
+using PaySys.ModelAndBindLib.Entities;
 using MessageBox = System.Windows.Forms.MessageBox;
 using MessageBoxOptions = System.Windows.Forms.MessageBoxOptions;
 using UserControl = System.Windows.Controls.UserControl;

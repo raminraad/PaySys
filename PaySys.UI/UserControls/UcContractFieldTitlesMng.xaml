@@ -7,7 +7,7 @@
 			 xmlns:local="clr-namespace:PaySys.UI.UC"
 			 xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
 			 xmlns:bindingConverter="clr-namespace:PaySys.ModelAndBindLib.BindingConverter;assembly=PaySys.ModelAndBindLib"
-			 xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Model;assembly=PaySys.ModelAndBindLib"
+			 xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Entities;assembly=PaySys.ModelAndBindLib"
 			 xmlns:commands="clr-namespace:PaySys.UI.Commands"
 			 mc:Ignorable="d"
 			 Loaded="UcContractFieldTitlesMng_OnLoaded"

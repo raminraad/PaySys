@@ -411,4 +411,13 @@
   <data name="MiscMng" xml:space="preserve">
     <value>بدهیها و پرداختهای متفرقه</value>
   </data>
+  <data name="Field" xml:space="preserve">
+    <value>فیلد</value>
+  </data>
+  <data name="SurrounderOfFieldNameEnd" xml:space="preserve">
+    <value>»</value>
+  </data>
+  <data name="SurrounderOfFieldNameStart" xml:space="preserve">
+    <value>«</value>
+  </data>
 </root>

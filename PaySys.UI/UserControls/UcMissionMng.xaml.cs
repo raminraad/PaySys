@@ -8,7 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using PaySys.Globalization;
 using PaySys.ModelAndBindLib.Engine;
-using PaySys.ModelAndBindLib.Model;
+using PaySys.ModelAndBindLib.Entities;
 
 #endregion
 

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
-namespace PaySys.ModelAndBindLib.Model
+namespace PaySys.ModelAndBindLib.Entities
 {
     public interface IValidationErrorContainer
     {

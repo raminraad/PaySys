@@ -19,7 +19,7 @@ namespace PaySys.Globalization.Fa {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Labels {
@@ -345,6 +345,15 @@ namespace PaySys.Globalization.Fa {
         public static string Factor {
             get {
                 return ResourceManager.GetString("Factor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to فیلد.
+        /// </summary>
+        public static string Field {
+            get {
+                return ResourceManager.GetString("Field", resourceCulture);
             }
         }
         
@@ -768,6 +777,24 @@ namespace PaySys.Globalization.Fa {
         public static string SubGroupsList {
             get {
                 return ResourceManager.GetString("SubGroupsList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ».
+        /// </summary>
+        public static string SurrounderOfFieldNameEnd {
+            get {
+                return ResourceManager.GetString("SurrounderOfFieldNameEnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to «.
+        /// </summary>
+        public static string SurrounderOfFieldNameStart {
+            get {
+                return ResourceManager.GetString("SurrounderOfFieldNameStart", resourceCulture);
             }
         }
         

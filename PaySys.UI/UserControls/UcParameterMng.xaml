@@ -7,11 +7,13 @@
              xmlns:local="clr-namespace:PaySys.UI.UC"
              xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
              xmlns:commands="clr-namespace:PaySys.UI.Commands"
-             xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Model;assembly=PaySys.ModelAndBindLib"
+             xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Entities;assembly=PaySys.ModelAndBindLib"
+             xmlns:validation="clr-namespace:PaySys.ModelAndBindLib.Validation;assembly=PaySys.ModelAndBindLib"
              mc:Ignorable="d"
              FlowDirection="RightToLeft"
              d:DesignHeight="300"
              d:DesignWidth="900">
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -53,15 +55,40 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Header="{x:Static fa:Labels.Value}"
-                                    Width="{StaticResource WidthOfDataColumnOfPrice}">
+                                    Width="400">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <local:UcTextPair TextOfLabel="{Binding ValueAndValueType}"
-                                                  TextOfTextBox="{Binding Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                                                  Width="{StaticResource WidthOfDataFieldOfPrice}"
-                                                  Margin="0"
-                                                  ReadOnly="{Binding ElementName=SmpUcParameterMng,Path=ReadOnlyOfFields}"
-                                                  Tag="{Binding}" />
+                                <StackPanel Orientation="Horizontal">
+                                    <local:UcTextPair TextOfLabel="{Binding ValueAndValueType}"
+                                                      Width="{StaticResource WidthOfDataFieldOfPrice}"
+                                                      Margin="0"
+                                                      ReadOnly="{Binding ElementName=SmpUcParameterMng,Path=ReadOnlyOfFields}"
+                                                      Tag="{Binding}"
+                                                      TextOfTextBox="{Binding Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                                        <local:UcTextPair.ValidationRules>
+                                            <validation:ValidationRuleForNumericType/>
+                                        </local:UcTextPair.ValidationRules>
+                                    </local:UcTextPair>
+
+
+                                    <!--
+                                    <TextBox Name="yInput"
+                                             Width="200"
+                                             Validation.ErrorTemplate="{StaticResource ValidatedTextBoxTemplate}">
+                                        <Binding Path="Value"
+                                                 Mode="TwoWay"
+                                                 TargetNullValue=""
+                                                 ValidatesOnExceptions="True"
+                                                 NotifyOnValidationError="True"
+                                                 UpdateSourceTrigger="PropertyChanged">
+                                            <Binding.ValidationRules>
+                                                <validation:ValidationRuleForNumericType />
+                                            </Binding.ValidationRules>
+                                        </Binding>
+                                    </TextBox>
+                                    -->
+
+                                </StackPanel>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

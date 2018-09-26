@@ -7,20 +7,23 @@
              xmlns:local="clr-namespace:PaySys.UI.UC"
              mc:Ignorable="d"
              d:DesignHeight="60"
-             d:DesignWidth="400">
-	<StackPanel x:Name="StackPanelMain"
-	            Orientation="Horizontal">
-		<TextBox x:Name="TextBoxData"
-				 Text="{Binding ElementName=SmpUcTextPair,Path=TextOfTextBox,Mode=TwoWay,UpdateSourceTrigger=Explicit}"
-		         IsReadOnly="{Binding ElementName = SmpUcTextPair , Path=ReadOnly}"
-		         Visibility="{Binding ElementName=SmpUcTextPair ,Path = ReadOnly,Converter={StaticResource BooleanToVisibilityConverter},ConverterParameter=false}"
-		         Style="{StaticResource StyleOfDataFieldTextBox}"
-		         Width="{Binding ElementName=SmpUcTextPair,Path=Width}"
-		         Margin="0" />
-		<Label x:Name="LabelData"
-			   Content="{Binding ElementName=SmpUcTextPair,Path=TextOfLabel}"
-		           Visibility="{Binding ElementName=SmpUcTextPair ,Path = ReadOnly,Converter={StaticResource BooleanToVisibilityConverter},ConverterParameter=true}"
-		           Style="{StaticResource StyleOfDataFieldLabel}"
-		           Width="{Binding ElementName=SmpUcTextPair,Path=Width}"/>
-	</StackPanel>
+             d:DesignWidth="400"
+             Loaded="UcTextPair_OnLoaded">
+    <StackPanel x:Name="StackPanelMain"
+                Orientation="Horizontal">
+        <TextBox x:Name="TextBoxData"
+                 Text="{Binding ElementName=SmpUcTextPair,Path=TextOfTextBox,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,
+            TargetNullValue='',ValidatesOnExceptions=True,NotifyOnValidationError=True}"
+                 Validation.ErrorTemplate="{StaticResource ValidatedTextBoxTemplate}"
+                 IsReadOnly="{Binding ElementName = SmpUcTextPair , Path=ReadOnly}"
+                 Visibility="{Binding ElementName=SmpUcTextPair ,Path = ReadOnly,Converter={StaticResource BooleanToVisibilityConverter},ConverterParameter=false}"
+                 Style="{StaticResource StyleOfDataFieldTextBox}"
+                 Width="{Binding ElementName=SmpUcTextPair,Path=Width}"
+                 Margin="0" />
+        <Label x:Name="LabelData"
+               Content="{Binding ElementName=SmpUcTextPair,Path=TextOfLabel}"
+               Visibility="{Binding ElementName=SmpUcTextPair ,Path = ReadOnly,Converter={StaticResource BooleanToVisibilityConverter},ConverterParameter=true}"
+               Style="{StaticResource StyleOfDataFieldLabel}"
+               Width="{Binding ElementName=SmpUcTextPair,Path=Width}" />
+    </StackPanel>
 </UserControl>

@@ -9,9 +9,9 @@ using System.Windows.Input;
 using PaySys.Globalization;
 using PaySys.ModelAndBindLib;
 using PaySys.ModelAndBindLib.Engine;
-using PaySys.ModelAndBindLib.Model;
+using PaySys.ModelAndBindLib.Entities;
 using PaySys.UI.Commands;
-using ValueType = PaySys.ModelAndBindLib.Model.ValueType;
+using ValueType = PaySys.ModelAndBindLib.Entities.ValueType;
 
 #endregion
 

@@ -9,7 +9,7 @@
              xmlns:uc="clr-namespace:PaySys.UI.UC"
              StartupUri="MainWindow.xaml">
 	<Application.Resources>
-		<bindingConverter:DateTimeToPersianDateConverter x:Key="GregToPersDateConverter" />
+        <bindingConverter:DateTimeToPersianDateConverter x:Key="GregToPersDateConverter" />
 		<bindingConverter:NegateBooleanConverter x:Key="NegateBooleanConverter" />
 		<bindingConverter:DisplayCodeOfExpenseArticleConverter x:Key="DisplayCodeOfExpenseArticleConverter" />
 		<bindingConverter:BoolToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
@@ -318,5 +318,17 @@
 			<Setter Property="HorizontalContentAlignment"
 			        Value="Left" />
 		</Style>
-	</Application.Resources>
+        <ControlTemplate x:Key="ValidatedTextBoxTemplate">
+            <StackPanel Orientation="Horizontal">
+                <Border BorderThickness="2"
+                        BorderBrush="Red">
+                    <AdornedElementPlaceholder Name="ErrorAdorner" />
+                </Border>
+                <Ellipse Width="10"
+                         Height="10"
+                         Fill="Red"
+                         ToolTip="{Binding ElementName=ErrorAdorner, Path=AdornedElement.(Validation.Errors).CurrentItem.ErrorContent}" />
+            </StackPanel>
+        </ControlTemplate>
+    </Application.Resources>
 </Application>

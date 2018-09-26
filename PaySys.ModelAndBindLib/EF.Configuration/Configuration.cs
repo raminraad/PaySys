@@ -8,8 +8,8 @@ using System.Linq;
 using Arash;
 using Bogus;
 using PaySys.ModelAndBindLib.Engine;
-using PaySys.ModelAndBindLib.Model;
-using ValueType = PaySys.ModelAndBindLib.Model.ValueType;
+using PaySys.ModelAndBindLib.Entities;
+using ValueType = PaySys.ModelAndBindLib.Entities.ValueType;
 
 #endregion
 

@@ -8,7 +8,7 @@ using System.Windows.Data;
 using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Markup;
-using PaySys.ModelAndBindLib.Model;
+using PaySys.ModelAndBindLib.Entities;
 using Binding = System.Windows.Data.Binding;
 using Label = System.Windows.Controls.Label;
 using MessageBox = System.Windows.Forms.MessageBox;

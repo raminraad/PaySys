@@ -7,6 +7,7 @@ namespace PaySys.Globalization
 	{
 		private static string NamespacePrefix => "PaySys.Globalization.Fa";
 		public static ResourceManager Messages => new ResourceManager($"{NamespacePrefix}.Messages", Assembly.GetExecutingAssembly());
+		public static ResourceManager Validation => new ResourceManager($"{NamespacePrefix}.Validation", Assembly.GetExecutingAssembly());
 		public static ResourceManager Labels => new ResourceManager($"{NamespacePrefix}.Labels", Assembly.GetExecutingAssembly());
 		public static ResourceManager FieldicEmployee => new ResourceManager($"{NamespacePrefix}.FieldicEmployee", Assembly.GetExecutingAssembly());
 		public static ResourceManager FieldicContractMaster => new ResourceManager($"{NamespacePrefix}.FieldicContractMaster", Assembly.GetExecutingAssembly());

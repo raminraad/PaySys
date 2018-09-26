@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:PaySys.UI.UC"
              xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
              xmlns:ctrl="clr-namespace:Itenso.Windows.Controls.ListViewLayout;assembly=Itenso.Windows.Controls.ListViewLayout"
-             xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Model;assembly=PaySys.ModelAndBindLib"
+             xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Entities;assembly=PaySys.ModelAndBindLib"
              xmlns:bindingConverter="clr-namespace:PaySys.ModelAndBindLib.BindingConverter;assembly=PaySys.ModelAndBindLib"
              d:DataContext="{d:DesignInstance Type=model:ContractMaster, IsDesignTimeCreatable=True}"
              mc:Ignorable="d"

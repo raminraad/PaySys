@@ -16,7 +16,7 @@ using Bogus;
 using PaySys.CalcLib.Delegates;
 using PaySys.Globalization;
 using PaySys.ModelAndBindLib;
-using PaySys.ModelAndBindLib.Model;
+using PaySys.ModelAndBindLib.Entities;
 using PaySys.UI.Commands;
 using PaySys.UI.Modals;
 using DialogResult = System.Windows.Forms.DialogResult;

@@ -16,10 +16,10 @@ using PaySys.Globalization;
 using PaySys.ModelAndBindLib.Annotations;
 #endregion
 
-namespace PaySys.ModelAndBindLib.Model
+namespace PaySys.ModelAndBindLib.Entities
 {
     /// <summary> #01 گروه اصلی </summary>
-    public class MainGroup : ModelBase
+    public class MainGroup : EntityBase
     {
         public string Title { get; set; }
 
@@ -47,7 +47,7 @@ namespace PaySys.ModelAndBindLib.Model
     }
 
     /// <summary> #02 زیرگروه </summary>
-    public class SubGroup : ModelBase
+    public class SubGroup : EntityBase
     {
         private HandselFormula _currentOrNewHandselFormula = null;
         private MissionFormula _currentOrNewMissionFormula = null;
@@ -200,7 +200,7 @@ namespace PaySys.ModelAndBindLib.Model
     }
 
     /// <summary> #03 عناوین کسور و پرداختهای متفرقه </summary>
-    public class MiscTitle : ModelBase
+    public class MiscTitle : EntityBase
     {
         public string Title { get; set; }
 
@@ -214,7 +214,7 @@ namespace PaySys.ModelAndBindLib.Model
     }
 
     /// <summary> #04 کسور و پرداختهای متفرقه زیرگروه در سال </summary>
-    public class Misc : ModelBase
+    public class Misc : EntityBase
     {
         private string _tempExpenseArticleCode = null;
 
@@ -251,7 +251,7 @@ namespace PaySys.ModelAndBindLib.Model
     }
 
     /// <summary> #05 پرداختهای متفرقه دخیل در محاسبات مؤلفه ها </summary>
-    public class ParameterInvolvedMisc : ModelBase
+    public class ParameterInvolvedMisc : EntityBase
     {
         public virtual Misc Misc { get; set; }
 
@@ -259,12 +259,21 @@ namespace PaySys.ModelAndBindLib.Model
     }
 
     /// <summary> #07 مقادیر مؤلفه های محاسباتی زیرگروه در سال و ماه </summary>
-    public class Parameter : ModelBase
+    public class Parameter : EntityBase
     {
         private Dictionary<ContractField, bool> _tempParameterInvolvedContractFieldsLeftJoined = null;
         private Dictionary<Misc, bool> _tempParameterInvolvedMiscPaymentsLeftJoined = null;
+        private double? _value;
 
-        public double Value { get; set; }
+        public double? Value
+        {
+            get => _value;
+            set
+            {
+                _value = value;
+                OnPropertyChanged(nameof(Value));
+            }
+        }
 
         public int Year { get; set; }
 
@@ -316,10 +325,23 @@ namespace PaySys.ModelAndBindLib.Model
         [NotMapped]
         public string ValueAndValueType => $"{Value:N0} {ValueType.GetDescription()}";
 
+        public override void ValidateProperty(string propertyName)
+        {
+            switch (propertyName)
+            {
+                case nameof(Value):
+                {
+                    ValidateMandatory(Value, nameof(Value));
+                    ValidateNonNegative(Value, nameof(Value));
+                }
+                    break;
+            }
+        }
+
     }
 
     /// <summary> #08 فیلدهای احکام دخیل در محاسبات مؤلفه ها </summary>
-    public class ParameterInvolvedContractField : ModelBase
+    public class ParameterInvolvedContractField : EntityBase
     {
         public virtual ContractField ContractField { get; set; }
 
@@ -327,7 +349,7 @@ namespace PaySys.ModelAndBindLib.Model
     }
 
     /// <summary> #09 مواد هزینه </summary>
-    public class ExpenseArticle : ModelBase
+    public class ExpenseArticle : EntityBase
     {
         public string Title { get; set; }
 
@@ -407,7 +429,7 @@ namespace PaySys.ModelAndBindLib.Model
     }
 
     /// <summary> #10 مانده بدهی متفرقه اشخاص </summary>
-    public class MiscRecharge : ModelBase
+    public class MiscRecharge : EntityBase
     {
         public double Value { get; set; }
 
@@ -421,7 +443,7 @@ namespace PaySys.ModelAndBindLib.Model
     }
 
     /// <summary> #13 فیلدهای احکام زیرگروه در سال </summary>
-    public class ContractField : ModelBase
+    public class ContractField : EntityBase
     {
         private string _tempCurrentExpenseArticleCode = null;
 
@@ -496,7 +518,7 @@ namespace PaySys.ModelAndBindLib.Model
     }
 
     /// <summary> #14 فرمول مأموریت زیرگروه در سال و ماه </summary>
-    public class MissionFormula : ModelBase
+    public class MissionFormula : EntityBase
     {
         private Dictionary<ContractField, bool> _tempMissionFormulaInvolvedContractFieldsLeftJoined = null;
 
@@ -538,7 +560,7 @@ namespace PaySys.ModelAndBindLib.Model
     }
 
     /// <summary> #15 جدول مالیات </summary>
-    public class TaxTable : ModelBase
+    public class TaxTable : EntityBase
     {
         public int Year { get; set; }
 
@@ -568,7 +590,7 @@ namespace PaySys.ModelAndBindLib.Model
     }
 
     /// <summary> #16 سطر جدول مالیات </summary>
-    public class TaxRow : ModelBase, IComparable
+    public class TaxRow : EntityBase, IComparable
     {
         private double? _tempValueTo = null;
 
@@ -612,7 +634,7 @@ namespace PaySys.ModelAndBindLib.Model
     }
 
     /// <summary> #18 مقادیر کسور و پرداختهای متفرقه برای اشخاص در سال و ماه </summary>
-    public class MiscValueForEmployee : ModelBase
+    public class MiscValueForEmployee : EntityBase
     {
         public double Value { get; set; }
 
@@ -628,7 +650,7 @@ namespace PaySys.ModelAndBindLib.Model
     }
 
     /// <summary> #20 پایه حکم </summary>
-    public class ContractMaster : ModelBase
+    public class ContractMaster : EntityBase
     {
         public string ContractNo { get; set; }
 
@@ -678,7 +700,7 @@ namespace PaySys.ModelAndBindLib.Model
     }
 
     /// <summary> #21 جزئیات احکام </summary>
-    public class ContractDetail : ModelBase
+    public class ContractDetail : EntityBase
     {
         public double Value { get; set; }
 
@@ -688,7 +710,7 @@ namespace PaySys.ModelAndBindLib.Model
     }
 
     /// <summary> #22 اشخاص </summary>
-    public class Employee : ModelBase
+    public class Employee : EntityBase
     {
         public string FName { get; set; }
 
@@ -751,7 +773,7 @@ namespace PaySys.ModelAndBindLib.Model
     }
 
     /// <summary> #23 فرمول عیدی در سال و ماه </summary>
-    public class HandselFormula : ModelBase
+    public class HandselFormula : EntityBase
     {
         public int DaysCount { get; set; }
 
@@ -793,7 +815,7 @@ namespace PaySys.ModelAndBindLib.Model
     }
 
     /// <summary> #25 شغل </summary>
-    public class Job : ModelBase
+    public class Job : EntityBase
     {
         public string Title { get; set; }
 
@@ -807,7 +829,7 @@ namespace PaySys.ModelAndBindLib.Model
     }
 
     /// <summary> #26 شهر </summary>
-    public class City : ModelBase
+    public class City : EntityBase
     {
         public string Title { get; set; }
 
@@ -819,7 +841,7 @@ namespace PaySys.ModelAndBindLib.Model
     }
 
     /// <summary> #27 مأموریت </summary>
-    public class Mission : ModelBase
+    public class Mission : EntityBase
     {
         public string Title { get; set; }
 
@@ -850,7 +872,7 @@ namespace PaySys.ModelAndBindLib.Model
     }
 
     /// <summary> #30 مواد هزینه عناوین فیلدهای احکام برای زیرگروه در ماه </summary>
-    public class ExpenseArticleOfContractFieldForSubGroup : ModelBase
+    public class ExpenseArticleOfContractFieldForSubGroup : EntityBase
     {
         public int Month { get; set; }
 
@@ -862,7 +884,7 @@ namespace PaySys.ModelAndBindLib.Model
     }
 
     /// <summary> #34 فیلدهای احکام دخیل در فرمول مأموریت </summary>
-    public class MissionFormulaInvolvedContractField : ModelBase
+    public class MissionFormulaInvolvedContractField : EntityBase
     {
         public virtual ContractField ContractField { get; set; }
 
@@ -870,7 +892,7 @@ namespace PaySys.ModelAndBindLib.Model
     }
 
     /// <summary> #36 متغیرهای ماهانه در بازه زمانی </summary>
-    public class Variable : ModelBase
+    public class Variable : EntityBase
     {
         public int Index { get; set; }
         public int FromYear { get; set; }
@@ -904,7 +926,7 @@ namespace PaySys.ModelAndBindLib.Model
     }
 
     /// <summary> #37 متغیرهای ماهانه برای اشخاص </summary>
-    public class VariableValueForEmployee : ModelBase
+    public class VariableValueForEmployee : EntityBase
     {
         public double? NumericValue { get; set; }
 
@@ -987,7 +1009,7 @@ namespace PaySys.ModelAndBindLib.Model
     /// <summary>
     /// #38 عناوین مؤلفه های گروهی
     /// </summary>
-    public class ParameterTitle : ModelBase
+    public class ParameterTitle : EntityBase
     {
         public string Title { get; set; }
 

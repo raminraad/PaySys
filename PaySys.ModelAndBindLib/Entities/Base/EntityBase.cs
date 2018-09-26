@@ -7,9 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using PaySys.ModelAndBindLib.Annotations;
 
-namespace PaySys.ModelAndBindLib.Model
+namespace PaySys.ModelAndBindLib.Entities
 {
-    public abstract class ModelBase:Validator,INotifyPropertyChanged
+    public abstract class EntityBase:Validator,INotifyPropertyChanged
     {
         public int Id { get; set; }
 

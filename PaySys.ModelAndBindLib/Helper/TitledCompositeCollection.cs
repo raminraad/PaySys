@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace PaySys.ModelAndBindLib.Model
+namespace PaySys.ModelAndBindLib.Entities
 {
 	public class TitledCompositeCollection
 	{

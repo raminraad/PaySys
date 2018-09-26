@@ -342,7 +342,7 @@ namespace PaySys.ModelAndBindLib.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Value = c.Double(nullable: false),
+                        Value = c.Double(),
                         Year = c.Int(nullable: false),
                         Month = c.Int(nullable: false),
                         ParameterTitle_Id = c.Int(),

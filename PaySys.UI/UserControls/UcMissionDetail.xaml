@@ -10,7 +10,7 @@
 	xmlns:bindingConverter="clr-namespace:PaySys.ModelAndBindLib.BindingConverter;assembly=PaySys.ModelAndBindLib"
 	xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
 	xmlns:extensionMethods="clr-namespace:PaySys.CalcLib.ExtensionMethods;assembly=PaySys.CalcLib"
-	xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Model;assembly=PaySys.ModelAndBindLib"
+	xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Entities;assembly=PaySys.ModelAndBindLib"
 	xmlns:persianDateControls="clr-namespace:Arash.PersianDateControls;assembly=PersianDateControls"
 	xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
 	d:DataContext="{d:DesignInstance Type=model:Mission, IsDesignTimeCreatable=True}"

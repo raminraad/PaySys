@@ -7,7 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using PaySys.Globalization;
 using PaySys.ModelAndBindLib.Engine;
-using PaySys.ModelAndBindLib.Model;
+using PaySys.ModelAndBindLib.Entities;
 
 #endregion
 
