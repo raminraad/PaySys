@@ -9,19 +9,14 @@ using PaySys.ModelAndBindLib.Annotations;
 
 namespace PaySys.ModelAndBindLib.Validation
 {
-    public class ValidationRuleForNumericType : ValidationRule
+    public class ValidationRuleForNumberType : ValidationRuleBase
     {
-        [CanBeNull]
-        public string FieldName { get; set; }
-        public string FurbishedFieldName => string.IsNullOrEmpty(FieldName)
-            ? ResourceAccessor.Labels.GetString("Field")
-            : $"{ResourceAccessor.Labels.GetString("SurrounderOfFieldNameStart")}{FieldName}{ResourceAccessor.Labels.GetString("SurrounderOfFieldNameEnd")}";
-
-
+        public string Message =>
+            ResourceAccessor.Validation.GetString("NumberTypeRequired").Replace("name", FurbishedFieldName);
         public override ValidationResult Validate(object value, System.Globalization.CultureInfo cultureInfo)
         {
             if (string.IsNullOrEmpty((string)value)||double.TryParse(value.ToString(), out var val)) return ValidationResult.ValidResult;
-            return new ValidationResult(false, ResourceAccessor.Validation.GetString("NotNumeric"));
+            return new ValidationResult(false, Message);
         }
     }
 }

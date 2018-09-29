@@ -78,5 +78,11 @@ namespace PaySys.UI.UC
 	                (TextBoxData.GetBindingExpression(TextBox.TextProperty)?.ParentBinding).ValidationRules.Add(rule);
 	            }
 	    }
-	}
+
+	    private void TextBoxData_OnTextChanged(object sender, TextChangedEventArgs e)
+	    {
+	        TextBoxData.GetBindingExpression(TextBox.TextProperty)?.ValidateWithoutUpdate();
+
+	    }
+    }
 }

@@ -23,32 +23,6 @@
 		<CollectionViewSource x:Key="CvsOfEmployeeVariableValues" />
 	</UserControl.Resources>
 	<Grid>
-		<Grid.Resources>
-			<Style TargetType="ListView">
-				<Setter Property="Margin"
-						Value="10" />
-				<Setter Property="SelectionMode"
-						Value="Single" />
-				<Setter Property="KeyboardNavigation.TabNavigation"
-						Value="Cycle" />
-				<Setter Property="ItemContainerStyle">
-					<Setter.Value>
-						<Style TargetType="ListViewItem">
-							<Setter Property="IsTabStop"
-									Value="False" />
-							<EventSetter Event="GotFocus"
-										 Handler="ListItemGotFocus" />
-							<Setter Property="FontFamily"
-									Value="{StaticResource FontFamilyOfDataFields}" />
-							<Setter Property="FontSize"
-									Value="{StaticResource FontSizeOfDataFields}" />
-							<Setter Property="VerticalAlignment"
-									Value="Center" />
-						</Style>
-					</Setter.Value>
-				</Setter>
-			</Style>
-		</Grid.Resources>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="*" />
 			<ColumnDefinition Width="2*" />

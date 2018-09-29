@@ -118,12 +118,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="IsMandatory" xml:space="preserve">
-    <value>وارد کردن مقدار برای این فیلد الزامیست</value>
+    <value>وارد کردن مقدار برای name الزامیست</value>
   </data>
   <data name="NegativeValueNotSupported" xml:space="preserve">
-    <value>مقدار منفی برای این فیلد قابل قبول نیست</value>
+    <value>مقدار منفی برای فیلد قابل قبول نیست</value>
   </data>
-  <data name="NotNumeric" xml:space="preserve">
-    <value>مقدار وارد شده باید عددی باشد</value>
+  <data name="NumberTypeRequired" xml:space="preserve">
+    <value>مقدار وارد شده برای name باید عددی باشد</value>
+  </data>
+  <data name="NumberValueMax" xml:space="preserve">
+    <value>حداقل مقدار قابل قبول برای name max میباشد</value>
+  </data>
+  <data name="NumberValueMin" xml:space="preserve">
+    <value>حداقل مقدار قابل قبول برای name min میباشد</value>
+  </data>
+  <data name="NumberValueRange" xml:space="preserve">
+    <value>مقدار وارد شده برای name باید بین min و max باشد</value>
   </data>
 </root>

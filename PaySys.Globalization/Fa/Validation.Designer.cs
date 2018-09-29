@@ -61,7 +61,7 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to وارد کردن مقدار برای این فیلد الزامیست.
+        ///   Looks up a localized string similar to وارد کردن مقدار برای name الزامیست.
         /// </summary>
         public static string IsMandatory {
             get {
@@ -70,7 +70,7 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to مقدار منفی برای این فیلد قابل قبول نیست.
+        ///   Looks up a localized string similar to مقدار منفی برای فیلد قابل قبول نیست.
         /// </summary>
         public static string NegativeValueNotSupported {
             get {
@@ -79,11 +79,38 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to مقدار وارد شده باید عددی باشد.
+        ///   Looks up a localized string similar to مقدار وارد شده برای name باید عددی باشد.
         /// </summary>
-        public static string NotNumeric {
+        public static string NumberTypeRequired {
             get {
-                return ResourceManager.GetString("NotNumeric", resourceCulture);
+                return ResourceManager.GetString("NumberTypeRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to حداقل مقدار قابل قبول برای name max میباشد.
+        /// </summary>
+        public static string NumberValueMax {
+            get {
+                return ResourceManager.GetString("NumberValueMax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to حداقل مقدار قابل قبول برای name min میباشد.
+        /// </summary>
+        public static string NumberValueMin {
+            get {
+                return ResourceManager.GetString("NumberValueMin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to مقدار وارد شده برای name باید بین min و max باشد.
+        /// </summary>
+        public static string NumberValueRange {
+            get {
+                return ResourceManager.GetString("NumberValueRange", resourceCulture);
             }
         }
     }

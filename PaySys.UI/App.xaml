@@ -8,326 +8,357 @@
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:uc="clr-namespace:PaySys.UI.UC"
              StartupUri="MainWindow.xaml">
-	<Application.Resources>
+    <Application.Resources>
         <bindingConverter:DateTimeToPersianDateConverter x:Key="GregToPersDateConverter" />
-		<bindingConverter:NegateBooleanConverter x:Key="NegateBooleanConverter" />
-		<bindingConverter:DisplayCodeOfExpenseArticleConverter x:Key="DisplayCodeOfExpenseArticleConverter" />
-		<bindingConverter:BoolToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-	    <bindingConverter:ColorPalletEnumToStringConverter x:Key="CnvColor" />
+        <bindingConverter:NegateBooleanConverter x:Key="NegateBooleanConverter" />
+        <bindingConverter:DisplayCodeOfExpenseArticleConverter x:Key="DisplayCodeOfExpenseArticleConverter" />
+        <bindingConverter:BoolToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <bindingConverter:ColorPalletEnumToStringConverter x:Key="CnvColor" />
         <SolidColorBrush x:Key="FormStateColorAdd"
-		                 Color="DarkGreen" />
-		<SolidColorBrush x:Key="FormStateColorEdit"
-		                 Color="Goldenrod" />
-		<SolidColorBrush x:Key="FormStateColorSelect"
-		                 Color="DarkSlateGray" />
-		<SolidColorBrush x:Key="FormStateColorDelete"
-		                 Color="Crimson" />
-		<SolidColorBrush x:Key="FormStateColorUnknown"
-		                 Color="Black" />
-		<FontFamily x:Key="FontFamilyOfDataFields"> PFont </FontFamily>
-		<system:Double x:Key="FontSizeOfDataFields"> 18 </system:Double>
-		<system:Double x:Key="FontSizeOfListTitle"> 20 </system:Double>
-		<system:Double x:Key="FontSizeOfSelectionItem"> 24 </system:Double>
-		<system:Double x:Key="HeightOfDataField"> 33 </system:Double>
-		<system:Double x:Key="WidthOfDataFieldOfText"> 240 </system:Double>
-		<system:Double x:Key="WidthOfDataFieldOfCode"> 80 </system:Double>
-		<system:Double x:Key="WidthOfDataFieldOfPrice"> 120 </system:Double>
-		<system:Double x:Key="WidthOfDataFieldOfButton"> 40 </system:Double>
-		<system:Double x:Key="WidthOfDataColumnOfText"> 260 </system:Double>
-		<system:Double x:Key="WidthOfDataColumnOfCode"> 100 </system:Double>
-		<system:Double x:Key="WidthOfDataColumnOfPrice"> 140 </system:Double>
-		<system:Double x:Key="WidthOfDataColumnOfButton"> 60 </system:Double>
-		<system:Double x:Key="WidthOfDataColumnOfOperationsWithButtonCountOf1"> 60 </system:Double>
-		<system:Double x:Key="WidthOfTabOneOf4"> 350 </system:Double>
-		<system:Double x:Key="WidthOfTabOneOf5"> 300 </system:Double>
-		<system:Double x:Key="WidthOfTabOneOf6"> 250 </system:Double>
-		<system:Double x:Key="WidthOfTabOneOf7"> 200 </system:Double>
-		<system:Double x:Key="WidthOfTabOneOf8"> 150 </system:Double>
-		<system:Double x:Key="WidthOfTabOneOf9"> 100 </system:Double>
-		<system:Double x:Key="HeightOfSelectionItem"> 34 </system:Double>
-		<Thickness x:Key="MarginOfDataFields"
-		           Left="0"
-		           Top="0"
-		           Right="60"
-		           Bottom="0" />
-		<Style TargetType ="TabItem">
-			<Setter Property="FontFamily" Value="{StaticResource FontFamilyOfDataFields}"/>
-			<Setter Property="FontSize" Value="{StaticResource FontSizeOfDataFields}"/>
-		</Style>
-
-		<Style TargetType="ComboBox">
-			<Setter Property="Height"
-			        Value="{StaticResource HeightOfDataField}" />
-			<Setter Property="FontFamily"
-			        Value="{StaticResource FontFamilyOfDataFields}" />
-			<Setter Property="FontSize"
-			        Value="{StaticResource FontSizeOfDataFields}" />
-			<Setter Property="VerticalContentAlignment"
-			        Value="Center" />
-			<Setter Property="VerticalAlignment"
-			        Value="Center" />
-		</Style>
-		<Style TargetType="uc:UcSuggesterTextBox">
-			<Setter Property="VerticalAlignment"
-			        Value="Top" />
-			<Setter Property="HorizontalAlignment"
-			        Value="Stretch" />
-		</Style>
-		<Style TargetType="MenuItem">
-			<Setter Property="Height"
-			        Value="30" />
-			<Setter Property="Foreground"
-					Value="#004529" />
-			<Setter Property="FontFamily"
-			        Value="{StaticResource FontFamilyOfDataFields}" />
-			<Setter Property="FontSize"
-			        Value="{StaticResource FontSizeOfDataFields}" />
-		</Style>
-		<Style TargetType="GridViewColumnHeader">
-			<Setter Property="FontFamily"
-			        Value="{StaticResource FontFamilyOfDataFields}" />
-			<Setter Property="FontSize"
-			        Value="{StaticResource FontSizeOfDataFields}" />
-		</Style>
-		<Style TargetType="ListView">
-			<Setter Property="FontFamily"
-			        Value="{StaticResource FontFamilyOfDataFields}" />
-			<Setter Property="FontSize"
-			        Value="{StaticResource FontSizeOfDataFields}" />
-		</Style>
-		<Style TargetType="Label">
-			<Setter Property="FontFamily"
-			        Value="{StaticResource FontFamilyOfDataFields}" />
-			<Setter Property="FontSize"
-			        Value="{StaticResource FontSizeOfDataFields}" />
-			<Setter Property="VerticalAlignment"
-			        Value="Stretch" />
-			<Setter Property="VerticalContentAlignment"
-			        Value="Center" />
-		</Style>
-
-		<Style x:Key="StyleOfListTitleTextBlock"
-		       TargetType="TextBlock">
-			<Setter Property="HorizontalAlignment"
-			        Value="Center" />
-			<Setter Property="VerticalAlignment"
-			        Value="Bottom" />
-			<Setter Property="FontSize"
-			        Value="{StaticResource FontSizeOfListTitle}" />
-			<Setter Property="FontFamily"
-			        Value="{StaticResource FontFamilyOfDataFields}" />
-			<Setter Property="FontWeight"
-			        Value="Black" />
-			<Setter Property="TextWrapping" Value="Wrap"/>
-		</Style>
-		<Style x:Key="StyleOfListTitleLabel"
-		       TargetType="Label">
-			<Setter Property="HorizontalAlignment"
-			        Value="Center" />
-			<Setter Property="VerticalAlignment"
-			        Value="Bottom" />
-			<Setter Property="FontSize"
-			        Value="{StaticResource FontSizeOfListTitle}" />
-			<Setter Property="FontFamily"
-			        Value="{StaticResource FontFamilyOfDataFields}" />
-			<Setter Property="FontWeight"
-			        Value="Black" />
-			<Setter Property="HorizontalContentAlignment" Value="Center"/>
-		</Style>
-		<Style x:Key="StyleOfListViewItem"
-		       TargetType="ListViewItem">
-			<Setter Property="IsTabStop"
-			        Value="False" />
-			<Setter Property="FontFamily"
-			        Value="{StaticResource FontFamilyOfDataFields}" />
-			<Setter Property="FontSize"
-			        Value="{StaticResource FontSizeOfDataFields}" />
-			<Setter Property="VerticalAlignment"
-			        Value="Center" />
-		</Style>
-		<Style x:Key="StyleOfDataFieldTextBox"
-		       TargetType="TextBox">
-			<Setter Property="Height"
-			        Value="{StaticResource HeightOfDataField}" />
-			<Setter Property="Width"
-			        Value="{StaticResource WidthOfDataFieldOfText}" />
-			<Setter Property="FontFamily"
-			        Value="{StaticResource FontFamilyOfDataFields}" />
-			<Setter Property="FontSize"
-			        Value="{StaticResource FontSizeOfDataFields}" />
-			<Setter Property="VerticalContentAlignment"
-			        Value="Center" />
-			<Setter Property="VerticalAlignment"
-			        Value="Center" />
-			<Setter Property="Margin"
-			        Value="{StaticResource MarginOfDataFields}" />
-		</Style>
-		<Style x:Key="StyleOfDataFieldMultiColumnTextBox"
-		       TargetType="TextBox">
-			<Setter Property="FontFamily"
-			        Value="{StaticResource FontFamilyOfDataFields}" />
-			<Setter Property="FontSize"
-			        Value="{StaticResource FontSizeOfDataFields}" />
-			<Setter Property="VerticalContentAlignment"
-			        Value="Top" />
-			<Setter Property="VerticalAlignment"
-			        Value="Stretch" />
-			<Setter Property="TextWrapping"
-			        Value="Wrap" />
-			<Setter Property="Margin"
-			        Value="{StaticResource MarginOfDataFields}" />
-		</Style>
-		<Style x:Key="StyleOfDataFieldComboBox"
-		       TargetType="ComboBox">
-			<Setter Property="Height"
-			        Value="{StaticResource HeightOfDataField}" />
-			<Setter Property="FontFamily"
-			        Value="{StaticResource FontFamilyOfDataFields}" />
-			<Setter Property="FontSize"
-			        Value="{StaticResource FontSizeOfDataFields}" />
-			<Setter Property="VerticalContentAlignment"
-			        Value="Center" />
-			<Setter Property="VerticalAlignment"
-			        Value="Center" />
-			<Setter Property="Margin"
-			        Value="{StaticResource MarginOfDataFields}" />
-		</Style>
-		<Style x:Key="StyleOfDataFieldDatePicker"
-		       TargetType="persianDateControls:PersianDatePicker">
-			<Setter Property="Height"
-			        Value="{StaticResource HeightOfDataField}" />
-			<Setter Property="FontFamily"
-			        Value="{StaticResource FontFamilyOfDataFields}" />
-			<Setter Property="FontSize"
-			        Value="14" />
-			<Setter Property="VerticalContentAlignment"
-			        Value="Center" />
-			<Setter Property="VerticalAlignment"
-			        Value="Stretch" />
-			<Setter Property="HorizontalAlignment"
-			        Value="Left" />
-			<Setter Property="Margin"
-			        Value="{StaticResource MarginOfDataFields}" />
-		</Style>
-		<Style x:Key="StyleOfDataFieldTimePicker"
-		       TargetType="xctk:TimePicker">
-			<Setter Property="FontFamily"
-			        Value="{StaticResource FontFamilyOfDataFields}" />
-			<Setter Property="Format"
-			        Value="Custom" />
-			<Setter Property="FormatString"
-			        Value="HH:mm" />
-			<Setter Property="TimeInterval"
-			        Value="00:15:00" />
-			<Setter Property="VerticalAlignment"
-			        Value="Center" />
-			<Setter Property="VerticalContentAlignment"
-			        Value="Center" />
-			<Setter Property="HorizontalAlignment"
-			        Value="Left" />
-			<Setter Property="Height"
-			        Value="{StaticResource HeightOfDataField}" />
-			
-		</Style>
-		<Style x:Key="StyleOfDataFieldLabel"
-		       TargetType="Label">
-			<Setter Property="Height"
-			        Value="{StaticResource HeightOfDataField}" />
-			<Setter Property="Width"
-			        Value="Auto" />
-			<Setter Property="FontFamily"
-			        Value="{StaticResource FontFamilyOfDataFields}" />
-			<Setter Property="FontSize"
-			        Value="{StaticResource FontSizeOfDataFields}" />
-			<Setter Property="VerticalAlignment"
-			        Value="Stretch" />
-			<Setter Property="VerticalContentAlignment"
-			        Value="Center" />
-		</Style>
-		<Style x:Key="StyleOfDataFieldTextBlock"
-		       TargetType="TextBlock">
-			<Setter Property="Height"
-			        Value="{StaticResource HeightOfDataField}" />
-			<Setter Property="Width"
-			        Value="{StaticResource WidthOfDataFieldOfText}" />
-			<Setter Property="FontFamily"
-			        Value="{StaticResource FontFamilyOfDataFields}" />
-			<Setter Property="FontSize"
-			        Value="{StaticResource FontSizeOfDataFields}" />
-			<Setter Property="VerticalAlignment"
-			        Value="Center" />
-		</Style>
-	    <Style x:Key="StyleOfPassageTextBlock"
-	           TargetType="TextBlock">
-	        <Setter Property="Height"
-	                Value="{StaticResource HeightOfDataField}" />
-	        <Setter Property="Width"
-	                Value="Auto" />
-	        <Setter Property="FontFamily"
-	                Value="{StaticResource FontFamilyOfDataFields}" />
-	        <Setter Property="FontSize"
-	                Value="{StaticResource FontSizeOfDataFields}" />
-	        <Setter Property="VerticalAlignment"
-	                Value="Center" />
-	    </Style>
+                         Color="DarkGreen" />
+        <SolidColorBrush x:Key="FormStateColorEdit"
+                         Color="Goldenrod" />
+        <SolidColorBrush x:Key="FormStateColorSelect"
+                         Color="DarkSlateGray" />
+        <SolidColorBrush x:Key="FormStateColorDelete"
+                         Color="Crimson" />
+        <SolidColorBrush x:Key="FormStateColorUnknown"
+                         Color="Black" />
+        <FontFamily x:Key="FontFamilyOfDataFields">PFont</FontFamily>
+        <system:Double x:Key="FontSizeOfDataFields">18</system:Double>
+        <system:Double x:Key="FontSizeOfListTitle">20</system:Double>
+        <system:Double x:Key="FontSizeOfSelectionItem">24</system:Double>
+        <system:Double x:Key="HeightOfDataField">33</system:Double>
+        <system:Double x:Key="WidthOfDataFieldOfText">240</system:Double>
+        <system:Double x:Key="WidthOfDataFieldOfCode">80</system:Double>
+        <system:Double x:Key="WidthOfDataFieldOfPrice">120</system:Double>
+        <system:Double x:Key="WidthOfDataFieldOfButton">40</system:Double>
+        <system:Double x:Key="WidthOfDataColumnOfText">260</system:Double>
+        <system:Double x:Key="WidthOfDataColumnOfCode">100</system:Double>
+        <system:Double x:Key="WidthOfDataColumnOfPrice">140</system:Double>
+        <system:Double x:Key="WidthOfDataColumnOfButton">60</system:Double>
+        <system:Double x:Key="WidthOfDataColumnOfOperationsWithButtonCountOf1">60</system:Double>
+        <system:Double x:Key="WidthOfTabOneOf4">350</system:Double>
+        <system:Double x:Key="WidthOfTabOneOf5">300</system:Double>
+        <system:Double x:Key="WidthOfTabOneOf6">250</system:Double>
+        <system:Double x:Key="WidthOfTabOneOf7">200</system:Double>
+        <system:Double x:Key="WidthOfTabOneOf8">150</system:Double>
+        <system:Double x:Key="WidthOfTabOneOf9">100</system:Double>
+        <system:Double x:Key="HeightOfSelectionItem">34</system:Double>
+        <Thickness x:Key="MarginOfDataFields"
+                   Left="0"
+                   Top="0"
+                   Right="60"
+                   Bottom="0" />
+        <Style TargetType="TabItem">
+            <Setter Property="FontFamily"
+                    Value="{StaticResource FontFamilyOfDataFields}" />
+            <Setter Property="FontSize"
+                    Value="{StaticResource FontSizeOfDataFields}" />
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Height"
+                    Value="{StaticResource HeightOfDataField}" />
+            <Setter Property="FontFamily"
+                    Value="{StaticResource FontFamilyOfDataFields}" />
+            <Setter Property="FontSize"
+                    Value="{StaticResource FontSizeOfDataFields}" />
+            <Setter Property="VerticalContentAlignment"
+                    Value="Center" />
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+        </Style>
+        <Style TargetType="MenuItem">
+            <Setter Property="Height"
+                    Value="30" />
+            <Setter Property="Foreground"
+                    Value="#004529" />
+            <Setter Property="FontFamily"
+                    Value="{StaticResource FontFamilyOfDataFields}" />
+            <Setter Property="FontSize"
+                    Value="{StaticResource FontSizeOfDataFields}" />
+        </Style>
+        <Style TargetType="GridViewColumnHeader">
+            <Setter Property="FontFamily"
+                    Value="{StaticResource FontFamilyOfDataFields}" />
+            <Setter Property="FontSize"
+                    Value="{StaticResource FontSizeOfDataFields}" />
+        </Style>
+        <Style TargetType="uc:UcSuggesterTextBox">
+            <Setter Property="VerticalAlignment"
+                    Value="Top" />
+            <Setter Property="HorizontalAlignment"
+                    Value="Stretch" />
+        </Style>
+        <Style TargetType="ListView">
+            <Setter Property="FontFamily"
+                    Value="{StaticResource FontFamilyOfDataFields}" />
+            <Setter Property="FontSize"
+                    Value="{StaticResource FontSizeOfDataFields}" />
+            <Setter Property="Margin"
+                    Value="10" />
+            <Setter Property="SelectionMode"
+                    Value="Single" />
+            <Setter Property="KeyboardNavigation.TabNavigation"
+                    Value="Continue" />
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="IsTabStop"
+                                Value="False" />
+                        <EventSetter Event="GotFocus"
+                                     Handler="ListItemGotFocus" />
+                        <Setter Property="FontFamily"
+                                Value="{StaticResource FontFamilyOfDataFields}" />
+                        <Setter Property="FontSize"
+                                Value="{StaticResource FontSizeOfDataFields}" />
+                        <Setter Property="VerticalAlignment"
+                                Value="Center" />
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="FontFamily"
+                    Value="{StaticResource FontFamilyOfDataFields}" />
+            <Setter Property="FontSize"
+                    Value="{StaticResource FontSizeOfDataFields}" />
+            <Setter Property="VerticalAlignment"
+                    Value="Stretch" />
+            <Setter Property="VerticalContentAlignment"
+                    Value="Center" />
+        </Style>
+        <Style x:Key="StyleOfListTitleTextBlock"
+               TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment"
+                    Value="Center" />
+            <Setter Property="VerticalAlignment"
+                    Value="Bottom" />
+            <Setter Property="FontSize"
+                    Value="{StaticResource FontSizeOfListTitle}" />
+            <Setter Property="FontFamily"
+                    Value="{StaticResource FontFamilyOfDataFields}" />
+            <Setter Property="FontWeight"
+                    Value="Black" />
+            <Setter Property="TextWrapping"
+                    Value="Wrap" />
+        </Style>
+        <Style x:Key="StyleOfListTitleLabel"
+               TargetType="Label">
+            <Setter Property="HorizontalAlignment"
+                    Value="Center" />
+            <Setter Property="VerticalAlignment"
+                    Value="Bottom" />
+            <Setter Property="FontSize"
+                    Value="{StaticResource FontSizeOfListTitle}" />
+            <Setter Property="FontFamily"
+                    Value="{StaticResource FontFamilyOfDataFields}" />
+            <Setter Property="FontWeight"
+                    Value="Black" />
+            <Setter Property="HorizontalContentAlignment"
+                    Value="Center" />
+        </Style>
+        <Style x:Key="StyleOfListViewItem"
+               TargetType="ListViewItem">
+            <Setter Property="IsTabStop"
+                    Value="False" />
+            <Setter Property="FontFamily"
+                    Value="{StaticResource FontFamilyOfDataFields}" />
+            <Setter Property="FontSize"
+                    Value="{StaticResource FontSizeOfDataFields}" />
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+        </Style>
+        <Style x:Key="StyleOfDataFieldTextBox"
+               TargetType="TextBox">
+            <Setter Property="Height"
+                    Value="{StaticResource HeightOfDataField}" />
+            <Setter Property="Width"
+                    Value="{StaticResource WidthOfDataFieldOfText}" />
+            <Setter Property="FontFamily"
+                    Value="{StaticResource FontFamilyOfDataFields}" />
+            <Setter Property="FontSize"
+                    Value="{StaticResource FontSizeOfDataFields}" />
+            <Setter Property="VerticalContentAlignment"
+                    Value="Center" />
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+            <Setter Property="Margin"
+                    Value="{StaticResource MarginOfDataFields}" />
+        </Style>
+        <Style x:Key="StyleOfDataFieldMultiColumnTextBox"
+               TargetType="TextBox">
+            <Setter Property="FontFamily"
+                    Value="{StaticResource FontFamilyOfDataFields}" />
+            <Setter Property="FontSize"
+                    Value="{StaticResource FontSizeOfDataFields}" />
+            <Setter Property="VerticalContentAlignment"
+                    Value="Top" />
+            <Setter Property="VerticalAlignment"
+                    Value="Stretch" />
+            <Setter Property="TextWrapping"
+                    Value="Wrap" />
+            <Setter Property="Margin"
+                    Value="{StaticResource MarginOfDataFields}" />
+        </Style>
+        <Style x:Key="StyleOfDataFieldComboBox"
+               TargetType="ComboBox">
+            <Setter Property="Height"
+                    Value="{StaticResource HeightOfDataField}" />
+            <Setter Property="FontFamily"
+                    Value="{StaticResource FontFamilyOfDataFields}" />
+            <Setter Property="FontSize"
+                    Value="{StaticResource FontSizeOfDataFields}" />
+            <Setter Property="VerticalContentAlignment"
+                    Value="Center" />
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+            <Setter Property="Margin"
+                    Value="{StaticResource MarginOfDataFields}" />
+        </Style>
+        <Style x:Key="StyleOfDataFieldDatePicker"
+               TargetType="persianDateControls:PersianDatePicker">
+            <Setter Property="Height"
+                    Value="{StaticResource HeightOfDataField}" />
+            <Setter Property="FontFamily"
+                    Value="{StaticResource FontFamilyOfDataFields}" />
+            <Setter Property="FontSize"
+                    Value="14" />
+            <Setter Property="VerticalContentAlignment"
+                    Value="Center" />
+            <Setter Property="VerticalAlignment"
+                    Value="Stretch" />
+            <Setter Property="HorizontalAlignment"
+                    Value="Left" />
+            <Setter Property="Margin"
+                    Value="{StaticResource MarginOfDataFields}" />
+        </Style>
+        <Style x:Key="StyleOfDataFieldTimePicker"
+               TargetType="xctk:TimePicker">
+            <Setter Property="FontFamily"
+                    Value="{StaticResource FontFamilyOfDataFields}" />
+            <Setter Property="Format"
+                    Value="Custom" />
+            <Setter Property="FormatString"
+                    Value="HH:mm" />
+            <Setter Property="TimeInterval"
+                    Value="00:15:00" />
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+            <Setter Property="VerticalContentAlignment"
+                    Value="Center" />
+            <Setter Property="HorizontalAlignment"
+                    Value="Left" />
+            <Setter Property="Height"
+                    Value="{StaticResource HeightOfDataField}" />
+        </Style>
+        <Style x:Key="StyleOfDataFieldLabel"
+               TargetType="Label">
+            <Setter Property="Height"
+                    Value="{StaticResource HeightOfDataField}" />
+            <Setter Property="Width"
+                    Value="Auto" />
+            <Setter Property="FontFamily"
+                    Value="{StaticResource FontFamilyOfDataFields}" />
+            <Setter Property="FontSize"
+                    Value="{StaticResource FontSizeOfDataFields}" />
+            <Setter Property="VerticalAlignment"
+                    Value="Stretch" />
+            <Setter Property="VerticalContentAlignment"
+                    Value="Center" />
+        </Style>
+        <Style x:Key="StyleOfDataFieldTextBlock"
+               TargetType="TextBlock">
+            <Setter Property="Height"
+                    Value="{StaticResource HeightOfDataField}" />
+            <Setter Property="Width"
+                    Value="{StaticResource WidthOfDataFieldOfText}" />
+            <Setter Property="FontFamily"
+                    Value="{StaticResource FontFamilyOfDataFields}" />
+            <Setter Property="FontSize"
+                    Value="{StaticResource FontSizeOfDataFields}" />
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+        </Style>
+        <Style x:Key="StyleOfPassageTextBlock"
+               TargetType="TextBlock">
+            <Setter Property="Height"
+                    Value="{StaticResource HeightOfDataField}" />
+            <Setter Property="Width"
+                    Value="Auto" />
+            <Setter Property="FontFamily"
+                    Value="{StaticResource FontFamilyOfDataFields}" />
+            <Setter Property="FontSize"
+                    Value="{StaticResource FontSizeOfDataFields}" />
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+        </Style>
         <Style x:Key="StyleOfToolbarButton"
-		       TargetType="Button">
-			<Setter Property="Margin"
-			        Value="2,0" />
-			<Setter Property="FontFamily"
-			        Value="{StaticResource FontFamilyOfDataFields}" />
-			<Setter Property="FontSize"
-			        Value="{StaticResource FontSizeOfDataFields}" />
-		</Style>
-		<Style x:Key="StyleOfSelectionItemLabel"
-		       TargetType="Label">
-			<Setter Property="FontFamily"
-			        Value="{StaticResource FontFamilyOfDataFields}" />
-			<Setter Property="FontSize"
-			        Value="{StaticResource FontSizeOfSelectionItem}" />
-			<Setter Property="VerticalContentAlignment"
-			        Value="Center" />
-			<Setter Property="HorizontalContentAlignment"
-			        Value="Left" />
-		</Style>
-		<Style x:Key="StyleOfSelectionItemTextBox"
-		       TargetType="TextBox">
-			<Setter Property="FontFamily"
-			        Value="{StaticResource FontFamilyOfDataFields}" />
-			<Setter Property="FontSize"
-			        Value="{StaticResource FontSizeOfSelectionItem}" />
-			<Setter Property="VerticalContentAlignment"
-			        Value="Center" />
-			<Setter Property="HorizontalContentAlignment"
-			        Value="Left" />
-		</Style>
-		<Style x:Key="StyleOfSelectionItemComboBox"
-		       TargetType="ComboBox">
-			<Setter Property="Height"
-			        Value="{StaticResource HeightOfSelectionItem}" />
-			<Setter Property="FontFamily"
-			        Value="{StaticResource FontFamilyOfDataFields}" />
-			<Setter Property="FontSize"
-			        Value="{StaticResource FontSizeOfDataFields}" />
-			<Setter Property="VerticalContentAlignment"
-			        Value="Center" />
-			<Setter Property="VerticalAlignment"
-			        Value="Center" />
-			<Setter Property="Margin"
-			        Value="5" />
-			<Setter Property="HorizontalContentAlignment"
-			        Value="Left" />
-		</Style>
+               TargetType="Button">
+            <Setter Property="Margin"
+                    Value="2,0" />
+            <Setter Property="FontFamily"
+                    Value="{StaticResource FontFamilyOfDataFields}" />
+            <Setter Property="FontSize"
+                    Value="{StaticResource FontSizeOfDataFields}" />
+        </Style>
+        <Style x:Key="StyleOfSelectionItemLabel"
+               TargetType="Label">
+            <Setter Property="FontFamily"
+                    Value="{StaticResource FontFamilyOfDataFields}" />
+            <Setter Property="FontSize"
+                    Value="{StaticResource FontSizeOfSelectionItem}" />
+            <Setter Property="VerticalContentAlignment"
+                    Value="Center" />
+            <Setter Property="HorizontalContentAlignment"
+                    Value="Left" />
+        </Style>
+        <Style x:Key="StyleOfSelectionItemTextBox"
+               TargetType="TextBox">
+            <Setter Property="FontFamily"
+                    Value="{StaticResource FontFamilyOfDataFields}" />
+            <Setter Property="FontSize"
+                    Value="{StaticResource FontSizeOfSelectionItem}" />
+            <Setter Property="VerticalContentAlignment"
+                    Value="Center" />
+            <Setter Property="HorizontalContentAlignment"
+                    Value="Left" />
+        </Style>
+        <Style x:Key="StyleOfSelectionItemComboBox"
+               TargetType="ComboBox">
+            <Setter Property="Height"
+                    Value="{StaticResource HeightOfSelectionItem}" />
+            <Setter Property="FontFamily"
+                    Value="{StaticResource FontFamilyOfDataFields}" />
+            <Setter Property="FontSize"
+                    Value="{StaticResource FontSizeOfDataFields}" />
+            <Setter Property="VerticalContentAlignment"
+                    Value="Center" />
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+            <Setter Property="Margin"
+                    Value="5" />
+            <Setter Property="HorizontalContentAlignment"
+                    Value="Left" />
+        </Style>
         <ControlTemplate x:Key="ValidatedTextBoxTemplate">
             <StackPanel Orientation="Horizontal">
-                <Border BorderThickness="2"
-                        BorderBrush="Red">
+                <Border BorderThickness="1"
+                        BorderBrush="#FFEA1B1B">
                     <AdornedElementPlaceholder Name="ErrorAdorner" />
                 </Border>
                 <Ellipse Width="10"
                          Height="10"
-                         Fill="Red"
-                         ToolTip="{Binding ElementName=ErrorAdorner, Path=AdornedElement.(Validation.Errors).CurrentItem.ErrorContent}" />
+                         ToolTip="{Binding ElementName=ErrorAdorner, Path=AdornedElement.(Validation.Errors).CurrentItem.ErrorContent}">
+                    <Ellipse.Fill>
+                        <RadialGradientBrush>
+                            <GradientStop Color="#FFB6A223"
+                                          Offset="0" />
+                            <GradientStop Color="White"
+                                          Offset="1" />
+                            </RadialGradientBrush>
+                    </Ellipse.Fill>
+                </Ellipse>
             </StackPanel>
         </ControlTemplate>
     </Application.Resources>

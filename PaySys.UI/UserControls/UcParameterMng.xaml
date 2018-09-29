@@ -60,13 +60,16 @@
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
                                     <local:UcTextPair TextOfLabel="{Binding ValueAndValueType}"
+                                                      TextOfTextBox="{Binding Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                                       Width="{StaticResource WidthOfDataFieldOfPrice}"
                                                       Margin="0"
                                                       ReadOnly="{Binding ElementName=SmpUcParameterMng,Path=ReadOnlyOfFields}"
                                                       Tag="{Binding}"
-                                                      TextOfTextBox="{Binding Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                                                      >
                                         <local:UcTextPair.ValidationRules>
-                                            <validation:ValidationRuleForNumericType/>
+                                            <validation:ValidationRuleForMandatory/>
+                                            <validation:ValidationRuleForNumberType FieldName="پارامتر"/>
+                                            <validation:ValidationRuleForNumberRange Min="100000" Max="200000"/>
                                         </local:UcTextPair.ValidationRules>
                                     </local:UcTextPair>
 
