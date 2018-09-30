@@ -101,7 +101,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\PaySysCommands.cs" />
-    <Compile Include="Dialogs\WinSelectItem.xaml.cs">
+    <Compile Include="Modals\WinSelectItem.xaml.cs">
       <DependentUpon>WinSelectItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="EventArgs\FormCurrentStateChangedEventArgs.cs" />
@@ -208,7 +208,7 @@
     <Compile Include="UserControls\UcTextPair.xaml.cs">
       <DependentUpon>UcTextPair.xaml</DependentUpon>
     </Compile>
-    <Page Include="Dialogs\WinSelectItem.xaml">
+    <Page Include="Modals\WinSelectItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -227,10 +227,6 @@
     <Page Include="TempWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\Generic.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\UcEmployeeDetail.xaml">
       <SubType>Designer</SubType>
@@ -405,7 +401,9 @@
       <Name>PaySys.ModelAndBindLib</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Assets\Icons\Licorice\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
