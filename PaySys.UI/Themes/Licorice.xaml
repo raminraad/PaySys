@@ -1,0 +1,5 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <BitmapImage x:Key="notification_error" UriSource="../Assets/Icons/Licorice/notification_error.png" />
+    <BitmapImage x:Key="notification_validation_error" UriSource="../Assets/Icons/Licorice/notification_validation_error.png" />
+</ResourceDictionary>

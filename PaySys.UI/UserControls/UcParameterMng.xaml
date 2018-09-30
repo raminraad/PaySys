@@ -72,25 +72,6 @@
                                             <validation:ValidationRuleForNumberRange Min="100000" Max="200000"/>
                                         </local:UcTextPair.ValidationRules>
                                     </local:UcTextPair>
-
-
-                                    <!--
-                                    <TextBox Name="yInput"
-                                             Width="200"
-                                             Validation.ErrorTemplate="{StaticResource ValidatedTextBoxTemplate}">
-                                        <Binding Path="Value"
-                                                 Mode="TwoWay"
-                                                 TargetNullValue=""
-                                                 ValidatesOnExceptions="True"
-                                                 NotifyOnValidationError="True"
-                                                 UpdateSourceTrigger="PropertyChanged">
-                                            <Binding.ValidationRules>
-                                                <validation:ValidationRuleForNumericType />
-                                            </Binding.ValidationRules>
-                                        </Binding>
-                                    </TextBox>
-                                    -->
-
                                 </StackPanel>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>

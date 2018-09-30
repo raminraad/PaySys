@@ -50,12 +50,10 @@
     <Reference Include="Itenso.Windows.Controls.ListViewLayout">
       <HintPath>..\packages.manual\Itenso.Windows.Controls.ListViewLayout.dll</HintPath>
     </Reference>
-    <Reference Include="PersianDate, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="PersianDate">
       <HintPath>..\packages.manual\PersianDate.dll</HintPath>
     </Reference>
-    <Reference Include="PersianDateControls, Version=1.2.6793.5301, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="PersianDateControls">
       <HintPath>..\packages.manual\PersianDateControls.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -225,6 +223,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="TempWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Licorice.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -402,7 +404,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets\Icons\Licorice\" />
+    <Resource Include="Assets\Icons\Licorice\notification_add.png" />
+    <Resource Include="Assets\Icons\Licorice\notification_done.png" />
+    <Resource Include="Assets\Icons\Licorice\notification_error.png" />
+    <Resource Include="Assets\Icons\Licorice\notification_remove.png" />
+    <Resource Include="Assets\Icons\Licorice\notification_validation_error.png" />
+    <Resource Include="Assets\Icons\Licorice\notification_warning.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
