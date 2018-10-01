@@ -35,7 +35,7 @@ namespace PaySys.UI.UC.Tab
 		public UcCityMng()
 		{
 			InitializeComponent();
-			BtnRefresh_OnClick(null, null);
+			BtnReload_OnClick(null, null);
 			SmpUcFormStateLabel.CurrentState = FormCurrentState.Select;
 		}
 
@@ -49,20 +49,22 @@ namespace PaySys.UI.UC.Tab
 			Cities.Add(newItem);
 			ListViewCities.SelectedItem = newItem;
 			ListViewCities.ScrollIntoView(newItem);
+		    TextBoxTitle.Focus();
 		}
 
 		private void BtnEdit_OnClick(object sender, RoutedEventArgs e)
 		{
 			SmpUcFormStateLabel.CurrentState = FormCurrentState.Edit;
-		}
+		    TextBoxTitle.Focus();
+        }
 
-		private void BtnRefresh_OnClick(object sender, RoutedEventArgs e)
+        private void BtnReload_OnClick(object sender, RoutedEventArgs e)
 		{
 			var selectedId = (ListViewCities.SelectedItem as City)?.Id;
 			Context = new PaySysContext();
 			Context.Cities.Load();
 			Cities = Context.Cities.Local;
-			ListViewCities.GetBindingExpression(ItemsControl.ItemsSourceProperty).UpdateTarget();
+			ListViewCities.GetBindingExpression(ItemsControl.ItemsSourceProperty)?.UpdateTarget();
 			if(selectedId.HasValue)
 				ListViewCities.SelectedItem = Cities.FirstOrDefault(city => city.Id == selectedId.Value);
 		}
@@ -70,13 +72,14 @@ namespace PaySys.UI.UC.Tab
 		private void BtnSave_OnClick(object sender, RoutedEventArgs e)
 		{
 			foreach(var textBox in this.FindVisualChildren<TextBox>())
-				textBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+				textBox.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
 
 			Context.SaveChanges();
 			SmpUcFormStateLabel.CurrentState = FormCurrentState.Select;
+            CollectionViewSource.GetDefaultView(ListViewCities.ItemsSource)?.Refresh();
 		}
 
-		private void BtnCancel_OnClick(object sender, RoutedEventArgs e)
+		private void BtnDiscardChanges_OnClick(object sender, RoutedEventArgs e)
 		{
 			if (SmpUcFormStateLabel.CurrentState==FormCurrentState.Add)
 			Cities.Remove((City) ListViewCities.SelectedItem);

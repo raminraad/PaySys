@@ -12,151 +12,198 @@
              FlowDirection="RightToLeft"
              d:DesignHeight="600"
              d:DesignWidth="900">
-	<Grid x:Name="GridMain">
-		<Grid.RowDefinitions>
-			<RowDefinition x:Name="RowToolbar"
-			               Height="Auto"/>
-			<RowDefinition Height="1*"/>
-			<RowDefinition Height="10*"/>
-			<RowDefinition Height="*"/>
-			<RowDefinition Height="*"/>
-			<RowDefinition Height="*"/>
-			<RowDefinition Height="*"/>
-			<RowDefinition Height="*"/>
-			<RowDefinition Height="Auto"/>
-		</Grid.RowDefinitions>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="3*"/>
-			<ColumnDefinition Width="*"/> 
-			<ColumnDefinition Width="*"/>
-			<ColumnDefinition Width="3*"/>
-		</Grid.ColumnDefinitions>
-		<TextBlock Grid.Row="1"
-		           Grid.Column="1"
-		           Grid.ColumnSpan="2"
-		           Text="{x:Static fa:Labels.Cities}"
-		           Style="{StaticResource StyleOfListTitleTextBlock}"
-		           />
-		<ToolBar Grid.Row="0"
-		         Grid.ColumnSpan="4"
-		         Grid.Column="0">
-			<Button Name="BtnAdd"
-			        Style="{StaticResource StyleOfToolbarButton}"
-			        Content="{x:Static fa:Labels.Add}"
-					IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}"
-			        Click="BtnAdd_OnClick"/>
-			<Button Name="BtnEdit"
-			        Content="{x:Static fa:Labels.Edit}"
-					IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}"
-			        Click="BtnEdit_OnClick"
-					Style="{StaticResource StyleOfToolbarButton}"/>
-			<Button Name="BtnDelete"
-			        Style="{StaticResource StyleOfToolbarButton}"
-					IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}"
-					Content="{x:Static fa:Labels.Delete}"/>
-			<Separator/>
-			<Button Name="BtnSave"
-			        Style="{StaticResource StyleOfToolbarButton}"
-			        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSaveCancelButtons}"
-					Click="BtnSave_OnClick"
-			        Content="{x:Static fa:Labels.Save}" />
-			<Button Name="BtnCancel"
-			        Style="{StaticResource StyleOfToolbarButton}"
-			        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSaveCancelButtons}"
-					Click="BtnCancel_OnClick"
-			        Content="{x:Static fa:Labels.Cancel}" />
-			<Separator/>
-			<Button Name="BtnRefresh"
-			        Style="{StaticResource StyleOfToolbarButton}"
-			        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}"
-			        Content="{x:Static fa:Labels.Reload}"
-			        Click="BtnRefresh_OnClick"/>
-			<Separator/>
-			<Button x:Name="BtnSaveCommand" />
-		</ToolBar>
-		<ListView x:Name="ListViewCities"
-		          ItemsSource="{Binding ElementName=SmpUcCityMng,Path=Cities}"
-				  IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}"
-		          Grid.Row="2"
-		          Grid.Column="1"
-		          Grid.ColumnSpan="2">
-			<ListView.View>
-				<GridView>
-					<GridViewColumn Header="{x:Static fa:FieldicCity.Title}"
-					                Width="80"
-					                DisplayMemberBinding="{Binding Title}"/>
-					<GridViewColumn Header="{x:Static fa:FieldicCity.Distance}"
-					                Width="80"
-					                DisplayMemberBinding="{Binding Distance,StringFormat={}{0:N0}}"/>
-					<GridViewColumn Header="{x:Static fa:FieldicCity.Percentage}"
-					                Width="60"
-					                DisplayMemberBinding="{Binding Percentage}"/>
-				</GridView>
-			</ListView.View>
-		</ListView>
-		<Grid x:Name="GridDetails"
-		      Grid.Row="4"
-		      Grid.Column="1"
-		      Grid.RowSpan="5"
-		      Grid.ColumnSpan="2"
-		      DataContext="{Binding ElementName=ListViewCities,Path=SelectedItem}">
-			<Grid.Resources>
-				<Style TargetType="TextBox">
-					<Setter Property="Margin"
-					        Value="0,12"/>
-					<Setter Property="VerticalContentAlignment"
-					        Value="Center"/>
-				</Style>
-				<Style TargetType="TextBlock">
-					<Setter Property="VerticalAlignment"
-					        Value="Center"/>
-				</Style>
-			</Grid.Resources>
-			<Grid.RowDefinitions>
-				<RowDefinition/>
-				<RowDefinition/>
-				<RowDefinition/>
-				<RowDefinition/>
-			</Grid.RowDefinitions>
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="*"/>
-				<ColumnDefinition Width="3*"/>
-			</Grid.ColumnDefinitions>
-			<Label Grid.Column="0"
-			           Grid.Row="0"
-				   Style="{StaticResource StyleOfDataFieldLabel}"
-			           Content="{x:Static fa:FieldicCity.Title}"/>
-			<Label Grid.Column="0"
-			           Grid.Row="1"
-				   Style="{StaticResource StyleOfDataFieldLabel}"
-				   Content="{x:Static fa:FieldicCity.Distance}"/>
-			<Label Grid.Column="0"
-			           Grid.Row="2"
-				   Style="{StaticResource StyleOfDataFieldLabel}"
-				   Content="{x:Static fa:FieldicCity.Percentage}"/>
-			<TextBox x:Name="TextBoxTitle"
-			         Grid.Row="0"
-			         Grid.Column="1"
-					 Style="{StaticResource StyleOfDataFieldTextBox}"
-					 IsReadOnly="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
-			         Text="{Binding Title,UpdateSourceTrigger=Explicit}"/>
-			<TextBox x:Name="TextBoxDistance"
-			         Grid.Row="1"
-			         Grid.Column="1"
-					 Style="{StaticResource StyleOfDataFieldTextBox}"
-					 IsReadOnly="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
-			         Text="{Binding Distance,UpdateSourceTrigger=Explicit}"/>
-			<TextBox x:Name="TextBoxPercentage"
-			         Grid.Row="2"
-			         Grid.Column="1"
-					 Style="{StaticResource StyleOfDataFieldTextBox}"
-					 IsReadOnly="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
-			         Text="{Binding Percentage,UpdateSourceTrigger=Explicit}"/>
-		</Grid>
-		<StatusBar Grid.Column="0"
-		           Grid.Row="8"
-		           Grid.ColumnSpan="4">
-			<local:UcFormStateLabel x:Name="SmpUcFormStateLabel"/>
-		</StatusBar>
-	</Grid>
+    <Grid x:Name="GridMain">
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="RowToolbar"
+                           Height="Auto" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="1"
+                   Grid.Column="1"
+                   Grid.ColumnSpan="2"
+                   Text="{x:Static fa:Labels.Cities}"
+                   Style="{StaticResource StyleOfListTitleTextBlock}" />
+        <ToolBar Grid.Row="0"
+                 KeyboardNavigation.TabNavigation="Continue"
+                 Grid.ColumnSpan="4"
+                 Grid.Column="0">
+            <Button Name="BtnAdd"
+                    Style="{StaticResource StyleOfToolbarButton}"
+                    IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}"
+                    Click="BtnAdd_OnClick">
+                <Button.Content>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{StaticResource icon_crud_add}"
+                               Style="{StaticResource StyleOfToolbarButtonImage}" />
+                        <TextBlock Text="{x:Static fa:Labels.Add}"
+                                   Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button Name="BtnEdit"
+                    Style="{StaticResource StyleOfToolbarButton}"
+                    IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}"
+                    Click="BtnEdit_OnClick">
+                <Button.Content>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{StaticResource icon_crud_edit}"
+                               Style="{StaticResource StyleOfToolbarButtonImage}" />
+                        <TextBlock Text="{x:Static fa:Labels.Edit}"
+                                   Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button Name="BtnDelete"
+                    Style="{StaticResource StyleOfToolbarButton}"
+                    IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}">
+                <Button.Content>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{StaticResource icon_crud_delete}"
+                               Style="{StaticResource StyleOfToolbarButtonImage}" />
+                        <TextBlock Text="{x:Static fa:Labels.Delete}"
+                                   Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Separator />
+            <Button Name="BtnSave"
+                    Style="{StaticResource StyleOfToolbarButton}"
+                    Click="BtnSave_OnClick"
+                    IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSaveCancelButtons}">
+                <Button.Content>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{StaticResource icon_save}"
+                               Style="{StaticResource StyleOfToolbarButtonImage}" />
+                        <TextBlock Text="{x:Static fa:Labels.Save}"
+                                   Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button Name="BtnDiscardChanges"
+                    Style="{StaticResource StyleOfToolbarButton}"
+                    Click="BtnDiscardChanges_OnClick"
+                    IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSaveCancelButtons}">
+                <Button.Content>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{StaticResource icon_discard_changes}"
+                               Style="{StaticResource StyleOfToolbarButtonImage}" />
+                        <TextBlock Text="{x:Static fa:Labels.Cancel}"
+                                   Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Separator />
+            <Button Name="BtnReload"
+                    Style="{StaticResource StyleOfToolbarButton}"
+                    Click="BtnReload_OnClick"
+                    IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}">
+                <Button.Content>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{StaticResource icon_reload}"
+                               Style="{StaticResource StyleOfToolbarButtonImage}" />
+                        <TextBlock Text="{x:Static fa:Labels.Reload}"
+                                   Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+
+        </ToolBar>
+        <ListView x:Name="ListViewCities"
+                  ItemsSource="{Binding ElementName=SmpUcCityMng,Path=Cities}"
+                  IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}"
+                  Grid.Row="2"
+                  Grid.Column="1"
+                  Grid.ColumnSpan="2">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="{x:Static fa:FieldicCity.Title}"
+                                    Width="{StaticResource WidthOfDataColumnOfText}"
+                                    DisplayMemberBinding="{Binding Title}" />
+                    <GridViewColumn Header="{x:Static fa:FieldicCity.Distance}"
+                                    Width="{StaticResource WidthOfDataColumnOfCode}"
+                                    DisplayMemberBinding="{Binding Distance,StringFormat={}{0:N0}}" />
+                    <GridViewColumn Header="{x:Static fa:FieldicCity.Percentage}"
+                                    Width="{StaticResource WidthOfDataColumnOfCode}"
+                                    DisplayMemberBinding="{Binding Percentage}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Grid x:Name="GridDetails"
+              Grid.Row="4"
+              Grid.Column="1"
+              Grid.RowSpan="5"
+              Grid.ColumnSpan="2"
+              DataContext="{Binding ElementName=ListViewCities,Path=SelectedItem}">
+            <Grid.Resources>
+                <Style TargetType="TextBox">
+                    <Setter Property="Margin"
+                            Value="0,12" />
+                    <Setter Property="VerticalContentAlignment"
+                            Value="Center" />
+                </Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="VerticalAlignment"
+                            Value="Center" />
+                </Style>
+            </Grid.Resources>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0"
+                   Grid.Row="0"
+                   Style="{StaticResource StyleOfDataFieldLabel}"
+                   Content="{x:Static fa:FieldicCity.Title}" />
+            <Label Grid.Column="0"
+                   Grid.Row="1"
+                   Style="{StaticResource StyleOfDataFieldLabel}"
+                   Content="{x:Static fa:FieldicCity.Distance}" />
+            <Label Grid.Column="0"
+                   Grid.Row="2"
+                   Style="{StaticResource StyleOfDataFieldLabel}"
+                   Content="{x:Static fa:FieldicCity.Percentage}" />
+            <TextBox x:Name="TextBoxTitle"
+                     Grid.Row="0"
+                     Grid.Column="1"
+                     Style="{StaticResource StyleOfDataFieldTextBox}"
+                     IsReadOnly="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
+                     Text="{Binding Title,UpdateSourceTrigger=Explicit}" />
+            <TextBox x:Name="TextBoxDistance"
+                     Grid.Row="1"
+                     Grid.Column="1"
+                     Style="{StaticResource StyleOfDataFieldTextBox}"
+                     IsReadOnly="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
+                     Text="{Binding Distance,UpdateSourceTrigger=Explicit}" />
+            <TextBox x:Name="TextBoxPercentage"
+                     Grid.Row="2"
+                     Grid.Column="1"
+                     Style="{StaticResource StyleOfDataFieldTextBox}"
+                     IsReadOnly="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
+                     Text="{Binding Percentage,UpdateSourceTrigger=Explicit}" />
+        </Grid>
+        <StatusBar Grid.Column="0"
+                   Grid.Row="8"
+                   Grid.ColumnSpan="4">
+            <local:UcFormStateLabel x:Name="SmpUcFormStateLabel" />
+        </StatusBar>
+    </Grid>
 </UserControl>
