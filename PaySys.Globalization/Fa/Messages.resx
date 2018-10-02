@@ -126,6 +126,9 @@
   <data name="DeleteItemUsers" xml:space="preserve">
     <value>لطفاً ابتدا رکوردهای استفاده کننده از آیتم را حذف نمایید.</value>
   </data>
+  <data name="DevNullValidateOnPropertyException" xml:space="preserve">
+    <value>'ValidateOn' can't be null when there are validaton rules</value>
+  </data>
   <data name="EnterContractFieldTitle" xml:space="preserve">
     <value>لطفاً عنوان فیلد حکم را وارد نمایید.</value>
   </data>

@@ -88,6 +88,15 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &apos;ValidateOn&apos; can&apos;t be null when there are validaton rules.
+        /// </summary>
+        public static string DevNullValidateOnPropertyException {
+            get {
+                return ResourceManager.GetString("DevNullValidateOnPropertyException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to لطفاً عنوان فیلد حکم را وارد نمایید..
         /// </summary>
         public static string EnterContractFieldTitle {

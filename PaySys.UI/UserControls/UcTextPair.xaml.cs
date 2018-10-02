@@ -13,6 +13,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Bogus;
+using PaySys.Globalization;
+using PaySys.ModelAndBindLib.Entities;
 
 namespace PaySys.UI.UC
 {
@@ -27,6 +30,7 @@ namespace PaySys.UI.UC
 		    ValidationRules = new ObservableCollection<ValidationRule>();
         }
 
+	    public ValidateOn ValidateOn { get; set; }=ValidateOn.None;
 		public static readonly DependencyProperty TextOfLabelProperty = DependencyProperty.Register( "TextOfLabel", typeof(string), typeof(UcTextPair), new PropertyMetadata( default(string) ) );
 
 		public string TextOfLabel
@@ -72,17 +76,19 @@ namespace PaySys.UI.UC
 
 	    private void UcTextPair_OnLoaded(object sender, RoutedEventArgs e)
 	    {
-	        if (ValidationRules != null)
+	        if (ValidationRules?.Count>0)
+	        {
+                if(ValidateOn==ValidateOn.None)
+                    throw new ValidationException(ResourceAccessor.Messages.GetString("DevNullValidateOnPropertyException"));
 	            foreach (var rule in ValidationRules)
 	            {
 	                (TextBoxData.GetBindingExpression(TextBox.TextProperty)?.ParentBinding).ValidationRules.Add(rule);
 	            }
-	    }
-
-	    private void TextBoxData_OnTextChanged(object sender, TextChangedEventArgs e)
-	    {
-	        TextBoxData.GetBindingExpression(TextBox.TextProperty)?.ValidateWithoutUpdate();
-
-	    }
-    }
+	            if(ValidateOn==ValidateOn.TextChanged)
+	                TextBoxData.TextChanged+=(o, args) => TextBoxData.GetBindingExpression(TextBox.TextProperty)?.ValidateWithoutUpdate();
+	            else if(ValidateOn==ValidateOn.LostFocus)
+	                TextBoxData.LostFocus += (o, args) => TextBoxData.GetBindingExpression(TextBox.TextProperty)?.ValidateWithoutUpdate();
+	        }
+        }
+	}
 }

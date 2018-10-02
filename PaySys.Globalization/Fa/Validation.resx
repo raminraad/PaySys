@@ -121,7 +121,7 @@
     <value>وارد کردن مقدار برای name الزامیست</value>
   </data>
   <data name="NegativeValueNotSupported" xml:space="preserve">
-    <value>مقدار منفی برای فیلد قابل قبول نیست</value>
+    <value>مقدار منفی برای name قابل قبول نیست</value>
   </data>
   <data name="NumberTypeRequired" xml:space="preserve">
     <value>مقدار وارد شده برای name باید عددی باشد</value>

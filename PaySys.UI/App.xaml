@@ -197,6 +197,7 @@
                         Value="Left" />
                 <Setter Property="Margin"
                         Value="{StaticResource MarginOfDataFields}" />
+                <Setter Property="MaxLength" Value="10"/>
                 <EventSetter Event="GotFocus" Handler="ListItemGotFocus"/>
             </Style>
             <Style x:Key="StyleOfDataFieldMultiColumnTextBox"
@@ -383,7 +384,7 @@
                            Height="28"
                            Margin="10,0"
                            ToolTip="{Binding ElementName=ErrorAdorner, Path=AdornedElement.(Validation.Errors).CurrentItem.ErrorContent}"
-                           Source="{StaticResource notification_validation_error}" />
+                           Source="{StaticResource icon_notification_validation_error}" />
                 </StackPanel>
             </ControlTemplate>
         </ResourceDictionary>

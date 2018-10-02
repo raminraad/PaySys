@@ -1203,6 +1203,13 @@ namespace PaySys.ModelAndBindLib.Entities
         Debt
     }
 
+    public enum ValidateOn
+    {
+        None,
+        TextChanged,
+        LostFocus
+    }
+
     public enum NavigationType
     {
         First = -2,

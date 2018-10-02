@@ -65,11 +65,11 @@
                                                       Margin="0"
                                                       ReadOnly="{Binding ElementName=SmpUcParameterMng,Path=ReadOnlyOfFields}"
                                                       Tag="{Binding}"
-                                                      >
+                                                      ValidateOn="LostFocus">
                                         <local:UcTextPair.ValidationRules>
-                                            <validation:ValidationRuleForMandatory/>
-                                            <validation:ValidationRuleForNumberType FieldName="پارامتر"/>
-                                            <validation:ValidationRuleForNumberRange Min="100000" Max="200000"/>
+                                            <validation:ValidationRuleForMandatory />
+                                            <validation:ValidationRuleForNumberType FieldName="{x:Static fa:Labels.ParameterValue}" />
+                                            <validation:ValidationRuleForNonNegativeNumber FieldName="{x:Static fa:Labels.ParameterValue}" />
                                         </local:UcTextPair.ValidationRules>
                                     </local:UcTextPair>
                                 </StackPanel>

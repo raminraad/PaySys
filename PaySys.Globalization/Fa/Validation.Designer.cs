@@ -70,7 +70,7 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to مقدار منفی برای فیلد قابل قبول نیست.
+        ///   Looks up a localized string similar to مقدار منفی برای name قابل قبول نیست.
         /// </summary>
         public static string NegativeValueNotSupported {
             get {

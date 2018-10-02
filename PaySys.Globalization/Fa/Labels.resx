@@ -420,4 +420,7 @@
   <data name="SurrounderOfFieldNameStart" xml:space="preserve">
     <value>«</value>
   </data>
+  <data name="ParameterValue" xml:space="preserve">
+    <value>مقدار پارامتر</value>
+  </data>
 </root>

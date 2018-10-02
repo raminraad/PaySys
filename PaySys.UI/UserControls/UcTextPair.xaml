@@ -19,8 +19,7 @@
                  Visibility="{Binding ElementName=SmpUcTextPair ,Path = ReadOnly,Converter={StaticResource BooleanToVisibilityConverter},ConverterParameter=false}"
                  Style="{StaticResource StyleOfDataFieldTextBox}"
                  Width="{Binding ElementName=SmpUcTextPair,Path=Width}"
-                 Margin="0"
-                 TextChanged="TextBoxData_OnTextChanged"/>
+                 Margin="0" />
         <Label x:Name="LabelData"
                Content="{Binding ElementName=SmpUcTextPair,Path=TextOfLabel}"
                Visibility="{Binding ElementName=SmpUcTextPair ,Path = ReadOnly,Converter={StaticResource BooleanToVisibilityConverter},ConverterParameter=true}"

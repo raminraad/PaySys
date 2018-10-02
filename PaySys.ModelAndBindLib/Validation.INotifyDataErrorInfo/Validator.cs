@@ -21,7 +21,7 @@ namespace PaySys.ModelAndBindLib.Entities
         {
             if (value.HasValue && value.Value < 0.0)
                 AddError(new ValidationError(fieldName, Constraint_MustBeNonNegative,
-                    ResourceAccessor.Messages.GetString("NegativeValueNotSupported")));
+                    ResourceAccessor.Messages.GetString("NegativeValueNotSupported").Replace("name", ResourceAccessor.Labels.GetString("Field"))));
             else
                 RemoveError(fieldName, Constraint_MustBeNonNegative);
         }

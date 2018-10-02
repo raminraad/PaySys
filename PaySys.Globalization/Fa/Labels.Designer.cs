@@ -655,6 +655,15 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to مقدار پارامتر.
+        /// </summary>
+        public static string ParameterValue {
+            get {
+                return ResourceManager.GetString("ParameterValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to مشخصات فردی.
         /// </summary>
         public static string PersonalInfo {
