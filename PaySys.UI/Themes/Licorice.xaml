@@ -8,4 +8,5 @@
     <BitmapImage x:Key="icon_save" UriSource="../Assets/Icons/Licorice/icon_save.png" />
     <BitmapImage x:Key="icon_discard_changes" UriSource="../Assets/Icons/Licorice/icon_discard_changes.png" />
     <BitmapImage x:Key="icon_reload" UriSource="../Assets/Icons/Licorice/icon_reload.png" />
+    <BitmapImage x:Key="icon_lookup" UriSource="../Assets/Icons/Licorice/icon_lookup.png" />
 </ResourceDictionary>

@@ -47,8 +47,8 @@ namespace PaySys.UI.UC.Tab
 				Title = ResourceAccessor.Labels.GetString("New")
 			};
 			Cities.Add(newItem);
-			ListViewCities.SelectedItem = newItem;
-			ListViewCities.ScrollIntoView(newItem);
+			DataGridCities.SelectedItem = newItem;
+			DataGridCities.ScrollIntoView(newItem);
 		    TextBoxTitle.Focus();
 		}
 
@@ -60,13 +60,14 @@ namespace PaySys.UI.UC.Tab
 
         private void BtnReload_OnClick(object sender, RoutedEventArgs e)
 		{
-			var selectedId = (ListViewCities.SelectedItem as City)?.Id;
+			var selectedId = (DataGridCities.SelectedItem as City)?.Id;
 			Context = new PaySysContext();
 			Context.Cities.Load();
 			Cities = Context.Cities.Local;
-			ListViewCities.GetBindingExpression(ItemsControl.ItemsSourceProperty)?.UpdateTarget();
+			DataGridCities.GetBindingExpression(ItemsControl.ItemsSourceProperty)?.UpdateTarget();
+			DataGridCities.GetBindingExpression(DataContextProperty)?.UpdateTarget();
 			if(selectedId.HasValue)
-				ListViewCities.SelectedItem = Cities.FirstOrDefault(city => city.Id == selectedId.Value);
+				DataGridCities.SelectedItem = Cities.FirstOrDefault(city => city.Id == selectedId.Value);
 		}
 
 		private void BtnSave_OnClick(object sender, RoutedEventArgs e)
@@ -76,13 +77,13 @@ namespace PaySys.UI.UC.Tab
 
 			Context.SaveChanges();
 			SmpUcFormStateLabel.CurrentState = FormCurrentState.Select;
-            CollectionViewSource.GetDefaultView(ListViewCities.ItemsSource)?.Refresh();
+            CollectionViewSource.GetDefaultView(DataGridCities.ItemsSource)?.Refresh();
 		}
 
 		private void BtnDiscardChanges_OnClick(object sender, RoutedEventArgs e)
 		{
 			if (SmpUcFormStateLabel.CurrentState==FormCurrentState.Add)
-			Cities.Remove((City) ListViewCities.SelectedItem);
+			Cities.Remove((City) DataGridCities.SelectedItem);
 			foreach(var textBox in this.FindVisualChildren<TextBox>())
 				textBox.GetBindingExpression(TextBox.TextProperty)?.UpdateTarget();
 

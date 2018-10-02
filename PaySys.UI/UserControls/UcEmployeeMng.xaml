@@ -54,19 +54,17 @@
 			        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSaveCancelButtons}"
 			        Content="{x:Static fa:Labels.Cancel}" />
 		</ToolBar>
-		<StackPanel Name="PanelSearch"
+		<DockPanel Name="PanelSearch"
 		            Grid.Row="1"
-		            Orientation="Horizontal"
-		            HorizontalAlignment="Center"
-		            Margin="0,20">
+                    Width="600"
+		            Margin="{StaticResource MarginOfMasterOrDetail}">
 			<Label
 				Content="{x:Static fa:Labels.Search}"
 				Style="{StaticResource StyleOfSelectionItemLabel}" />
-			<TextBox x:Name="TxtFilter"
-			         Style="{StaticResource StyleOfSelectionItemTextBox}"
-					 TextChanged="TxtFilter_OnTextChanged"
-			         Width="400" />
-		</StackPanel>
+			<TextBox x:Name="TextBoxLookup"
+			         Style="{StaticResource StyleOfLookupTextBox}"
+					 TextChanged="TextBoxLookup_OnTextChanged"/>
+		</DockPanel>
 		<DataGrid x:Name="DataGridEmployees"
 		          DataContext="{Binding ElementName = SmpUcEmployeeMng,Path=EmployeesAll}"
 				  ItemsSource="{Binding}"

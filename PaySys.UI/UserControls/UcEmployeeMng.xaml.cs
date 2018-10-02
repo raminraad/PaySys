@@ -34,20 +34,20 @@ namespace PaySys.UI.UC
 		private void RefreshDtgMain()
 		{
 			var index = DataGridEmployees.SelectedIndex;
-			if( TxtFilter.Text.Trim() == string.Empty )
+			if( TextBoxLookup.Text.Trim() == string.Empty )
 			{
 				EmployeesAll = new ObservableCollection<Employee>( _context.Employees.ToList() );
 			}
 			else
 			{
-				var filters = TxtFilter.Text.Split( ' ' );
-				var lists = filters.Select( strFilter => ( from x in _context.Employees
-				                                           where x.FName.Contains( strFilter ) || x.LName.Contains( strFilter ) || x.PersonnelCode.Contains( strFilter ) || x.DossierNo.Contains( strFilter ) || x.NationalCardNo.Contains( strFilter ) || x.IdCardNo.Contains( strFilter )
+				var lookups = TextBoxLookup.Text.Split( ' ' );
+				var lists = lookups.Select( strLookup => ( from x in _context.Employees
+				                                           where x.FName.Contains( strLookup ) || x.LName.Contains( strLookup ) || x.PersonnelCode.Contains( strLookup ) || x.DossierNo.Contains( strLookup ) || x.NationalCardNo.Contains( strLookup ) || x.IdCardNo.Contains( strLookup )
 				                                           select x ).ToList() ).ToList();
 
-				var filteredList = _context.Employees.ToList();
-				lists.ForEach( x => filteredList.RemoveAll( employee => filteredList.Except( x ).Contains( employee ) ) );
-				EmployeesAll = new ObservableCollection<Employee>( filteredList );
+				var lookedUpList = _context.Employees.ToList();
+				lists.ForEach( x => lookedUpList.RemoveAll( employee => lookedUpList.Except( x ).Contains( employee ) ) );
+				EmployeesAll = new ObservableCollection<Employee>( lookedUpList );
 			}
 
 			DataGridEmployees.GetBindingExpression( DataContextProperty )?.UpdateTarget();
@@ -101,7 +101,7 @@ namespace PaySys.UI.UC
 			RefreshDtgMain();
 		}
 
-		private void TxtFilter_OnTextChanged( object sender, TextChangedEventArgs e )
+		private void TextBoxLookup_OnTextChanged( object sender, TextChangedEventArgs e )
 		{
 			RefreshDtgMain();
 		}

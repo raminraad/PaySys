@@ -13,6 +13,22 @@ namespace PaySys.ModelAndBindLib.Entities
     {
         public int Id { get; set; }
 
+        public bool ValueExistsInPropertiesValues(string valueToSearch, bool exactMatch = false)
+        {
+            var propsToCheck = this.GetType().GetProperties().Where(a => a.PropertyType != typeof(bool));
+            if (exactMatch)
+            {
+                if (propsToCheck.Any(propertyInfo => propertyInfo.GetValue(this).ToString().Equals(valueToSearch)))
+                    return true;
+            }
+            else
+            {
+                if (propsToCheck.Any(propertyInfo => propertyInfo.GetValue(this).ToString().Contains(valueToSearch)))
+                    return true;
+            }
+
+            return false;
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

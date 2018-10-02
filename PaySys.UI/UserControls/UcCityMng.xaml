@@ -8,6 +8,7 @@
              xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
              xmlns:bindingConverter="clr-namespace:PaySys.ModelAndBindLib.BindingConverter;assembly=PaySys.ModelAndBindLib"
              xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Entities;assembly=PaySys.ModelAndBindLib"
+             xmlns:validation="clr-namespace:PaySys.ModelAndBindLib.Validation;assembly=PaySys.ModelAndBindLib"
              mc:Ignorable="d"
              FlowDirection="RightToLeft"
              d:DesignHeight="600"
@@ -16,13 +17,9 @@
         <Grid.RowDefinitions>
             <RowDefinition x:Name="RowToolbar"
                            Height="Auto" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="10*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -31,11 +28,15 @@
             <ColumnDefinition Width="2*" />
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Row="1"
+        <DockPanel Grid.Row="1"
                    Grid.Column="1"
                    Grid.ColumnSpan="2"
-                   Text="{x:Static fa:Labels.Cities}"
-                   Style="{StaticResource StyleOfListTitleTextBlock}" />
+                   Margin="{StaticResource MarginOfMasterOrDetail}">
+            <Image Source="{StaticResource icon_lookup}"
+                   Style="{StaticResource StyleOfLookupImage}" />
+            <TextBox x:Name="TextBoxLookup"
+                     Style="{StaticResource StyleOfLookupTextBox}" />
+        </DockPanel>
         <ToolBar Grid.Row="0"
                  KeyboardNavigation.TabNavigation="Continue"
                  Grid.ColumnSpan="4"
@@ -121,32 +122,30 @@
             </Button>
 
         </ToolBar>
-        <ListView x:Name="ListViewCities"
-                  ItemsSource="{Binding ElementName=SmpUcCityMng,Path=Cities}"
-                  IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}"
+        <DataGrid x:Name="DataGridCities"
                   Grid.Row="2"
                   Grid.Column="1"
-                  Grid.ColumnSpan="2">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="{x:Static fa:FieldicCity.Title}"
-                                    Width="{StaticResource WidthOfDataColumnOfText}"
-                                    DisplayMemberBinding="{Binding Title}" />
-                    <GridViewColumn Header="{x:Static fa:FieldicCity.Distance}"
-                                    Width="{StaticResource WidthOfDataColumnOfCode}"
-                                    DisplayMemberBinding="{Binding Distance,StringFormat={}{0:N0}}" />
-                    <GridViewColumn Header="{x:Static fa:FieldicCity.Percentage}"
-                                    Width="{StaticResource WidthOfDataColumnOfCode}"
-                                    DisplayMemberBinding="{Binding Percentage}" />
-                </GridView>
-            </ListView.View>
-        </ListView>
+                  Grid.ColumnSpan="2"
+                  ColumnWidth="*"
+                  DataContext="{Binding ElementName = SmpUcCityMng,Path=Cities}"
+                  ItemsSource="{Binding}"
+                  IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="{x:Static fa:FieldicCity.Title}"
+                                    Binding="{Binding Title}"
+                                    Width="200" />
+                <DataGridTextColumn Header="{x:Static fa:FieldicCity.Distance}"
+                                    Binding="{Binding Distance}" />
+                <DataGridTextColumn Header="{x:Static fa:FieldicCity.Percentage}"
+                                    Binding="{Binding Percentage}" />
+            </DataGrid.Columns>
+        </DataGrid>
         <Grid x:Name="GridDetails"
-              Grid.Row="4"
+              Grid.Row="3"
               Grid.Column="1"
-              Grid.RowSpan="5"
               Grid.ColumnSpan="2"
-              DataContext="{Binding ElementName=ListViewCities,Path=SelectedItem}">
+              Margin="{StaticResource MarginOfMasterOrDetail}"
+              DataContext="{Binding ElementName=DataGridCities,Path=SelectedItem}">
             <Grid.Resources>
                 <Style TargetType="TextBox">
                     <Setter Property="Margin"
@@ -191,14 +190,35 @@
                      Grid.Row="1"
                      Grid.Column="1"
                      Style="{StaticResource StyleOfDataFieldTextBox}"
-                     IsReadOnly="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
-                     Text="{Binding Distance,UpdateSourceTrigger=Explicit}" />
+                     IsReadOnly="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}">
+                <TextBox.Text>
+                    <Binding Path="Distance"
+                             UpdateSourceTrigger="Explicit">
+                        <Binding.ValidationRules>
+                            <validation:ValidationRuleForMandatory />
+                            <validation:ValidationRuleForNumberType FieldName="{x:Static fa:FieldicCity.Distance}" />
+                            <validation:ValidationRuleForNonNegativeNumber
+                                FieldName="{x:Static fa:FieldicCity.Distance}" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
             <TextBox x:Name="TextBoxPercentage"
                      Grid.Row="2"
                      Grid.Column="1"
                      Style="{StaticResource StyleOfDataFieldTextBox}"
-                     IsReadOnly="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
-                     Text="{Binding Percentage,UpdateSourceTrigger=Explicit}" />
+                     IsReadOnly="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}">
+                <TextBox.Text>
+                    <Binding Path="Percentage"
+                             UpdateSourceTrigger="Explicit">
+                        <Binding.ValidationRules>
+                            <validation:ValidationRuleForNumberType FieldName="{x:Static fa:FieldicCity.Percentage}" />
+                            <validation:ValidationRuleForNonNegativeNumber
+                                FieldName="{x:Static fa:FieldicCity.Percentage}" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
         </Grid>
         <StatusBar Grid.Column="0"
                    Grid.Row="8"

@@ -14,6 +14,22 @@
                 <ResourceDictionary Source="Themes/Licorice.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
+            <ControlTemplate x:Key="ValidatedTextBoxTemplate">
+                <StackPanel Orientation="Horizontal">
+                    <Border BorderThickness="2"
+                            CornerRadius="5"
+                            HorizontalAlignment="Stretch"
+                            Width="{Binding ElementName=ErrorAdorner,Path=ActualWidth}"
+                            BorderBrush="Red">
+                        <AdornedElementPlaceholder Name="ErrorAdorner" />
+                    </Border>
+                    <Image Width="28"
+                           Height="28"
+                           Margin="10,0"
+                           ToolTip="{Binding ElementName=ErrorAdorner, Path=AdornedElement.(Validation.Errors).CurrentItem.ErrorContent}"
+                           Source="{StaticResource icon_notification_validation_error}" />
+                </StackPanel>
+            </ControlTemplate>
 
             <bindingConverter:DateTimeToPersianDateConverter x:Key="GregToPersDateConverter" />
             <bindingConverter:NegateBooleanConverter x:Key="NegateBooleanConverter" />
@@ -33,7 +49,7 @@
             <FontFamily x:Key="FontFamilyOfDataFields">PFont</FontFamily>
             <system:Double x:Key="FontSizeOfDataFields">18</system:Double>
             <system:Double x:Key="FontSizeOfListTitle">20</system:Double>
-            <system:Double x:Key="FontSizeOfSelectionItem">24</system:Double>
+            <system:Double x:Key="FontSizeOfLookupTextBox">24</system:Double>
             <system:Double x:Key="FontSizeOfToolbarButton">20</system:Double>
             <FontFamily x:Key="FontFamilyOfToolbarButton">Adobe Arabic</FontFamily>
             <system:Double x:Key="HeightOfDataField">33</system:Double>
@@ -52,14 +68,48 @@
             <system:Double x:Key="WidthOfTabOneOf7">200</system:Double>
             <system:Double x:Key="WidthOfTabOneOf8">150</system:Double>
             <system:Double x:Key="WidthOfTabOneOf9">100</system:Double>
-            <system:Double x:Key="HeightOfSelectionItem">34</system:Double>
+            <system:Double x:Key="HeightOfLookupTextBox">34</system:Double>
             <system:Double x:Key="SizeOfToolbarButton">60</system:Double>
             <system:Double x:Key="HeightOfMenuItam">30</system:Double>
             <Thickness x:Key="MarginOfDataFields"
                        Left="10"
-                       Top="0"
-                       Right="50"
-                       Bottom="0" />
+                       Top="10"
+                       Right="40"
+                       Bottom="10" />
+            <Thickness x:Key="MarginOfMasterOrDetail"
+                       Left="5"
+                       Top="10"
+                       Right="5"
+                       Bottom="10" />
+            <Thickness x:Key="MarginOfLookupTextBox"
+                       Left="5"
+                       Top="5"
+                       Right="0"
+                       Bottom="5" />
+
+
+            <Style TargetType="DataGrid">
+                <Setter Property="HorizontalScrollBarVisibility"
+                        Value="Auto" />
+                <Setter Property="VerticalScrollBarVisibility"
+                        Value="Auto" />
+                <Setter Property="BorderThickness"
+                        Value="2" />
+                <Setter Property="Margin"
+                        Value="{StaticResource MarginOfMasterOrDetail}" />
+                <Setter Property="AutoGenerateColumns"
+                        Value="False" />
+                <Setter Property="ColumnWidth"
+                        Value="*" />
+                <Setter Property="IsSynchronizedWithCurrentItem"
+                        Value="True" />
+                <Setter Property="FontFamily"
+                        Value="{StaticResource FontFamilyOfDataFields}" />
+                <Setter Property="IsReadOnly"
+                        Value="True" />
+                <Setter Property="SelectionMode"
+                        Value="Single" />
+            </Style>
             <Style TargetType="TabItem">
                 <Setter Property="FontFamily"
                         Value="{StaticResource FontFamilyOfDataFields}" />
@@ -152,6 +202,8 @@
                         Value="Black" />
                 <Setter Property="TextWrapping"
                         Value="Wrap" />
+                <Setter Property="Margin"
+                        Value="0,20" />
             </Style>
             <Style x:Key="StyleOfListTitleLabel"
                    TargetType="Label">
@@ -195,10 +247,18 @@
                         Value="Center" />
                 <Setter Property="HorizontalAlignment"
                         Value="Left" />
+                <Setter Property="HorizontalContentAlignment"
+                        Value="Left" />
                 <Setter Property="Margin"
                         Value="{StaticResource MarginOfDataFields}" />
-                <Setter Property="MaxLength" Value="10"/>
-                <EventSetter Event="GotFocus" Handler="ListItemGotFocus"/>
+                <Setter Property="Validation.ErrorTemplate"
+                        Value="{StaticResource ValidatedTextBoxTemplate}" />
+                <Setter Property="MaxLength"
+                        Value="10" />
+                <EventSetter Event="GotFocus"
+                             Handler="ListItemGotFocus" />
+                <EventSetter Event="LostFocus"
+                             Handler="TextBoxLostFocus" />
             </Style>
             <Style x:Key="StyleOfDataFieldMultiColumnTextBox"
                    TargetType="TextBox">
@@ -318,9 +378,9 @@
                 <Setter Property="FontStyle"
                         Value="Normal" />
                 <Setter Property="Width"
-                        Value="{StaticResource SizeOfToolbarButton}"/>
+                        Value="{StaticResource SizeOfToolbarButton}" />
                 <Setter Property="Height"
-                        Value="{StaticResource SizeOfToolbarButton}"/>
+                        Value="{StaticResource SizeOfToolbarButton}" />
             </Style>
             <Style x:Key="StyleOfToolbarButtonImage"
                    TargetType="Image">
@@ -328,7 +388,21 @@
                         Value="32" />
                 <Setter Property="Width"
                         Value="32" />
+                <Setter Property="FlowDirection"
+                        Value="LeftToRight" />
             </Style>
+            <Style x:Key="StyleOfTitleImage"
+                   TargetType="Image">
+                <Setter Property="Height"
+                        Value="48" />
+                <Setter Property="Width"
+                        Value="48" />
+                <Setter Property="FlowDirection"
+                        Value="LeftToRight" />
+            </Style>
+            <Style x:Key="StyleOfLookupImage"
+                   TargetType="Image"
+                   BasedOn="{StaticResource StyleOfTitleImage}" />
             <Style x:Key="StyleOfToolbarButtonTextBlock"
                    TargetType="TextBlock">
                 <Setter Property="HorizontalAlignment"
@@ -339,27 +413,29 @@
                 <Setter Property="FontFamily"
                         Value="{StaticResource FontFamilyOfDataFields}" />
                 <Setter Property="FontSize"
-                        Value="{StaticResource FontSizeOfSelectionItem}" />
+                        Value="{StaticResource FontSizeOfLookupTextBox}" />
                 <Setter Property="VerticalContentAlignment"
                         Value="Center" />
                 <Setter Property="HorizontalContentAlignment"
                         Value="Left" />
             </Style>
-            <Style x:Key="StyleOfSelectionItemTextBox"
+            <Style x:Key="StyleOfLookupTextBox"
                    TargetType="TextBox">
                 <Setter Property="FontFamily"
                         Value="{StaticResource FontFamilyOfDataFields}" />
                 <Setter Property="FontSize"
-                        Value="{StaticResource FontSizeOfSelectionItem}" />
+                        Value="{StaticResource FontSizeOfLookupTextBox}" />
                 <Setter Property="VerticalContentAlignment"
                         Value="Center" />
                 <Setter Property="HorizontalContentAlignment"
                         Value="Left" />
+                <Setter Property="Margin"
+                        Value="{StaticResource MarginOfLookupTextBox}" />
             </Style>
             <Style x:Key="StyleOfSelectionItemComboBox"
                    TargetType="ComboBox">
                 <Setter Property="Height"
-                        Value="{StaticResource HeightOfSelectionItem}" />
+                        Value="{StaticResource HeightOfLookupTextBox}" />
                 <Setter Property="FontFamily"
                         Value="{StaticResource FontFamilyOfDataFields}" />
                 <Setter Property="FontSize"
@@ -373,20 +449,6 @@
                 <Setter Property="HorizontalContentAlignment"
                         Value="Left" />
             </Style>
-            <ControlTemplate x:Key="ValidatedTextBoxTemplate">
-                <StackPanel Orientation="Horizontal">
-                    <Border BorderThickness="1.5"
-                            CornerRadius="5"
-                            BorderBrush="Red">
-                        <AdornedElementPlaceholder Name="ErrorAdorner" />
-                    </Border>
-                    <Image Width="28"
-                           Height="28"
-                           Margin="10,0"
-                           ToolTip="{Binding ElementName=ErrorAdorner, Path=AdornedElement.(Validation.Errors).CurrentItem.ErrorContent}"
-                           Source="{StaticResource icon_notification_validation_error}" />
-                </StackPanel>
-            </ControlTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
