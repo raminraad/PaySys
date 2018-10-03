@@ -113,6 +113,9 @@
     <Compile Include="UserControls\UcEmployeeDetail.xaml.cs">
       <DependentUpon>UcEmployeeDetail.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UcLookup.xaml.cs">
+      <DependentUpon>UcLookup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UcMissionDetail.xaml.cs">
       <DependentUpon>UcMissionDetail.xaml</DependentUpon>
     </Compile>
@@ -231,6 +234,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\UcEmployeeDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UcLookup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

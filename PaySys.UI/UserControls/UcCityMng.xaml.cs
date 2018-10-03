@@ -35,11 +35,11 @@ namespace PaySys.UI.UC.Tab
 		public UcCityMng()
 		{
 			InitializeComponent();
-			BtnReload_OnClick(null, null);
+			ButtonReload_OnClick(null, null);
 			SmpUcFormStateLabel.CurrentState = FormCurrentState.Select;
 		}
 
-		private void BtnAdd_OnClick(object sender, RoutedEventArgs e)
+		private void ButtonAdd_OnClick(object sender, RoutedEventArgs e)
 		{
 			SmpUcFormStateLabel.CurrentState = FormCurrentState.Add;
 			var newItem = new City
@@ -52,13 +52,13 @@ namespace PaySys.UI.UC.Tab
 		    TextBoxTitle.Focus();
 		}
 
-		private void BtnEdit_OnClick(object sender, RoutedEventArgs e)
+		private void ButtonEdit_OnClick(object sender, RoutedEventArgs e)
 		{
 			SmpUcFormStateLabel.CurrentState = FormCurrentState.Edit;
 		    TextBoxTitle.Focus();
         }
 
-        private void BtnReload_OnClick(object sender, RoutedEventArgs e)
+        private void ButtonReload_OnClick(object sender, RoutedEventArgs e)
 		{
 			var selectedId = (DataGridCities.SelectedItem as City)?.Id;
 			Context = new PaySysContext();
@@ -70,8 +70,26 @@ namespace PaySys.UI.UC.Tab
 				DataGridCities.SelectedItem = Cities.FirstOrDefault(city => city.Id == selectedId.Value);
 		}
 
-		private void BtnSave_OnClick(object sender, RoutedEventArgs e)
+		private void ButtonSave_OnClick(object sender, RoutedEventArgs e)
 		{
+		    var obj = this;
+		    bool val1=  Validation.GetHasError(obj) ;
+            if (!val1)
+		    foreach (var dependencyObject in obj.FindVisualChildren<TextBox>())
+		    {
+		        val1 =val1|| Validation.GetHasError(dependencyObject);
+		    }
+
+
+            if (val1)
+            {
+                MessageBox.Show("ERROR");
+                return;
+            }
+
+
+
+
 			foreach(var textBox in this.FindVisualChildren<TextBox>())
 				textBox.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
 
@@ -80,7 +98,7 @@ namespace PaySys.UI.UC.Tab
             CollectionViewSource.GetDefaultView(DataGridCities.ItemsSource)?.Refresh();
 		}
 
-		private void BtnDiscardChanges_OnClick(object sender, RoutedEventArgs e)
+		private void ButtonDiscardChanges_OnClick(object sender, RoutedEventArgs e)
 		{
 			if (SmpUcFormStateLabel.CurrentState==FormCurrentState.Add)
 			Cities.Remove((City) DataGridCities.SelectedItem);

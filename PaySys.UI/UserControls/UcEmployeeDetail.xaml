@@ -10,18 +10,18 @@
              xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Entities;assembly=PaySys.ModelAndBindLib"
              mc:Ignorable="d"
              d:DesignHeight="300"
-             d:DesignWidth="1200"
+             d:DesignWidth="1800"
              d:DataContext="{d:DesignInstance Type=model:Employee, IsDesignTimeCreatable=True}"
              xmlns:bindingConverter="clr-namespace:PaySys.ModelAndBindLib.BindingConverter;assembly=PaySys.ModelAndBindLib"
              xmlns:persianDateControls="clr-namespace:Arash.PersianDateControls;assembly=PersianDateControls"
              FlowDirection="RightToLeft">
 	<Grid x:Name="GridDetail">
 		<Grid.RowDefinitions>
-			<RowDefinition Height="*" />
-			<RowDefinition Height="*" />
-			<RowDefinition Height="*" />
-			<RowDefinition Height="*" />
-			<RowDefinition Height="*" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="Auto" />

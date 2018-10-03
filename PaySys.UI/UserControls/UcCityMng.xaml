@@ -28,7 +28,8 @@
             <ColumnDefinition Width="2*" />
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
-        <DockPanel Grid.Row="1"
+        <DockPanel x:Name="PanelLookup"
+                   Grid.Row="1"
                    Grid.Column="1"
                    Grid.ColumnSpan="2"
                    Margin="{StaticResource MarginOfMasterOrDetail}">
@@ -38,13 +39,12 @@
                      Style="{StaticResource StyleOfLookupTextBox}" />
         </DockPanel>
         <ToolBar Grid.Row="0"
-                 KeyboardNavigation.TabNavigation="Continue"
                  Grid.ColumnSpan="4"
                  Grid.Column="0">
-            <Button Name="BtnAdd"
+            <Button Name="ButtonAdd"
                     Style="{StaticResource StyleOfToolbarButton}"
                     IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}"
-                    Click="BtnAdd_OnClick">
+                    Click="ButtonAdd_OnClick">
                 <Button.Content>
                     <StackPanel Orientation="Vertical">
                         <Image Source="{StaticResource icon_crud_add}"
@@ -54,10 +54,10 @@
                     </StackPanel>
                 </Button.Content>
             </Button>
-            <Button Name="BtnEdit"
+            <Button Name="ButtonEdit"
                     Style="{StaticResource StyleOfToolbarButton}"
                     IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}"
-                    Click="BtnEdit_OnClick">
+                    Click="ButtonEdit_OnClick">
                 <Button.Content>
                     <StackPanel Orientation="Vertical">
                         <Image Source="{StaticResource icon_crud_edit}"
@@ -67,7 +67,7 @@
                     </StackPanel>
                 </Button.Content>
             </Button>
-            <Button Name="BtnDelete"
+            <Button Name="ButtonDelete"
                     Style="{StaticResource StyleOfToolbarButton}"
                     IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}">
                 <Button.Content>
@@ -80,9 +80,9 @@
                 </Button.Content>
             </Button>
             <Separator />
-            <Button Name="BtnSave"
+            <Button Name="ButtonSave"
                     Style="{StaticResource StyleOfToolbarButton}"
-                    Click="BtnSave_OnClick"
+                    Click="ButtonSave_OnClick"
                     IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSaveCancelButtons}">
                 <Button.Content>
                     <StackPanel Orientation="Vertical">
@@ -93,9 +93,9 @@
                     </StackPanel>
                 </Button.Content>
             </Button>
-            <Button Name="BtnDiscardChanges"
+            <Button Name="ButtonDiscardChanges"
                     Style="{StaticResource StyleOfToolbarButton}"
-                    Click="BtnDiscardChanges_OnClick"
+                    Click="ButtonDiscardChanges_OnClick"
                     IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSaveCancelButtons}">
                 <Button.Content>
                     <StackPanel Orientation="Vertical">
@@ -107,9 +107,9 @@
                 </Button.Content>
             </Button>
             <Separator />
-            <Button Name="BtnReload"
+            <Button Name="ButtonReload"
                     Style="{StaticResource StyleOfToolbarButton}"
-                    Click="BtnReload_OnClick"
+                    Click="ButtonReload_OnClick"
                     IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}">
                 <Button.Content>
                     <StackPanel Orientation="Vertical">

@@ -13,119 +13,156 @@
              d:DesignWidth="900"
              FlowDirection="RightToLeft">
 
-	<Grid x:Name="GridParent">
-		<Grid.RowDefinitions>
-			<RowDefinition Name="RowToolbar"
+    <Grid x:Name="GridParent">
+        <Grid.RowDefinitions>
+            <RowDefinition Name="RowToolbar"
 			               Height="Auto" />
-			<RowDefinition Name="RowSearch"
+            <RowDefinition Name="RowSearch"
 			               Height="Auto" />
-			<RowDefinition Name="RowDatagrid"
-			               Height="*" />
-			<RowDefinition Name="RowDetail"
-			               Height="*" />
-			<RowDefinition Name="RowStatusBar"
+            <RowDefinition Name="RowDatagrid" />
+            <RowDefinition Name="RowDetail"
+			               Height="Auto" />
+            <RowDefinition Name="RowStatusBar"
 			               Height="30" />
-		</Grid.RowDefinitions>
-		<ToolBar Grid.Row="0">
-			<Button Name="BtnEmployeeAdd"
-			        Click="BtnEmployeeAdd_OnClick"
-			        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}"
-			        Content="{x:Static fa:Labels.Add}" />
-			<Button Name="BtnEmployeeEdit"
-			        Click="BtnEmployeeEdit_OnClick"
-			        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}"
-			        Content="{x:Static fa:Labels.Edit}" />
-			<Button Name="BtnEmployeeDelete"
-			        Click="BtnEmployeeDelete_OnClick"
-			        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}"
-			        Content="{x:Static fa:Labels.Delete}" />
-			<Separator />
-			<Button Name="BtnEmployeeRefresh"
-			        Click="BtnEmployeeRefresh_OnClick"
-			        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}"
-			        Content="{x:Static fa:Labels.Reload}" />
-			<Separator />
-			<Button Name="BtnEmployeeSave"
-			        Click="BtnEmployeeSave_OnClick"
-			        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSaveCancelButtons}"
-			        Content="{x:Static fa:Labels.Save}" />
-			<Button Name="BtnEmployeeCancel"
-			        Click="BtnEmployeeCancel_OnClick"
-			        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSaveCancelButtons}"
-			        Content="{x:Static fa:Labels.Cancel}" />
-		</ToolBar>
-		<DockPanel Name="PanelSearch"
-		            Grid.Row="1"
-                    Width="600"
-		            Margin="{StaticResource MarginOfMasterOrDetail}">
-			<Label
-				Content="{x:Static fa:Labels.Search}"
-				Style="{StaticResource StyleOfSelectionItemLabel}" />
-			<TextBox x:Name="TextBoxLookup"
-			         Style="{StaticResource StyleOfLookupTextBox}"
-					 TextChanged="TextBoxLookup_OnTextChanged"/>
-		</DockPanel>
-		<DataGrid x:Name="DataGridEmployees"
+        </Grid.RowDefinitions>
+        <ToolBar Grid.Row="0"
+                 Grid.Column="0">
+            <Button Name="ButtonAdd"
+                    Style="{StaticResource StyleOfToolbarButton}"
+                    IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}"
+                    Click="ButtonAdd_OnClick">
+                <Button.Content>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{StaticResource icon_crud_add}"
+                               Style="{StaticResource StyleOfToolbarButtonImage}" />
+                        <TextBlock Text="{x:Static fa:Labels.Add}"
+                                   Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button Name="ButtonEdit"
+                    Style="{StaticResource StyleOfToolbarButton}"
+                    IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}"
+                    Click="ButtonEdit_OnClick">
+                <Button.Content>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{StaticResource icon_crud_edit}"
+                               Style="{StaticResource StyleOfToolbarButtonImage}" />
+                        <TextBlock Text="{x:Static fa:Labels.Edit}"
+                                   Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button Name="ButtonDelete"
+                    Style="{StaticResource StyleOfToolbarButton}"
+                    IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}">
+                <Button.Content>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{StaticResource icon_crud_delete}"
+                               Style="{StaticResource StyleOfToolbarButtonImage}" />
+                        <TextBlock Text="{x:Static fa:Labels.Delete}"
+                                   Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Separator />
+            <Button Name="ButtonSave"
+                    Style="{StaticResource StyleOfToolbarButton}"
+                    Click="ButtonSave_OnClick"
+                    IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSaveCancelButtons}">
+                <Button.Content>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{StaticResource icon_save}"
+                               Style="{StaticResource StyleOfToolbarButtonImage}" />
+                        <TextBlock Text="{x:Static fa:Labels.Save}"
+                                   Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button Name="ButtonDiscardChanges"
+                    Style="{StaticResource StyleOfToolbarButton}"
+                    Click="ButtonDiscardChanges_OnClick"
+                    IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSaveCancelButtons}">
+                <Button.Content>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{StaticResource icon_discard_changes}"
+                               Style="{StaticResource StyleOfToolbarButtonImage}" />
+                        <TextBlock Text="{x:Static fa:Labels.Cancel}"
+                                   Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Separator />
+            <Button Name="ButtonReload"
+                    Style="{StaticResource StyleOfToolbarButton}"
+                    Click="ButtonReload_OnClick"
+                    IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}">
+                <Button.Content>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{StaticResource icon_reload}"
+                               Style="{StaticResource StyleOfToolbarButtonImage}" />
+                        <TextBlock Text="{x:Static fa:Labels.Reload}"
+                                   Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+
+        </ToolBar>
+        <local:UcLookup x:Name="SmpUcLookup" Grid.Row="1"
+                        Width="600" 
+                        LookupTextChanged="TextBoxLookup_OnTextChanged"/>
+        <DataGrid x:Name="DataGridEmployees"
 		          DataContext="{Binding ElementName = SmpUcEmployeeMng,Path=EmployeesAll}"
 				  ItemsSource="{Binding}"
-		          HorizontalScrollBarVisibility="Auto"
-		          VerticalScrollBarVisibility="Auto"
-		          BorderThickness="3"
 		          Grid.Row="2"
-		          Margin="40,20"
-		          AutoGenerateColumns="False"
-		          IsSynchronizedWithCurrentItem="True"
-				  FontFamily="{StaticResource FontFamilyOfDataFields}"
-		          IsReadOnly="True"
-		          IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}"
-		          SelectionMode="Single">
-			<DataGrid.Columns>
-				<DataGridTextColumn
+		          IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}">
+            <DataGrid.Columns>
+                <DataGridTextColumn
 					Header="{x:Static fa:FieldicEmployee.EmployeeId}"
 					Binding="{Binding Id}"
 					Visibility="Hidden" />
-				<DataGridTextColumn
+                <DataGridTextColumn
 					Header="{x:Static fa:FieldicEmployee.PersonnelCode}"
 					Binding="{Binding PersonnelCode}" />
-				<DataGridTextColumn
+                <DataGridTextColumn
 					Header="{x:Static fa:FieldicEmployee.DossierNo}"
 					Binding="{Binding DossierNo}" />
-				<DataGridTextColumn
+                <DataGridTextColumn
 					Header="{x:Static fa:FieldicEmployee.FName}"
 					Binding="{Binding FName}" />
-				<DataGridTextColumn
+                <DataGridTextColumn
 					Header="{x:Static fa:FieldicEmployee.LName}"
 					Binding="{Binding LName}" />
-				<DataGridTextColumn
+                <DataGridTextColumn
 					Header="{x:Static fa:FieldicEmployee.FatherName}"
 					Binding="{Binding FatherName}" />
-				<DataGridTextColumn
+                <DataGridTextColumn
 					Header="{x:Static fa:FieldicEmployee.NationalCardNo}"
 					Binding="{Binding NationalCardNo}" />
-				<DataGridTextColumn
+                <DataGridTextColumn
 					Header="{x:Static fa:FieldicEmployee.IdCardNo}"
 					Binding="{Binding IdCardNo}" />
-				<DataGridTextColumn
+                <DataGridTextColumn
 					Header="{x:Static fa:FieldicEmployee.IdCardExportPlace}"
 					Binding="{Binding IdCardExportPlace}" />
-				<DataGridTextColumn
+                <DataGridTextColumn
 					Header="{x:Static fa:FieldicEmployee.Address}"
 					Binding="{Binding Address}" />
-			</DataGrid.Columns>
-		</DataGrid>
-		<TabControl Grid.Row="3">
-			<TabItem x:Name="TabItemUcEmployeeDetail"
+            </DataGrid.Columns>
+        </DataGrid>
+        <TabControl Grid.Row="3">
+            <TabItem x:Name="TabItemUcEmployeeDetail"
 				Header="{x:Static fa:Labels.PersonalInfo}">
-				<local:UcEmployeeDetail
+                <local:UcEmployeeDetail
 					x:Name="SmpUcEmployeeDetail"
 					DataContext="{Binding ElementName =DataGridEmployees,Path=SelectedItem}"
 					ReadOnlyOfFields="{Binding ElementName =SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}" 
-					Margin="50,10"/>
-			</TabItem>
-		</TabControl>
-		<StatusBar Grid.Row="4">
-			<local:UcFormStateLabel
+					Margin="{StaticResource MarginOfMasterOrDetail}"/>
+            </TabItem>
+        </TabControl>
+        <StatusBar Grid.Row="4">
+            <local:UcFormStateLabel
 				x:Name="SmpUcFormStateLabel" />
-		</StatusBar>
-	</Grid>
+        </StatusBar>
+    </Grid>
 </UserControl>

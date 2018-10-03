@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using PaySys.Globalization;
 using PaySys.ModelAndBindLib.Engine;
 using PaySys.ModelAndBindLib.Entities;
@@ -20,8 +21,7 @@ namespace PaySys.UI.UC
 	public partial class UcEmployeeMng : UserControl
 	{
 		private readonly PaySysContext _context = new PaySysContext();
-
-		public UcEmployeeMng()
+        public UcEmployeeMng()
 		{
 			InitializeComponent();
 			RefreshDtgMain();
@@ -34,13 +34,13 @@ namespace PaySys.UI.UC
 		private void RefreshDtgMain()
 		{
 			var index = DataGridEmployees.SelectedIndex;
-			if( TextBoxLookup.Text.Trim() == string.Empty )
+			if( SmpUcLookup.LookupText.Trim() == string.Empty )
 			{
 				EmployeesAll = new ObservableCollection<Employee>( _context.Employees.ToList() );
 			}
 			else
 			{
-				var lookups = TextBoxLookup.Text.Split( ' ' );
+				var lookups = SmpUcLookup.LookupText.Split( ' ' );
 				var lists = lookups.Select( strLookup => ( from x in _context.Employees
 				                                           where x.FName.Contains( strLookup ) || x.LName.Contains( strLookup ) || x.PersonnelCode.Contains( strLookup ) || x.DossierNo.Contains( strLookup ) || x.NationalCardNo.Contains( strLookup ) || x.IdCardNo.Contains( strLookup )
 				                                           select x ).ToList() ).ToList();
@@ -56,7 +56,7 @@ namespace PaySys.UI.UC
 				DataGridEmployees.SelectedIndex = index;
 		}
 
-		private void BtnEmployeeAdd_OnClick( object sender, RoutedEventArgs e )
+		private void ButtonAdd_OnClick( object sender, RoutedEventArgs e )
 		{
 			SmpUcFormStateLabel.CurrentState = FormCurrentState.Add;
 			var newItem = new Employee
@@ -68,7 +68,7 @@ namespace PaySys.UI.UC
 			DataGridEmployees.ScrollIntoView( newItem );
 		}
 
-		private void BtnEmployeeEdit_OnClick( object sender, RoutedEventArgs e )
+		private void ButtonEdit_OnClick( object sender, RoutedEventArgs e )
 		{
 			SmpUcFormStateLabel.CurrentState = FormCurrentState.Edit;
 		}
@@ -78,15 +78,16 @@ namespace PaySys.UI.UC
 			//Todo
 		}
 
-		private void BtnEmployeeSave_OnClick( object sender, RoutedEventArgs e )
+		private void ButtonSave_OnClick( object sender, RoutedEventArgs e )
 		{
 			SmpUcEmployeeDetail.UpdateSource();
 
 			_context.SaveChanges();
 			SmpUcFormStateLabel.CurrentState = FormCurrentState.Select;
+			CollectionViewSource.GetDefaultView(DataGridEmployees.DataContext).Refresh();
 		}
 
-		private void BtnEmployeeCancel_OnClick( object sender, RoutedEventArgs e )
+		private void ButtonDiscardChanges_OnClick( object sender, RoutedEventArgs e )
 		{
 			if( SmpUcFormStateLabel.CurrentState == FormCurrentState.Add )
 				EmployeesAll.Remove( (Employee) DataGridEmployees.SelectedItem );
@@ -96,7 +97,7 @@ namespace PaySys.UI.UC
 			SmpUcFormStateLabel.CurrentState = FormCurrentState.Select;
 		}
 
-		private void BtnEmployeeRefresh_OnClick( object sender, RoutedEventArgs e )
+		private void ButtonReload_OnClick( object sender, RoutedEventArgs e )
 		{
 			RefreshDtgMain();
 		}
