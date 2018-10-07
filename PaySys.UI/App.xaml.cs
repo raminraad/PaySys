@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using PaySys.UI.ExtensionMethods;
+using PaySys.ModelAndBindLib.Entities;
 
 namespace PaySys
 {
@@ -21,11 +21,10 @@ namespace PaySys
             (e.OriginalSource as TextBox)?.SelectAll();
         }
 
-        private void TextBoxLostFocus(object sender, RoutedEventArgs e)
+        private void TextBoxTextChanged(object sender, RoutedEventArgs e)
         {
             var currentTextBox = sender as TextBox;
-            if (BindingOperations.GetBinding(sender as TextBox, TextBox.TextProperty)?.ValidationRules?.Count > 0)
-                currentTextBox.GetBindingExpression(TextBox.TextProperty)?.ValidateWithoutUpdate();
+            Validator.ValidateTextBox(currentTextBox);
         }
     }
 }

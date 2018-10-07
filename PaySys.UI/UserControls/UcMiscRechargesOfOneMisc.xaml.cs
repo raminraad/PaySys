@@ -6,9 +6,8 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using PaySys.CalcLib.ExtensionMethods;
 using PaySys.ModelAndBindLib.Entities;
-using PaySys.UI.ExtensionMethods;
-
 #endregion
 
 namespace PaySys.UI.UC

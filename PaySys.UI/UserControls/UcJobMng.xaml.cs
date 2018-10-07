@@ -14,10 +14,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using PaySys.CalcLib.ExtensionMethods;
 using PaySys.Globalization;
 using PaySys.ModelAndBindLib.Engine;
 using PaySys.ModelAndBindLib.Entities;
-using PaySys.UI.ExtensionMethods;
 
 namespace PaySys.UI.UC
 {

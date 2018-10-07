@@ -18,10 +18,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using PaySys.CalcLib.ExtensionMethods;
 using PaySys.Globalization;
 using PaySys.ModelAndBindLib.Engine;
 using PaySys.ModelAndBindLib.Entities;
-using PaySys.UI.ExtensionMethods;
 using PaySys.UI.UC;
 using Binding = System.Windows.Data.Binding;
 using Control = System.Windows.Controls.Control;
@@ -98,7 +98,7 @@ namespace PaySys.UI.UC
 
         private void Save_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = SmpUcFormStateLabel?.EnabledOfSaveCancelButtons ?? false;
+            e.CanExecute = SmpUcFormStateLabel?.EnabledOfSaveDiscardButtons ?? false;
         }
 
         private void Save_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -176,7 +176,7 @@ namespace PaySys.UI.UC
 
         private void DiscardChanges_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = SmpUcFormStateLabel?.EnabledOfSaveCancelButtons ?? false;
+            e.CanExecute = SmpUcFormStateLabel?.EnabledOfSaveDiscardButtons ?? false;
         }
 
         private void DiscardChanges_Executed(object sender, ExecutedRoutedEventArgs e)

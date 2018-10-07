@@ -65,13 +65,13 @@ namespace PaySys.UI.UC
 		private void Save_CanExecute( object sender, CanExecuteRoutedEventArgs e )
 		{
 			if( SmpUcFormStateLabel != null )
-			e.CanExecute = SmpUcFormStateLabel.EnabledOfSaveCancelButtons;
+			e.CanExecute = SmpUcFormStateLabel.EnabledOfSaveDiscardButtons;
 		}
 
 		private void DiscardChanges_CanExecute( object sender, CanExecuteRoutedEventArgs e )
 		{
 			if( SmpUcFormStateLabel != null )
-			e.CanExecute = SmpUcFormStateLabel.EnabledOfSaveCancelButtons;
+			e.CanExecute = SmpUcFormStateLabel.EnabledOfSaveDiscardButtons;
 		}
 
 		private void Reload_CanExecute( object sender, CanExecuteRoutedEventArgs e )

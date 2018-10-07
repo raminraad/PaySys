@@ -7,8 +7,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using Arash.PersianDateControls;
+using PaySys.CalcLib.ExtensionMethods;
 using PaySys.ModelAndBindLib.Entities;
-using PaySys.UI.ExtensionMethods;
 using ValueType = PaySys.ModelAndBindLib.Entities.ValueType;
 
 #endregion

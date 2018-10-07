@@ -43,12 +43,12 @@
 					Content="{x:Static fa:Labels.Reload}" />
 			<Separator />
 			<Button Name="BtnContractMasterSave"
-					IsEnabled="{Binding ElementName=SmpUcFormState,Path=EnabledOfSaveCancelButtons}"
+					IsEnabled="{Binding ElementName=SmpUcFormState,Path=EnabledOfSaveDiscardButtons}"
 			        Style="{StaticResource StyleOfToolbarButton}"
 					Content="{x:Static fa:Labels.Save}"
 					Click="BtnContractMasterSave_OnClick" />
 			<Button Name="BtnContractMasterCancel"
-					IsEnabled="{Binding ElementName=SmpUcFormState,Path=EnabledOfSaveCancelButtons}"
+					IsEnabled="{Binding ElementName=SmpUcFormState,Path=EnabledOfSaveDiscardButtons}"
 			        Style="{StaticResource StyleOfToolbarButton}"
 					Content="{x:Static fa:Labels.Cancel}" />
 		</ToolBar>

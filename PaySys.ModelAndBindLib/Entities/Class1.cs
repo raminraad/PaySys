@@ -14,6 +14,7 @@ using PaySys.CalcLib.Converters;
 using PaySys.CalcLib.ExtensionMethods;
 using PaySys.Globalization;
 using PaySys.ModelAndBindLib.Annotations;
+using PaySys.ModelAndBindLib.Attributes;
 #endregion
 
 namespace PaySys.ModelAndBindLib.Entities
@@ -831,10 +832,13 @@ namespace PaySys.ModelAndBindLib.Entities
     /// <summary> #26 شهر </summary>
     public class City : EntityBase
     {
+        [IncludeInLookup]
         public string Title { get; set; }
 
+        [IncludeInLookup]
         public int Distance { get; set; }
 
+        [IncludeInLookup]
         public double Percentage { get; set; }
 
         public virtual List<Mission> Missions { get; set; }

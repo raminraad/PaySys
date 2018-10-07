@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media;
 
-namespace PaySys.UI.ExtensionMethods
+namespace PaySys.CalcLib.ExtensionMethods
 {
-    public static class UcMethods
+    public static class DependencyObjectExtensions
     {
 	    public static IEnumerable<T> FindVisualChildren<T>(this DependencyObject depObj) where T : DependencyObject
 	    {

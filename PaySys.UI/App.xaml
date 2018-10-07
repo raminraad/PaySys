@@ -272,8 +272,8 @@
                         Value="10" />
                 <EventSetter Event="GotFocus"
                              Handler="ListItemGotFocus" />
-                <EventSetter Event="LostFocus"
-                             Handler="TextBoxLostFocus" />
+                <EventSetter Event="TextChanged"
+                             Handler="TextBoxTextChanged" />
             </Style>
             <Style x:Key="StyleOfDataFieldMultiColumnTextBox"
                    TargetType="TextBox">

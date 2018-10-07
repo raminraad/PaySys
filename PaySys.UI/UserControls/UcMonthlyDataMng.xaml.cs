@@ -222,9 +222,9 @@ namespace PaySys.UI.UC
 			if( e.Command as RoutedUICommand == PaySysCommands.Edit )
 				e.CanExecute = SmpUcFormStateLabel?.EnabledOfCrudButtons ?? false;
 			else if( e.Command as RoutedUICommand == PaySysCommands.Save )
-				e.CanExecute = SmpUcFormStateLabel?.EnabledOfSaveCancelButtons ?? false;
+				e.CanExecute = SmpUcFormStateLabel?.EnabledOfSaveDiscardButtons ?? false;
 			else if( e.Command as RoutedUICommand == PaySysCommands.DiscardChanges )
-				e.CanExecute = SmpUcFormStateLabel?.EnabledOfSaveCancelButtons ?? false;
+				e.CanExecute = SmpUcFormStateLabel?.EnabledOfSaveDiscardButtons ?? false;
 			else if( e.Command as RoutedUICommand == PaySysCommands.Reload )
 				e.CanExecute = SmpUcFormStateLabel?.EnabledOfCrudButtons ?? false;
 			e.Handled = true;

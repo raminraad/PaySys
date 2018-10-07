@@ -5,14 +5,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              FlowDirection="RightToLeft"
+             Focusable="True"
+             GotFocus="UcLookup_OnGotFocus"
              d:DesignHeight="68"
              d:DesignWidth="400"
              >
     <DockPanel x:Name="PanelLookup"
                Margin="{StaticResource MarginOfMasterOrDetail}">
         <Image Source="{StaticResource icon_lookup}"
-               Style="{StaticResource StyleOfLookupImage}" />
+               Style="{StaticResource StyleOfLookupImage}" 
+               Focusable="False"/>
         <TextBox x:Name="TextBoxLookup"
-                 Style="{StaticResource StyleOfLookupTextBox}" TextChanged="TextBoxLookup_OnTextChanged"/>
+                 Style="{StaticResource StyleOfLookupTextBox}" TextChanged="TextBoxLookup_OnTextChanged"
+                 Focusable="True"/>
     </DockPanel>
 </UserControl>

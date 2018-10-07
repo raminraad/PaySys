@@ -5,8 +5,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using Bogus;
+using PaySys.CalcLib.ExtensionMethods;
 using PaySys.ModelAndBindLib.Entities;
-using PaySys.UI.ExtensionMethods;
 
 namespace PaySys.UI.UC
 {

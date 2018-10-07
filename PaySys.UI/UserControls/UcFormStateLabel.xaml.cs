@@ -53,17 +53,22 @@ namespace PaySys.UI.UC
 		/// <summary>
 		/// Enabled attribute of Save and DiscardChanges buttons
 		/// </summary>
-		public bool EnabledOfSaveCancelButtons { set; get; }
+		public bool EnabledOfSaveDiscardButtons { set; get; }
 
 		/// <summary>
 		/// Enabled attribute of Add,Edit and Delete buttons
 		/// </summary>
 		public bool EnabledOfCrudButtons { set; get; }
 
-		/// <summary>
-		/// ReadOnly attribute of controls that are used to edit fields (like textbox,combo,...) of models in Grid/Textbox forms
-		/// </summary>
-		public bool ReadOnlyOfEditFields { set; get; }
+        /// <summary>
+        /// Enabled attribute of items that are used to change selected item(s) of user control like: LookupBox, DataGrid, ...
+        /// </summary>
+	    public bool EnabledOfSelectionElements { set; get; }
+
+        /// <summary>
+        /// ReadOnly attribute of controls that are used to edit fields (like textbox,combo,...) of models in Grid/Textbox forms
+        /// </summary>
+        public bool ReadOnlyOfEditFields { set; get; }
 
 		/// <summary>
 		/// ReadOnly attribute of controls that should be enabled just in Add mode
@@ -109,11 +114,13 @@ namespace PaySys.UI.UC
 						throw new ArgumentOutOfRangeException(nameof(value), value, null);
 				}
 
-				EnabledOfSaveCancelButtons = value == FormCurrentState.Edit || value == FormCurrentState.Add || value == FormCurrentState.AddMaster || value == FormCurrentState.AddDetails;
+				EnabledOfSaveDiscardButtons = value == FormCurrentState.Edit || value == FormCurrentState.Add || value == FormCurrentState.AddMaster || value == FormCurrentState.AddDetails;
 				ReadOnlyOfAddFields = !(value == FormCurrentState.Add || value == FormCurrentState.AddMaster || value == FormCurrentState.AddDetails);
-				EnabledOfCrudButtons = ReadOnlyOfEditFields = !EnabledOfSaveCancelButtons;
-				OnPropertyChanged(nameof(EnabledOfSaveCancelButtons));
+				EnabledOfCrudButtons = ReadOnlyOfEditFields = !EnabledOfSaveDiscardButtons;
+			    EnabledOfSelectionElements = value == FormCurrentState.Select;
+				OnPropertyChanged(nameof(EnabledOfSaveDiscardButtons));
 				OnPropertyChanged(nameof(EnabledOfCrudButtons));
+				OnPropertyChanged(nameof(EnabledOfSelectionElements));
 				OnPropertyChanged(nameof(ReadOnlyOfEditFields));
 				OnPropertyChanged(nameof(ReadOnlyOfAddFields));
 				_currentState = value;

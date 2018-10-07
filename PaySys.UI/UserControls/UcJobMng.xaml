@@ -53,12 +53,12 @@
 			<Button Name="BtnSave"
 					Style="{StaticResource StyleOfToolbarButton}"
 					Click="BtnSave_OnClick"
-					IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSaveCancelButtons}"
+					IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSaveDiscardButtons}"
 					Content="{x:Static fa:Labels.Save}" />
 			<Button Name="BtnCancel"
 					Style="{StaticResource StyleOfToolbarButton}"
 					Click="BtnCancel_OnClick"
-					IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSaveCancelButtons}"
+					IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSaveDiscardButtons}"
 					Content="{x:Static fa:Labels.Cancel}" />
 			<Separator />
 			<Button Name="BtnRefresh"

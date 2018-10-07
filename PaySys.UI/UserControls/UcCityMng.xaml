@@ -9,10 +9,38 @@
              xmlns:bindingConverter="clr-namespace:PaySys.ModelAndBindLib.BindingConverter;assembly=PaySys.ModelAndBindLib"
              xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Entities;assembly=PaySys.ModelAndBindLib"
              xmlns:validation="clr-namespace:PaySys.ModelAndBindLib.Validation;assembly=PaySys.ModelAndBindLib"
+             xmlns:commands="clr-namespace:PaySys.UI.Commands"
              mc:Ignorable="d"
              FlowDirection="RightToLeft"
+             Loaded="UcCityMng_OnLoaded"
              d:DesignHeight="600"
              d:DesignWidth="900">
+    <UserControl.InputBindings>
+        <KeyBinding Command="commands:PaySysCommands.Lookup" />
+    </UserControl.InputBindings>
+    <UserControl.CommandBindings>
+        <CommandBinding Command="commands:PaySysCommands.Add"
+                        CanExecute="CrudCommands_CanExecute"
+                        Executed="Add_Executed" />
+        <CommandBinding Command="commands:PaySysCommands.Edit"
+                        CanExecute="EditCommand_CanExecute"
+                        Executed="Edit_Executed" />
+        <CommandBinding Command="commands:PaySysCommands.Delete"
+                        CanExecute="CrudCommands_CanExecute"
+                        Executed="Delete_Executed" />
+        <CommandBinding Command="commands:PaySysCommands.Save"
+                        CanExecute="SaveCommand_CanExecute"
+                        Executed="Save_Executed" />
+        <CommandBinding Command="commands:PaySysCommands.DiscardChanges"
+                        CanExecute="DiscardChangesCommand_CanExecute"
+                        Executed="DiscardChanges_Executed" />
+        <CommandBinding Command="commands:PaySysCommands.Reload"
+                        CanExecute="CrudCommands_CanExecute"
+                        Executed="Reload_Executed" />
+        <CommandBinding Command="commands:PaySysCommands.Lookup"
+                        CanExecute="CrudCommands_CanExecute"
+                        Executed="Lookup_Executed" />
+    </UserControl.CommandBindings>
     <Grid x:Name="GridMain">
         <Grid.RowDefinitions>
             <RowDefinition x:Name="RowToolbar"
@@ -28,23 +56,18 @@
             <ColumnDefinition Width="2*" />
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
-        <DockPanel x:Name="PanelLookup"
-                   Grid.Row="1"
-                   Grid.Column="1"
-                   Grid.ColumnSpan="2"
-                   Margin="{StaticResource MarginOfMasterOrDetail}">
-            <Image Source="{StaticResource icon_lookup}"
-                   Style="{StaticResource StyleOfLookupImage}" />
-            <TextBox x:Name="TextBoxLookup"
-                     Style="{StaticResource StyleOfLookupTextBox}" />
-        </DockPanel>
+        <local:UcLookup x:Name="SmpUcLookup"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSelectionElements}"
+                        LookupTextChanged="SmpUcLookup_OnLookupTextChanged" />
         <ToolBar Grid.Row="0"
                  Grid.ColumnSpan="4"
                  Grid.Column="0">
             <Button Name="ButtonAdd"
                     Style="{StaticResource StyleOfToolbarButton}"
-                    IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}"
-                    Click="ButtonAdd_OnClick">
+                    Command="commands:PaySysCommands.Add">
                 <Button.Content>
                     <StackPanel Orientation="Vertical">
                         <Image Source="{StaticResource icon_crud_add}"
@@ -56,8 +79,7 @@
             </Button>
             <Button Name="ButtonEdit"
                     Style="{StaticResource StyleOfToolbarButton}"
-                    IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}"
-                    Click="ButtonEdit_OnClick">
+                    Command="commands:PaySysCommands.Edit">
                 <Button.Content>
                     <StackPanel Orientation="Vertical">
                         <Image Source="{StaticResource icon_crud_edit}"
@@ -69,7 +91,7 @@
             </Button>
             <Button Name="ButtonDelete"
                     Style="{StaticResource StyleOfToolbarButton}"
-                    IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}">
+                    Command="commands:PaySysCommands.Delete">
                 <Button.Content>
                     <StackPanel Orientation="Vertical">
                         <Image Source="{StaticResource icon_crud_delete}"
@@ -82,8 +104,7 @@
             <Separator />
             <Button Name="ButtonSave"
                     Style="{StaticResource StyleOfToolbarButton}"
-                    Click="ButtonSave_OnClick"
-                    IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSaveCancelButtons}">
+                    Command="commands:PaySysCommands.Save">
                 <Button.Content>
                     <StackPanel Orientation="Vertical">
                         <Image Source="{StaticResource icon_save}"
@@ -95,8 +116,7 @@
             </Button>
             <Button Name="ButtonDiscardChanges"
                     Style="{StaticResource StyleOfToolbarButton}"
-                    Click="ButtonDiscardChanges_OnClick"
-                    IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSaveCancelButtons}">
+                    Command="commands:PaySysCommands.DiscardChanges">
                 <Button.Content>
                     <StackPanel Orientation="Vertical">
                         <Image Source="{StaticResource icon_discard_changes}"
@@ -109,8 +129,7 @@
             <Separator />
             <Button Name="ButtonReload"
                     Style="{StaticResource StyleOfToolbarButton}"
-                    Click="ButtonReload_OnClick"
-                    IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}">
+                    Command="commands:PaySysCommands.Reload">
                 <Button.Content>
                     <StackPanel Orientation="Vertical">
                         <Image Source="{StaticResource icon_reload}"
@@ -128,8 +147,8 @@
                   Grid.ColumnSpan="2"
                   ColumnWidth="*"
                   DataContext="{Binding ElementName = SmpUcCityMng,Path=Cities}"
-                  ItemsSource="{Binding}"
-                  IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}">
+                  IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSelectionElements}"
+                  ItemsSource="{Binding}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="{x:Static fa:FieldicCity.Title}"
                                     Binding="{Binding Title}"

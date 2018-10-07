@@ -69,7 +69,7 @@
             <Button Name="ButtonSave"
                     Style="{StaticResource StyleOfToolbarButton}"
                     Click="ButtonSave_OnClick"
-                    IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSaveCancelButtons}">
+                    IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSaveDiscardButtons}">
                 <Button.Content>
                     <StackPanel Orientation="Vertical">
                         <Image Source="{StaticResource icon_save}"
@@ -82,7 +82,7 @@
             <Button Name="ButtonDiscardChanges"
                     Style="{StaticResource StyleOfToolbarButton}"
                     Click="ButtonDiscardChanges_OnClick"
-                    IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSaveCancelButtons}">
+                    IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSaveDiscardButtons}">
                 <Button.Content>
                     <StackPanel Orientation="Vertical">
                         <Image Source="{StaticResource icon_discard_changes}"

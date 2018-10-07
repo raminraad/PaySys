@@ -78,14 +78,14 @@
 			        Command="commands:PaySysCommands.Save"
 			        CommandTarget="{Binding ElementName=ListViewMissions}"
 			        Content="{x:Static fa:Labels.Save}"
-			        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSaveCancelButtons}"
+			        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSaveDiscardButtons}"
 			        Style="{StaticResource StyleOfToolbarButton}" />
 			<Button Name="ButtonDiscardChanges"
 			        Command="commands:PaySysCommands.DiscardChanges"
 			        CommandTarget="{Binding ElementName=ListViewMissions}"
 			        Content="{x:Static fa:Labels.Cancel}"
 			        Style="{StaticResource StyleOfToolbarButton}"
-			        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSaveCancelButtons}" />
+			        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSaveDiscardButtons}" />
 			<Separator />
 			<Button Name="ButtonReload"
 			        Command="commands:PaySysCommands.Reload"

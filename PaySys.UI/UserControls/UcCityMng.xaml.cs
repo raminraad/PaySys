@@ -14,98 +14,123 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using PaySys.CalcLib.ExtensionMethods;
 using PaySys.Globalization;
 using PaySys.ModelAndBindLib.Engine;
 using PaySys.ModelAndBindLib.Entities;
-using PaySys.UI.ExtensionMethods;
 using MessageBox = System.Windows.Forms.MessageBox;
 using UserControl = System.Windows.Controls.UserControl;
 
 namespace PaySys.UI.UC.Tab
 {
-	/// <summary>
-	/// Interaction logic for UcCityMng.xaml
-	/// </summary>
-	public partial class UcCityMng : UserControl
-	{
-		public PaySysContext Context { get; set; }
+    /// <summary>
+    /// Interaction logic for UcCityMng.xaml
+    /// </summary>
+    public partial class UcCityMng : UserControl
+    {
+        public PaySysContext Context { get; set; }
 
-		public ObservableCollection<City> Cities { get; set; }
+        public ObservableCollection<City> Cities { get; set; }
 
-		public UcCityMng()
-		{
-			InitializeComponent();
-			ButtonReload_OnClick(null, null);
-			SmpUcFormStateLabel.CurrentState = FormCurrentState.Select;
-		}
-
-		private void ButtonAdd_OnClick(object sender, RoutedEventArgs e)
-		{
-			SmpUcFormStateLabel.CurrentState = FormCurrentState.Add;
-			var newItem = new City
-			{
-				Title = ResourceAccessor.Labels.GetString("New")
-			};
-			Cities.Add(newItem);
-			DataGridCities.SelectedItem = newItem;
-			DataGridCities.ScrollIntoView(newItem);
-		    TextBoxTitle.Focus();
-		}
-
-		private void ButtonEdit_OnClick(object sender, RoutedEventArgs e)
-		{
-			SmpUcFormStateLabel.CurrentState = FormCurrentState.Edit;
-		    TextBoxTitle.Focus();
+        public UcCityMng()
+        {
+            InitializeComponent();
+            Reload_Executed(null, null);
         }
 
-        private void ButtonReload_OnClick(object sender, RoutedEventArgs e)
-		{
-			var selectedId = (DataGridCities.SelectedItem as City)?.Id;
-			Context = new PaySysContext();
-			Context.Cities.Load();
-			Cities = Context.Cities.Local;
-			DataGridCities.GetBindingExpression(ItemsControl.ItemsSourceProperty)?.UpdateTarget();
-			DataGridCities.GetBindingExpression(DataContextProperty)?.UpdateTarget();
-			if(selectedId.HasValue)
-				DataGridCities.SelectedItem = Cities.FirstOrDefault(city => city.Id == selectedId.Value);
-		}
+        private void CrudCommands_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (SmpUcFormStateLabel != null) e.CanExecute = SmpUcFormStateLabel.EnabledOfCrudButtons;
+        }
 
-		private void ButtonSave_OnClick(object sender, RoutedEventArgs e)
-		{
-		    var obj = this;
-		    bool val1=  Validation.GetHasError(obj) ;
-            if (!val1)
-		    foreach (var dependencyObject in obj.FindVisualChildren<TextBox>())
-		    {
-		        val1 =val1|| Validation.GetHasError(dependencyObject);
-		    }
+        private void DiscardChangesCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (SmpUcFormStateLabel != null) e.CanExecute = SmpUcFormStateLabel.EnabledOfSaveDiscardButtons;
+        }
 
-
-            if (val1)
+        private void Add_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            SmpUcFormStateLabel.CurrentState = FormCurrentState.Add;
+            var newItem = new City
             {
-                MessageBox.Show("ERROR");
-                return;
-            }
+                Title = ResourceAccessor.Labels.GetString("New")
+            };
+            Cities.Add(newItem);
+            DataGridCities.SelectedItem = newItem;
+            DataGridCities.ScrollIntoView(newItem);
+            TextBoxTitle.Focus();
+        }
 
+        private void Edit_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            SmpUcFormStateLabel.CurrentState = FormCurrentState.Edit;
+            TextBoxTitle.Focus();
+        }
 
+        private void Delete_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+        }
 
+        private void Save_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            foreach (var textBox in this.FindVisualChildren<TextBox>())
+                textBox.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
 
-			foreach(var textBox in this.FindVisualChildren<TextBox>())
-				textBox.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
-
-			Context.SaveChanges();
-			SmpUcFormStateLabel.CurrentState = FormCurrentState.Select;
+            Context.SaveChanges();
+            SmpUcFormStateLabel.CurrentState = FormCurrentState.Select;
             CollectionViewSource.GetDefaultView(DataGridCities.ItemsSource)?.Refresh();
-		}
+        }
 
-		private void ButtonDiscardChanges_OnClick(object sender, RoutedEventArgs e)
-		{
-			if (SmpUcFormStateLabel.CurrentState==FormCurrentState.Add)
-			Cities.Remove((City) DataGridCities.SelectedItem);
-			foreach(var textBox in this.FindVisualChildren<TextBox>())
-				textBox.GetBindingExpression(TextBox.TextProperty)?.UpdateTarget();
+        private void DiscardChanges_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (SmpUcFormStateLabel.CurrentState == FormCurrentState.Add)
+                Cities.Remove((City) DataGridCities.SelectedItem);
+            foreach (var textBox in this.FindVisualChildren<TextBox>())
+                textBox.GetBindingExpression(TextBox.TextProperty)?.UpdateTarget();
 
-			SmpUcFormStateLabel.CurrentState = FormCurrentState.Select;
-		}
-	}
+            SmpUcFormStateLabel.CurrentState = FormCurrentState.Select;
+        }
+
+        private void Reload_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            var selectedId = (DataGridCities.SelectedItem as City)?.Id;
+            Context = new PaySysContext();
+            Context.Cities.Load();
+            Cities = Context.Cities.Local;
+            DataGridCities.GetBindingExpression(ItemsControl.ItemsSourceProperty)?.UpdateTarget();
+            DataGridCities.GetBindingExpression(DataContextProperty)?.UpdateTarget();
+            if (selectedId.HasValue)
+                DataGridCities.SelectedItem = Cities.FirstOrDefault(city => city.Id == selectedId.Value);
+            SmpUcLookup_OnLookupTextChanged(null, null);
+        }
+
+        private void UcCityMng_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            SmpUcFormStateLabel.CurrentState = FormCurrentState.Select;
+        }
+
+        private void Lookup_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            SmpUcLookup.Focus();
+        }
+
+        private void SmpUcLookup_OnLookupTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(SmpUcLookup.LookupText))
+                CollectionViewSource.GetDefaultView(DataGridCities.ItemsSource).Filter = null;
+            else
+                CollectionViewSource.GetDefaultView(DataGridCities.ItemsSource).Filter =
+                    o => (o as City).ContainsValue(SmpUcLookup.LookupText);
+        }
+
+        private void SaveCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = SmpUcFormStateLabel?.EnabledOfSaveDiscardButtons == true && Validator.ChildrenAreValid<TextBox>(this);
+        }
+
+        private void EditCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = SmpUcFormStateLabel?.EnabledOfCrudButtons == true && DataGridCities.SelectedItems.Count>0;
+        }
+    }
 }
