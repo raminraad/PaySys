@@ -34,9 +34,14 @@ namespace PaySys.UI.UC
 
         public string LookupText => TextBoxLookup.Text.Trim();
 
-        private void UcLookup_OnGotFocus(object sender, RoutedEventArgs e)
+        public void Select()
         {
             TextBoxLookup.Focus();
+        }
+
+        private void ButtonClear_OnClick(object sender, RoutedEventArgs e)
+        {
+            TextBoxLookup.Clear();
         }
     }
 }

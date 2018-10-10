@@ -53,7 +53,7 @@ namespace PaySys.UI.UC
 			SmpUcShowContractDetails.CurrentContractMaster = SmpUcShowContractMaster.CurrentContractMaster = SmpUcSelectContOfEmp.SelectedContractMaster;
 		}
 
-		private void BtnContractMasterAdd_OnClick(object sender, RoutedEventArgs e)
+		private void Add_Executed(object sender, ExecutedRoutedEventArgs e)
 		{
 			SmpUcFormState.CurrentState = FormCurrentState.AddMaster;
 			SmpUcShowContractDetails.CurrentContractMaster = null;
@@ -61,17 +61,17 @@ namespace PaySys.UI.UC
 				new ContractMaster {Employee = SmpUcSelectContOfEmp.SelectedEmployee,ContractDetails = new List<ContractDetail>()};
 		}
 
-		private void BtnContractMasterEdit_OnClick(object sender, RoutedEventArgs e)
+		private void Edit_Executed(object sender, ExecutedRoutedEventArgs e)
 		{
 			SmpUcFormState.CurrentState = FormCurrentState.Edit;
 		}
 
-		private void BtnContractMasterDelete_OnClick(object sender, RoutedEventArgs e)
+		private void Delete_Executed(object sender, ExecutedRoutedEventArgs e)
 		{
 
 		}
 
-		private void BtnContractMasterSave_OnClick(object sender, RoutedEventArgs e)
+		private void Save_Executed(object sender, ExecutedRoutedEventArgs e)
 		{
 			switch (SmpUcFormState.CurrentState)
 			{
@@ -107,9 +107,35 @@ namespace PaySys.UI.UC
 
 		}
 
-		private void BtnContractMasterRefresh_OnClick(object sender, RoutedEventArgs e)
+		private void Reload_Executed(object sender, ExecutedRoutedEventArgs e)
 		{
 			RefreshContracsAll();
 		}
+
+	    private void CrudCommands_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+	    {
+	        if (SmpUcFormState != null) e.CanExecute = SmpUcFormState.EnabledOfCrudButtons;
+	    }
+
+	    private void EditCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+	    {
+	        e.CanExecute = SmpUcFormState?.EnabledOfCrudButtons == true && SmpUcSelectContOfEmp.SelectedContractMaster!=null;
+	    }
+
+	    private void SaveCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+	    {
+	        e.CanExecute = SmpUcFormState?.EnabledOfSaveDiscardButtons == true;
+
+	    }
+
+	    private void DiscardChangesCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+	    {
+	        e.CanExecute = SmpUcFormState?.EnabledOfSaveDiscardButtons == true;
+        }
+
+	    private void DiscardChanges_Executed(object sender, ExecutedRoutedEventArgs e)
+	    {
+	        throw new NotImplementedException();
+	    }
 	}
 }

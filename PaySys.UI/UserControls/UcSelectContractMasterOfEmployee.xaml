@@ -30,7 +30,7 @@
 			       Style="{StaticResource StyleOfSelectionItemLabel}" />
 			<ComboBox Grid.Column="1"
 			          Name="CmbContractMaster"
-			          Style="{StaticResource StyleOfSelectionItemComboBox}"
+			          Style="{StaticResource StyleOfSelectionComboBox}"
 			          TextSearch.Text="ContractNo"
 			          TextSearch.TextPath="ContractNo"
 			          IsTextSearchEnabled="True"

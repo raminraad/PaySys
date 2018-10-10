@@ -9,28 +9,51 @@
              xmlns:cnv="clr-namespace:PaySys.ModelAndBindLib.BindingConverter;assembly=PaySys.ModelAndBindLib"
              xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Entities;assembly=PaySys.ModelAndBindLib"
              xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
+             xmlns:commands="clr-namespace:PaySys.UI.Commands"
              mc:Ignorable="d"
              d:DesignWidth="900"
              FlowDirection="RightToLeft">
-
+    <UserControl.CommandBindings>
+        <CommandBinding Command="commands:PaySysCommands.Add"
+                        CanExecute="CrudCommands_CanExecute"
+                        Executed="Add_Executed" />
+        <CommandBinding Command="commands:PaySysCommands.Edit"
+                        CanExecute="EditCommand_CanExecute"
+                        Executed="Edit_Executed" />
+        <CommandBinding Command="commands:PaySysCommands.Delete"
+                        CanExecute="CrudCommands_CanExecute"
+                        Executed="Delete_Executed" />
+        <CommandBinding Command="commands:PaySysCommands.Save"
+                        CanExecute="SaveCommand_CanExecute"
+                        Executed="Save_Executed" />
+        <CommandBinding Command="commands:PaySysCommands.DiscardChanges"
+                        CanExecute="DiscardChangesCommand_CanExecute"
+                        Executed="DiscardChanges_Executed" />
+        <CommandBinding Command="commands:PaySysCommands.Reload"
+                        CanExecute="CrudCommands_CanExecute"
+                        Executed="Reload_Executed" />
+        <CommandBinding Command="commands:PaySysCommands.Lookup"
+                        CanExecute="CrudCommands_CanExecute"
+                        Executed="Lookup_Executed" />
+    </UserControl.CommandBindings>
     <Grid x:Name="GridParent">
+        
         <Grid.RowDefinitions>
             <RowDefinition Name="RowToolbar"
-			               Height="Auto" />
+                           Height="Auto" />
             <RowDefinition Name="RowSearch"
-			               Height="Auto" />
+                           Height="Auto" />
             <RowDefinition Name="RowDatagrid" />
             <RowDefinition Name="RowDetail"
-			               Height="Auto" />
+                           Height="Auto" />
             <RowDefinition Name="RowStatusBar"
-			               Height="30" />
+                           Height="30" />
         </Grid.RowDefinitions>
         <ToolBar Grid.Row="0"
                  Grid.Column="0">
             <Button Name="ButtonAdd"
-                    Style="{StaticResource StyleOfToolbarButton}"
-                    IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}"
-                    Click="ButtonAdd_OnClick">
+                    Style="{StaticResource StyleOfToolbarButtonAdd}"
+                    Command="commands:PaySysCommands.Add">
                 <Button.Content>
                     <StackPanel Orientation="Vertical">
                         <Image Source="{StaticResource icon_crud_add}"
@@ -41,9 +64,8 @@
                 </Button.Content>
             </Button>
             <Button Name="ButtonEdit"
-                    Style="{StaticResource StyleOfToolbarButton}"
-                    IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}"
-                    Click="ButtonEdit_OnClick">
+                    Style="{StaticResource StyleOfToolbarButtonEdit}"
+                    Command="commands:PaySysCommands.Edit">
                 <Button.Content>
                     <StackPanel Orientation="Vertical">
                         <Image Source="{StaticResource icon_crud_edit}"
@@ -54,8 +76,8 @@
                 </Button.Content>
             </Button>
             <Button Name="ButtonDelete"
-                    Style="{StaticResource StyleOfToolbarButton}"
-                    IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}">
+                    Style="{StaticResource StyleOfToolbarButtonDelete}"
+                    Command="commands:PaySysCommands.Delete">
                 <Button.Content>
                     <StackPanel Orientation="Vertical">
                         <Image Source="{StaticResource icon_crud_delete}"
@@ -67,9 +89,8 @@
             </Button>
             <Separator />
             <Button Name="ButtonSave"
-                    Style="{StaticResource StyleOfToolbarButton}"
-                    Click="ButtonSave_OnClick"
-                    IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSaveDiscardButtons}">
+                    Style="{StaticResource StyleOfToolbarButtonSave}"
+                    Command="commands:PaySysCommands.Save">
                 <Button.Content>
                     <StackPanel Orientation="Vertical">
                         <Image Source="{StaticResource icon_save}"
@@ -80,9 +101,8 @@
                 </Button.Content>
             </Button>
             <Button Name="ButtonDiscardChanges"
-                    Style="{StaticResource StyleOfToolbarButton}"
-                    Click="ButtonDiscardChanges_OnClick"
-                    IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSaveDiscardButtons}">
+                    Style="{StaticResource StyleOfToolbarButtonDiscardChanges}"
+                    Command="commands:PaySysCommands.DiscardChanges">
                 <Button.Content>
                     <StackPanel Orientation="Vertical">
                         <Image Source="{StaticResource icon_discard_changes}"
@@ -95,8 +115,7 @@
             <Separator />
             <Button Name="ButtonReload"
                     Style="{StaticResource StyleOfToolbarButton}"
-                    Click="ButtonReload_OnClick"
-                    IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}">
+                    Command="commands:PaySysCommands.Reload">
                 <Button.Content>
                     <StackPanel Orientation="Vertical">
                         <Image Source="{StaticResource icon_reload}"
@@ -108,61 +127,57 @@
             </Button>
 
         </ToolBar>
-        <local:UcLookup x:Name="SmpUcLookup" Grid.Row="1"
-                        Width="600" 
-                        LookupTextChanged="TextBoxLookup_OnTextChanged"/>
+        <local:UcLookup x:Name="SmpUcLookup"
+                        Grid.Row="1"
+                        Width="600"
+                        LookupTextChanged="TextBoxLookup_OnTextChanged" />
         <DataGrid x:Name="DataGridEmployees"
-		          DataContext="{Binding ElementName = SmpUcEmployeeMng,Path=EmployeesAll}"
-				  ItemsSource="{Binding}"
-		          Grid.Row="2"
-		          IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}">
+                  Grid.Row="2"
+                  DataContext="{Binding ElementName = SmpUcEmployeeMng,Path=EmployeesAll}"
+                  ItemsSource="{Binding}"
+                  IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}">
             <DataGrid.Columns>
-                <DataGridTextColumn
-					Header="{x:Static fa:FieldicEmployee.EmployeeId}"
-					Binding="{Binding Id}"
-					Visibility="Hidden" />
-                <DataGridTextColumn
-					Header="{x:Static fa:FieldicEmployee.PersonnelCode}"
-					Binding="{Binding PersonnelCode}" />
-                <DataGridTextColumn
-					Header="{x:Static fa:FieldicEmployee.DossierNo}"
-					Binding="{Binding DossierNo}" />
-                <DataGridTextColumn
-					Header="{x:Static fa:FieldicEmployee.FName}"
-					Binding="{Binding FName}" />
-                <DataGridTextColumn
-					Header="{x:Static fa:FieldicEmployee.LName}"
-					Binding="{Binding LName}" />
-                <DataGridTextColumn
-					Header="{x:Static fa:FieldicEmployee.FatherName}"
-					Binding="{Binding FatherName}" />
-                <DataGridTextColumn
-					Header="{x:Static fa:FieldicEmployee.NationalCardNo}"
-					Binding="{Binding NationalCardNo}" />
-                <DataGridTextColumn
-					Header="{x:Static fa:FieldicEmployee.IdCardNo}"
-					Binding="{Binding IdCardNo}" />
-                <DataGridTextColumn
-					Header="{x:Static fa:FieldicEmployee.IdCardExportPlace}"
-					Binding="{Binding IdCardExportPlace}" />
-                <DataGridTextColumn
-					Header="{x:Static fa:FieldicEmployee.Address}"
-					Binding="{Binding Address}" />
+                <DataGridTextColumn Header="{x:Static fa:FieldicEmployee.EmployeeId}"
+                                    Binding="{Binding Id}"
+                                    Visibility="Hidden" />
+                <DataGridTextColumn Header="{x:Static fa:FieldicEmployee.PersonnelCode}"
+                                    Binding="{Binding PersonnelCode}" />
+                <DataGridTextColumn Header="{x:Static fa:FieldicEmployee.DossierNo}"
+                                    Binding="{Binding DossierNo}" />
+                <DataGridTextColumn Header="{x:Static fa:FieldicEmployee.FName}"
+                                    Binding="{Binding FName}" />
+                <DataGridTextColumn Header="{x:Static fa:FieldicEmployee.LName}"
+                                    Binding="{Binding LName}" />
+                <DataGridTextColumn Header="{x:Static fa:FieldicEmployee.FatherName}"
+                                    Binding="{Binding FatherName}" />
+                <DataGridTextColumn Header="{x:Static fa:FieldicEmployee.NationalCardNo}"
+                                    Binding="{Binding NationalCardNo}" />
+                <DataGridTextColumn Header="{x:Static fa:FieldicEmployee.IdCardNo}"
+                                    Binding="{Binding IdCardNo}" />
+                <DataGridTextColumn Header="{x:Static fa:FieldicEmployee.IdCardExportPlace}"
+                                    Binding="{Binding IdCardExportPlace}" />
+                <DataGridTextColumn Header="{x:Static fa:FieldicEmployee.Address}"
+                                    Binding="{Binding Address}" />
             </DataGrid.Columns>
         </DataGrid>
-        <TabControl Grid.Row="3">
-            <TabItem x:Name="TabItemUcEmployeeDetail"
-				Header="{x:Static fa:Labels.PersonalInfo}">
-                <local:UcEmployeeDetail
-					x:Name="SmpUcEmployeeDetail"
-					DataContext="{Binding ElementName =DataGridEmployees,Path=SelectedItem}"
-					ReadOnlyOfFields="{Binding ElementName =SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}" 
-					Margin="{StaticResource MarginOfMasterOrDetail}"/>
+        <TabControl Grid.Row="3"
+                    Style="{StaticResource StyleOfChildTabControl}"
+                    >
+            
+            <TabItem x:Name="TabItemUcEmployeeDetail" Style="{StaticResource StyleOfChildTabItem}">
+
+                <TabItem.Header>
+                    <TextBlock Text="{x:Static fa:Labels.PersonalInfo}" Style="{StaticResource StyleOfTabItemHeaderTextBlock}" />
+                </TabItem.Header>
+                <local:UcEmployeeDetail x:Name="SmpUcEmployeeDetail"
+                                        DataContext="{Binding ElementName =DataGridEmployees,Path=SelectedItem}"
+                                        ReadOnlyOfFields="{Binding ElementName =SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
+                                        Margin="{StaticResource MarginOfMasterOrDetail}" />
             </TabItem>
+            
         </TabControl>
         <StatusBar Grid.Row="4">
-            <local:UcFormStateLabel
-				x:Name="SmpUcFormStateLabel" />
+            <local:UcFormStateLabel x:Name="SmpUcFormStateLabel" />
         </StatusBar>
     </Grid>
 </UserControl>

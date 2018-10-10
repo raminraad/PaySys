@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Input;
 using PaySys.Globalization;
 using PaySys.ModelAndBindLib.Engine;
 using PaySys.ModelAndBindLib.Entities;
@@ -56,7 +57,7 @@ namespace PaySys.UI.UC
 				DataGridEmployees.SelectedIndex = index;
 		}
 
-		private void ButtonAdd_OnClick( object sender, RoutedEventArgs e )
+		private void Add_Executed( object sender, ExecutedRoutedEventArgs e )
 		{
 			SmpUcFormStateLabel.CurrentState = FormCurrentState.Add;
 			var newItem = new Employee
@@ -68,17 +69,17 @@ namespace PaySys.UI.UC
 			DataGridEmployees.ScrollIntoView( newItem );
 		}
 
-		private void ButtonEdit_OnClick( object sender, RoutedEventArgs e )
+		private void Edit_Executed( object sender, ExecutedRoutedEventArgs e )
 		{
 			SmpUcFormStateLabel.CurrentState = FormCurrentState.Edit;
 		}
 
-		private void BtnEmployeeDelete_OnClick( object sender, RoutedEventArgs e )
+		private void Delete_Executed( object sender, ExecutedRoutedEventArgs e )
 		{
 			//Todo
 		}
 
-		private void ButtonSave_OnClick( object sender, RoutedEventArgs e )
+		private void Save_Executed( object sender, ExecutedRoutedEventArgs e )
 		{
 			SmpUcEmployeeDetail.UpdateSource();
 
@@ -87,7 +88,7 @@ namespace PaySys.UI.UC
 			CollectionViewSource.GetDefaultView(DataGridEmployees.DataContext).Refresh();
 		}
 
-		private void ButtonDiscardChanges_OnClick( object sender, RoutedEventArgs e )
+		private void DiscardChanges_Executed( object sender, ExecutedRoutedEventArgs e )
 		{
 			if( SmpUcFormStateLabel.CurrentState == FormCurrentState.Add )
 				EmployeesAll.Remove( (Employee) DataGridEmployees.SelectedItem );
@@ -97,14 +98,39 @@ namespace PaySys.UI.UC
 			SmpUcFormStateLabel.CurrentState = FormCurrentState.Select;
 		}
 
-		private void ButtonReload_OnClick( object sender, RoutedEventArgs e )
+		private void Reload_Executed( object sender, ExecutedRoutedEventArgs e )
 		{
 			RefreshDtgMain();
 		}
 
-		private void TextBoxLookup_OnTextChanged( object sender, TextChangedEventArgs e )
+	    private void Lookup_Executed(object sender, ExecutedRoutedEventArgs e)
+	    {
+	        SmpUcLookup.Select();
+	    }
+
+        private void TextBoxLookup_OnTextChanged( object sender, TextChangedEventArgs e )
 		{
 			RefreshDtgMain();
 		}
-	}
+
+	    private void SaveCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+	    {
+	        e.CanExecute = SmpUcFormStateLabel?.EnabledOfSaveDiscardButtons == true && Validator.ChildrenAreValid<TextBox>(this);
+	    }
+
+	    private void EditCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+	    {
+	        e.CanExecute = SmpUcFormStateLabel?.EnabledOfCrudButtons == true && DataGridEmployees.SelectedItems.Count > 0;
+	    }
+
+	    private void CrudCommands_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+	    {
+	        e.CanExecute = SmpUcFormStateLabel?.EnabledOfCrudButtons == true;
+	    }
+
+	    private void DiscardChangesCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+	    {
+	        e.CanExecute = SmpUcFormStateLabel?.EnabledOfSaveDiscardButtons == true;
+	    }
+    }
 }

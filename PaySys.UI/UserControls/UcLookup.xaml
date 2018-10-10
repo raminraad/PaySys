@@ -1,22 +1,41 @@
 ﻿<UserControl x:Class="PaySys.UI.UC.UcLookup"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
+             mc:Ignorable="d"
              FlowDirection="RightToLeft"
-             Focusable="True"
-             GotFocus="UcLookup_OnGotFocus"
              d:DesignHeight="68"
-             d:DesignWidth="400"
-             >
-    <DockPanel x:Name="PanelLookup"
-               Margin="{StaticResource MarginOfMasterOrDetail}">
-        <Image Source="{StaticResource icon_lookup}"
-               Style="{StaticResource StyleOfLookupImage}" 
-               Focusable="False"/>
-        <TextBox x:Name="TextBoxLookup"
-                 Style="{StaticResource StyleOfLookupTextBox}" TextChanged="TextBoxLookup_OnTextChanged"
-                 Focusable="True"/>
-    </DockPanel>
+             d:DesignWidth="400">
+    <Grid Margin="{StaticResource MarginOfMasterOrDetail}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Image Grid.Column="0"
+               Source="{StaticResource icon_lookup}"
+               Style="{StaticResource StyleOfLookupImage}" />
+        <TextBox Grid.Column="1"
+                 Grid.ColumnSpan="2"
+                 x:Name="TextBoxLookup"
+                 Style="{StaticResource StyleOfLookupTextBox}"
+                 TextChanged="TextBoxLookup_OnTextChanged" />
+        <Button Grid.Column="2"
+                Click="ButtonClear_OnClick"
+                Height="{StaticResource HeightOfLookupClearImage}"
+                Width="{StaticResource HeightOfLookupClearImage}"
+                ToolTip="{x:Static fa:Tooltips.ButtonClearLookup}"
+                Focusable="False"
+                Margin="3,0">
+            <Button.Template>
+                <ControlTemplate>
+                    <Image Source="{StaticResource icon_lookup_clear}"
+                           Style="{StaticResource StyleOfLookupClearImage}" />
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+    </Grid>
 </UserControl>

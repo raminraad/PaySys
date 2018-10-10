@@ -41,9 +41,9 @@
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="2*" />
-			<ColumnDefinition Width="10*" />
+			<ColumnDefinition Width="5*" />
 			<ColumnDefinition Width="1*" />
-			<ColumnDefinition Width="18*" />
+			<ColumnDefinition Width="7*" />
 			<ColumnDefinition Width="2*" />
 		</Grid.ColumnDefinitions>
 		<ToolBar Grid.Row="0"
@@ -80,14 +80,16 @@
 		          d:DataContext="{d:DesignInstance Type=model:MainGroup, IsDesignTimeCreatable=True}"
 		          Grid.Row="3"
 		          Grid.Column="1"
-		          Focusable="True">
+		          >
 			<ListView.View>
 				<GridView>
 					<GridView.Columns>
 						<GridViewColumn Header="{x:Static fa:FieldicSubGroup.Title}" Width="{Binding ElementName=ListViewMainGroups,Path=ActualWidth}">
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
-									<TextBlock Text="{Binding Path=Title}" />
+								    <TextBlock Text="{Binding Path=Title}"
+                                               Style="{StaticResource StyleOfDataFieldTextBlock}"
+								               />
 								</DataTemplate>
 							</GridViewColumn.CellTemplate>
 						</GridViewColumn>

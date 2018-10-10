@@ -60,7 +60,7 @@ namespace PaySys.UI.UC
 
 		private void AddItem_Execute( object target, ExecutedRoutedEventArgs e )
 		{
-			var param = e.Parameter.ToString().Trim();
+		    var param = SmpUcSuggesterTextBox.SelectedValue.Trim();
 			var newItem = new ContractField
 			{
 					Title = param,

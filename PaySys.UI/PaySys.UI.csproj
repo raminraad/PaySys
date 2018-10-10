@@ -414,7 +414,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Icons\Licorice\icon_crud_add.png" />
-    <Resource Include="Assets\Icons\Licorice\icon_crud_delete.png" />
     <Resource Include="Assets\Icons\Licorice\icon_crud_edit.png" />
   </ItemGroup>
   <ItemGroup>
@@ -436,6 +435,26 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Icons\Licorice\icon_lookup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\Licorice\icon_lookup_clear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\Licorice\icon_tick.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\Licorice\icon_plus.png" />
+    <Resource Include="Assets\Icons\Licorice\icon_plus_disabled.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\Licorice\icon_crud_delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\Licorice\icon_trash_cross.png" />
+    <Resource Include="Assets\Icons\Licorice\icon_trash_cross_red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\Licorice\icon_func_remove_from_list.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -38,16 +38,6 @@ namespace PaySys.UI.UC.Tab
             Reload_Executed(null, null);
         }
 
-        private void CrudCommands_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            if (SmpUcFormStateLabel != null) e.CanExecute = SmpUcFormStateLabel.EnabledOfCrudButtons;
-        }
-
-        private void DiscardChangesCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            if (SmpUcFormStateLabel != null) e.CanExecute = SmpUcFormStateLabel.EnabledOfSaveDiscardButtons;
-        }
-
         private void Add_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             SmpUcFormStateLabel.CurrentState = FormCurrentState.Add;
@@ -111,7 +101,7 @@ namespace PaySys.UI.UC.Tab
 
         private void Lookup_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            SmpUcLookup.Focus();
+            SmpUcLookup.Select();
         }
 
         private void SmpUcLookup_OnLookupTextChanged(object sender, TextChangedEventArgs e)
@@ -131,6 +121,16 @@ namespace PaySys.UI.UC.Tab
         private void EditCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = SmpUcFormStateLabel?.EnabledOfCrudButtons == true && DataGridCities.SelectedItems.Count>0;
+        }
+
+        private void CrudCommands_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = SmpUcFormStateLabel?.EnabledOfCrudButtons == true;
+        }
+
+        private void DiscardChangesCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = SmpUcFormStateLabel?.EnabledOfSaveDiscardButtons == true;
         }
     }
 }

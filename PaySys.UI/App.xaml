@@ -7,13 +7,13 @@
              xmlns:bindingConverter="clr-namespace:PaySys.ModelAndBindLib.BindingConverter;assembly=PaySys.ModelAndBindLib"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:uc="clr-namespace:PaySys.UI.UC"
+             xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Themes/Licorice.xaml" />
             </ResourceDictionary.MergedDictionaries>
-
             <ControlTemplate x:Key="ValidatedTextBoxTemplate_Obsolete">
                 <StackPanel Orientation="Horizontal">
                     <Border BorderThickness="2"
@@ -32,13 +32,23 @@
             </ControlTemplate>
             <ControlTemplate x:Key="ValidatedTextBoxTemplate">
                 <DockPanel LastChildFill="true">
-                    <Border Background="Red" DockPanel.Dock="right" Margin="5,0,0,0" Width="20" Height="20" CornerRadius="10"
+                    <Border Background="Red"
+                            DockPanel.Dock="right"
+                            Margin="5,0,0,0"
+                            Width="20"
+                            Height="20"
+                            CornerRadius="10"
                             ToolTip="{Binding ElementName=customAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}">
-                        <TextBlock Text="!" VerticalAlignment="center" HorizontalAlignment="center" FontWeight="Bold" Foreground="white">
-                        </TextBlock>
+                        <TextBlock Text="!"
+                                   VerticalAlignment="center"
+                                   HorizontalAlignment="center"
+                                   FontWeight="Bold"
+                                   Foreground="white" />
                     </Border>
-                    <AdornedElementPlaceholder Name="customAdorner" VerticalAlignment="Center" >
-                        <Border BorderBrush="red" BorderThickness="1" />
+                    <AdornedElementPlaceholder Name="customAdorner"
+                                               VerticalAlignment="Center">
+                        <Border BorderBrush="red"
+                                BorderThickness="1" />
                     </AdornedElementPlaceholder>
                 </DockPanel>
             </ControlTemplate>
@@ -56,15 +66,21 @@
                              Color="DarkSlateGray" />
             <SolidColorBrush x:Key="FormStateColorDelete"
                              Color="Crimson" />
-            <SolidColorBrush x:Key="FormStateColorUnknown"
-                             Color="Black" />
-            <FontFamily x:Key="FontFamilyOfDataFields">PFont</FontFamily>
-            <system:Double x:Key="FontSizeOfDataFields">18</system:Double>
+            <SolidColorBrush x:Key="ColorOfChildTabItemBackground" Color="#CCEBF0" />
+            <SolidColorBrush x:Key="ColorOfChildTabItemBackgroundUnselected" Color="GhostWhite" />
+            <SolidColorBrush x:Key="ColorOfParentTabItemBackground" Color="WhiteSmoke" />
+            <SolidColorBrush x:Key="ColorOfParentTabItemBackgroundUnselected" Color="GhostWhite" />
+            <SolidColorBrush x:Key="FormStateColorUnknown" Color="Black" />
+            <SolidColorBrush x:Key="ColorOfAlternateData" Color="#F5F5F5" />
+            <SolidColorBrush x:Key="ColorOfDataGridLines" Color="#E0E0E0" />
+            <FontFamily x:Key="FontFamilyOfDataFields">Tahoma</FontFamily>
+            <system:Double x:Key="FontSizeOfDataFields">12</system:Double>
             <system:Double x:Key="FontSizeOfListTitle">20</system:Double>
-            <system:Double x:Key="FontSizeOfLookupTextBox">24</system:Double>
+            <system:Double x:Key="FontSizeOfLookupTextBox">18</system:Double>
             <system:Double x:Key="FontSizeOfToolbarButton">20</system:Double>
             <FontFamily x:Key="FontFamilyOfToolbarButton">Adobe Arabic</FontFamily>
-            <system:Double x:Key="HeightOfDataField">33</system:Double>
+            <system:Double x:Key="HeightOfDataField">24</system:Double>
+            <system:Double x:Key="HeightOfDataGridColumnHeader">30</system:Double>
             <system:Double x:Key="WidthOfDataFieldOfText">220</system:Double>
             <system:Double x:Key="WidthOfDataFieldOfCode">80</system:Double>
             <system:Double x:Key="WidthOfDataFieldOfPrice">120</system:Double>
@@ -80,8 +96,16 @@
             <system:Double x:Key="WidthOfTabOneOf7">200</system:Double>
             <system:Double x:Key="WidthOfTabOneOf8">150</system:Double>
             <system:Double x:Key="WidthOfTabOneOf9">100</system:Double>
-            <system:Double x:Key="HeightOfLookupTextBox">34</system:Double>
-            <system:Double x:Key="SizeOfToolbarButton">60</system:Double>
+            <system:Double x:Key="HeightOfLookupTextBox">30</system:Double>
+            <system:Double x:Key="HeightOfSelectionComboBox">34</system:Double>
+            <system:Double x:Key="HeightOfLookupClearImage">24</system:Double>
+            <system:Double x:Key="SizeOfSmallFunctionButton">32</system:Double>
+            <system:Double x:Key="SizeOfSmallFunctionButtonImage">16</system:Double>
+            <system:Double x:Key="SizeOfListFunctionButton">24</system:Double>
+            <system:Double x:Key="SizeOfListFunctionButtonImage">16</system:Double>
+            <system:Double x:Key="HeightOfLookupImage">28</system:Double>
+            <system:Double x:Key="SizeOfToolbarButton">50</system:Double>
+            <system:Double x:Key="SizeOfToolbarButtonImage">24</system:Double>
             <system:Double x:Key="HeightOfMenuItam">30</system:Double>
             <Thickness x:Key="MarginOfDataFields"
                        Left="10"
@@ -102,35 +126,145 @@
             <Style TargetType="ToolBar">
                 <Setter Property="KeyboardNavigation.TabNavigation"
                         Value="Continue" />
+                <Setter Property="Height" Value="{StaticResource SizeOfToolbarButton}"/>
             </Style>
             <Style TargetType="DataGrid">
-                <Setter Property="HorizontalScrollBarVisibility"
-                        Value="Auto" />
-                <Setter Property="VerticalScrollBarVisibility"
-                        Value="Auto" />
-                <Setter Property="BorderThickness"
-                        Value="2" />
                 <Setter Property="Margin"
                         Value="{StaticResource MarginOfMasterOrDetail}" />
-                <Setter Property="AutoGenerateColumns"
-                        Value="False" />
                 <Setter Property="ColumnWidth"
                         Value="*" />
+                <Setter Property="AutoGenerateColumns" Value="False"/>
                 <Setter Property="IsSynchronizedWithCurrentItem"
                         Value="True" />
                 <Setter Property="FontFamily"
                         Value="{StaticResource FontFamilyOfDataFields}" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource FontSizeOfDataFields}" />
                 <Setter Property="IsReadOnly"
                         Value="True" />
                 <Setter Property="SelectionMode"
                         Value="Single" />
+                <Setter Property="AlternatingRowBackground"
+                        Value="{StaticResource ColorOfAlternateData}" />
+                <Setter Property="RowHeight"
+                        Value="{StaticResource HeightOfDataField}" />
+                <Setter Property="ColumnHeaderHeight" Value="{StaticResource HeightOfDataGridColumnHeader}" />
+                <Setter Property="HorizontalGridLinesBrush" Value="{StaticResource ColorOfDataGridLines}" />
+                <Setter Property="VerticalGridLinesBrush" Value="{StaticResource ColorOfDataGridLines}" />
             </Style>
-            <Style TargetType="TabItem">
+            <Style TargetType="{x:Type DataGridCell}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type DataGridCell}">
+                            <Grid Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center" />
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="StyleOfParentTabControl"
+                   TargetType="TabControl">
+                <Setter Property="Background"
+                        Value="{StaticResource ColorOfParentTabItemBackground}" />
+                <Setter Property="Margin"
+                        Value="{StaticResource MarginOfMasterOrDetail}" />
+                <Setter Property="BorderBrush"
+                        Value="DimGray" />
+                <Setter Property="BorderThickness"
+                        Value="1" />
+            </Style>
+            <Style x:Key="StyleOfChildTabControl"
+                   BasedOn="{StaticResource StyleOfParentTabControl}"
+                   TargetType="TabControl">
+                <Setter Property="Background"
+                        Value="{StaticResource ColorOfChildTabItemBackground}" />
+               
+            </Style>
+            <Style x:Key="StyleOfChildTabItem"  TargetType="TabItem">
                 <Setter Property="FontFamily"
-                        Value="{StaticResource FontFamilyOfDataFields}" />
+                        Value="{StaticResource FontFamilyOfToolbarButton}" />
                 <Setter Property="FontSize"
-                        Value="{StaticResource FontSizeOfDataFields}" />
+                        Value="{StaticResource FontSizeOfToolbarButton}" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="TabItem">
+                            <Border Name="Border"
+                                        BorderThickness="1,1,1,0"
+                                        BorderBrush="DimGray"
+                                        CornerRadius="5,5,0,0"
+                                        Margin="-2,0,5,-2">
+                                <ContentPresenter x:Name="ContentSite"
+                                                      VerticalAlignment="Center"
+                                                      ContentSource="Header"
+                                                      Width="100"
+                                                      Height="30"
+                                                      Margin="4,0">
+                                </ContentPresenter>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsSelected"
+                                             Value="True">
+                                    <Setter TargetName="Border"
+                                                Property="Background"
+                                                Value="{StaticResource ColorOfChildTabItemBackground}" />
+
+                                </Trigger>
+                                <Trigger Property="IsSelected"
+                                             Value="False">
+                                    <Setter TargetName="Border"
+                                                Property="Background"
+                                                Value="{StaticResource ColorOfChildTabItemBackgroundUnselected}" />
+
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
             </Style>
+            <Style x:Key="StyleOfParentTabItem"  TargetType="TabItem">
+                <Setter Property="FontFamily"
+                        Value="{StaticResource FontFamilyOfToolbarButton}" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource FontSizeOfToolbarButton}" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="TabItem">
+                            <Border Name="Border"
+                                        BorderThickness="1,1,1,0"
+                                        BorderBrush="DimGray"
+                                        CornerRadius="5,5,0,0"
+                                        Margin="-2,0,5,-2">
+                                <ContentPresenter x:Name="ContentSite"
+                                                      VerticalAlignment="Center"
+                                                      ContentSource="Header"
+                                                      Width="100"
+                                                      Height="30"
+                                                      Margin="4,0">
+                                </ContentPresenter>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsSelected"
+                                             Value="True">
+                                    <Setter TargetName="Border"
+                                                Property="Background"
+                                                Value="{StaticResource ColorOfParentTabItemBackground}" />
+
+                                </Trigger>
+                                <Trigger Property="IsSelected"
+                                             Value="False">
+                                    <Setter TargetName="Border"
+                                                Property="Background"
+                                                Value="{StaticResource ColorOfParentTabItemBackgroundUnselected}" />
+
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
             <Style TargetType="ComboBox">
                 <Setter Property="Height"
                         Value="{StaticResource HeightOfDataField}" />
@@ -218,7 +352,7 @@
                 <Setter Property="TextWrapping"
                         Value="Wrap" />
                 <Setter Property="Margin"
-                        Value="0,20" />
+                        Value="0,15" />
             </Style>
             <Style x:Key="StyleOfListTitleLabel"
                    TargetType="Label">
@@ -370,18 +504,12 @@
                         Value="Center" />
             </Style>
             <Style x:Key="StyleOfPassageTextBlock"
+                   BasedOn="{StaticResource StyleOfDataFieldTextBlock}"
                    TargetType="TextBlock">
-                <Setter Property="Height"
-                        Value="{StaticResource HeightOfDataField}" />
                 <Setter Property="Width"
                         Value="Auto" />
-                <Setter Property="FontFamily"
-                        Value="{StaticResource FontFamilyOfDataFields}" />
-                <Setter Property="FontSize"
-                        Value="{StaticResource FontSizeOfDataFields}" />
-                <Setter Property="VerticalAlignment"
-                        Value="Center" />
             </Style>
+
             <Style x:Key="StyleOfToolbarButton"
                    TargetType="Button">
                 <Setter Property="Margin"
@@ -397,12 +525,55 @@
                 <Setter Property="Height"
                         Value="{StaticResource SizeOfToolbarButton}" />
             </Style>
+
+            <Style x:Key="StyleOfToolbarButtonAdd"
+                   TargetType="Button"
+                   BasedOn="{StaticResource StyleOfToolbarButton}">
+                <Setter Property="ToolTip"
+                        Value="{x:Static fa:Tooltips.ButtonAdd}" />
+            </Style>
+
+            <Style x:Key="StyleOfToolbarButtonEdit"
+                   TargetType="Button"
+                   BasedOn="{StaticResource StyleOfToolbarButton}">
+                <Setter Property="ToolTip"
+                        Value="{x:Static fa:Tooltips.ButtonEdit}" />
+            </Style>
+
+            <Style x:Key="StyleOfToolbarButtonDelete"
+                   TargetType="Button"
+                   BasedOn="{StaticResource StyleOfToolbarButton}">
+                <Setter Property="ToolTip"
+                        Value="{x:Static fa:Tooltips.ButtonDelete}" />
+            </Style>
+
+            <Style x:Key="StyleOfToolbarButtonSave"
+                   TargetType="Button"
+                   BasedOn="{StaticResource StyleOfToolbarButton}">
+                <Setter Property="ToolTip"
+                        Value="{x:Static fa:Tooltips.ButtonSave}" />
+            </Style>
+
+            <Style x:Key="StyleOfToolbarButtonDiscardChanges"
+                   TargetType="Button"
+                   BasedOn="{StaticResource StyleOfToolbarButton}">
+                <Setter Property="ToolTip"
+                        Value="{x:Static fa:Tooltips.ButtonDiscardChanges}" />
+            </Style>
+
+            <Style x:Key="StyleOfToolbarButtonReload"
+                   TargetType="Button"
+                   BasedOn="{StaticResource StyleOfToolbarButton}">
+                <Setter Property="ToolTip"
+                        Value="{x:Static fa:Tooltips.ButtonReload}" />
+            </Style>
+
             <Style x:Key="StyleOfToolbarButtonImage"
                    TargetType="Image">
                 <Setter Property="Height"
-                        Value="32" />
+                        Value="{StaticResource SizeOfToolbarButtonImage}" />
                 <Setter Property="Width"
-                        Value="32" />
+                        Value="{StaticResource SizeOfToolbarButtonImage}" />
                 <Setter Property="FlowDirection"
                         Value="LeftToRight" />
             </Style>
@@ -417,12 +588,67 @@
             </Style>
             <Style x:Key="StyleOfLookupImage"
                    TargetType="Image"
-                   BasedOn="{StaticResource StyleOfTitleImage}" />
+                   BasedOn="{StaticResource StyleOfTitleImage}">
+                <Setter Property="Height"
+                        Value="{StaticResource HeightOfLookupImage}" />
+                <Setter Property="Width"
+                        Value="{StaticResource HeightOfLookupImage}" />
+            </Style>
+            <Style x:Key="StyleOfLookupClearImage"
+                   TargetType="Image"
+                   BasedOn="{StaticResource StyleOfLookupImage}">
+                <Setter Property="Height"
+                        Value="{StaticResource HeightOfLookupClearImage}" />
+                <Setter Property="Width"
+                        Value="{StaticResource HeightOfLookupClearImage}" />
+            </Style>
             <Style x:Key="StyleOfToolbarButtonTextBlock"
                    TargetType="TextBlock">
                 <Setter Property="HorizontalAlignment"
                         Value="Center" />
+                <Setter Property="VerticalAlignment"
+                        Value="Center" />
+                <Setter Property="FontFamily"
+                        Value="{StaticResource FontFamilyOfToolbarButton}" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource FontSizeOfToolbarButton}" />
             </Style>
+
+            <Style x:Key="StyleOfTabItemHeaderTextBlock"
+                   TargetType="TextBlock" BasedOn="{StaticResource StyleOfToolbarButtonTextBlock}">
+            </Style>
+
+            <Style x:Key="StyleOfSmallFunctionButton"
+                   TargetType="Button">
+                <Setter Property="Height"
+                        Value="{StaticResource SizeOfSmallFunctionButton}" />
+                <Setter Property="Width"
+                        Value="{StaticResource SizeOfSmallFunctionButton}" />
+            </Style>
+            <Style x:Key="StyleOfSmallFunctionButtonImage"
+                   TargetType="{x:Type Image}">
+                <Setter Property="Height"
+                        Value="{StaticResource SizeOfSmallFunctionButtonImage}" />
+                <Setter Property="Width"
+                        Value="{StaticResource SizeOfSmallFunctionButtonImage}" />
+            </Style>
+
+            <Style x:Key="StyleOfListFunctionButton"
+                   TargetType="Button">
+                <Setter Property="Height"
+                        Value="{StaticResource SizeOfListFunctionButton}" />
+                <Setter Property="Width"
+                        Value="{StaticResource SizeOfListFunctionButton}" />
+            </Style>
+            <Style x:Key="StyleOfListFunctionButtonImage"
+                   TargetType="{x:Type Image}">
+                <Setter Property="Height"
+                        Value="{StaticResource SizeOfListFunctionButtonImage}" />
+                <Setter Property="Width" Value="{StaticResource SizeOfListFunctionButtonImage}" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+            </Style>
+
             <Style x:Key="StyleOfSelectionItemLabel"
                    TargetType="Label">
                 <Setter Property="FontFamily"
@@ -446,11 +672,13 @@
                         Value="Left" />
                 <Setter Property="Margin"
                         Value="{StaticResource MarginOfLookupTextBox}" />
-            </Style>
-            <Style x:Key="StyleOfSelectionItemComboBox"
-                   TargetType="ComboBox">
                 <Setter Property="Height"
                         Value="{StaticResource HeightOfLookupTextBox}" />
+            </Style>
+            <Style x:Key="StyleOfSelectionComboBox"
+                   TargetType="ComboBox">
+                <Setter Property="Height"
+                        Value="{StaticResource HeightOfSelectionComboBox}" />
                 <Setter Property="FontFamily"
                         Value="{StaticResource FontFamilyOfDataFields}" />
                 <Setter Property="FontSize"

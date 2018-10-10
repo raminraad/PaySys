@@ -15,9 +15,7 @@
              Loaded="UcCityMng_OnLoaded"
              d:DesignHeight="600"
              d:DesignWidth="900">
-    <UserControl.InputBindings>
-        <KeyBinding Command="commands:PaySysCommands.Lookup" />
-    </UserControl.InputBindings>
+    
     <UserControl.CommandBindings>
         <CommandBinding Command="commands:PaySysCommands.Add"
                         CanExecute="CrudCommands_CanExecute"
@@ -51,7 +49,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="3*"  />
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="2*" />
             <ColumnDefinition Width="3*" />
@@ -66,7 +64,7 @@
                  Grid.ColumnSpan="4"
                  Grid.Column="0">
             <Button Name="ButtonAdd"
-                    Style="{StaticResource StyleOfToolbarButton}"
+                    Style="{StaticResource StyleOfToolbarButtonAdd}"
                     Command="commands:PaySysCommands.Add">
                 <Button.Content>
                     <StackPanel Orientation="Vertical">
@@ -78,7 +76,7 @@
                 </Button.Content>
             </Button>
             <Button Name="ButtonEdit"
-                    Style="{StaticResource StyleOfToolbarButton}"
+                    Style="{StaticResource StyleOfToolbarButtonEdit}"
                     Command="commands:PaySysCommands.Edit">
                 <Button.Content>
                     <StackPanel Orientation="Vertical">
@@ -90,7 +88,7 @@
                 </Button.Content>
             </Button>
             <Button Name="ButtonDelete"
-                    Style="{StaticResource StyleOfToolbarButton}"
+                    Style="{StaticResource StyleOfToolbarButtonDelete}"
                     Command="commands:PaySysCommands.Delete">
                 <Button.Content>
                     <StackPanel Orientation="Vertical">
@@ -103,7 +101,7 @@
             </Button>
             <Separator />
             <Button Name="ButtonSave"
-                    Style="{StaticResource StyleOfToolbarButton}"
+                    Style="{StaticResource StyleOfToolbarButtonSave}"
                     Command="commands:PaySysCommands.Save">
                 <Button.Content>
                     <StackPanel Orientation="Vertical">
@@ -115,7 +113,7 @@
                 </Button.Content>
             </Button>
             <Button Name="ButtonDiscardChanges"
-                    Style="{StaticResource StyleOfToolbarButton}"
+                    Style="{StaticResource StyleOfToolbarButtonDiscardChanges}"
                     Command="commands:PaySysCommands.DiscardChanges">
                 <Button.Content>
                     <StackPanel Orientation="Vertical">
@@ -146,9 +144,12 @@
                   Grid.Column="1"
                   Grid.ColumnSpan="2"
                   ColumnWidth="*"
+                  SelectionUnit="FullRow"
+                  
                   DataContext="{Binding ElementName = SmpUcCityMng,Path=Cities}"
                   IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSelectionElements}"
                   ItemsSource="{Binding}">
+            
             <DataGrid.Columns>
                 <DataGridTextColumn Header="{x:Static fa:FieldicCity.Title}"
                                     Binding="{Binding Title}"

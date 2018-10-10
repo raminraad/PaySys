@@ -18,7 +18,7 @@
 		       Content="{x:Static fa:Labels.Employee}"
 		       Style="{StaticResource StyleOfSelectionItemLabel}" />
 		<ComboBox Grid.Column="1"
-		          Style="{StaticResource StyleOfSelectionItemComboBox}"
+		          Style="{StaticResource StyleOfSelectionComboBox}"
 		          Name="CmbEmployee"
 		          TextSearch.Text="LName"
 		          TextSearch.TextPath="LName"

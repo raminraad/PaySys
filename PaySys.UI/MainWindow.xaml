@@ -11,6 +11,7 @@
 		Width="525">
 	<DockPanel FlowDirection="RightToLeft">
 		<Menu Name="MnuMain"
+              Background="#7AD4FD"
 			  DockPanel.Dock="Top">
 			<MenuItem Header="اطلاعات پایه">
 				<MenuItem x:Name="MnuEmployeeMng"
@@ -72,6 +73,6 @@
 				</MenuItem>
 			</MenuItem>
 		</Menu>
-		<TabControl x:Name="TabCntMain" />
+		<TabControl x:Name="TabCntMain" Style="{StaticResource StyleOfParentTabControl}"/>
 	</DockPanel>
 </Window>

@@ -5,7 +5,8 @@
              Panel.ZIndex="99">
 	<Canvas>
 		<TextBox x:Name="autoTextBox"
-		         Height="25"
+                 Height="32"
+		         VerticalAlignment="Stretch"
 		         MinWidth="150"
 		         Width="{Binding ElementName=UcSuggester,Path=ActualWidth}"
 		         Text="{Binding ElementName=UcSuggester,Path=SelectedValue,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
@@ -15,6 +16,6 @@
 		         Background="LightYellow"
 		         Visibility="Collapsed"
 		         MinWidth="150"
-		         Margin="0,25,0,-25"/>
+		         Margin="0,32,0,-32"/>
 	</Canvas>
 </UserControl>

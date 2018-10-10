@@ -6,10 +6,32 @@
 			 xmlns:local="clr-namespace:PaySys.UI.UC"
 			 xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
 			 xmlns:ingredient="clr-namespace:PaySys.UI.UC"
+			 xmlns:commands="clr-namespace:PaySys.UI.Commands"
 			 mc:Ignorable="d"
 			 d:DesignHeight="1000"
 			 d:DesignWidth="1500"
 			 FlowDirection="RightToLeft">
+    <UserControl.CommandBindings>
+        <CommandBinding Command="commands:PaySysCommands.Add"
+                        CanExecute="CrudCommands_CanExecute"
+                        Executed="Add_Executed" />
+        <CommandBinding Command="commands:PaySysCommands.Edit"
+                        CanExecute="EditCommand_CanExecute"
+                        Executed="Edit_Executed" />
+        <CommandBinding Command="commands:PaySysCommands.Delete"
+                        CanExecute="CrudCommands_CanExecute"
+                        Executed="Delete_Executed" />
+        <CommandBinding Command="commands:PaySysCommands.Save"
+                        CanExecute="SaveCommand_CanExecute"
+                        Executed="Save_Executed" />
+        <CommandBinding Command="commands:PaySysCommands.DiscardChanges"
+                        CanExecute="DiscardChangesCommand_CanExecute"
+                        Executed="DiscardChanges_Executed" />
+        <CommandBinding Command="commands:PaySysCommands.Reload"
+                        CanExecute="CrudCommands_CanExecute"
+                        Executed="Reload_Executed" />
+        
+    </UserControl.CommandBindings>
 	<Grid Name="GridMain">
 		<Grid.RowDefinitions>
 			<RowDefinition Name="RowToolbar"
@@ -19,40 +41,84 @@
 			<RowDefinition Name="RowStatusBar"
 						   Height="Auto" />
 		</Grid.RowDefinitions>
-		<ToolBar Grid.Row="0">
-			<Button Name="BtnContractMasterAdd"
-					IsEnabled="{Binding ElementName=SmpUcFormState,Path=EnabledOfCrudButtons}"
-					Style="{StaticResource StyleOfToolbarButton}"
-					Content="{x:Static fa:Labels.Add}"
-					Click="BtnContractMasterAdd_OnClick" />
-			<Button Name="BtnContractMasterEdit"
-					IsEnabled="{Binding ElementName=SmpUcFormState,Path=EnabledOfCrudButtons}"
-			        Style="{StaticResource StyleOfToolbarButton}"
-					Content="{x:Static fa:Labels.Edit}"
-					Click="BtnContractMasterEdit_OnClick" />
-			<Button Name="BtnContractMasterDelete"
-					IsEnabled="{Binding ElementName=SmpUcFormState,Path=EnabledOfCrudButtons}"
-			        Style="{StaticResource StyleOfToolbarButton}"
-					Content="{x:Static fa:Labels.Delete}"
-					Click="BtnContractMasterDelete_OnClick" />
-			<Separator />
-			<Button Name="BtnContractMasterRefresh"
-					IsEnabled="{Binding ElementName=SmpUcFormState,Path=EnabledOfCrudButtons}"
-			        Style="{StaticResource StyleOfToolbarButton}"
-					Click="BtnContractMasterRefresh_OnClick"
-					Content="{x:Static fa:Labels.Reload}" />
-			<Separator />
-			<Button Name="BtnContractMasterSave"
-					IsEnabled="{Binding ElementName=SmpUcFormState,Path=EnabledOfSaveDiscardButtons}"
-			        Style="{StaticResource StyleOfToolbarButton}"
-					Content="{x:Static fa:Labels.Save}"
-					Click="BtnContractMasterSave_OnClick" />
-			<Button Name="BtnContractMasterCancel"
-					IsEnabled="{Binding ElementName=SmpUcFormState,Path=EnabledOfSaveDiscardButtons}"
-			        Style="{StaticResource StyleOfToolbarButton}"
-					Content="{x:Static fa:Labels.Cancel}" />
-		</ToolBar>
-		<Grid Name="GridContractWhole"
+        <ToolBar Grid.Row="0">
+            <Button Name="ButtonAdd"
+                    Style="{StaticResource StyleOfToolbarButtonAdd}"
+                    Command="commands:PaySysCommands.Add">
+                <Button.Content>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{StaticResource icon_crud_add}"
+                               Style="{StaticResource StyleOfToolbarButtonImage}" />
+                        <TextBlock Text="{x:Static fa:Labels.Add}"
+                                   Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button Name="ButtonEdit"
+                    Style="{StaticResource StyleOfToolbarButtonEdit}"
+                    Command="commands:PaySysCommands.Edit">
+                <Button.Content>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{StaticResource icon_crud_edit}"
+                               Style="{StaticResource StyleOfToolbarButtonImage}" />
+                        <TextBlock Text="{x:Static fa:Labels.Edit}"
+                                   Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button Name="ButtonDelete"
+                    Style="{StaticResource StyleOfToolbarButtonDelete}"
+                    Command="commands:PaySysCommands.Delete">
+                <Button.Content>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{StaticResource icon_crud_delete}"
+                               Style="{StaticResource StyleOfToolbarButtonImage}" />
+                        <TextBlock Text="{x:Static fa:Labels.Delete}"
+                                   Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Separator />
+            <Button Name="ButtonSave"
+                    Style="{StaticResource StyleOfToolbarButtonSave}"
+                    Command="commands:PaySysCommands.Save">
+                <Button.Content>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{StaticResource icon_save}"
+                               Style="{StaticResource StyleOfToolbarButtonImage}" />
+                        <TextBlock Text="{x:Static fa:Labels.Save}"
+                                   Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button Name="ButtonDiscardChanges"
+                    Style="{StaticResource StyleOfToolbarButtonDiscardChanges}"
+                    Command="commands:PaySysCommands.DiscardChanges">
+                <Button.Content>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{StaticResource icon_discard_changes}"
+                               Style="{StaticResource StyleOfToolbarButtonImage}" />
+                        <TextBlock Text="{x:Static fa:Labels.Cancel}"
+                                   Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Separator />
+            <Button Name="ButtonReload"
+                    Style="{StaticResource StyleOfToolbarButton}"
+                    Command="commands:PaySysCommands.Reload">
+                <Button.Content>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{StaticResource icon_reload}"
+                               Style="{StaticResource StyleOfToolbarButtonImage}" />
+                        <TextBlock Text="{x:Static fa:Labels.Reload}"
+                                   Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+
+        </ToolBar>
+        <Grid Name="GridContractWhole"
 			  Grid.Row="1"
 			  Margin="50,10">
 			<Grid.ColumnDefinitions>

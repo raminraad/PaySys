@@ -32,7 +32,7 @@
 		          Grid.Row="0"
 		          Grid.Column="1"
 		          SelectionChanged="ComboBoxMainGroup_OnSelectionChanged"
-		          Style="{StaticResource StyleOfSelectionItemComboBox}">
+		          Style="{StaticResource StyleOfSelectionComboBox}">
 		    <ComboBox.ItemTemplate>
 		        <DataTemplate>
 		            <StackPanel Orientation="Horizontal"
@@ -62,7 +62,7 @@
 		          SelectionChanged="ComboBoxSubGroup_OnSelectionChanged"
                   Grid.Row="1"
 		          Grid.Column="1"
-		          Style="{StaticResource StyleOfSelectionItemComboBox}">
+		          Style="{StaticResource StyleOfSelectionComboBox}">
 		    <ComboBox.ItemTemplate>
 		        <DataTemplate>
 		            <StackPanel Orientation="Horizontal"
