@@ -21,7 +21,7 @@ using PaySys.ModelAndBindLib.Entities;
 using MessageBox = System.Windows.Forms.MessageBox;
 using UserControl = System.Windows.Controls.UserControl;
 
-namespace PaySys.UI.UC.Tab
+namespace PaySys.UI.UC
 {
     /// <summary>
     /// Interaction logic for UcCityMng.xaml

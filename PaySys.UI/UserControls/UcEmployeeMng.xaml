@@ -47,7 +47,7 @@
             <RowDefinition Name="RowDetail"
                            Height="Auto" />
             <RowDefinition Name="RowStatusBar"
-                           Height="30" />
+                           Height="Auto" />
         </Grid.RowDefinitions>
         <ToolBar Grid.Row="0"
                  Grid.Column="0">

@@ -7,7 +7,6 @@ using PaySys.Globalization;
 using PaySys.ModelAndBindLib;
 using PaySys.ModelAndBindLib.Engine;
 using PaySys.UI.UC;
-using PaySys.UI.UC.Tab;
 
 namespace PaySys
 {

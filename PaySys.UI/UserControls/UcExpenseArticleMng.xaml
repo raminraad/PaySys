@@ -8,110 +8,202 @@
              xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
              xmlns:bindingConverter="clr-namespace:PaySys.ModelAndBindLib.BindingConverter;assembly=PaySys.ModelAndBindLib"
              xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Entities;assembly=PaySys.ModelAndBindLib"
+             xmlns:commands="clr-namespace:PaySys.UI.Commands"
              mc:Ignorable="d"
              FlowDirection="RightToLeft"
+             Loaded="UcExpenseArticleMng_OnLoaded"
              d:DesignHeight="300"
              d:DesignWidth="600">
-	<Grid x:Name="GridMain"
-	      DataContext="{Binding ElementName=SmpUcHandselFormulaMng,Path=CurrentSubGroup.CurrenHandselFormula}">
-		<Grid.RowDefinitions>
-			<RowDefinition x:Name="RowToolbar"
-			               Height="Auto"/>
-			<RowDefinition Height="*"/>
-			<RowDefinition Height="8*"/>
-			<RowDefinition Height="*"/>
-		</Grid.RowDefinitions>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="*"/>
-			<ColumnDefinition Width="2*"/>
-			<ColumnDefinition Width="*"/>
-		</Grid.ColumnDefinitions>
-		<TextBlock Grid.Row="1"
-		           Grid.Column="1"
-		           FontSize="20"
-		           HorizontalAlignment="Center"
-				   VerticalAlignment="Center"
-		           Text="{x:Static fa:Labels.ExpenseArticles}"/>
-		<ToolBar Grid.Row="0"
-		         Grid.ColumnSpan="3"
-		         Grid.Column="0">
-			
-			<Button Name="BtnAdd"
-			        Style="{StaticResource StyleOfToolbarButton}"
-			        Content="{x:Static fa:Labels.Add}"
-			        Click="BtnAdd_OnClick"/>
-			<Button Name="BtnEdit"
-			        Content="{x:Static fa:Labels.Edit}"
-					Click="BtnEdit_OnClick"
-			        Style="{StaticResource StyleOfToolbarButton}"/>
-			<Button Name="BtnDelete"
-			        Style="{StaticResource StyleOfToolbarButton}"
-			        Content="{x:Static fa:Labels.Delete}"/>
-			<Button Name="BtnRefresh"
-			        Style="{StaticResource StyleOfToolbarButton}"
-			        Content="{x:Static fa:Labels.Reload}"
-					Click="BtnRefresh_OnClick"/>
-		</ToolBar>
-		<TreeView x:Name="TreeViewExpenseArticles"
-		          Grid.Row="2"
-		          Grid.Column="1"
-				  SelectedItemChanged="TreeViewExpenseArticles_OnSelectedItemChanged">
-			<TreeView.Resources>
-				<HierarchicalDataTemplate DataType="{x:Type model:ExpenseArticle}"
-				                          ItemsSource="{Binding InvolversUngrouped}">
-					<StackPanel Orientation="Horizontal"
-					            Margin="5">
-						<TextBlock Text="{Binding Code}"
-						           FontSize="18"/>
-						<TextBlock Text="["
-						           Foreground="Goldenrod"
-						           Margin="5,0,0,0"/>
-						<TextBlock Text="{Binding InvolversCount}"
-						           Foreground="Goldenrod"/>
-						<TextBlock Text="]"
-						           Foreground="Goldenrod"/>
-					</StackPanel>
-				</HierarchicalDataTemplate>
-				<HierarchicalDataTemplate DataType="{x:Type model:TitledCompositeCollection}"
-				                          ItemsSource="{Binding CompositeCollection}">
-					<TextBlock Text="{Binding Title}"
-					           Foreground="SaddleBrown"
-					           FontSize="15"
-					           Margin="8,0"/>
-				</HierarchicalDataTemplate>
-				<DataTemplate DataType="{x:Type model:Misc}">
-					<StackPanel Orientation="Horizontal">
-						<TextBlock Text="{Binding SubGroup.Title}"
-								   Foreground="#55d862"
-						           Margin="5,0"/>
-						<TextBlock Text=" > "
-								   Foreground="#dcdd9f"
-						           Margin="5,0"/>
-						<TextBlock Text="{Binding MiscTitle.Title}"
-								   Foreground="#b9ba09"
-						           Margin="5,0"/>
-					</StackPanel>
-				</DataTemplate>
-				<!--<DataTemplate DataType="{x:Type model:ContractField}">
-					<StackPanel Orientation="Horizontal">
-						<TextBlock Text="{Binding MainGroup.Title}"
-						           Foreground="SlateBlue"
-						           Margin="5,0"/>
-						<TextBlock Text=" > "
-						           Foreground="SlateBlue"
-						           Margin="5,0"/>
-						<TextBlock Text="{Binding Title}"
-						           Foreground="SlateBlue"
-						           Margin="5,0"/>
-					</StackPanel>
-				</DataTemplate>-->
-				<DataTemplate DataType="{x:Type model:SubGroup}">
-					<TextBlock Text="{Binding Title}"
-					           Foreground="DarkRed"
-					           Margin="5,0"/>
-				</DataTemplate>
-			</TreeView.Resources>
-		</TreeView>
+    <UserControl.CommandBindings>
+        <CommandBinding Command="commands:PaySysCommands.Add"
+                        CanExecute="CrudCommands_CanExecute"
+                        Executed="Add_Executed" />
+        <CommandBinding Command="commands:PaySysCommands.Edit"
+                        CanExecute="EditAndDeleteCommand_CanExecute"
+                        Executed="Edit_Executed" />
+        <CommandBinding Command="commands:PaySysCommands.Delete"
+                        CanExecute="EditAndDeleteCommand_CanExecute"
+                        Executed="Delete_Executed" />
+        <CommandBinding Command="commands:PaySysCommands.Save"
+                        CanExecute="SaveCommand_CanExecute"
+                        Executed="Save_Executed" />
+        <CommandBinding Command="commands:PaySysCommands.DiscardChanges"
+                        CanExecute="DiscardChangesCommand_CanExecute"
+                        Executed="DiscardChanges_Executed" />
+        <CommandBinding Command="commands:PaySysCommands.Reload"
+                        CanExecute="CrudCommands_CanExecute"
+                        Executed="Reload_Executed" />
 
-	</Grid>
+    </UserControl.CommandBindings>
+    <Grid x:Name="GridMain"
+          DataContext="{Binding ElementName=SmpUcHandselFormulaMng,Path=CurrentSubGroup.CurrenHandselFormula}">
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="RowToolbar"
+                           Height="Auto" />
+            <RowDefinition Height="170*" />
+            <RowDefinition Height="43*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <ToolBar Grid.Row="0"
+                 Grid.ColumnSpan="3"
+                 Grid.Column="0">
+            <Button Name="ButtonAdd"
+                    Style="{StaticResource StyleOfToolbarButtonAdd}"
+                    Command="commands:PaySysCommands.Add">
+                <Button.Content>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{StaticResource icon_crud_add}"
+                               Style="{StaticResource StyleOfToolbarButtonImage}" />
+                        <TextBlock Text="{x:Static fa:Labels.Add}"
+                                   Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button Name="ButtonEdit"
+                    Style="{StaticResource StyleOfToolbarButtonEdit}"
+                    Command="commands:PaySysCommands.Edit">
+                <Button.Content>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{StaticResource icon_crud_edit}"
+                               Style="{StaticResource StyleOfToolbarButtonImage}" />
+                        <TextBlock Text="{x:Static fa:Labels.Edit}"
+                                   Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button Name="ButtonDelete"
+                    Style="{StaticResource StyleOfToolbarButtonDelete}"
+                    Command="commands:PaySysCommands.Delete">
+                <Button.Content>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{StaticResource icon_crud_delete}"
+                               Style="{StaticResource StyleOfToolbarButtonImage}" />
+                        <TextBlock Text="{x:Static fa:Labels.Delete}"
+                                   Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Separator />
+            <Button Name="ButtonSave"
+                    Style="{StaticResource StyleOfToolbarButtonSave}"
+                    Command="commands:PaySysCommands.Save">
+                <Button.Content>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{StaticResource icon_save}"
+                               Style="{StaticResource StyleOfToolbarButtonImage}" />
+                        <TextBlock Text="{x:Static fa:Labels.Save}"
+                                   Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button Name="ButtonDiscardChanges"
+                    Style="{StaticResource StyleOfToolbarButtonDiscardChanges}"
+                    Command="commands:PaySysCommands.DiscardChanges">
+                <Button.Content>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{StaticResource icon_discard_changes}"
+                               Style="{StaticResource StyleOfToolbarButtonImage}" />
+                        <TextBlock Text="{x:Static fa:Labels.Cancel}"
+                                   Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Separator />
+            <Button Name="ButtonReload"
+                    Style="{StaticResource StyleOfToolbarButton}"
+                    Command="commands:PaySysCommands.Reload">
+                <Button.Content>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{StaticResource icon_reload}"
+                               Style="{StaticResource StyleOfToolbarButtonImage}" />
+                        <TextBlock Text="{x:Static fa:Labels.Reload}"
+                                   Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+
+        </ToolBar>
+        <TreeView x:Name="TreeViewExpenseArticles"
+                  Grid.Row="1"
+                  Grid.Column="1"
+                  Margin="{StaticResource MarginOfMasterOrDetail}">
+            <TreeView.Resources>
+                <HierarchicalDataTemplate DataType="{x:Type model:ExpenseArticle}"
+                                          ItemsSource="{Binding InvolversUngrouped}">
+                    <StackPanel Orientation="Horizontal"
+                                Margin="5">
+                        <TextBlock Text="{Binding Code}" />
+                        <TextBlock Text="["
+                                   Foreground="Goldenrod"
+                                   Margin="5,0,0,0" />
+                        <TextBlock Text="{Binding InvolversCount}"
+                                   Foreground="Goldenrod" />
+                        <TextBlock Text="]"
+                                   Foreground="Goldenrod" />
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type model:TitledCompositeCollection}"
+                                          ItemsSource="{Binding CompositeCollection}">
+                    <TextBlock Text="{Binding Title}"
+                               Foreground="SaddleBrown"
+                               Margin="8,0" />
+                </HierarchicalDataTemplate>
+                <DataTemplate DataType="{x:Type model:Misc}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding SubGroup.Title}"
+                                   Foreground="#019900"
+                                   Margin="5,0" />
+                        <TextBlock Text=" > "
+                                   Foreground="#dcdd9f"
+                                   Margin="5,0" />
+                        <TextBlock Text="{Binding MiscTitle.Title}"
+                                   Foreground="#999800"
+                                   Margin="5,0" />
+                    </StackPanel>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type model:SubGroup}">
+                    <TextBlock Text="{Binding Title}"
+                               Foreground="DarkRed"
+                               Margin="5,0" />
+                </DataTemplate>
+
+                <Style TargetType="{x:Type TreeViewItem}">
+                    <Style.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                                         Color="#E5FF66" />
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}"
+                                         Color="Black" />
+                    </Style.Resources>
+
+                </Style>
+
+            </TreeView.Resources>
+
+        </TreeView>
+
+        <StackPanel x:Name="StackPanelDetail"
+                    DataContext="{Binding ElementName=TreeViewExpenseArticles,Path=SelectedItem}"
+                    Margin="{StaticResource MarginOfMasterOrDetail}"
+                    Orientation="Horizontal"
+                    Grid.Column="1"
+                    Grid.Row="2">
+            <Label Style="{StaticResource StyleOfDataFieldLabel}"
+                   Content="{x:Static fa:Labels.ExpenseArticle}" />
+            <local:UcTextPair TextOfLabel="{Binding Path=Code}"
+                              TextOfTextBox="{Binding Path=Code,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                              ReadOnly="{Binding ElementName = SmpUcFormStateLabel , Path=ReadOnlyOfEditFields}"
+                              Width="{StaticResource WidthOfDataFieldOfCode}" />
+        </StackPanel>
+        <StatusBar Grid.Row="3"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="3">
+            <local:UcFormStateLabel x:Name="SmpUcFormStateLabel" />
+        </StatusBar>
+    </Grid>
 </UserControl>
