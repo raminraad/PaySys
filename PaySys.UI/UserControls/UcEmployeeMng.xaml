@@ -133,6 +133,7 @@
                         LookupTextChanged="TextBoxLookup_OnTextChanged" />
         <DataGrid x:Name="DataGridEmployees"
                   Grid.Row="2"
+                  Margin="{StaticResource MarginOfDetail}"
                   DataContext="{Binding ElementName = SmpUcEmployeeMng,Path=EmployeesAll}"
                   ItemsSource="{Binding}"
                   IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}">
@@ -161,20 +162,21 @@
             </DataGrid.Columns>
         </DataGrid>
         <TabControl Grid.Row="3"
-                    Style="{StaticResource StyleOfChildTabControl}"
-                    >
-            
-            <TabItem x:Name="TabItemUcEmployeeDetail" Style="{StaticResource StyleOfChildTabItem}">
+                    Style="{StaticResource StyleOfChildTabControl}">
+
+            <TabItem x:Name="TabDetail"
+                     Style="{StaticResource StyleOfChildTabItem}">
 
                 <TabItem.Header>
-                    <TextBlock Text="{x:Static fa:Labels.PersonalInfo}" Style="{StaticResource StyleOfTabItemHeaderTextBlock}" />
+                    <local:UcTextImagePair Icon="{StaticResource icon_black_employee_profile}"
+                                           Text="{x:Static fa:Labels.PersonalInfo}" />
                 </TabItem.Header>
                 <local:UcEmployeeDetail x:Name="SmpUcEmployeeDetail"
                                         DataContext="{Binding ElementName =DataGridEmployees,Path=SelectedItem}"
                                         ReadOnlyOfFields="{Binding ElementName =SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
-                                        Margin="{StaticResource MarginOfMasterOrDetail}" />
+                                        Margin="{StaticResource MarginOfMaster}" />
             </TabItem>
-            
+
         </TabControl>
         <StatusBar Grid.Row="4">
             <local:UcFormStateLabel x:Name="SmpUcFormStateLabel" />

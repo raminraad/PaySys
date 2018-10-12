@@ -178,6 +178,15 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to اطلاعات شهر.
+        /// </summary>
+        public static string CityInfo {
+            get {
+                return ResourceManager.GetString("CityInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to حکم.
         /// </summary>
         public static string Contract {
@@ -331,6 +340,15 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to اطلاعات ماده هزینه.
+        /// </summary>
+        public static string ExpenseArticleInfo {
+            get {
+                return ResourceManager.GetString("ExpenseArticleInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to مواد هزینه.
         /// </summary>
         public static string ExpenseArticles {
@@ -435,6 +453,15 @@ namespace PaySys.Globalization.Fa {
         public static string HandselFormula {
             get {
                 return ResourceManager.GetString("HandselFormula", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to اطلاعات.
+        /// </summary>
+        public static string Info {
+            get {
+                return ResourceManager.GetString("Info", resourceCulture);
             }
         }
         
@@ -678,6 +705,15 @@ namespace PaySys.Globalization.Fa {
         public static string Refresh {
             get {
                 return ResourceManager.GetString("Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to اطلاعات مربوطه.
+        /// </summary>
+        public static string RelatedInfo {
+            get {
+                return ResourceManager.GetString("RelatedInfo", resourceCulture);
             }
         }
         

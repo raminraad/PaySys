@@ -145,11 +145,10 @@
                   Grid.ColumnSpan="2"
                   ColumnWidth="*"
                   SelectionUnit="FullRow"
-                  
+                  ItemsSource="{Binding}"
                   DataContext="{Binding ElementName = SmpUcCityMng,Path=Cities}"
-                  IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSelectionElements}"
-                  ItemsSource="{Binding}">
-            
+                  IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSelectionElements}">
+
             <DataGrid.Columns>
                 <DataGridTextColumn Header="{x:Static fa:FieldicCity.Title}"
                                     Binding="{Binding Title}"
@@ -160,88 +159,104 @@
                                     Binding="{Binding Percentage}" />
             </DataGrid.Columns>
         </DataGrid>
-        <Grid x:Name="GridDetails"
+        <TabControl Grid.Row="3"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Style="{StaticResource StyleOfChildTabControl}">
+
+            <TabItem x:Name="TabDetail"
+                     Style="{StaticResource StyleOfChildTabItem}">
+
+                <TabItem.Header>
+                    <local:UcTextImagePair Icon="{StaticResource icon_city}"
+                                           Text="{x:Static fa:Labels.CityInfo}" />
+                </TabItem.Header>
+                <Grid x:Name="GridDetails"
               Grid.Row="3"
               Grid.Column="1"
               Grid.ColumnSpan="2"
-              Margin="{StaticResource MarginOfMasterOrDetail}"
+              Margin="{StaticResource MarginOfMaster}"
+                      d:DataContext="{d:DesignInstance model:City}"
               DataContext="{Binding ElementName=DataGridCities,Path=SelectedItem}">
-            <Grid.Resources>
-                <Style TargetType="TextBox">
-                    <Setter Property="Margin"
+                    <Grid.Resources>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Margin"
                             Value="0,12" />
-                    <Setter Property="VerticalContentAlignment"
+                            <Setter Property="VerticalContentAlignment"
                             Value="Center" />
-                </Style>
-                <Style TargetType="TextBlock">
-                    <Setter Property="VerticalAlignment"
+                        </Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="VerticalAlignment"
                             Value="Center" />
-                </Style>
-            </Grid.Resources>
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0"
+                        </Style>
+                    </Grid.Resources>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0"
                    Grid.Row="0"
                    Style="{StaticResource StyleOfDataFieldLabel}"
                    Content="{x:Static fa:FieldicCity.Title}" />
-            <Label Grid.Column="0"
+                    <Label Grid.Column="0"
                    Grid.Row="1"
                    Style="{StaticResource StyleOfDataFieldLabel}"
                    Content="{x:Static fa:FieldicCity.Distance}" />
-            <Label Grid.Column="0"
+                    <Label Grid.Column="0"
                    Grid.Row="2"
                    Style="{StaticResource StyleOfDataFieldLabel}"
                    Content="{x:Static fa:FieldicCity.Percentage}" />
-            <TextBox x:Name="TextBoxTitle"
+                    <TextBox x:Name="TextBoxTitle"
                      Grid.Row="0"
                      Grid.Column="1"
                      Style="{StaticResource StyleOfDataFieldTextBox}"
                      IsReadOnly="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
                      Text="{Binding Title,UpdateSourceTrigger=Explicit}" />
-            <TextBox x:Name="TextBoxDistance"
+                    <TextBox x:Name="TextBoxDistance"
                      Grid.Row="1"
                      Grid.Column="1"
                      Style="{StaticResource StyleOfDataFieldTextBox}"
                      IsReadOnly="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}">
-                <TextBox.Text>
-                    <Binding Path="Distance"
+                        <TextBox.Text>
+                            <Binding Path="Distance"
                              UpdateSourceTrigger="Explicit">
-                        <Binding.ValidationRules>
-                            <validation:ValidationRuleForMandatory />
-                            <validation:ValidationRuleForNumberType FieldName="{x:Static fa:FieldicCity.Distance}" />
-                            <validation:ValidationRuleForNonNegativeNumber
+                                <Binding.ValidationRules>
+                                    <validation:ValidationRuleForMandatory />
+                                    <validation:ValidationRuleForNumberType FieldName="{x:Static fa:FieldicCity.Distance}" />
+                                    <validation:ValidationRuleForNonNegativeNumber
                                 FieldName="{x:Static fa:FieldicCity.Distance}" />
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
-            <TextBox x:Name="TextBoxPercentage"
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <TextBox x:Name="TextBoxPercentage"
                      Grid.Row="2"
                      Grid.Column="1"
                      Style="{StaticResource StyleOfDataFieldTextBox}"
                      IsReadOnly="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}">
-                <TextBox.Text>
-                    <Binding Path="Percentage"
+                        <TextBox.Text>
+                            <Binding Path="Percentage"
                              UpdateSourceTrigger="Explicit">
-                        <Binding.ValidationRules>
-                            <validation:ValidationRuleForNumberType FieldName="{x:Static fa:FieldicCity.Percentage}" />
-                            <validation:ValidationRuleForNonNegativeNumber
+                                <Binding.ValidationRules>
+                                    <validation:ValidationRuleForNumberType FieldName="{x:Static fa:FieldicCity.Percentage}" />
+                                    <validation:ValidationRuleForNonNegativeNumber
                                 FieldName="{x:Static fa:FieldicCity.Percentage}" />
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
-        </Grid>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
         <StatusBar Grid.Column="0"
-                   Grid.Row="8"
+                   Grid.Row="5"
                    Grid.ColumnSpan="4">
             <local:UcFormStateLabel x:Name="SmpUcFormStateLabel" />
         </StatusBar>

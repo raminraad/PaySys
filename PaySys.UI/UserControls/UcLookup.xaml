@@ -9,7 +9,7 @@
              FlowDirection="RightToLeft"
              d:DesignHeight="68"
              d:DesignWidth="400">
-    <Grid Margin="{StaticResource MarginOfMasterOrDetail}">
+    <Grid Margin="{StaticResource MarginOfMaster}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />

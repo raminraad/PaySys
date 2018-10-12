@@ -205,6 +205,9 @@
     <Compile Include="UserControls\UcTaxTableMng.xaml.cs">
       <DependentUpon>UcTaxTableMng.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UcTextImagePair.xaml.cs">
+      <DependentUpon>UcTextImagePair.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UcTextPair.xaml.cs">
       <DependentUpon>UcTextPair.xaml</DependentUpon>
     </Compile>
@@ -360,6 +363,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\UcTextImagePair.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\UcTextPair.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -455,6 +462,16 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Icons\Licorice\icon_func_remove_from_list.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\Licorice\icon_black_employee_profile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\Licorice\icon_city.png" />
+    <Resource Include="Assets\Icons\Licorice\icon_info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\Licorice\icon_expense_article.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

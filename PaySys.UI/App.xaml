@@ -69,7 +69,7 @@
             <SolidColorBrush x:Key="ColorOfChildTabItemBackground" Color="#CCEBF0" />
             <SolidColorBrush x:Key="ColorOfChildTabItemBackgroundUnselected" Color="GhostWhite" />
             <SolidColorBrush x:Key="ColorOfParentTabItemBackground" Color="WhiteSmoke" />
-            <SolidColorBrush x:Key="ColorOfParentTabItemBackgroundUnselected" Color="GhostWhite" />
+            <SolidColorBrush x:Key="ColorOfParentTabItemBackgroundUnselected" Color="#AFAFAF" />
             <SolidColorBrush x:Key="FormStateColorUnknown" Color="Black" />
             <SolidColorBrush x:Key="ColorOfAlternateData" Color="#F5F5F5" />
             <SolidColorBrush x:Key="ColorOfDataGridLines" Color="#E0E0E0" />
@@ -77,15 +77,15 @@
             <system:Double x:Key="FontSizeOfDataFields">12</system:Double>
             <system:Double x:Key="FontSizeOfListTitle">20</system:Double>
             <system:Double x:Key="FontSizeOfLookupTextBox">18</system:Double>
-            <system:Double x:Key="FontSizeOfToolbarButton">20</system:Double>
-            <FontFamily x:Key="FontFamilyOfToolbarButton">Adobe Arabic</FontFamily>
+            <system:Double x:Key="FontSizeOfToolbarButton">14</system:Double>
+            <FontFamily x:Key="FontFamilyOfToolbarButton">pfont</FontFamily>
             <system:Double x:Key="HeightOfDataField">24</system:Double>
             <system:Double x:Key="HeightOfDataGridColumnHeader">30</system:Double>
-            <system:Double x:Key="WidthOfDataFieldOfText">220</system:Double>
+            <system:Double x:Key="WidthOfDataFieldOfText">200</system:Double>
             <system:Double x:Key="WidthOfDataFieldOfCode">80</system:Double>
             <system:Double x:Key="WidthOfDataFieldOfPrice">120</system:Double>
             <system:Double x:Key="WidthOfDataFieldOfButton">40</system:Double>
-            <system:Double x:Key="WidthOfDataColumnOfText">240</system:Double>
+            <system:Double x:Key="WidthOfDataColumnOfText">220</system:Double>
             <system:Double x:Key="WidthOfDataColumnOfCode">100</system:Double>
             <system:Double x:Key="WidthOfDataColumnOfPrice">140</system:Double>
             <system:Double x:Key="WidthOfDataColumnOfButton">60</system:Double>
@@ -112,11 +112,16 @@
                        Top="10"
                        Right="40"
                        Bottom="10" />
-            <Thickness x:Key="MarginOfMasterOrDetail"
+            <Thickness x:Key="MarginOfMaster"
                        Left="5"
                        Top="10"
                        Right="5"
                        Bottom="10" />
+            <Thickness x:Key="MarginOfDetail"
+                       Left="20"
+                       Top="5"
+                       Right="20"
+                       Bottom="7" />
             <Thickness x:Key="MarginOfLookupTextBox"
                        Left="5"
                        Top="5"
@@ -130,7 +135,7 @@
             </Style>
             <Style TargetType="DataGrid">
                 <Setter Property="Margin"
-                        Value="{StaticResource MarginOfMasterOrDetail}" />
+                        Value="{StaticResource MarginOfMaster}" />
                 <Setter Property="ColumnWidth"
                         Value="*" />
                 <Setter Property="AutoGenerateColumns" Value="False"/>
@@ -169,7 +174,7 @@
                 <Setter Property="Background"
                         Value="{StaticResource ColorOfParentTabItemBackground}" />
                 <Setter Property="Margin"
-                        Value="{StaticResource MarginOfMasterOrDetail}" />
+                        Value="{StaticResource MarginOfMaster}" />
                 <Setter Property="BorderBrush"
                         Value="DimGray" />
                 <Setter Property="BorderThickness"
@@ -180,6 +185,8 @@
                    TargetType="TabControl">
                 <Setter Property="Background"
                         Value="{StaticResource ColorOfChildTabItemBackground}" />
+                <Setter Property="Margin"
+                        Value="{StaticResource MarginOfDetail}" />
                
             </Style>
             <Style x:Key="StyleOfChildTabItem"  TargetType="TabItem">
@@ -198,7 +205,7 @@
                                 <ContentPresenter x:Name="ContentSite"
                                                       VerticalAlignment="Center"
                                                       ContentSource="Header"
-                                                      Width="100"
+                                                      Width="Auto"
                                                       Height="30"
                                                       Margin="4,0">
                                 </ContentPresenter>
@@ -239,7 +246,7 @@
                                 <ContentPresenter x:Name="ContentSite"
                                                       VerticalAlignment="Center"
                                                       ContentSource="Header"
-                                                      Width="100"
+                                                      Width="Auto"
                                                       Height="30"
                                                       Margin="4,0">
                                 </ContentPresenter>

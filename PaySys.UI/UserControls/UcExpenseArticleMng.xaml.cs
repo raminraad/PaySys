@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -30,51 +30,48 @@ namespace PaySys.UI.UC
 	public partial class UcExpenseArticleMng : UserControl
 	{
 	    private PaySysContext Context = new PaySysContext();
+	    public ObservableCollection<ExpenseArticle> ExpenseArticles { get; set; }
 
-		public UcExpenseArticleMng()
+        public UcExpenseArticleMng()
 		{
 			InitializeComponent();
-			TreeViewExpenseArticles.ItemsSource = Context.ExpenseArticles.ToList();
+			Reload_Executed(null,null);
 		}
 
 		private void Add_Executed(object sender, ExecutedRoutedEventArgs e)
 		{
 		    SmpUcFormStateLabel.CurrentState = FormCurrentState.Add;
-            var messageTitle = ResourceAccessor.Messages.GetString("EnterExpenseArticleTitle");
-			var messageCode = ResourceAccessor.Messages.GetString("EnterExpenseArticleCode");
-			var title = string.Empty;
-			var code = string.Empty;
-				if(InputBox.Show(messageCode, ref code) == DialogResult.OK)
-				{
-					Context.ExpenseArticles.Add(new ExpenseArticle()
-					{
-						Code = code,
-					});
-					Context.SaveChanges();
-					TreeViewExpenseArticles.ItemsSource = Context.ExpenseArticles.ToList();
-				}
-		}
+		    var newItem = new ExpenseArticle
+		    {
+		        Title = ResourceAccessor.Labels.GetString("New"),
+                Code = "0", 
+                Miscs = new List<Misc>(),
+                IsActive = true,
+                ExpenseArticleOfContractFieldForSubGroups = new List<ExpenseArticleOfContractFieldForSubGroup>()
+		    };
+		    ExpenseArticles.Add(newItem);
+
+		    if (TreeViewExpenseArticles.ItemContainerGenerator.ContainerFromItem(newItem) is TreeViewItem tvi)
+		        tvi.IsSelected = true;
+
+
+//		    TreeViewExpenseArticles.ScrollIntoView(newItem);
+		    TextBoxCode.Focus();
+        }
 
 		private void Edit_Executed(object sender, ExecutedRoutedEventArgs e)
 		{
 		    SmpUcFormStateLabel.CurrentState = FormCurrentState.Edit;
-            var selectedItem = TreeViewExpenseArticles.SelectedItem as ExpenseArticle;
-			var messageTitle = ResourceAccessor.Messages.GetString("EnterExpenseArticleTitle");
-			var messageCode = ResourceAccessor.Messages.GetString("EnterExpenseArticleCode");
-			var code = selectedItem?.Code;
-				if(InputBox.Show(messageCode, ref code) == DialogResult.OK)
-				{
-					selectedItem.Code = code;
-					Context.SaveChanges();
-					TreeViewExpenseArticles.ItemsSource = Context.ExpenseArticles.ToList();
-				}
 		}
 
 	    private void Reload_Executed(object sender, ExecutedRoutedEventArgs e)
 		{
-			Context = new PaySysContext();
-			TreeViewExpenseArticles.ItemsSource = Context.ExpenseArticles.ToList();
-		}
+		    Context = new PaySysContext();
+		    Context.ExpenseArticles.Load();
+		    ExpenseArticles = Context.ExpenseArticles.Local;
+		    TreeViewExpenseArticles.GetBindingExpression(ItemsControl.ItemsSourceProperty)?.UpdateTarget();
+		    TreeViewExpenseArticles.GetBindingExpression(DataContextProperty)?.UpdateTarget();
+        }
 
 	    private void Delete_Executed(object sender, ExecutedRoutedEventArgs e)
 	    {
@@ -94,11 +91,12 @@ namespace PaySys.UI.UC
         private void DiscardChanges_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             if (SmpUcFormStateLabel.CurrentState == FormCurrentState.Add)
-                TreeViewExpenseArticles.Items.Remove((ExpenseArticle) TreeViewExpenseArticles.SelectedItem);
+                ExpenseArticles.Remove((ExpenseArticle) TreeViewExpenseArticles.SelectedItem);
             foreach (var textBox in this.FindVisualChildren<TextBox>())
                 textBox.GetBindingExpression(TextBox.TextProperty)?.UpdateTarget();
 
             SmpUcFormStateLabel.CurrentState = FormCurrentState.Select;
+
         }
 
 	    private void EditAndDeleteCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)

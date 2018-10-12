@@ -356,7 +356,7 @@ namespace PaySys.ModelAndBindLib.Entities
 
         public string Code { get; set; }
 
-        public bool IsActive { get; set; }
+        public bool IsActive { get; set; } = true;
 
         public virtual List<Misc> Miscs { get; set; }
 

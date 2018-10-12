@@ -423,4 +423,16 @@
   <data name="ParameterValue" xml:space="preserve">
     <value>مقدار پارامتر</value>
   </data>
+  <data name="CityInfo" xml:space="preserve">
+    <value>اطلاعات شهر</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>اطلاعات</value>
+  </data>
+  <data name="RelatedInfo" xml:space="preserve">
+    <value>اطلاعات مربوطه</value>
+  </data>
+  <data name="ExpenseArticleInfo" xml:space="preserve">
+    <value>اطلاعات ماده هزینه</value>
+  </data>
 </root>

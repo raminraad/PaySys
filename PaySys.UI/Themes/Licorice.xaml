@@ -13,4 +13,8 @@
     <BitmapImage x:Key="icon_plus" UriSource="../Assets/Icons/Licorice/icon_plus.png" />
     <BitmapImage x:Key="icon_plus_disabled" UriSource="../Assets/Icons/Licorice/icon_plus_disabled.png" />
     <BitmapImage x:Key="icon_func_remove_from_list" UriSource="../Assets/Icons/Licorice/icon_func_remove_from_list.png" />
+    <BitmapImage x:Key="icon_black_employee_profile" UriSource="../Assets/Icons/Licorice/icon_black_employee_profile.png" />
+    <BitmapImage x:Key="icon_city" UriSource="../Assets/Icons/Licorice/icon_city.png" />
+    <BitmapImage x:Key="icon_info" UriSource="../Assets/Icons/Licorice/icon_info.png" />
+    <BitmapImage x:Key="icon_expense_article" UriSource="../Assets/Icons/Licorice/icon_expense_article.png" />
 </ResourceDictionary>

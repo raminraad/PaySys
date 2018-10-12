@@ -40,8 +40,8 @@
         <Grid.RowDefinitions>
             <RowDefinition x:Name="RowToolbar"
                            Height="Auto" />
-            <RowDefinition Height="170*" />
-            <RowDefinition Height="43*" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -132,38 +132,42 @@
         <TreeView x:Name="TreeViewExpenseArticles"
                   Grid.Row="1"
                   Grid.Column="1"
-                  Margin="{StaticResource MarginOfMasterOrDetail}">
+                  ItemsSource="{Binding}"
+                  DataContext="{Binding ElementName = SmpUcExpenseArticleMng,Path=ExpenseArticles}"
+                  IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSelectionElements}"
+                  Margin="{StaticResource MarginOfDetail}">
             <TreeView.Resources>
                 <HierarchicalDataTemplate DataType="{x:Type model:ExpenseArticle}"
                                           ItemsSource="{Binding InvolversUngrouped}">
                     <StackPanel Orientation="Horizontal"
                                 Margin="5">
                         <TextBlock Text="{Binding Code}" />
-                        <TextBlock Text="["
+                        <TextBlock Text="("
                                    Foreground="Goldenrod"
-                                   Margin="5,0,0,0" />
+                                   Margin="7,0,0,0" 
+                                   />
                         <TextBlock Text="{Binding InvolversCount}"
-                                   Foreground="Goldenrod" />
-                        <TextBlock Text="]"
+                                   Foreground="Chocolate" />
+                        <TextBlock Text=")"
                                    Foreground="Goldenrod" />
                     </StackPanel>
                 </HierarchicalDataTemplate>
                 <HierarchicalDataTemplate DataType="{x:Type model:TitledCompositeCollection}"
                                           ItemsSource="{Binding CompositeCollection}">
                     <TextBlock Text="{Binding Title}"
-                               Foreground="SaddleBrown"
+                               Foreground="#003366"
                                Margin="8,0" />
                 </HierarchicalDataTemplate>
                 <DataTemplate DataType="{x:Type model:Misc}">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding SubGroup.Title}"
-                                   Foreground="#019900"
+                                   Foreground="#3EBE5E"
                                    Margin="5,0" />
-                        <TextBlock Text=" > "
-                                   Foreground="#dcdd9f"
+                        <TextBlock Text=" : "
+                                   Foreground="DimGray"
                                    Margin="5,0" />
                         <TextBlock Text="{Binding MiscTitle.Title}"
-                                   Foreground="#999800"
+                                   Foreground="#009900"
                                    Margin="5,0" />
                     </StackPanel>
                 </DataTemplate>
@@ -176,7 +180,7 @@
                 <Style TargetType="{x:Type TreeViewItem}">
                     <Style.Resources>
                         <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
-                                         Color="#E5FF66" />
+                                         Color="#CCEBF0" />
                         <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}"
                                          Color="Black" />
                     </Style.Resources>
@@ -186,20 +190,36 @@
             </TreeView.Resources>
 
         </TreeView>
-
-        <StackPanel x:Name="StackPanelDetail"
-                    DataContext="{Binding ElementName=TreeViewExpenseArticles,Path=SelectedItem}"
-                    Margin="{StaticResource MarginOfMasterOrDetail}"
-                    Orientation="Horizontal"
+        <TabControl Grid.Row="2"
                     Grid.Column="1"
-                    Grid.Row="2">
-            <Label Style="{StaticResource StyleOfDataFieldLabel}"
-                   Content="{x:Static fa:Labels.ExpenseArticle}" />
-            <local:UcTextPair TextOfLabel="{Binding Path=Code}"
-                              TextOfTextBox="{Binding Path=Code,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                              ReadOnly="{Binding ElementName = SmpUcFormStateLabel , Path=ReadOnlyOfEditFields}"
-                              Width="{StaticResource WidthOfDataFieldOfCode}" />
-        </StackPanel>
+                    d:DataContext="{d:DesignInstance model:ExpenseArticle}" 
+                    Style="{StaticResource StyleOfChildTabControl}">
+
+            <TabItem x:Name="TabDetail"
+                     Style="{StaticResource StyleOfChildTabItem}">
+
+                <TabItem.Header>
+                    <local:UcTextImagePair Icon="{StaticResource icon_expense_article}"
+                                           Text="{x:Static fa:Labels.ExpenseArticleInfo}" />
+                </TabItem.Header>
+
+            <StackPanel x:Name="StackPanelDetail"
+                        DataContext="{Binding ElementName=TreeViewExpenseArticles,Path=SelectedItem}"
+                        Margin="{StaticResource MarginOfMaster}"
+                        Orientation="Horizontal"
+                        Grid.Column="1"
+                        Grid.Row="2">
+                <Label Style="{StaticResource StyleOfDataFieldLabel}"
+                       Content="{x:Static fa:Labels.ExpenseArticle}" />
+                <TextBox x:Name="TextBoxCode"
+                         Style="{StaticResource StyleOfDataFieldTextBox}"
+                         IsReadOnly="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
+                         Text="{Binding Code,UpdateSourceTrigger=Explicit}"
+                         />
+            </StackPanel>
+            </TabItem>
+        </TabControl>
+        
         <StatusBar Grid.Row="3"
                    Grid.Column="0"
                    Grid.ColumnSpan="3">
