@@ -7,9 +7,8 @@
              xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
              mc:Ignorable="d"
              FlowDirection="RightToLeft"
-             d:DesignHeight="68"
-             d:DesignWidth="400">
-    <Grid Margin="{StaticResource MarginOfMaster}">
+             d:DesignWidth="370">
+    <Grid Margin="30,0" Width="299" HorizontalAlignment="Right">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
@@ -19,23 +18,21 @@
                Source="{StaticResource icon_lookup}"
                Style="{StaticResource StyleOfLookupImage}" />
         <TextBox Grid.Column="1"
-                 Grid.ColumnSpan="2"
                  x:Name="TextBoxLookup"
                  Style="{StaticResource StyleOfLookupTextBox}"
                  TextChanged="TextBoxLookup_OnTextChanged" />
         <Button Grid.Column="2"
                 Click="ButtonClear_OnClick"
-                Height="{StaticResource HeightOfLookupClearImage}"
-                Width="{StaticResource HeightOfLookupClearImage}"
+                Height="{StaticResource HeightOfLookupTextBox}"
+                Width="{StaticResource HeightOfLookupTextBox}"
                 ToolTip="{x:Static fa:Tooltips.ButtonClearLookup}"
                 Focusable="False"
                 Margin="3,0">
-            <Button.Template>
-                <ControlTemplate>
-                    <Image Source="{StaticResource icon_lookup_clear}"
+            <Button.Content>
+                
+                    <Image Source="{StaticResource icon_refresh}"
                            Style="{StaticResource StyleOfLookupClearImage}" />
-                </ControlTemplate>
-            </Button.Template>
+            </Button.Content>
         </Button>
     </Grid>
 </UserControl>

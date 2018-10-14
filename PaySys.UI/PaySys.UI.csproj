@@ -435,9 +435,6 @@
     <Resource Include="Assets\Icons\Licorice\icon_discard_changes.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\Icons\Licorice\icon_refresh.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Assets\Icons\Licorice\icon_reload.png" />
   </ItemGroup>
   <ItemGroup>
@@ -472,6 +469,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Icons\Licorice\icon_expense_article.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\Licorice\icon_refresh.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

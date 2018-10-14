@@ -37,6 +37,7 @@ namespace PaySys.UI.UC
         public void Select()
         {
             TextBoxLookup.Focus();
+            TextBoxLookup.SelectAll();
         }
 
         private void ButtonClear_OnClick(object sender, RoutedEventArgs e)

@@ -106,11 +106,12 @@ namespace PaySys.UI.UC
 
         private void SmpUcLookup_OnLookupTextChanged(object sender, TextChangedEventArgs e)
         {
+            if (DataGridCities.ItemsSource == null) return;
             if (string.IsNullOrEmpty(SmpUcLookup.LookupText))
                 CollectionViewSource.GetDefaultView(DataGridCities.ItemsSource).Filter = null;
             else
                 CollectionViewSource.GetDefaultView(DataGridCities.ItemsSource).Filter =
-                    o => (o as City).ContainsValue(SmpUcLookup.LookupText);
+                    o => ((City) o).ContainsValue(SmpUcLookup.LookupText);
         }
 
         private void SaveCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)

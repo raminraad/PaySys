@@ -116,8 +116,8 @@
                     </StackPanel>
                 </Button.Content>
             </Button>
-
         </ToolBar>
+<local:UcLookup Grid.Row="0" HorizontalAlignment="Right" Width="300" Height="50"/>
         <Grid Name="GridContractWhole"
 			  Grid.Row="1"
 			  Margin="50,10">

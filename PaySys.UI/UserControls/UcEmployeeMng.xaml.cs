@@ -108,7 +108,7 @@ namespace PaySys.UI.UC
 	        SmpUcLookup.Select();
 	    }
 
-        private void TextBoxLookup_OnTextChanged( object sender, TextChangedEventArgs e )
+        private void SmpUcLookup_OnLookupTextChanged( object sender, TextChangedEventArgs e )
 		{
 			RefreshDtgMain();
 		}

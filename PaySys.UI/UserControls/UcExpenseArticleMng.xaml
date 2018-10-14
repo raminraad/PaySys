@@ -9,6 +9,7 @@
              xmlns:bindingConverter="clr-namespace:PaySys.ModelAndBindLib.BindingConverter;assembly=PaySys.ModelAndBindLib"
              xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Entities;assembly=PaySys.ModelAndBindLib"
              xmlns:commands="clr-namespace:PaySys.UI.Commands"
+             xmlns:validation="clr-namespace:PaySys.ModelAndBindLib.Validation;assembly=PaySys.ModelAndBindLib"
              mc:Ignorable="d"
              FlowDirection="RightToLeft"
              Loaded="UcExpenseArticleMng_OnLoaded"
@@ -213,9 +214,19 @@
                        Content="{x:Static fa:Labels.ExpenseArticle}" />
                 <TextBox x:Name="TextBoxCode"
                          Style="{StaticResource StyleOfDataFieldTextBox}"
-                         IsReadOnly="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
-                         Text="{Binding Code,UpdateSourceTrigger=Explicit}"
-                         />
+                         Width="{StaticResource WidthOfDataFieldOfCode}"
+                         IsReadOnly="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}">
+                    <TextBox.Text>
+                        <Binding Path="Code"
+                                 UpdateSourceTrigger="Explicit">
+                            <Binding.ValidationRules>
+                                <validation:ValidationRuleForMandatory />
+                                    <validation:ValidationRuleForNumberType FieldName="{x:Static fa:Labels.ExpenseArticle}" />
+                                    <validation:ValidationRuleForNonNegativeNumber/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
             </StackPanel>
             </TabItem>
         </TabControl>
