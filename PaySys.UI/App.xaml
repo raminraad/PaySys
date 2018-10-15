@@ -12,7 +12,8 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Themes/Licorice.xaml" />
+                <ResourceDictionary Source="ResourceDictionaries/Licorice.xaml" />
+                <ResourceDictionary Source="ResourceDictionaries/ToolbarTemplates.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <ControlTemplate x:Key="ValidatedTextBoxTemplate_Obsolete">
                 <StackPanel Orientation="Horizontal">
@@ -83,12 +84,14 @@
 
             <FontFamily x:Key="FontFamilyOfDataFields">Tahoma</FontFamily>
             <FontFamily x:Key="FontFamilyOfLookupTextBox">pfont</FontFamily>
-            <FontFamily x:Key="FontFamilyOfToolbarButton">pfont</FontFamily>
+            <FontFamily x:Key="FontFamilyOfTabHeader">pfont</FontFamily>
+            <FontFamily x:Key="FontFamilyOfMenu">pfont</FontFamily>
 
             <system:Double x:Key="FontSizeOfDataFields">12</system:Double>
             <system:Double x:Key="FontSizeOfListTitle">20</system:Double>
             <system:Double x:Key="FontSizeOfLookupTextBox">16</system:Double>
-            <system:Double x:Key="FontSizeOfToolbarButton">14</system:Double>
+            <system:Double x:Key="FontSizeOfTabHeader">16</system:Double>
+            <system:Double x:Key="FontSizeOfMenu">16</system:Double>
 
             <system:Double x:Key="HeightOfDataField">24</system:Double>
             <system:Double x:Key="HeightOfDataGridColumnHeader">30</system:Double>
@@ -118,8 +121,7 @@
             <system:Double x:Key="SizeOfSmallFunctionButtonImage">16</system:Double>
             <system:Double x:Key="SizeOfListFunctionButton">24</system:Double>
             <system:Double x:Key="SizeOfListFunctionButtonImage">16</system:Double>
-            <system:Double x:Key="SizeOfToolbarButton">50</system:Double>
-            <system:Double x:Key="SizeOfToolbarButtonImage">24</system:Double>
+            
 
             <Thickness x:Key="MarginOfDataFields"
                        Left="10"
@@ -142,14 +144,7 @@
                        Right="0"
                        Bottom="0" />
 
-            <Style TargetType="ToolBar">
-                <Setter Property="KeyboardNavigation.TabNavigation"
-                        Value="Continue" />
-                <Setter Property="Height"
-                        Value="{StaticResource SizeOfToolbarButton}" />
-                <Setter Property="ToolBarTray.IsLocked"
-                        Value="True" />
-            </Style>
+            
             <Style TargetType="DataGrid">
                 <Setter Property="Margin"
                         Value="{StaticResource MarginOfMaster}" />
@@ -213,9 +208,9 @@
             <Style x:Key="StyleOfChildTabItem"
                    TargetType="TabItem">
                 <Setter Property="FontFamily"
-                        Value="{StaticResource FontFamilyOfToolbarButton}" />
+                        Value="{StaticResource FontFamilyOfTabHeader}" />
                 <Setter Property="FontSize"
-                        Value="{StaticResource FontSizeOfToolbarButton}" />
+                        Value="{StaticResource FontSizeOfTabHeader}" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="TabItem">
@@ -254,9 +249,9 @@
             <Style x:Key="StyleOfParentTabItem"
                    TargetType="TabItem">
                 <Setter Property="FontFamily"
-                        Value="{StaticResource FontFamilyOfToolbarButton}" />
+                        Value="{StaticResource FontFamilyOfTabHeader}" />
                 <Setter Property="FontSize"
-                        Value="{StaticResource FontSizeOfToolbarButton}" />
+                        Value="{StaticResource FontSizeOfTabHeader}" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="TabItem">
@@ -311,9 +306,9 @@
                 <Setter Property="Foreground"
                         Value="#004529" />
                 <Setter Property="FontFamily"
-                        Value="{StaticResource FontFamilyOfToolbarButton}" />
+                        Value="{StaticResource FontFamilyOfMenu}" />
                 <Setter Property="FontSize"
-                        Value="{StaticResource FontSizeOfToolbarButton}" />
+                        Value="{StaticResource FontSizeOfMenu}" />
             </Style>
             <Style TargetType="GridViewColumnHeader">
                 <Setter Property="FontFamily"
@@ -538,73 +533,6 @@
                         Value="Auto" />
             </Style>
 
-            <Style x:Key="StyleOfToolbarButton"
-                   TargetType="Button">
-                <Setter Property="Margin"
-                        Value="2,0" />
-                <Setter Property="FontFamily"
-                        Value="{StaticResource FontFamilyOfToolbarButton}" />
-                <Setter Property="FontSize"
-                        Value="{StaticResource FontSizeOfToolbarButton}" />
-                <Setter Property="FontStyle"
-                        Value="Normal" />
-                <Setter Property="Width"
-                        Value="{StaticResource SizeOfToolbarButton}" />
-                <Setter Property="Height"
-                        Value="{StaticResource SizeOfToolbarButton}" />
-            </Style>
-
-            <Style x:Key="StyleOfToolbarButtonAdd"
-                   TargetType="Button"
-                   BasedOn="{StaticResource StyleOfToolbarButton}">
-                <Setter Property="ToolTip"
-                        Value="{x:Static fa:Tooltips.ButtonAdd}" />
-            </Style>
-
-            <Style x:Key="StyleOfToolbarButtonEdit"
-                   TargetType="Button"
-                   BasedOn="{StaticResource StyleOfToolbarButton}">
-                <Setter Property="ToolTip"
-                        Value="{x:Static fa:Tooltips.ButtonEdit}" />
-            </Style>
-
-            <Style x:Key="StyleOfToolbarButtonDelete"
-                   TargetType="Button"
-                   BasedOn="{StaticResource StyleOfToolbarButton}">
-                <Setter Property="ToolTip"
-                        Value="{x:Static fa:Tooltips.ButtonDelete}" />
-            </Style>
-
-            <Style x:Key="StyleOfToolbarButtonSave"
-                   TargetType="Button"
-                   BasedOn="{StaticResource StyleOfToolbarButton}">
-                <Setter Property="ToolTip"
-                        Value="{x:Static fa:Tooltips.ButtonSave}" />
-            </Style>
-
-            <Style x:Key="StyleOfToolbarButtonDiscardChanges"
-                   TargetType="Button"
-                   BasedOn="{StaticResource StyleOfToolbarButton}">
-                <Setter Property="ToolTip"
-                        Value="{x:Static fa:Tooltips.ButtonDiscardChanges}" />
-            </Style>
-
-            <Style x:Key="StyleOfToolbarButtonReload"
-                   TargetType="Button"
-                   BasedOn="{StaticResource StyleOfToolbarButton}">
-                <Setter Property="ToolTip"
-                        Value="{x:Static fa:Tooltips.ButtonReload}" />
-            </Style>
-
-            <Style x:Key="StyleOfToolbarButtonImage"
-                   TargetType="Image">
-                <Setter Property="Height"
-                        Value="{StaticResource SizeOfToolbarButtonImage}" />
-                <Setter Property="Width"
-                        Value="{StaticResource SizeOfToolbarButtonImage}" />
-                <Setter Property="FlowDirection"
-                        Value="LeftToRight" />
-            </Style>
             <Style x:Key="StyleOfTitleImage"
                    TargetType="Image">
                 <Setter Property="Height"
@@ -630,21 +558,19 @@
                 <Setter Property="Width"
                         Value="{StaticResource HeightOfLookupClearImage}" />
             </Style>
-            <Style x:Key="StyleOfToolbarButtonTextBlock"
+            
+
+            <Style x:Key="StyleOfTabItemHeaderTextBlock"
                    TargetType="TextBlock">
                 <Setter Property="HorizontalAlignment"
                         Value="Center" />
                 <Setter Property="VerticalAlignment"
                         Value="Center" />
                 <Setter Property="FontFamily"
-                        Value="{StaticResource FontFamilyOfToolbarButton}" />
+                        Value="{StaticResource FontFamilyOfTabHeader}" />
                 <Setter Property="FontSize"
-                        Value="{StaticResource FontSizeOfToolbarButton}" />
+                        Value="{StaticResource FontSizeOfTabHeader}" />
             </Style>
-
-            <Style x:Key="StyleOfTabItemHeaderTextBlock"
-                   TargetType="TextBlock"
-                   BasedOn="{StaticResource StyleOfToolbarButtonTextBlock}" />
 
             <Style x:Key="StyleOfSmallFunctionButton"
                    TargetType="Button">

@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
-using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -15,9 +14,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using PaySys.ModelAndBindLib;
+using PaySys.CalcLib.ExtensionMethods;
+using PaySys.Globalization;
 using PaySys.ModelAndBindLib.Engine;
 using PaySys.ModelAndBindLib.Entities;
+using MessageBox = System.Windows.Forms.MessageBox;
+using UserControl = System.Windows.Controls.UserControl;
 
 namespace PaySys.UI.UC
 {
@@ -26,26 +28,40 @@ namespace PaySys.UI.UC
 	/// </summary>
 	public partial class UcContractMng : UserControl
 	{
-		private PaySysContext _context = new PaySysContext();
+		public  PaySysContext Context { set; get; } 
 		private ObservableCollection<ContractMaster> _contractMastersAll;
-		private ObservableCollection<Employee> _employeesAll;
-		public UcContractMng()
+		public ObservableCollection<Employee> EmployeesAll { set; get; }
+        public UcContractMng()
 		{
 			InitializeComponent();
-			RefreshContracsAll();
-			_employeesAll = SmpUcSelectContOfEmp.EmployeesAll = new ObservableCollection<Employee>(_context.Employees);
-			SmpUcShowContractMaster.MainGroups = new ObservableCollection<MainGroup>(_context.MainGroups);
-			SmpUcShowContractMaster.SubGroups = new ObservableCollection<SubGroup>(_context.SubGroups);
-			SmpUcShowContractMaster.Jobs = new ObservableCollection<Job>(_context.Jobs);
+            Reload();
+//			RefreshContracsAll();
+//		    EmployeesAll = SmpUcSelectContOfEmp.EmployeesAll = new ObservableCollection<Employee>(Context.Employees);
+			SmpUcShowContractMaster.MainGroups = new ObservableCollection<MainGroup>(Context.MainGroups);
+			SmpUcShowContractMaster.SubGroups = new ObservableCollection<SubGroup>(Context.SubGroups);
+			SmpUcShowContractMaster.Jobs = new ObservableCollection<Job>(Context.Jobs);
 
 			SmpUcFormState.CurrentState = FormCurrentState.Select;
 			SmpUcSelectContOfEmp.SelectedContractChanged += OnSelectedContractChanged;
 		}
 
-		private void RefreshContracsAll()
+	    private void Reload()
+	    {
+	        var selectedId = (DataGridEmployees.SelectedItem as Employee)?.Id;
+	        Context = new PaySysContext();
+	        Context.Employees.Include(employee => employee.ContractMasters).Load();
+	        EmployeesAll = Context.Employees.Local;
+	        DataGridEmployees.GetBindingExpression(ItemsControl.ItemsSourceProperty)?.UpdateTarget();
+	        DataGridEmployees.GetBindingExpression(DataContextProperty)?.UpdateTarget();
+	        if (selectedId.HasValue)
+	            DataGridEmployees.SelectedItem = EmployeesAll.FirstOrDefault(emp => emp.Id == selectedId.Value);
+	        SmpUcLookup_OnLookupTextChanged(null, null);
+        }
+
+	    private void RefreshContracsAll()
 		{
 			_contractMastersAll = SmpUcSelectContOfEmp.ContractMastersAll =
-				new ObservableCollection<ContractMaster>(_context.ContractMasters);
+				new ObservableCollection<ContractMaster>(Context.ContractMasters);
 		}
 
 		private void OnSelectedContractChanged(object sender, SelectionChangedEventArgs e)
@@ -83,7 +99,7 @@ namespace PaySys.UI.UC
 					SmpUcShowContractMaster.CommitContext();
 					break;
 			}
-			_context.SaveChanges();
+			Context.SaveChanges();
 
 			SmpUcFormState.CurrentState = FormCurrentState.Select;
 
@@ -97,8 +113,8 @@ namespace PaySys.UI.UC
 //			var ContractFields = _context.ContractFields.Where(gft => gft.MainGroup.Equals( newContract.MainGroup ) && gft.Year == PaySysSetting.CurrentYear).ToList();
 			var contractFields = newContract.MainGroup.CurrentContractFields.ToList();
 			contractFields.ForEach(gft => newContract.ContractDetails.Add(new ContractDetail { ContractField = gft }));
-			_context.ContractMasters.Add(newContract);
-			_context.SaveChanges();
+			Context.ContractMasters.Add(newContract);
+			Context.SaveChanges();
 			SmpUcFormState.CurrentState = FormCurrentState.AddDetails;
 			RefreshContracsAll();
 			SmpUcSelectContOfEmp.SelectedContractMaster = newContract;
@@ -137,5 +153,10 @@ namespace PaySys.UI.UC
 	    {
 	        throw new NotImplementedException();
 	    }
-	}
+
+        private void SmpUcLookup_OnLookupTextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+    }
 }

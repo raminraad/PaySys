@@ -56,86 +56,95 @@
         </Grid.ColumnDefinitions>
          <ToolBar Grid.Row="0" 
                   Grid.ColumnSpan="4" 
-                  Grid.Column="0"> 
-             <Button Name="ButtonAdd" 
-                     Style="{StaticResource StyleOfToolbarButtonAdd}"
-                     Command="commands:PaySysCommands.Add"> 
-                 <Button.Content> 
-                     <StackPanel Orientation="Vertical">
-                         <Image Source="{StaticResource icon_crud_add}" 
-                                Style="{StaticResource StyleOfToolbarButtonImage}" /> 
-                         <TextBlock Text="{x:Static fa:Labels.Add}" 
-                                    Style="{StaticResource StyleOfToolbarButtonTextBlock}" /> 
-                     </StackPanel> 
-                 </Button.Content> 
-             </Button> 
-             <Button Name="ButtonEdit" 
-                     Style="{StaticResource StyleOfToolbarButtonEdit}" 
-                     Command="commands:PaySysCommands.Edit"> 
-                 <Button.Content> 
-                     <StackPanel Orientation="Vertical"> 
-                         <Image Source="{StaticResource icon_crud_edit}" 
-                                Style="{StaticResource StyleOfToolbarButtonImage}" /> 
-                         <TextBlock Text="{x:Static fa:Labels.Edit}" 
-                                    Style="{StaticResource StyleOfToolbarButtonTextBlock}" /> 
-                     </StackPanel> 
-                 </Button.Content> 
-             </Button> 
-             <Button Name="ButtonDelete" 
-                     Style="{StaticResource StyleOfToolbarButtonDelete}" 
-                     Command="commands:PaySysCommands.Delete"> 
-                 <Button.Content> 
-                     <StackPanel Orientation="Vertical"> 
-                         <Image Source="{StaticResource icon_crud_delete}" 
-                                Style="{StaticResource StyleOfToolbarButtonImage}" /> 
-                         <TextBlock Text="{x:Static fa:Labels.Delete}" 
-                                    Style="{StaticResource StyleOfToolbarButtonTextBlock}" /> 
-                     </StackPanel> 
-                 </Button.Content> 
-             </Button> 
-             <Separator /> 
-             <Button Name="ButtonSave" 
-                     Style="{StaticResource StyleOfToolbarButtonSave}" 
-                     Command="commands:PaySysCommands.Save"> 
-                 <Button.Content> 
-                     <StackPanel Orientation="Vertical"> 
-                         <Image Source="{StaticResource icon_save}" 
-                                Style="{StaticResource StyleOfToolbarButtonImage}" /> 
-                         <TextBlock Text="{x:Static fa:Labels.Save}" 
-                                    Style="{StaticResource StyleOfToolbarButtonTextBlock}" /> 
-                     </StackPanel> 
-                 </Button.Content> 
-             </Button> 
-             <Button Name="ButtonDiscardChanges" 
-                     Style="{StaticResource StyleOfToolbarButtonDiscardChanges}" 
-                     Command="commands:PaySysCommands.DiscardChanges"> 
-                 <Button.Content> 
-                     <StackPanel Orientation="Vertical"> 
-                         <Image Source="{StaticResource icon_discard_changes}" 
-                                Style="{StaticResource StyleOfToolbarButtonImage}" /> 
-                         <TextBlock Text="{x:Static fa:Labels.Cancel}" 
-                                    Style="{StaticResource StyleOfToolbarButtonTextBlock}" /> 
-                     </StackPanel> 
-                 </Button.Content> 
-             </Button> 
-             <Separator /> 
-             <Button Name="ButtonReload" 
-                     Style="{StaticResource StyleOfToolbarButton}" 
-                     Command="commands:PaySysCommands.Reload"> 
-                 <Button.Content> 
-                     <StackPanel Orientation="Vertical"> 
-                         <Image Source="{StaticResource icon_reload}" 
-                                Style="{StaticResource StyleOfToolbarButtonImage}" /> 
-                         <TextBlock Text="{x:Static fa:Labels.Reload}" 
-                                    Style="{StaticResource StyleOfToolbarButtonTextBlock}" /> 
-                     </StackPanel> 
-                 </Button.Content> 
-             </Button> 
+                  Grid.Column="0">
+            <Button Template="{StaticResource TemplateOfToolbarButtonAdd}"/>
+            <Button Template="{StaticResource TemplateOfToolbarButtonEdit}"/> 
+            <Button Template="{StaticResource TemplateOfToolbarButtonDelete}"/> 
+             <Separator/>
+            <Button Template="{StaticResource TemplateOfToolbarButtonSave}"/> 
+            <Button Template="{StaticResource TemplateOfToolbarButtonDiscardChanges}"/> 
+             <Separator/>
+            <Button Template="{StaticResource TemplateOfToolbarButtonReload}"/> 
+             <!-- <Button Name="ButtonAdd"  -->
+             <!--         Style="{StaticResource StyleOfToolbarButtonAdd}" -->
+             <!--         Command="commands:PaySysCommands.Add">  -->
+             <!--     <Button.Content>  -->
+             <!--         <StackPanel Orientation="Vertical"> -->
+             <!--             <Image Source="{StaticResource icon_crud_add}"  -->
+             <!--                    Style="{StaticResource StyleOfToolbarButtonImage}" />  -->
+             <!--             <TextBlock Text="{x:Static fa:Labels.Add}"  -->
+             <!--                        Style="{StaticResource StyleOfToolbarButtonTextBlock}" />  -->
+             <!--         </StackPanel>  -->
+             <!--     </Button.Content>  -->
+             <!-- </Button>  -->
+             <!-- <Button Name="ButtonEdit"  -->
+             <!--         Style="{StaticResource StyleOfToolbarButtonEdit}"  -->
+             <!--         Command="commands:PaySysCommands.Edit">  -->
+             <!--     <Button.Content>  -->
+             <!--         <StackPanel Orientation="Vertical">  -->
+             <!--             <Image Source="{StaticResource icon_crud_edit}"  -->
+             <!--                    Style="{StaticResource StyleOfToolbarButtonImage}" />  -->
+             <!--             <TextBlock Text="{x:Static fa:Labels.Edit}"  -->
+             <!--                        Style="{StaticResource StyleOfToolbarButtonTextBlock}" />  -->
+             <!--         </StackPanel>  -->
+             <!--     </Button.Content>  -->
+             <!-- </Button>  -->
+             <!-- <Button Name="ButtonDelete"  -->
+             <!--         Style="{StaticResource StyleOfToolbarButtonDelete}"  -->
+             <!--         Command="commands:PaySysCommands.Delete">  -->
+             <!--     <Button.Content>  -->
+             <!--         <StackPanel Orientation="Vertical">  -->
+             <!--             <Image Source="{StaticResource icon_crud_delete}"  -->
+             <!--                    Style="{StaticResource StyleOfToolbarButtonImage}" />  -->
+             <!--             <TextBlock Text="{x:Static fa:Labels.Delete}"  -->
+             <!--                        Style="{StaticResource StyleOfToolbarButtonTextBlock}" />  -->
+             <!--         </StackPanel>  -->
+             <!--     </Button.Content>  -->
+             <!-- </Button>  -->
+             <!-- <Separator />  -->
+             <!-- <Button Name="ButtonSave"  -->
+             <!--         Style="{StaticResource StyleOfToolbarButtonSave}"  -->
+             <!--         Command="commands:PaySysCommands.Save">  -->
+             <!--     <Button.Content>  -->
+             <!--         <StackPanel Orientation="Vertical">  -->
+             <!--             <Image Source="{StaticResource icon_save}"  -->
+             <!--                    Style="{StaticResource StyleOfToolbarButtonImage}" />  -->
+             <!--             <TextBlock Text="{x:Static fa:Labels.Save}"  -->
+             <!--                        Style="{StaticResource StyleOfToolbarButtonTextBlock}" />  -->
+             <!--         </StackPanel>  -->
+             <!--     </Button.Content>  -->
+             <!-- </Button>  -->
+             <!-- <Button Name="ButtonDiscardChanges"  -->
+             <!--         Style="{StaticResource StyleOfToolbarButtonDiscardChanges}"  -->
+             <!--         Command="commands:PaySysCommands.DiscardChanges">  -->
+             <!--     <Button.Content>  -->
+             <!--         <StackPanel Orientation="Vertical">  -->
+             <!--             <Image Source="{StaticResource icon_discard_changes}"  -->
+             <!--                    Style="{StaticResource StyleOfToolbarButtonImage}" />  -->
+             <!--             <TextBlock Text="{x:Static fa:Labels.Cancel}"  -->
+             <!--                        Style="{StaticResource StyleOfToolbarButtonTextBlock}" />  -->
+             <!--         </StackPanel>  -->
+             <!--     </Button.Content>  -->
+             <!-- </Button>  -->
+             <!-- <Separator />  -->
+             <!-- <Button Name="ButtonReload"  -->
+             <!--         Style="{StaticResource StyleOfToolbarButton}"  -->
+             <!--         Command="commands:PaySysCommands.Reload">  -->
+             <!--     <Button.Content>  -->
+             <!--         <StackPanel Orientation="Vertical">  -->
+             <!--             <Image Source="{StaticResource icon_reload}"  -->
+             <!--                    Style="{StaticResource StyleOfToolbarButtonImage}" />  -->
+             <!--             <TextBlock Text="{x:Static fa:Labels.Reload}"  -->
+             <!--                        Style="{StaticResource StyleOfToolbarButtonTextBlock}" />  -->
+             <!--         </StackPanel>  -->
+             <!--     </Button.Content>  -->
+             <!-- </Button>  -->
          
          </ToolBar> 
          <local:UcLookup x:Name="SmpUcLookup" 
                          Grid.Row="0" 
-                         Grid.Column="3" 
+                         Grid.Column="2" 
+                         Grid.ColumnSpan="2"
                           Grid.ZIndex="99"
                          IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSelectionElements}" 
                          LookupTextChanged="SmpUcLookup_OnLookupTextChanged" /> 
