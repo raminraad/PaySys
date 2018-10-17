@@ -84,34 +84,27 @@ namespace PaySys.UI.UC
 			set
 			{
 				switch(value)
-				{
+                {
 					case FormCurrentState.Select:
-						LblState.Foreground = (Brush) FindResource("FormStateColorSelect");
-						LblState.Content = ResourceAccessor.Labels.GetString("Select");
-						break;
+					    Icon.Source = (BitmapImage)FindResource("icon_form_state_select");
+                        break;
 					case FormCurrentState.Edit:
-						LblState.Foreground = (Brush) FindResource("FormStateColorEdit");
-						LblState.Content = ResourceAccessor.Labels.GetString("Edit");
+					    Icon.Source = (BitmapImage)FindResource("icon_form_state_edit");
 						break;
 					case FormCurrentState.Add:
-						LblState.Foreground = (Brush) FindResource("FormStateColorAdd");
-						LblState.Content = ResourceAccessor.Labels.GetString("Add");
+					    Icon.Source = (BitmapImage)FindResource("icon_form_state_add");
 						break;
 					case FormCurrentState.AddMaster:
-						LblState.Foreground = (Brush) FindResource("FormStateColorAdd");
-						LblState.Content = ResourceAccessor.Labels.GetString("AddMaster");
+					    Icon.Source = (BitmapImage)FindResource("icon_form_state_add");
 						break;
 					case FormCurrentState.AddDetails:
-						LblState.Foreground = (Brush) FindResource("FormStateColorAdd");
-						LblState.Content = ResourceAccessor.Labels.GetString("AddDetails");
+					    Icon.Source = (BitmapImage)FindResource("icon_form_state_add");
 						break;
 					case FormCurrentState.Delete:
-						LblState.Foreground = (Brush) FindResource("FormStateColorDelete");
-						LblState.Content = ResourceAccessor.Labels.GetString("Delete");
+					    Icon.Source = (BitmapImage)FindResource("icon_form_state_delete");
 						break;
 					case FormCurrentState.Unknown:
-						LblState.Foreground = (Brush) FindResource("FormStateColorUnknown");
-						LblState.Content = ResourceAccessor.Labels.GetString("Unknown");
+					    Icon.Source = (BitmapImage)FindResource("icon_form_state_unknown");
 						break;
 					default:
 						throw new ArgumentOutOfRangeException(nameof(value), value, null);

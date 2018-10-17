@@ -59,20 +59,14 @@
             <bindingConverter:DisplayCodeOfExpenseArticleConverter x:Key="DisplayCodeOfExpenseArticleConverter" />
             <bindingConverter:BoolToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
             <bindingConverter:ColorPalletEnumToStringConverter x:Key="CnvColor" />
-            
+            <bindingConverter:DoublePlusParameterConverter x:Key="DoublePlusParameterConverter" />
+
             <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#844D9B"/>
             <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="#AD91AD"/>
             <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="WhiteSmoke"/>
             <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="Black"/>
+            <Brush x:Key="ColorOfFormStateContents" >#6699ff</Brush>
 
-            <SolidColorBrush x:Key="FormStateColorAdd"
-                             Color="DarkGreen" />
-            <SolidColorBrush x:Key="FormStateColorEdit"
-                             Color="Goldenrod" />
-            <SolidColorBrush x:Key="FormStateColorSelect"
-                             Color="DarkSlateGray" />
-            <SolidColorBrush x:Key="FormStateColorDelete"
-                             Color="Crimson" />
             <SolidColorBrush x:Key="ColorOfChildTabItemBackground"
                              Color="#CCEBF0" />
             <SolidColorBrush x:Key="ColorOfChildTabItemBackgroundUnselected"
@@ -81,23 +75,24 @@
                              Color="WhiteSmoke" />
             <SolidColorBrush x:Key="ColorOfParentTabItemBackgroundUnselected"
                              Color="#AFAFAF" />
-            <SolidColorBrush x:Key="FormStateColorUnknown"
-                             Color="Black" />
             <SolidColorBrush x:Key="ColorOfAlternateData"
                              Color="#F5F5F5" />
             <SolidColorBrush x:Key="ColorOfDataGridLines"
                              Color="#E0E0E0" />
 
             <FontFamily x:Key="FontFamilyOfDataFields">Tahoma</FontFamily>
+            <FontFamily x:Key="FontFamilyOfStatusBar">pfont</FontFamily>
             <FontFamily x:Key="FontFamilyOfLookupTextBox">pfont</FontFamily>
             <FontFamily x:Key="FontFamilyOfTabHeader">pfont</FontFamily>
             <FontFamily x:Key="FontFamilyOfMenu">pfont</FontFamily>
 
             <system:Double x:Key="FontSizeOfDataFields">10</system:Double>
+            <system:Double x:Key="FontSizeOfStatusBar">12</system:Double>
             <system:Double x:Key="FontSizeOfListTitle">20</system:Double>
             <system:Double x:Key="FontSizeOfLookupTextBox">16</system:Double>
             <system:Double x:Key="FontSizeOfTabHeader">16</system:Double>
             <system:Double x:Key="FontSizeOfMenu">16</system:Double>
+            <system:Double x:Key="FontSizeOfStatusBarContentImage">16</system:Double>
 
             <system:Double x:Key="HeightOfDataField">24</system:Double>
             <system:Double x:Key="HeightOfDataComboBox">24</system:Double>
@@ -559,6 +554,16 @@
                         Value="Center" />
                 <Setter Property="VerticalContentAlignment"
                         Value="Center" />
+            </Style>
+            <Style x:Key="StyleOfStatusBarContentLabel" TargetType="Label">
+                <Setter Property="FontFamily"
+                        Value="{StaticResource FontFamilyOfStatusBar}" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource FontSizeOfStatusBar}" />
+                <Setter Property="VerticalAlignment"
+                        Value="Stretch" />
+                <Setter Property="VerticalContentAlignment"
+                        Value="Center"/>
             </Style>
             <Style x:Key="StyleOfDataFieldTextBlock"
                    TargetType="TextBlock">

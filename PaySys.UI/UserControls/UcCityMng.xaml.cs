@@ -60,7 +60,7 @@ namespace PaySys.UI.UC
         private void Delete_Executed(object sender, ExecutedRoutedEventArgs e)
         {
         }
-
+            
         private void Save_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             foreach (var textBox in this.FindVisualChildren<TextBox>())

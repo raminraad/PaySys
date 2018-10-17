@@ -414,11 +414,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\Icons\Licorice\icon_save.png" />
+    <Resource Include="Assets\Icons\Licorice\icon_firewheel_save.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\Icons\Licorice\icon_crud_add.png" />
-    <Resource Include="Assets\Icons\Licorice\icon_crud_edit.png" />
+    <Resource Include="Assets\Icons\Licorice\icon_firewheel_add.png" />
+    <Resource Include="Assets\Icons\Licorice\icon_firewheel_edit.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Icons\Licorice\icon_notification_add.png" />
@@ -429,10 +429,10 @@
     <Resource Include="Assets\Icons\Licorice\icon_notification_warning.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\Icons\Licorice\icon_discard_changes.png" />
+    <Resource Include="Assets\Icons\Licorice\icon_firewheel_discard_changes.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\Icons\Licorice\icon_reload.png" />
+    <Resource Include="Assets\Icons\Licorice\icon_firewheel_reload.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Icons\Licorice\icon_lookup.png" />
@@ -448,7 +448,7 @@
     <Resource Include="Assets\Icons\Licorice\icon_plus_disabled.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\Icons\Licorice\icon_crud_delete.png" />
+    <Resource Include="Assets\Icons\Licorice\icon_firewheel_delete.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Icons\Licorice\icon_trash_cross.png" />
@@ -481,6 +481,33 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Icons\Licorice\icon_black_contracts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\Licorice\icon_simplico_add.png" />
+    <Resource Include="Assets\Icons\Licorice\icon_simplico_delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\Licorice\icon_simplico_document_warning.png" />
+    <Resource Include="Assets\Icons\Licorice\icon_simplico_edit.png" />
+    <Resource Include="Assets\Icons\Licorice\icon_simplico_select.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\Licorice\icon_simplico_discard_changes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\Licorice\icon_simplico_save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\Licorice\icon_form_state_add.png" />
+    <Resource Include="Assets\Icons\Licorice\icon_form_state_delete.png" />
+    <Resource Include="Assets\Icons\Licorice\icon_form_state_edit.png" />
+    <Resource Include="Assets\Icons\Licorice\icon_form_state_select.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\Licorice\icon_form_state_unknown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\Licorice\icon_blue_double_reload.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

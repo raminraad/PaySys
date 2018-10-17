@@ -12,17 +12,13 @@
              d:DataContext="{d:DesignInstance Type=model:ContractMaster, IsDesignTimeCreatable=True}"
              mc:Ignorable="d"
              FlowDirection="RightToLeft"
-             d:DesignWidth="300">
-    <UserControl.Resources>
-        <bindingConverter:DoublePlusParameterConverter x:Key="DoublePlusParameterConverter" />
-    </UserControl.Resources>
+             d:DesignWidth="300" >
     <ListView Name="ListViewContractDetails"
               Margin="0"
               VerticalAlignment="Stretch"
               DataContext="{Binding ContractDetails,UpdateSourceTrigger=PropertyChanged}"
               ItemsSource="{Binding}"
-              ctrl:ListViewLayoutManager.Enabled="True"
-    >
+              ctrl:ListViewLayoutManager.Enabled="True" >
         <ListView.View>
             <GridView>
                 <GridView.Columns>
@@ -32,7 +28,7 @@
                                     ctrl:ProportionalColumn.Width="2" />
                     <GridViewColumn x:Name="ValueColumn"
                                     Header="{x:Static fa:Labels.Value}"
-                                    ctrl:ProportionalColumn.Width="3">
+                                    ctrl:ProportionalColumn.Width="3" >
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <local:UcTextPair x:Name="TxtContractDetailValue"

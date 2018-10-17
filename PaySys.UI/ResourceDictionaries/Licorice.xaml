@@ -3,12 +3,22 @@
     <BitmapImage x:Key="icon_notification_error" UriSource="../Assets/Icons/Licorice/icon_notification_error.png" />
     <BitmapImage x:Key="icon_notification_done" UriSource="../Assets/Icons/Licorice/icon_notification_done.png" />
     <BitmapImage x:Key="icon_notification_validation_error" UriSource="../Assets/Icons/Licorice/icon_notification_validation_error.png" />
-    <BitmapImage x:Key="icon_crud_add" UriSource="../Assets/Icons/Licorice/icon_crud_add.png" />
-    <BitmapImage x:Key="icon_crud_edit" UriSource="../Assets/Icons/Licorice/icon_crud_edit.png" />
-    <BitmapImage x:Key="icon_crud_delete" UriSource="../Assets/Icons/Licorice/icon_crud_delete.png" />
-    <BitmapImage x:Key="icon_save" UriSource="../Assets/Icons/Licorice/icon_save.png" />
-    <BitmapImage x:Key="icon_discard_changes" UriSource="../Assets/Icons/Licorice/icon_discard_changes.png" />
-    <BitmapImage x:Key="icon_reload" UriSource="../Assets/Icons/Licorice/icon_reload.png" />
+
+    <BitmapImage x:Key="icon_crud_add" UriSource="../Assets/Icons/Licorice/icon_simplico_add.png" />
+    <BitmapImage x:Key="icon_crud_edit" UriSource="../Assets/Icons/Licorice/icon_simplico_edit.png" />
+    <BitmapImage x:Key="icon_crud_delete" UriSource="../Assets/Icons/Licorice/icon_simplico_delete.png" />
+
+    <BitmapImage x:Key="icon_save" UriSource="../Assets/Icons/Licorice/icon_simplico_save.png" />
+    <BitmapImage x:Key="icon_discard_changes" UriSource="../Assets/Icons/Licorice/icon_simplico_discard_changes.png" />
+
+    <BitmapImage x:Key="icon_reload" UriSource="../Assets/Icons/Licorice/icon_blue_double_reload.png" />
+
+    <BitmapImage x:Key="icon_form_state_add" UriSource="../Assets/Icons/Licorice/icon_form_state_add.png" />
+    <BitmapImage x:Key="icon_form_state_delete" UriSource="../Assets/Icons/Licorice/icon_form_state_delete.png" />
+    <BitmapImage x:Key="icon_form_state_edit" UriSource="../Assets/Icons/Licorice/icon_form_state_edit.png" />
+    <BitmapImage x:Key="icon_form_state_select" UriSource="../Assets/Icons/Licorice/icon_form_state_select.png" />
+    <BitmapImage x:Key="icon_form_state_unknown" UriSource="../Assets/Icons/Licorice/icon_form_state_unknown.png" />
+
     <BitmapImage x:Key="icon_refresh" UriSource="../Assets/Icons/Licorice/icon_refresh.png" />
     <BitmapImage x:Key="icon_lookup" UriSource="../Assets/Icons/Licorice/icon_lookup.png" />
     <BitmapImage x:Key="icon_lookup_clear" UriSource="../Assets/Icons/Licorice/icon_lookup_clear.png" />
