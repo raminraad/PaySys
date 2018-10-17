@@ -223,6 +223,15 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to اطلاعات حکم.
+        /// </summary>
+        public static string ContractInfo {
+            get {
+                return ResourceManager.GetString("ContractInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to پایه حکم.
         /// </summary>
         public static string ContractMaster {
@@ -318,6 +327,15 @@ namespace PaySys.Globalization.Fa {
         public static string Employee {
             get {
                 return ResourceManager.GetString("Employee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to احکام کارمند.
+        /// </summary>
+        public static string EmployeeContracts {
+            get {
+                return ResourceManager.GetString("EmployeeContracts", resourceCulture);
             }
         }
         

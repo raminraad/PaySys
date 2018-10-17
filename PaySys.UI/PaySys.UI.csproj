@@ -106,11 +106,8 @@
     <Compile Include="Modals\InputBox.cs" />
     <Compile Include="Modals\PaySysMessage.cs" />
     <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="TempWindow.xaml.cs">
-      <DependentUpon>TempWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\UcEmployeeDetail.xaml.cs">
-      <DependentUpon>UcEmployeeDetail.xaml</DependentUpon>
+    <Compile Include="UserControls\UcEmployeeDetails.xaml.cs">
+      <DependentUpon>UcEmployeeDetails.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UcLookup.xaml.cs">
       <DependentUpon>UcLookup.xaml</DependentUpon>
@@ -148,11 +145,11 @@
     <Compile Include="UserControls\UcSelectEmployee.xaml.cs">
       <DependentUpon>UcSelectEmployee.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\UcShowContractDetails.xaml.cs">
-      <DependentUpon>UcShowContractDetails.xaml</DependentUpon>
+    <Compile Include="UserControls\UcContractDetailsEdit.xaml.cs">
+      <DependentUpon>UcContractDetailsEdit.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\UcShowContractMaster.xaml.cs">
-      <DependentUpon>UcShowContractMaster.xaml</DependentUpon>
+    <Compile Include="UserControls\UcContractMasterEdit.xaml.cs">
+      <DependentUpon>UcContractMasterEdit.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UcCityMng.xaml.cs">
       <DependentUpon>UcCityMng.xaml</DependentUpon>
@@ -231,15 +228,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TempWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="ResourceDictionaries\Licorice.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\UcEmployeeDetail.xaml">
+    <Page Include="UserControls\UcEmployeeDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -291,11 +284,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControls\UcShowContractDetails.xaml">
+    <Page Include="UserControls\UcContractDetailsEdit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\UcShowContractMaster.xaml">
+    <Page Include="UserControls\UcContractMasterEdit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -476,6 +469,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Icons\Licorice\icon_refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\Licorice\icon_black_contract.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\Licorice\icon_black_contract_master.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\Licorice\icon_trash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\Licorice\icon_black_contracts.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

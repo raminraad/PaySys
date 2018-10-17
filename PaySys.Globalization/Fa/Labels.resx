@@ -435,4 +435,10 @@
   <data name="ExpenseArticleInfo" xml:space="preserve">
     <value>اطلاعات ماده هزینه</value>
   </data>
+  <data name="EmployeeContracts" xml:space="preserve">
+    <value>احکام کارمند</value>
+  </data>
+  <data name="ContractInfo" xml:space="preserve">
+    <value>اطلاعات حکم</value>
+  </data>
 </root>

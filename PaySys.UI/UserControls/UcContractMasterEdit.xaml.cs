@@ -10,16 +10,16 @@ using PaySys.ModelAndBindLib.Entities;
 
 namespace PaySys.UI.UC
 {
-	public partial class UcShowContractMaster : UserControl
+	public partial class UcContractMasterEdit : UserControl
 	{
-		public UcShowContractMaster()
+		public UcContractMasterEdit()
 		{
 			InitializeComponent();
 		}
 
-		public static readonly DependencyProperty ReadOnlyOfAddFieldsProperty = DependencyProperty.Register("ReadOnlyOfAddFields", typeof(bool), typeof(UcShowContractMaster), new PropertyMetadata(default(bool)));
+		public static readonly DependencyProperty ReadOnlyOfAddFieldsProperty = DependencyProperty.Register("ReadOnlyOfAddFields", typeof(bool), typeof(UcContractMasterEdit), new PropertyMetadata(default(bool)));
 
-		public static readonly DependencyProperty ReadOnlyOfEditFieldsProperty = DependencyProperty.Register( "ReadOnlyOfEditFields", typeof(bool), typeof(UcShowContractMaster), new PropertyMetadata( default(bool) ) );
+		public static readonly DependencyProperty ReadOnlyOfEditFieldsProperty = DependencyProperty.Register( "ReadOnlyOfEditFields", typeof(bool), typeof(UcContractMasterEdit), new PropertyMetadata( default(bool) ) );
 
 		public bool ReadOnlyOfAddFields
 		{
@@ -45,11 +45,6 @@ namespace PaySys.UI.UC
 			set => CmbJob.ItemsSource = value;
 			get => (ObservableCollection<Job>) CmbJob.ItemsSource;
 		}
-		public ContractMaster CurrentContractMaster
-		{
-			get => (ContractMaster)DataContext;
-			set => DataContext = value;
-		}
 
 		private void CmbMainGroup_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
@@ -65,6 +60,12 @@ namespace PaySys.UI.UC
 			}
 			GetBindingExpression(DataContextProperty)?.UpdateSource();
 		}
+
+	    public void SelectFirstItem()
+	    {
+	        TxtContractNo.Focus();
+            TxtContractNo.SelectAll();
+        }
 
 	}
 }

@@ -47,5 +47,17 @@ namespace PaySys.UI.UC
             get => Label.Text;
             set => Label.Text = value;
         }
+
+        public FontFamily TextFontFamily
+        {
+            set => Label.FontFamily=value;
+            get => Label.FontFamily;
+        }
+
+        public double TextFontSize
+        {
+            set => Label.FontSize = value;
+            get => Label.FontSize;
+        }
     }
 }

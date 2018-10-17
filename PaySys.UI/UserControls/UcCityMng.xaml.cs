@@ -46,7 +46,7 @@ namespace PaySys.UI.UC
                 Title = ResourceAccessor.Labels.GetString("New")
             };
             Cities.Add(newItem);
-            DataGridCities.SelectedItem = newItem;
+            CollectionViewSource.GetDefaultView(DataGridCities.ItemsSource)?.Refresh();
             DataGridCities.ScrollIntoView(newItem);
             TextBoxTitle.Focus();
         }

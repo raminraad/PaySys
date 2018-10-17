@@ -19,7 +19,7 @@ namespace PaySys.Globalization.Fa {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class FieldicContractMaster {
@@ -61,7 +61,7 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ش حساب سهم پرسنل.
+        ///   Looks up a localized string similar to حساب پرسنل.
         /// </summary>
         public static string AccountNoEmp {
             get {
@@ -70,7 +70,7 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ش حساب سهم دولت.
+        ///   Looks up a localized string similar to حساب دولت.
         /// </summary>
         public static string AccountNoGov {
             get {

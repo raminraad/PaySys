@@ -22,27 +22,21 @@ namespace PaySys.UI.UC
     /// <summary>
     /// Interaction logic for SmpUcShowContractDetails.xaml
     /// </summary>
-    public partial class UcShowContractDetails : UserControl
+    public partial class UcContractDetailsEdit : UserControl
     {
 	    
-        public UcShowContractDetails()
+        public UcContractDetailsEdit()
         {
             InitializeComponent();
         }
 
-		public static readonly DependencyProperty ReadOnlyOfEditFieldsProperty = DependencyProperty.Register("ReadOnlyOfEditFields", typeof(bool), typeof(UcShowContractDetails), new PropertyMetadata(default(bool)));
+		public static readonly DependencyProperty ReadOnlyOfEditFieldsProperty = DependencyProperty.Register("ReadOnlyOfEditFields", typeof(bool), typeof(UcContractDetailsEdit), new PropertyMetadata(default(bool)));
 
 	    public bool ReadOnlyOfEditFields
 
 	    {
 		    get => (bool)GetValue(ReadOnlyOfEditFieldsProperty);
 	        set => SetValue(ReadOnlyOfEditFieldsProperty, value);
-	    }
-
-		public ContractMaster CurrentContractMaster
-	    {
-		    get => (ContractMaster)DataContext;
-		    set => DataContext = value;
 	    }
 
 		public void CommitContext()
@@ -55,5 +49,12 @@ namespace PaySys.UI.UC
 		    GetBindingExpression(DataContextProperty)?.UpdateSource();
 
 		}
-	}
+
+        public void RefreshAndSelect()
+        {
+            CollectionViewSource.GetDefaultView(ListViewContractDetails.ItemsSource)?.Refresh();
+            ListViewContractDetails.SelectedIndex = 0;
+            ListViewContractDetails.Focus();
+        }
+    }
 }

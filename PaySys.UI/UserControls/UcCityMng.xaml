@@ -14,8 +14,8 @@
              FlowDirection="RightToLeft"
              Loaded="UcCityMng_OnLoaded"
              d:DesignHeight="600"
-             d:DesignWidth="900">
-    
+             d:DesignWidth="900" >
+
     <UserControl.CommandBindings>
         <CommandBinding Command="commands:PaySysCommands.Add"
                         CanExecute="CrudCommands_CanExecute"
@@ -39,7 +39,7 @@
                         CanExecute="CrudCommands_CanExecute"
                         Executed="Lookup_Executed" />
     </UserControl.CommandBindings>
-    <Grid x:Name="GridMain">
+    <Grid x:Name="GridMain" >
         <Grid.RowDefinitions>
             <RowDefinition x:Name="RowToolbar"
                            Height="Auto" />
@@ -49,105 +49,30 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*"  />
+            <ColumnDefinition Width="3*" />
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="2*" />
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
-         <ToolBar Grid.Row="0" 
-                  Grid.ColumnSpan="4" 
-                  Grid.Column="0">
-            <Button Template="{StaticResource TemplateOfToolbarButtonAdd}"/>
-            <Button Template="{StaticResource TemplateOfToolbarButtonEdit}"/> 
-            <Button Template="{StaticResource TemplateOfToolbarButtonDelete}"/> 
-             <Separator/>
-            <Button Template="{StaticResource TemplateOfToolbarButtonSave}"/> 
-            <Button Template="{StaticResource TemplateOfToolbarButtonDiscardChanges}"/> 
-             <Separator/>
-            <Button Template="{StaticResource TemplateOfToolbarButtonReload}"/> 
-             <!-- <Button Name="ButtonAdd"  -->
-             <!--         Style="{StaticResource StyleOfToolbarButtonAdd}" -->
-             <!--         Command="commands:PaySysCommands.Add">  -->
-             <!--     <Button.Content>  -->
-             <!--         <StackPanel Orientation="Vertical"> -->
-             <!--             <Image Source="{StaticResource icon_crud_add}"  -->
-             <!--                    Style="{StaticResource StyleOfToolbarButtonImage}" />  -->
-             <!--             <TextBlock Text="{x:Static fa:Labels.Add}"  -->
-             <!--                        Style="{StaticResource StyleOfToolbarButtonTextBlock}" />  -->
-             <!--         </StackPanel>  -->
-             <!--     </Button.Content>  -->
-             <!-- </Button>  -->
-             <!-- <Button Name="ButtonEdit"  -->
-             <!--         Style="{StaticResource StyleOfToolbarButtonEdit}"  -->
-             <!--         Command="commands:PaySysCommands.Edit">  -->
-             <!--     <Button.Content>  -->
-             <!--         <StackPanel Orientation="Vertical">  -->
-             <!--             <Image Source="{StaticResource icon_crud_edit}"  -->
-             <!--                    Style="{StaticResource StyleOfToolbarButtonImage}" />  -->
-             <!--             <TextBlock Text="{x:Static fa:Labels.Edit}"  -->
-             <!--                        Style="{StaticResource StyleOfToolbarButtonTextBlock}" />  -->
-             <!--         </StackPanel>  -->
-             <!--     </Button.Content>  -->
-             <!-- </Button>  -->
-             <!-- <Button Name="ButtonDelete"  -->
-             <!--         Style="{StaticResource StyleOfToolbarButtonDelete}"  -->
-             <!--         Command="commands:PaySysCommands.Delete">  -->
-             <!--     <Button.Content>  -->
-             <!--         <StackPanel Orientation="Vertical">  -->
-             <!--             <Image Source="{StaticResource icon_crud_delete}"  -->
-             <!--                    Style="{StaticResource StyleOfToolbarButtonImage}" />  -->
-             <!--             <TextBlock Text="{x:Static fa:Labels.Delete}"  -->
-             <!--                        Style="{StaticResource StyleOfToolbarButtonTextBlock}" />  -->
-             <!--         </StackPanel>  -->
-             <!--     </Button.Content>  -->
-             <!-- </Button>  -->
-             <!-- <Separator />  -->
-             <!-- <Button Name="ButtonSave"  -->
-             <!--         Style="{StaticResource StyleOfToolbarButtonSave}"  -->
-             <!--         Command="commands:PaySysCommands.Save">  -->
-             <!--     <Button.Content>  -->
-             <!--         <StackPanel Orientation="Vertical">  -->
-             <!--             <Image Source="{StaticResource icon_save}"  -->
-             <!--                    Style="{StaticResource StyleOfToolbarButtonImage}" />  -->
-             <!--             <TextBlock Text="{x:Static fa:Labels.Save}"  -->
-             <!--                        Style="{StaticResource StyleOfToolbarButtonTextBlock}" />  -->
-             <!--         </StackPanel>  -->
-             <!--     </Button.Content>  -->
-             <!-- </Button>  -->
-             <!-- <Button Name="ButtonDiscardChanges"  -->
-             <!--         Style="{StaticResource StyleOfToolbarButtonDiscardChanges}"  -->
-             <!--         Command="commands:PaySysCommands.DiscardChanges">  -->
-             <!--     <Button.Content>  -->
-             <!--         <StackPanel Orientation="Vertical">  -->
-             <!--             <Image Source="{StaticResource icon_discard_changes}"  -->
-             <!--                    Style="{StaticResource StyleOfToolbarButtonImage}" />  -->
-             <!--             <TextBlock Text="{x:Static fa:Labels.Cancel}"  -->
-             <!--                        Style="{StaticResource StyleOfToolbarButtonTextBlock}" />  -->
-             <!--         </StackPanel>  -->
-             <!--     </Button.Content>  -->
-             <!-- </Button>  -->
-             <!-- <Separator />  -->
-             <!-- <Button Name="ButtonReload"  -->
-             <!--         Style="{StaticResource StyleOfToolbarButton}"  -->
-             <!--         Command="commands:PaySysCommands.Reload">  -->
-             <!--     <Button.Content>  -->
-             <!--         <StackPanel Orientation="Vertical">  -->
-             <!--             <Image Source="{StaticResource icon_reload}"  -->
-             <!--                    Style="{StaticResource StyleOfToolbarButtonImage}" />  -->
-             <!--             <TextBlock Text="{x:Static fa:Labels.Reload}"  -->
-             <!--                        Style="{StaticResource StyleOfToolbarButtonTextBlock}" />  -->
-             <!--         </StackPanel>  -->
-             <!--     </Button.Content>  -->
-             <!-- </Button>  -->
-         
-         </ToolBar> 
-         <local:UcLookup x:Name="SmpUcLookup" 
-                         Grid.Row="0" 
-                         Grid.Column="2" 
-                         Grid.ColumnSpan="2"
-                          Grid.ZIndex="99"
-                         IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSelectionElements}" 
-                         LookupTextChanged="SmpUcLookup_OnLookupTextChanged" /> 
+        <ToolBar Grid.Row="0"
+                 Grid.ColumnSpan="4"
+                 Grid.Column="0" >
+            <Button Template="{StaticResource TemplateOfToolbarButtonAdd}" />
+            <Button Template="{StaticResource TemplateOfToolbarButtonEdit}" />
+            <Button Template="{StaticResource TemplateOfToolbarButtonDelete}" />
+            <Separator Style="{StaticResource StyleOfSeparator}" />
+            <Button Template="{StaticResource TemplateOfToolbarButtonSave}" />
+            <Button Template="{StaticResource TemplateOfToolbarButtonDiscardChanges}" />
+            <Separator Style="{StaticResource StyleOfSeparator}" />
+            <Button Template="{StaticResource TemplateOfToolbarButtonReload}" />
+        </ToolBar>
+        <local:UcLookup x:Name="SmpUcLookup"
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        Grid.ColumnSpan="2"
+                        Grid.ZIndex="99"
+                        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSelectionElements}"
+                        LookupTextChanged="SmpUcLookup_OnLookupTextChanged" />
         <DataGrid x:Name="DataGridCities"
                   Grid.Row="2"
                   Grid.Column="1"
@@ -157,7 +82,7 @@
                   SelectionUnit="FullRow"
                   ItemsSource="{Binding}"
                   DataContext="{Binding ElementName = SmpUcCityMng,Path=Cities}"
-                  IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSelectionElements}">
+                  IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSelectionElements}" >
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="{x:Static fa:FieldicCity.Title}"
@@ -172,32 +97,32 @@
         <TabControl Grid.Row="3"
                     Grid.Column="1"
                     Grid.ColumnSpan="2"
-                    Style="{StaticResource StyleOfChildTabControl}">
+                    Style="{StaticResource StyleOfChildTabControl}" >
 
             <TabItem x:Name="TabDetail"
-                     Style="{StaticResource StyleOfChildTabItem}">
+                     Style="{StaticResource StyleOfChildTabItem}" >
 
                 <TabItem.Header>
                     <local:UcTextImagePair Icon="{StaticResource icon_city}"
                                            Text="{x:Static fa:Labels.CityInfo}" />
                 </TabItem.Header>
                 <Grid x:Name="GridDetails"
-              Grid.Row="3"
-              Grid.Column="1"
-              Grid.ColumnSpan="2"
-              Margin="{StaticResource MarginOfMaster}"
+                      Grid.Row="3"
+                      Grid.Column="1"
+                      Grid.ColumnSpan="2"
+                      Margin="{StaticResource MarginOfMaster}"
                       d:DataContext="{d:DesignInstance model:City}"
-              DataContext="{Binding ElementName=DataGridCities,Path=SelectedItem}">
+                      DataContext="{Binding ElementName=DataGridCities,Path=SelectedItem}" >
                     <Grid.Resources>
-                        <Style TargetType="TextBox">
+                        <Style TargetType="TextBox" >
                             <Setter Property="Margin"
-                            Value="0,12" />
+                                    Value="0,12" />
                             <Setter Property="VerticalContentAlignment"
-                            Value="Center" />
+                                    Value="Center" />
                         </Style>
-                        <Style TargetType="TextBlock">
+                        <Style TargetType="TextBlock" >
                             <Setter Property="VerticalAlignment"
-                            Value="Center" />
+                                    Value="Center" />
                         </Style>
                     </Grid.Resources>
                     <Grid.RowDefinitions>
@@ -211,52 +136,61 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Label Grid.Column="0"
-                   Grid.Row="0"
-                   Style="{StaticResource StyleOfDataFieldLabel}"
-                   Content="{x:Static fa:FieldicCity.Title}" />
+                           Grid.Row="0"
+                           Style="{StaticResource StyleOfDataFieldLabel}"
+                           Content="{x:Static fa:FieldicCity.Title}" />
                     <Label Grid.Column="0"
-                   Grid.Row="1"
-                   Style="{StaticResource StyleOfDataFieldLabel}"
-                   Content="{x:Static fa:FieldicCity.Distance}" />
+                           Grid.Row="1"
+                           Style="{StaticResource StyleOfDataFieldLabel}"
+                           Content="{x:Static fa:FieldicCity.Distance}" />
                     <Label Grid.Column="0"
-                   Grid.Row="2"
-                   Style="{StaticResource StyleOfDataFieldLabel}"
-                   Content="{x:Static fa:FieldicCity.Percentage}" />
+                           Grid.Row="2"
+                           Style="{StaticResource StyleOfDataFieldLabel}"
+                           Content="{x:Static fa:FieldicCity.Percentage}" />
                     <TextBox x:Name="TextBoxTitle"
-                     Grid.Row="0"
-                     Grid.Column="1"
-                     Style="{StaticResource StyleOfDataFieldTextBox}"
-                     IsReadOnly="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
-                     Text="{Binding Title,UpdateSourceTrigger=Explicit}" />
+                             Grid.Row="0"
+                             Grid.Column="1"
+                             Style="{StaticResource StyleOfDataFieldTextBox}"
+                             IsReadOnly="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
+                             Text="{Binding Title,UpdateSourceTrigger=Explicit}" />
                     <TextBox x:Name="TextBoxDistance"
-                     Grid.Row="1"
-                     Grid.Column="1"
-                     Style="{StaticResource StyleOfDataFieldTextBox}"
-                     IsReadOnly="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}">
+                             Grid.Row="1"
+                             Grid.Column="1"
+                             Style="{StaticResource StyleOfDataFieldTextBox}"
+                             IsReadOnly="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}" >
                         <TextBox.Text>
                             <Binding Path="Distance"
-                             UpdateSourceTrigger="Explicit">
+                                     UpdateSourceTrigger="Explicit" >
                                 <Binding.ValidationRules>
                                     <validation:ValidationRuleForMandatory />
-                                    <validation:ValidationRuleForNumberType FieldName="{x:Static fa:FieldicCity.Distance}" />
+                                    <validation:ValidationRuleForNumberType
+                                        FieldName="{x:Static fa:FieldicCity.Distance}" />
                                     <validation:ValidationRuleForNonNegativeNumber
-                                FieldName="{x:Static fa:FieldicCity.Distance}" />
+                                        FieldName="{x:Static fa:FieldicCity.Distance}" />
+                                    <validation:ValidationRuleForNumberRange
+                                        FieldName="{x:Static fa:FieldicCity.Distance}"
+                                        Max="10000" />
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
                     </TextBox>
                     <TextBox x:Name="TextBoxPercentage"
-                     Grid.Row="2"
-                     Grid.Column="1"
-                     Style="{StaticResource StyleOfDataFieldTextBox}"
-                     IsReadOnly="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}">
+                             Grid.Row="2"
+                             Grid.Column="1"
+                             Style="{StaticResource StyleOfDataFieldTextBox}"
+                             IsReadOnly="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}" >
                         <TextBox.Text>
                             <Binding Path="Percentage"
-                             UpdateSourceTrigger="Explicit">
+                                     UpdateSourceTrigger="Explicit" >
                                 <Binding.ValidationRules>
-                                    <validation:ValidationRuleForNumberType FieldName="{x:Static fa:FieldicCity.Percentage}" />
+                                    <validation:ValidationRuleForMandatory />
+                                    <validation:ValidationRuleForNumberType
+                                        FieldName="{x:Static fa:FieldicCity.Percentage}" />
                                     <validation:ValidationRuleForNonNegativeNumber
-                                FieldName="{x:Static fa:FieldicCity.Percentage}" />
+                                        FieldName="{x:Static fa:FieldicCity.Percentage}" />
+                                    <validation:ValidationRuleForNumberRange
+                                        FieldName="{x:Static fa:FieldicCity.Percentage}"
+                                        Max="100" />
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
@@ -267,7 +201,7 @@
         </TabControl>
         <StatusBar Grid.Column="0"
                    Grid.Row="5"
-                   Grid.ColumnSpan="4">
+                   Grid.ColumnSpan="4" >
             <local:UcFormStateLabel x:Name="SmpUcFormStateLabel" />
         </StatusBar>
     </Grid>

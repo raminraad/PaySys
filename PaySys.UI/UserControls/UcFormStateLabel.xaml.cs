@@ -69,11 +69,14 @@ namespace PaySys.UI.UC
         /// ReadOnly attribute of controls that are used to edit fields (like textbox,combo,...) of models in Grid/Textbox forms
         /// </summary>
         public bool ReadOnlyOfEditFields { set; get; }
+	    public bool EnabledOfEditFields => !ReadOnlyOfEditFields;
 
 		/// <summary>
 		/// ReadOnly attribute of controls that should be enabled just in Add mode
 		/// </summary>
 		public bool ReadOnlyOfAddFields { set; get; }
+
+	    public bool EnabledOfAddFields => !ReadOnlyOfAddFields;
 
 		public FormCurrentState CurrentState
 		{

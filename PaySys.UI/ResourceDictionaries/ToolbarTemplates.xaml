@@ -5,23 +5,30 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
     <FontFamily x:Key="FontFamilyOfToolbarButton">pfont</FontFamily>
-    <system:Double x:Key="FontSizeOfToolbarButton">14</system:Double>
-    <system:Double x:Key="SizeOfToolbarButton">50</system:Double>
+    <FontFamily x:Key="FontFamilyOfOnFormButton">tahoma</FontFamily>
+    <system:Double x:Key="FontSizeOfToolbarButton">12</system:Double>
+    <system:Double x:Key="FontSizeOfOnFormButton">12</system:Double>
+    <system:Double x:Key="SizeOfToolbarButton">46</system:Double>
+    <system:Double x:Key="HeightOfToolbar">52</system:Double>
     <system:Double x:Key="SizeOfToolbarButtonImage">24</system:Double>
 
     <Style TargetType="ToolBar">
         <Setter Property="KeyboardNavigation.TabNavigation"
                 Value="Continue" />
         <Setter Property="Height"
-                Value="{StaticResource SizeOfToolbarButton}" />
+                Value="{StaticResource HeightOfToolbar}" />
         <Setter Property="ToolBarTray.IsLocked"
                 Value="True" />
+    </Style>
+
+    <Style x:Key="StyleOfSeparator" TargetType="Separator">
+        <Setter Property="Margin" Value="11,0"/>
     </Style>
 
     <Style x:Key="StyleOfToolbarButton"
                    TargetType="Button">
         <Setter Property="Margin"
-                        Value="2,0" />
+                        Value="3,0" />
         <Setter Property="FontFamily"
                         Value="{StaticResource FontFamilyOfToolbarButton}" />
         <Setter Property="FontSize"
@@ -32,6 +39,12 @@
                         Value="{StaticResource SizeOfToolbarButton}" />
         <Setter Property="Height"
                         Value="{StaticResource SizeOfToolbarButton}" />
+        <Setter Property="BorderThickness"
+                Value="1" />
+        <Setter Property="BorderBrush"
+                Value="Gray" />
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        
     </Style>
 
     <Style x:Key="StyleOfToolbarButtonAdd"

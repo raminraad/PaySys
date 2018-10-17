@@ -20,14 +20,14 @@ namespace PaySys.UI.UC
     /// <summary>
     /// Interaction logic for UcEmployeeDetail.xaml
     /// </summary>
-    public partial class UcEmployeeDetail : UserControl
+    public partial class UcEmployeeDetails : UserControl
     {
-        public UcEmployeeDetail()
+        public UcEmployeeDetails()
         {
             InitializeComponent();
         }
 
-	    public static readonly DependencyProperty ReadOnlyOfFieldsProperty = DependencyProperty.Register( "ReadOnlyOfFields", typeof(bool), typeof(UcEmployeeDetail), new PropertyMetadata( default(bool) ) );
+	    public static readonly DependencyProperty ReadOnlyOfFieldsProperty = DependencyProperty.Register( "ReadOnlyOfFields", typeof(bool), typeof(UcEmployeeDetails), new PropertyMetadata( default(bool) ) );
 
 	    public bool ReadOnlyOfFields
 	    {

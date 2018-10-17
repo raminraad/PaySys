@@ -118,11 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccountNoEmp" xml:space="preserve">
-    <value>ش حساب سهم پرسنل</value>
+    <value>حساب پرسنل</value>
     <comment>14</comment>
   </data>
   <data name="AccountNoGov" xml:space="preserve">
-    <value>ش حساب سهم دولت</value>
+    <value>حساب دولت</value>
     <comment>13</comment>
   </data>
   <data name="ContractDetails" xml:space="preserve">

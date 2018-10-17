@@ -59,6 +59,12 @@
             <bindingConverter:DisplayCodeOfExpenseArticleConverter x:Key="DisplayCodeOfExpenseArticleConverter" />
             <bindingConverter:BoolToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
             <bindingConverter:ColorPalletEnumToStringConverter x:Key="CnvColor" />
+            
+            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#844D9B"/>
+            <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="#AD91AD"/>
+            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="WhiteSmoke"/>
+            <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="Black"/>
+
             <SolidColorBrush x:Key="FormStateColorAdd"
                              Color="DarkGreen" />
             <SolidColorBrush x:Key="FormStateColorEdit"
@@ -87,27 +93,31 @@
             <FontFamily x:Key="FontFamilyOfTabHeader">pfont</FontFamily>
             <FontFamily x:Key="FontFamilyOfMenu">pfont</FontFamily>
 
-            <system:Double x:Key="FontSizeOfDataFields">12</system:Double>
+            <system:Double x:Key="FontSizeOfDataFields">10</system:Double>
             <system:Double x:Key="FontSizeOfListTitle">20</system:Double>
             <system:Double x:Key="FontSizeOfLookupTextBox">16</system:Double>
             <system:Double x:Key="FontSizeOfTabHeader">16</system:Double>
             <system:Double x:Key="FontSizeOfMenu">16</system:Double>
 
             <system:Double x:Key="HeightOfDataField">24</system:Double>
+            <system:Double x:Key="HeightOfDataComboBox">24</system:Double>
+            <system:Double x:Key="HeightOfSelectionComboBox">34</system:Double>
+            <system:Double x:Key="HeightOfDataTextBox">24</system:Double>
+            <system:Double x:Key="HeightOfDataLabel">24</system:Double>
+            <system:Double x:Key="HeightOfDataGridRow">21</system:Double>
             <system:Double x:Key="HeightOfDataGridColumnHeader">30</system:Double>
             <system:Double x:Key="HeightOfLookupTextBox">24</system:Double>
             <system:Double x:Key="HeightOfLookupImage">24</system:Double>
             <system:Double x:Key="HeightOfLookupClearImage">16</system:Double>
-            <system:Double x:Key="HeightOfSelectionComboBox">34</system:Double>
             <system:Double x:Key="HeightOfMenuItam">30</system:Double>
 
             <system:Double x:Key="WidthOfDataFieldOfText">200</system:Double>
-            <system:Double x:Key="WidthOfDataFieldOfCode">80</system:Double>
-            <system:Double x:Key="WidthOfDataFieldOfPrice">120</system:Double>
-            <system:Double x:Key="WidthOfDataFieldOfButton">40</system:Double>
             <system:Double x:Key="WidthOfDataColumnOfText">220</system:Double>
-            <system:Double x:Key="WidthOfDataColumnOfCode">100</system:Double>
+            <system:Double x:Key="WidthOfDataFieldOfCode">115</system:Double>
+            <system:Double x:Key="WidthOfDataColumnOfCode">135</system:Double>
+            <system:Double x:Key="WidthOfDataFieldOfPrice">120</system:Double>
             <system:Double x:Key="WidthOfDataColumnOfPrice">140</system:Double>
+            <system:Double x:Key="WidthOfDataFieldOfButton">40</system:Double>
             <system:Double x:Key="WidthOfDataColumnOfButton">60</system:Double>
             <system:Double x:Key="WidthOfDataColumnOfOperationsWithButtonCountOf1">60</system:Double>
             <system:Double x:Key="WidthOfTabOneOf4">350</system:Double>
@@ -121,13 +131,12 @@
             <system:Double x:Key="SizeOfSmallFunctionButtonImage">16</system:Double>
             <system:Double x:Key="SizeOfListFunctionButton">24</system:Double>
             <system:Double x:Key="SizeOfListFunctionButtonImage">16</system:Double>
-            
 
             <Thickness x:Key="MarginOfDataFields"
                        Left="10"
-                       Top="10"
-                       Right="40"
-                       Bottom="10" />
+                       Top="0"
+                       Right="0"
+                       Bottom="0" />
             <Thickness x:Key="MarginOfMaster"
                        Left="5"
                        Top="10"
@@ -144,10 +153,9 @@
                        Right="0"
                        Bottom="0" />
 
-            
             <Style TargetType="DataGrid">
                 <Setter Property="Margin"
-                        Value="{StaticResource MarginOfMaster}" />
+                        Value="{StaticResource MarginOfDetail}" />
                 <Setter Property="ColumnWidth"
                         Value="*" />
                 <Setter Property="AutoGenerateColumns"
@@ -165,13 +173,15 @@
                 <Setter Property="AlternatingRowBackground"
                         Value="{StaticResource ColorOfAlternateData}" />
                 <Setter Property="RowHeight"
-                        Value="{StaticResource HeightOfDataField}" />
+                        Value="{StaticResource HeightOfDataGridRow}" />
                 <Setter Property="ColumnHeaderHeight"
                         Value="{StaticResource HeightOfDataGridColumnHeader}" />
                 <Setter Property="HorizontalGridLinesBrush"
                         Value="{StaticResource ColorOfDataGridLines}" />
                 <Setter Property="VerticalGridLinesBrush"
                         Value="{StaticResource ColorOfDataGridLines}" />
+                <Setter Property="MinColumnWidth"
+                        Value="60" />
             </Style>
             <Style TargetType="{x:Type DataGridCell}">
                 <Setter Property="Template">
@@ -288,9 +298,43 @@
                 </Setter>
             </Style>
 
+            <Style x:Key="StyleOfGridSplitter"
+                   TargetType="GridSplitter">
+                <Setter Property="ShowsPreview"
+                        Value="True" />
+                <Setter Property="Background"
+                        Value="Gray" />
+                <Setter Property="Visibility"
+                        Value="Visible" />
+            </Style>
+            <Style x:Key="StyleOfGridSplitterHorizontal"
+                   TargetType="GridSplitter"
+                   BasedOn="{StaticResource StyleOfGridSplitter}">
+                <Setter Property="HorizontalAlignment"
+                        Value="Stretch" />
+                <Setter Property="Height"
+                        Value="2" />
+                <Setter Property="VerticalAlignment"
+                        Value="Center" />
+                <Setter Property="Margin"
+                        Value="0,10" />
+            </Style>
+            <Style x:Key="StyleOfGridSplitterVertical"
+                   TargetType="GridSplitter"
+                   BasedOn="{StaticResource StyleOfGridSplitter}">
+                <Setter Property="VerticalAlignment"
+                        Value="Stretch" />
+                <Setter Property="Width"
+                        Value="2" />
+                <Setter Property="HorizontalAlignment"
+                        Value="Center" />
+                <Setter Property="Margin"
+                        Value="10,0" />
+            </Style>
+
             <Style TargetType="ComboBox">
                 <Setter Property="Height"
-                        Value="{StaticResource HeightOfDataField}" />
+                        Value="{StaticResource HeightOfDataComboBox}" />
                 <Setter Property="FontFamily"
                         Value="{StaticResource FontFamilyOfDataFields}" />
                 <Setter Property="FontSize"
@@ -406,9 +450,9 @@
             <Style x:Key="StyleOfDataFieldTextBox"
                    TargetType="TextBox">
                 <Setter Property="Height"
-                        Value="{StaticResource HeightOfDataField}" />
+                        Value="{StaticResource HeightOfDataTextBox}" />
                 <Setter Property="Width"
-                        Value="{StaticResource WidthOfDataFieldOfText}" />
+                        Value="{StaticResource WidthOfDataFieldOfCode}" />
                 <Setter Property="FontFamily"
                         Value="{StaticResource FontFamilyOfDataFields}" />
                 <Setter Property="FontSize"
@@ -421,12 +465,11 @@
                         Value="Left" />
                 <Setter Property="HorizontalContentAlignment"
                         Value="Left" />
-                <Setter Property="Margin"
-                        Value="{StaticResource MarginOfDataFields}" />
+                
                 <Setter Property="Validation.ErrorTemplate"
                         Value="{StaticResource ValidatedTextBoxTemplate}" />
                 <Setter Property="MaxLength"
-                        Value="10" />
+                        Value="100" />
                 <EventSetter Event="GotFocus"
                              Handler="ListItemGotFocus" />
                 <EventSetter Event="TextChanged"
@@ -450,7 +493,9 @@
             <Style x:Key="StyleOfDataFieldComboBox"
                    TargetType="ComboBox">
                 <Setter Property="Height"
-                        Value="{StaticResource HeightOfDataField}" />
+                        Value="{StaticResource HeightOfDataComboBox}" />
+                <Setter Property="Width"
+                        Value="{StaticResource WidthOfDataFieldOfCode}" />
                 <Setter Property="FontFamily"
                         Value="{StaticResource FontFamilyOfDataFields}" />
                 <Setter Property="FontSize"
@@ -459,25 +504,27 @@
                         Value="Center" />
                 <Setter Property="VerticalAlignment"
                         Value="Center" />
-                <Setter Property="Margin"
-                        Value="{StaticResource MarginOfDataFields}" />
+                <Setter Property="HorizontalAlignment"
+                        Value="Left" />
+                
             </Style>
             <Style x:Key="StyleOfDataFieldDatePicker"
                    TargetType="persianDateControls:PersianDatePicker">
                 <Setter Property="Height"
-                        Value="{StaticResource HeightOfDataField}" />
+                        Value="{StaticResource HeightOfDataComboBox}" />
+                <Setter Property="Width"
+                        Value="{StaticResource WidthOfDataFieldOfCode}" />
                 <Setter Property="FontFamily"
                         Value="{StaticResource FontFamilyOfDataFields}" />
                 <Setter Property="FontSize"
-                        Value="14" />
+                        Value="12" />
                 <Setter Property="VerticalContentAlignment"
                         Value="Center" />
                 <Setter Property="VerticalAlignment"
                         Value="Stretch" />
                 <Setter Property="HorizontalAlignment"
                         Value="Left" />
-                <Setter Property="Margin"
-                        Value="{StaticResource MarginOfDataFields}" />
+                
             </Style>
             <Style x:Key="StyleOfDataFieldTimePicker"
                    TargetType="xctk:TimePicker">
@@ -496,12 +543,12 @@
                 <Setter Property="HorizontalAlignment"
                         Value="Left" />
                 <Setter Property="Height"
-                        Value="{StaticResource HeightOfDataField}" />
+                        Value="{StaticResource HeightOfDataComboBox}" />
             </Style>
             <Style x:Key="StyleOfDataFieldLabel"
                    TargetType="Label">
                 <Setter Property="Height"
-                        Value="{StaticResource HeightOfDataField}" />
+                        Value="{StaticResource HeightOfDataLabel}" />
                 <Setter Property="Width"
                         Value="Auto" />
                 <Setter Property="FontFamily"
@@ -509,14 +556,14 @@
                 <Setter Property="FontSize"
                         Value="{StaticResource FontSizeOfDataFields}" />
                 <Setter Property="VerticalAlignment"
-                        Value="Stretch" />
+                        Value="Center" />
                 <Setter Property="VerticalContentAlignment"
                         Value="Center" />
             </Style>
             <Style x:Key="StyleOfDataFieldTextBlock"
                    TargetType="TextBlock">
                 <Setter Property="Height"
-                        Value="{StaticResource HeightOfDataField}" />
+                        Value="{StaticResource HeightOfDataLabel}" />
                 <Setter Property="Width"
                         Value="{StaticResource WidthOfDataFieldOfText}" />
                 <Setter Property="FontFamily"
@@ -558,7 +605,6 @@
                 <Setter Property="Width"
                         Value="{StaticResource HeightOfLookupClearImage}" />
             </Style>
-            
 
             <Style x:Key="StyleOfTabItemHeaderTextBlock"
                    TargetType="TextBlock">
