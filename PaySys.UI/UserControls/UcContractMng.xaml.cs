@@ -29,20 +29,12 @@ namespace PaySys.UI.UC
     public partial class UcContractMng : UserControl
     {
         public PaySysContext Context { set; get; }
-        private ObservableCollection<ContractMaster> ContractMastersAll { set; get; }
         public ObservableCollection<Employee> EmployeesAll { set; get; }
 
         public UcContractMng()
         {
             InitializeComponent();
             Reload();
-
-//			RefreshContracsAll();
-//		    EmployeesAll = SmpUcSelectContOfEmp.EmployeesAll = new ObservableCollection<Employee>(Context.Employees);
-            SmpUcContractMasterEdit.MainGroups = new ObservableCollection<MainGroup>(Context.MainGroups);
-            SmpUcContractMasterEdit.SubGroups = new ObservableCollection<SubGroup>(Context.SubGroups);
-            SmpUcContractMasterEdit.Jobs = new ObservableCollection<Job>(Context.Jobs);
-
             SmpUcFormState.CurrentState = FormCurrentState.Select;
         }
 
@@ -50,7 +42,15 @@ namespace PaySys.UI.UC
         {
             var selectedId = (DataGridEmployees.SelectedItem as Employee)?.Id;
             Context = new PaySysContext();
+            Context.MainGroups.Include(mg=>mg.SubGroups).Load();
+            Context.SubGroups.Load();
+            Context.Jobs.Load();
             Context.Employees.Include(employee => employee.ContractMasters).Load();
+
+            SmpUcContractMasterEdit.MainGroups = Context.MainGroups.Local;
+            SmpUcContractMasterEdit.SubGroups = Context.SubGroups.Local;
+            SmpUcContractMasterEdit.Jobs = Context.Jobs.Local;
+
             EmployeesAll = Context.Employees.Local;
             DataGridEmployees.GetBindingExpression(ItemsControl.ItemsSourceProperty)?.UpdateTarget();
             DataGridEmployees.GetBindingExpression(DataContextProperty)?.UpdateTarget();
@@ -103,6 +103,8 @@ namespace PaySys.UI.UC
                 case FormCurrentState.Edit:
                     SmpUcContractDetailsEdit.CommitContext();
                     SmpUcContractMasterEdit.CommitContext();
+                    SmpUcContractDetailsEdit.Refresh();
+                    SmpUcContractDetailsEdit.GetBindingExpression(DataContextProperty)?.UpdateSource();
                     SmpUcFormState.CurrentState = FormCurrentState.Select;
                     break;
             }
@@ -120,11 +122,13 @@ namespace PaySys.UI.UC
             Context.SaveChanges();
             SmpUcFormState.CurrentState = FormCurrentState.AddDetails;
             DataGridEmployeeContracts.SelectedItem = newItem;
-            SmpUcContractDetailsEdit.RefreshAndSelect();
+            SmpUcContractDetailsEdit.Refresh();
+            SmpUcContractDetailsEdit.Select();
         }
 
         private void Reload_Executed(object sender, ExecutedRoutedEventArgs e)
         {
+            Reload();
         }
 
         private void CrudCommands_CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -150,11 +154,20 @@ namespace PaySys.UI.UC
 
         private void DiscardChanges_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            Context.DiscardChanges();
+            Reload();
+            SmpUcFormState.CurrentState = FormCurrentState.Select;
         }
 
         private void SmpUcLookup_OnLookupTextChanged(object sender, TextChangedEventArgs e)
         {
+            var dtg = DataGridEmployees;
+            if (dtg.ItemsSource == null) return;
+            if (string.IsNullOrEmpty(SmpUcLookup.LookupText))
+                CollectionViewSource.GetDefaultView(dtg.ItemsSource).Filter = null;
+            else
+                CollectionViewSource.GetDefaultView(dtg.ItemsSource).Filter =
+                    o => ((Employee)o).ContainsValue(SmpUcLookup.LookupText);
         }
     }
 }

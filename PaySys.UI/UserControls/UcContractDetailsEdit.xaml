@@ -33,9 +33,10 @@
                             <DataTemplate>
                                 <local:UcTextPair x:Name="TxtContractDetailValue"
                                                   TextOfLabel="{Binding Value,StringFormat={}{0:N0}}"
-                                                  TextOfTextBox="{Binding Value}"
+                                                  TextOfTextBox="{Binding Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                                   Width="{StaticResource WidthOfDataFieldOfPrice}"
                                                   ReadOnly="{Binding ElementName=SmpUcContractDetailsEdit,Path=ReadOnlyOfEditFields}" />
+
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

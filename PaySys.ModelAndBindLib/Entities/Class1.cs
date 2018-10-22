@@ -713,36 +713,52 @@ namespace PaySys.ModelAndBindLib.Entities
     /// <summary> #22 اشخاص </summary>
     public class Employee : EntityBase
     {
+        [IncludeInLookup]
         public string FName { get; set; }
 
+        [IncludeInLookup]
         public string LName { get; set; }
 
+        [IncludeInLookup]
         public string NationalCardNo { set; get; }
 
+        [IncludeInLookup]
         public DateTime BirthDate { get; set; }
 
+        [IncludeInLookup]
         public string BirthPlace { get; set; }
 
+        [IncludeInLookup]
         public string FatherName { get; set; }
 
+        [IncludeInLookup]
         public string HomeTel { get; set; }
 
+        [IncludeInLookup]
         public string Address { get; set; }
 
+        [IncludeInLookup]
         public string DossierNo { get; set; }
 
+        [IncludeInLookup]
         public Sex Sex { set; get; }
 
+        [IncludeInLookup]
         public string CellNo { get; set; }
 
+        [IncludeInLookup]
         public string PostalCode { get; set; }
 
+        [IncludeInLookup]
         public string PersonnelCode { get; set; }
 
+        [IncludeInLookup]
         public string IdCardExportPlace { get; set; }
 
+        [IncludeInLookup]
         public DateTime IdCardExportDate { set; get; }
 
+        [IncludeInLookup]
         public string IdCardNo { get; set; }
 
         public virtual List<ContractMaster> ContractMasters { get; set; }
@@ -758,9 +774,11 @@ namespace PaySys.ModelAndBindLib.Entities
             ContractMasters.SelectMany(c => c.Missions.Where(m =>
                 m.StartDate >= PaySysSetting.CurrentYearStartGreg && m.StartDate <= PaySysSetting.CurrentYearEndGreg));
 
+        [IncludeInLookup]
         [NotMapped]
         public string FullName => $"{Id} : {FName} {LName}"; //Todo: Remove EmployeeId from result
 
+        [IncludeInLookup]
         [NotMapped]
         public string LuffName => $"{LName} {FName}";
 
