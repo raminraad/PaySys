@@ -81,12 +81,12 @@
                 </MenuItem>
             </MenuItem>
         </Menu>
-        <TabControl x:Name="TabCntMain"
-                    Style="{StaticResource StyleOfParentTabControl}">
+       <TabControl x:Name="TabCntMain" TabStripPlacement="Top" Margin="6,10,10,10" BorderThickness="1">
             <TabControl.Resources>
-                <Style BasedOn="{StaticResource StyleOfParentTabItem}"
-                       TargetType="TabItem" />
+                <Style TargetType="TabItem" BasedOn="{StaticResource StyleOfTabItem}"/>
+                
             </TabControl.Resources>
+            
         </TabControl>
     </DockPanel>
 </Window>

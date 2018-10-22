@@ -178,6 +178,7 @@
                 <Setter Property="MinColumnWidth"
                         Value="60" />
             </Style>
+            
             <Style TargetType="{x:Type DataGridCell}">
                 <Setter Property="Template">
                     <Setter.Value>
@@ -189,7 +190,38 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+            <Style x:Key="StyleOfTabItem" TargetType="{x:Type TabItem}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type TabItem}">
+                            <Grid >
+                                <Border Name="Border" Background="#AAAAAAAA" Margin="2,2,2,0" BorderBrush="Black" BorderThickness="1,1,1,0" CornerRadius="5,5,0,0" >
+                                    <ContentPresenter x:Name="ContentSite" ContentSource="Header" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,12,2" RecognizesAccessKey="True"/>
+                                </Border>
 
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter TargetName="Border" Property="Background" Value="#FFA4D0C8" />
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter TargetName="Border" Property="Background" Value="#FF6E6C67" />
+                                </Trigger>
+                                <Trigger Property="IsSelected" Value="true">
+                                    <Setter Property="Height" Value="35" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+
+                <Setter Property="Background" Value="#FF6E6C67" />
+                <Setter Property="Height" Value="30" />
+                <Setter Property="VerticalAlignment" Value="Bottom" />
+                <Setter Property="Width" Value="Auto" />
+                <Setter Property="FontFamily" Value="{StaticResource FontFamilyOfTabHeader}" />
+                <Setter Property="FontSize" Value="{StaticResource FontSizeOfTabHeader}" />
+            </Style>
             <Style x:Key="StyleOfParentTabControl"
                    TargetType="TabControl">
                 <Setter Property="Background"
