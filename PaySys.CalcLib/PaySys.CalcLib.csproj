@@ -35,6 +35,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -50,6 +51,7 @@
     <Compile Include="ExtensionMethods\DependencyObjectExtensions.cs" />
     <Compile Include="ExtensionMethods\EnumBindingSourceExtension.cs" />
     <Compile Include="ExtensionMethods\EnumGetDescriptionExtension.cs" />
+    <Compile Include="ExtensionMethods\ImageHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -39,16 +39,12 @@
     <Grid x:Name="GridParent">
 
         <Grid.RowDefinitions>
-            <RowDefinition Name="RowToolbar"
-                           Height="Auto" />
-            <RowDefinition Name="RowDatagrid" Height="*"/>
-            <RowDefinition Name="RowDetail"
-                           Height="Auto" />
-            <RowDefinition Name="RowStatusBar"
-                           Height="Auto" />
+            <RowDefinition Name="RowToolbar" Height="Auto" />
+            <RowDefinition Name="RowDatagrid" Height="3*"/>
+            <RowDefinition Name="RowDetail" Height="2*" />
+            <RowDefinition Name="RowStatusBar" Height="Auto" />
         </Grid.RowDefinitions>
         <ToolBar Grid.Row="0" 
-                  Grid.ColumnSpan="4" 
                   Grid.Column="0">
             <Button Name="ButtonAdd" 
                      Style="{StaticResource StyleOfToolbarButtonAdd}"

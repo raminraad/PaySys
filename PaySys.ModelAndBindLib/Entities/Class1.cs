@@ -760,6 +760,15 @@ namespace PaySys.ModelAndBindLib.Entities
 
         [IncludeInLookup]
         public string IdCardNo { get; set; }
+        
+        public byte[] PhotoStream { set; get; }
+
+        [NotMapped]
+        public System.Drawing.Image Photo
+        {
+            set => PhotoStream = value.ToByteArray();
+            get => PhotoStream.ToImage();
+        }
 
         public virtual List<ContractMaster> ContractMasters { get; set; }
 

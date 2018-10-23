@@ -191,6 +191,7 @@ namespace PaySys.ModelAndBindLib.Migrations
                         IdCardExportPlace = c.String(),
                         IdCardExportDate = c.DateTime(nullable: false),
                         IdCardNo = c.String(),
+                        PhotoStream = c.Binary(),
                     })
                 .PrimaryKey(t => t.Id);
             

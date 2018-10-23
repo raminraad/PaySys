@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using PaySys.Globalization;
+using PaySys.Globalization.Fa;
 using PaySys.ModelAndBindLib;
 using PaySys.ModelAndBindLib.Engine;
 using PaySys.UI.UC;
@@ -30,7 +31,7 @@ namespace PaySys
             var tabEmployeeMng = new TabItem
             {
                 Content = userControls,
-                Header = ResourceAccessor.Labels.GetString("tabEmployeeMng")
+                Header = Labels.tabEmployeeMng
             };
             TabCntMain.Items.Add(tabEmployeeMng);
             TabCntMain.Items.Refresh();

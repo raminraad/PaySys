@@ -124,6 +124,24 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to انتخاب فایل تصویر.
+        /// </summary>
+        public static string ButtonPhotoBrowse {
+            get {
+                return ResourceManager.GetString("ButtonPhotoBrowse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to حذف تصویر.
+        /// </summary>
+        public static string ButtonPhotoClear {
+            get {
+                return ResourceManager.GetString("ButtonPhotoClear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to بارگزاری مجدد اطلاعات (F5).
         /// </summary>
         public static string ButtonReload {

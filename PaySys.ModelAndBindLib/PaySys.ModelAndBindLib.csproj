@@ -50,6 +50,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -75,9 +76,9 @@
     <Compile Include="EF.Engine\PaySysContext.cs" />
     <Compile Include="EF.Engine\PaySysDbInitializer.cs" />
     <Compile Include="EF.Configuration\Configuration.cs" />
-    <Compile Include="Migrations\201809252017124_Init.cs" />
-    <Compile Include="Migrations\201809252017124_Init.Designer.cs">
-      <DependentUpon>201809252017124_Init.cs</DependentUpon>
+    <Compile Include="Migrations\201810221728003_Init.cs" />
+    <Compile Include="Migrations\201810221728003_Init.Designer.cs">
+      <DependentUpon>201810221728003_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Validation.INotifyDataErrorInfo\IValidationErrorContainer.cs" />
     <Compile Include="Entities\Base\EntityBase.cs" />
@@ -111,8 +112,8 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201809252017124_Init.resx">
-      <DependentUpon>201809252017124_Init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201810221728003_Init.resx">
+      <DependentUpon>201810221728003_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

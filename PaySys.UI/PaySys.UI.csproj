@@ -458,9 +458,6 @@
     <Resource Include="Assets\Icons\Licorice\icon_func_remove_from_list.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\Icons\Licorice\icon_black_employee_profile.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Assets\Icons\Licorice\icon_city.png" />
     <Resource Include="Assets\Icons\Licorice\icon_info.png" />
   </ItemGroup>
@@ -508,6 +505,16 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Icons\Licorice\icon_blue_double_reload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\Licorice\icon_file_browse.png" />
+    <Resource Include="Assets\Icons\Licorice\icon_file_clear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\Licorice\icon_employee_avatar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\Licorice\icon_black_employee_profile.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

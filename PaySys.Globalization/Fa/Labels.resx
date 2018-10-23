@@ -441,4 +441,7 @@
   <data name="ContractInfo" xml:space="preserve">
     <value>اطلاعات حکم</value>
   </data>
+  <data name="OpenFileDialogFilterForPhotos" xml:space="preserve">
+    <value>فایلهای تصویری|*.jpg;*.jpeg;*.png|JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|Portable Network Graphic (*.png)|*.png</value>
+  </data>
 </root>

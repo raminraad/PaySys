@@ -52,5 +52,15 @@ namespace PaySys.UI.Commands
         public static RoutedUICommand Delete { get; } = new RoutedUICommand("Delete item", nameof(Delete),
             typeof(PaySysCommands), new InputGestureCollection {new KeyGesture(Key.Delete, ModifierKeys.Control)});
         #endregion
+
+
+        #region File Operations
+
+        public static RoutedUICommand FileBrowse { get; } = new RoutedUICommand("Browse for file", nameof(FileBrowse),
+            typeof(PaySysCommands), null);
+        public static RoutedUICommand FileClear { get; } = new RoutedUICommand("Clear selected file", nameof(FileClear),
+            typeof(PaySysCommands), null);
+        #endregion
+
     }
 }

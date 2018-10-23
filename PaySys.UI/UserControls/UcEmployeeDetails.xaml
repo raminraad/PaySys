@@ -12,164 +12,235 @@
              d:DataContext="{d:DesignInstance Type=model:Employee, IsDesignTimeCreatable=True}"
              xmlns:bindingConverter="clr-namespace:PaySys.ModelAndBindLib.BindingConverter;assembly=PaySys.ModelAndBindLib"
              xmlns:persianDateControls="clr-namespace:Arash.PersianDateControls;assembly=PersianDateControls"
-             FlowDirection="RightToLeft">
-	<Grid x:Name="GridDetail">
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="Auto" />
-		</Grid.RowDefinitions>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="Auto" />
-			<ColumnDefinition Width="Auto" />
-			<ColumnDefinition Width="Auto" />
-			<ColumnDefinition Width="Auto" />
-			<ColumnDefinition Width="Auto" />
-			<ColumnDefinition Width="Auto" />
-			<ColumnDefinition Width="Auto" />
-			<ColumnDefinition Width="Auto" />
-		</Grid.ColumnDefinitions>
-		<Label Grid.Column="0"
-		       Style="{StaticResource StyleOfDataFieldLabel}"
-		       Content="{x:Static fa:FieldicEmployee.PersonnelCode}" />
-		<Label Grid.Column="2"
-		       Grid.Row="0"
-		       Style="{StaticResource StyleOfDataFieldLabel}"
-		       Content="{x:Static fa:FieldicEmployee.DossierNo}" />
-		<Label Grid.Column="0"
-		       Grid.Row="1"
-		       Style="{StaticResource StyleOfDataFieldLabel}"
-		       Content="{x:Static fa:FieldicEmployee.FName}" />
-		<Label Grid.Row="1"
-		       Grid.Column="2"
-		       Style="{StaticResource StyleOfDataFieldLabel}"
-		       Content="{x:Static fa:FieldicEmployee.LName}" />
-		<Label Grid.Row="1"
-		       Grid.Column="4"
-		       Style="{StaticResource StyleOfDataFieldLabel}"
-		       Content="{x:Static fa:FieldicEmployee.FatherName}" />
-		<Label Grid.Row="1"
-		       Grid.Column="6"
-		       Style="{StaticResource StyleOfDataFieldLabel}"
-		       Content="{x:Static fa:FieldicEmployee.Sex}" />
-		<Label Grid.Column="0"
-		       Grid.Row="2"
-		       Style="{StaticResource StyleOfDataFieldLabel}"
-		       Content="{x:Static fa:FieldicEmployee.NationalCardNo}" />
-		<Label Grid.Row="2"
-		       Grid.Column="2"
-		       Style="{StaticResource StyleOfDataFieldLabel}"
-		       Content="{x:Static fa:FieldicEmployee.IdCardNo}" />
-		<Label Grid.Row="2"
-		       Grid.Column="4"
-		       Style="{StaticResource StyleOfDataFieldLabel}"
-		       Content="{x:Static fa:FieldicEmployee.BirthDate}" />
-		<Label Grid.Row="2"
-		       Grid.Column="6"
-		       Style="{StaticResource StyleOfDataFieldLabel}"
-		       Content="{x:Static fa:FieldicEmployee.BirthPlace}" />
-		<Label Grid.Column="0"
-		       Grid.Row="3"
-		       Style="{StaticResource StyleOfDataFieldLabel}"
-		       Content="{x:Static fa:FieldicEmployee.IdCardExportDate}" />
-		<Label Grid.Row="3"
-		       Grid.Column="2"
-		       Style="{StaticResource StyleOfDataFieldLabel}"
-		       Content="{x:Static fa:FieldicEmployee.IdCardExportPlace}" />
-		<Label Grid.Row="3"
-		       Grid.Column="4"
-		       Style="{StaticResource StyleOfDataFieldLabel}"
-		       Content="{x:Static fa:FieldicEmployee.HomeTel}" />
-		<Label Grid.Row="3"
-		       Grid.Column="6"
-		       Style="{StaticResource StyleOfDataFieldLabel}"
-		       Content="{x:Static fa:FieldicEmployee.CellNo}" />
-		<Label Grid.Column="0"
-		       Grid.Row="4"
-		       Style="{StaticResource StyleOfDataFieldLabel}"
-		       Content="{x:Static fa:FieldicEmployee.Address}" />
-		<TextBox Name="TxtPersonnelCode"
-		         Grid.Column="1"
-		         Grid.Row="0"
-		         Style="{StaticResource StyleOfDataFieldTextBox}"
-		         IsReadOnly="{Binding ElementName=SmpUcEmployeeDetails,Path=ReadOnlyOfFields}"
-		         Text="{Binding PersonnelCode,UpdateSourceTrigger=Explicit}" />
-		<TextBox IsReadOnly="{Binding ElementName=SmpUcEmployeeDetails,Path=ReadOnlyOfFields}"
-		         Grid.Column="3"
-		         Grid.Row="0"
-		         Style="{StaticResource StyleOfDataFieldTextBox}"
-		         Text="{Binding DossierNo,UpdateSourceTrigger=Explicit}" />
-		<TextBox Grid.Row="1"
-		         IsReadOnly="{Binding ElementName=SmpUcEmployeeDetails,Path=ReadOnlyOfFields}"
-		         Grid.Column="1"
-		         Style="{StaticResource StyleOfDataFieldTextBox}"
-		         Text="{Binding FName,UpdateSourceTrigger=Explicit}" />
-		<TextBox Grid.Row="1"
-		         IsReadOnly="{Binding ElementName=SmpUcEmployeeDetails,Path=ReadOnlyOfFields}"
-		         Grid.Column="3"
-		         Style="{StaticResource StyleOfDataFieldTextBox}"
-		         Text="{Binding LName,UpdateSourceTrigger=Explicit}" />
-		<TextBox Grid.Row="1"
-		         IsReadOnly="{Binding ElementName=SmpUcEmployeeDetails,Path=ReadOnlyOfFields}"
-		         Grid.Column="5"
-		         Style="{StaticResource StyleOfDataFieldTextBox}"
-		         Text="{Binding FatherName,UpdateSourceTrigger=Explicit}" />
-		<ComboBox Grid.Row="1"
-		          Grid.Column="7"
-		          Style="{StaticResource StyleOfDataFieldComboBox}"
-		          IsEnabled="{Binding ElementName=SmpUcEmployeeDetails,Path=ReadOnlyOfFields,Converter={StaticResource NegateBooleanConverter}}"
-		          ItemsSource="{Binding Source={extensionMethods:EnumBindingSource {x:Type model:Sex}}}"
-		          SelectedItem="{Binding Sex,UpdateSourceTrigger=Explicit}" />
-		<TextBox Grid.Row="2"
-		         IsReadOnly="{Binding ElementName=SmpUcEmployeeDetails,Path=ReadOnlyOfFields}"
-		         Grid.Column="1"
-		         Style="{StaticResource StyleOfDataFieldTextBox}"
-		         Text="{Binding NationalCardNo,UpdateSourceTrigger=Explicit}" />
-		<TextBox Grid.Row="2"
-		         IsReadOnly="{Binding ElementName=SmpUcEmployeeDetails,Path=ReadOnlyOfFields}"
-		         Grid.Column="3"
-		         Style="{StaticResource StyleOfDataFieldTextBox}"
-		         Text="{Binding IdCardNo,UpdateSourceTrigger=Explicit}" />
-		<persianDateControls:PersianDatePicker Grid.Row="2"
-		                                       Grid.Column="5"
-		                                       Style="{StaticResource StyleOfDataFieldDatePicker}"
-		                                       IsEnabled="{Binding ElementName=SmpUcEmployeeDetails,Path=ReadOnlyOfFields,Converter={StaticResource NegateBooleanConverter}}"
-		                                       SelectedDate="{Binding BirthDate,Mode=TwoWay,UpdateSourceTrigger=Explicit,Converter={StaticResource GregToPersDateConverter}}"
-		                                       DisplayDate="{Binding BirthDate,Mode=TwoWay,UpdateSourceTrigger=Explicit,Converter={StaticResource GregToPersDateConverter}}" />
-		<TextBox Grid.Row="2"
-		         IsReadOnly="{Binding ElementName=SmpUcEmployeeDetails,Path=ReadOnlyOfFields}"
-		         Grid.Column="7"
-		         Style="{StaticResource StyleOfDataFieldTextBox}"
-		         Text="{Binding BirthPlace,UpdateSourceTrigger=Explicit}" />
-		<persianDateControls:PersianDatePicker Grid.Row="3"
-		                                       Grid.Column="1"
-		                                       Style="{StaticResource StyleOfDataFieldDatePicker}"
-		                                       IsEnabled="{Binding ElementName=SmpUcEmployeeDetails,Path=ReadOnlyOfFields,Converter={StaticResource NegateBooleanConverter}}"
-		                                       SelectedDate="{Binding IdCardExportDate,Mode=TwoWay,UpdateSourceTrigger=Explicit,Converter={StaticResource GregToPersDateConverter}}"
-		                                       DisplayDate="{Binding IdCardExportDate,Mode=TwoWay,UpdateSourceTrigger=Explicit,Converter={StaticResource GregToPersDateConverter}}" />
-		<TextBox Grid.Row="3"
-		         IsReadOnly="{Binding ElementName=SmpUcEmployeeDetails,Path=ReadOnlyOfFields}"
-		         Grid.Column="3"
-		         Style="{StaticResource StyleOfDataFieldTextBox}"
-		         Text="{Binding IdCardExportPlace,UpdateSourceTrigger=Explicit}" />
-		<TextBox Grid.Row="3"
-		         IsReadOnly="{Binding ElementName=SmpUcEmployeeDetails,Path=ReadOnlyOfFields}"
-		         Grid.Column="5"
-		         Style="{StaticResource StyleOfDataFieldTextBox}"
-		         Text="{Binding HomeTel,UpdateSourceTrigger=Explicit}" />
-		<TextBox Grid.Row="3"
-		         IsReadOnly="{Binding ElementName=SmpUcEmployeeDetails,Path=ReadOnlyOfFields}"
-		         Grid.Column="7"
-		         Style="{StaticResource StyleOfDataFieldTextBox}"
-		         Text="{Binding CellNo,UpdateSourceTrigger=Explicit}" />
-		<TextBox Grid.Row="4"
-		         Grid.Column="1"
-		         Grid.ColumnSpan="7"
-		         VerticalAlignment="Stretch"
-		         IsReadOnly="{Binding ElementName=SmpUcEmployeeDetails,Path=ReadOnlyOfFields}"
-		         Style="{StaticResource StyleOfDataFieldMultiColumnTextBox}"
-		         Text="{Binding Address,UpdateSourceTrigger=Explicit}" />
-	</Grid>
+             xmlns:commands="clr-namespace:PaySys.UI.Commands"
+             FlowDirection="RightToLeft" >
+    <UserControl.CommandBindings>
+        <CommandBinding Command="commands:PaySysCommands.FileBrowse"
+                        Executed="FileBrowse_Execute"
+                        CanExecute="FileBrowse_CanExecute" />
+        <CommandBinding Command="commands:PaySysCommands.FileClear"
+                        Executed="FileClear_Execute"
+                        CanExecute="FileClear_CanExecute" />
+    </UserControl.CommandBindings>
+    <Grid x:Name="GridDetail" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="GridPhoto"
+              Grid.Column="0"
+              Grid.Row="0"
+              Grid.RowSpan="5"
+              Margin="0,0,10,0"
+              >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Border BorderBrush="DimGray"
+                    CornerRadius="5"
+                    BorderThickness="3"
+                    Background="White"
+                    HorizontalAlignment="Center"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Margin="5"
+                    Height="132"
+                       MaxWidth="132"
+                    MaxHeight="132"
+                    Width="132" >
+                <Image Name="ImagePhoto"
+                       Margin="5"
+                       Source="{Binding PhotoStream,TargetNullValue={StaticResource icon_employee_avatar}}" />
+            </Border>
+            <Button x:Name="ButtonBrowseForPhoto"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Margin="2,0"
+                    ToolTip="{x:Static fa:Tooltips.ButtonPhotoBrowse}"
+                    VerticalAlignment ="Top"
+                    HorizontalAlignment="Right"
+                    Style="{StaticResource StyleOfListFunctionButton}"
+                    Command="commands:PaySysCommands.FileBrowse" >
+                <Button.Content>
+                    <Image Source="{StaticResource icon_file_browse}"
+                           Style="{StaticResource StyleOfListFunctionButtonImage}" />
+                </Button.Content>
+            </Button>
+            <Button x:Name="ButtonClearPhoto"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="2,0"
+                    ToolTip="{x:Static fa:Tooltips.ButtonPhotoClear}"
+                    VerticalAlignment ="Top"
+                    HorizontalAlignment="Left"
+                    Style="{StaticResource StyleOfListFunctionButton}"
+                    Command="commands:PaySysCommands.FileClear" >
+                <Button.Content>
+                    <Image Source="{StaticResource icon_file_clear}"
+                           Style="{StaticResource StyleOfListFunctionButtonImage}" />
+                </Button.Content>
+            </Button>
+        </Grid>
+        <Label Grid.Row="0"
+               Grid.Column="1"
+               Style="{StaticResource StyleOfDataFieldLabel}"
+               Content="{x:Static fa:FieldicEmployee.PersonnelCode}" />
+        <Label Grid.Column="3"
+               Grid.Row="0"
+               Style="{StaticResource StyleOfDataFieldLabel}"
+               Content="{x:Static fa:FieldicEmployee.DossierNo}" />
+        <Label Grid.Column="1"
+               Grid.Row="1"
+               Style="{StaticResource StyleOfDataFieldLabel}"
+               Content="{x:Static fa:FieldicEmployee.FName}" />
+        <Label Grid.Row="1"
+               Grid.Column="3"
+               Style="{StaticResource StyleOfDataFieldLabel}"
+               Content="{x:Static fa:FieldicEmployee.LName}" />
+        <Label Grid.Row="1"
+               Grid.Column="5"
+               Style="{StaticResource StyleOfDataFieldLabel}"
+               Content="{x:Static fa:FieldicEmployee.FatherName}" />
+        <Label Grid.Row="1"
+               Grid.Column="7"
+               Style="{StaticResource StyleOfDataFieldLabel}"
+               Content="{x:Static fa:FieldicEmployee.Sex}" />
+        <Label Grid.Column="1"
+               Grid.Row="2"
+               Style="{StaticResource StyleOfDataFieldLabel}"
+               Content="{x:Static fa:FieldicEmployee.NationalCardNo}" />
+        <Label Grid.Row="2"
+               Grid.Column="3"
+               Style="{StaticResource StyleOfDataFieldLabel}"
+               Content="{x:Static fa:FieldicEmployee.IdCardNo}" />
+        <Label Grid.Row="2"
+               Grid.Column="5"
+               Style="{StaticResource StyleOfDataFieldLabel}"
+               Content="{x:Static fa:FieldicEmployee.BirthDate}" />
+        <Label Grid.Row="2"
+               Grid.Column="7"
+               Style="{StaticResource StyleOfDataFieldLabel}"
+               Content="{x:Static fa:FieldicEmployee.BirthPlace}" />
+        <Label Grid.Column="1"
+               Grid.Row="3"
+               Style="{StaticResource StyleOfDataFieldLabel}"
+               Content="{x:Static fa:FieldicEmployee.IdCardExportDate}" />
+        <Label Grid.Row="3"
+               Grid.Column="3"
+               Style="{StaticResource StyleOfDataFieldLabel}"
+               Content="{x:Static fa:FieldicEmployee.IdCardExportPlace}" />
+        <Label Grid.Row="3"
+               Grid.Column="5"
+               Style="{StaticResource StyleOfDataFieldLabel}"
+               Content="{x:Static fa:FieldicEmployee.HomeTel}" />
+        <Label Grid.Row="3"
+               Grid.Column="7"
+               Style="{StaticResource StyleOfDataFieldLabel}"
+               Content="{x:Static fa:FieldicEmployee.CellNo}" />
+        <Label Grid.Column="1"
+               Grid.Row="4"
+               Style="{StaticResource StyleOfDataFieldLabel}"
+               Content="{x:Static fa:FieldicEmployee.Address}" />
+        <TextBox Name="TxtPersonnelCode"
+                 Grid.Column="2"
+                 Grid.Row="0"
+                 Style="{StaticResource StyleOfDataFieldTextBox}"
+                 IsReadOnly="{Binding ElementName=SmpUcEmployeeDetails,Path=ReadOnlyOfFields}"
+                 Text="{Binding PersonnelCode,UpdateSourceTrigger=Explicit}" />
+        <TextBox IsReadOnly="{Binding ElementName=SmpUcEmployeeDetails,Path=ReadOnlyOfFields}"
+                 Grid.Column="4"
+                 Grid.Row="0"
+                 Style="{StaticResource StyleOfDataFieldTextBox}"
+                 Text="{Binding DossierNo,UpdateSourceTrigger=Explicit}" />
+        <TextBox Grid.Row="1"
+                 IsReadOnly="{Binding ElementName=SmpUcEmployeeDetails,Path=ReadOnlyOfFields}"
+                 Grid.Column="2"
+                 Style="{StaticResource StyleOfDataFieldTextBox}"
+                 Text="{Binding FName,UpdateSourceTrigger=Explicit}" />
+        <TextBox Grid.Row="1"
+                 IsReadOnly="{Binding ElementName=SmpUcEmployeeDetails,Path=ReadOnlyOfFields}"
+                 Grid.Column="4"
+                 Style="{StaticResource StyleOfDataFieldTextBox}"
+                 Text="{Binding LName,UpdateSourceTrigger=Explicit}" />
+        <TextBox Grid.Row="1"
+                 IsReadOnly="{Binding ElementName=SmpUcEmployeeDetails,Path=ReadOnlyOfFields}"
+                 Grid.Column="6"
+                 Style="{StaticResource StyleOfDataFieldTextBox}"
+                 Text="{Binding FatherName,UpdateSourceTrigger=Explicit}" />
+        <ComboBox Grid.Row="1"
+                  Grid.Column="8"
+                  Style="{StaticResource StyleOfDataFieldComboBox}"
+                  IsEnabled="{Binding ElementName=SmpUcEmployeeDetails,Path=ReadOnlyOfFields,Converter={StaticResource NegateBooleanConverter}}"
+                  ItemsSource="{Binding Source={extensionMethods:EnumBindingSource {x:Type model:Sex}}}"
+                  SelectedItem="{Binding Sex,UpdateSourceTrigger=Explicit}" />
+        <TextBox Grid.Row="2"
+                 IsReadOnly="{Binding ElementName=SmpUcEmployeeDetails,Path=ReadOnlyOfFields}"
+                 Grid.Column="2"
+                 Style="{StaticResource StyleOfDataFieldTextBox}"
+                 Text="{Binding NationalCardNo,UpdateSourceTrigger=Explicit}" />
+        <TextBox Grid.Row="2"
+                 IsReadOnly="{Binding ElementName=SmpUcEmployeeDetails,Path=ReadOnlyOfFields}"
+                 Grid.Column="4"
+                 Style="{StaticResource StyleOfDataFieldTextBox}"
+                 Text="{Binding IdCardNo,UpdateSourceTrigger=Explicit}" />
+        <persianDateControls:PersianDatePicker Grid.Row="2"
+                                               Grid.Column="6"
+                                               Style="{StaticResource StyleOfDataFieldDatePicker}"
+                                               IsEnabled="{Binding ElementName=SmpUcEmployeeDetails,Path=ReadOnlyOfFields,Converter={StaticResource NegateBooleanConverter}}"
+                                               SelectedDate="{Binding BirthDate,Mode=TwoWay,UpdateSourceTrigger=Explicit,Converter={StaticResource GregToPersDateConverter}}"
+                                               DisplayDate="{Binding BirthDate,Mode=TwoWay,UpdateSourceTrigger=Explicit,Converter={StaticResource GregToPersDateConverter}}" />
+        <TextBox Grid.Row="2"
+                 IsReadOnly="{Binding ElementName=SmpUcEmployeeDetails,Path=ReadOnlyOfFields}"
+                 Grid.Column="8"
+                 Style="{StaticResource StyleOfDataFieldTextBox}"
+                 Text="{Binding BirthPlace,UpdateSourceTrigger=Explicit}" />
+        <persianDateControls:PersianDatePicker Grid.Row="3"
+                                               Grid.Column="2"
+                                               Style="{StaticResource StyleOfDataFieldDatePicker}"
+                                               IsEnabled="{Binding ElementName=SmpUcEmployeeDetails,Path=ReadOnlyOfFields,Converter={StaticResource NegateBooleanConverter}}"
+                                               SelectedDate="{Binding IdCardExportDate,Mode=TwoWay,UpdateSourceTrigger=Explicit,Converter={StaticResource GregToPersDateConverter}}"
+                                               DisplayDate="{Binding IdCardExportDate,Mode=TwoWay,UpdateSourceTrigger=Explicit,Converter={StaticResource GregToPersDateConverter}}" />
+        <TextBox Grid.Row="3"
+                 IsReadOnly="{Binding ElementName=SmpUcEmployeeDetails,Path=ReadOnlyOfFields}"
+                 Grid.Column="4"
+                 Style="{StaticResource StyleOfDataFieldTextBox}"
+                 Text="{Binding IdCardExportPlace,UpdateSourceTrigger=Explicit}" />
+        <TextBox Grid.Row="3"
+                 IsReadOnly="{Binding ElementName=SmpUcEmployeeDetails,Path=ReadOnlyOfFields}"
+                 Grid.Column="6"
+                 Style="{StaticResource StyleOfDataFieldTextBox}"
+                 Text="{Binding HomeTel,UpdateSourceTrigger=Explicit}" />
+        <TextBox Grid.Row="3"
+                 IsReadOnly="{Binding ElementName=SmpUcEmployeeDetails,Path=ReadOnlyOfFields}"
+                 Grid.Column="8"
+                 Style="{StaticResource StyleOfDataFieldTextBox}"
+                 Text="{Binding CellNo,UpdateSourceTrigger=Explicit}" />
+        <TextBox Grid.Row="4"
+                 Grid.Column="2"
+                 Grid.ColumnSpan="7"
+                 VerticalAlignment="Stretch"
+                 IsReadOnly="{Binding ElementName=SmpUcEmployeeDetails,Path=ReadOnlyOfFields}"
+                 Style="{StaticResource StyleOfDataFieldMultiColumnTextBox}"
+                 Text="{Binding Address,UpdateSourceTrigger=Explicit}" />
+    </Grid>
 </UserControl>

@@ -138,6 +138,12 @@
   <data name="ButtonEdit" xml:space="preserve">
     <value>ویرایش رکورد (Ctrl+E)</value>
   </data>
+  <data name="ButtonPhotoBrowse" xml:space="preserve">
+    <value>انتخاب فایل تصویر</value>
+  </data>
+  <data name="ButtonPhotoClear" xml:space="preserve">
+    <value>حذف تصویر</value>
+  </data>
   <data name="ButtonReload" xml:space="preserve">
     <value>بارگزاری مجدد اطلاعات (F5)</value>
   </data>

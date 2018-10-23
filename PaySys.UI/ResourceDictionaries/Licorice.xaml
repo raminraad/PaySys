@@ -13,6 +13,9 @@
 
     <BitmapImage x:Key="icon_reload" UriSource="../Assets/Icons/Licorice/icon_blue_double_reload.png" />
 
+    <BitmapImage x:Key="icon_file_browse" UriSource="../Assets/Icons/Licorice/icon_file_browse.png" />
+    <BitmapImage x:Key="icon_file_clear" UriSource="../Assets/Icons/Licorice/icon_file_clear.png" />
+
     <BitmapImage x:Key="icon_form_state_add" UriSource="../Assets/Icons/Licorice/icon_form_state_add.png" />
     <BitmapImage x:Key="icon_form_state_delete" UriSource="../Assets/Icons/Licorice/icon_form_state_delete.png" />
     <BitmapImage x:Key="icon_form_state_edit" UriSource="../Assets/Icons/Licorice/icon_form_state_edit.png" />
@@ -33,4 +36,5 @@
     <BitmapImage x:Key="icon_black_contracts" UriSource="../Assets/Icons/Licorice/icon_black_contracts.png" />
     <BitmapImage x:Key="icon_black_contract_master" UriSource="../Assets/Icons/Licorice/icon_black_contract_master.png" />
     <BitmapImage x:Key="icon_black_employee_profile" UriSource="../Assets/Icons/Licorice/icon_black_employee_profile.png" />
+    <BitmapImage x:Key="icon_employee_avatar" UriSource="../Assets/Icons/Licorice/icon_employee_avatar.png" />
 </ResourceDictionary>

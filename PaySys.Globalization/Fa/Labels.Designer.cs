@@ -646,6 +646,15 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to فایلهای تصویری|*.jpg;*.jpeg;*.png|JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|Portable Network Graphic (*.png)|*.png.
+        /// </summary>
+        public static string OpenFileDialogFilterForPhotos {
+            get {
+                return ResourceManager.GetString("OpenFileDialogFilterForPhotos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to عملیات.
         /// </summary>
         public static string Operations {

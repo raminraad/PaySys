@@ -177,4 +177,7 @@
   <data name="SelectMiscPayment" xml:space="preserve">
     <value>لطفاً پرداخت متفرقه مورد نظر را انتخاب نمایید.</value>
   </data>
+  <data name="SelectPhotoFile" xml:space="preserve">
+    <value>لطفاً فایل تصویری مورد نظر را انتخاب فرمایید</value>
+  </data>
 </root>

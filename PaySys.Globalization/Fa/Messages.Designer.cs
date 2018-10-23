@@ -239,5 +239,14 @@ namespace PaySys.Globalization.Fa {
                 return ResourceManager.GetString("SelectMiscPayment", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to لطفاً فایل تصویری مورد نظر را انتخاب فرمایید.
+        /// </summary>
+        public static string SelectPhotoFile {
+            get {
+                return ResourceManager.GetString("SelectPhotoFile", resourceCulture);
+            }
+        }
     }
 }
