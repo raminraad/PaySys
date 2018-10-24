@@ -121,7 +121,7 @@
     <value>ایجاد رکورد جدید (Ctrl+N)</value>
   </data>
   <data name="ButtonAddToList" xml:space="preserve">
-    <value>اضافه کردن به لیست (Ctrl+I)</value>
+    <value>افزودن به لیست (Ctrl+I)</value>
   </data>
   <data name="ButtonClearLookup" xml:space="preserve">
     <value>پاک کردن فیلتر</value>

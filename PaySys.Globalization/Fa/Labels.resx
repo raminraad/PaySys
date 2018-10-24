@@ -444,4 +444,10 @@
   <data name="OpenFileDialogFilterForPhotos" xml:space="preserve">
     <value>فایلهای تصویری|*.jpg;*.jpeg;*.png|JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|Portable Network Graphic (*.png)|*.png</value>
   </data>
+  <data name="BaseInfo" xml:space="preserve">
+    <value>اطلاعات پایه</value>
+  </data>
+  <data name="SubGroupBaseInfo" xml:space="preserve">
+    <value>اطلاعات پایه زیرگروه</value>
+  </data>
 </root>

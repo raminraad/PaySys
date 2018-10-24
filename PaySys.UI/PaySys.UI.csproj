@@ -106,8 +106,8 @@
     <Compile Include="Modals\InputBox.cs" />
     <Compile Include="Modals\PaySysMessage.cs" />
     <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="UserControls\UcEmployeeDetails.xaml.cs">
-      <DependentUpon>UcEmployeeDetails.xaml</DependentUpon>
+    <Compile Include="UserControls\UcEmployeeEdit.xaml.cs">
+      <DependentUpon>UcEmployeeEdit.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UcLookup.xaml.cs">
       <DependentUpon>UcLookup.xaml</DependentUpon>
@@ -132,6 +132,9 @@
     </Compile>
     <Compile Include="UserControls\UcSelectGroupAndSubGroup.xaml.cs">
       <DependentUpon>UcSelectGroupAndSubGroup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UcSubGroupEdit.xaml.cs">
+      <DependentUpon>UcSubGroupEdit.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UcSuggesterTextBox.xaml.cs">
       <DependentUpon>UcSuggesterTextBox.xaml</DependentUpon>
@@ -232,7 +235,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\UcEmployeeDetails.xaml">
+    <Page Include="UserControls\UcEmployeeEdit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -265,6 +268,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\UcSelectGroupAndSubGroup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UcSubGroupEdit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -515,6 +522,27 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Icons\Licorice\icon_black_employee_profile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\Licorice\icon_black_base_info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\Licorice\icon_black_titles.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\Licorice\icon_black_misc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\Licorice\icon_black_parameters.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\Licorice\icon_black_tax.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\Licorice\icon_black_handsel_formula.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\Licorice\icon_black_mission_formula.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

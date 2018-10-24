@@ -1,133 +1,125 @@
 ﻿<UserControl x:Name="SmpUcContractFieldTitlesMng"
-			 x:Class="PaySys.UI.UC.UcContractFieldTitlesMng"
-			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-			 xmlns:local="clr-namespace:PaySys.UI.UC"
-			 xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
-			 xmlns:bindingConverter="clr-namespace:PaySys.ModelAndBindLib.BindingConverter;assembly=PaySys.ModelAndBindLib"
-			 xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Entities;assembly=PaySys.ModelAndBindLib"
-			 xmlns:commands="clr-namespace:PaySys.UI.Commands"
-			 mc:Ignorable="d"
-			 Loaded="UcContractFieldTitlesMng_OnLoaded"
-			 FlowDirection="RightToLeft"
-			 d:DesignHeight="300"
-			 d:DesignWidth="600">
+             x:Class="PaySys.UI.UC.UcContractFieldTitlesMng"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:PaySys.UI.UC"
+             xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
+             xmlns:bindingConverter="clr-namespace:PaySys.ModelAndBindLib.BindingConverter;assembly=PaySys.ModelAndBindLib"
+             xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Entities;assembly=PaySys.ModelAndBindLib"
+             xmlns:commands="clr-namespace:PaySys.UI.Commands"
+             xmlns:listViewLayout="clr-namespace:Itenso.Windows.Controls.ListViewLayout;assembly=Itenso.Windows.Controls.ListViewLayout"
+             mc:Ignorable="d"
+             Loaded="UcContractFieldTitlesMng_OnLoaded"
+             FlowDirection="RightToLeft"
+             d:DesignHeight="300"
+             MaxWidth="400" >
     <UserControl.CommandBindings>
         <CommandBinding Command="commands:PaySysCommands.AddItem"
-						CanExecute="AddItem_CanExecute"
-						Executed="AddItem_Execute" />
+                        CanExecute="AddItem_CanExecute"
+                        Executed="AddItem_Execute" />
         <CommandBinding Command="commands:PaySysCommands.DeleteItem"
-						Executed="DeleteItem_Execute" />
+                        Executed="DeleteItem_Execute" />
     </UserControl.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="32" />
-            <RowDefinition Height="8*" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <TextBlock Style="{StaticResource StyleOfListTitleTextBlock}"
-				   Text="{x:Static fa:Labels.ContractFieldTitles}" />
-        <Grid x:Name="GridAdd"
-			  IsEnabled="{Binding ElementName=SmpUcContractFieldTitlesMng,Path=ReadOnlyOfFields,Converter={StaticResource NegateBooleanConverter}}"
-			  Grid.Row="1"
-			  MaxWidth="600"
-              Height="32"
-              Width="{Binding ElementName=ListViewGroupContractField,Path=ActualWidth}"
-			  ZIndex="98">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <local:UcSuggesterTextBox x:Name="SmpUcSuggesterTextBox"/>
-            <Button x:Name="ButtonAddToList" Grid.Column="1"
-                    Command="commands:PaySysCommands.AddItem"
-                    CommandTarget="{Binding ElementName=ListViewMiscDebt}"
-                    ToolTip="{x:Static fa:Tooltips.ButtonAddToList}"
-                    Margin="4,0,0,0"
-                    Style="{StaticResource StyleOfSmallFunctionButton}">
-                <Button.Content>
-                    <Image>
-                        <Image.Style>
-                            <Style  TargetType="{x:Type Image}">
-                                <Setter Property="Width" Value="{StaticResource SizeOfSmallFunctionButtonImage}"/>
-                                <Setter Property="Height" Value="{StaticResource SizeOfSmallFunctionButtonImage}"/>
-                                <Setter Property="HorizontalAlignment" Value="Center"/>
-                                <Setter Property="VerticalAlignment" Value="Center"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding ElementName=ButtonAddToList,Path=IsEnabled}" Value="False">
-                                        <Setter Property="Source" Value="{StaticResource icon_plus_disabled}"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding ElementName=ButtonAddToList,Path=IsEnabled}" Value="True">
-                                        <Setter Property="Source" Value="{StaticResource icon_plus}"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Image.Style>
-                    </Image>
-                </Button.Content>
-            </Button>
-        </Grid>
-        <ListView x:Name="ListViewGroupContractField"
-				  Grid.Row="2"
-				  MaxWidth="600"
-				  d:DataContext="{d:DesignInstance Type=model:ContractField, IsDesignTimeCreatable=True}"
-				  ItemsSource="{Binding ElementName=SmpUcContractFieldTitlesMng ,Path=CurrentMainGroup.ContractFields,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="{x:Static fa:Labels.Title}"
-									Width="{StaticResource WidthOfDataColumnOfText}">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel IsEnabled="{Binding IsEditable}">
-                                    <local:UcTextPair TextOfLabel="{Binding Path=Title}"
-									                  TextOfTextBox="{Binding Path=Title,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-													  ReadOnly="{Binding ElementName = SmpUcContractFieldTitlesMng , Path=ReadOnlyOfFields}"
-													  Width="{StaticResource WidthOfDataFieldOfText}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="{x:Static fa:Labels.ExpenseArticle}"
-									Width="{StaticResource WidthOfDataColumnOfCode}">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel IsEnabled="{Binding IsEditable}">
-                                    <local:UcTextPair TextOfLabel="{Binding Path=TempCurrentExpenseArticleCode}"
-									                  TextOfTextBox="{Binding Path=TempCurrentExpenseArticleCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-													  ReadOnly="{Binding ElementName = SmpUcContractFieldTitlesMng , Path=ReadOnlyOfFields}"
-													  Width="{StaticResource WidthOfDataFieldOfCode}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="{x:Static fa:Labels.Operations}"
-									Width="{StaticResource WidthOfDataColumnOfOperationsWithButtonCountOf1}">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel IsEnabled="{Binding IsEditable}">
-                                    <Button
-                                        IsEnabled="{Binding ElementName=SmpUcContractFieldTitlesMng,Path=ReadOnlyOfFields,Converter={StaticResource NegateBooleanConverter}}"
-                                        Style="{StaticResource StyleOfListFunctionButton}"
-                                        Command="{x:Static commands:PaySysCommands.DeleteItem}"
-                                        CommandParameter="{Binding}"
-                                        CommandTarget="{Binding ElementName=ListViewGroupContractField}"
-                                        ToolTip="{x:Static fa:Tooltips.ButtonDeleteItem}"
-                                        >
-                                        <Button.Content>
-                                            <Image Source="{StaticResource icon_func_remove_from_list}"
-                                        Style="{StaticResource StyleOfListFunctionButtonImage}"
-                                                   />
-                                        </Button.Content>
-                                    </Button>
-                                </StackPanel>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
+                   Grid.Row="0"
+                   Text="{x:Static fa:Labels.ContractFieldTitles}" />
+        <Border Grid.Row="1"
+                Style="{StaticResource StyleOfEditUserControlBorders}" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="32" />
+                    <RowDefinition />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid x:Name="GridAdd"
+                      IsEnabled="{Binding ElementName=SmpUcContractFieldTitlesMng,Path=ReadOnlyOfFields,Converter={StaticResource NegateBooleanConverter}}"
+                      Height="32"
+                      Width="{Binding ElementName=ListViewGroupContractField,Path=ActualWidth}"
+                      ZIndex="98" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <local:UcSuggesterTextBox x:Name="SmpUcSuggesterTextBox" />
+                    <Button x:Name="ButtonAddToList"
+                            Grid.Column="1"
+                            Command="commands:PaySysCommands.AddItem"
+                            CommandTarget="{Binding ElementName=ListViewMiscDebt}"
+                            ToolTip="{x:Static fa:Tooltips.ButtonAddToList}"
+                            Margin="4,0,0,0"
+                            Style="{StaticResource StyleOfSmallFunctionButton}" >
+                        <Button.Content>
+                            <Image Style="{StaticResource StyleOfSmallFunctionButtonImageAdd}" />
+                        </Button.Content>
+                    </Button>
+                </Grid>
+                <ListView x:Name="ListViewGroupContractField"
+                          Grid.Row="1"
+                          d:DataContext="{d:DesignInstance Type=model:ContractField, IsDesignTimeCreatable=True}"
+                          listViewLayout:ListViewLayoutManager.Enabled="True"
+                          ItemsSource="{Binding ElementName=SmpUcContractFieldTitlesMng ,Path=CurrentMainGroup.ContractFields,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" >
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="{x:Static fa:Labels.Title}"
+                                            listViewLayout:ProportionalColumn.Width="3" >
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel IsEnabled="{Binding IsEditable}" >
+                                            <local:UcTextPair TextOfLabel="{Binding Path=Title}"
+                                                              TextOfTextBox="{Binding Path=Title,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                              ReadOnly="{Binding ElementName = SmpUcContractFieldTitlesMng , Path=ReadOnlyOfFields}"
+                                                              Width="100" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="{x:Static fa:Labels.ExpenseArticle}"
+                                            listViewLayout:ProportionalColumn.Width="2" >
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel IsEnabled="{Binding IsEditable}" >
+                                            <local:UcTextPair
+                                                TextOfLabel="{Binding Path=TempCurrentExpenseArticleCode}"
+                                                TextOfTextBox="{Binding Path=TempCurrentExpenseArticleCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                ReadOnly="{Binding ElementName = SmpUcContractFieldTitlesMng , Path=ReadOnlyOfFields}"
+                                                Width="50" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="{x:Static fa:Labels.Operations}"
+                                            listViewLayout:ProportionalColumn.Width="1" >
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel IsEnabled="{Binding IsEditable}" >
+                                            <Button
+                                                IsEnabled="{Binding ElementName=SmpUcContractFieldTitlesMng,Path=ReadOnlyOfFields,Converter={StaticResource NegateBooleanConverter}}"
+                                                Style="{StaticResource StyleOfListFunctionButton}"
+                                                Command="{x:Static commands:PaySysCommands.DeleteItem}"
+                                                CommandParameter="{Binding}"
+                                                CommandTarget="{Binding ElementName=ListViewGroupContractField}"
+                                                ToolTip="{x:Static fa:Tooltips.ButtonDeleteItem}" >
+                                                <Button.Content>
+                                                    <Image Source="{StaticResource icon_func_remove_from_list}"
+                                                           Style="{StaticResource StyleOfListFunctionButtonImage}" />
+                                                </Button.Content>
+                                            </Button>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>

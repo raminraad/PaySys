@@ -8,11 +8,14 @@
              xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
              xmlns:bindingConverter="clr-namespace:PaySys.ModelAndBindLib.BindingConverter;assembly=PaySys.ModelAndBindLib"
              xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Entities;assembly=PaySys.ModelAndBindLib"
+             xmlns:listViewLayout="clr-namespace:Itenso.Windows.Controls.ListViewLayout;assembly=Itenso.Windows.Controls.ListViewLayout"
              mc:Ignorable="d"
              FlowDirection="RightToLeft"
              HorizontalAlignment="Center"
+             Width="370"
+             MaxWidth="370"
              d:DesignHeight="300"
-             d:DesignWidth="550">
+             >
     <UserControl.Resources>
         <CollectionViewSource x:Key="CvsTaxRows"
                               Source="{Binding ElementName=SmpUcTaxTableMng,Path=CurrentSubGroup.CurrenTaxTable.TaxRows,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
@@ -25,46 +28,51 @@
         </Grid.RowDefinitions>
         <TextBlock Style="{StaticResource StyleOfListTitleTextBlock}"
                    Text="{x:Static fa:Labels.TaxValueCalculationTable}" />
+        <Border Style="{StaticResource StyleOfEditUserControlBorders}"
+                  Grid.Row="1"
+                >
+
         <ListView x:Name="ListViewTaxItem"
-                  MaxWidth="500"
                   d:DataContext="{d:DesignInstance Type=model:TaxRow, IsDesignTimeCreatable=True}"
+                  listViewLayout:ListViewLayoutManager.Enabled="True"
                   DataContext="{StaticResource CvsTaxRows}"
                   ItemsSource="{Binding}"
-                  Grid.Row="1">
+                  >
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="{x:Static fa:Labels.From}"
-                                    Width="{StaticResource WidthOfDataColumnOfPrice}">
+                                    listViewLayout:ProportionalColumn.Width="4">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock
                                     Text="{Binding Path=TempValueTo, RelativeSource={RelativeSource PreviousData},Converter={StaticResource CnvAdd},ConverterParameter=1,StringFormat={}{0:N0}}"
-                                    Width="{StaticResource WidthOfDataFieldOfPrice}" />
+                                    />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Header="{x:Static fa:Labels.To}"
-                                    Width="{StaticResource WidthOfDataColumnOfPrice}">
+                                    listViewLayout:ProportionalColumn.Width="4">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBox Text="{Binding Path=TempValueTo,UpdateSourceTrigger=PropertyChanged}"
                                          IsReadOnly="{Binding ElementName=SmpUcTaxTableMng,Path=ReadOnlyOfFields}"
-                                         Width="{StaticResource WidthOfDataFieldOfPrice}" />
+                                         Width="80" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Header="{x:Static fa:Labels.Factor}"
-                                    Width="{StaticResource WidthOfDataColumnOfPrice}">
+                                    listViewLayout:ProportionalColumn.Width="2">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBox Text="{Binding Path=Factor,StringFormat={}{0:N0}}"
                                          IsReadOnly="{Binding ElementName=SmpUcTaxTableMng,Path=ReadOnlyOfFields}"
-                                         Width="{StaticResource WidthOfDataFieldOfPrice}" />
+                                         Width="30" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
+        </Border>
     </Grid>
 </UserControl>

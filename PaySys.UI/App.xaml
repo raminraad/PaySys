@@ -8,20 +8,20 @@
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:uc="clr-namespace:PaySys.UI.UC"
              xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
-             StartupUri="MainWindow.xaml">
+             StartupUri="MainWindow.xaml" >
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="ResourceDictionaries/Licorice.xaml" />
                 <ResourceDictionary Source="ResourceDictionaries/ToolbarTemplates.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <ControlTemplate x:Key="ValidatedTextBoxTemplate_Obsolete">
-                <StackPanel Orientation="Horizontal">
+            <ControlTemplate x:Key="ValidatedTextBoxTemplate_Obsolete" >
+                <StackPanel Orientation="Horizontal" >
                     <Border BorderThickness="2"
                             CornerRadius="5"
                             HorizontalAlignment="Stretch"
                             Width="{Binding ElementName=ErrorAdorner,Path=ActualWidth}"
-                            BorderBrush="Red">
+                            BorderBrush="Red" >
                         <AdornedElementPlaceholder Name="ErrorAdorner" />
                     </Border>
                     <Image Width="28"
@@ -31,15 +31,15 @@
                            Source="{StaticResource icon_notification_validation_error}" />
                 </StackPanel>
             </ControlTemplate>
-            <ControlTemplate x:Key="ValidatedTextBoxTemplate">
-                <DockPanel LastChildFill="true">
+            <ControlTemplate x:Key="ValidatedTextBoxTemplate" >
+                <DockPanel LastChildFill="true" >
                     <Border Background="Red"
                             DockPanel.Dock="right"
                             Margin="5,0,0,0"
                             Width="20"
                             Height="20"
                             CornerRadius="10"
-                            ToolTip="{Binding ElementName=customAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}">
+                            ToolTip="{Binding ElementName=customAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}" >
                         <TextBlock Text="!"
                                    VerticalAlignment="center"
                                    HorizontalAlignment="center"
@@ -47,7 +47,7 @@
                                    Foreground="white" />
                     </Border>
                     <AdornedElementPlaceholder Name="customAdorner"
-                                               VerticalAlignment="Center">
+                                               VerticalAlignment="Center" >
                         <Border BorderBrush="red"
                                 BorderThickness="1" />
                     </AdornedElementPlaceholder>
@@ -61,11 +61,15 @@
             <bindingConverter:ColorPalletEnumToStringConverter x:Key="CnvColor" />
             <bindingConverter:DoublePlusParameterConverter x:Key="DoublePlusParameterConverter" />
 
-            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#844D9B"/>
-            <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="#AD91AD"/>
-            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="WhiteSmoke"/>
-            <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="Black"/>
-            <Brush x:Key="ColorOfFormStateContents" >#6699ff</Brush>
+            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                             Color="#844D9B" />
+            <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}"
+                             Color="#AD91AD" />
+            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}"
+                             Color="WhiteSmoke" />
+            <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}"
+                             Color="Black" />
+            <Brush x:Key="ColorOfFormStateContents" > #6699ff </Brush>
 
             <SolidColorBrush x:Key="ColorOfChildTabItemBackground"
                              Color="#CCEBF0" />
@@ -73,6 +77,10 @@
                              Color="GhostWhite" />
             <SolidColorBrush x:Key="ColorOfParentTabItemBackground"
                              Color="WhiteSmoke" />
+            <SolidColorBrush x:Key="ColorOfEditUserControlsBackground"
+                             Color="#DCCEEF" />
+            <SolidColorBrush x:Key="ColorOfEditUserControlsBorder"
+                             Color="#533F6B" />
             <SolidColorBrush x:Key="ColorOfParentTabItemBackgroundUnselected"
                              Color="#AFAFAF" />
             <SolidColorBrush x:Key="ColorOfAlternateData"
@@ -80,52 +88,53 @@
             <SolidColorBrush x:Key="ColorOfDataGridLines"
                              Color="#E0E0E0" />
 
-            <FontFamily x:Key="FontFamilyOfDataFields">Tahoma</FontFamily>
-            <FontFamily x:Key="FontFamilyOfStatusBar">pfont</FontFamily>
-            <FontFamily x:Key="FontFamilyOfLookupTextBox">pfont</FontFamily>
-            <FontFamily x:Key="FontFamilyOfTabHeader">pfont</FontFamily>
-            <FontFamily x:Key="FontFamilyOfMenu">pfont</FontFamily>
+            <FontFamily x:Key="FontFamilyOfDataFields" > Tahoma </FontFamily>
+            <FontFamily x:Key="FontFamilyOfListTitleTextBlock" > adobe arabic </FontFamily>
+            <FontFamily x:Key="FontFamilyOfStatusBar" > pfont </FontFamily>
+            <FontFamily x:Key="FontFamilyOfLookupTextBox" > pfont </FontFamily>
+            <FontFamily x:Key="FontFamilyOfTabHeader" > pfont </FontFamily>
+            <FontFamily x:Key="FontFamilyOfMenu" > pfont </FontFamily>
 
-            <system:Double x:Key="FontSizeOfDataFields">10</system:Double>
-            <system:Double x:Key="FontSizeOfStatusBar">12</system:Double>
-            <system:Double x:Key="FontSizeOfListTitle">20</system:Double>
-            <system:Double x:Key="FontSizeOfLookupTextBox">16</system:Double>
-            <system:Double x:Key="FontSizeOfTabHeader">16</system:Double>
-            <system:Double x:Key="FontSizeOfMenu">16</system:Double>
-            <system:Double x:Key="FontSizeOfStatusBarContentImage">16</system:Double>
+            <system:Double x:Key="FontSizeOfDataFields" > 10 </system:Double>
+            <system:Double x:Key="FontSizeOfStatusBar" > 12 </system:Double>
+            <system:Double x:Key="FontSizeOfListTitleTextBlock" > 16 </system:Double>
+            <system:Double x:Key="FontSizeOfLookupTextBox" > 16 </system:Double>
+            <system:Double x:Key="FontSizeOfTabHeader" > 16 </system:Double>
+            <system:Double x:Key="FontSizeOfMenu" > 16 </system:Double>
+            <system:Double x:Key="FontSizeOfStatusBarContentImage" > 16 </system:Double>
 
-            <system:Double x:Key="HeightOfDataField">24</system:Double>
-            <system:Double x:Key="HeightOfDataComboBox">24</system:Double>
-            <system:Double x:Key="HeightOfSelectionComboBox">34</system:Double>
-            <system:Double x:Key="HeightOfDataTextBox">24</system:Double>
-            <system:Double x:Key="HeightOfDataLabel">24</system:Double>
-            <system:Double x:Key="HeightOfDataGridRow">21</system:Double>
-            <system:Double x:Key="HeightOfDataGridColumnHeader">30</system:Double>
-            <system:Double x:Key="HeightOfLookupTextBox">24</system:Double>
-            <system:Double x:Key="HeightOfLookupImage">24</system:Double>
-            <system:Double x:Key="HeightOfLookupClearImage">16</system:Double>
-            <system:Double x:Key="HeightOfMenuItam">30</system:Double>
+            <system:Double x:Key="HeightOfDataField" > 24 </system:Double>
+            <system:Double x:Key="HeightOfDataComboBox" > 24 </system:Double>
+            <system:Double x:Key="HeightOfSelectionComboBox" > 34 </system:Double>
+            <system:Double x:Key="HeightOfDataTextBox" > 24 </system:Double>
+            <system:Double x:Key="HeightOfDataLabel" > 24 </system:Double>
+            <system:Double x:Key="HeightOfDataGridRow" > 21 </system:Double>
+            <system:Double x:Key="HeightOfDataGridColumnHeader" > 30 </system:Double>
+            <system:Double x:Key="HeightOfLookupTextBox" > 24 </system:Double>
+            <system:Double x:Key="HeightOfLookupImage" > 24 </system:Double>
+            <system:Double x:Key="HeightOfLookupClearImage" > 16 </system:Double>
+            <system:Double x:Key="HeightOfMenuItam" > 30 </system:Double>
 
-            <system:Double x:Key="WidthOfDataFieldOfText">200</system:Double>
-            <system:Double x:Key="WidthOfDataColumnOfText">220</system:Double>
-            <system:Double x:Key="WidthOfDataFieldOfCode">115</system:Double>
-            <system:Double x:Key="WidthOfDataColumnOfCode">135</system:Double>
-            <system:Double x:Key="WidthOfDataFieldOfPrice">120</system:Double>
-            <system:Double x:Key="WidthOfDataColumnOfPrice">140</system:Double>
-            <system:Double x:Key="WidthOfDataFieldOfButton">40</system:Double>
-            <system:Double x:Key="WidthOfDataColumnOfButton">60</system:Double>
-            <system:Double x:Key="WidthOfDataColumnOfOperationsWithButtonCountOf1">60</system:Double>
-            <system:Double x:Key="WidthOfTabOneOf4">350</system:Double>
-            <system:Double x:Key="WidthOfTabOneOf5">300</system:Double>
-            <system:Double x:Key="WidthOfTabOneOf6">250</system:Double>
-            <system:Double x:Key="WidthOfTabOneOf7">200</system:Double>
-            <system:Double x:Key="WidthOfTabOneOf8">150</system:Double>
-            <system:Double x:Key="WidthOfTabOneOf9">100</system:Double>
+            <system:Double x:Key="WidthOfDataFieldOfText" > 200 </system:Double>
+            <system:Double x:Key="WidthOfDataColumnOfText" > 220 </system:Double>
+            <system:Double x:Key="WidthOfDataFieldOfCode" > 115 </system:Double>
+            <system:Double x:Key="WidthOfDataColumnOfCode" > 135 </system:Double>
+            <system:Double x:Key="WidthOfDataFieldOfPrice" > 120 </system:Double>
+            <system:Double x:Key="WidthOfDataColumnOfPrice" > 140 </system:Double>
+            <system:Double x:Key="WidthOfDataFieldOfButton" > 40 </system:Double>
+            <system:Double x:Key="WidthOfDataColumnOfButton" > 60 </system:Double>
+            <system:Double x:Key="WidthOfDataColumnOfOperationsWithButtonCountOf1" > 60 </system:Double>
+            <system:Double x:Key="WidthOfTabOneOf4" > 350 </system:Double>
+            <system:Double x:Key="WidthOfTabOneOf5" > 300 </system:Double>
+            <system:Double x:Key="WidthOfTabOneOf6" > 250 </system:Double>
+            <system:Double x:Key="WidthOfTabOneOf7" > 200 </system:Double>
+            <system:Double x:Key="WidthOfTabOneOf8" > 150 </system:Double>
+            <system:Double x:Key="WidthOfTabOneOf9" > 100 </system:Double>
 
-            <system:Double x:Key="SizeOfSmallFunctionButton">32</system:Double>
-            <system:Double x:Key="SizeOfSmallFunctionButtonImage">16</system:Double>
-            <system:Double x:Key="SizeOfListFunctionButton">24</system:Double>
-            <system:Double x:Key="SizeOfListFunctionButtonImage">16</system:Double>
+            <system:Double x:Key="SizeOfSmallFunctionButton" > 32 </system:Double>
+            <system:Double x:Key="SizeOfSmallFunctionButtonImage" > 16 </system:Double>
+            <system:Double x:Key="SizeOfListFunctionButton" > 24 </system:Double>
+            <system:Double x:Key="SizeOfListFunctionButtonImage" > 16 </system:Double>
 
             <Thickness x:Key="MarginOfDataFields"
                        Left="10"
@@ -148,7 +157,7 @@
                        Right="0"
                        Bottom="0" />
 
-            <Style TargetType="DataGrid">
+            <Style TargetType="DataGrid" >
                 <Setter Property="Margin"
                         Value="{StaticResource MarginOfDetail}" />
                 <Setter Property="ColumnWidth"
@@ -178,188 +187,19 @@
                 <Setter Property="MinColumnWidth"
                         Value="60" />
             </Style>
-            
-            <Style TargetType="{x:Type DataGridCell}">
-                <Setter Property="Template">
+
+            <Style TargetType="{x:Type DataGridCell}" >
+                <Setter Property="Template" >
                     <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type DataGridCell}">
-                            <Grid Background="{TemplateBinding Background}">
+                        <ControlTemplate TargetType="{x:Type DataGridCell}" >
+                            <Grid Background="{TemplateBinding Background}" >
                                 <ContentPresenter VerticalAlignment="Center" />
                             </Grid>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
             </Style>
-            <Style x:Key="StyleOfTabItem" TargetType="{x:Type TabItem}">
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type TabItem}">
-                            <Grid >
-                                <Border Name="Border" Background="#AAAAAAAA" Margin="2,2,2,0" BorderBrush="Black" BorderThickness="1,1,1,0" CornerRadius="5,5,0,0" >
-                                    <ContentPresenter x:Name="ContentSite" ContentSource="Header" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,12,2" RecognizesAccessKey="True"/>
-                                </Border>
-
-                            </Grid>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsSelected" Value="True">
-                                    <Setter TargetName="Border" Property="Background" Value="#FFA4D0C8" />
-                                </Trigger>
-                                <Trigger Property="IsEnabled" Value="False">
-                                    <Setter TargetName="Border" Property="Background" Value="#FF6E6C67" />
-                                </Trigger>
-                                <Trigger Property="IsSelected" Value="true">
-                                    <Setter Property="Height" Value="35" />
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-
-                <Setter Property="Background" Value="#FF6E6C67" />
-                <Setter Property="Height" Value="30" />
-                <Setter Property="VerticalAlignment" Value="Bottom" />
-                <Setter Property="Width" Value="Auto" />
-                <Setter Property="FontFamily" Value="{StaticResource FontFamilyOfTabHeader}" />
-                <Setter Property="FontSize" Value="{StaticResource FontSizeOfTabHeader}" />
-            </Style>
-            <Style x:Key="StyleOfParentTabControl"
-                   TargetType="TabControl">
-                <Setter Property="Background"
-                        Value="{StaticResource ColorOfParentTabItemBackground}" />
-                <Setter Property="Margin"
-                        Value="{StaticResource MarginOfMaster}" />
-                <Setter Property="BorderBrush"
-                        Value="DimGray" />
-                <Setter Property="BorderThickness"
-                        Value="1" />
-            </Style>
-            <Style x:Key="StyleOfChildTabControl"
-                   BasedOn="{StaticResource StyleOfParentTabControl}"
-                   TargetType="TabControl">
-                <Setter Property="Background"
-                        Value="{StaticResource ColorOfChildTabItemBackground}" />
-                <Setter Property="Margin"
-                        Value="{StaticResource MarginOfDetail}" />
-
-            </Style>
-            <Style x:Key="StyleOfChildTabItem"
-                   TargetType="TabItem">
-                <Setter Property="FontFamily"
-                        Value="{StaticResource FontFamilyOfTabHeader}" />
-                <Setter Property="FontSize"
-                        Value="{StaticResource FontSizeOfTabHeader}" />
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="TabItem">
-                            <Border Name="Border"
-                                    BorderThickness="1,1,1,0"
-                                    BorderBrush="DimGray"
-                                    CornerRadius="5,5,0,0"
-                                    Margin="-2,0,5,-2">
-                                <ContentPresenter x:Name="ContentSite"
-                                                  VerticalAlignment="Center"
-                                                  ContentSource="Header"
-                                                  Width="Auto"
-                                                  Height="30"
-                                                  Margin="4,0" />
-                            </Border>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsSelected"
-                                         Value="True">
-                                    <Setter TargetName="Border"
-                                            Property="Background"
-                                            Value="{StaticResource ColorOfChildTabItemBackground}" />
-
-                                </Trigger>
-                                <Trigger Property="IsSelected"
-                                         Value="False">
-                                    <Setter TargetName="Border"
-                                            Property="Background"
-                                            Value="{StaticResource ColorOfChildTabItemBackgroundUnselected}" />
-
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-            <Style x:Key="StyleOfParentTabItem"
-                   TargetType="TabItem">
-                <Setter Property="FontFamily"
-                        Value="{StaticResource FontFamilyOfTabHeader}" />
-                <Setter Property="FontSize"
-                        Value="{StaticResource FontSizeOfTabHeader}" />
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="TabItem">
-                            <Border Name="Border"
-                                    BorderThickness="1,1,1,0"
-                                    BorderBrush="DimGray"
-                                    CornerRadius="5,5,0,0"
-                                    Margin="-2,0,5,-2">
-                                <ContentPresenter x:Name="ContentSite"
-                                                  VerticalAlignment="Center"
-                                                  ContentSource="Header"
-                                                  Width="Auto"
-                                                  Height="30"
-                                                  Margin="4,0" />
-                            </Border>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsSelected"
-                                         Value="True">
-                                    <Setter TargetName="Border"
-                                            Property="Background"
-                                            Value="{StaticResource ColorOfParentTabItemBackground}" />
-
-                                </Trigger>
-                                <Trigger Property="IsSelected"
-                                         Value="False">
-                                    <Setter TargetName="Border"
-                                            Property="Background"
-                                            Value="{StaticResource ColorOfParentTabItemBackgroundUnselected}" />
-
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-
-            <Style x:Key="StyleOfGridSplitter"
-                   TargetType="GridSplitter">
-                <Setter Property="ShowsPreview"
-                        Value="True" />
-                <Setter Property="Background"
-                        Value="Gray" />
-                <Setter Property="Visibility"
-                        Value="Visible" />
-            </Style>
-            <Style x:Key="StyleOfGridSplitterHorizontal"
-                   TargetType="GridSplitter"
-                   BasedOn="{StaticResource StyleOfGridSplitter}">
-                <Setter Property="HorizontalAlignment"
-                        Value="Stretch" />
-                <Setter Property="Height"
-                        Value="2" />
-                <Setter Property="VerticalAlignment"
-                        Value="Center" />
-                <Setter Property="Margin"
-                        Value="0,10" />
-            </Style>
-            <Style x:Key="StyleOfGridSplitterVertical"
-                   TargetType="GridSplitter"
-                   BasedOn="{StaticResource StyleOfGridSplitter}">
-                <Setter Property="VerticalAlignment"
-                        Value="Stretch" />
-                <Setter Property="Width"
-                        Value="2" />
-                <Setter Property="HorizontalAlignment"
-                        Value="Center" />
-                <Setter Property="Margin"
-                        Value="10,0" />
-            </Style>
-
-            <Style TargetType="ComboBox">
+            <Style TargetType="ComboBox" >
                 <Setter Property="Height"
                         Value="{StaticResource HeightOfDataComboBox}" />
                 <Setter Property="FontFamily"
@@ -371,7 +211,7 @@
                 <Setter Property="VerticalAlignment"
                         Value="Center" />
             </Style>
-            <Style TargetType="MenuItem">
+            <Style TargetType="MenuItem" >
                 <Setter Property="Height"
                         Value="{StaticResource HeightOfMenuItam}" />
                 <Setter Property="Foreground"
@@ -381,19 +221,19 @@
                 <Setter Property="FontSize"
                         Value="{StaticResource FontSizeOfMenu}" />
             </Style>
-            <Style TargetType="GridViewColumnHeader">
+            <Style TargetType="GridViewColumnHeader" >
                 <Setter Property="FontFamily"
                         Value="{StaticResource FontFamilyOfDataFields}" />
                 <Setter Property="FontSize"
                         Value="{StaticResource FontSizeOfDataFields}" />
             </Style>
-            <Style TargetType="uc:UcSuggesterTextBox">
+            <Style TargetType="uc:UcSuggesterTextBox" >
                 <Setter Property="VerticalAlignment"
                         Value="Top" />
                 <Setter Property="HorizontalAlignment"
                         Value="Stretch" />
             </Style>
-            <Style TargetType="ListView">
+            <Style TargetType="ListView" >
                 <Setter Property="FontFamily"
                         Value="{StaticResource FontFamilyOfDataFields}" />
                 <Setter Property="FontSize"
@@ -404,9 +244,9 @@
                         Value="Single" />
                 <Setter Property="KeyboardNavigation.TabNavigation"
                         Value="Continue" />
-                <Setter Property="ItemContainerStyle">
+                <Setter Property="ItemContainerStyle" >
                     <Setter.Value>
-                        <Style TargetType="ListViewItem">
+                        <Style TargetType="ListViewItem" >
                             <Setter Property="IsTabStop"
                                     Value="False" />
                             <EventSetter Event="GotFocus"
@@ -421,7 +261,7 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-            <Style TargetType="Label">
+            <Style TargetType="Label" >
                 <Setter Property="FontFamily"
                         Value="{StaticResource FontFamilyOfDataFields}" />
                 <Setter Property="FontSize"
@@ -431,31 +271,241 @@
                 <Setter Property="VerticalContentAlignment"
                         Value="Center" />
             </Style>
+            <!-- Named Styles -->
+
+            <Style x:Key="StyleOfEditUserControlBorders"
+                   TargetType="Border" >
+                <Setter Property="BorderThickness"
+                        Value="3" />
+                <Setter Property="BorderBrush"
+                        Value="{StaticResource ColorOfEditUserControlsBorder}" />
+                <Setter Property="CornerRadius"
+                        Value="10" />
+                <Setter Property="Background"
+                        Value="{StaticResource ColorOfEditUserControlsBackground}" />
+                <Setter Property="Padding"
+                        Value="10" />
+            </Style>
+
+            <Style x:Key="StyleOfTabItem"
+                   TargetType="{x:Type TabItem}" >
+                <Setter Property="Template" >
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type TabItem}" >
+                            <Grid>
+                                <Border Name="Border"
+                                        Background="#AAAAAAAA"
+                                        Margin="2,2,2,0"
+                                        BorderBrush="Black"
+                                        BorderThickness="1,1,1,0"
+                                        CornerRadius="5,5,0,0" >
+                                    <ContentPresenter x:Name="ContentSite"
+                                                      ContentSource="Header"
+                                                      VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"
+                                                      Margin="2,2,12,2"
+                                                      RecognizesAccessKey="True" />
+                                </Border>
+
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsSelected"
+                                         Value="True" >
+                                    <Setter TargetName="Border"
+                                            Property="Background"
+                                            Value="#FFA4D0C8" />
+                                </Trigger>
+                                <Trigger Property="IsEnabled"
+                                         Value="False" >
+                                    <Setter TargetName="Border"
+                                            Property="Background"
+                                            Value="#FF6E6C67" />
+                                </Trigger>
+                                <Trigger Property="IsSelected"
+                                         Value="true" >
+                                    <Setter Property="Height"
+                                            Value="35" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+
+                <Setter Property="Background"
+                        Value="#FF6E6C67" />
+                <Setter Property="Height"
+                        Value="30" />
+                <Setter Property="VerticalAlignment"
+                        Value="Bottom" />
+                <Setter Property="Width"
+                        Value="Auto" />
+                <Setter Property="FontFamily"
+                        Value="{StaticResource FontFamilyOfTabHeader}" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource FontSizeOfTabHeader}" />
+            </Style>
+            <Style x:Key="StyleOfParentTabControl"
+                   TargetType="TabControl" >
+                <Setter Property="Background"
+                        Value="{StaticResource ColorOfParentTabItemBackground}" />
+                <Setter Property="Margin"
+                        Value="{StaticResource MarginOfMaster}" />
+                <Setter Property="BorderBrush"
+                        Value="DimGray" />
+                <Setter Property="BorderThickness"
+                        Value="1" />
+            </Style>
+            <Style x:Key="StyleOfChildTabControl"
+                   BasedOn="{StaticResource StyleOfParentTabControl}"
+                   TargetType="TabControl" >
+                <Setter Property="Background"
+                        Value="{StaticResource ColorOfChildTabItemBackground}" />
+                <Setter Property="Margin"
+                        Value="{StaticResource MarginOfDetail}" />
+
+            </Style>
+            <Style x:Key="StyleOfChildTabItem"
+                   TargetType="TabItem" >
+                <Setter Property="FontFamily"
+                        Value="{StaticResource FontFamilyOfTabHeader}" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource FontSizeOfTabHeader}" />
+                <Setter Property="Template" >
+                    <Setter.Value>
+                        <ControlTemplate TargetType="TabItem" >
+                            <Border Name="Border"
+                                    BorderThickness="1,1,1,0"
+                                    BorderBrush="DimGray"
+                                    CornerRadius="5,5,0,0"
+                                    Margin="-2,0,5,-2" >
+                                <ContentPresenter x:Name="ContentSite"
+                                                  VerticalAlignment="Center"
+                                                  ContentSource="Header"
+                                                  Width="Auto"
+                                                  Height="30"
+                                                  Margin="4,0" />
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsSelected"
+                                         Value="True" >
+                                    <Setter TargetName="Border"
+                                            Property="Background"
+                                            Value="{StaticResource ColorOfChildTabItemBackground}" />
+
+                                </Trigger>
+                                <Trigger Property="IsSelected"
+                                         Value="False" >
+                                    <Setter TargetName="Border"
+                                            Property="Background"
+                                            Value="{StaticResource ColorOfChildTabItemBackgroundUnselected}" />
+
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="StyleOfParentTabItem"
+                   TargetType="TabItem" >
+                <Setter Property="FontFamily"
+                        Value="{StaticResource FontFamilyOfTabHeader}" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource FontSizeOfTabHeader}" />
+                <Setter Property="Template" >
+                    <Setter.Value>
+                        <ControlTemplate TargetType="TabItem" >
+                            <Border Name="Border"
+                                    BorderThickness="1,1,1,0"
+                                    BorderBrush="DimGray"
+                                    CornerRadius="5,5,0,0"
+                                    Margin="-2,0,5,-2" >
+                                <ContentPresenter x:Name="ContentSite"
+                                                  VerticalAlignment="Center"
+                                                  ContentSource="Header"
+                                                  Width="Auto"
+                                                  Height="30"
+                                                  Margin="4,0" />
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsSelected"
+                                         Value="True" >
+                                    <Setter TargetName="Border"
+                                            Property="Background"
+                                            Value="{StaticResource ColorOfParentTabItemBackground}" />
+
+                                </Trigger>
+                                <Trigger Property="IsSelected"
+                                         Value="False" >
+                                    <Setter TargetName="Border"
+                                            Property="Background"
+                                            Value="{StaticResource ColorOfParentTabItemBackgroundUnselected}" />
+
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="StyleOfGridSplitter"
+                   TargetType="GridSplitter" >
+                <Setter Property="ShowsPreview"
+                        Value="True" />
+                <Setter Property="Background"
+                        Value="Gray" />
+                <Setter Property="Visibility"
+                        Value="Visible" />
+            </Style>
+            <Style x:Key="StyleOfGridSplitterHorizontal"
+                   TargetType="GridSplitter"
+                   BasedOn="{StaticResource StyleOfGridSplitter}" >
+                <Setter Property="HorizontalAlignment"
+                        Value="Stretch" />
+                <Setter Property="Height"
+                        Value="2" />
+                <Setter Property="VerticalAlignment"
+                        Value="Center" />
+                <Setter Property="Margin"
+                        Value="0,10" />
+            </Style>
+            <Style x:Key="StyleOfGridSplitterVertical"
+                   TargetType="GridSplitter"
+                   BasedOn="{StaticResource StyleOfGridSplitter}" >
+                <Setter Property="VerticalAlignment"
+                        Value="Stretch" />
+                <Setter Property="Width"
+                        Value="2" />
+                <Setter Property="HorizontalAlignment"
+                        Value="Center" />
+                <Setter Property="Margin"
+                        Value="10,0" />
+            </Style>
+
             <Style x:Key="StyleOfListTitleTextBlock"
-                   TargetType="TextBlock">
+                   TargetType="TextBlock" >
                 <Setter Property="HorizontalAlignment"
                         Value="Center" />
                 <Setter Property="VerticalAlignment"
                         Value="Bottom" />
                 <Setter Property="FontSize"
-                        Value="{StaticResource FontSizeOfListTitle}" />
+                        Value="{StaticResource FontSizeOfListTitleTextBlock}" />
                 <Setter Property="FontFamily"
-                        Value="{StaticResource FontFamilyOfDataFields}" />
+                        Value="{StaticResource FontFamilyOfListTitleTextBlock}" />
                 <Setter Property="FontWeight"
                         Value="Black" />
                 <Setter Property="TextWrapping"
                         Value="Wrap" />
                 <Setter Property="Margin"
-                        Value="0,15" />
+                        Value="0,8" />
             </Style>
             <Style x:Key="StyleOfListTitleLabel"
-                   TargetType="Label">
+                   TargetType="Label" >
                 <Setter Property="HorizontalAlignment"
                         Value="Center" />
                 <Setter Property="VerticalAlignment"
                         Value="Bottom" />
                 <Setter Property="FontSize"
-                        Value="{StaticResource FontSizeOfListTitle}" />
+                        Value="{StaticResource FontSizeOfListTitleTextBlock}" />
                 <Setter Property="FontFamily"
                         Value="{StaticResource FontFamilyOfDataFields}" />
                 <Setter Property="FontWeight"
@@ -464,7 +514,7 @@
                         Value="Center" />
             </Style>
             <Style x:Key="StyleOfListViewItem"
-                   TargetType="ListViewItem">
+                   TargetType="ListViewItem" >
                 <Setter Property="IsTabStop"
                         Value="False" />
                 <Setter Property="FontFamily"
@@ -475,7 +525,7 @@
                         Value="Center" />
             </Style>
             <Style x:Key="StyleOfDataFieldTextBox"
-                   TargetType="TextBox">
+                   TargetType="TextBox" >
                 <Setter Property="Height"
                         Value="{StaticResource HeightOfDataTextBox}" />
                 <Setter Property="Width"
@@ -492,7 +542,7 @@
                         Value="Left" />
                 <Setter Property="HorizontalContentAlignment"
                         Value="Left" />
-                
+
                 <Setter Property="Validation.ErrorTemplate"
                         Value="{StaticResource ValidatedTextBoxTemplate}" />
                 <Setter Property="MaxLength"
@@ -503,7 +553,7 @@
                              Handler="TextBoxTextChanged" />
             </Style>
             <Style x:Key="StyleOfDataFieldMultiColumnTextBox"
-                   TargetType="TextBox">
+                   TargetType="TextBox" >
                 <Setter Property="FontFamily"
                         Value="{StaticResource FontFamilyOfDataFields}" />
                 <Setter Property="FontSize"
@@ -518,7 +568,7 @@
                         Value="{StaticResource MarginOfDataFields}" />
             </Style>
             <Style x:Key="StyleOfDataFieldComboBox"
-                   TargetType="ComboBox">
+                   TargetType="ComboBox" >
                 <Setter Property="Height"
                         Value="{StaticResource HeightOfDataComboBox}" />
                 <Setter Property="Width"
@@ -533,10 +583,18 @@
                         Value="Center" />
                 <Setter Property="HorizontalAlignment"
                         Value="Left" />
-                
+            </Style>
+            <Style x:Key="StyleOfDataFieldCheckBox"
+                   TargetType="CheckBox" >
+                <Setter Property="FlowDirection"
+                        Value="LeftToRight" />
+                <Setter Property="HorizontalAlignment"
+                        Value="Left" />
+                <Setter Property="VerticalAlignment"
+                        Value="Center" />
             </Style>
             <Style x:Key="StyleOfDataFieldDatePicker"
-                   TargetType="persianDateControls:PersianDatePicker">
+                   TargetType="persianDateControls:PersianDatePicker" >
                 <Setter Property="Height"
                         Value="{StaticResource HeightOfDataComboBox}" />
                 <Setter Property="Width"
@@ -551,10 +609,10 @@
                         Value="Stretch" />
                 <Setter Property="HorizontalAlignment"
                         Value="Left" />
-                
+
             </Style>
             <Style x:Key="StyleOfDataFieldTimePicker"
-                   TargetType="xctk:TimePicker">
+                   TargetType="xctk:TimePicker" >
                 <Setter Property="FontFamily"
                         Value="{StaticResource FontFamilyOfDataFields}" />
                 <Setter Property="Format"
@@ -573,7 +631,7 @@
                         Value="{StaticResource HeightOfDataComboBox}" />
             </Style>
             <Style x:Key="StyleOfDataFieldLabel"
-                   TargetType="Label">
+                   TargetType="Label" >
                 <Setter Property="Height"
                         Value="{StaticResource HeightOfDataLabel}" />
                 <Setter Property="Width"
@@ -587,7 +645,8 @@
                 <Setter Property="VerticalContentAlignment"
                         Value="Center" />
             </Style>
-            <Style x:Key="StyleOfStatusBarContentLabel" TargetType="Label">
+            <Style x:Key="StyleOfStatusBarContentLabel"
+                   TargetType="Label" >
                 <Setter Property="FontFamily"
                         Value="{StaticResource FontFamilyOfStatusBar}" />
                 <Setter Property="FontSize"
@@ -595,10 +654,10 @@
                 <Setter Property="VerticalAlignment"
                         Value="Stretch" />
                 <Setter Property="VerticalContentAlignment"
-                        Value="Center"/>
+                        Value="Center" />
             </Style>
             <Style x:Key="StyleOfDataFieldTextBlock"
-                   TargetType="TextBlock">
+                   TargetType="TextBlock" >
                 <Setter Property="Height"
                         Value="{StaticResource HeightOfDataLabel}" />
                 <Setter Property="Width"
@@ -612,13 +671,15 @@
             </Style>
             <Style x:Key="StyleOfPassageTextBlock"
                    BasedOn="{StaticResource StyleOfDataFieldTextBlock}"
-                   TargetType="TextBlock">
+                   TargetType="TextBlock" >
                 <Setter Property="Width"
+                        Value="Auto" />
+                <Setter Property="Height"
                         Value="Auto" />
             </Style>
 
             <Style x:Key="StyleOfTitleImage"
-                   TargetType="Image">
+                   TargetType="Image" >
                 <Setter Property="Height"
                         Value="48" />
                 <Setter Property="Width"
@@ -628,7 +689,7 @@
             </Style>
             <Style x:Key="StyleOfLookupImage"
                    TargetType="Image"
-                   BasedOn="{StaticResource StyleOfTitleImage}">
+                   BasedOn="{StaticResource StyleOfTitleImage}" >
                 <Setter Property="Height"
                         Value="{StaticResource HeightOfLookupImage}" />
                 <Setter Property="Width"
@@ -636,7 +697,7 @@
             </Style>
             <Style x:Key="StyleOfLookupClearImage"
                    TargetType="Image"
-                   BasedOn="{StaticResource StyleOfLookupImage}">
+                   BasedOn="{StaticResource StyleOfLookupImage}" >
                 <Setter Property="Height"
                         Value="{StaticResource HeightOfLookupClearImage}" />
                 <Setter Property="Width"
@@ -644,7 +705,7 @@
             </Style>
 
             <Style x:Key="StyleOfTabItemHeaderTextBlock"
-                   TargetType="TextBlock">
+                   TargetType="TextBlock" >
                 <Setter Property="HorizontalAlignment"
                         Value="Center" />
                 <Setter Property="VerticalAlignment"
@@ -656,29 +717,49 @@
             </Style>
 
             <Style x:Key="StyleOfSmallFunctionButton"
-                   TargetType="Button">
+                   TargetType="Button" >
                 <Setter Property="Height"
                         Value="{StaticResource SizeOfSmallFunctionButton}" />
                 <Setter Property="Width"
                         Value="{StaticResource SizeOfSmallFunctionButton}" />
             </Style>
             <Style x:Key="StyleOfSmallFunctionButtonImage"
-                   TargetType="{x:Type Image}">
+                   TargetType="{x:Type Image}" >
                 <Setter Property="Height"
                         Value="{StaticResource SizeOfSmallFunctionButtonImage}" />
                 <Setter Property="Width"
                         Value="{StaticResource SizeOfSmallFunctionButtonImage}" />
+                <Setter Property="HorizontalAlignment"
+                        Value="Stretch" />
+                <Setter Property="VerticalAlignment"
+                        Value="Stretch" />
+            </Style>
+            <Style x:Key="StyleOfSmallFunctionButtonImageAdd"
+                   TargetType="{x:Type Image}"
+                   BasedOn="{StaticResource StyleOfSmallFunctionButtonImage}" >
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsEnabled,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Button}}"
+                                 Value="False" >
+                        <Setter Property="Source"
+                                Value="{StaticResource icon_plus_disabled}" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding IsEnabled,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Button}}"
+                                 Value="True" >
+                        <Setter Property="Source"
+                                Value="{StaticResource icon_plus}" />
+                    </DataTrigger>
+                </Style.Triggers>
             </Style>
 
             <Style x:Key="StyleOfListFunctionButton"
-                   TargetType="Button">
+                   TargetType="Button" >
                 <Setter Property="Height"
                         Value="{StaticResource SizeOfListFunctionButton}" />
                 <Setter Property="Width"
                         Value="{StaticResource SizeOfListFunctionButton}" />
             </Style>
             <Style x:Key="StyleOfListFunctionButtonImage"
-                   TargetType="{x:Type Image}">
+                   TargetType="{x:Type Image}" >
                 <Setter Property="Height"
                         Value="{StaticResource SizeOfListFunctionButtonImage}" />
                 <Setter Property="Width"
@@ -690,7 +771,7 @@
             </Style>
 
             <Style x:Key="StyleOfSelectionItemLabel"
-                   TargetType="Label">
+                   TargetType="Label" >
                 <Setter Property="FontFamily"
                         Value="{StaticResource FontFamilyOfDataFields}" />
                 <Setter Property="FontSize"
@@ -701,7 +782,7 @@
                         Value="Left" />
             </Style>
             <Style x:Key="StyleOfLookupTextBox"
-                   TargetType="TextBox">
+                   TargetType="TextBox" >
                 <Setter Property="FontFamily"
                         Value="{StaticResource FontFamilyOfLookupTextBox}" />
                 <Setter Property="FontSize"
@@ -714,7 +795,7 @@
                         Value="{StaticResource HeightOfLookupTextBox}" />
             </Style>
             <Style x:Key="StyleOfSelectionComboBox"
-                   TargetType="ComboBox">
+                   TargetType="ComboBox" >
                 <Setter Property="Height"
                         Value="{StaticResource HeightOfSelectionComboBox}" />
                 <Setter Property="FontFamily"

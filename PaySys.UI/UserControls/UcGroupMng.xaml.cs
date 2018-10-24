@@ -37,7 +37,7 @@ namespace PaySys.UI.UC
     /// </summary>
     public partial class UcGroupMng : UserControl
     {
-        public PaySysContext Context { set; get; } = new PaySysContext();
+        public PaySysContext Context { set; get; } 
 
         public UcGroupMng()
         {
@@ -50,11 +50,11 @@ namespace PaySys.UI.UC
 
         private void Reload()
         {
+            Context = new PaySysContext();
             Context.MainGroups.Load();
             DataContext = Context.MainGroups.Local;
             foreach (var control in GridMain.FindVisualChildren<UcTextPair>())
                 control.UpdateTarget();
-//				control.GetBindingExpression( UcTextPair.TextOfTextBoxProperty )?.UpdateTarget();
 
             Context.ContractFields.Load();
             SmpUcContractFieldTitlesMng.ContractFieldsAll = Context.ContractFields.Local.ToList();
@@ -75,20 +75,20 @@ namespace PaySys.UI.UC
             var title = string.Empty;
             if (InputBox.Show(ResourceAccessor.Messages.GetString("EnterSubGroupName"), ref title) == DialogResult.OK)
             {
-                var selectedMainGroup = (MainGroup) ListViewMainGroups.SelectedItem;
+                var selectedMainGroup = (MainGroup) DataGridMainGroups.SelectedItem;
                 selectedMainGroup.SubGroups.Add(new SubGroup
                 {
                     Title = title,
                     ItemColor = selectedMainGroup.ItemColor
                 });
                 Context.SaveChanges();
-                CollectionViewSource.GetDefaultView(ListViewSubGroups.ItemsSource).Refresh();
+                CollectionViewSource.GetDefaultView(DataGridSubGroups.ItemsSource).Refresh();
             }
         }
 
         private void Edit_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = ListViewSubGroups?.SelectedItem as SubGroup != null;
+            e.CanExecute = DataGridSubGroups?.SelectedItem is SubGroup;
         }
 
         private void Edit_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -107,6 +107,8 @@ namespace PaySys.UI.UC
 //				control.GetBindingExpression( UcTextPair.TextOfLabelProperty )?.UpdateSource();
             foreach (var control in GridMain.FindVisualChildren<UcTextPair>())
                 control.UpdateSource();
+
+            SmpUcSubGroupEdit.UpdateSource();
 
             #region Contract Fields
             var expChangedContractFields = Context.ContractFields.Local
@@ -144,7 +146,7 @@ namespace PaySys.UI.UC
             }
             #endregion
 
-            var currentSubGroup = ListViewSubGroups.SelectedItem as SubGroup;
+            var currentSubGroup = DataGridSubGroups.SelectedItem as SubGroup;
             #region HandselFormula
             Context.HandselFormulas.AddOrUpdate(currentSubGroup?.CurrentOrNewHandselFormula);
             #endregion

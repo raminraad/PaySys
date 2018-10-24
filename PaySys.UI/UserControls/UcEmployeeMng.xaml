@@ -167,7 +167,7 @@
                     <local:UcTextImagePair Icon="{StaticResource icon_black_employee_profile}"
                                            Text="{x:Static fa:Labels.PersonalInfo}" />
                 </TabItem.Header>
-                <local:UcEmployeeDetails x:Name="SmpUcEmployeeDetail"
+                <local:UcEmployeeEdit x:Name="SmpUcEmployeeDetail"
                                         DataContext="{Binding ElementName =DataGridEmployees,Path=SelectedItem}"
                                         ReadOnlyOfFields="{Binding ElementName =SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
                                         Margin="{StaticResource MarginOfMaster}" />

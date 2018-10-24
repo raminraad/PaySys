@@ -1,0 +1,84 @@
+﻿<UserControl x:Name="SmpUcSubGroupEdit"
+             x:Class="PaySys.UI.UC.UcSubGroupEdit"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:PaySys.UI.UC"
+             xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
+             xmlns:entities="clr-namespace:PaySys.ModelAndBindLib.Entities;assembly=PaySys.ModelAndBindLib"
+             mc:Ignorable="d"
+             MaxHeight="222"
+             Height="222"
+             Width="300"
+             MaxWidth="300"
+             FlowDirection="RightToLeft"
+             d:DataContext="{d:DesignInstance entities:SubGroup}" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0"
+                   Style="{StaticResource StyleOfListTitleTextBlock}"
+                   Text="{x:Static fa:Labels.SubGroupBaseInfo}" />
+        <Border Grid.Row="1"
+                Style="{StaticResource StyleOfEditUserControlBorders}" >
+            <Grid x:Name="GridDetail" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0"
+                       Grid.Column="0"
+                       Style="{StaticResource StyleOfDataFieldLabel}"
+                       Content="{x:Static fa:FieldicSubGroup.Title}" />
+                <Label Grid.Column="0"
+                       Grid.Row="1"
+                       Style="{StaticResource StyleOfDataFieldLabel}"
+                       Content="{x:Static fa:FieldicSubGroup.WorkshopCode}" />
+                <Label Grid.Column="0"
+                       Grid.Row="2"
+                       Style="{StaticResource StyleOfDataFieldLabel}"
+                       Content="{x:Static fa:FieldicSubGroup.Is31}" />
+                <Label Grid.Column="0"
+                       Grid.Row="3"
+                       Style="{StaticResource StyleOfDataFieldLabel}"
+                       Content="{x:Static fa:FieldicSubGroup.IsFreeZone}" />
+
+                <TextBox Grid.Column="1"
+                         Grid.Row="0"
+                         HorizontalAlignment="Stretch"
+                         Width="Auto"
+                         Style="{StaticResource StyleOfDataFieldTextBox}"
+                         IsReadOnly="{Binding ElementName=SmpUcEmployeeEdit,Path=ReadOnlyOfFields}"
+                         Text="{Binding Title,UpdateSourceTrigger=Explicit}" />
+                <TextBox IsReadOnly="{Binding ElementName=SmpUcEmployeeEdit,Path=ReadOnlyOfFields}"
+                         Grid.Column="1"
+                         Grid.Row="1"
+                         HorizontalAlignment="Stretch"
+                         Width="Auto"
+                         Style="{StaticResource StyleOfDataFieldTextBox}"
+                         MaxLength="10"
+                         Text="{Binding WorkshopCode,UpdateSourceTrigger=Explicit}" />
+                <CheckBox Grid.Column="1"
+                          Grid.Row="2"
+                          IsEnabled="{Binding ElementName=SmpUcSubGroupEdit,Path=ReadOnlyOfFields,Converter={StaticResource NegateBooleanConverter}}"
+                          IsChecked="{Binding Is31,UpdateSourceTrigger=Explicit}"
+                          Style="{StaticResource StyleOfDataFieldCheckBox}" />
+                <CheckBox Grid.Column="1"
+                          Grid.Row="3"
+                          IsEnabled="{Binding ElementName=SmpUcSubGroupEdit,Path=ReadOnlyOfFields,Converter={StaticResource NegateBooleanConverter}}"
+                          IsChecked="{Binding IsFreeZone,UpdateSourceTrigger=Explicit}"
+                          Style="{StaticResource StyleOfDataFieldCheckBox}" />
+
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

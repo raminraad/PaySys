@@ -6,118 +6,136 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:PaySys.UI.UC"
              xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
+             xmlns:listViewLayout="clr-namespace:Itenso.Windows.Controls.ListViewLayout;assembly=Itenso.Windows.Controls.ListViewLayout"
              mc:Ignorable="d"
-             VerticalAlignment="Stretch"
-             HorizontalAlignment="Center"
              FlowDirection="RightToLeft"
-             DataContext="{Binding ElementName=SmpUcMissionFormulaMng,Path=CurrentSubGroup.CurrentOrNewMissionFormula}">
+             Width="600"
+             MaxWidth="600"
+             Height="300"
+             DataContext="{Binding ElementName=SmpUcMissionFormulaMng,Path=CurrentSubGroup.CurrentOrNewMissionFormula}" >
     <UserControl.Resources>
         <Style TargetType="TextBox"
-               BasedOn="{StaticResource StyleOfDataFieldTextBox}">
-            <Setter Property="Margin"
-                    Value="5" />
+               BasedOn="{StaticResource StyleOfDataFieldTextBox}" >
             <Setter Property="HorizontalAlignment"
-                    Value="Left" />
+                    Value="Stretch" />
+            <Setter Property="Width"
+                    Value="Auto" />
+            <Setter Property="IsReadOnly"
+                    Value="{Binding ElementName=SmpUcMissionFormulaMng,Path=ReadOnlyOfFields}" />
         </Style>
     </UserControl.Resources>
-    <StackPanel Orientation="Horizontal">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="1"
-                       Text="{x:Static fa:Labels.MissionFormula}"
-                       Style="{StaticResource StyleOfListTitleTextBlock}" />
-            <TextBlock Grid.Row="1"
-                       Grid.Column="0"
-                       Text="{x:Static fa:FieldicMissionFormula.SubtractFactor}"
-                       Style="{StaticResource StyleOfPassageTextBlock}" />
-            <TextBlock Grid.Row="2"
-                       Grid.Column="0"
-                       Text="{x:Static fa:FieldicMissionFormula.DivideFactor}"
-                       Style="{StaticResource StyleOfPassageTextBlock}" />
-            <TextBlock Grid.Row="3"
-                       Grid.Column="0"
-                       Text="{x:Static fa:FieldicMissionFormula.AddFactor}"
-                       Style="{StaticResource StyleOfPassageTextBlock}" />
-            <TextBlock Grid.Row="4"
-                       Grid.Column="0"
-                       Text="{x:Static fa:FieldicMissionFormula.MaxFactor}"
-                       Style="{StaticResource StyleOfPassageTextBlock}" />
-            <TextBlock Grid.Row="5"
-                       Grid.Column="0"
-                       Text="{x:Static fa:FieldicMissionFormula.PerKmFactor}"
-                       Style="{StaticResource StyleOfPassageTextBlock}" />
 
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="30" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Column="0"
+                   Grid.Row="0"
+                   Text="{x:Static fa:Labels.MissionFormula}"
+                   Style="{StaticResource StyleOfListTitleTextBlock}" />
+        <TextBlock Grid.Column="2"
+                   Grid.Row="0"
+                   Text="{x:Static fa:Labels.MissionFormulaInvolvedContractFields}"
+                   Style="{StaticResource StyleOfListTitleTextBlock}" />
+        <Border Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                Style="{StaticResource StyleOfEditUserControlBorders}" >
+            <Grid>
 
-            <TextBox x:Name="TextBoxSubtractFactor"
-                     Grid.Row="1"
-                     Grid.Column="1"
-                     IsReadOnly="{Binding ElementName=SmpUcMissionFormulaMng,Path=ReadOnlyOfFields}"
-                     Text="{Binding SubtractFactor}" />
-            <TextBox x:Name="TextBoxDivideFactor"
-                     Grid.Row="2"
-                     Grid.Column="1"
-                     IsReadOnly="{Binding ElementName=SmpUcMissionFormulaMng,Path=ReadOnlyOfFields}"
-                     Text="{Binding DivideFactor}" />
-            <TextBox x:Name="TextBoxAddFactor"
-                     Grid.Row="3"
-                     Grid.Column="1"
-                     IsReadOnly="{Binding ElementName=SmpUcMissionFormulaMng,Path=ReadOnlyOfFields}"
-                     Text="{Binding AddFactor}" />
-            <TextBox x:Name="TextBoxMaxFactor"
-                     Grid.Row="4"
-                     Grid.Column="1"
-                     IsReadOnly="{Binding ElementName=SmpUcMissionFormulaMng,Path=ReadOnlyOfFields}"
-                     Text="{Binding MaxFactor}" />
-            <TextBox x:Name="TextBoxPerKmFactor"
-                     Grid.Row="5"
-                     Grid.Column="1"
-                     IsReadOnly="{Binding ElementName=SmpUcMissionFormulaMng,Path=ReadOnlyOfFields}"
-                     Text="{Binding PerKmFactor}" />
-        </Grid>
-        <Grid Margin="100,0,0,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <TextBlock Text="{x:Static fa:Labels.MissionFormulaInvolvedContractFields}"
-                       Style="{StaticResource StyleOfListTitleTextBlock}" />
-            <ListView Grid.Row="1" x:Name="ListViewMissionFormulaInvolvedContractFields"
-                      MaxWidth="600"
-                      ItemsSource="{Binding ElementName=SmpUcMissionFormulaMng,Path=CurrentSubGroup.CurrentOrNewMissionFormula.TempMissionFormulaInvolvedContractFieldsLeftJoined,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="{x:Static fa:Labels.Title}"
-                                        Width="{StaticResource WidthOfDataColumnOfText}"
-                                        DisplayMemberBinding="{Binding Key.Title}" />
-                        <GridViewColumn Header="{x:Static fa:Labels.IsInvolved}"
-                                        Width="Auto">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <CheckBox FlowDirection="LeftToRight"
-                                              IsChecked="{Binding Path=Value,Mode=OneWay}"
-                                              IsEnabled="{Binding ElementName=SmpUcMissionFormulaMng,Path=ReadOnlyOfFields,Converter={StaticResource NegateBooleanConverter}}"
-                                              Checked="ContractField_Checked"
-                                              Unchecked="ContractField_UnChecked"
-                                              Tag="{Binding Key}" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-        </Grid>
-    </StackPanel>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0"
+                               Text="{x:Static fa:FieldicMissionFormula.SubtractFactor}"
+                               Style="{StaticResource StyleOfPassageTextBlock}" />
+                    <TextBlock Grid.Row="1"
+                               Grid.Column="0"
+                               Text="{x:Static fa:FieldicMissionFormula.DivideFactor}"
+                               Style="{StaticResource StyleOfPassageTextBlock}" />
+                    <TextBlock Grid.Row="2"
+                               Grid.Column="0"
+                               Text="{x:Static fa:FieldicMissionFormula.AddFactor}"
+                               Style="{StaticResource StyleOfPassageTextBlock}" />
+                    <TextBlock Grid.Row="3"
+                               Grid.Column="0"
+                               Text="{x:Static fa:FieldicMissionFormula.MaxFactor}"
+                               Style="{StaticResource StyleOfPassageTextBlock}" />
+                    <TextBlock Grid.Row="4"
+                               Grid.Column="0"
+                               Text="{x:Static fa:FieldicMissionFormula.PerKmFactor}"
+                               Style="{StaticResource StyleOfPassageTextBlock}" />
+
+                    <TextBox x:Name="TextBoxSubtractFactor"
+                             Grid.Column="1"
+                             Text="{Binding SubtractFactor}"
+                             Grid.Row="0" />
+                    <TextBox x:Name="TextBoxDivideFactor"
+                             Grid.Row="1"
+                             Grid.Column="1"
+                             Text="{Binding DivideFactor}" />
+                    <TextBox x:Name="TextBoxAddFactor"
+                             Grid.Row="2"
+                             Grid.Column="1"
+                             Text="{Binding AddFactor}" />
+                    <TextBox x:Name="TextBoxMaxFactor"
+                             Grid.Row="3"
+                             Grid.Column="1"
+                             Text="{Binding MaxFactor}" />
+                    <TextBox x:Name="TextBoxPerKmFactor"
+                             Grid.Row="4"
+                             Grid.Column="1"
+                             Text="{Binding PerKmFactor}" />
+                </Grid>
+                <ListView x:Name="ListViewMissionFormulaInvolvedContractFields"
+                          Grid.Column="2"
+                          Margin="0"
+                          listViewLayout:ListViewLayoutManager.Enabled="True"
+                          ItemsSource="{Binding ElementName=SmpUcMissionFormulaMng,Path=CurrentSubGroup.CurrentOrNewMissionFormula.TempMissionFormulaInvolvedContractFieldsLeftJoined,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" >
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="{x:Static fa:Labels.Title}"
+                                            listViewLayout:ProportionalColumn.Width="3"
+                                            DisplayMemberBinding="{Binding Key.Title}" />
+                            <GridViewColumn Header="{x:Static fa:Labels.IsInvolved}"
+                                            listViewLayout:ProportionalColumn.Width="1" >
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox FlowDirection="LeftToRight"
+                                                  IsChecked="{Binding Path=Value,Mode=OneWay}"
+                                                  IsEnabled="{Binding ElementName=SmpUcMissionFormulaMng,Path=ReadOnlyOfFields,Converter={StaticResource NegateBooleanConverter}}"
+                                                  Checked="ContractField_Checked"
+                                                  Unchecked="ContractField_UnChecked"
+                                                  Tag="{Binding Key}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+            </Grid>
+        </Border>
+    </Grid>
+
 </UserControl>

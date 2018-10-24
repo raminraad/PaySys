@@ -32,9 +32,17 @@
     <BitmapImage x:Key="icon_city" UriSource="../Assets/Icons/Licorice/icon_city.png" />
     <BitmapImage x:Key="icon_info" UriSource="../Assets/Icons/Licorice/icon_info.png" />
     <BitmapImage x:Key="icon_expense_article" UriSource="../Assets/Icons/Licorice/icon_expense_article.png" />
+    <BitmapImage x:Key="icon_employee_avatar" UriSource="../Assets/Icons/Licorice/icon_employee_avatar.png" />
+
     <BitmapImage x:Key="icon_black_contract" UriSource="../Assets/Icons/Licorice/icon_black_contract.png" />
     <BitmapImage x:Key="icon_black_contracts" UriSource="../Assets/Icons/Licorice/icon_black_contracts.png" />
     <BitmapImage x:Key="icon_black_contract_master" UriSource="../Assets/Icons/Licorice/icon_black_contract_master.png" />
     <BitmapImage x:Key="icon_black_employee_profile" UriSource="../Assets/Icons/Licorice/icon_black_employee_profile.png" />
-    <BitmapImage x:Key="icon_employee_avatar" UriSource="../Assets/Icons/Licorice/icon_employee_avatar.png" />
+    <BitmapImage x:Key="icon_black_base_info" UriSource="../Assets/Icons/Licorice/icon_black_base_info.png" />
+    <BitmapImage x:Key="icon_black_titles" UriSource="../Assets/Icons/Licorice/icon_black_titles.png" />
+    <BitmapImage x:Key="icon_black_misc" UriSource="../Assets/Icons/Licorice/icon_black_misc.png" />
+    <BitmapImage x:Key="icon_black_parameters" UriSource="../Assets/Icons/Licorice/icon_black_parameters.png" />
+    <BitmapImage x:Key="icon_black_tax" UriSource="../Assets/Icons/Licorice/icon_black_tax.png" />
+    <BitmapImage x:Key="icon_black_handsel_formula" UriSource="../Assets/Icons/Licorice/icon_black_handsel_formula.png" />
+    <BitmapImage x:Key="icon_black_mission_formula" UriSource="../Assets/Icons/Licorice/icon_black_mission_formula.png" />
 </ResourceDictionary>

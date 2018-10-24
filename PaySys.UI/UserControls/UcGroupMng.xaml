@@ -1,4 +1,5 @@
-﻿<UserControl x:Name="SmpUcGroupMng" x:Class="PaySys.UI.UC.UcGroupMng"
+﻿<UserControl x:Name="SmpUcGroupMng"
+             x:Class="PaySys.UI.UC.UcGroupMng"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -12,96 +13,111 @@
              Initialized="UcGroupMng_OnInitialized"
              d:DesignHeight="600"
              d:DesignWidth="1000"
-             FlowDirection="RightToLeft">
-	<UserControl.CommandBindings>
-		<CommandBinding Command="{x:Static commands:PaySysCommands.Add}"
-		                CanExecute="AddSubGroup_CanExecute"
-		                Executed="AddSubGroup_Executed" />
-		<CommandBinding Command="{x:Static commands:PaySysCommands.Edit}"
-		                CanExecute="Edit_CanExecute"
-		                Executed="Edit_Executed" />
-		<CommandBinding Command="{x:Static commands:PaySysCommands.Save}"
-		                CanExecute="Save_CanExecute"
-		                Executed="Save_Executed" />
-		<CommandBinding Command="{x:Static commands:PaySysCommands.DiscardChanges}"
-		                CanExecute="DiscardChanges_CanExecute"
-		                Executed="DiscardChanges_Executed" />
-	</UserControl.CommandBindings>
-	<Grid x:Name="GridMain">
-		<Grid.RowDefinitions>
-			<RowDefinition x:Name="RowToolbar"
-			               Height="Auto" />
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="30*" />
-			<RowDefinition Height="2*" />
-			<RowDefinition Height="50*" />
-			<RowDefinition Height="50*" />
-			<RowDefinition Height="10*" />
-		</Grid.RowDefinitions>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="2*" />
-			<ColumnDefinition Width="5*" />
-			<ColumnDefinition Width="1*" />
-			<ColumnDefinition Width="7*" />
-			<ColumnDefinition Width="2*" />
-		</Grid.ColumnDefinitions>
-		<ToolBar Grid.Row="0"
-		         Grid.ColumnSpan="5">
-			<Button Name="ButtonAddSubGroup"
-			        Content="{x:Static fa:Labels.AddSubGroup}"
-			        Command="{x:Static commands:PaySysCommands.Add}" />
-			<Button Name="ButtonEdit"
-			        Content="{x:Static fa:Labels.Edit}"
-			        Command="{x:Static commands:PaySysCommands.Edit}" />
-			<Button Name="ButtonDelete"
-			        Command="{x:Static commands:PaySysCommands.Delete}"
-			        Content="{x:Static fa:Labels.Delete}" />
-			<Separator />
-			<Button Name="ButtonSave"
-			        Command="commands:PaySysCommands.Save"
-			        Content="{x:Static fa:Labels.Save}" />
-			<Button Name="ButtonDiscardChanges"
-			        Command="commands:PaySysCommands.DiscardChanges"
-			        Content="{x:Static fa:Labels.Cancel}" />
-		</ToolBar>
-		<TextBlock Grid.Row="1"
-		           Grid.Column="1"
-		           HorizontalAlignment="Center"
-		           VerticalAlignment="Bottom"
-		           Text="{x:Static fa:Labels.MainGroupsList}" />
-		<TextBlock Grid.Row="1"
-		           Grid.Column="3"
-		           HorizontalAlignment="Center"
-		           VerticalAlignment="Bottom"
-		           Text="{x:Static fa:Labels.SubGroupsList}" />
-		<ListView x:Name="ListViewMainGroups"
-		          ItemsSource="{Binding UpdateSourceTrigger=PropertyChanged}"
-		          d:DataContext="{d:DesignInstance Type=model:MainGroup, IsDesignTimeCreatable=True}"
-		          Grid.Row="3"
-		          Grid.Column="1"
-		          >
-			<ListView.View>
-				<GridView>
-					<GridView.Columns>
-						<GridViewColumn Header="{x:Static fa:FieldicSubGroup.Title}" Width="{Binding ElementName=ListViewMainGroups,Path=ActualWidth}">
-							<GridViewColumn.CellTemplate>
-								<DataTemplate>
-								    <TextBlock Text="{Binding Path=Title}"
-                                               Style="{StaticResource StyleOfDataFieldTextBlock}"
-								               />
-								</DataTemplate>
-							</GridViewColumn.CellTemplate>
-						</GridViewColumn>
-					</GridView.Columns>
-				</GridView>
-			</ListView.View>
-		</ListView>
-		<ListView x:Name="ListViewSubGroups"
-		          ItemsSource="{Binding ElementName=ListViewMainGroups,Path=SelectedItem.(model:MainGroup.SubGroups),Mode=TwoWay,UpdateSourceTrigger=Explicit}"
+             FlowDirection="RightToLeft" >
+    <UserControl.CommandBindings>
+        <CommandBinding Command="{x:Static commands:PaySysCommands.Add}"
+                        CanExecute="AddSubGroup_CanExecute"
+                        Executed="AddSubGroup_Executed" />
+        <CommandBinding Command="{x:Static commands:PaySysCommands.Edit}"
+                        CanExecute="Edit_CanExecute"
+                        Executed="Edit_Executed" />
+        <CommandBinding Command="{x:Static commands:PaySysCommands.Save}"
+                        CanExecute="Save_CanExecute"
+                        Executed="Save_Executed" />
+        <CommandBinding Command="{x:Static commands:PaySysCommands.DiscardChanges}"
+                        CanExecute="DiscardChanges_CanExecute"
+                        Executed="DiscardChanges_Executed" />
+    </UserControl.CommandBindings>
+    <Grid x:Name="GridMain" >
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="RowToolbar"
+                           Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="40*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="10*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="0.1*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+        <ToolBar Grid.Row="0"
+                 Grid.ColumnSpan="5" >
+            <Button Template="{StaticResource TemplateOfToolbarButtonAdd}"
+                    Content="{x:Static fa:Labels.AddSubGroup}" />
+            <Button Template="{StaticResource TemplateOfToolbarButtonEdit}" />
+            <Button Template="{StaticResource TemplateOfToolbarButtonDelete}" />
+            <Separator Style="{StaticResource StyleOfSeparator}" />
+            <Button Template="{StaticResource TemplateOfToolbarButtonSave}" />
+            <Button Template="{StaticResource TemplateOfToolbarButtonDiscardChanges}" />
+            <Separator Style="{StaticResource StyleOfSeparator}" />
+            <Button Template="{StaticResource TemplateOfToolbarButtonReload}" />
+        </ToolBar>
+        <TextBlock Grid.Row="1"
+                   Grid.Column="1"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Bottom"
+                   Text="{x:Static fa:Labels.MainGroupsList}" />
+        <TextBlock Grid.Row="1"
+                   Grid.Column="3"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Bottom"
+                   Text="{x:Static fa:Labels.SubGroupsList}" />
+        <DataGrid x:Name="DataGridMainGroups"
+                  Grid.Row="3"
+                  Grid.Column="1"
+                  ColumnWidth="*"
+                  KeyboardNavigation.TabNavigation="Once"
+                  SelectionUnit="FullRow"
+                  ItemsSource="{Binding UpdateSourceTrigger=PropertyChanged}"
+                  d:DataContext="{d:DesignInstance Type=model:MainGroup, IsDesignTimeCreatable=True}"
+                  IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSelectionElements}" >
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="{x:Static fa:FieldicSubGroup.Title}"
+                                    Binding="{Binding Title}"
+                                    Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid x:Name="DataGridSubGroups"
+                  Grid.Row="3"
+                  Grid.Column="3"
+                  ColumnWidth="*"
+                  KeyboardNavigation.TabNavigation="Once"
+                  SelectionUnit="FullRow"
+                  ItemsSource="{Binding ElementName=DataGridMainGroups,Path=SelectedItem.(model:MainGroup.SubGroups),Mode=TwoWay,UpdateSourceTrigger=Explicit}"
+                  d:DataContext="{d:DesignInstance Type=model:SubGroup, IsDesignTimeCreatable=True}"
+                  IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSelectionElements}" >
+
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="{x:Static fa:FieldicSubGroup.Title}"
+                                        Width="*" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <local:UcTextPair
+                                TextOfTextBox="{Binding Path=Title,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                HorizontalAlignment="Left"
+                                TextOfLabel="{Binding Path=Title}"
+                                ReadOnly="{Binding ElementName = SmpUcFormStateLabel , Path=ReadOnlyOfEditFields}"
+                                Width="{StaticResource WidthOfDataFieldOfText}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+            </DataGrid.Columns>
+        </DataGrid>
+        <!--<ListView x:Name="ListViewSubGroups0"
+		          ItemsSource="{Binding ElementName=DataGridMainGroups,Path=SelectedItem.(model:MainGroup.SubGroups),Mode=TwoWay,UpdateSourceTrigger=Explicit}"
 		          d:DataContext="{d:DesignInstance Type=model:SubGroup, IsDesignTimeCreatable=True}"
 		          Grid.Row="3"
 		          Grid.Column="3"
+                  Visibility="Hidden"
 		          Focusable="True">
 			<ListView.View>
 				<GridView>
@@ -151,61 +167,101 @@
 					</GridView.Columns>
 				</GridView>
 			</ListView.View>
-		</ListView>
-		<TabControl x:Name="TabControlMainGroupDatails"
-		            Grid.Row="5"
-		            Grid.Column="0"
-		            Grid.RowSpan="2"
-		            Grid.ColumnSpan="5">
-			<TabItem x:Name="TabItemContractFieldTitlesMng"
-			         Header="{x:Static fa:Labels.ContractFieldTitles}"
-			         Width="Auto">
-				<local:UcContractFieldTitlesMng x:Name="SmpUcContractFieldTitlesMng"
-				                                ReadOnlyOfFields="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
-												CurrentMainGroup="{Binding ElementName=ListViewMainGroups,Path=SelectedItem}"
-				                                />
-			</TabItem>
-			<TabItem x:Name="TabItemMisc"
-					 Header="{x:Static fa:Labels.MiscMng}"
-			         Width="Auto">
-				<local:UcMiscMng x:Name="SmpUcMiscMng"
-				                 ReadOnlyOfFields="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
-				                 CurrentSubGroup="{Binding ElementName=ListViewSubGroups,Path=SelectedItem}" />
-			</TabItem>
-			<TabItem x:Name="TabItemParameters"
-			         Header="{x:Static fa:Labels.Parameters}"
-			         Width="Auto">
-				<local:UcParameterMng x:Name="SmpUcParameterMng"
-				                      ReadOnlyOfFields="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
-				                      CurrentSubGroup="{Binding ElementName=ListViewSubGroups,Path=SelectedItem}" />
-			</TabItem>
-			<TabItem x:Name="TabItemTaxTable"
-			         Header="{x:Static fa:Labels.TaxTable}"
-			         Width="Auto">
-				<local:UcTaxTableMng x:Name="SmpUcTaxTableMng"
-				                     ReadOnlyOfFields="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
-				                     CurrentSubGroup="{Binding ElementName=ListViewSubGroups,Path=SelectedItem}" />
-			</TabItem>
-			<TabItem x:Name="TabItemHandselFormula"
-			         Header="{x:Static fa:Labels.HandselFormula}"
-			         Width="Auto">
-				<local:UcHandselFormulaMng x:Name="SmpUcHandselFormula"
-                                           HorizontalAlignment="Center"
-				                           ReadOnlyOfFields="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
-				                           CurrentSubGroup="{Binding ElementName=ListViewSubGroups,Path=SelectedItem}" />
-			</TabItem>
-			<TabItem x:Name="TabItemMissionFormula"
-			         Header="{x:Static fa:Labels.MissionFormula}"
-			         Width="Auto">
-				<local:UcMissionFormulaMng x:Name="SmpUcMissionFormulaMng"
+		</ListView>-->
+        <TabControl x:Name="TabControlMainGroupDatails"
+                    Grid.Row="5"
+                    Grid.Column="0"
+                    Grid.RowSpan="2"
+                    Style="{StaticResource StyleOfChildTabControl}"
+                    Grid.ColumnSpan="5" >
+            <TabControl.Resources>
+                <Style TargetType="TabItem"
+                       BasedOn="{StaticResource StyleOfChildTabItem}" />
+                <Thickness x:Key="MarginOfEditUserControls" > 0,22,0,11 </Thickness>
+            </TabControl.Resources>
+            <TabItem x:Name="TabItemSubGroupBaseInfo"
+                     Width="Auto" >
+                <TabItem.Header>
+                    <local:UcTextImagePair Text="{x:Static fa:Labels.BaseInfo}"
+                                           Icon="{StaticResource icon_black_base_info}" />
+                </TabItem.Header>
+                <local:UcSubGroupEdit x:Name="SmpUcSubGroupEdit"
+                                      Margin="{StaticResource MarginOfEditUserControls}"
+                                      VerticalAlignment="Top"
+                                      ReadOnlyOfFields="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
+                                      DataContext="{Binding ElementName=DataGridSubGroups,Path=SelectedItem}" />
+            </TabItem>
+            <TabItem x:Name="TabItemContractFieldTitlesMng"
+                     Width="Auto" >
+                <TabItem.Header>
+                    <local:UcTextImagePair Text="{x:Static fa:Labels.ContractFieldTitles}"
+                                           Icon="{StaticResource icon_black_titles}" />
+                </TabItem.Header>
+                <local:UcContractFieldTitlesMng x:Name="SmpUcContractFieldTitlesMng"
+                                                Margin="{StaticResource MarginOfEditUserControls}"
+                                                ReadOnlyOfFields="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
+                                                CurrentMainGroup="{Binding ElementName=DataGridMainGroups,Path=SelectedItem}" />
+            </TabItem>
+            <TabItem x:Name="TabItemMisc"
+                     Width="Auto" >
+                <TabItem.Header>
+                    <local:UcTextImagePair Text="{x:Static fa:Labels.MiscMng}"
+                                           Icon="{StaticResource icon_black_misc}" />
+                </TabItem.Header>
+                <local:UcMiscMng x:Name="SmpUcMiscMng"
+                                 Margin="{StaticResource MarginOfEditUserControls}"
+                                 ReadOnlyOfFields="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
+                                 CurrentSubGroup="{Binding ElementName=DataGridSubGroups,Path=SelectedItem}" />
+            </TabItem>
+            <TabItem x:Name="TabItemParameters"
+                     Width="Auto" >
+                <TabItem.Header>
+                    <local:UcTextImagePair Text="{x:Static fa:Labels.Parameters}"
+                                           Icon="{StaticResource icon_black_parameters}" />
+                </TabItem.Header>
+                <local:UcParameterMng x:Name="SmpUcParameterMng"
+                                      Margin="{StaticResource MarginOfEditUserControls}"
+                                      ReadOnlyOfFields="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
+                                      CurrentSubGroup="{Binding ElementName=DataGridSubGroups,Path=SelectedItem}" />
+            </TabItem>
+            <TabItem x:Name="TabItemTaxTable"
+                     Width="Auto" >
+                <TabItem.Header>
+                    <local:UcTextImagePair Text="{x:Static fa:Labels.TaxTable}"
+                                           Icon="{StaticResource icon_black_tax}" />
+                </TabItem.Header>
+                <local:UcTaxTableMng x:Name="SmpUcTaxTableMng"
+                                     Margin="{StaticResource MarginOfEditUserControls}"
+                                     ReadOnlyOfFields="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
+                                     CurrentSubGroup="{Binding ElementName=DataGridSubGroups,Path=SelectedItem}" />
+            </TabItem>
+            <TabItem x:Name="TabItemHandselFormula"
+                     Width="Auto" >
+                <TabItem.Header>
+                    <local:UcTextImagePair Text="{x:Static fa:Labels.HandselFormula}"
+                                           Icon="{StaticResource icon_black_handsel_formula}" />
+                </TabItem.Header>
+                <local:UcHandselFormulaMng x:Name="SmpUcHandselFormula"
+                                           Margin="{StaticResource MarginOfEditUserControls}"
                                            ReadOnlyOfFields="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
-                                           CurrentSubGroup="{Binding ElementName=ListViewSubGroups,Path=SelectedItem}" />
-			</TabItem>
-		</TabControl>
-		<StatusBar Grid.Column="0"
-		           Grid.Row="7"
-		           Grid.ColumnSpan="5">
-			<local:UcFormStateLabel x:Name="SmpUcFormStateLabel" />
-		</StatusBar>
-	</Grid>
+                                           CurrentSubGroup="{Binding ElementName=DataGridSubGroups,Path=SelectedItem}" />
+            </TabItem>
+            <TabItem x:Name="TabItemMissionFormula"
+                     Width="Auto" >
+                <TabItem.Header>
+                    <local:UcTextImagePair Text="{x:Static fa:Labels.MissionFormula}"
+                                           Icon="{StaticResource icon_black_mission_formula}" />
+                </TabItem.Header>
+                <local:UcMissionFormulaMng x:Name="SmpUcMissionFormulaMng"
+                                           Margin="{StaticResource MarginOfEditUserControls}"
+                                           ReadOnlyOfFields="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
+                                           CurrentSubGroup="{Binding ElementName=DataGridSubGroups,Path=SelectedItem}" />
+            </TabItem>
+        </TabControl>
+        <StatusBar Grid.Column="0"
+                   Grid.Row="7"
+                   Grid.ColumnSpan="5" >
+            <local:UcFormStateLabel x:Name="SmpUcFormStateLabel" />
+        </StatusBar>
+    </Grid>
 </UserControl>

@@ -9,126 +9,144 @@
              xmlns:commands="clr-namespace:PaySys.UI.Commands"
              xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Entities;assembly=PaySys.ModelAndBindLib"
              xmlns:validation="clr-namespace:PaySys.ModelAndBindLib.Validation;assembly=PaySys.ModelAndBindLib"
+             xmlns:listViewLayout="clr-namespace:Itenso.Windows.Controls.ListViewLayout;assembly=Itenso.Windows.Controls.ListViewLayout"
              mc:Ignorable="d"
              FlowDirection="RightToLeft"
-             d:DesignHeight="300"
-             d:DesignWidth="900">
-
+             Width="850"
+             MaxWidth="850"
+             d:DesignHeight="300">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50*" />
-            <ColumnDefinition Width="2*" />
-            <ColumnDefinition Width="17*" />
-            <ColumnDefinition Width="2*" />
-            <ColumnDefinition Width="17*" />
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Row="1"
-                   Style="{StaticResource StyleOfListTitleTextBlock}"
-                   Text="{x:Static fa:Labels.Parameters}" />
-        <TextBlock Grid.Row="1"
-                   Grid.Column="2"
-                   Style="{StaticResource StyleOfListTitleTextBlock}"
-                   Text="{x:Static fa:Labels.ParameterInvolvedContractFields}" />
-        <TextBlock Grid.Row="1"
-                   Grid.Column="4"
-                   Style="{StaticResource StyleOfListTitleTextBlock}"
-                   Text="{x:Static fa:Labels.ParameterInvolvedMiscPayments}" />
-        <ListView x:Name="ListViewParameter"
-                  Grid.Row="2"
+        <TextBlock
+            Grid.Column="0"
+            Grid.Row="0"
+            Style="{StaticResource StyleOfListTitleTextBlock}"
+            Text="{x:Static fa:Labels.Parameters}" />
+        <TextBlock
+            Grid.Row="0"
+            Grid.Column="1"
+            Style="{StaticResource StyleOfListTitleTextBlock}"
+            Text="{x:Static fa:Labels.ParameterInvolvedContractFields}" />
+        <TextBlock
+            Grid.Row="0"
+            Grid.Column="2"
+            Style="{StaticResource StyleOfListTitleTextBlock}"
+            Text="{x:Static fa:Labels.ParameterInvolvedMiscPayments}" />
+        <Border Grid.Column="0"
+                Grid.Row="1"
+                Grid.ColumnSpan="3"
+                Style="{StaticResource StyleOfEditUserControlBorders}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.5*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+
+                <ListView x:Name="ListViewParameter"
                   Grid.Column="0"
+                  listViewLayout:ListViewLayoutManager.Enabled="True"
                   d:DataContext="{d:DesignInstance Type=model:Parameter, IsDesignTimeCreatable=True}"
                   ItemsSource="{Binding ElementName=SmpUcParameterMng,Path=CurrentSubGroup.Parameters,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="{x:Static fa:Labels.ParameterTitle}"
-                                    Width="{StaticResource WidthOfDataColumnOfText}">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Label Style="{StaticResource StyleOfDataFieldLabel}"
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="{x:Static fa:Labels.ParameterTitle}"
+                                    listViewLayout:ProportionalColumn.Width="3">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label Style="{StaticResource StyleOfDataFieldLabel}"
                                        Content="{Binding ParameterTitle.Title}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="{x:Static fa:Labels.Value}"
-                                    Width="400">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <local:UcTextPair TextOfLabel="{Binding ValueAndValueType}"
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="{x:Static fa:Labels.Value}"
+                                    listViewLayout:ProportionalColumn.Width="2">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <local:UcTextPair TextOfLabel="{Binding ValueAndValueType}"
                                                       TextOfTextBox="{Binding Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                                       Width="{StaticResource WidthOfDataFieldOfPrice}"
                                                       Margin="0"
                                                       ReadOnly="{Binding ElementName=SmpUcParameterMng,Path=ReadOnlyOfFields}"
                                                       Tag="{Binding}"
                                                       ValidateOn="LostFocus">
-                                        <local:UcTextPair.ValidationRules>
-                                            <validation:ValidationRuleForMandatory />
-                                            <validation:ValidationRuleForNumberType FieldName="{x:Static fa:Labels.ParameterValue}" />
-                                            <validation:ValidationRuleForNonNegativeNumber FieldName="{x:Static fa:Labels.ParameterValue}" />
-                                        </local:UcTextPair.ValidationRules>
-                                    </local:UcTextPair>
-                                </StackPanel>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <ListView x:Name="ListViewParameterInvolvedContractFields"
-                  Grid.Row="2"
-                  Grid.Column="2"
+                                                <local:UcTextPair.ValidationRules>
+                                                    <validation:ValidationRuleForMandatory />
+                                                    <validation:ValidationRuleForNumberType FieldName="{x:Static fa:Labels.ParameterValue}" />
+                                                    <validation:ValidationRuleForNonNegativeNumber FieldName="{x:Static fa:Labels.ParameterValue}" />
+                                                </local:UcTextPair.ValidationRules>
+                                            </local:UcTextPair>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <ListView x:Name="ListViewParameterInvolvedContractFields"
+                  Grid.Column="1"
+                  listViewLayout:ListViewLayoutManager.Enabled="True"
                   ItemsSource="{Binding ElementName=ListViewParameter,Path=SelectedItem.TempParameterInvolvedContractFieldsLeftJoined}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="{x:Static fa:Labels.Title}"
-                                    Width="Auto"
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="{x:Static fa:Labels.Title}"
+                                    listViewLayout:ProportionalColumn.Width="3"
                                     DisplayMemberBinding="{Binding Key.Title}" />
-                    <GridViewColumn Header="{x:Static fa:Labels.IsInvolved}"
-                                    Width="Auto">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <CheckBox FlowDirection="LeftToRight"
+                            <GridViewColumn Header="{x:Static fa:Labels.IsInvolved}"
+                                    listViewLayout:ProportionalColumn.Width="2"
+                                    >
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox FlowDirection="LeftToRight"
                                           IsChecked="{Binding Value,Mode=OneWay}"
                                           IsEnabled="{Binding ElementName=SmpUcParameterMng,Path=ReadOnlyOfFields,Converter={StaticResource NegateBooleanConverter}}"
                                           Checked="ContractField_Checked"
                                           Unchecked="ContractField_UnChecked"
                                           Tag="{Binding Key}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <ListView x:Name="ListViewParameterInvolvedMiscPayments"
-                  Grid.Row="2"
-                  Grid.Column="4"
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <ListView x:Name="ListViewParameterInvolvedMiscPayments"
+                  Grid.Column="2"
+                  listViewLayout:ListViewLayoutManager.Enabled="True"
                   DisplayMemberPath="Misc.MiscTitle.Title"
                   ItemsSource="{Binding ElementName=ListViewParameter,Path=SelectedItem.TempParameterInvolvedMiscPaymentsLeftJoined}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="{x:Static fa:Labels.Title}"
-                                    Width="Auto"
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="{x:Static fa:Labels.Title}"
+                                    listViewLayout:ProportionalColumn.Width="3"
                                     DisplayMemberBinding="{Binding Key.MiscTitle.Title}" />
-                    <GridViewColumn Header="{x:Static fa:Labels.IsInvolved}"
-                                    Width="Auto">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <CheckBox FlowDirection="LeftToRight"
+                            <GridViewColumn Header="{x:Static fa:Labels.IsInvolved}"
+                                    listViewLayout:ProportionalColumn.Width="2"
+                                    >
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox FlowDirection="LeftToRight"
                                           IsChecked="{Binding Value,Mode=OneWay}"
                                           Checked="MiscPayment_Checked"
                                           IsEnabled="{Binding ElementName=SmpUcParameterMng,Path=ReadOnlyOfFields,Converter={StaticResource NegateBooleanConverter}}"
                                           Unchecked="MiscPayment_UnChecked"
                                           Tag="{Binding Key}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>

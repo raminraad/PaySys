@@ -70,7 +70,7 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to اضافه کردن به لیست (Ctrl+I).
+        ///   Looks up a localized string similar to افزودن به لیست (Ctrl+I).
         /// </summary>
         public static string ButtonAddToList {
             get {

@@ -142,6 +142,15 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to اطلاعات پایه.
+        /// </summary>
+        public static string BaseInfo {
+            get {
+                return ResourceManager.GetString("BaseInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to انصراف.
         /// </summary>
         public static string Cancel {
@@ -831,6 +840,15 @@ namespace PaySys.Globalization.Fa {
         public static string SubGroup {
             get {
                 return ResourceManager.GetString("SubGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to اطلاعات پایه زیرگروه.
+        /// </summary>
+        public static string SubGroupBaseInfo {
+            get {
+                return ResourceManager.GetString("SubGroupBaseInfo", resourceCulture);
             }
         }
         
