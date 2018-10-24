@@ -200,7 +200,7 @@
 
         </TabControl>
         <StatusBar Grid.Column="0"
-                   Grid.Row="5"
+                   Grid.Row="4"
                    Grid.ColumnSpan="4" >
             <local:UcFormStateLabel x:Name="SmpUcFormStateLabel" />
         </StatusBar>

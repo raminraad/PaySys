@@ -14,6 +14,17 @@
              MaxWidth="300"
              FlowDirection="RightToLeft"
              d:DataContext="{d:DesignInstance entities:SubGroup}" >
+    <UserControl.Resources>
+        <Style TargetType="TextBox"
+               BasedOn="{StaticResource StyleOfDataFieldTextBox}" >
+            <Setter Property="HorizontalAlignment"
+                    Value="Stretch" />
+            <Setter Property="Width"
+                    Value="Auto" />
+            <Setter Property="IsReadOnly"
+                    Value="{Binding ElementName=SmpUcSubGroupEdit,Path=ReadOnlyOfFields}" />
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -54,17 +65,9 @@
 
                 <TextBox Grid.Column="1"
                          Grid.Row="0"
-                         HorizontalAlignment="Stretch"
-                         Width="Auto"
-                         Style="{StaticResource StyleOfDataFieldTextBox}"
-                         IsReadOnly="{Binding ElementName=SmpUcEmployeeEdit,Path=ReadOnlyOfFields}"
                          Text="{Binding Title,UpdateSourceTrigger=Explicit}" />
-                <TextBox IsReadOnly="{Binding ElementName=SmpUcEmployeeEdit,Path=ReadOnlyOfFields}"
-                         Grid.Column="1"
+                <TextBox Grid.Column="1"
                          Grid.Row="1"
-                         HorizontalAlignment="Stretch"
-                         Width="Auto"
-                         Style="{StaticResource StyleOfDataFieldTextBox}"
                          MaxLength="10"
                          Text="{Binding WorkshopCode,UpdateSourceTrigger=Explicit}" />
                 <CheckBox Grid.Column="1"

@@ -33,7 +33,7 @@ namespace PaySys.UI.UC
 
 		private void RefreshListView()
 		{
-			var selectedId = (ListViewMissions.SelectedItem as Mission)?.Id;
+			var selectedId = (DataGridMissions.SelectedItem as Mission)?.Id;
 			Context = new PaySysContext();
 			Context.Missions.Load();
 			MissionsAll = Context.Missions.Local;
@@ -41,7 +41,7 @@ namespace PaySys.UI.UC
 			GetBindingExpression( DataContextProperty )?.UpdateTarget();
 
 			if(selectedId.HasValue)
-				ListViewMissions.SelectedItem = MissionsAll.FirstOrDefault(m => m.Id == selectedId.Value);
+				DataGridMissions.SelectedItem = MissionsAll.FirstOrDefault(m => m.Id == selectedId.Value);
 		}
 
 		private void Add_CanExecute( object sender, CanExecuteRoutedEventArgs e )
@@ -88,8 +88,8 @@ namespace PaySys.UI.UC
 				Title = ResourceAccessor.Labels.GetString( "New" )
 			};
 			MissionsAll.Add( newItem );
-			ListViewMissions.SelectedItem = newItem;
-			ListViewMissions.ScrollIntoView( newItem );
+			DataGridMissions.SelectedItem = newItem;
+			DataGridMissions.ScrollIntoView( newItem );
 		}
 
 		private void Edit_Executed( object sender, ExecutedRoutedEventArgs e )
@@ -113,7 +113,7 @@ namespace PaySys.UI.UC
 		private void DiscardChanges_Executed( object sender, ExecutedRoutedEventArgs e )
 		{
 			if( SmpUcFormStateLabel.CurrentState == FormCurrentState.Add )
-				MissionsAll.Remove( (Mission) ListViewMissions.SelectedItem );
+				MissionsAll.Remove( (Mission) DataGridMissions.SelectedItem );
 
 			SmpUcMissionDetail.UpdateTarget();
 
@@ -124,5 +124,10 @@ namespace PaySys.UI.UC
 		{
 			RefreshListView();
 		}
+
+	    private void SmpUcLookup_OnLookupTextChanged(object sender, TextChangedEventArgs e)
+	    {
+	        throw new System.NotImplementedException();
+	    }
 	}
 }

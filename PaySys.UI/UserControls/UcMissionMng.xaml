@@ -14,150 +14,108 @@
              DataContext="{Binding ElementName=SmpUcMissionMng,Path=MissionsAll}"
              FlowDirection="RightToLeft"
              d:DesignHeight="500"
-             d:DesignWidth="600">
-	<UserControl.CommandBindings>
-		<CommandBinding
-			Command="commands:PaySysCommands.Add"
-			CanExecute="Add_CanExecute"
-			Executed="Add_Executed" />
-		<CommandBinding
-			Command="commands:PaySysCommands.Edit"
-			CanExecute="Edit_CanExecute"
-			Executed="Edit_Executed" />
-		<CommandBinding
-			Command="commands:PaySysCommands.Delete"
-			CanExecute="Delete_CanExecute"
-			Executed="Delete_Executed" />
-		<CommandBinding
-			Command="commands:PaySysCommands.Save"
-			CanExecute="Save_CanExecute"
-			Executed="Save_Executed" />
-		<CommandBinding
-			Command="commands:PaySysCommands.DiscardChanges"
-			CanExecute="DiscardChanges_CanExecute"
-			Executed="DiscardChanges_Executed" />
-		<CommandBinding
-			Command="commands:PaySysCommands.Reload"
-			CanExecute="Reload_CanExecute"
-			Executed="Reload_Executed" />
-	</UserControl.CommandBindings>
-	<Grid x:Name="GridMain">
-		<Grid.RowDefinitions>
-			<RowDefinition Name="RowToolbar"
-			               Height="Auto" />
-			<RowDefinition Name="RowTitle"
-			               Height="Auto" />
-			<RowDefinition Name="RowDatagrid"
-			               Height="2*" />
-			<RowDefinition Name="RowDetail"
-			               Height="*" />
-			<RowDefinition Name="RowStatusBar"
-			               Height="30" />
-		</Grid.RowDefinitions>
-		<ToolBar Grid.Row="0">
-			<Button Name="ButtonAdd"
-			        Command="commands:PaySysCommands.Add"
-			        CommandTarget="{Binding ElementName=ListViewMissions}"
-			        Content="{x:Static fa:Labels.Add}"
-			        Style="{StaticResource StyleOfToolbarButton}"
-			        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}" />
-			<Button Name="ButtonEdit"
-			        Command="commands:PaySysCommands.Edit"
-			        CommandTarget="{Binding ElementName=ListViewMissions}"
-			        Content="{x:Static fa:Labels.Edit}"
-			        Style="{StaticResource StyleOfToolbarButton}"
-			        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}" />
-			<Button Name="ButtonDelete"
-			        Command="commands:PaySysCommands.Delete"
-			        CommandTarget="{Binding ElementName=ListViewMissions}"
-			        Content="{x:Static fa:Labels.Delete}"
-			        Style="{StaticResource StyleOfToolbarButton}"
-			        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}" />
-			<Separator />
-			<Button Name="ButtonSave"
-			        Command="commands:PaySysCommands.Save"
-			        CommandTarget="{Binding ElementName=ListViewMissions}"
-			        Content="{x:Static fa:Labels.Save}"
-			        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSaveDiscardButtons}"
-			        Style="{StaticResource StyleOfToolbarButton}" />
-			<Button Name="ButtonDiscardChanges"
-			        Command="commands:PaySysCommands.DiscardChanges"
-			        CommandTarget="{Binding ElementName=ListViewMissions}"
-			        Content="{x:Static fa:Labels.Cancel}"
-			        Style="{StaticResource StyleOfToolbarButton}"
-			        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSaveDiscardButtons}" />
-			<Separator />
-			<Button Name="ButtonReload"
-			        Command="commands:PaySysCommands.Reload"
-			        CommandTarget="{Binding ElementName=ListViewMissions}"
-			        Content="{x:Static fa:Labels.Reload}"
-			        Style="{StaticResource StyleOfToolbarButton}"
-			        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}" />
-		</ToolBar>
-		<TextBlock Grid.Row="1"
-		           FontSize="20"
-		           HorizontalAlignment="Center"
-		           VerticalAlignment="Center"
-		           Margin="0,10"
-		           Text="{x:Static fa:Labels.Missions}" />
-		<ListView x:Name="ListViewMissions"
-		          Grid.Row="2"
-		          d:DataContext="{d:DesignInstance Type=model:Mission, IsDesignTimeCreatable=True}"
-		          ItemsSource="{Binding}"
-		          Margin="60,20"
-		          IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}">
-			<ListView.View>
-				<GridView>
-					<GridViewColumn
-						Header="{x:Static fa:FieldicMission.MissionContractNo}"
-						DisplayMemberBinding="{Binding MissionContractNo}" />
-					<GridViewColumn
-						Header="{x:Static fa:FieldicMission.Title}"
-						DisplayMemberBinding="{Binding Title}" />
-					<GridViewColumn
-						Header="{x:Static fa:FieldicMission.City}"
-						DisplayMemberBinding="{Binding City.Title}" />
-					<GridViewColumn
-						Header="{x:Static fa:FieldicMission.DateStart}"
-						DisplayMemberBinding="{Binding StartDate}" />
-					<GridViewColumn
-						Header="{x:Static fa:FieldicMission.TimeStart}"
-						DisplayMemberBinding="{Binding TimeStart}" />
-					<GridViewColumn
-						Header="{x:Static fa:FieldicMission.TimeEnd}"
-						DisplayMemberBinding="{Binding TimeEnd}" />
-					<GridViewColumn
-						Header="{x:Static fa:FieldicMission.DateEnd}"
-						DisplayMemberBinding="{Binding EndDate}" />
-					<GridViewColumn
-						Header="{x:Static fa:FieldicMission.AmountResident}"
-						DisplayMemberBinding="{Binding AmountResident}" />
-					<GridViewColumn
-						Header="{x:Static fa:FieldicMission.AmountNonResident}"
-						DisplayMemberBinding="{Binding AmountNonResident}" />
-					<GridViewColumn
-						Header="{x:Static fa:FieldicMission.VehicleType}"
-						DisplayMemberBinding="{Binding VehicleType}" />
-					<GridViewColumn
-						Header="{x:Static fa:FieldicMission.TravelExpense}"
-						DisplayMemberBinding="{Binding TravelExpense}" />
-				</GridView>
-			</ListView.View>
-		</ListView>
-		<TabControl Grid.Row="3">
-			<TabItem
-				x:Name="TabItemUcMissionDetail"
-				Header="{x:Static fa:Labels.MissionDetail}">
-				<local:UcMissionDetail
-					x:Name="SmpUcMissionDetail"
-					DataContext="{Binding ElementName =ListViewMissions,Path=SelectedItem}"
-					ReadOnlyOfFields="{Binding ElementName =SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
-					Margin="10" />
-			</TabItem>
-		</TabControl>
-		<StatusBar Grid.Row="4">
-			<local:UcFormStateLabel
-				x:Name="SmpUcFormStateLabel" />
-		</StatusBar>
-	</Grid>
+             d:DesignWidth="900" >
+    <UserControl.CommandBindings>
+        <CommandBinding Command="commands:PaySysCommands.Add"
+                        CanExecute="Add_CanExecute"
+                        Executed="Add_Executed" />
+        <CommandBinding Command="commands:PaySysCommands.Edit"
+                        CanExecute="Edit_CanExecute"
+                        Executed="Edit_Executed" />
+        <CommandBinding Command="commands:PaySysCommands.Delete"
+                        CanExecute="Delete_CanExecute"
+                        Executed="Delete_Executed" />
+        <CommandBinding Command="commands:PaySysCommands.Save"
+                        CanExecute="Save_CanExecute"
+                        Executed="Save_Executed" />
+        <CommandBinding Command="commands:PaySysCommands.DiscardChanges"
+                        CanExecute="DiscardChanges_CanExecute"
+                        Executed="DiscardChanges_Executed" />
+        <CommandBinding Command="commands:PaySysCommands.Reload"
+                        CanExecute="Reload_CanExecute"
+                        Executed="Reload_Executed" />
+    </UserControl.CommandBindings>
+    <Grid x:Name="GridMain" >
+        <Grid.RowDefinitions>
+            <RowDefinition Name="RowToolbar"
+                           Height="Auto" />
+            <RowDefinition Name="RowDatagrid"
+                           Height="*" />
+            <RowDefinition Height="*" Name="RowDetail" />
+            <RowDefinition Name="RowStatusBar"
+                           Height="Auto" />
+        </Grid.RowDefinitions>
+        <ToolBar Grid.Row="0"
+                 Grid.Column="0" >
+            <Button Template="{StaticResource TemplateOfToolbarButtonAdd}"
+                    CommandTarget="{Binding ElementName=DataGridMissions}" />
+            <Button Template="{StaticResource TemplateOfToolbarButtonEdit}"
+                    CommandTarget="{Binding ElementName=DataGridMissions}" />
+            <Button Template="{StaticResource TemplateOfToolbarButtonDelete}"
+                    CommandTarget="{Binding ElementName=DataGridMissions}" />
+            <Separator Style="{StaticResource StyleOfSeparator}" />
+            <Button Template="{StaticResource TemplateOfToolbarButtonSave}"
+                    CommandTarget="{Binding ElementName=DataGridMissions}" />
+            <Button Template="{StaticResource TemplateOfToolbarButtonDiscardChanges}"
+                    CommandTarget="{Binding ElementName=DataGridMissions}" />
+            <Separator Style="{StaticResource StyleOfSeparator}" />
+            <Button Template="{StaticResource TemplateOfToolbarButtonReload}"
+                    CommandTarget="{Binding ElementName=DataGridMissions}" />
+        </ToolBar>
+        <local:UcLookup x:Name="SmpUcLookup"
+                        Grid.Row="0"
+                        Grid.ZIndex="99"
+                        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSelectionElements}"
+                        LookupTextChanged="SmpUcLookup_OnLookupTextChanged" />
+        <DataGrid x:Name="DataGridMissions"
+                  Grid.Row="1"
+                  ColumnWidth="*"
+                  KeyboardNavigation.TabNavigation="Once"
+                  SelectionUnit="FullRow"
+                  d:DataContext="{d:DesignInstance Type=model:Mission, IsDesignTimeCreatable=True}"
+                  ItemsSource="{Binding}"
+                  IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="{x:Static fa:FieldicMission.MissionContractNo}"
+                                    Binding="{Binding MissionContractNo}" />
+                <DataGridTextColumn Header="{x:Static fa:FieldicMission.Title}"
+                                    Binding="{Binding Title}" />
+                <DataGridTextColumn Header="{x:Static fa:FieldicMission.City}"
+                                    Binding="{Binding City.Title}" />
+                <DataGridTextColumn Header="{x:Static fa:FieldicMission.DateStart}"
+                                    Binding="{Binding StartDate}" />
+                <DataGridTextColumn Header="{x:Static fa:FieldicMission.TimeStart}"
+                                    Binding="{Binding TimeStart}" />
+                <DataGridTextColumn Header="{x:Static fa:FieldicMission.TimeEnd}"
+                                    Binding="{Binding TimeEnd}" />
+                <DataGridTextColumn Header="{x:Static fa:FieldicMission.DateEnd}"
+                                    Binding="{Binding EndDate}" />
+                <DataGridTextColumn Header="{x:Static fa:FieldicMission.AmountResident}"
+                                    Binding="{Binding AmountResident}" />
+                <DataGridTextColumn Header="{x:Static fa:FieldicMission.AmountNonResident}"
+                                    Binding="{Binding AmountNonResident}" />
+                <DataGridTextColumn Header="{x:Static fa:FieldicMission.VehicleType}"
+                                    Binding="{Binding VehicleType}" />
+                <DataGridTextColumn Header="{x:Static fa:FieldicMission.TravelExpense}"
+                                    Binding="{Binding TravelExpense}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <TabControl Grid.Row="2"
+                    Style="{StaticResource StyleOfChildTabControl}" >
+            <TabItem x:Name="TabItemUcMissionDetail"
+                     Style="{StaticResource StyleOfChildTabItem}" >
+                <TabItem.Header>
+                    <local:UcTextImagePair Icon="{StaticResource icon_black_mission}"
+                                           Text="{x:Static fa:Labels.MissionDetail}" />
+                </TabItem.Header>
+                <local:UcMissionDetail x:Name="SmpUcMissionDetail"
+                                       DataContext="{Binding ElementName =DataGridMissions,Path=SelectedItem}"
+                                       ReadOnlyOfFields="{Binding ElementName =SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
+                                       Margin="10" />
+            </TabItem>
+        </TabControl>
+        <StatusBar Grid.Row="3" >
+            <local:UcFormStateLabel x:Name="SmpUcFormStateLabel" />
+        </StatusBar>
+    </Grid>
 </UserControl>
