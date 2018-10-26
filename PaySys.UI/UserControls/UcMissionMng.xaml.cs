@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using PaySys.Globalization;
 using PaySys.ModelAndBindLib.Engine;
@@ -127,7 +128,13 @@ namespace PaySys.UI.UC
 
 	    private void SmpUcLookup_OnLookupTextChanged(object sender, TextChangedEventArgs e)
 	    {
-	        throw new System.NotImplementedException();
-	    }
+	        var dtg = DataGridMissions;
+	        if (dtg.ItemsSource == null) return;
+	        if (string.IsNullOrEmpty(SmpUcLookup.LookupText))
+	            CollectionViewSource.GetDefaultView(dtg.ItemsSource).Filter = null;
+	        else
+	            CollectionViewSource.GetDefaultView(dtg.ItemsSource).Filter =
+	                o => ((Mission)o).ContainsValue(SmpUcLookup.LookupText);
+        }
 	}
 }

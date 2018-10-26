@@ -450,4 +450,7 @@
   <data name="SubGroupBaseInfo" xml:space="preserve">
     <value>اطلاعات پایه زیرگروه</value>
   </data>
+  <data name="JobInfo" xml:space="preserve">
+    <value>اطلاعات شغل</value>
+  </data>
 </root>

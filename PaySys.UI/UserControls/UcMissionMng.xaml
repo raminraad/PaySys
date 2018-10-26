@@ -39,9 +39,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Name="RowToolbar"
                            Height="Auto" />
-            <RowDefinition Name="RowDatagrid"
-                           Height="*" />
-            <RowDefinition Height="*" Name="RowDetail" />
+            <RowDefinition Name="RowDatagrid" />
+            <RowDefinition Height="Auto" Name="RowDetail" />
             <RowDefinition Name="RowStatusBar"
                            Height="Auto" />
         </Grid.RowDefinitions>
@@ -101,6 +100,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <TabControl Grid.Row="2"
+                    Width="{Binding ElementName=SmpUcMissionDetail,Path=ActualWidth}"
                     Style="{StaticResource StyleOfChildTabControl}" >
             <TabItem x:Name="TabItemUcMissionDetail"
                      Style="{StaticResource StyleOfChildTabItem}" >
@@ -111,7 +111,7 @@
                 <local:UcMissionDetail x:Name="SmpUcMissionDetail"
                                        DataContext="{Binding ElementName =DataGridMissions,Path=SelectedItem}"
                                        ReadOnlyOfFields="{Binding ElementName =SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}"
-                                       Margin="10" />
+                                        />
             </TabItem>
         </TabControl>
         <StatusBar Grid.Row="3" >

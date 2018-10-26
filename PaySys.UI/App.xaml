@@ -564,8 +564,7 @@
                         Value="Stretch" />
                 <Setter Property="TextWrapping"
                         Value="Wrap" />
-                <Setter Property="Margin"
-                        Value="{StaticResource MarginOfDataFields}" />
+                
             </Style>
             <Style x:Key="StyleOfDataFieldComboBox"
                    TargetType="ComboBox" >

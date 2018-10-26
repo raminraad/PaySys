@@ -113,18 +113,6 @@
                       Margin="{StaticResource MarginOfMaster}"
                       d:DataContext="{d:DesignInstance model:City}"
                       DataContext="{Binding ElementName=DataGridCities,Path=SelectedItem}" >
-                    <Grid.Resources>
-                        <Style TargetType="TextBox" >
-                            <Setter Property="Margin"
-                                    Value="0,12" />
-                            <Setter Property="VerticalContentAlignment"
-                                    Value="Center" />
-                        </Style>
-                        <Style TargetType="TextBlock" >
-                            <Setter Property="VerticalAlignment"
-                                    Value="Center" />
-                        </Style>
-                    </Grid.Resources>
                     <Grid.RowDefinitions>
                         <RowDefinition />
                         <RowDefinition />

@@ -14,8 +14,10 @@
 	xmlns:persianDateControls="clr-namespace:Arash.PersianDateControls;assembly=PersianDateControls"
 	xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
 	d:DataContext="{d:DesignInstance Type=model:Mission, IsDesignTimeCreatable=True}"
-	d:DesignHeight="250"
-	d:DesignWidth="900"
+	Height="150"
+	MaxHeight="150"
+	MaxWidth="850"
+	Width="850"
 	FlowDirection="RightToLeft">
 	<Grid x:Name="GridDetail">
 		<Grid.RowDefinitions>

@@ -46,4 +46,5 @@
     <BitmapImage x:Key="icon_black_handsel_formula" UriSource="../Assets/Icons/Licorice/icon_black_handsel_formula.png" />
     <BitmapImage x:Key="icon_black_mission_formula" UriSource="../Assets/Icons/Licorice/icon_black_mission_formula.png" />
     <BitmapImage x:Key="icon_black_mission" UriSource="../Assets/Icons/Licorice/icon_black_mission.png" />
+    <BitmapImage x:Key="icon_black_job" UriSource="../Assets/Icons/Licorice/icon_black_job.png" />
 </ResourceDictionary>

@@ -23,17 +23,22 @@ namespace PaySys.ModelAndBindLib.Entities
         /// <returns>True: Value exists in object , False: Value doesn't exist in object</returns>
         public bool ContainsValue(string valueToSearch, bool exactMatch = false)
         {
-            var propsToCheck = this.GetType().GetProperties().Where(
-                prop => Attribute.IsDefined(prop, typeof(IncludeInLookupAttribute)));
-            
+            var propsToCheck = this.GetType().GetProperties()
+                .Where(prop => Attribute.IsDefined(prop, typeof(IncludeInLookupAttribute)));
+            var propertyInfos = propsToCheck.ToList();
+            if (!propertyInfos.Any()) return false;
             if (exactMatch)
             {
-                if (propsToCheck.Any(propertyInfo => propertyInfo.GetValue(this).ToString().Equals(valueToSearch)))
+                if (propertyInfos.Any(propertyInfo =>
+                    propertyInfo.GetValue(this) != null &&
+                    propertyInfo.GetValue(this).ToString().Equals(valueToSearch)))
                     return true;
             }
             else
             {
-                if (propsToCheck.Any(propertyInfo => propertyInfo.GetValue(this).ToString().Contains(valueToSearch)))
+                if (propertyInfos.Any(propertyInfo =>
+                    propertyInfo.GetValue(this) != null &&
+                    propertyInfo.GetValue(this).ToString().Contains(valueToSearch)))
                     return true;
             }
 

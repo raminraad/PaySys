@@ -511,6 +511,15 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to اطلاعات شغل.
+        /// </summary>
+        public static string JobInfo {
+            get {
+                return ResourceManager.GetString("JobInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to شغل ها.
         /// </summary>
         public static string Jobs {
