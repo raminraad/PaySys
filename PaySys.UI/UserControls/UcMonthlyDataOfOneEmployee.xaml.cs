@@ -36,12 +36,7 @@ namespace PaySys.UI.UC
 
 		private CollectionViewSource CvsOfEmployeeMiscDebtValues => Resources["CvsOfEmployeeMiscDebtValues"] as CollectionViewSource;
 
-		private void SmpUcRibbonSelector_OnListDataContextChanged( object sender, RoutedEventArgs e )
-		{
-			SmpUcRibbonSelector.SortDescription = "FullName";
-		}
-
-		private void UcMonthlyDataOfOneEmployee_OnDataContextChanged( object sender, DependencyPropertyChangedEventArgs e )
+	    private void UcMonthlyDataOfOneEmployee_OnDataContextChanged( object sender, DependencyPropertyChangedEventArgs e )
 		{
 			RefreshCvs( e.NewValue );
 		}
@@ -60,7 +55,7 @@ namespace PaySys.UI.UC
 			if( var == null )
 				return;
 
-			e.Accepted = var.Employee.Equals( SmpUcRibbonSelector.SelectedItem );
+			e.Accepted = var.Employee.Equals( DataGridEmployees.SelectedItem as Employee );
 		}
 
 		private void FilterMiscOfSelectedEmployee( object sender, FilterEventArgs e )
@@ -69,19 +64,12 @@ namespace PaySys.UI.UC
 			if( var == null )
 				return;
 
-			e.Accepted = var.Employee.Equals( SmpUcRibbonSelector.SelectedItem );
+			e.Accepted = var.Employee.Equals(DataGridEmployees.SelectedItem as Employee);
 		}
 
-		private void SmpUcRibbonSelector_OnSelectedItemChanged( object sender, RoutedEventArgs e )
+	    private void UcMonthlyDataOfOneEmployee_OnInitialized( object sender, EventArgs e )
 		{
-			CollectionViewSource.GetDefaultView( ListViewVariables.ItemsSource )?.Refresh();
-			CollectionViewSource.GetDefaultView( ListViewMiscPayments.ItemsSource )?.Refresh();
-			CollectionViewSource.GetDefaultView( ListViewMiscDebts.ItemsSource )?.Refresh();
-		}
-
-		private void UcMonthlyDataOfOneEmployee_OnInitialized( object sender, EventArgs e )
-		{
-			CvsOfEmployeeVariableValues.SortDescriptions.Add( new SortDescription( "Variable.VariableTitle.Title", ListSortDirection.Ascending ) );
+			CvsOfEmployeeVariableValues.SortDescriptions.Add( new SortDescription( "Variable.Title", ListSortDirection.Ascending ) );
 			CvsOfEmployeeVariableValues.Filter += FilterVariablesOfSelectedEmployee;
 
 			CvsOfEmployeeMiscPaymentValues.SortDescriptions.Add( new SortDescription( "Misc.MiscTitle.Title", ListSortDirection.Ascending ) );
@@ -105,5 +93,13 @@ namespace PaySys.UI.UC
 		}
 
 		#endregion
+
+
+	    private void DataGridEmployees_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+	    {
+	        CollectionViewSource.GetDefaultView(ListViewVariables.ItemsSource)?.Refresh();
+	        CollectionViewSource.GetDefaultView(ListViewMiscPayments.ItemsSource)?.Refresh();
+	        CollectionViewSource.GetDefaultView(ListViewMiscDebts.ItemsSource)?.Refresh();
+        }
 	}
 }

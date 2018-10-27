@@ -31,12 +31,7 @@ namespace PaySys.UI.UC
 
 		private CollectionViewSource Cvs => Resources["Cvs"] as CollectionViewSource;
 
-		private void SmpUcRibbonSelector_OnListDataContextChanged( object sender, RoutedEventArgs e )
-		{
-			SmpUcRibbonSelector.SortDescription = "VariableTitle.Title";
-		}
-
-		private void UcMonthlyDataOfOneVariable_OnDataContextChanged( object sender, DependencyPropertyChangedEventArgs e )
+	    private void UcMonthlyDataOfOneVariable_OnDataContextChanged( object sender, DependencyPropertyChangedEventArgs e )
 		{
 			RefreshCvs( e.NewValue );
 		}
@@ -52,15 +47,10 @@ namespace PaySys.UI.UC
 			if( var == null )
 				return;
 
-			e.Accepted = var.Variable.Equals( SmpUcRibbonSelector.SelectedItem );
+			e.Accepted = var.Variable.Equals( DataGridVariables.SelectedItem as Variable);
 		}
 
-		private void SmpUcRibbonSelector_OnSelectedItemChanged( object sender, RoutedEventArgs e )
-		{
-			CollectionViewSource.GetDefaultView( ListViewOfItems.ItemsSource )?.Refresh();
-		}
-
-		private void UcMonthlyDataOfOneVariable_OnInitialized( object sender, EventArgs e )
+	    private void UcMonthlyDataOfOneVariable_OnInitialized( object sender, EventArgs e )
 		{
 			Cvs.SortDescriptions.Add( new SortDescription( "Employee.FullName", ListSortDirection.Ascending ) );
 			Cvs.Filter += FilterCvs;
@@ -73,5 +63,11 @@ namespace PaySys.UI.UC
 		}
 
 		#endregion
+
+
+	    private void DataGridVariables_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+	    {
+	        CollectionViewSource.GetDefaultView(ListViewOfItems.ItemsSource)?.Refresh();
+        }
 	}
 }

@@ -13,84 +13,162 @@
              d:DataContext="{d:DesignInstance d:Type=model:SubGroup, IsDesignTimeCreatable=True}"
              d:DesignHeight="300"
              d:DesignWidth="600"
-             Initialized="UcMiscRechargeMng_OnInitialized">
-	<UserControl.CommandBindings>
-		<CommandBinding Command="commands:PaySysCommands.Edit"
-		                Executed="Edit"
-		                CanExecute="CommandBinding_OnCanExecute" />
-		<CommandBinding Command="commands:PaySysCommands.Save"
-		                Executed="Save"
-		                PreviewCanExecute="CommandBinding_OnCanExecute" />
-		<CommandBinding Command="commands:PaySysCommands.DiscardChanges"
-		                Executed="DiscardChanges"
-		                PreviewCanExecute="CommandBinding_OnCanExecute" />
-		<CommandBinding Command="commands:PaySysCommands.Reload"
-		                Executed="Reload"
-		                CanExecute="CommandBinding_OnCanExecute" />
-	</UserControl.CommandBindings>
-	<Grid>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="*" />
-			<RowDefinition Height="4*" />
-			<RowDefinition Height="Auto" />
-		</Grid.RowDefinitions>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="*" />
-			<ColumnDefinition Width="5*" />
-			<ColumnDefinition Width="*" />
-		</Grid.ColumnDefinitions>
-		<ToolBar Grid.Row="0"
-		         Grid.ColumnSpan="3">
-			<Button Name="ButtonEdit"
-			        Command="commands:PaySysCommands.Edit"
-			        Content="{x:Static fa:Labels.Edit}" />
-			<Button Name="ButtonSave"
-			        Command="commands:PaySysCommands.Save"
-			        Content="{x:Static fa:Labels.Save}" />
-			<Button Name="ButtonDiscardChanges"
-			        Command="commands:PaySysCommands.DiscardChanges"
-			        Content="{x:Static fa:Labels.Cancel}" />
-			<Separator />
-			<Button Name="ButtonReload"
-			        Command="commands:PaySysCommands.Reload"
-			        Content="{x:Static fa:Labels.Reload}" />
-		</ToolBar>
-		<local:UcSelectGroupAndSubGroup x:Name="SmpUcSelectGroupAndSubGroup"
-		                                Width="400"
-		                                Grid.Row="1"
-		                                Grid.Column="1"
-		                                IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}"
-		                                SelectedSubGroupChanged="SmpUcSelectGroupAndSubGroup_OnSelectedSubGroupChanged" />
-		<TabControl Grid.Row="2"
-		            Grid.Column="0"
-		            Grid.ColumnSpan="3">
-			<TabItem x:Name="TabItemGroupByEmployee"
-			         Header="{x:Static fa:Labels.GroupByEmployees}">
-				<local:UcMonthlyDataOfOneEmployee x:Name="SmpUcMonthlyDataOfOneEmployee"
-				                                  ReadOnlyOfListItems="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}" />
-			</TabItem>
-			<TabItem x:Name="TabItemGroupByVariableTitle"
-			         Header="{x:Static fa:Labels.GroupByVariableTitle}">
-				<local:UcMonthlyDataOfOneVariable x:Name="SmpUcMonthlyDataOfOneVariable"
-				                                  ReadOnlyOfListItems="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}" />
-			</TabItem>
-			<TabItem x:Name="TabItemGroupByMiscPayment"
-			         Header="{x:Static fa:Labels.GroupByMiscTitlePayment}">
-				<local:UcMonthlyDataOfOneMiscPayment x:Name="SmpUcMonthlyDataOfOneMiscPayment"
-				                                     ReadOnlyOfListItems="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}" />
-			</TabItem>
-			<TabItem x:Name="TabItemGroupByMiscDebt"
-			         Header="{x:Static fa:Labels.GroupByMiscTitleDebt}">
-				<local:UcMonthlyDataOfOneMiscDebt x:Name="SmpUcMonthlyDataOfOneMiscDebt"
-				                                ReadOnlyOfListItems="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}" />
-			</TabItem>
-		</TabControl>
-		<StatusBar Grid.Column="0"
-		           Grid.Row="3"
-		           Grid.ColumnSpan="3">
-			<local:UcFormStateLabel x:Name="SmpUcFormStateLabel"
-			                        FormType="{x:Type local:UcMiscRechargeMng}" />
-		</StatusBar>
-	</Grid>
+             Initialized="UcMonthlyDataMng_OnInitialized" >
+    <UserControl.CommandBindings>
+        <CommandBinding Command="commands:PaySysCommands.Edit"
+                        Executed="Edit"
+                        CanExecute="CommandBinding_OnCanExecute" />
+        <CommandBinding Command="commands:PaySysCommands.Save"
+                        Executed="Save"
+                        PreviewCanExecute="CommandBinding_OnCanExecute" />
+        <CommandBinding Command="commands:PaySysCommands.DiscardChanges"
+                        Executed="DiscardChanges"
+                        PreviewCanExecute="CommandBinding_OnCanExecute" />
+        <CommandBinding Command="commands:PaySysCommands.Reload"
+                        Executed="Reload"
+                        CanExecute="CommandBinding_OnCanExecute" />
+    </UserControl.CommandBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <ToolBar Grid.Row="0"
+                 Grid.ColumnSpan="3" >
+            <Button Template="{StaticResource TemplateOfToolbarButtonEdit}" />
+            <Separator Style="{StaticResource StyleOfSeparator}" />
+            <Button Template="{StaticResource TemplateOfToolbarButtonSave}" />
+            <Button Template="{StaticResource TemplateOfToolbarButtonDiscardChanges}" />
+            <Separator Style="{StaticResource StyleOfSeparator}" />
+            <Button Template="{StaticResource TemplateOfToolbarButtonReload}" />
+        </ToolBar>
+        <Grid Grid.Row="1"
+              VerticalAlignment="Stretch"
+              Grid.Column="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="0"
+                       Grid.Column="0"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Bottom"
+                       Text="{x:Static fa:Labels.MainGroupsList}" />
+            <TextBlock Grid.Row="0"
+                       Grid.Column="1"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Bottom"
+                       Text="{x:Static fa:Labels.SubGroupsList}" />
+            <DataGrid x:Name="DataGridMainGroups"
+                      Grid.Column="0"
+                      Grid.Row="1"
+                      ColumnWidth="*"
+                      HeadersVisibility="None"
+                      KeyboardNavigation.TabNavigation="Once"
+                      SelectionUnit="FullRow"
+                      ItemsSource="{Binding UpdateSourceTrigger=PropertyChanged}"
+                      d:DataContext="{d:DesignInstance Type=model:MainGroup, IsDesignTimeCreatable=True}"
+                      IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSelectionElements}" >
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="{x:Static fa:FieldicSubGroup.Title}"
+                                        Binding="{Binding Title}"
+                                        Width="*" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <DataGrid x:Name="DataGridSubGroups"
+                      Grid.Column="1"
+                      Grid.Row="1"
+                      ColumnWidth="*"
+                      HeadersVisibility="None"
+                      KeyboardNavigation.TabNavigation="Once"
+                      SelectionUnit="FullRow"
+                      ItemsSource="{Binding ElementName=DataGridMainGroups,Path=SelectedItem.(model:MainGroup.SubGroups),Mode=TwoWay,UpdateSourceTrigger=Explicit}"
+                      d:DataContext="{d:DesignInstance Type=model:SubGroup, IsDesignTimeCreatable=True}"
+                      IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSelectionElements}" >
+
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="{x:Static fa:FieldicSubGroup.Title}"
+                                            Width="*" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <local:UcTextPair
+                                    TextOfTextBox="{Binding Path=Title,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                    HorizontalAlignment="Left"
+                                    TextOfLabel="{Binding Path=Title}"
+                                    ReadOnly="{Binding ElementName = SmpUcFormStateLabel , Path=ReadOnlyOfEditFields}"
+                                    Width="{StaticResource WidthOfDataFieldOfText}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <local:UcSelectGroupAndSubGroup x:Name="SmpUcSelectGroupAndSubGroup"
+                                        Width="400"
+                                        Visibility="Hidden"
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfCrudButtons}"
+                                        SelectedSubGroupChanged="DataGridSubGroups_OnSelectionChanged" />
+        <TabControl Grid.Row="2"
+                    Grid.Column="0"
+                    Style="{StaticResource StyleOfChildTabControl}"
+                    Grid.ColumnSpan="3" >
+            <TabControl.Resources>
+                <Style TargetType="TabItem"
+                       BasedOn="{StaticResource StyleOfChildTabItem}" />
+            </TabControl.Resources>
+            <TabItem x:Name="TabItemGroupByEmployee" >
+                <TabItem.Header>
+                    <local:UcTextImagePair Icon="{StaticResource icon_black_employee}"
+                                           Text="{x:Static fa:Labels.GroupByEmployees}" />
+                </TabItem.Header>
+                <local:UcMonthlyDataOfOneEmployee x:Name="SmpUcMonthlyDataOfOneEmployee"
+                                                  ReadOnlyOfListItems="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}" />
+            </TabItem>
+            <TabItem x:Name="TabItemGroupByVariableTitle" >
+                <TabItem.Header>
+                    <local:UcTextImagePair Icon="{StaticResource icon_info}"
+                                           Text="{x:Static fa:Labels.GroupByVariableTitle}" />
+                </TabItem.Header>
+                <local:UcMonthlyDataOfOneVariable x:Name="SmpUcMonthlyDataOfOneVariable"
+                                                  ReadOnlyOfListItems="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}" />
+            </TabItem>
+            <TabItem x:Name="TabItemGroupByMiscPayment" >
+                <TabItem.Header>
+                    <local:UcTextImagePair Icon="{StaticResource icon_info}"
+                                           Text="{x:Static fa:Labels.GroupByMiscTitlePayment}" />
+                </TabItem.Header>
+                <local:UcMonthlyDataOfOneMiscPayment x:Name="SmpUcMonthlyDataOfOneMiscPayment"
+                                                     ReadOnlyOfListItems="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}" />
+            </TabItem>
+            <TabItem x:Name="TabItemGroupByMiscDebt" >
+                <TabItem.Header>
+                    <local:UcTextImagePair Icon="{StaticResource icon_info}"
+                                           Text="{x:Static fa:Labels.GroupByMiscTitleDebt}" />
+                </TabItem.Header>
+                <local:UcMonthlyDataOfOneMiscDebt x:Name="SmpUcMonthlyDataOfOneMiscDebt"
+                                                  ReadOnlyOfListItems="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}" />
+            </TabItem>
+        </TabControl>
+        <StatusBar Grid.Column="0"
+                   Grid.Row="3"
+                   Grid.ColumnSpan="3" >
+            <local:UcFormStateLabel x:Name="SmpUcFormStateLabel"
+                                    FormType="{x:Type local:UcMiscRechargeMng}" />
+        </StatusBar>
+    </Grid>
 </UserControl>

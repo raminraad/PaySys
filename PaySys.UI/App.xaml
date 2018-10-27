@@ -98,7 +98,7 @@
             <system:Double x:Key="FontSizeOfDataFields" > 10 </system:Double>
             <system:Double x:Key="FontSizeOfStatusBar" > 12 </system:Double>
             <system:Double x:Key="FontSizeOfListTitleTextBlock" > 16 </system:Double>
-            <system:Double x:Key="FontSizeOfLookupTextBox" > 16 </system:Double>
+            <system:Double x:Key="FontSizeOfLookupTextBox" > 14 </system:Double>
             <system:Double x:Key="FontSizeOfTabHeader" > 16 </system:Double>
             <system:Double x:Key="FontSizeOfMenu" > 16 </system:Double>
             <system:Double x:Key="FontSizeOfStatusBarContentImage" > 16 </system:Double>
@@ -136,6 +136,7 @@
             <system:Double x:Key="SizeOfListFunctionButton" > 24 </system:Double>
             <system:Double x:Key="SizeOfListFunctionButtonImage" > 16 </system:Double>
 
+            <Thickness x:Key="MarginOfListViews" >10</Thickness>
             <Thickness x:Key="MarginOfDataFields"
                        Left="10"
                        Top="0"
@@ -239,7 +240,7 @@
                 <Setter Property="FontSize"
                         Value="{StaticResource FontSizeOfDataFields}" />
                 <Setter Property="Margin"
-                        Value="10" />
+                        Value="{StaticResource MarginOfListViews}" />
                 <Setter Property="SelectionMode"
                         Value="Single" />
                 <Setter Property="KeyboardNavigation.TabNavigation"
@@ -787,7 +788,7 @@
                 <Setter Property="FontSize"
                         Value="{StaticResource FontSizeOfLookupTextBox}" />
                 <Setter Property="VerticalContentAlignment"
-                        Value="Stretch" />
+                        Value="Center" />
                 <Setter Property="Margin"
                         Value="{StaticResource MarginOfLookupTextBox}" />
                 <Setter Property="Height"

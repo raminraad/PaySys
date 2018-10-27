@@ -16,121 +16,133 @@
              FlowDirection="RightToLeft"
              d:DesignHeight="300"
              d:DesignWidth="600"
-             Initialized="UcMonthlyDataOfOneVariable_OnInitialized">
-	<UserControl.Resources>
-		<CollectionViewSource x:Key="Cvs" />
-	</UserControl.Resources>
-	<Grid>
-		<Grid.Resources>
-			<Style TargetType="ListView">
-				<Setter Property="Margin"
-				        Value="10" />
-				<Setter Property="SelectionMode"
-				        Value="Single" />
-				<Setter Property="KeyboardNavigation.TabNavigation"
-				        Value="Cycle" />
-				<Setter Property="ItemContainerStyle">
-					<Setter.Value>
-						<Style TargetType="ListViewItem">
-							<Setter Property="IsTabStop"
-							        Value="False" />
-							<EventSetter Event="GotFocus"
-							             Handler="ListItemGotFocus" />
-							<Setter Property="FontFamily"
-							        Value="{StaticResource FontFamilyOfDataFields}" />
-							<Setter Property="FontSize"
-							        Value="16" />
-							<Setter Property="VerticalAlignment"
-							        Value="Center" />
-						</Style>
-					</Setter.Value>
-				</Setter>
-			</Style>
-			<Style x:Key="StyleOfTitle"
-			       TargetType="TextBlock">
-				<Setter Property="HorizontalAlignment"
-				        Value="Center" />
-				<Setter Property="VerticalAlignment"
-				        Value="Bottom" />
-				<Setter Property="FontSize"
-				        Value="18" />
-				<Setter Property="FontFamily"
-				        Value="{StaticResource FontFamilyOfDataFields}" />
-				<Setter Property="FontWeight"
-				        Value="Black" />
-			</Style>
-		</Grid.Resources>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="*" />
-			<ColumnDefinition Width="2*" />
-			<ColumnDefinition Width="*" />
-		</Grid.ColumnDefinitions>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="*" />
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="*" />
-			<RowDefinition Height="*" />
-			<RowDefinition Height="6*" />
-			<RowDefinition Height="30" />
-		</Grid.RowDefinitions>
-		<local:UcRibbonSelector Grid.Row="1"
-		                        Grid.Column="1"
-		                        ListDataContextChanged="SmpUcRibbonSelector_OnListDataContextChanged"
-		                        x:Name="SmpUcRibbonSelector"
-		                        SelectedItemChanged="SmpUcRibbonSelector_OnSelectedItemChanged"
-		                        DataContext="{Binding CurrentVariables, Mode=OneWay}"
-		                        TitleDisplayMember="/VariableTitle.Title" />
-		<TextBlock Grid.Row="3"
-		           Grid.Column="1"
-		           Text="{x:Static fa:Labels.Employees}"
-		           Style="{StaticResource StyleOfTitle}" />
-		<ListView x:Name="ListViewOfItems"
-		          Grid.Row="4"
-		          Grid.Column="1"
-		          DataContext="{Binding Source={StaticResource Cvs}}"
-		          ItemsSource="{Binding}"
-		          d:DataContext="{d:DesignInstance Type=model:VariableValueForEmployee, IsDesignTimeCreatable=True}">
-			<ListView.View>
-				<GridView>
-					<GridView.Columns>
-						<GridViewColumn Header="{x:Static fa:FieldicEmployee.FullName}"
-										Width="Auto"
-						                DisplayMemberBinding="{Binding Employee.FullName}" />
-						<GridViewColumn Header="{x:Static fa:Labels.VariableValue}">
-							<GridViewColumn.CellTemplate>
-								<DataTemplate>
-									<StackPanel>
-										<TextBox Text="{Binding NumericValue,StringFormat={}{0:N0}}"
-										         Visibility="{Binding ValueIsNumeric}"
-												 Width="200"
-										         Margin="0"
-										         IsReadOnly="{Binding ElementName=SmpUcMonthlyDataOfOneVariable,Path=ReadOnlyOfListItems}"
-										         Style="{StaticResource StyleOfDataFieldTextBox}" />
-										<TextBox Text="{Binding StringValue}"
-										         Visibility="{Binding ValueIsString}"
-										         Width="200"
-										         Margin="0"
-												 IsReadOnly="{Binding ElementName=SmpUcMonthlyDataOfOneVariable,Path=ReadOnlyOfListItems}"
-										         Style="{StaticResource StyleOfDataFieldTextBox}" />
-										<persianDateControls:PersianDatePicker SelectedDate="{Binding DateValue,Mode=TwoWay,Converter={StaticResource GregToPersDateConverter}}"
-										                                       DisplayDate="{Binding DateValue,Mode=TwoWay,Converter={StaticResource GregToPersDateConverter}}"
-										                                       IsEnabled="{Binding ElementName=SmpUcMonthlyDataOfOneVariable,Path=ReadOnlyOfListItems,Converter={StaticResource NegateBooleanConverter}}"
-										                                       Visibility="{Binding ValueIsDate}"
-										                                       Width="100"
-										                                       Margin="0"
-										                                       Style="{StaticResource StyleOfDataFieldDatePicker}"/>
-									</StackPanel>
+             Initialized="UcMonthlyDataOfOneVariable_OnInitialized" >
+    <UserControl.Resources>
+        <CollectionViewSource x:Key="Cvs" />
+        <Style TargetType="TextBlock"
+               BasedOn="{StaticResource StyleOfListTitleTextBlock}" >
+            <Setter Property="Margin"
+                    Value="0" />
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="ListView" >
+                <Setter Property="Margin"
+                        Value="10" />
+                <Setter Property="SelectionMode"
+                        Value="Single" />
+                <Setter Property="KeyboardNavigation.TabNavigation"
+                        Value="Cycle" />
+                <Setter Property="ItemContainerStyle" >
+                    <Setter.Value>
+                        <Style TargetType="ListViewItem" >
+                            <Setter Property="IsTabStop"
+                                    Value="False" />
+                            <EventSetter Event="GotFocus"
+                                         Handler="ListItemGotFocus" />
+                            <Setter Property="FontFamily"
+                                    Value="{StaticResource FontFamilyOfDataFields}" />
+                            <Setter Property="FontSize"
+                                    Value="16" />
+                            <Setter Property="VerticalAlignment"
+                                    Value="Center" />
+                        </Style>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="StyleOfTitle"
+                   TargetType="TextBlock" >
+                <Setter Property="HorizontalAlignment"
+                        Value="Center" />
+                <Setter Property="VerticalAlignment"
+                        Value="Bottom" />
+                <Setter Property="FontSize"
+                        Value="18" />
+                <Setter Property="FontFamily"
+                        Value="{StaticResource FontFamilyOfDataFields}" />
+                <Setter Property="FontWeight"
+                        Value="Black" />
+            </Style>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Column="1"
+                   Text="{x:Static fa:Labels.Employees}"/>
+        <DataGrid x:Name="DataGridVariables"
+                  Margin="10"
+                  Grid.Row="1"
+                  Grid.Column="0"
+                  ColumnWidth="*"
+                  HeadersVisibility="None"
+                  KeyboardNavigation.TabNavigation="Once"
+                  SelectionUnit="FullRow"
+                  DataContext="{Binding CurrentVariables, Mode=OneWay}"
+                  ItemsSource="{Binding}"
+                  SelectionChanged="DataGridVariables_OnSelectionChanged"
+                  d:DataContext="{d:DesignInstance Type=model:Employee, IsDesignTimeCreatable=True}"
+                  IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSelectionElements}" >
 
-								</DataTemplate>
-							</GridViewColumn.CellTemplate>
-						</GridViewColumn>
-					</GridView.Columns>
-				</GridView>
-			</ListView.View>
-		</ListView>
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding FullName}"
+                                    Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <ListView x:Name="ListViewOfItems"
+                  Grid.Row="1"
+                  Grid.Column="1"
+                  DataContext="{Binding Source={StaticResource Cvs}}"
+                  ItemsSource="{Binding}"
+                  d:DataContext="{d:DesignInstance Type=model:VariableValueForEmployee, IsDesignTimeCreatable=True}" >
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header="{x:Static fa:FieldicEmployee.FullName}"
+                                        Width="Auto"
+                                        DisplayMemberBinding="{Binding Employee.FullName}" />
+                        <GridViewColumn Header="{x:Static fa:Labels.VariableValue}" >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <TextBox Text="{Binding NumericValue,StringFormat={}{0:N0}}"
+                                                 Visibility="{Binding ValueIsNumeric}"
+                                                 Width="200"
+                                                 Margin="0"
+                                                 IsReadOnly="{Binding ElementName=SmpUcMonthlyDataOfOneVariable,Path=ReadOnlyOfListItems}"
+                                                 Style="{StaticResource StyleOfDataFieldTextBox}" />
+                                        <TextBox Text="{Binding StringValue}"
+                                                 Visibility="{Binding ValueIsString}"
+                                                 Width="200"
+                                                 Margin="0"
+                                                 IsReadOnly="{Binding ElementName=SmpUcMonthlyDataOfOneVariable,Path=ReadOnlyOfListItems}"
+                                                 Style="{StaticResource StyleOfDataFieldTextBox}" />
+                                        <persianDateControls:PersianDatePicker
+                                            SelectedDate="{Binding DateValue,Mode=TwoWay,Converter={StaticResource GregToPersDateConverter}}"
+                                            DisplayDate="{Binding DateValue,Mode=TwoWay,Converter={StaticResource GregToPersDateConverter}}"
+                                            IsEnabled="{Binding ElementName=SmpUcMonthlyDataOfOneVariable,Path=ReadOnlyOfListItems,Converter={StaticResource NegateBooleanConverter}}"
+                                            Visibility="{Binding ValueIsDate}"
+                                            Width="100"
+                                            Margin="0"
+                                            Style="{StaticResource StyleOfDataFieldDatePicker}" />
+                                    </StackPanel>
 
-		<StatusBar Grid.Column="0"
-		           Grid.Row="5"
-		           Grid.ColumnSpan="3" />
-	</Grid>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <StatusBar Grid.Column="0"
+                   Grid.Row="2"
+                   Grid.ColumnSpan="3" />
+    </Grid>
 </UserControl>

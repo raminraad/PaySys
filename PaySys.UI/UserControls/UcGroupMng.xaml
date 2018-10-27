@@ -73,6 +73,7 @@
                   Grid.Row="3"
                   Grid.Column="1"
                   ColumnWidth="*"
+                  HeadersVisibility="None"
                   KeyboardNavigation.TabNavigation="Once"
                   SelectionUnit="FullRow"
                   ItemsSource="{Binding UpdateSourceTrigger=PropertyChanged}"
@@ -89,6 +90,7 @@
                   Grid.Row="3"
                   Grid.Column="3"
                   ColumnWidth="*"
+                  HeadersVisibility="None"
                   KeyboardNavigation.TabNavigation="Once"
                   SelectionUnit="FullRow"
                   ItemsSource="{Binding ElementName=DataGridMainGroups,Path=SelectedItem.(model:MainGroup.SubGroups),Mode=TwoWay,UpdateSourceTrigger=Explicit}"
@@ -109,7 +111,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                
+
             </DataGrid.Columns>
         </DataGrid>
         <!--<ListView x:Name="ListViewSubGroups0"

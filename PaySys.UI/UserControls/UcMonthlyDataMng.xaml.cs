@@ -27,19 +27,19 @@ namespace PaySys.UI.UC
 
         private void Reload(object sender, ExecutedRoutedEventArgs e)
         {
-            SmpUcSelectGroupAndSubGroup.SelectedSubGroupChanged -=
-                SmpUcSelectGroupAndSubGroup_OnSelectedSubGroupChanged;
-            var currentMgId = SmpUcSelectGroupAndSubGroup.SelectedMainGroup.Id;
-            var currentSgId = SmpUcSelectGroupAndSubGroup.SelectedSubGroup.Id;
+            DataGridSubGroups.SelectionChanged -=
+                DataGridSubGroups_OnSelectionChanged;
+//            var currentMg = (DataGridMainGroups.SelectedItem as MainGroup);
+//            var currentSg = (DataGridSubGroups.SelectedItem as SubGroup);
             Context = new PaySysContext();
-            Context.MainGroups.Load();
-            SmpUcSelectGroupAndSubGroup.DataContext = Context.MainGroups.Local;
+            Context.MainGroups.Include(mg=>mg.SubGroups).Load();
+            DataGridMainGroups.DataContext = Context.MainGroups.Local;
 
-            SmpUcSelectGroupAndSubGroup.SelectedMainGroupId = currentMgId;
-            SmpUcSelectGroupAndSubGroup.SelectedSubGroupId = currentSgId;
+//            DataGridMainGroups.SelectedItem = currentMg??Context.MainGroups.Local.First();
+//            DataGridSubGroups.SelectedItem = currentSg?? (DataGridMainGroups.SelectedItem as MainGroup)?.SubGroups.First();
             LeftJoinAndAssignSubGroupMonthlyData();
-            SmpUcSelectGroupAndSubGroup.SelectedSubGroupChanged +=
-                SmpUcSelectGroupAndSubGroup_OnSelectedSubGroupChanged;
+            DataGridSubGroups.SelectionChanged +=
+                DataGridSubGroups_OnSelectionChanged;
         }
 
         private void Save(object sender, ExecutedRoutedEventArgs e)
@@ -108,7 +108,7 @@ namespace PaySys.UI.UC
             SmpUcMonthlyDataOfOneMiscDebt.RefreshCvs();
         }
 
-        private void SmpUcSelectGroupAndSubGroup_OnSelectedSubGroupChanged(object sender, RoutedEventArgs e)
+        private void DataGridSubGroups_OnSelectionChanged(object sender, RoutedEventArgs e)
         {
             LeftJoinAndAssignSubGroupMonthlyData();
         }
@@ -148,8 +148,7 @@ namespace PaySys.UI.UC
 
         private void LeftJoinAndAssignSubGroupMonthlyData()
         {
-            var sg = SmpUcSelectGroupAndSubGroup.SelectedSubGroup;
-            if (sg == null) return;
+            if (!(DataGridSubGroups.SelectedItem is SubGroup sg)) return;
 
             var sgCnts = sg.ContractMasters.Where(master => master.IsCurrent);
             var sgEmps = sgCnts.Select(c => c.Employee).ToList();
@@ -165,7 +164,7 @@ namespace PaySys.UI.UC
                     from subRec in empVars.DefaultIfEmpty(new VariableValueForEmployee
                     {
                         Variable = sgV,
-
+                        
 //					                Value = null,
                         NumericValue = null,
                         StringValue = null,
@@ -206,7 +205,7 @@ namespace PaySys.UI.UC
             SmpUcMonthlyDataOfOneMiscDebt.DataContext = sg;
         }
 
-        private void UcMiscRechargeMng_OnInitialized(object sender, EventArgs e)
+        private void UcMonthlyDataMng_OnInitialized(object sender, EventArgs e)
         {
             Context.MainGroups.Load();
             SmpUcSelectGroupAndSubGroup.DataContext = Context.MainGroups.Local;

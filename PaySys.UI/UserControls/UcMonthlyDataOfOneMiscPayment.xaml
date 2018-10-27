@@ -17,113 +17,125 @@
              d:DesignHeight="300"
              d:DesignWidth="600"
              Initialized="UcMonthlyDataOfOneMiscPayment_OnInitialized">
-	<UserControl.Resources>
-		<CollectionViewSource x:Key="Cvs" />
-	</UserControl.Resources>
-	<Grid>
-		<Grid.Resources>
-			<Style TargetType="ListView">
-				<Setter Property="Margin"
+    <UserControl.Resources>
+        <CollectionViewSource x:Key="Cvs" />
+        <Style TargetType="TextBlock"
+               BasedOn="{StaticResource StyleOfListTitleTextBlock}" >
+            <Setter Property="Margin"
+                    Value="0" />
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="ListView">
+                <Setter Property="Margin"
 				        Value="10" />
-				<Setter Property="SelectionMode"
+                <Setter Property="SelectionMode"
 				        Value="Single" />
-				<Setter Property="KeyboardNavigation.TabNavigation"
+                <Setter Property="KeyboardNavigation.TabNavigation"
 				        Value="Cycle" />
-				<Setter Property="ItemContainerStyle">
-					<Setter.Value>
-						<Style TargetType="ListViewItem">
-							<Setter Property="IsTabStop"
+                <Setter Property="ItemContainerStyle">
+                    <Setter.Value>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="IsTabStop"
 							        Value="False" />
-							<EventSetter Event="GotFocus"
+                            <EventSetter Event="GotFocus"
 							             Handler="ListItemGotFocus" />
-							<Setter Property="FontFamily"
+                            <Setter Property="FontFamily"
 							        Value="{StaticResource FontFamilyOfDataFields}" />
-							<Setter Property="FontSize"
+                            <Setter Property="FontSize"
 							        Value="16" />
-							<Setter Property="VerticalAlignment"
+                            <Setter Property="VerticalAlignment"
 							        Value="Center" />
-						</Style>
-					</Setter.Value>
-				</Setter>
-			</Style>
-			<Style x:Key="StyleOfTitle"
+                        </Style>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="StyleOfTitle"
 			       TargetType="TextBlock">
-				<Setter Property="HorizontalAlignment"
+                <Setter Property="HorizontalAlignment"
 				        Value="Center" />
-				<Setter Property="VerticalAlignment"
+                <Setter Property="VerticalAlignment"
 				        Value="Bottom" />
-				<Setter Property="FontSize"
+                <Setter Property="FontSize"
 				        Value="18" />
-				<Setter Property="FontFamily"
+                <Setter Property="FontFamily"
 				        Value="{StaticResource FontFamilyOfDataFields}" />
-				<Setter Property="FontWeight"
+                <Setter Property="FontWeight"
 				        Value="Black" />
-			</Style>
-		</Grid.Resources>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="*" />
-			<ColumnDefinition Width="2*" />
-			<ColumnDefinition Width="*" />
-		</Grid.ColumnDefinitions>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="*" />
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="*" />
-			<RowDefinition Height="*" />
-			<RowDefinition Height="6*" />
-			<RowDefinition Height="30" />
-		</Grid.RowDefinitions>
-		<local:UcRibbonSelector Grid.Row="1"
-		                        Grid.Column="1"
-		                        ListDataContextChanged="SmpUcRibbonSelector_OnListDataContextChanged"
-		                        x:Name="SmpUcRibbonSelector"
-		                        SelectedItemChanged="SmpUcRibbonSelector_OnSelectedItemChanged"
-		                        DataContext="{Binding CurrentMiscPayments, Mode=OneWay}"
-		                        TitleDisplayMember="/MiscTitle.Title" />
-		<TextBlock Grid.Row="3"
+            </Style>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <DataGrid x:Name="DataGridMiscs"
+                  Margin="10"
+                  Grid.Row="1"
+                  Grid.Column="0"
+                  ColumnWidth="*"
+                  HeadersVisibility="None"
+                  KeyboardNavigation.TabNavigation="Once"
+                  SelectionUnit="FullRow"
+                  SelectionChanged="DataGridMiscs_OnSelectionChanged"
+                  DataContext="{Binding CurrentMiscPayments, Mode=OneWay}"
+                  ItemsSource="{Binding}"
+                  d:DataContext="{d:DesignInstance Type=model:Misc, IsDesignTimeCreatable=True}"
+                  IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSelectionElements}" >
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding FullName}"
+                                    Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBlock Grid.Row="0"
 		           Grid.Column="1"
-		           Text="{x:Static fa:Labels.Employees}"
-		           Style="{StaticResource StyleOfTitle}" />
-		<ListView x:Name="ListViewOfItems"
-		          Grid.Row="4"
+		           Text="{x:Static fa:Labels.Employees}"/>
+        <ListView x:Name="ListViewOfItems"
+		          Grid.Row="1"
 		          Grid.Column="1"
 		          DataContext="{Binding Source={StaticResource Cvs}}"
 		          ItemsSource="{Binding}"
 		          d:DataContext="{d:DesignInstance Type=model:MiscValueForEmployee, IsDesignTimeCreatable=True}">
-			<ListView.View>
-				<GridView>
-					<GridView.Columns>
-						<GridViewColumn Header="{x:Static fa:FieldicEmployee.FullName}"
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header="{x:Static fa:FieldicEmployee.FullName}"
 										Width="Auto"
 						                DisplayMemberBinding="{Binding Employee.FullName}" />
-						<GridViewColumn Header="{x:Static fa:Labels.Value}">
-							<GridViewColumn.CellTemplate>
-								<DataTemplate>
-									<TextBox Text="{Binding Value,StringFormat={}{0:N0}}"
+                        <GridViewColumn Header="{x:Static fa:Labels.Value}">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding Value,StringFormat={}{0:N0}}"
 											 Width="200"
 									         Margin="0"
 									         IsReadOnly="{Binding ElementName=SmpUcMonthlyDataOfOneMiscPayment,Path=ReadOnlyOfListItems}"
 									         Style="{StaticResource StyleOfDataFieldTextBox}" />
-								</DataTemplate>
-							</GridViewColumn.CellTemplate>
-						</GridViewColumn>
-						<GridViewColumn Header="{x:Static fa:Labels.ValueSubtraction}">
-							<GridViewColumn.CellTemplate>
-								<DataTemplate>
-									<TextBox Text="{Binding ValueSubtraction,StringFormat={}{0:N0}}"
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="{x:Static fa:Labels.ValueSubtraction}">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding ValueSubtraction,StringFormat={}{0:N0}}"
 									         IsReadOnly="{Binding ElementName=SmpUcMonthlyDataOfOneMiscPayment,Path=ReadOnlyOfListItems}"
 											 Width="200"
 									         Margin="0"
 									         Style="{StaticResource StyleOfDataFieldTextBox}" />
-								</DataTemplate>
-							</GridViewColumn.CellTemplate>
-						</GridViewColumn>
-					</GridView.Columns>
-				</GridView>
-			</ListView.View>
-		</ListView>
-		<StatusBar Grid.Column="0"
-		           Grid.Row="5"
-		           Grid.ColumnSpan="3" />
-	</Grid>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <StatusBar Grid.Column="0"
+		           Grid.Row="2"
+		           Grid.ColumnSpan="2" />
+    </Grid>
 </UserControl>
