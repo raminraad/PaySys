@@ -30,10 +30,10 @@
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="1.5*" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="7*" />
+            <ColumnDefinition Width="7*" />
+            <ColumnDefinition Width="5*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -82,10 +82,10 @@
                 <GridView>
                     <GridView.Columns>
                         <GridViewColumn Header="{x:Static fa:Labels.Title}"
-                                        listViewLayout:ProportionalColumn.Width="2"
+                                        listViewLayout:ProportionalColumn.Width="3"
                                         DisplayMemberBinding="{Binding Variable.Title}" />
                         <GridViewColumn Header="{x:Static fa:Labels.Value}" 
-                                        listViewLayout:ProportionalColumn.Width="1">
+                                        listViewLayout:ProportionalColumn.Width="2">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel>
@@ -128,10 +128,10 @@
                 <GridView>
                     <GridView.Columns>
                         <GridViewColumn Header="{x:Static fa:Labels.Title}"
-                                        listViewLayout:ProportionalColumn.Width="2"
+                                        listViewLayout:ProportionalColumn.Width="3"
                                         DisplayMemberBinding="{Binding Misc.MiscTitle.Title}" />
                         <GridViewColumn Header="{x:Static fa:Labels.Value}" 
-                                        listViewLayout:ProportionalColumn.Width="1">
+                                        listViewLayout:ProportionalColumn.Width="2">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBox Text="{Binding Value,StringFormat={}{0:N0}}"
@@ -143,7 +143,7 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="{x:Static fa:Labels.ValueSubtraction}" 
-                                        listViewLayout:ProportionalColumn.Width="1">
+                                        listViewLayout:ProportionalColumn.Width="2">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBox Text="{Binding ValueSubtraction,StringFormat={}{0:N0}}"
@@ -169,10 +169,10 @@
                 <GridView>
                     <GridView.Columns>
                         <GridViewColumn Header="{x:Static fa:Labels.Title}"
-                                        listViewLayout:ProportionalColumn.Width="2"
+                                        listViewLayout:ProportionalColumn.Width="3"
                                         DisplayMemberBinding="{Binding Misc.MiscTitle.Title}" />
                         <GridViewColumn Header="{x:Static fa:Labels.Value}" 
-                                        listViewLayout:ProportionalColumn.Width="1">
+                                        listViewLayout:ProportionalColumn.Width="2">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBox Text="{Binding Value,StringFormat={}{0:N0}}"

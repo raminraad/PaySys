@@ -38,10 +38,6 @@ namespace PaySys.UI.UC
 			CvsOfSubGroupMiscRecharges.Source = ( ( source ?? DataContext ) as SubGroup )?.TempMiscRechargesOfEmployees;
 		}
 
-		private void SmpUcRibbonSelector_OnListDataContextChanged( object sender, RoutedEventArgs e )
-		{
-			SmpUcRibbonSelector.SortDescription = "MiscTitle.Title";
-		}
 
 		private void UcMiscRechargesOfOneMisc_OnDataContextChanged( object sender, DependencyPropertyChangedEventArgs e )
 		{
@@ -56,12 +52,7 @@ namespace PaySys.UI.UC
 			if( rec == null )
 				return;
 
-			e.Accepted = rec.Misc.Equals( SmpUcRibbonSelector.SelectedItem );
-		}
-
-		private void SmpUcRibbonSelector_OnSelectedItemChanged( object sender, RoutedEventArgs e )
-		{
-			CollectionViewSource.GetDefaultView( ListViewMiscRecharges.ItemsSource )?.Refresh();
+			e.Accepted = rec.Misc.Equals( DataGridMiscs.SelectedItem as Misc );
 		}
 
 		private void UcMiscRechargesOfOneMisc_OnInitialized( object sender, EventArgs e )
@@ -77,5 +68,11 @@ namespace PaySys.UI.UC
 		}
 
 		#endregion
+
+
+	    private void DataGridMiscs_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+	    {
+	        CollectionViewSource.GetDefaultView(ListViewMiscRecharges.ItemsSource)?.Refresh();
+        }
 	}
 }

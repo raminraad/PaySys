@@ -27,8 +27,7 @@ namespace PaySys.UI.UC
 
         private void Reload(object sender, ExecutedRoutedEventArgs e)
         {
-            DataGridSubGroups.SelectionChanged -=
-                DataGridSubGroups_OnSelectionChanged;
+            DataGridSubGroups.SelectionChanged -= DataGridSubGroups_OnSelectionChanged;
 //            var currentMg = (DataGridMainGroups.SelectedItem as MainGroup);
 //            var currentSg = (DataGridSubGroups.SelectedItem as SubGroup);
             Context = new PaySysContext();
@@ -46,9 +45,9 @@ namespace PaySys.UI.UC
         {
             //Todo: implement data validation
 
-            if (true)
+            if (DataGridSubGroups.SelectedItem is SubGroup sg)
             {
-                foreach (var v in SmpUcSelectGroupAndSubGroup.SelectedSubGroup.TempVariableValuesOfEmployees)
+                foreach (var v in sg.TempVariableValuesOfEmployees)
                 {
                     if (v.Id == 0)
                         switch (v.Variable.ValueType)
@@ -80,7 +79,7 @@ namespace PaySys.UI.UC
                         }
                 }
 
-                foreach (var m in SmpUcSelectGroupAndSubGroup.SelectedSubGroup.TempMiscValuesOfEmployees)
+                foreach (var m in sg.TempMiscValuesOfEmployees)
                 {
                     if (m.Id == 0 && (m.Value != 0 || m.ValueSubtraction != 0)) Context.MiscValueForEmployees.Add(m);
                     if (m.Id != 0 && (m.Value != 0 || m.ValueSubtraction != 0)) Context.MiscValueForEmployees.Remove(m);
@@ -115,8 +114,7 @@ namespace PaySys.UI.UC
 
         private void LeftJoin()
         {
-            var sg = SmpUcSelectGroupAndSubGroup.SelectedSubGroup;
-            if (sg == null) return;
+            if (!(DataGridSubGroups.SelectedItem is SubGroup sg)) return;
 
             var sgCnts = sg.ContractMasters.Where(master => master.IsCurrent);
             var sgEmps = sgCnts.Select(c => c.Employee);
@@ -207,9 +205,8 @@ namespace PaySys.UI.UC
 
         private void UcMonthlyDataMng_OnInitialized(object sender, EventArgs e)
         {
-            Context.MainGroups.Load();
-            SmpUcSelectGroupAndSubGroup.DataContext = Context.MainGroups.Local;
             SmpUcFormStateLabel.CurrentState = FormCurrentState.Select;
+            Reload(null,null);
         }
 
         private void CommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)

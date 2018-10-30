@@ -453,4 +453,10 @@
   <data name="JobInfo" xml:space="preserve">
     <value>اطلاعات شغل</value>
   </data>
+  <data name="ByGroup" xml:space="preserve">
+    <value>بصورت گروهی</value>
+  </data>
+  <data name="MiscRecharges" xml:space="preserve">
+    <value>مانده بدهی ها</value>
+  </data>
 </root>

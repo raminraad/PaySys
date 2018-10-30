@@ -17,69 +17,92 @@
 	d:DesignHeight="300"
 	d:DesignWidth="600"
 	Initialized="UcMiscRechargesOfOneEmployee_OnInitialized">
-	<UserControl.Resources>
-		<CollectionViewSource
+    <UserControl.Resources>
+        <CollectionViewSource
 			x:Key="CvsMiscRecharges" />
-	</UserControl.Resources>
-	<Grid>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="*" />
-			<ColumnDefinition Width="2*" />
-			<ColumnDefinition Width="*" />
-		</Grid.ColumnDefinitions>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="*" />
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="*" />
-			<RowDefinition Height="6*" />
-			<RowDefinition Height="30" />
-			<RowDefinition Height="30" />
-		</Grid.RowDefinitions>
-		<local:UcRibbonSelector Grid.Row="1"
+        <Style TargetType="TextBlock"
+               BasedOn="{StaticResource StyleOfListTitleTextBlock}" >
+            <Setter Property="Margin"
+                    Value="0" />
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock Text="{x:Static fa:Labels.Employees}"
+                   Grid.Row="0"
+                   Grid.Column="0" />
+        <TextBlock Grid.Row="0"
+                   Grid.Column="1"
+                   Text="{x:Static fa:Labels.MiscRecharges}" />
+        <DataGrid x:Name="DataGridEmployees"
+                  Margin="10"
+                  Grid.Column="0"
+                  Grid.Row="1"
+                  ColumnWidth="*"
+                  HeadersVisibility="None"
+                  KeyboardNavigation.TabNavigation="Once"
+                  SelectionUnit="FullRow"
+                  SelectionChanged="DataGridEmployees_OnSelectionChanged"
+                  DataContext="{Binding CurrentEmployees, Mode=OneWay}"
+                  ItemsSource="{Binding}"
+                  d:DataContext="{d:DesignInstance Type=model:Employee, IsDesignTimeCreatable=True}"
+                  IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSelectionElements}" >
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding FullName}"
+                                    Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <ListView
+            x:Name="ListViewMiscRecharges"
+            Grid.Row="1"
+            SelectionMode="Single"
+            KeyboardNavigation.TabNavigation="Cycle"
+            DataContext="{Binding Source={StaticResource CvsMiscRecharges}}"
+            ItemsSource="{Binding}"
+            Grid.Column="1"
+            d:DataContext="{d:DesignInstance Type=model:MiscRecharge, IsDesignTimeCreatable=True}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="IsTabStop"
+                            Value="False" />
+                    <EventSetter Event="GotFocus"
+                                 Handler="ListItemGotFocus" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate
+                    DataType="model:MiscRecharge">
+                    <StackPanel
+                        Orientation="Horizontal">
+                        <TextBlock
+                            Text="{Binding Misc.MiscTitle.Title,Mode=OneWay}"
+                            VerticalAlignment="Center"
+                            Width="100" />
+                        <TextBox x:Name="TextBoxValue"
+                                 Text="{Binding Value,UpdateSourceTrigger=PropertyChanged,StringFormat={}{0:N0}}"
+                                 MaxLength="12"
+                                 VerticalContentAlignment="Center"
+                                 IsReadOnly="{Binding ElementName=SmpUcMiscRechargesOfOneEmployee,Path=ReadOnlyOfListItems}"
+                                 Width="100" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <!--<local:UcRibbonSelector Grid.Row="1"
 		                        Grid.Column="1"
 		                        x:Name="SmpUcRibbonSelector"
 		                        SelectedItemChanged="SmpUcRibbonSelector_OnSelectedItemChanged"
 		                        ListDataContextChanged="SmpUcRibbonSelector_OnListDataContextChanged"
 		                        DataContext="{Binding CurrentEmployees, Mode=OneWay}"
-		                        TitleDisplayMember="/FullName" />
-		<ListView
-			x:Name="ListViewMiscRecharges"
-			Grid.Row="3"
-			SelectionMode="Single"
-			KeyboardNavigation.TabNavigation="Cycle"
-			DataContext="{Binding Source={StaticResource CvsMiscRecharges}}"
-			ItemsSource="{Binding}"
-			Grid.Column="1"
-			d:DataContext="{d:DesignInstance Type=model:MiscRecharge, IsDesignTimeCreatable=True}">
-			<ListView.ItemContainerStyle>
-				<Style TargetType="ListViewItem">
-					<Setter Property="IsTabStop"
-					        Value="False" />
-					<EventSetter Event="GotFocus"
-					             Handler="ListItemGotFocus" />
-				</Style>
-			</ListView.ItemContainerStyle>
-			<ListView.ItemTemplate>
-				<DataTemplate
-					DataType="model:MiscRecharge">
-					<StackPanel
-						Orientation="Horizontal">
-						<TextBlock
-							Text="{Binding Misc.MiscTitle.Title,Mode=OneWay}"
-							VerticalAlignment="Center"
-							Width="100" />
-						<TextBox x:Name="TextBoxValue"
-						         Text="{Binding Value,UpdateSourceTrigger=PropertyChanged,StringFormat={}{0:N0}}"
-						         MaxLength="12"
-						         VerticalContentAlignment="Center"
-						         IsReadOnly="{Binding ElementName=SmpUcMiscRechargesOfOneEmployee,Path=ReadOnlyOfListItems}"
-						         Width="100" />
-					</StackPanel>
-				</DataTemplate>
-			</ListView.ItemTemplate>
-		</ListView>
-		<StatusBar Grid.Column="0"
-		           Grid.Row="5"
-		           Grid.ColumnSpan="3" />
-	</Grid>
+		                        TitleDisplayMember="/FullName" />-->
+       
+    </Grid>
 </UserControl>

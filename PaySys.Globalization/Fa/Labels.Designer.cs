@@ -151,6 +151,15 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to بصورت گروهی.
+        /// </summary>
+        public static string ByGroup {
+            get {
+                return ResourceManager.GetString("ByGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to انصراف.
         /// </summary>
         public static string Cancel {
@@ -579,6 +588,15 @@ namespace PaySys.Globalization.Fa {
         public static string MiscPayments {
             get {
                 return ResourceManager.GetString("MiscPayments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to مانده بدهی ها.
+        /// </summary>
+        public static string MiscRecharges {
+            get {
+                return ResourceManager.GetString("MiscRecharges", resourceCulture);
             }
         }
         

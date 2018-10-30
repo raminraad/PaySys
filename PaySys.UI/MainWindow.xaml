@@ -83,7 +83,7 @@
         </Menu>
        <TabControl x:Name="TabCntMain" TabStripPlacement="Top" Margin="6,10,10,10" BorderThickness="1">
             <TabControl.Resources>
-                <Style TargetType="TabItem" BasedOn="{StaticResource StyleOfTabItem}"/>
+                <Style TargetType="TabItem" BasedOn="{StaticResource StyleOfParentTabItem}"/>
                 
             </TabControl.Resources>
             

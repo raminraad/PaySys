@@ -87,11 +87,11 @@
                   DataContext="{Binding CurrentVariables, Mode=OneWay}"
                   ItemsSource="{Binding}"
                   SelectionChanged="DataGridVariables_OnSelectionChanged"
-                  d:DataContext="{d:DesignInstance Type=model:Employee, IsDesignTimeCreatable=True}"
+                  d:DataContext="{d:DesignInstance Type=model:Variable, IsDesignTimeCreatable=True}"
                   IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSelectionElements}" >
 
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding FullName}"
+                <DataGridTextColumn Binding="{Binding Title}"
                                     Width="*" />
             </DataGrid.Columns>
         </DataGrid>

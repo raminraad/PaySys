@@ -40,10 +40,6 @@ namespace PaySys.UI.UC
 			RefreshCvs( e.NewValue );
 		}
 
-		private void SmpUcRibbonSelector_OnListDataContextChanged( object sender, RoutedEventArgs e )
-		{
-			SmpUcRibbonSelector.SortDescription = "LuffName";
-		}
 
 		public void RefreshCvs(object source=null)
 		{
@@ -58,13 +54,10 @@ namespace PaySys.UI.UC
 			if( rec == null )
 				return;
 
-			e.Accepted = rec.Employee.Equals( SmpUcRibbonSelector.SelectedItem );
+			e.Accepted = rec.Employee.Equals( DataGridEmployees.SelectedItem as Employee );
 		}
 
-		private void SmpUcRibbonSelector_OnSelectedItemChanged( object sender, RoutedEventArgs e )
-		{
-			CollectionViewSource.GetDefaultView( ListViewMiscRecharges.ItemsSource )?.Refresh();
-		}
+		
 
 		private void UcMiscRechargesOfOneEmployee_OnInitialized( object sender, EventArgs e )
 		{
@@ -79,5 +72,11 @@ namespace PaySys.UI.UC
 		}
 
 		#endregion
+
+
+	    private void DataGridEmployees_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+	    {
+	        CollectionViewSource.GetDefaultView(ListViewMiscRecharges.ItemsSource)?.Refresh();
+        }
 	}
 }

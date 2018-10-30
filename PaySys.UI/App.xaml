@@ -62,27 +62,60 @@
             <bindingConverter:DoublePlusParameterConverter x:Key="DoublePlusParameterConverter" />
 
             <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
-                             Color="#844D9B" />
+                             Color="#B489B4" />
             <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}"
-                             Color="#AD91AD" />
+                             Color="#B489B4" />
             <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}"
-                             Color="WhiteSmoke" />
+                             Color="Black" />
             <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}"
                              Color="Black" />
-            <Brush x:Key="ColorOfFormStateContents" > #6699ff </Brush>
 
-            <SolidColorBrush x:Key="ColorOfChildTabItemBackground"
-                             Color="#CCEBF0" />
-            <SolidColorBrush x:Key="ColorOfChildTabItemBackgroundUnselected"
-                             Color="GhostWhite" />
-            <SolidColorBrush x:Key="ColorOfParentTabItemBackground"
-                             Color="WhiteSmoke" />
+            <Brush x:Key="ColorOfFormStateContents" > #6699ff </Brush>
+            <LinearGradientBrush x:Key="ColorOfChildTabItemBackground"
+                                 StartPoint="0.5,0"
+                                 EndPoint="0.5,1" >
+                <GradientStop Color="#8EC3EA"
+                              Offset="0.0" />
+                <GradientStop Color="#BCD3E1"
+                              Offset="0.1" />
+                <GradientStop Color="#BCD3E1"
+                              Offset="0.5" />
+                <GradientStop Color="#BCD3E1"
+                              Offset="0.9" />
+                <GradientStop Color="#8EC3EA"
+                              Offset="1" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="ColorOfChildTabItemHeaderSelected"
+                                 StartPoint="0.5,0"
+                                 EndPoint="0.5,1" >
+                <GradientStop Color="#8EC3EA"
+                              Offset="0.0" />
+                <GradientStop Color="#8EC3EA"
+                              Offset="1" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="ColorOfTabItemHeaderUnselected"
+                                 StartPoint="0.5,0"
+                                 EndPoint="0.5,1" >
+                <GradientStop Color="#D1D1D1"
+                              Offset="0.0" />
+                <GradientStop Color="#989898"
+                              Offset="0.9" />
+                <GradientStop Color="#646464"
+                              Offset="1.0" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="ColorOfParentTabItemHeaderSelected"
+                                 StartPoint="0.5,0"
+                                 EndPoint="0.5,1" >
+                <GradientStop Color="#DDB0DD"
+                              Offset="0.0" />
+                <GradientStop Color="#B489B4"
+                              Offset="1.0" />
+
+            </LinearGradientBrush>
             <SolidColorBrush x:Key="ColorOfEditUserControlsBackground"
                              Color="#DCCEEF" />
             <SolidColorBrush x:Key="ColorOfEditUserControlsBorder"
                              Color="#533F6B" />
-            <SolidColorBrush x:Key="ColorOfParentTabItemBackgroundUnselected"
-                             Color="#AFAFAF" />
             <SolidColorBrush x:Key="ColorOfAlternateData"
                              Color="#F5F5F5" />
             <SolidColorBrush x:Key="ColorOfDataGridLines"
@@ -136,7 +169,7 @@
             <system:Double x:Key="SizeOfListFunctionButton" > 24 </system:Double>
             <system:Double x:Key="SizeOfListFunctionButtonImage" > 16 </system:Double>
 
-            <Thickness x:Key="MarginOfListViews" >10</Thickness>
+            <Thickness x:Key="MarginOfListViews" > 10 </Thickness>
             <Thickness x:Key="MarginOfDataFields"
                        Left="10"
                        Top="0"
@@ -288,82 +321,16 @@
                         Value="10" />
             </Style>
 
-            <Style x:Key="StyleOfTabItem"
-                   TargetType="{x:Type TabItem}" >
-                <Setter Property="Template" >
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type TabItem}" >
-                            <Grid>
-                                <Border Name="Border"
-                                        Background="#AAAAAAAA"
-                                        Margin="2,2,2,0"
-                                        BorderBrush="Black"
-                                        BorderThickness="1,1,1,0"
-                                        CornerRadius="5,5,0,0" >
-                                    <ContentPresenter x:Name="ContentSite"
-                                                      ContentSource="Header"
-                                                      VerticalAlignment="Center"
-                                                      HorizontalAlignment="Center"
-                                                      Margin="2,2,12,2"
-                                                      RecognizesAccessKey="True" />
-                                </Border>
-
-                            </Grid>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsSelected"
-                                         Value="True" >
-                                    <Setter TargetName="Border"
-                                            Property="Background"
-                                            Value="#FFA4D0C8" />
-                                </Trigger>
-                                <Trigger Property="IsEnabled"
-                                         Value="False" >
-                                    <Setter TargetName="Border"
-                                            Property="Background"
-                                            Value="#FF6E6C67" />
-                                </Trigger>
-                                <Trigger Property="IsSelected"
-                                         Value="true" >
-                                    <Setter Property="Height"
-                                            Value="35" />
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-
-                <Setter Property="Background"
-                        Value="#FF6E6C67" />
-                <Setter Property="Height"
-                        Value="30" />
-                <Setter Property="VerticalAlignment"
-                        Value="Bottom" />
-                <Setter Property="Width"
-                        Value="Auto" />
-                <Setter Property="FontFamily"
-                        Value="{StaticResource FontFamilyOfTabHeader}" />
-                <Setter Property="FontSize"
-                        Value="{StaticResource FontSizeOfTabHeader}" />
-            </Style>
-            <Style x:Key="StyleOfParentTabControl"
+            <Style x:Key="StyleOfChildTabControl"
                    TargetType="TabControl" >
-                <Setter Property="Background"
-                        Value="{StaticResource ColorOfParentTabItemBackground}" />
-                <Setter Property="Margin"
-                        Value="{StaticResource MarginOfMaster}" />
                 <Setter Property="BorderBrush"
-                        Value="DimGray" />
+                        Value="#21213B" />
                 <Setter Property="BorderThickness"
                         Value="1" />
-            </Style>
-            <Style x:Key="StyleOfChildTabControl"
-                   BasedOn="{StaticResource StyleOfParentTabControl}"
-                   TargetType="TabControl" >
                 <Setter Property="Background"
                         Value="{StaticResource ColorOfChildTabItemBackground}" />
                 <Setter Property="Margin"
                         Value="{StaticResource MarginOfDetail}" />
-
             </Style>
             <Style x:Key="StyleOfChildTabItem"
                    TargetType="TabItem" >
@@ -371,6 +338,10 @@
                         Value="{StaticResource FontFamilyOfTabHeader}" />
                 <Setter Property="FontSize"
                         Value="{StaticResource FontSizeOfTabHeader}" />
+                <Setter Property="VerticalAlignment"
+                        Value="Bottom" />
+                <Setter Property="Height"
+                        Value="25" />
                 <Setter Property="Template" >
                     <Setter.Value>
                         <ControlTemplate TargetType="TabItem" >
@@ -378,12 +349,11 @@
                                     BorderThickness="1,1,1,0"
                                     BorderBrush="DimGray"
                                     CornerRadius="5,5,0,0"
-                                    Margin="-2,0,5,-2" >
+                                    Margin="-1,0,5,-2" >
                                 <ContentPresenter x:Name="ContentSite"
                                                   VerticalAlignment="Center"
                                                   ContentSource="Header"
                                                   Width="Auto"
-                                                  Height="30"
                                                   Margin="4,0" />
                             </Border>
                             <ControlTemplate.Triggers>
@@ -391,15 +361,15 @@
                                          Value="True" >
                                     <Setter TargetName="Border"
                                             Property="Background"
-                                            Value="{StaticResource ColorOfChildTabItemBackground}" />
-
+                                            Value="{StaticResource ColorOfChildTabItemHeaderSelected}" />
+                                    <Setter Property="Height"
+                                            Value="28" />
                                 </Trigger>
                                 <Trigger Property="IsSelected"
                                          Value="False" >
                                     <Setter TargetName="Border"
                                             Property="Background"
-                                            Value="{StaticResource ColorOfChildTabItemBackgroundUnselected}" />
-
+                                            Value="{StaticResource ColorOfTabItemHeaderUnselected}" />
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -412,6 +382,10 @@
                         Value="{StaticResource FontFamilyOfTabHeader}" />
                 <Setter Property="FontSize"
                         Value="{StaticResource FontSizeOfTabHeader}" />
+                <Setter Property="VerticalAlignment"
+                        Value="Bottom" />
+                <Setter Property="Height"
+                        Value="25" />
                 <Setter Property="Template" >
                     <Setter.Value>
                         <ControlTemplate TargetType="TabItem" >
@@ -419,12 +393,11 @@
                                     BorderThickness="1,1,1,0"
                                     BorderBrush="DimGray"
                                     CornerRadius="5,5,0,0"
-                                    Margin="-2,0,5,-2" >
+                                    Margin="-1,0,5,-2" >
                                 <ContentPresenter x:Name="ContentSite"
                                                   VerticalAlignment="Center"
                                                   ContentSource="Header"
                                                   Width="Auto"
-                                                  Height="30"
                                                   Margin="4,0" />
                             </Border>
                             <ControlTemplate.Triggers>
@@ -432,15 +405,15 @@
                                          Value="True" >
                                     <Setter TargetName="Border"
                                             Property="Background"
-                                            Value="{StaticResource ColorOfParentTabItemBackground}" />
-
+                                            Value="{StaticResource ColorOfParentTabItemHeaderSelected}" />
+                                    <Setter Property="Height"
+                                            Value="28" />
                                 </Trigger>
                                 <Trigger Property="IsSelected"
                                          Value="False" >
                                     <Setter TargetName="Border"
                                             Property="Background"
-                                            Value="{StaticResource ColorOfParentTabItemBackgroundUnselected}" />
-
+                                            Value="{StaticResource ColorOfTabItemHeaderUnselected}" />
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -565,7 +538,7 @@
                         Value="Stretch" />
                 <Setter Property="TextWrapping"
                         Value="Wrap" />
-                
+
             </Style>
             <Style x:Key="StyleOfDataFieldComboBox"
                    TargetType="ComboBox" >
@@ -738,13 +711,15 @@
                    TargetType="{x:Type Image}"
                    BasedOn="{StaticResource StyleOfSmallFunctionButtonImage}" >
                 <Style.Triggers>
-                    <DataTrigger Binding="{Binding IsEnabled,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Button}}"
-                                 Value="False" >
+                    <DataTrigger
+                        Binding="{Binding IsEnabled,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Button}}"
+                        Value="False" >
                         <Setter Property="Source"
                                 Value="{StaticResource icon_plus_disabled}" />
                     </DataTrigger>
-                    <DataTrigger Binding="{Binding IsEnabled,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Button}}"
-                                 Value="True" >
+                    <DataTrigger
+                        Binding="{Binding IsEnabled,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Button}}"
+                        Value="True" >
                         <Setter Property="Source"
                                 Value="{StaticResource icon_plus}" />
                     </DataTrigger>

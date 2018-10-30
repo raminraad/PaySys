@@ -182,6 +182,7 @@
                 <Thickness x:Key="MarginOfEditUserControls" > 0,22,0,11 </Thickness>
             </TabControl.Resources>
             <TabItem x:Name="TabItemSubGroupBaseInfo"
+                     Style="{StaticResource StyleOfChildTabItem}"
                      Width="Auto" >
                 <TabItem.Header>
                     <local:UcTextImagePair Text="{x:Static fa:Labels.BaseInfo}"
@@ -194,6 +195,7 @@
                                       DataContext="{Binding ElementName=DataGridSubGroups,Path=SelectedItem}" />
             </TabItem>
             <TabItem x:Name="TabItemContractFieldTitlesMng"
+                     Style="{StaticResource StyleOfChildTabItem}"
                      Width="Auto" >
                 <TabItem.Header>
                     <local:UcTextImagePair Text="{x:Static fa:Labels.ContractFieldTitles}"
@@ -205,6 +207,7 @@
                                                 CurrentMainGroup="{Binding ElementName=DataGridMainGroups,Path=SelectedItem}" />
             </TabItem>
             <TabItem x:Name="TabItemMisc"
+                     Style="{StaticResource StyleOfChildTabItem}"
                      Width="Auto" >
                 <TabItem.Header>
                     <local:UcTextImagePair Text="{x:Static fa:Labels.MiscMng}"
@@ -216,6 +219,7 @@
                                  CurrentSubGroup="{Binding ElementName=DataGridSubGroups,Path=SelectedItem}" />
             </TabItem>
             <TabItem x:Name="TabItemParameters"
+                     Style="{StaticResource StyleOfChildTabItem}"
                      Width="Auto" >
                 <TabItem.Header>
                     <local:UcTextImagePair Text="{x:Static fa:Labels.Parameters}"
@@ -227,6 +231,7 @@
                                       CurrentSubGroup="{Binding ElementName=DataGridSubGroups,Path=SelectedItem}" />
             </TabItem>
             <TabItem x:Name="TabItemTaxTable"
+                     Style="{StaticResource StyleOfChildTabItem}"
                      Width="Auto" >
                 <TabItem.Header>
                     <local:UcTextImagePair Text="{x:Static fa:Labels.TaxTable}"
@@ -238,6 +243,7 @@
                                      CurrentSubGroup="{Binding ElementName=DataGridSubGroups,Path=SelectedItem}" />
             </TabItem>
             <TabItem x:Name="TabItemHandselFormula"
+                     Style="{StaticResource StyleOfChildTabItem}"
                      Width="Auto" >
                 <TabItem.Header>
                     <local:UcTextImagePair Text="{x:Static fa:Labels.HandselFormula}"
@@ -249,6 +255,7 @@
                                            CurrentSubGroup="{Binding ElementName=DataGridSubGroups,Path=SelectedItem}" />
             </TabItem>
             <TabItem x:Name="TabItemMissionFormula"
+                     Style="{StaticResource StyleOfChildTabItem}"
                      Width="Auto" >
                 <TabItem.Header>
                     <local:UcTextImagePair Text="{x:Static fa:Labels.MissionFormula}"

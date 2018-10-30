@@ -103,12 +103,12 @@
                       Grid.ColumnSpan="2"
                       Style="{StaticResource StyleOfGridSplitterHorizontal}" />
         <TabControl Grid.Row="3"
-                    >
+                    Style="{StaticResource StyleOfChildTabControl}" >
 
             <TabItem x:Name="TabEmployeeContracts"
+                     Style="{StaticResource StyleOfChildTabItem}"
                      d:DataContext="{d:DesignInstance entities:ContractMaster}"
-                     DataContext="{Binding ElementName=DataGridEmployeeContracts,Path=SelectedItem}"
-                     >
+                     DataContext="{Binding ElementName=DataGridEmployeeContracts,Path=SelectedItem}" >
 
                 <TabItem.Header>
                     <local:UcTextImagePair Icon="{StaticResource icon_black_contracts}"

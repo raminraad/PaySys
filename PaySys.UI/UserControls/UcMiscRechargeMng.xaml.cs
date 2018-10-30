@@ -29,17 +29,17 @@ namespace PaySys.UI.UC
 
 		private void Reload( object sender, ExecutedRoutedEventArgs e )
 		{
-			SmpUcSelectGroupAndSubGroup.SelectedSubGroupChanged -= SmpUcSelectGroupAndSubGroup_OnSelectedSubGroupChanged;
-			var currentMgId = SmpUcSelectGroupAndSubGroup.SelectedMainGroup.Id;
-			var currentSgId = SmpUcSelectGroupAndSubGroup.SelectedSubGroup.Id;
-			Context = new PaySysContext();
-			Context.MainGroups.Load();
-			SmpUcSelectGroupAndSubGroup.DataContext = Context.MainGroups.Local;
+		    DataGridSubGroups.SelectionChanged -= SmpUcSelectGroupAndSubGroup_OnSelectedSubGroupChanged;
+            //			var currentMgId = SmpUcSelectGroupAndSubGroup.SelectedMainGroup.Id;
+            //			var currentSgId = SmpUcSelectGroupAndSubGroup.SelectedSubGroup.Id;
+		    Context = new PaySysContext();
+		    Context.MainGroups.Include(mg => mg.SubGroups).Load();
+		    DataGridMainGroups.DataContext = Context.MainGroups.Local;
 
-			SmpUcSelectGroupAndSubGroup.SelectedMainGroupId = currentMgId;
-			SmpUcSelectGroupAndSubGroup.SelectedSubGroupId = currentSgId;
-			LeftJoinAndAssignSubGroupMiscRecharges();
-			SmpUcSelectGroupAndSubGroup.SelectedSubGroupChanged += SmpUcSelectGroupAndSubGroup_OnSelectedSubGroupChanged;
+            //			SmpUcSelectGroupAndSubGroup.SelectedMainGroupId = currentMgId;
+            //			SmpUcSelectGroupAndSubGroup.SelectedSubGroupId = currentSgId;
+            LeftJoinAndAssignSubGroupMiscRecharges();
+		    DataGridSubGroups.SelectionChanged += SmpUcSelectGroupAndSubGroup_OnSelectedSubGroupChanged;
 		}
 
 		private void Save( object sender, ExecutedRoutedEventArgs e )
@@ -48,7 +48,7 @@ namespace PaySys.UI.UC
 
 			if( true )
 			{
-				foreach( var rec in SmpUcSelectGroupAndSubGroup.SelectedSubGroup.TempMiscRechargesOfEmployees )
+				foreach( var rec in (DataGridSubGroups.SelectedItem as SubGroup).TempMiscRechargesOfEmployees )
 				{
 					if( rec.Id == 0 && rec.Value != 0 )
 						Context.MiscRecharges.Add( rec );
@@ -77,11 +77,9 @@ namespace PaySys.UI.UC
 
 		private void LeftJoinAndAssignSubGroupMiscRecharges()
 		{
-			var sg = SmpUcSelectGroupAndSubGroup.SelectedSubGroup;
-			if( sg == null )
-				return;
+		    if (!(DataGridSubGroups.SelectedItem is SubGroup sg)) return;
 
-			var sgCnts = sg.ContractMasters.Where( master => master.IsCurrent );
+            var sgCnts = sg.ContractMasters.Where( master => master.IsCurrent );
 			var sgEmps = sgCnts.Select( c => c.Employee );
 			var sgRecs = sgEmps.SelectMany( emp => emp.MiscRecharges );
 			var newQuery = sgEmps.GroupJoin( sgRecs, emp => emp, rec => rec.Employee, ( emp, recEnum ) => new
@@ -107,8 +105,7 @@ namespace PaySys.UI.UC
 
 		private void UcMiscRechargeMng_OnInitialized( object sender, EventArgs e )
 		{
-			Context.MainGroups.Load();
-			SmpUcSelectGroupAndSubGroup.DataContext = Context.MainGroups.Local;
+			Reload(null,null);
 			SmpUcFormStateLabel.CurrentState = FormCurrentState.Select;
 		}
 

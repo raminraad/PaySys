@@ -77,7 +77,7 @@
                   IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSelectionElements}" >
 
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding FullName}"
+                <DataGridTextColumn Binding="{Binding MiscTitle.Title}"
                                     Width="*" />
             </DataGrid.Columns>
         </DataGrid>

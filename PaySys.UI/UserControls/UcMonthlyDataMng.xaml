@@ -99,19 +99,9 @@
                       IsEnabled="{Binding ElementName=SmpUcFormStateLabel,Path=EnabledOfSelectionElements}" >
 
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn Header="{x:Static fa:FieldicSubGroup.Title}"
-                                            Width="*" >
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <local:UcTextPair
-                                    TextOfTextBox="{Binding Path=Title,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                                    HorizontalAlignment="Left"
-                                    TextOfLabel="{Binding Path=Title}"
-                                    ReadOnly="{Binding ElementName = SmpUcFormStateLabel , Path=ReadOnlyOfEditFields}"
-                                    Width="{StaticResource WidthOfDataFieldOfText}" />
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="{x:Static fa:FieldicSubGroup.Title}"
+                                        Binding="{Binding Title}"
+                                        Width="*" />
 
                 </DataGrid.Columns>
             </DataGrid>
@@ -139,30 +129,37 @@
                 <local:UcMonthlyDataOfOneEmployee x:Name="SmpUcMonthlyDataOfOneEmployee"
                                                   ReadOnlyOfListItems="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}" />
             </TabItem>
-            <TabItem x:Name="TabItemGroupByVariableTitle" >
+            <TabItem x:Name="TabItemByVariableOrMiscTitle" >
                 <TabItem.Header>
-                    <local:UcTextImagePair Icon="{StaticResource icon_info}"
-                                           Text="{x:Static fa:Labels.GroupByVariableTitle}" />
+                    <local:UcTextImagePair Icon="{StaticResource icon_black_employee_group}"
+                                           Text="{x:Static fa:Labels.ByGroup}" />
                 </TabItem.Header>
-                <local:UcMonthlyDataOfOneVariable x:Name="SmpUcMonthlyDataOfOneVariable"
-                                                  ReadOnlyOfListItems="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}" />
-            </TabItem>
-            <TabItem x:Name="TabItemGroupByMiscPayment" >
-                <TabItem.Header>
-                    <local:UcTextImagePair Icon="{StaticResource icon_info}"
-                                           Text="{x:Static fa:Labels.GroupByMiscTitlePayment}" />
-                </TabItem.Header>
-                <local:UcMonthlyDataOfOneMiscPayment x:Name="SmpUcMonthlyDataOfOneMiscPayment"
-                                                     ReadOnlyOfListItems="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}" />
-            </TabItem>
-            <TabItem x:Name="TabItemGroupByMiscDebt" >
-                <TabItem.Header>
-                    <local:UcTextImagePair Icon="{StaticResource icon_info}"
-                                           Text="{x:Static fa:Labels.GroupByMiscTitleDebt}" />
-                </TabItem.Header>
-                <local:UcMonthlyDataOfOneMiscDebt x:Name="SmpUcMonthlyDataOfOneMiscDebt"
-                                                  ReadOnlyOfListItems="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}" />
-            </TabItem>
+                <TabControl Margin="{StaticResource MarginOfDetail}">
+                    <TabItem x:Name="TabItemGroupByVariableTitle" Style="{StaticResource StyleOfParentTabItem}">
+                        <TabItem.Header>
+                            <local:UcTextImagePair Icon="{StaticResource icon_black_monthly_variable}"
+                                                   Text="{x:Static fa:Labels.GroupByVariableTitle}" />
+                        </TabItem.Header>
+                        <local:UcMonthlyDataOfOneVariable x:Name="SmpUcMonthlyDataOfOneVariable"
+                                                          ReadOnlyOfListItems="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}" />
+                    </TabItem>
+                    <TabItem x:Name="TabItemGroupByMiscPayment" Style="{StaticResource StyleOfParentTabItem}">
+                        <TabItem.Header>
+                            <local:UcTextImagePair Icon="{StaticResource icon_black_money}"
+                                                   Text="{x:Static fa:Labels.GroupByMiscTitlePayment}" />
+                        </TabItem.Header>
+                        <local:UcMonthlyDataOfOneMiscPayment x:Name="SmpUcMonthlyDataOfOneMiscPayment"
+                                                             ReadOnlyOfListItems="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}" />
+                    </TabItem>
+                    <TabItem x:Name="TabItemGroupByMiscDebt" Style="{StaticResource StyleOfParentTabItem}">
+                        <TabItem.Header>
+                            <local:UcTextImagePair Icon="{StaticResource icon_black_money_cut}"
+                                                   Text="{x:Static fa:Labels.GroupByMiscTitleDebt}" />
+                        </TabItem.Header>
+                        <local:UcMonthlyDataOfOneMiscDebt x:Name="SmpUcMonthlyDataOfOneMiscDebt"
+                                                          ReadOnlyOfListItems="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}" />
+                    </TabItem></TabControl>
+                </TabItem>
         </TabControl>
         <StatusBar Grid.Column="0"
                    Grid.Row="3"
