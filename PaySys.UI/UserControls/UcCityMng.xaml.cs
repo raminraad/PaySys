@@ -46,6 +46,7 @@ namespace PaySys.UI.UC
                 Title = ResourceAccessor.Labels.GetString("New")
             };
             Cities.Add(newItem);
+            DataGridCities.SelectedItem = newItem;
             CollectionViewSource.GetDefaultView(DataGridCities.ItemsSource)?.Refresh();
             DataGridCities.ScrollIntoView(newItem);
             TextBoxTitle.Focus();
@@ -74,7 +75,10 @@ namespace PaySys.UI.UC
         private void DiscardChanges_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             if (SmpUcFormStateLabel.CurrentState == FormCurrentState.Add)
+            {
                 Cities.Remove((City) DataGridCities.SelectedItem);
+                CollectionViewSource.GetDefaultView(DataGridCities.ItemsSource)?.Refresh();
+            }
             foreach (var textBox in this.FindVisualChildren<TextBox>())
                 textBox.GetBindingExpression(TextBox.TextProperty)?.UpdateTarget();
 

@@ -11,7 +11,8 @@
              DataContext="{Binding ElementName=SmpUcHandselFormulaMng,Path=CurrentSubGroup.CurrentOrNewHandselFormula,Mode=TwoWay,UpdateSourceTrigger=Explicit}"
              Width="250"
              MaxWidth="250"
-             MaxHeight="250"
+             MinHeight="250"
+             VerticalAlignment="Stretch"
              FlowDirection="RightToLeft" >
     <Grid>
         <Grid.RowDefinitions>
@@ -24,7 +25,6 @@
                    Style="{StaticResource StyleOfListTitleTextBlock}" />
         <Border Style="{StaticResource StyleOfEditUserControlBorders}"
                 Grid.Row="1" >
-
             <Grid x:Name="GridMain" >
                 <Grid.Resources>
                     <Style TargetType="TextBox"

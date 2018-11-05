@@ -19,15 +19,10 @@
              Initialized="UcMonthlyDataOfOneMiscDebt_OnInitialized">
     <UserControl.Resources>
         <CollectionViewSource x:Key="Cvs" />
-        <Style TargetType="TextBlock"
-               BasedOn="{StaticResource StyleOfListTitleTextBlock}" >
-            <Setter Property="Margin"
-                    Value="0" />
-        </Style>
     </UserControl.Resources>
     <Grid>
         <Grid.Resources>
-            <Style TargetType="ListView">
+            <Style x:Key="StyleOfLists" TargetType="ListView">
                 <Setter Property="Margin"
 				        Value="10" />
                 <Setter Property="SelectionMode"
@@ -51,6 +46,7 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+        <Thickness x:Key="MarginOfLists" >10,0</Thickness>
         </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -63,7 +59,7 @@
         </Grid.RowDefinitions>
         
         <DataGrid x:Name="DataGridMiscs"
-                  Margin="10"
+                  Margin="{StaticResource MarginOfLists}"
                   Grid.Row="1"
                   Grid.Column="0"
                   ColumnWidth="*"
@@ -86,6 +82,7 @@
 		           Text="{x:Static fa:Labels.Employees}"
 		           Style="{StaticResource StyleOfListTitleTextBlock}" />
         <ListView x:Name="ListViewOfItems"
+                  Margin="{StaticResource MarginOfLists}"
 		          Grid.Row="1"
 		          Grid.Column="1"
 		          DataContext="{Binding Source={StaticResource Cvs}}"

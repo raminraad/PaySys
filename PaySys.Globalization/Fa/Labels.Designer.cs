@@ -160,15 +160,6 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to انصراف.
-        /// </summary>
-        public static string Cancel {
-            get {
-                return ResourceManager.GetString("Cancel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to تغییر ماده هزینه.
         /// </summary>
         public static string ChangeExpenseArticle {
@@ -300,6 +291,15 @@ namespace PaySys.Globalization.Fa {
         public static string DeleteParameterInvolvedMiscPayment {
             get {
                 return ResourceManager.GetString("DeleteParameterInvolvedMiscPayment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to انصراف.
+        /// </summary>
+        public static string DischardChanges {
+            get {
+                return ResourceManager.GetString("DischardChanges", resourceCulture);
             }
         }
         
@@ -912,6 +912,15 @@ namespace PaySys.Globalization.Fa {
         public static string SurrounderOfFieldNameStart {
             get {
                 return ResourceManager.GetString("SurrounderOfFieldNameStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to امروز:.
+        /// </summary>
+        public static string SystemDate {
+            get {
+                return ResourceManager.GetString("SystemDate", resourceCulture);
             }
         }
         

@@ -14,6 +14,7 @@
              Loaded="UcContractFieldTitlesMng_OnLoaded"
              FlowDirection="RightToLeft"
              d:DesignHeight="300"
+             VerticalAlignment="Stretch"
              MaxWidth="400" >
     <UserControl.CommandBindings>
         <CommandBinding Command="commands:PaySysCommands.AddItem"
@@ -85,7 +86,7 @@
                                             listViewLayout:ProportionalColumn.Width="2" >
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <StackPanel IsEnabled="{Binding IsEditable}" >
+                                        <StackPanel>
                                             <local:UcTextPair
                                                 TextOfLabel="{Binding Path=TempCurrentExpenseArticleCode}"
                                                 TextOfTextBox="{Binding Path=TempCurrentExpenseArticleCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
@@ -99,9 +100,10 @@
                                             listViewLayout:ProportionalColumn.Width="1" >
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <StackPanel IsEnabled="{Binding IsEditable}" >
+                                        <StackPanel Visibility="{Binding IsEditable,Converter={StaticResource BooleanToVisibilityConverter}}" >
                                             <Button
                                                 IsEnabled="{Binding ElementName=SmpUcContractFieldTitlesMng,Path=ReadOnlyOfFields,Converter={StaticResource NegateBooleanConverter}}"
+                                                IsTabStop="False"
                                                 Style="{StaticResource StyleOfListFunctionButton}"
                                                 Command="{x:Static commands:PaySysCommands.DeleteItem}"
                                                 CommandParameter="{Binding}"

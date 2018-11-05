@@ -10,8 +10,8 @@
     <StackPanel Orientation="Horizontal" >
         <Image x:Name="Image"
                Source="{StaticResource icon_info}"
-               Height="20"
-               Width="20"
+               Height="24"
+               Width="24"
                Margin="5,0,0,0" />
         <TextBlock x:Name="Label"
                    Text="{x:Static fa:Labels.RelatedInfo}"

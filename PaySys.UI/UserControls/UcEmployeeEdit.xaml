@@ -55,10 +55,9 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Border BorderBrush="DimGray"
-                    CornerRadius="5"
-                    BorderThickness="3"
-                    Background="White"
+            <Border
+                    CornerRadius="2"
+                    BorderThickness="5"
                     HorizontalAlignment="Center"
                     Grid.Row="0"
                     Grid.Column="0"
@@ -68,6 +67,18 @@
                        MaxWidth="132"
                     MaxHeight="132"
                     Width="132" >
+                <Border.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFBE98D4" Offset="0"/>
+                        <GradientStop Color="#FF642CA0" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.BorderBrush>
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFCBD1D3" Offset="0"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
                 <Image Name="ImagePhoto"
                        Margin="5"
                        Source="{Binding PhotoStream,TargetNullValue={StaticResource icon_employee_avatar}}" />

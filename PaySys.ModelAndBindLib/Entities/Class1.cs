@@ -377,7 +377,7 @@ namespace PaySys.ModelAndBindLib.Entities
                 //todo: Apply current date in following calculations
 
                 var result = new ObservableCollection<TitledCompositeCollection>();
-                /*var ccContractFields = new TitledCompositeCollection
+                var ccContractFields = new TitledCompositeCollection
                 {
                         Title = ResourceAccessor.Labels.GetString( "ContractFields" ),
                         CompositeCollection = new CompositeCollection()
@@ -386,7 +386,7 @@ namespace PaySys.ModelAndBindLib.Entities
                     foreach( var item in ExpenseArticleOfContractFieldForSubGroups.ToList() )
                         ccContractFields.CompositeCollection.Add( item.ContractField );
 
-                result.Add( ccContractFields );*/
+                result.Add( ccContractFields );
 
                 var ccMiscs = new TitledCompositeCollection
                 {
@@ -399,13 +399,13 @@ namespace PaySys.ModelAndBindLib.Entities
 
                 result.Add(ccMiscs);
 
-                var ccVariables = new TitledCompositeCollection
+                /*var ccVariables = new TitledCompositeCollection
                 {
                     Title = ResourceAccessor.Labels.GetString("MonthlyVariables"),
                     CompositeCollection = new CompositeCollection()
                 };
 
-                result.Add(ccVariables);
+                result.Add(ccVariables);*/
                 return result;
             }
         }
@@ -590,6 +590,16 @@ namespace PaySys.ModelAndBindLib.Entities
                 return new ObservableCollection<TaxRow>(TaxRows);
             }
             set => TaxRows = new List<TaxRow>(value);
+        }
+
+        public void CommitTempToValues()
+        {
+            TaxRows.ForEach(row => row.ValueTo = row.TempValueTo.Value);
+        }
+
+        public void DiscardTempToValues()
+        {
+            TaxRows.ForEach(row => row.TempValueTo = row.ValueTo);
         }
     }
 

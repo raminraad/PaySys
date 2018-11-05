@@ -1,17 +1,23 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using System.Windows.Input;
 using System.Windows.Shell;
+using Arash.PersianDateControls;
 using PaySys.CalcLib.Delegates;
+using PaySys.CalcLib.ExtensionMethods;
 using PaySys.Globalization;
 using PaySys.ModelAndBindLib;
 using PaySys.ModelAndBindLib.Entities;
+using Xceed.Wpf.Toolkit;
+using Control = System.Windows.Controls.Control;
 using MessageBox = System.Windows.Forms.MessageBox;
 using MessageBoxOptions = System.Windows.Forms.MessageBoxOptions;
+using TextBox = System.Windows.Controls.TextBox;
 using UserControl = System.Windows.Controls.UserControl;
 
 namespace PaySys.UI.UC
@@ -99,5 +105,16 @@ namespace PaySys.UI.UC
 
 			CollectionViewSource.GetDefaultView( ListViewGroupContractField.ItemsSource ).Refresh();
 		}
-	}
+
+	    public void UpdateTarget()
+	    {
+	        foreach (var control in this.FindVisualChildren<UcTextPair>())
+	            control.UpdateTarget();
+        }
+
+	    public void Refresh()
+	    {
+	        CollectionViewSource.GetDefaultView(ListViewGroupContractField.ItemsSource).Refresh();
+	    }
+    }
 }

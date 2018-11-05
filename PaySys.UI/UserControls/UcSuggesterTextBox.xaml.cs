@@ -30,9 +30,9 @@ namespace PaySys.UI.UC
 			InitializeComponent();
 
 			// Attach events to the controls
-			autoTextBox.TextChanged += autoTextBox_TextChanged;
-			autoTextBox.PreviewKeyDown += autoTextBox_PreviewKeyDown;
-			suggestionListBox.SelectionChanged += suggestionListBox_SelectionChanged;
+			AutoTextBox.TextChanged += autoTextBox_TextChanged;
+			AutoTextBox.PreviewKeyDown += autoTextBox_PreviewKeyDown;
+			SuggestionListBox.SelectionChanged += suggestionListBox_SelectionChanged;
 			PreviewKeyUp += Uc_PreviewKeyUp;
 		}
 
@@ -69,7 +69,7 @@ namespace PaySys.UI.UC
 		// This enables animation, styling, binding, etc...
 		public static readonly DependencyProperty SelectedValueProperty = DependencyProperty.Register("SelectedValue", typeof(string), typeof(UcSuggesterTextBox), new UIPropertyMetadata(string.Empty));
 
-		public ItemCollection Items => suggestionListBox.Items;
+		public ItemCollection Items => SuggestionListBox.Items;
 
 		#endregion
 
@@ -77,91 +77,103 @@ namespace PaySys.UI.UC
 		private void Uc_PreviewKeyUp(object sender, KeyEventArgs e)
 		{
 			if(e.Key == Key.Escape)
-			{
-				// DiscardChanges the selection
-				suggestionListBox.ItemsSource = null;
-				suggestionListBox.Visibility = Visibility.Collapsed;
-			}
-			else if(e.Key == Key.Enter || e.Key == Key.Tab)
+            {
+                // DiscardChanges the selection
+                SuggestionListBox.ItemsSource = null;
+                CollapseList();
+            }
+            else if(e.Key == Key.Enter || e.Key == Key.Tab)
 			{
 				// Commit the selection
-				suggestionListBox.Visibility = Visibility.Collapsed;
+				CollapseList();
 				e.Handled = e.Key == Key.Enter;
 			}
 		}
 
-		/// <summary>
-		/// Handles the TextChanged event of the autoTextBox control.
-		/// </summary>
-		/// <param name="sender">The source of the event.</param>
-		/// <param name="e">The instance containing the event data.</param>
-		private void autoTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        public void CollapseList()
+        {
+            SuggestionListBox.Visibility = Visibility.Collapsed;
+        }
+
+        /// <summary>
+        /// Handles the TextChanged event of the autoTextBox control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The instance containing the event data.</param>
+        private void autoTextBox_TextChanged(object sender, TextChangedEventArgs e)
 		{
 			// Only autocomplete when there is text
-			if(autoTextBox.Text.Length > 0)
+			if(AutoTextBox.Text.Length > 0)
 			{
 				// Use Linq to Query ItemsSource for resultdata
-				var condition = string.Format("{0}%", autoTextBox.Text);
-				var results = ItemsSource?.Where(s => s.ToLower().Contains(autoTextBox.Text.Trim().ToLower()));
+				var condition = string.Format("{0}%", AutoTextBox.Text);
+				var results = ItemsSource?.Where(s => s.ToLower().Contains(AutoTextBox.Text.Trim().ToLower()));
 				if( results == null )
 					return;
 
 				var itemsSource = results.ToList();
 				if(itemsSource.Any())
+                {
+                    SuggestionListBox.ItemsSource = itemsSource;
+                    ExpandList();
+                    SuggestionListBox.SelectedIndex = -1;
+                }
+                else
 				{
-					suggestionListBox.ItemsSource = itemsSource;
-					suggestionListBox.Visibility = Visibility.Visible;
-					suggestionListBox.SelectedIndex = -1;
-				}
-				else
-				{
-					suggestionListBox.Visibility = Visibility.Collapsed;
-					suggestionListBox.ItemsSource = null;
+					CollapseList();
+					SuggestionListBox.ItemsSource = null;
 				}
 			}
 			else
 			{
-				suggestionListBox.Visibility = Visibility.Collapsed;
-				suggestionListBox.ItemsSource = null;
+				CollapseList();
+				SuggestionListBox.ItemsSource = null;
 			}
-		}
+		    
+        }
 
-		/// <summary>
-		/// Handles the PreviewKeyDown event of the autoTextBox control.
-		/// </summary>
-		/// <param name="sender">The source of the event.</param>
-		/// <param name="e">The instance containing the event data.</param>
-		private void autoTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        public void ExpandList()
+        {
+            SuggestionListBox.Visibility = Visibility.Visible;
+        }
+
+        /// <summary>
+        /// Handles the PreviewKeyDown event of the autoTextBox control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The instance containing the event data.</param>
+        private void autoTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
 		{
 			if(e.Key == Key.Down)
 			{
-				if(suggestionListBox.Visibility == Visibility.Visible && suggestionListBox.SelectedIndex < suggestionListBox.Items.Count)
+				if(SuggestionListBox.Visibility == Visibility.Visible && SuggestionListBox.SelectedIndex < SuggestionListBox.Items.Count)
 				{
-					suggestionListBox.SelectedIndex = suggestionListBox.SelectedIndex + 1;
+					SuggestionListBox.SelectedIndex = SuggestionListBox.SelectedIndex + 1;
 				}
-				else if(suggestionListBox.Visibility != Visibility.Visible)
+				else if(SuggestionListBox.Visibility != Visibility.Visible)
 				{
-					if(string.IsNullOrEmpty(autoTextBox.Text))
+					if(string.IsNullOrEmpty(AutoTextBox.Text))
 					{
-						suggestionListBox.ItemsSource = ItemsSource;
-						suggestionListBox.Visibility = Visibility.Visible;
+						SuggestionListBox.ItemsSource = ItemsSource;
+						ExpandList();
 					}
 					else
 					{
-						autoTextBox_TextChanged(autoTextBox, null);
+						autoTextBox_TextChanged(AutoTextBox, null);
 					}
 				}
 			}
 			else if(e.Key == Key.Up)
 			{
-				if(suggestionListBox.Visibility == Visibility.Visible && suggestionListBox.SelectedIndex > 0) suggestionListBox.SelectedIndex = suggestionListBox.SelectedIndex - 1;
+				if(SuggestionListBox.Visibility == Visibility.Visible && SuggestionListBox.SelectedIndex > 0) SuggestionListBox.SelectedIndex = SuggestionListBox.SelectedIndex - 1;
 			}
 			/*if(e.Key!=Key.Back &&  suggestionListBox.Items.Count == 0 && !string.IsNullOrEmpty(autoTextBox.Text))
-				e.Handled = true;*/ else if(string.IsNullOrEmpty(autoTextBox.Text) && e.Key == Key.Space)
+				e.Handled = true;*/ else if(string.IsNullOrEmpty(AutoTextBox.Text) && e.Key == Key.Space)
 			{
 			    e.Handled = true;
 			}
-		}
+
+        }
 
 		/// <summary>
 		/// Handles the SelectionChanged event of the suggestionListBox control.
@@ -170,14 +182,22 @@ namespace PaySys.UI.UC
 		/// <param name="e">The <see cref="System.Windows.Controls.SelectionChangedEventArgs"/> instance containing the event data.</param>
 		private void suggestionListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			if(suggestionListBox.ItemsSource != null)
+			if(SuggestionListBox.ItemsSource != null)
 			{
-				autoTextBox.TextChanged -= autoTextBox_TextChanged;
-				if(suggestionListBox.SelectedIndex != -1) autoTextBox.Text = suggestionListBox.SelectedItem.ToString();
-			    autoTextBox.TextChanged += autoTextBox_TextChanged;
+				AutoTextBox.TextChanged -= autoTextBox_TextChanged;
+				if(SuggestionListBox.SelectedIndex != -1) AutoTextBox.Text = SuggestionListBox.SelectedItem.ToString();
+			    AutoTextBox.TextChanged += autoTextBox_TextChanged;
 			}
 		}
 
 		#endregion
+
+
+	    private void UIElement_OnMouseUp(object sender, MouseButtonEventArgs e)
+	    {
+	        CollapseList();
+        }
+
+
 	}
 }

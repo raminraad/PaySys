@@ -179,7 +179,7 @@
                 <StackPanel Orientation="Vertical">
                     <Image Source="{StaticResource icon_discard_changes}" 
                            Style="{StaticResource StyleOfToolbarButtonImage}" />
-                    <TextBlock Text="{x:Static fa:Labels.Cancel}" 
+                    <TextBlock Text="{x:Static fa:Labels.DischardChanges}" 
                                Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
                 </StackPanel>
             </Button.Content>

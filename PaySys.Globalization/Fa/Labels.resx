@@ -120,7 +120,7 @@
   <data name="Add" xml:space="preserve">
     <value>جدید</value>
   </data>
-  <data name="Cancel" xml:space="preserve">
+  <data name="DischardChanges" xml:space="preserve">
     <value>انصراف</value>
   </data>
   <data name="Contract" xml:space="preserve">
@@ -458,5 +458,8 @@
   </data>
   <data name="MiscRecharges" xml:space="preserve">
     <value>مانده بدهی ها</value>
+  </data>
+  <data name="SystemDate" xml:space="preserve">
+    <value>امروز:</value>
   </data>
 </root>

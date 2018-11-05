@@ -2,20 +2,40 @@
              x:Class="PaySys.UI.UC.UcSuggesterTextBox"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             Panel.ZIndex="99">
-	<Canvas>
-		<TextBox x:Name="autoTextBox"
+             Panel.ZIndex="99" >
+    <Canvas>
+        <TextBox x:Name="AutoTextBox"
                  Height="32"
-		         VerticalAlignment="Stretch"
-		         MinWidth="150"
-		         Width="{Binding ElementName=UcSuggester,Path=ActualWidth}"
-		         Text="{Binding ElementName=UcSuggester,Path=SelectedValue,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-		         TextWrapping="NoWrap"/>
-		<ListBox x:Name="suggestionListBox"
-		         SelectionChanged="suggestionListBox_SelectionChanged"
-		         Background="LightYellow"
-		         Visibility="Collapsed"
-		         MinWidth="150"
-		         Margin="0,32,0,-32"/>
-	</Canvas>
+                 VerticalAlignment="Stretch"
+                 VerticalContentAlignment="Center"
+                 MinWidth="150"
+                 Width="{Binding ElementName=UcSuggester,Path=ActualWidth}"
+                 Text="{Binding ElementName=UcSuggester,Path=SelectedValue,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                 TextWrapping="NoWrap" />
+        <ListBox x:Name="SuggestionListBox"
+                 SelectionChanged="suggestionListBox_SelectionChanged"
+                 Margin="0,32,0,-32"
+                 Foreground="#1A0F19"
+                 Visibility="Collapsed"
+                 MinWidth="150" >
+            <ListBox.Background>
+                <LinearGradientBrush EndPoint="0.5,1"
+                                     StartPoint="0.5,0" >
+                    <GradientStop Color="#FFFCBF"
+                                  Offset="0" />
+                    <GradientStop Color="#FFEE8B"
+                                  Offset="1" />
+                </LinearGradientBrush>
+            </ListBox.Background>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}"
+                               Width="{Binding ElementName=SuggestionListBox,Path=MinWidth}"
+                               HorizontalAlignment="Stretch"
+                               MouseUp="UIElement_OnMouseUp" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+    </Canvas>
 </UserControl>

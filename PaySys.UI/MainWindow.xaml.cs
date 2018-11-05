@@ -3,11 +3,14 @@ using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Forms;
+using Arash;
 using PaySys.Globalization;
 using PaySys.Globalization.Fa;
 using PaySys.ModelAndBindLib;
 using PaySys.ModelAndBindLib.Engine;
 using PaySys.UI.UC;
+using MenuItem = System.Windows.Controls.MenuItem;
 
 namespace PaySys
 {
@@ -19,6 +22,7 @@ namespace PaySys
         public MainWindow()
         {
             InitializeComponent();
+
             PaySysSetting.CurrentYear = 1397;
             PaySysSetting.CurrentMonth = 7;
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
@@ -125,6 +129,11 @@ namespace PaySys
             TabCntMain.Items.Add(tabItem);
             TabCntMain.SelectedItem = tabItem;
             TabCntMain.Items.Refresh();
+        }
+
+        private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            LabelSystemDate.Content = new PersianDate(DateTime.Now).ToLongDateString();
         }
     }
 }

@@ -5,13 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PaySys"
         xmlns:System="clr-namespace:System;assembly=mscorlib"
+        xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
         mc:Ignorable="d"
+        Loaded="MainWindow_OnLoaded"
         Title="MainWindow"
         Height="350"
         Width="525">
     <DockPanel FlowDirection="RightToLeft">
         <Menu Name="MnuMain"
               DockPanel.Dock="Top">
+            <Menu.Resources>
+                <Style TargetType="MenuItem" >
+                    <Setter Property="Focusable"
+                            Value="True" />
+                    <Setter Property="IsTabStop"
+                            Value="True" />
+                </Style>
+            </Menu.Resources>
             <MenuItem Header="اطلاعات پایه">
                 <MenuItem x:Name="MnuEmployeeMng"
                           Header="اطلاعات پرسنل"
@@ -81,7 +91,11 @@
                 </MenuItem>
             </MenuItem>
         </Menu>
-       <TabControl x:Name="TabCntMain" TabStripPlacement="Top" Margin="6,10,10,10" BorderThickness="1">
+        <StatusBar DockPanel.Dock="Bottom">
+            <Label Style="{StaticResource StyleOfStatusBarContentLabel}" Foreground="Black" Content="{x:Static fa:Labels.SystemDate}"/>
+            <Label x:Name="LabelSystemDate" Style="{StaticResource StyleOfStatusBarContentLabel}" Foreground="Black"/>
+        </StatusBar>
+        <TabControl x:Name="TabCntMain" TabStripPlacement="Top"  BorderThickness="1" >
             <TabControl.Resources>
                 <Style TargetType="TabItem" BasedOn="{StaticResource StyleOfParentTabItem}"/>
                 

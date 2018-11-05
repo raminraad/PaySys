@@ -110,7 +110,7 @@
                       Grid.Row="3"
                       Grid.Column="1"
                       Grid.ColumnSpan="2"
-                      Margin="{StaticResource MarginOfMaster}"
+                      
                       d:DataContext="{d:DesignInstance model:City}"
                       DataContext="{Binding ElementName=DataGridCities,Path=SelectedItem}" >
                     <Grid.RowDefinitions>

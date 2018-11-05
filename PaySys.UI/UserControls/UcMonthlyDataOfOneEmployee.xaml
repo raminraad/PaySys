@@ -29,6 +29,9 @@
         </Style>
     </UserControl.Resources>
     <Grid>
+        <Grid.Resources>
+            <Thickness x:Key="MarginOfLists" > 10,0 </Thickness>
+        </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="4*" />
             <ColumnDefinition Width="7*" />
@@ -41,7 +44,7 @@
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
         <DataGrid x:Name="DataGridEmployees"
-                  Margin="10"
+                  Margin="{StaticResource MarginOfLists}"
                   Grid.Row="1"
                   Grid.Column="0"
                   ColumnWidth="*"
@@ -60,18 +63,23 @@
             </DataGrid.Columns>
         </DataGrid>
         <TextBlock Text="{x:Static fa:Labels.Employees}"
+                   Style="{StaticResource StyleOfListTitleTextBlock}"
                    Grid.Row="0"
                    Grid.Column="0" />
         <TextBlock Grid.Row="0"
                    Grid.Column="1"
+                   Style="{StaticResource StyleOfListTitleTextBlock}"
                    Text="{x:Static fa:Labels.MonthlyVariables}" />
         <TextBlock Grid.Row="0"
                    Grid.Column="2"
+                   Style="{StaticResource StyleOfListTitleTextBlock}"
                    Text="{x:Static fa:Labels.MiscPayments}" />
         <TextBlock Grid.Row="0"
                    Grid.Column="3"
+                   Style="{StaticResource StyleOfListTitleTextBlock}"
                    Text="{x:Static fa:Labels.MiscDebts}" />
         <ListView x:Name="ListViewVariables"
+                  Margin="{StaticResource MarginOfLists}"
                   Grid.Row="1"
                   Grid.Column="1"
                   listViewLayout:ListViewLayoutManager.Enabled="True"
@@ -82,10 +90,16 @@
                 <GridView>
                     <GridView.Columns>
                         <GridViewColumn Header="{x:Static fa:Labels.Title}"
-                                        listViewLayout:ProportionalColumn.Width="3"
-                                        DisplayMemberBinding="{Binding Variable.Title}" />
-                        <GridViewColumn Header="{x:Static fa:Labels.Value}" 
-                                        listViewLayout:ProportionalColumn.Width="2">
+                                        listViewLayout:ProportionalColumn.Width="3" >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Label Style="{StaticResource StyleOfDataFieldLabel}"
+                                           Content="{Binding Variable.Title}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="{x:Static fa:Labels.Value}"
+                                        listViewLayout:ProportionalColumn.Width="2" >
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel>
@@ -118,6 +132,7 @@
             </ListView.View>
         </ListView>
         <ListView x:Name="ListViewMiscPayments"
+                  Margin="{StaticResource MarginOfLists}"
                   Grid.Row="1"
                   Grid.Column="2"
                   listViewLayout:ListViewLayoutManager.Enabled="True"
@@ -128,10 +143,16 @@
                 <GridView>
                     <GridView.Columns>
                         <GridViewColumn Header="{x:Static fa:Labels.Title}"
-                                        listViewLayout:ProportionalColumn.Width="3"
-                                        DisplayMemberBinding="{Binding Misc.MiscTitle.Title}" />
-                        <GridViewColumn Header="{x:Static fa:Labels.Value}" 
-                                        listViewLayout:ProportionalColumn.Width="2">
+                                        listViewLayout:ProportionalColumn.Width="3" >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Label Style="{StaticResource StyleOfDataFieldLabel}"
+                                           Content="{Binding Misc.MiscTitle.Title}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="{x:Static fa:Labels.Value}"
+                                        listViewLayout:ProportionalColumn.Width="2" >
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBox Text="{Binding Value,StringFormat={}{0:N0}}"
@@ -142,8 +163,8 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="{x:Static fa:Labels.ValueSubtraction}" 
-                                        listViewLayout:ProportionalColumn.Width="2">
+                        <GridViewColumn Header="{x:Static fa:Labels.ValueSubtraction}"
+                                        listViewLayout:ProportionalColumn.Width="2" >
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBox Text="{Binding ValueSubtraction,StringFormat={}{0:N0}}"
@@ -159,6 +180,7 @@
             </ListView.View>
         </ListView>
         <ListView x:Name="ListViewMiscDebts"
+                  Margin="{StaticResource MarginOfLists}"
                   Grid.Row="1"
                   Grid.Column="3"
                   listViewLayout:ListViewLayoutManager.Enabled="True"
@@ -169,10 +191,16 @@
                 <GridView>
                     <GridView.Columns>
                         <GridViewColumn Header="{x:Static fa:Labels.Title}"
-                                        listViewLayout:ProportionalColumn.Width="3"
-                                        DisplayMemberBinding="{Binding Misc.MiscTitle.Title}" />
-                        <GridViewColumn Header="{x:Static fa:Labels.Value}" 
-                                        listViewLayout:ProportionalColumn.Width="2">
+                                        listViewLayout:ProportionalColumn.Width="3" >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Label Style="{StaticResource StyleOfDataFieldLabel}"
+                                           Content="{Binding Misc.MiscTitle.Title}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="{x:Static fa:Labels.Value}"
+                                        listViewLayout:ProportionalColumn.Width="2" >
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBox Text="{Binding Value,StringFormat={}{0:N0}}"

@@ -12,13 +12,12 @@
              mc:Ignorable="d"
              FlowDirection="RightToLeft"
              HorizontalAlignment="Center"
+             VerticalAlignment="Stretch"
              Width="370"
              MaxWidth="370"
              d:DesignHeight="300"
              >
     <UserControl.Resources>
-        <CollectionViewSource x:Key="CvsTaxRows"
-                              Source="{Binding ElementName=SmpUcTaxTableMng,Path=CurrentSubGroup.CurrenTaxTable.TaxRows,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
         <bindingConverter:MathAddWithParameterConverter x:Key="CnvAdd" />
     </UserControl.Resources>
     <Grid>
@@ -35,7 +34,7 @@
         <ListView x:Name="ListViewTaxItem"
                   d:DataContext="{d:DesignInstance Type=model:TaxRow, IsDesignTimeCreatable=True}"
                   listViewLayout:ListViewLayoutManager.Enabled="True"
-                  DataContext="{StaticResource CvsTaxRows}"
+                  DataContext="{Binding ElementName=SmpUcTaxTableMng,Path=CurrentSubGroup.CurrenTaxTable.TaxRows,UpdateSourceTrigger=PropertyChanged}"
                   ItemsSource="{Binding}"
                   >
             <ListView.View>
@@ -54,7 +53,7 @@
                                     listViewLayout:ProportionalColumn.Width="4">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBox Text="{Binding Path=TempValueTo,UpdateSourceTrigger=PropertyChanged}"
+                                    <TextBox Text="{Binding Path=TempValueTo,UpdateSourceTrigger=PropertyChanged,StringFormat={}{0:N0}}"
                                          IsReadOnly="{Binding ElementName=SmpUcTaxTableMng,Path=ReadOnlyOfFields}"
                                          Width="80" />
                             </DataTemplate>
@@ -64,7 +63,8 @@
                                     listViewLayout:ProportionalColumn.Width="2">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBox Text="{Binding Path=Factor,StringFormat={}{0:N0}}"
+                                <TextBox Text="{Binding Path=Factor,UpdateSourceTrigger=PropertyChanged,StringFormat={}{0:N0}}"
+                                         MaxLength="3"
                                          IsReadOnly="{Binding ElementName=SmpUcTaxTableMng,Path=ReadOnlyOfFields}"
                                          Width="30" />
                             </DataTemplate>

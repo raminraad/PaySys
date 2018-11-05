@@ -11,7 +11,7 @@
              FlowDirection="RightToLeft"
              Width="600"
              MaxWidth="600"
-             Height="300"
+             VerticalAlignment="Stretch"
              DataContext="{Binding ElementName=SmpUcMissionFormulaMng,Path=CurrentSubGroup.CurrentOrNewMissionFormula}" >
     <UserControl.Resources>
         <Style TargetType="TextBox"
@@ -27,8 +27,8 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*" />

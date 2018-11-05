@@ -15,6 +15,23 @@
              Loaded="UcExpenseArticleMng_OnLoaded"
              d:DesignHeight="300"
              d:DesignWidth="600">
+    <UserControl.Resources>
+        <Color x:Key="ColorOfSelectedItem" >#EF9DF0</Color>
+        <LinearGradientBrush x:Key="ColorOfSelectedRow"
+                             StartPoint="0.5,0"
+                             EndPoint="0.5,1" >
+            <GradientStop Color="#F4E2F5"
+                          Offset="0.0" />
+            <GradientStop Color="#F0ACF1"
+                          Offset="0.1" />
+            <GradientStop Color="#F0ACF1"
+                          Offset="0.5" />
+            <GradientStop Color="#EF9DF0"
+                          Offset="0.5" />
+            <GradientStop Color="#EF9DF0"
+                          Offset="1" />
+        </LinearGradientBrush>
+    </UserControl.Resources>
     <UserControl.CommandBindings>
         <CommandBinding Command="commands:PaySysCommands.Add"
                         CanExecute="CrudCommands_CanExecute"
@@ -52,83 +69,16 @@
         </Grid.ColumnDefinitions>
 
         <ToolBar Grid.Row="0"
-                 Grid.ColumnSpan="3"
-                 Grid.Column="0">
-            <Button Name="ButtonAdd"
-                    Style="{StaticResource StyleOfToolbarButtonAdd}"
-                    Command="commands:PaySysCommands.Add">
-                <Button.Content>
-                    <StackPanel Orientation="Vertical">
-                        <Image Source="{StaticResource icon_crud_add}"
-                               Style="{StaticResource StyleOfToolbarButtonImage}" />
-                        <TextBlock Text="{x:Static fa:Labels.Add}"
-                                   Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
-                    </StackPanel>
-                </Button.Content>
-            </Button>
-            <Button Name="ButtonEdit"
-                    Style="{StaticResource StyleOfToolbarButtonEdit}"
-                    Command="commands:PaySysCommands.Edit">
-                <Button.Content>
-                    <StackPanel Orientation="Vertical">
-                        <Image Source="{StaticResource icon_crud_edit}"
-                               Style="{StaticResource StyleOfToolbarButtonImage}" />
-                        <TextBlock Text="{x:Static fa:Labels.Edit}"
-                                   Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
-                    </StackPanel>
-                </Button.Content>
-            </Button>
-            <Button Name="ButtonDelete"
-                    Style="{StaticResource StyleOfToolbarButtonDelete}"
-                    Command="commands:PaySysCommands.Delete">
-                <Button.Content>
-                    <StackPanel Orientation="Vertical">
-                        <Image Source="{StaticResource icon_crud_delete}"
-                               Style="{StaticResource StyleOfToolbarButtonImage}" />
-                        <TextBlock Text="{x:Static fa:Labels.Delete}"
-                                   Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
-                    </StackPanel>
-                </Button.Content>
-            </Button>
-            <Separator />
-            <Button Name="ButtonSave"
-                    Style="{StaticResource StyleOfToolbarButtonSave}"
-                    Command="commands:PaySysCommands.Save">
-                <Button.Content>
-                    <StackPanel Orientation="Vertical">
-                        <Image Source="{StaticResource icon_save}"
-                               Style="{StaticResource StyleOfToolbarButtonImage}" />
-                        <TextBlock Text="{x:Static fa:Labels.Save}"
-                                   Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
-                    </StackPanel>
-                </Button.Content>
-            </Button>
-            <Button Name="ButtonDiscardChanges"
-                    Style="{StaticResource StyleOfToolbarButtonDiscardChanges}"
-                    Command="commands:PaySysCommands.DiscardChanges">
-                <Button.Content>
-                    <StackPanel Orientation="Vertical">
-                        <Image Source="{StaticResource icon_discard_changes}"
-                               Style="{StaticResource StyleOfToolbarButtonImage}" />
-                        <TextBlock Text="{x:Static fa:Labels.Cancel}"
-                                   Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
-                    </StackPanel>
-                </Button.Content>
-            </Button>
-            <Separator />
-            <Button Name="ButtonReload"
-                    Style="{StaticResource StyleOfToolbarButton}"
-                    Command="commands:PaySysCommands.Reload">
-                <Button.Content>
-                    <StackPanel Orientation="Vertical">
-                        <Image Source="{StaticResource icon_reload}"
-                               Style="{StaticResource StyleOfToolbarButtonImage}" />
-                        <TextBlock Text="{x:Static fa:Labels.Reload}"
-                                   Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
-                    </StackPanel>
-                </Button.Content>
-            </Button>
-
+                 Grid.ColumnSpan="3" >
+            <Button Template="{StaticResource TemplateOfToolbarButtonAdd}"
+                    Content="{x:Static fa:Labels.AddSubGroup}" />
+            <Button Template="{StaticResource TemplateOfToolbarButtonEdit}" />
+            <Button Template="{StaticResource TemplateOfToolbarButtonDelete}" />
+            <Separator Style="{StaticResource StyleOfSeparator}" />
+            <Button Template="{StaticResource TemplateOfToolbarButtonSave}" />
+            <Button Template="{StaticResource TemplateOfToolbarButtonDiscardChanges}" />
+            <Separator Style="{StaticResource StyleOfSeparator}" />
+            <Button Template="{StaticResource TemplateOfToolbarButtonReload}" />
         </ToolBar>
         <TreeView x:Name="TreeViewExpenseArticles"
                   Grid.Row="1"
@@ -144,44 +94,69 @@
                                 Margin="5">
                         <TextBlock Text="{Binding Code}" />
                         <TextBlock Text="("
-                                   Foreground="Goldenrod"
+                                   Foreground="#EA4848"
                                    Margin="7,0,0,0" 
                                    />
                         <TextBlock Text="{Binding InvolversCount}"
-                                   Foreground="Chocolate" />
+                                   Foreground="#FFEE560D" />
                         <TextBlock Text=")"
-                                   Foreground="Goldenrod" />
+                                   Foreground="#EA4848" />
                     </StackPanel>
                 </HierarchicalDataTemplate>
                 <HierarchicalDataTemplate DataType="{x:Type model:TitledCompositeCollection}"
                                           ItemsSource="{Binding CompositeCollection}">
                     <TextBlock Text="{Binding Title}"
-                               Foreground="#003366"
+                               Foreground="#FFCE1616"
                                Margin="8,0" />
                 </HierarchicalDataTemplate>
+                <DataTemplate DataType="{x:Type model:SubGroup}">
+                    <TextBlock Text="{Binding Title}"
+                               Foreground="#E4F019"
+                               Margin="5,0" />
+                </DataTemplate>
                 <DataTemplate DataType="{x:Type model:Misc}">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding SubGroup.Title}"
-                                   Foreground="#3EBE5E"
+                                   Foreground="#7A2273"
                                    Margin="5,0" />
-                        <TextBlock Text=" : "
+                        <TextBlock Text=" ← "
                                    Foreground="DimGray"
                                    Margin="5,0" />
                         <TextBlock Text="{Binding MiscTitle.Title}"
-                                   Foreground="#009900"
+                                   Foreground="#7A2273"
                                    Margin="5,0" />
                     </StackPanel>
                 </DataTemplate>
-                <DataTemplate DataType="{x:Type model:SubGroup}">
-                    <TextBlock Text="{Binding Title}"
-                               Foreground="DarkRed"
-                               Margin="5,0" />
+                <DataTemplate DataType="{x:Type model:ContractField}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding MainGroup.Title}"
+                                   Foreground="#40A326"
+                                   Margin="5,0" />
+                        <TextBlock Text=" ← "
+                                   Foreground="DimGray"
+                                   Margin="5,0" />
+                        <TextBlock Text="{Binding Title}"
+                                   Foreground="#40A326"
+                                   Margin="5,0" />
+                    </StackPanel>
                 </DataTemplate>
-
+                <!--<DataTemplate DataType="{x:Type model:Variable}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding MainGroup.Title}"
+                                   Foreground="#114F96"
+                                   Margin="5,0" />
+                        <TextBlock Text=" ← "
+                                   Foreground="DimGray"
+                                   Margin="5,0" />
+                        <TextBlock Text="{Binding Title}"
+                                   Foreground="#114F96"
+                                   Margin="5,0" />
+                    </StackPanel>
+                </DataTemplate>-->
                 <Style TargetType="{x:Type TreeViewItem}">
                     <Style.Resources>
                         <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
-                                         Color="#CCEBF0" />
+                                         Color="{StaticResource ColorOfSelectedItem}" />
                         <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}"
                                          Color="Black" />
                     </Style.Resources>
@@ -234,7 +209,7 @@
         <StatusBar Grid.Row="3"
                    Grid.Column="0"
                    Grid.ColumnSpan="3">
-            <local:UcFormStateLabel x:Name="SmpUcFormStateLabel" />
+            <local:UcFormStateLabel x:Name="SmpUcFormStateLabel"/>
         </StatusBar>
     </Grid>
 </UserControl>

@@ -27,7 +27,7 @@
     </UserControl.Resources>
     <Grid>
         <Grid.Resources>
-            <Style TargetType="ListView" >
+            <Style x:Key="StyleOfLists" TargetType="ListView" >
                 <Setter Property="Margin"
                         Value="10" />
                 <Setter Property="SelectionMode"
@@ -51,19 +51,7 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-            <Style x:Key="StyleOfTitle"
-                   TargetType="TextBlock" >
-                <Setter Property="HorizontalAlignment"
-                        Value="Center" />
-                <Setter Property="VerticalAlignment"
-                        Value="Bottom" />
-                <Setter Property="FontSize"
-                        Value="18" />
-                <Setter Property="FontFamily"
-                        Value="{StaticResource FontFamilyOfDataFields}" />
-                <Setter Property="FontWeight"
-                        Value="Black" />
-            </Style>
+            <Thickness x:Key="MarginOfLists" >10,0</Thickness>
         </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -75,9 +63,10 @@
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
         <TextBlock Grid.Column="1"
+                   Style="{StaticResource StyleOfListTitleTextBlock}"
                    Text="{x:Static fa:Labels.Employees}"/>
         <DataGrid x:Name="DataGridVariables"
-                  Margin="10"
+                  Margin="{StaticResource MarginOfLists}"
                   Grid.Row="1"
                   Grid.Column="0"
                   ColumnWidth="*"
@@ -98,6 +87,7 @@
         <ListView x:Name="ListViewOfItems"
                   Grid.Row="1"
                   Grid.Column="1"
+                  Margin="{StaticResource MarginOfLists}"
                   DataContext="{Binding Source={StaticResource Cvs}}"
                   ItemsSource="{Binding}"
                   d:DataContext="{d:DesignInstance Type=model:VariableValueForEmployee, IsDesignTimeCreatable=True}" >
@@ -106,7 +96,13 @@
                     <GridView.Columns>
                         <GridViewColumn Header="{x:Static fa:FieldicEmployee.FullName}"
                                         Width="Auto"
-                                        DisplayMemberBinding="{Binding Employee.FullName}" />
+                                        >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Label Style="{StaticResource StyleOfDataFieldLabel}" Content="{Binding Employee.FullName}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
                         <GridViewColumn Header="{x:Static fa:Labels.VariableValue}" >
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>

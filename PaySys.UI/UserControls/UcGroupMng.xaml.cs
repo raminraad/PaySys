@@ -25,6 +25,7 @@ using PaySys.ModelAndBindLib.Entities;
 using PaySys.UI.UC;
 using Binding = System.Windows.Data.Binding;
 using Control = System.Windows.Controls.Control;
+using DataGrid = System.Windows.Controls.DataGrid;
 using ListView = System.Windows.Controls.ListView;
 using MessageBox = System.Windows.Forms.MessageBox;
 using TextBox = System.Windows.Controls.TextBox;
@@ -72,18 +73,17 @@ namespace PaySys.UI.UC
 
         private void AddSubGroup_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            var title = string.Empty;
-            if (InputBox.Show(ResourceAccessor.Messages.GetString("EnterSubGroupName"), ref title) == DialogResult.OK)
+            SmpUcFormStateLabel.CurrentState = FormCurrentState.Add;
+            var newItem = new SubGroup
             {
-                var selectedMainGroup = (MainGroup) DataGridMainGroups.SelectedItem;
-                selectedMainGroup.SubGroups.Add(new SubGroup
-                {
-                    Title = title,
-                    ItemColor = selectedMainGroup.ItemColor
-                });
-                Context.SaveChanges();
-                CollectionViewSource.GetDefaultView(DataGridSubGroups.ItemsSource).Refresh();
-            }
+                Title = ResourceAccessor.Labels.GetString("New")
+            };
+            (DataGridMainGroups.SelectedItem as MainGroup)?.SubGroups.Add(newItem);
+            DataGridSubGroups.SelectedItem = newItem;
+            CollectionViewSource.GetDefaultView(DataGridSubGroups.ItemsSource)?.Refresh();
+            DataGridSubGroups.ScrollIntoView(newItem);
+            TabItemSubGroupBaseInfo.IsSelected = true;
+            SmpUcSubGroupEdit.Focus();
         }
 
         private void Edit_CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -116,15 +116,15 @@ namespace PaySys.UI.UC
 
             foreach (var cnt in expChangedContractFields)
             {
-                var exp = Context.ExpenseArticles.FirstOrDefault(x => x.Code == cnt.TempCurrentExpenseArticleCode);
-                if (exp == null)
-                    cnt.CurrentExpenseArticle = Context.ExpenseArticles.Add(new ExpenseArticle
-                    {
-                        Code = cnt.TempCurrentExpenseArticleCode,
-                        IsActive = true
-                    });
-                else
-                    cnt.CurrentExpenseArticle = exp;
+                var exp = Context.ExpenseArticles.FirstOrDefault(x => x.Code == cnt.TempCurrentExpenseArticleCode) ??
+                          Context.ExpenseArticles.Add(new ExpenseArticle
+                {
+                    Code = cnt.TempCurrentExpenseArticleCode,
+                    IsActive = true
+                });
+
+                cnt.CurrentExpenseArticle = exp;
+//                cnt.TempCurrentExpenseArticleCode = exp.Code;
             }
             #endregion
 
@@ -147,6 +147,13 @@ namespace PaySys.UI.UC
             #endregion
 
             var currentSubGroup = DataGridSubGroups.SelectedItem as SubGroup;
+
+
+            #region TaxTable
+            currentSubGroup?.CurrenTaxTable.CommitTempToValues();
+            #endregion
+
+
             #region HandselFormula
             Context.HandselFormulas.AddOrUpdate(currentSubGroup?.CurrentOrNewHandselFormula);
             #endregion
@@ -171,9 +178,16 @@ namespace PaySys.UI.UC
             Context.MissionFormulas.AddOrUpdate(currentSubGroup.CurrentOrNewMissionFormula);
             #endregion
 
+
+            #region TaxTable
+            #endregion
+
             Context.SaveChanges();
             SmpUcFormStateLabel.CurrentState = FormCurrentState.Select;
             SmpUcParameterMng.Refresh();
+            SmpUcContractFieldTitlesMng.Refresh();
+            SmpUcMiscMng.Refresh();
+            CollectionViewSource.GetDefaultView(DataGridSubGroups.ItemsSource)?.Refresh();
         }
 
         private void DiscardChanges_CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -183,14 +197,36 @@ namespace PaySys.UI.UC
 
         private void DiscardChanges_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            Context.DiscardChanges();
-            Reload();
+            if (SmpUcFormStateLabel.CurrentState == FormCurrentState.Add)
+            {
+                (DataGridMainGroups.SelectedItem as MainGroup)?.SubGroups.Remove((SubGroup)DataGridSubGroups.SelectedItem);
+                CollectionViewSource.GetDefaultView(DataGridSubGroups.ItemsSource)?.Refresh();
+            }
+            else
+            {
+                Context.DiscardChanges();
+                (DataGridSubGroups.SelectedItem as SubGroup)?.CurrenTaxTable.DiscardTempToValues();
+                var tmp1 = DataGridMainGroups.SelectedIndex;
+                var tmp2 = DataGridSubGroups.SelectedIndex;
+                DataGridMainGroups.SelectedIndex = -1;
+                DataGridSubGroups.SelectedIndex = -1;
+                DataGridMainGroups.SelectedIndex = tmp1;
+                DataGridSubGroups.SelectedIndex = tmp2;
+
+
+//                Reload();
+            }
             SmpUcFormStateLabel.CurrentState = FormCurrentState.Select;
         }
 
         private void Reload_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = SmpUcFormStateLabel?.EnabledOfCrudButtons ?? false;
+        }
+
+        private void Reload_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Reload();
         }
     }
 }
