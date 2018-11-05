@@ -211,6 +211,9 @@
     <Compile Include="UserControls\UcTextPair.xaml.cs">
       <DependentUpon>UcTextPair.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\WinCurrentYearMonthMng.xaml.cs">
+      <DependentUpon>WinCurrentYearMonthMng.xaml</DependentUpon>
+    </Compile>
     <Page Include="Modals\WinSelectItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -374,6 +377,10 @@
     <Page Include="UserControls\UcTextPair.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WinCurrentYearMonthMng.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
