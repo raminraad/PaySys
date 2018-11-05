@@ -10,6 +10,7 @@ using PaySys.Globalization.Fa;
 using PaySys.ModelAndBindLib;
 using PaySys.ModelAndBindLib.Engine;
 using PaySys.UI.UC;
+using PaySys.Windows;
 using MenuItem = System.Windows.Controls.MenuItem;
 
 namespace PaySys
@@ -134,6 +135,11 @@ namespace PaySys
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
             LabelSystemDate.Content = new PersianDate(DateTime.Now).ToLongDateString();
+        }
+
+        private void MenuItemCurrentYearMonthMng_OnClick(object sender, RoutedEventArgs e)
+        {
+            new WinCurrentYearMonthMng().ShowDialog();
         }
     }
 }

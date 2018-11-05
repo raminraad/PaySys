@@ -1082,6 +1082,8 @@ namespace PaySys.ModelAndBindLib.Entities
     }
 
     #region Enums
+
+
     [TypeConverter(typeof(EnumDescriptionTypeConverter))]
     public enum ServiceStand
     {

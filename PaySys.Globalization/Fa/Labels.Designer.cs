@@ -160,6 +160,15 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to انصراف.
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to تغییر ماده هزینه.
         /// </summary>
         public static string ChangeExpenseArticle {
@@ -246,6 +255,24 @@ namespace PaySys.Globalization.Fa {
         public static string ContractMaster {
             get {
                 return ResourceManager.GetString("ContractMaster", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ماه جاری.
+        /// </summary>
+        public static string CurrentMonth {
+            get {
+                return ResourceManager.GetString("CurrentMonth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to سال مالی.
+        /// </summary>
+        public static string CurrentYear {
+            get {
+                return ResourceManager.GetString("CurrentYear", resourceCulture);
             }
         }
         
@@ -916,7 +943,7 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to امروز:.
+        ///   Looks up a localized string similar to امروز.
         /// </summary>
         public static string SystemDate {
             get {

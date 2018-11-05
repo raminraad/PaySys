@@ -10,10 +10,10 @@
         Loaded="MainWindow_OnLoaded"
         Title="MainWindow"
         Height="350"
-        Width="525">
-    <DockPanel FlowDirection="RightToLeft">
+        Width="525" >
+    <DockPanel FlowDirection="RightToLeft" >
         <Menu Name="MnuMain"
-              DockPanel.Dock="Top">
+              DockPanel.Dock="Top" >
             <Menu.Resources>
                 <Style TargetType="MenuItem" >
                     <Setter Property="Focusable"
@@ -22,7 +22,7 @@
                             Value="True" />
                 </Style>
             </Menu.Resources>
-            <MenuItem Header="اطلاعات پایه">
+            <MenuItem Header="اطلاعات پایه" >
                 <MenuItem x:Name="MnuEmployeeMng"
                           Header="اطلاعات پرسنل"
                           Click="MnuEmployeeMng_OnClick" />
@@ -41,8 +41,11 @@
                 <MenuItem x:Name="MenuItemExpenseArticlesMng"
                           Header="تعریف مواد هزینه"
                           Click="MenuItemExpenseArticlesMng_OnClick" />
+                <MenuItem x:Name="MenuItemCurrentYearMonthMng"
+                          Header="مدیریت سال/ماه جاری"
+                          Click="MenuItemCurrentYearMonthMng_OnClick" />
             </MenuItem>
-            <MenuItem Header="عملیات ماه جاری">
+            <MenuItem Header="عملیات ماه جاری" >
                 <MenuItem Header="ورود داده های ماهانه"
                           x:Name="MnuMonthlyDataMng"
                           Click="MnuMonthlyDataMng_OnClick" />
@@ -55,7 +58,7 @@
                 <MenuItem Header="ورود مابه التفاوت احکام" />
                 <MenuItem Header="اصلاح بایگانی تفاوت ها" />
             </MenuItem>
-            <MenuItem Header="گزارش گیری">
+            <MenuItem Header="گزارش گیری" >
                 <MenuItem Header="انجام محاسبات حقوق و اضافه کار" />
                 <MenuItem Header="تهیه لیست های حقوق ماهانه" />
                 <MenuItem Header="چاپ لیست پرداختهای متفرقه" />
@@ -78,7 +81,7 @@
                 <MenuItem Header="تهیه دیسکت بیمه تأمین اجتماعی" />
                 <MenuItem Header="گزارش مانده بدهی ها" />
                 <MenuItem Header="چاپ لیست خالی کارکنان" />
-                <MenuItem Header="سیستم">
+                <MenuItem Header="سیستم" >
                     <MenuItem Header="انتخاب ماه" />
                     <MenuItem Header="تغییر سال مالی" />
                     <MenuItem Header="پایان سال" />
@@ -91,16 +94,27 @@
                 </MenuItem>
             </MenuItem>
         </Menu>
-        <StatusBar DockPanel.Dock="Bottom">
-            <Label Style="{StaticResource StyleOfStatusBarContentLabel}" Foreground="Black" Content="{x:Static fa:Labels.SystemDate}"/>
-            <Label x:Name="LabelSystemDate" Style="{StaticResource StyleOfStatusBarContentLabel}" Foreground="Black"/>
+        <StatusBar DockPanel.Dock="Bottom" >
+            <Image Source="{StaticResource icon_black_calendar_today}" 
+                   Height="{StaticResource FontSizeOfStatusBarContentImage}"
+                   Width="{StaticResource FontSizeOfStatusBarContentImage}"/>
+            <Label x:Name="LabelSystemDate"
+                   Padding="0"
+                   Content="DateTime.Today"
+                   Style="{StaticResource StyleOfStatusBarContentLabel}"
+                   Height="{StaticResource FontSizeOfStatusBarContentImage}"
+                   FontWeight="DemiBold"
+                   Foreground="Black" />
         </StatusBar>
-        <TabControl x:Name="TabCntMain" TabStripPlacement="Top"  BorderThickness="1" >
+        <TabControl x:Name="TabCntMain"
+                    TabStripPlacement="Top"
+                    BorderThickness="1" >
             <TabControl.Resources>
-                <Style TargetType="TabItem" BasedOn="{StaticResource StyleOfParentTabItem}"/>
-                
+                <Style TargetType="TabItem"
+                       BasedOn="{StaticResource StyleOfParentTabItem}" />
+
             </TabControl.Resources>
-            
+
         </TabControl>
     </DockPanel>
 </Window>

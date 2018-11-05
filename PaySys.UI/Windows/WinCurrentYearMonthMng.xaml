@@ -4,9 +4,86 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PaySys.Windows"
+        xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
+        xmlns:uc="clr-namespace:PaySys.UI.UC"
+        xmlns:commands="clr-namespace:PaySys.UI.Commands"
         mc:Ignorable="d"
-        Title="WinCurrentYearMonthMng" Height="450" Width="800">
-    <Grid>
-        
+        Title="WinCurrentYearMonthMng"
+        WindowStartupLocation="CenterScreen"
+        FlowDirection="RightToLeft"
+        Height="180"
+        Width="300"
+        ResizeMode="NoResize" >
+    <Window.Background>
+        <LinearGradientBrush EndPoint="1,1"
+                             MappingMode="RelativeToBoundingBox"
+                             StartPoint="0,0"
+                             Opacity="0.9" >
+            <GradientStop Color="#FFFFFECE"
+                          Offset="1" />
+            <GradientStop Color="#FFEDDD5B" />
+        </LinearGradientBrush>
+    </Window.Background>
+    <Window.CommandBindings>
+        <CommandBinding Command="commands:PaySysCommands.Save"
+                        Executed="Save_Executed"
+                        CanExecute="Save_CanExecute" />
+        <CommandBinding Command="commands:PaySysCommands.DiscardChanges"
+                        Executed="DiscardChanges_Executed"
+                        CanExecute="DiscardChanges_CanExecute" />
+    </Window.CommandBindings>
+    <Grid Margin="5" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0"
+               Grid.Column="0"
+               Style="{StaticResource StyleOfDataFieldLabel}"
+               Content="{x:Static fa:Labels.CurrentYear}" />
+        <Label Grid.Row="1"
+               Grid.Column="0"
+               Style="{StaticResource StyleOfDataFieldLabel}"
+               Content="{x:Static fa:Labels.CurrentMonth}" />
+        <ComboBox x:Name="ComboBoxYear"
+                  Grid.Row="0"
+                  Grid.Column="1" />
+        <ComboBox x:Name="ComboBoxMonth"
+                  Grid.Row="1"
+                  Grid.Column="1" />
+        <Button Grid.Row="0"
+                Grid.Column="2"
+                ToolTip="{x:Static fa:Tooltips.ButtonAddFiscalYear}"
+                Style="{StaticResource StyleOfSmallFunctionButton}"
+                x:Name="ButtonAddYear" >
+            <Button.Content>
+                <Image Style="{StaticResource StyleOfSmallFunctionButtonImageAdd}" />
+            </Button.Content>
+        </Button>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    HorizontalAlignment="Center" >
+            <Button Margin="2"
+                    ToolTip="{x:Static fa:Tooltips.ButtonSave}"
+                    Width="52"
+                    Height="24"
+                    Content="{x:Static fa:Labels.Ok}"
+                    Command="commands:PaySysCommands.Save"
+                    x:Name="ButtonOk" />
+            <Button Margin="2"
+                    ToolTip="{x:Static fa:Labels.Cancel}"
+                    Width="52"
+                    Height="24"
+                    Content="{x:Static fa:Labels.Cancel}"
+                    Command="commands:PaySysCommands.DiscardChanges"
+                    x:Name="ButtonCancel" />
+        </StackPanel>
     </Grid>
 </Window>

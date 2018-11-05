@@ -120,6 +120,9 @@
   <data name="ButtonAdd" xml:space="preserve">
     <value>ایجاد رکورد جدید (Ctrl+N)</value>
   </data>
+  <data name="ButtonAddFiscalYear" xml:space="preserve">
+    <value>سال مالی جدید</value>
+  </data>
   <data name="ButtonAddToList" xml:space="preserve">
     <value>افزودن به لیست (Ctrl+I)</value>
   </data>

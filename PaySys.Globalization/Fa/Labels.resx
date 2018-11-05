@@ -460,6 +460,15 @@
     <value>مانده بدهی ها</value>
   </data>
   <data name="SystemDate" xml:space="preserve">
-    <value>امروز:</value>
+    <value>امروز</value>
+  </data>
+  <data name="CurrentMonth" xml:space="preserve">
+    <value>ماه جاری</value>
+  </data>
+  <data name="CurrentYear" xml:space="preserve">
+    <value>سال مالی</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>انصراف</value>
   </data>
 </root>
