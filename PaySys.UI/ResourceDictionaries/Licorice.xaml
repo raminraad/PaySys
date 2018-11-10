@@ -54,5 +54,6 @@
     <BitmapImage x:Key="icon_black_monthly_variable" UriSource="../Assets/Icons/Licorice/icon_black_monthly_variable.png" />
     <BitmapImage x:Key="icon_black_money_up_down" UriSource="../Assets/Icons/Licorice/icon_black_money_up_down.png" />
     <BitmapImage x:Key="icon_black_calendar_today" UriSource="../Assets/Icons/Licorice/icon_black_calendar_today.png" />
+    <BitmapImage x:Key="icon_black_calendar_current" UriSource="../Assets/Icons/Licorice/icon_black_calendar_current.png" />
 
 </ResourceDictionary>

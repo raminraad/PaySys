@@ -138,8 +138,7 @@
             <system:Double x:Key="FontSizeOfLookupTextBox" > 14 </system:Double>
             <system:Double x:Key="FontSizeOfTabHeader" > 16 </system:Double>
             <system:Double x:Key="FontSizeOfMenu" > 16 </system:Double>
-            <system:Double x:Key="FontSizeOfStatusBarContentImage" > 16 </system:Double>
-
+            <system:Double x:Key="SizeOfStatusBarContentImage" > 16 </system:Double>
             <system:Double x:Key="HeightOfDataField" > 24 </system:Double>
             <system:Double x:Key="HeightOfDataComboBox" > 24 </system:Double>
             <system:Double x:Key="HeightOfSelectionComboBox" > 34 </system:Double>

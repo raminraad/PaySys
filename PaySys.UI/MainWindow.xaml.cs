@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using System.Windows.Input;
 using Arash;
 using PaySys.Globalization;
 using PaySys.Globalization.Fa;
@@ -11,7 +12,9 @@ using PaySys.ModelAndBindLib;
 using PaySys.ModelAndBindLib.Engine;
 using PaySys.UI.UC;
 using PaySys.Windows;
+using Label = System.Windows.Controls.Label;
 using MenuItem = System.Windows.Controls.MenuItem;
+using MessageBox = System.Windows.MessageBox;
 
 namespace PaySys
 {
@@ -135,11 +138,29 @@ namespace PaySys
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
             LabelSystemDate.Content = new PersianDate(DateTime.Now).ToLongDateString();
+            SetCurrentYearMonth();
+        }
+
+        private void SetCurrentYearMonth()
+        {
+            LabelCurrentYear.Content = PaySysSetting.CurrentYear;
+            LabelCurrentMonth.Content = ((PersianMonth)PaySysSetting.CurrentMonth);
         }
 
         private void MenuItemCurrentYearMonthMng_OnClick(object sender, RoutedEventArgs e)
         {
-            new WinCurrentYearMonthMng().ShowDialog();
+            ChangeCurrentYearMonth();
+        }
+
+        private  void ChangeCurrentYearMonth()
+        {
+            if (!new WinCurrentYearMonthMng().ShowDialog().Value) return;
+            SetCurrentYearMonth();
+        }
+
+        private void CurrentYearMonth_OnMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            ChangeCurrentYearMonth();
         }
     }
 }

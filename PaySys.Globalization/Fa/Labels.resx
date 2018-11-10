@@ -442,7 +442,7 @@
     <value>اطلاعات حکم</value>
   </data>
   <data name="OpenFileDialogFilterForPhotos" xml:space="preserve">
-    <value>فایلهای تصویری|*.jpg;*.jpeg;*.png|JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|Portable Network Graphic (*.png)|*.png</value>
+    <value>فایلهای تصویری|*.jpg;*.jpeg;*.png;*.bmp|JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|Portable Network Graphic (*.png)|*.png|Bitmap (*.bmp)|(*.bmp)</value>
   </data>
   <data name="BaseInfo" xml:space="preserve">
     <value>اطلاعات پایه</value>
@@ -470,5 +470,11 @@
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>انصراف</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>ماه</value>
+  </data>
+  <data name="MonthOfFiscalYear" xml:space="preserve">
+    <value>ماه سال مالی</value>
   </data>
 </root>

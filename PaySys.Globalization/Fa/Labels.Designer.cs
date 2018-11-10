@@ -682,11 +682,29 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ماه.
+        /// </summary>
+        public static string Month {
+            get {
+                return ResourceManager.GetString("Month", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to متغیرهای ماهانه.
         /// </summary>
         public static string MonthlyVariables {
             get {
                 return ResourceManager.GetString("MonthlyVariables", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ماه سال مالی.
+        /// </summary>
+        public static string MonthOfFiscalYear {
+            get {
+                return ResourceManager.GetString("MonthOfFiscalYear", resourceCulture);
             }
         }
         
@@ -709,7 +727,7 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to فایلهای تصویری|*.jpg;*.jpeg;*.png|JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|Portable Network Graphic (*.png)|*.png.
+        ///   Looks up a localized string similar to فایلهای تصویری|*.jpg;*.jpeg;*.png;*.bmp|JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|Portable Network Graphic (*.png)|*.png|Bitmap (*.bmp)|(*.bmp).
         /// </summary>
         public static string OpenFileDialogFilterForPhotos {
             get {

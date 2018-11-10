@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Arash;
 using PaySys.ModelAndBindLib;
 using PaySys.ModelAndBindLib.Engine;
 
@@ -52,6 +53,7 @@ namespace PaySys.Windows
         {
             PaySysSetting.CurrentMonth = (int) ComboBoxMonth.SelectedItem;
             PaySysSetting.CurrentYear = (int) ComboBoxYear.SelectedItem;
+            this.DialogResult = true;
             Close();
         }
 
@@ -68,6 +70,12 @@ namespace PaySys.Windows
         private void DiscardChanges_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
+        }
+
+        private void WinCurrentYearMonthMng_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            ComboBoxMonth.SelectedItem=(PersianMonth)PaySysSetting.CurrentMonth ;
+            ComboBoxYear.SelectedItem=PaySysSetting.CurrentYear ;
         }
     }
 }

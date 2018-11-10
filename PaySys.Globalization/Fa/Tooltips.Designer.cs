@@ -70,7 +70,7 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to سال مالی جدید.
+        ///   Looks up a localized string similar to ایجاد سال مالی جدید.
         /// </summary>
         public static string ButtonAddFiscalYear {
             get {

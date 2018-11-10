@@ -95,16 +95,72 @@
             </MenuItem>
         </Menu>
         <StatusBar DockPanel.Dock="Bottom" >
-            <Image Source="{StaticResource icon_black_calendar_today}" 
-                   Height="{StaticResource FontSizeOfStatusBarContentImage}"
-                   Width="{StaticResource FontSizeOfStatusBarContentImage}"/>
-            <Label x:Name="LabelSystemDate"
-                   Padding="0"
-                   Content="DateTime.Today"
-                   Style="{StaticResource StyleOfStatusBarContentLabel}"
-                   Height="{StaticResource FontSizeOfStatusBarContentImage}"
-                   FontWeight="DemiBold"
-                   Foreground="Black" />
+            <Grid
+                Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type StatusBar}}, Mode=OneWay}" >
+                <Grid.Resources>
+                    <Style BasedOn="{StaticResource StyleOfStatusBarContentLabel}"
+                           TargetType="Label" >
+                        <Setter Property="Padding"
+                                Value="0" />
+                        <Setter Property="Height"
+                                Value="{StaticResource SizeOfStatusBarContentImage}" />
+                        <Setter Property="FontWeight"
+                                Value="DemiBold" />
+                        <Setter Property="Foreground"
+                                Value="Black" />
+                    </Style>
+                    <Style TargetType="Image" >
+                        <Setter Property="Height"
+                                Value="{StaticResource SizeOfStatusBarContentImage}" />
+                        <Setter Property="Width"
+                                Value="{StaticResource SizeOfStatusBarContentImage}" />
+                    </Style>
+                </Grid.Resources>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0"
+                       Source="{StaticResource icon_black_calendar_today}"
+                       Margin="3,0" />
+                <Label Grid.Column="1"
+                       FontWeight="Normal"
+                       FontFamily="{StaticResource FontFamilyOfDataFields}"
+                       x:Name="LabelSystemDate"
+                       Content="DateTime.Today" />
+                <Image Grid.Column="3"
+                       Source="{StaticResource icon_black_calendar_current}"
+                       Margin="3,0" />
+                <Label Grid.Column="4"
+                       x:Name="LabelCurrentMonth"
+                       Foreground="#871B7D"
+                       FontSize="14"
+                       Content="CurrentMonth"
+                       MouseUp="CurrentYearMonth_OnMouseUp"
+                       Cursor="Hand" />
+                <Label Grid.Column="6"
+                       Margin="5,0"
+                       FontWeight="Normal"
+                       Cursor="Hand"
+                       MouseUp="CurrentYearMonth_OnMouseUp"
+                       FontFamily="{StaticResource FontFamilyOfDataFields}"
+                       Content="{x:Static fa:Labels.MonthOfFiscalYear}" />
+                <Label Grid.Column="7"
+                       Margin="0,0,10,0"
+                       x:Name="LabelCurrentYear"
+                       Foreground="#871B7D"
+                       MouseUp="CurrentYearMonth_OnMouseUp"
+                       Cursor="Hand"
+                       FontSize="14"
+                       Content="CurrentYear" />
+
+            </Grid>
         </StatusBar>
         <TabControl x:Name="TabCntMain"
                     TabStripPlacement="Top"

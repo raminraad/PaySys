@@ -18,7 +18,7 @@
         </Label>
         <Image x:Name="Icon"
                Source="{StaticResource icon_form_state_unknown}"
-               Height="{StaticResource FontSizeOfStatusBarContentImage}"
-               Width="{StaticResource FontSizeOfStatusBarContentImage}" />
+               Height="{StaticResource SizeOfStatusBarContentImage}"
+               Width="{StaticResource SizeOfStatusBarContentImage}" />
     </StackPanel>
 </UserControl>
