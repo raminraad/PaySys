@@ -12,6 +12,7 @@ using PaySys.ModelAndBindLib;
 using PaySys.ModelAndBindLib.Engine;
 using PaySys.UI.UC;
 using PaySys.Windows;
+using Button = System.Windows.Controls.Button;
 using Label = System.Windows.Controls.Label;
 using MenuItem = System.Windows.Controls.MenuItem;
 using MessageBox = System.Windows.MessageBox;
@@ -120,7 +121,14 @@ namespace PaySys
         private void MnuMissionMng_OnClick(object sender, RoutedEventArgs e)
         {
             var uc = new UcMissionMng();
-            var tabItem = new TabItem {Content = uc, Header = ResourceAccessor.Labels.GetString("tabMissionMng")};
+
+//            var tabItem = new TabItem {Content = uc, Header = ResourceAccessor.Labels.GetString("tabMissionMng")};
+
+            var tabItem = new TabItem {Content = uc};
+            var Header = new UcTabHeader {Text = ResourceAccessor.Labels.GetString("tabMissionMng")};
+            Header.CloseMe = () => TabCntMain.Items.Remove(tabItem);
+            tabItem.Header = Header;
+
             TabCntMain.Items.Add(tabItem);
             TabCntMain.SelectedItem = tabItem;
             TabCntMain.Items.Refresh();
@@ -144,7 +152,7 @@ namespace PaySys
         private void SetCurrentYearMonth()
         {
             LabelCurrentYear.Content = PaySysSetting.CurrentYear;
-            LabelCurrentMonth.Content = ((PersianMonth)PaySysSetting.CurrentMonth);
+            LabelCurrentMonth.Content = ((PersianMonth) PaySysSetting.CurrentMonth);
         }
 
         private void MenuItemCurrentYearMonthMng_OnClick(object sender, RoutedEventArgs e)
@@ -152,7 +160,7 @@ namespace PaySys
             ChangeCurrentYearMonth();
         }
 
-        private  void ChangeCurrentYearMonth()
+        private void ChangeCurrentYearMonth()
         {
             if (!new WinCurrentYearMonthMng().ShowDialog().Value) return;
             SetCurrentYearMonth();

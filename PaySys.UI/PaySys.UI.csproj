@@ -202,6 +202,9 @@
     <Compile Include="UserControls\UcParameterMng.xaml.cs">
       <DependentUpon>UcParameterMng.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UcTabHeader.xaml.cs">
+      <DependentUpon>UcTabHeader.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UcTaxTableMng.xaml.cs">
       <DependentUpon>UcTaxTableMng.xaml</DependentUpon>
     </Compile>
@@ -363,6 +366,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\UcParameterMng.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UcTabHeader.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -576,6 +583,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Icons\Licorice\icon_black_calendar_current.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\Licorice\icon_close_tab_square_active.png" />
+    <Resource Include="Assets\Icons\Licorice\icon_close_tab_square_inactive.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

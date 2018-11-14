@@ -83,11 +83,11 @@
                                  StartPoint="0.5,0"
                                  EndPoint="0.5,1" >
                 <GradientStop Color="#ECEFFD"
-                                  Offset="0.0" />
+                              Offset="0.0" />
                 <GradientStop Color="#C8D3FD"
                               Offset="0.1" />
                 <GradientStop Color="#C8D3FD"
-                                  Offset="0.5" />
+                              Offset="0.5" />
                 <GradientStop Color="#A7B9FE"
                               Offset="0.5" />
                 <GradientStop Color="#A7B9FE"
@@ -112,13 +112,33 @@
                               Offset="1.0" />
 
             </LinearGradientBrush>
-            <LinearGradientBrush x:Key="ColorOfEditUserControlsBackground" EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="#E9CCADF5" Offset="0"/>
-                <GradientStop Color="#E9AC89DA" Offset="1"/>
+            <LinearGradientBrush x:Key="ColorOfEditUserControlsBackground"
+                                 EndPoint="0.5,1"
+                                 StartPoint="0.5,0" >
+                <GradientStop Color="#E9CCADF5"
+                              Offset="0" />
+                <GradientStop Color="#E9AC89DA"
+                              Offset="1" />
             </LinearGradientBrush>
-            <LinearGradientBrush x:Key="ColorOfEditUserControlsBorder" EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="#74AC89DA" Offset="1"/>
-                <GradientStop Color="#74FFFFFF" Offset="0"/>
+            <LinearGradientBrush x:Key="ColorOfEditUserControlsBorder"
+                                 EndPoint="0.5,1"
+                                 StartPoint="0.5,0" >
+                <GradientStop Color="#74AC89DA"
+                              Offset="1" />
+                <GradientStop Color="#74FFFFFF"
+                              Offset="0" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="ColorOfButtonBackgroundGraySilicone"
+                                 EndPoint="0.5,1"
+                                 StartPoint="0.5,0" >
+                <GradientStop Color="#FFB7B7B7"
+                              Offset="1" />
+                <GradientStop Color="#FFFAFAFA" />
+                <GradientStop Color="#FFF6F6F6"
+                              Offset="0.5" />
+                <GradientStop Color="#FFE0EDE1"
+                              Offset="0.5" />
+
             </LinearGradientBrush>
             <SolidColorBrush x:Key="ColorOfAlternateData"
                              Color="#F5F5F5" />
@@ -145,7 +165,7 @@
             <system:Double x:Key="HeightOfDataTextBox" > 24 </system:Double>
             <system:Double x:Key="HeightOfDataLabel" > 24 </system:Double>
             <system:Double x:Key="HeightOfDataGridRow" > 21 </system:Double>
-            <system:Double x:Key="HeightOfListViewRow" >28</system:Double>
+            <system:Double x:Key="HeightOfListViewRow" > 28 </system:Double>
             <system:Double x:Key="HeightOfDataGridColumnHeader" > 30 </system:Double>
             <system:Double x:Key="HeightOfLookupTextBox" > 24 </system:Double>
             <system:Double x:Key="HeightOfLookupImage" > 24 </system:Double>
@@ -168,6 +188,8 @@
             <system:Double x:Key="WidthOfTabOneOf8" > 150 </system:Double>
             <system:Double x:Key="WidthOfTabOneOf9" > 100 </system:Double>
 
+            <system:Double x:Key="HeightOfUcFooterButton" > 24 </system:Double>
+            <system:Double x:Key="WidthOfUcFooterButton" > 52 </system:Double>
             <system:Double x:Key="SizeOfSmallFunctionButton" > 32 </system:Double>
             <system:Double x:Key="SizeOfSmallFunctionButtonImage" > 16 </system:Double>
             <system:Double x:Key="SizeOfListFunctionButton" > 24 </system:Double>
@@ -296,7 +318,8 @@
                                     Value="{StaticResource FontSizeOfDataFields}" />
                             <Setter Property="VerticalAlignment"
                                     Value="Center" />
-                            <Setter Property="Height" Value="{StaticResource HeightOfListViewRow}"/>
+                            <Setter Property="Height"
+                                    Value="{StaticResource HeightOfListViewRow}" />
                         </Style>
                     </Setter.Value>
                 </Setter>
@@ -376,7 +399,8 @@
                                     <Setter TargetName="Border"
                                             Property="Background"
                                             Value="{StaticResource ColorOfTabItemHeaderUnselected}" />
-                                    <Setter Property="Margin" Value="0,0,0,0"/>
+                                    <Setter Property="Margin"
+                                            Value="0,0,0,0" />
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -421,7 +445,8 @@
                                     <Setter TargetName="Border"
                                             Property="Background"
                                             Value="{StaticResource ColorOfTabItemHeaderUnselected}" />
-                                    <Setter Property="Margin" Value="0,0,0,0"/>
+                                    <Setter Property="Margin"
+                                            Value="0,0,0,0" />
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -697,12 +722,35 @@
                         Value="{StaticResource FontSizeOfTabHeader}" />
             </Style>
 
-            <Style x:Key="StyleOfSmallFunctionButton"
+            <Style x:Key="StyleOfButtonBase"
                    TargetType="Button" >
+                <Setter Property="Background"
+                        Value="{StaticResource ColorOfButtonBackgroundGraySilicone}" />
+                <Setter Property="Cursor" Value="Hand"/>
+            </Style>
+            <Style x:Key="StyleOfSmallFunctionButton"
+                   TargetType="Button" 
+                   BasedOn="{StaticResource StyleOfButtonBase}">
                 <Setter Property="Height"
                         Value="{StaticResource SizeOfSmallFunctionButton}" />
                 <Setter Property="Width"
                         Value="{StaticResource SizeOfSmallFunctionButton}" />
+            </Style>
+            <Style x:Key="StyleOfListFunctionButton"
+                   TargetType="Button"
+                   BasedOn="{StaticResource StyleOfButtonBase}">
+                <Setter Property="Height"
+                        Value="{StaticResource SizeOfListFunctionButton}" />
+                <Setter Property="Width"
+                        Value="{StaticResource SizeOfListFunctionButton}" />
+            </Style>
+            <Style x:Key="StyleOfUcFooterButton"
+                   TargetType="Button" 
+                   BasedOn="{StaticResource StyleOfButtonBase}">
+                <Setter Property="Height"
+                        Value="{StaticResource HeightOfUcFooterButton}" />
+                <Setter Property="Width"
+                        Value="{StaticResource WidthOfUcFooterButton}" />
             </Style>
             <Style x:Key="StyleOfSmallFunctionButtonImage"
                    TargetType="{x:Type Image}" >
@@ -734,13 +782,6 @@
                 </Style.Triggers>
             </Style>
 
-            <Style x:Key="StyleOfListFunctionButton"
-                   TargetType="Button" >
-                <Setter Property="Height"
-                        Value="{StaticResource SizeOfListFunctionButton}" />
-                <Setter Property="Width"
-                        Value="{StaticResource SizeOfListFunctionButton}" />
-            </Style>
             <Style x:Key="StyleOfListFunctionButtonImage"
                    TargetType="{x:Type Image}" >
                 <Setter Property="Height"

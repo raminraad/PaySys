@@ -8,6 +8,9 @@
     <BitmapImage x:Key="icon_crud_edit" UriSource="../Assets/Icons/Licorice/icon_simplico_edit.png" />
     <BitmapImage x:Key="icon_crud_delete" UriSource="../Assets/Icons/Licorice/icon_simplico_delete.png" />
 
+    <BitmapImage x:Key="icon_close_tab_square_inactive" UriSource="../Assets/Icons/Licorice/icon_close_tab_square_inactive.png" />
+    <BitmapImage x:Key="icon_close_tab_square_active" UriSource="../Assets/Icons/Licorice/icon_close_tab_square_active.png" />
+
     <BitmapImage x:Key="icon_save" UriSource="../Assets/Icons/Licorice/icon_simplico_save.png" />
     <BitmapImage x:Key="icon_discard_changes" UriSource="../Assets/Icons/Licorice/icon_simplico_discard_changes.png" />
 

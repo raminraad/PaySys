@@ -13,7 +13,9 @@
         Width="525" >
     <DockPanel FlowDirection="RightToLeft" >
         <Menu Name="MnuMain"
-              DockPanel.Dock="Top" >
+              Height="26"
+              FontSize="14"
+              DockPanel.Dock="Top">
             <Menu.Resources>
                 <Style TargetType="MenuItem" >
                     <Setter Property="Focusable"
@@ -22,7 +24,8 @@
                             Value="True" />
                 </Style>
             </Menu.Resources>
-            <MenuItem Header="اطلاعات پایه" >
+            <MenuItem Header="اطلاعات پایه"
+                      Height="{Binding ElementName=MnuMain,Path=Height}">
                 <MenuItem x:Name="MnuEmployeeMng"
                           Header="اطلاعات پرسنل"
                           Click="MnuEmployeeMng_OnClick" />
@@ -45,7 +48,8 @@
                           Header="مدیریت سال/ماه جاری"
                           Click="MenuItemCurrentYearMonthMng_OnClick" />
             </MenuItem>
-            <MenuItem Header="عملیات ماه جاری" >
+            <MenuItem Header="عملیات ماه جاری" 
+                      Height="{Binding ElementName=MnuMain,Path=Height}">
                 <MenuItem Header="ورود داده های ماهانه"
                           x:Name="MnuMonthlyDataMng"
                           Click="MnuMonthlyDataMng_OnClick" />
@@ -58,7 +62,8 @@
                 <MenuItem Header="ورود مابه التفاوت احکام" />
                 <MenuItem Header="اصلاح بایگانی تفاوت ها" />
             </MenuItem>
-            <MenuItem Header="گزارش گیری" >
+            <MenuItem Header="گزارش گیری"
+                      Height="{Binding ElementName=MnuMain,Path=Height}">
                 <MenuItem Header="انجام محاسبات حقوق و اضافه کار" />
                 <MenuItem Header="تهیه لیست های حقوق ماهانه" />
                 <MenuItem Header="چاپ لیست پرداختهای متفرقه" />
