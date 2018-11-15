@@ -32,7 +32,7 @@
         <Image Margin="6,0,0,0"
                Width="16"
                Height="16"
-               Opacity="3"
+               Opacity="0.75"
                MouseUp="CloseButton_OnClick"
                Style="{StaticResource StyleOfCloseButtonImage}" />
     </StackPanel>

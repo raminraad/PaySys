@@ -31,7 +31,7 @@
                           Click="MnuEmployeeMng_OnClick" />
                 <MenuItem x:Name="MnuGroupMng"
                           Header="گروه های استخدامی"
-                          Click="MenuItem_OnClick" />
+                          Click="MnuGroupMng_OnClick" />
                 <MenuItem x:Name="MnuContractMng"
                           Header="ورود اطلاعات احکام"
                           Click="MnuContractMng_OnClick" />
@@ -64,7 +64,7 @@
             </MenuItem>
             <MenuItem Header="گزارش گیری"
                       Height="{Binding ElementName=MnuMain,Path=Height}">
-                <MenuItem Header="انجام محاسبات حقوق و اضافه کار" />
+                <MenuItem Header="انجام محاسبات حقوق و اضافه کار" Click="ReportMenuItem_OnClick"/>
                 <MenuItem Header="تهیه لیست های حقوق ماهانه" />
                 <MenuItem Header="چاپ لیست پرداختهای متفرقه" />
                 <MenuItem Header="تهیه لیست مغایرت با ماه گذشته" />
