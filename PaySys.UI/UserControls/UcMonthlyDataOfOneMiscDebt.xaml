@@ -46,7 +46,7 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-        <Thickness x:Key="MarginOfLists" >10,0</Thickness>
+        <Thickness x:Key="MarginOfLists" >10,0,10,20</Thickness>
         </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -55,7 +55,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
-            <RowDefinition Height="30" />
         </Grid.RowDefinitions>
         
         <DataGrid x:Name="DataGridMiscs"
@@ -78,9 +77,13 @@
             </DataGrid.Columns>
         </DataGrid>
         <TextBlock Grid.Row="0"
-		           Grid.Column="1"
-		           Text="{x:Static fa:Labels.Employees}"
+		           Grid.Column="0"
+		           Text="{x:Static fa:Labels.MiscDebtTitles}"
 		           Style="{StaticResource StyleOfListTitleTextBlock}" />
+        <TextBlock Grid.Row="0"
+                   Grid.Column="1"
+                   Text="{x:Static fa:Labels.Employees}"
+                   Style="{StaticResource StyleOfListTitleTextBlock}" />
         <ListView x:Name="ListViewOfItems"
                   Margin="{StaticResource MarginOfLists}"
 		          Grid.Row="1"
@@ -109,8 +112,5 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <StatusBar Grid.Column="0"
-		           Grid.Row="2"
-		           Grid.ColumnSpan="3" />
     </Grid>
 </UserControl>

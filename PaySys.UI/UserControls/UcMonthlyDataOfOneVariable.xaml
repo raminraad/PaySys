@@ -27,7 +27,8 @@
     </UserControl.Resources>
     <Grid>
         <Grid.Resources>
-            <Style x:Key="StyleOfLists" TargetType="ListView" >
+            <Style x:Key="StyleOfLists"
+                   TargetType="ListView" >
                 <Setter Property="Margin"
                         Value="10" />
                 <Setter Property="SelectionMode"
@@ -51,7 +52,7 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-            <Thickness x:Key="MarginOfLists" >10,0</Thickness>
+            <Thickness x:Key="MarginOfLists" > 10,0,10,20 </Thickness>
         </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -60,11 +61,16 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
-            <RowDefinition Height="30" />
         </Grid.RowDefinitions>
-        <TextBlock Grid.Column="1"
+
+        <TextBlock Grid.Row="0"
+                   Grid.Column="1"
                    Style="{StaticResource StyleOfListTitleTextBlock}"
-                   Text="{x:Static fa:Labels.Employees}"/>
+                   Text="{x:Static fa:Labels.Employees}" />
+        <TextBlock Grid.Row="0"
+                   Grid.Column="0"
+                   Style="{StaticResource StyleOfListTitleTextBlock}"
+                   Text="{x:Static fa:Labels.VariableTitles}" />
         <DataGrid x:Name="DataGridVariables"
                   Margin="{StaticResource MarginOfLists}"
                   Grid.Row="1"
@@ -95,15 +101,16 @@
                 <GridView>
                     <GridView.Columns>
                         <GridViewColumn Header="{x:Static fa:FieldicEmployee.FullName}"
-                                        Width="Auto"
-                                        >
+                                        Width="Auto" >
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Label Style="{StaticResource StyleOfDataFieldLabel}" Content="{Binding Employee.FullName}"/>
+                                    <Label Style="{StaticResource StyleOfDataFieldLabel}"
+                                           Content="{Binding Employee.FullName}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="{x:Static fa:Labels.VariableValue}" >
+                        <GridViewColumn Header="{x:Static fa:Labels.VariableValue}"
+                                        Width="Auto">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel>
@@ -136,9 +143,5 @@
                 </GridView>
             </ListView.View>
         </ListView>
-
-        <StatusBar Grid.Column="0"
-                   Grid.Row="2"
-                   Grid.ColumnSpan="3" />
     </Grid>
 </UserControl>

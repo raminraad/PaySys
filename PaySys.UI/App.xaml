@@ -71,12 +71,38 @@
                              Color="Black" />
 
             <Brush x:Key="ColorOfFormStateContents" > #6699ff </Brush>
-            <LinearGradientBrush x:Key="ColorOfChildTabItemBackground"
+            <LinearGradientBrush x:Key="ColorOfParentTabItemHeaderSelected"
                                  StartPoint="0.5,0"
                                  EndPoint="0.5,1" >
-                <GradientStop Color="#A7B9FE"
+                <GradientStop Color="#DDB0DD"
                               Offset="0.0" />
-                <GradientStop Color="#D5DAED"
+                <GradientStop Color="#B489B4"
+                              Offset="1.0" />
+
+            </LinearGradientBrush>
+
+            <LinearGradientBrush x:Key="ColorOfParentTabItemHeaderSelected_Obs"
+                                 StartPoint="0.5,0"
+                                 EndPoint="0.5,1" >
+                <GradientStop Color="#F3E95F"
+                              Offset="0.0" />
+                <GradientStop Color="#F3E95F"
+                              Offset="0.1" />
+                <GradientStop Color="#F4ED88"
+                              Offset="0.5" />
+                <GradientStop Color="#F4ED88"
+                              Offset="0.5" />
+                <GradientStop Color="#FCF9CA"
+                              Offset="1.0" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="ColorOfParentTabItemBackground"
+                                 StartPoint="0.5,0"
+                                 EndPoint="0.5,1" >
+                <GradientStop Color="#E0C8BFC8"
+                              Offset="0.0" />
+                <GradientStop Color="#E0CFBACF"
+                              Offset="0.8" />
+                <GradientStop Color="#F2DAB3DA"
                               Offset="1" />
             </LinearGradientBrush>
             <LinearGradientBrush x:Key="ColorOfChildTabItemHeaderSelected"
@@ -93,6 +119,14 @@
                 <GradientStop Color="#A7B9FE"
                               Offset="1" />
             </LinearGradientBrush>
+            <LinearGradientBrush x:Key="ColorOfChildTabItemBackground"
+                                 StartPoint="0.5,0"
+                                 EndPoint="0.5,1" >
+                <GradientStop Color="#A7B9FE"
+                              Offset="0.0" />
+                <GradientStop Color="#D5DAED"
+                              Offset="1" />
+            </LinearGradientBrush>
             <LinearGradientBrush x:Key="ColorOfTabItemHeaderUnselected"
                                  StartPoint="0.5,0"
                                  EndPoint="0.5,1" >
@@ -102,15 +136,6 @@
                               Offset="0.9" />
                 <GradientStop Color="#646464"
                               Offset="1.0" />
-            </LinearGradientBrush>
-            <LinearGradientBrush x:Key="ColorOfParentTabItemHeaderSelected"
-                                 StartPoint="0.5,0"
-                                 EndPoint="0.5,1" >
-                <GradientStop Color="#DDB0DD"
-                              Offset="0.0" />
-                <GradientStop Color="#B489B4"
-                              Offset="1.0" />
-
             </LinearGradientBrush>
             <LinearGradientBrush x:Key="ColorOfEditUserControlsBackground"
                                  EndPoint="0.5,1"
@@ -350,6 +375,63 @@
                         Value="10" />
             </Style>
 
+            <Style x:Key="StyleOfParentTabControl"
+                   TargetType="TabControl" >
+                <Setter Property="BorderBrush"
+                        Value="#3B213B" />
+                <Setter Property="BorderThickness"
+                        Value="1" />
+                <Setter Property="Background"
+                        Value="{StaticResource ColorOfParentTabItemBackground}" />
+                <Setter Property="Margin"
+                        Value="{StaticResource MarginOfDetail}" />
+            </Style>
+            <Style x:Key="StyleOfParentTabItem"
+                   TargetType="TabItem" >
+                <Setter Property="FontFamily"
+                        Value="{StaticResource FontFamilyOfTabHeader}" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource FontSizeOfTabHeader}" />
+                <Setter Property="VerticalAlignment"
+                        Value="Bottom" />
+                <Setter Property="Height"
+                        Value="26" />
+                <Setter Property="Template" >
+                    <Setter.Value>
+                        <ControlTemplate TargetType="TabItem" >
+                            <Border Name="Border"
+                                    BorderThickness="1,1,1,0"
+                                    BorderBrush="DimGray"
+                                    CornerRadius="5,5,0,0"
+                                    Margin="2,0,2,-2" >
+                                <ContentPresenter x:Name="ContentSite"
+                                                  VerticalAlignment="Center"
+                                                  ContentSource="Header"
+                                                  Width="Auto"
+                                                  Margin="4,0" />
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsSelected"
+                                         Value="True" >
+                                    <Setter TargetName="Border"
+                                            Property="Background"
+                                            Value="{StaticResource ColorOfParentTabItemHeaderSelected}" />
+                                    <Setter Property="Height"
+                                            Value="28" />
+                                </Trigger>
+                                <Trigger Property="IsSelected"
+                                         Value="False" >
+                                    <Setter TargetName="Border"
+                                            Property="Background"
+                                            Value="{StaticResource ColorOfTabItemHeaderUnselected}" />
+                                    <Setter Property="Margin"
+                                            Value="0,0,0,0" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
             <Style x:Key="StyleOfChildTabControl"
                    TargetType="TabControl" >
                 <Setter Property="BorderBrush"
@@ -391,52 +473,6 @@
                                     <Setter TargetName="Border"
                                             Property="Background"
                                             Value="{StaticResource ColorOfChildTabItemHeaderSelected}" />
-                                    <Setter Property="Height"
-                                            Value="28" />
-                                </Trigger>
-                                <Trigger Property="IsSelected"
-                                         Value="False" >
-                                    <Setter TargetName="Border"
-                                            Property="Background"
-                                            Value="{StaticResource ColorOfTabItemHeaderUnselected}" />
-                                    <Setter Property="Margin"
-                                            Value="0,0,0,0" />
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-            <Style x:Key="StyleOfParentTabItem"
-                   TargetType="TabItem" >
-                <Setter Property="FontFamily"
-                        Value="{StaticResource FontFamilyOfTabHeader}" />
-                <Setter Property="FontSize"
-                        Value="{StaticResource FontSizeOfTabHeader}" />
-                <Setter Property="VerticalAlignment"
-                        Value="Bottom" />
-                <Setter Property="Height"
-                        Value="26" />
-                <Setter Property="Template" >
-                    <Setter.Value>
-                        <ControlTemplate TargetType="TabItem" >
-                            <Border Name="Border"
-                                    BorderThickness="1,1,1,0"
-                                    BorderBrush="DimGray"
-                                    CornerRadius="5,5,0,0"
-                                    Margin="2,0,2,-2" >
-                                <ContentPresenter x:Name="ContentSite"
-                                                  VerticalAlignment="Center"
-                                                  ContentSource="Header"
-                                                  Width="Auto"
-                                                  Margin="4,0" />
-                            </Border>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsSelected"
-                                         Value="True" >
-                                    <Setter TargetName="Border"
-                                            Property="Background"
-                                            Value="{StaticResource ColorOfParentTabItemHeaderSelected}" />
                                     <Setter Property="Height"
                                             Value="28" />
                                 </Trigger>

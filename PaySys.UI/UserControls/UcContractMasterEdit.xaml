@@ -95,7 +95,7 @@
                       SelectedItem="{Binding SubGroup,UpdateSourceTrigger=Explicit}"
                       IsEnabled="{Binding ElementName=SmpUcShowContractMaster,Path=ReadOnlyOfAddFields,Converter={StaticResource NegateBooleanConverter}}" >
                 <ComboBox.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate DataType="model:SubGroup" >
                         <StackPanel Orientation="Horizontal"
                                     VerticalAlignment="Center" >
                             <Rectangle Fill="{Binding ItemColor,Converter={StaticResource CnvColor}}"

@@ -2,17 +2,17 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:commands="clr-namespace:PaySys.UI.Commands"
                     xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
-                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+                    xmlns:system="clr-namespace:System;assembly=mscorlib" >
 
-    <FontFamily x:Key="FontFamilyOfToolbarButton">pfont</FontFamily>
-    <FontFamily x:Key="FontFamilyOfOnFormButton">tahoma</FontFamily>
-    <system:Double x:Key="FontSizeOfToolbarButton">12</system:Double>
-    <system:Double x:Key="FontSizeOfOnFormButton">12</system:Double>
-    <system:Double x:Key="SizeOfToolbarButton">46</system:Double>
-    <system:Double x:Key="HeightOfToolbar">52</system:Double>
-    <system:Double x:Key="SizeOfToolbarButtonImage">24</system:Double>
+    <FontFamily x:Key="FontFamilyOfToolbarButton" > pfont </FontFamily>
+    <FontFamily x:Key="FontFamilyOfOnFormButton" > tahoma </FontFamily>
+    <system:Double x:Key="FontSizeOfToolbarButton" > 12 </system:Double>
+    <system:Double x:Key="FontSizeOfOnFormButton" > 12 </system:Double>
+    <system:Double x:Key="SizeOfToolbarButton" > 46 </system:Double>
+    <system:Double x:Key="HeightOfToolbar" > 52 </system:Double>
+    <system:Double x:Key="SizeOfToolbarButtonImage" > 24 </system:Double>
 
-    <Style TargetType="ToolBar">
+    <Style TargetType="ToolBar" >
         <Setter Property="KeyboardNavigation.TabNavigation"
                 Value="Continue" />
         <Setter Property="Height"
@@ -21,86 +21,89 @@
                 Value="True" />
     </Style>
 
-    <Style x:Key="StyleOfSeparator" TargetType="Separator">
-        <Setter Property="Margin" Value="11,0"/>
+    <Style x:Key="StyleOfSeparator"
+           TargetType="Separator" >
+        <Setter Property="Margin"
+                Value="11,0" />
     </Style>
 
     <Style x:Key="StyleOfToolbarButton"
-                   TargetType="Button">
+           TargetType="Button" >
         <Setter Property="Margin"
-                        Value="3,0" />
+                Value="3,0" />
         <Setter Property="FontFamily"
-                        Value="{StaticResource FontFamilyOfToolbarButton}" />
+                Value="{StaticResource FontFamilyOfToolbarButton}" />
         <Setter Property="FontSize"
-                        Value="{StaticResource FontSizeOfToolbarButton}" />
+                Value="{StaticResource FontSizeOfToolbarButton}" />
         <Setter Property="FontStyle"
-                        Value="Normal" />
+                Value="Normal" />
         <Setter Property="Width"
-                        Value="{StaticResource SizeOfToolbarButton}" />
+                Value="{StaticResource SizeOfToolbarButton}" />
         <Setter Property="Height"
-                        Value="{StaticResource SizeOfToolbarButton}" />
+                Value="{StaticResource SizeOfToolbarButton}" />
         <Setter Property="BorderThickness"
                 Value="1" />
         <Setter Property="BorderBrush"
                 Value="Gray" />
-        <Setter Property="VerticalAlignment" Value="Center"/>
-        
+        <Setter Property="VerticalAlignment"
+                Value="Center" />
+
     </Style>
 
     <Style x:Key="StyleOfToolbarButtonAdd"
-                   TargetType="Button"
-                   BasedOn="{StaticResource StyleOfToolbarButton}">
+           TargetType="Button"
+           BasedOn="{StaticResource StyleOfToolbarButton}" >
         <Setter Property="ToolTip"
-                        Value="{x:Static fa:Tooltips.ButtonAdd}" />
+                Value="{x:Static fa:Tooltips.ButtonAdd}" />
     </Style>
 
     <Style x:Key="StyleOfToolbarButtonEdit"
-                   TargetType="Button"
-                   BasedOn="{StaticResource StyleOfToolbarButton}">
+           TargetType="Button"
+           BasedOn="{StaticResource StyleOfToolbarButton}" >
         <Setter Property="ToolTip"
-                        Value="{x:Static fa:Tooltips.ButtonEdit}" />
+                Value="{x:Static fa:Tooltips.ButtonEdit}" />
     </Style>
 
     <Style x:Key="StyleOfToolbarButtonDelete"
-                   TargetType="Button"
-                   BasedOn="{StaticResource StyleOfToolbarButton}">
+           TargetType="Button"
+           BasedOn="{StaticResource StyleOfToolbarButton}" >
         <Setter Property="ToolTip"
-                        Value="{x:Static fa:Tooltips.ButtonDelete}" />
+                Value="{x:Static fa:Tooltips.ButtonDelete}" />
     </Style>
 
     <Style x:Key="StyleOfToolbarButtonSave"
-                   TargetType="Button"
-                   BasedOn="{StaticResource StyleOfToolbarButton}">
+           TargetType="Button"
+           BasedOn="{StaticResource StyleOfToolbarButton}" >
         <Setter Property="ToolTip"
-                        Value="{x:Static fa:Tooltips.ButtonSave}" />
+                Value="{x:Static fa:Tooltips.ButtonSave}" />
     </Style>
 
     <Style x:Key="StyleOfToolbarButtonDiscardChanges"
-                   TargetType="Button"
-                   BasedOn="{StaticResource StyleOfToolbarButton}">
+           TargetType="Button"
+           BasedOn="{StaticResource StyleOfToolbarButton}" >
         <Setter Property="ToolTip"
-                        Value="{x:Static fa:Tooltips.ButtonDiscardChanges}" />
+                Value="{x:Static fa:Tooltips.ButtonDiscardChanges}" />
     </Style>
 
     <Style x:Key="StyleOfToolbarButtonReload"
-                   TargetType="Button"
-                   BasedOn="{StaticResource StyleOfToolbarButton}">
+           TargetType="Button"
+           BasedOn="{StaticResource StyleOfToolbarButton}" >
         <Setter Property="ToolTip"
-                        Value="{x:Static fa:Tooltips.ButtonReload}" />
+                Value="{x:Static fa:Tooltips.ButtonReload}" />
     </Style>
 
     <Style x:Key="StyleOfToolbarButtonImage"
-                   TargetType="Image">
+           TargetType="Image" >
         <Setter Property="Height"
-                        Value="{StaticResource SizeOfToolbarButtonImage}" />
+                Value="{StaticResource SizeOfToolbarButtonImage}" />
         <Setter Property="Width"
-                        Value="{StaticResource SizeOfToolbarButtonImage}" />
+                Value="{StaticResource SizeOfToolbarButtonImage}" />
         <Setter Property="FlowDirection"
-                        Value="LeftToRight" />
+                Value="LeftToRight" />
     </Style>
 
     <Style x:Key="StyleOfToolbarButtonTextBlock"
-           TargetType="TextBlock">
+           TargetType="TextBlock" >
         <Setter Property="HorizontalAlignment"
                 Value="Center" />
         <Setter Property="VerticalAlignment"
@@ -111,90 +114,109 @@
                 Value="{StaticResource FontSizeOfToolbarButton}" />
     </Style>
 
-    <ControlTemplate x:Key="TemplateOfToolbarButtonAdd">
-        <Button Name="ButtonAdd" 
+    <ControlTemplate x:Key="TemplateOfToolbarButtonAdd" >
+        <Button Name="ButtonAdd"
                 Style="{StaticResource StyleOfToolbarButtonAdd}"
-                Command="commands:PaySysCommands.Add">
+                Command="commands:PaySysCommands.Add" >
             <Button.Content>
-                <StackPanel Orientation="Vertical">
-                    <Image Source="{StaticResource icon_crud_add}" 
+                <StackPanel Orientation="Vertical" >
+                    <Image Source="{StaticResource icon_crud_add}"
                            Style="{StaticResource StyleOfToolbarButtonImage}" />
-                    <TextBlock Text="{x:Static fa:Labels.Add}" 
+                    <TextBlock Text="{x:Static fa:Labels.Add}"
                                Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
                 </StackPanel>
             </Button.Content>
         </Button>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="TemplateOfToolbarButtonEdit">
-        <Button Name="ButtonEdit" 
-                Style="{StaticResource StyleOfToolbarButtonEdit}" 
-                Command="commands:PaySysCommands.Edit">
+    <ControlTemplate x:Key="TemplateOfToolbarButtonEdit_Obs" >
+        <Button Name="ButtonEdit"
+                Style="{StaticResource StyleOfToolbarButtonEdit}"
+                Command="commands:PaySysCommands.Edit" >
             <Button.Content>
-                <StackPanel Orientation="Vertical">
-                    <Image Source="{StaticResource icon_crud_edit}" 
+                <StackPanel Orientation="Vertical" >
+                    <Image Source="{StaticResource icon_crud_edit}"
                            Style="{StaticResource StyleOfToolbarButtonImage}" />
-                    <TextBlock Text="{x:Static fa:Labels.Edit}" 
-                               Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
-                </StackPanel>
-            </Button.Content>
-        </Button>
-</ControlTemplate>
-
-    <ControlTemplate x:Key="TemplateOfToolbarButtonDelete">
-        <Button Name="ButtonDelete" 
-                Style="{StaticResource StyleOfToolbarButtonDelete}" 
-                Command="commands:PaySysCommands.Delete">
-            <Button.Content>
-                <StackPanel Orientation="Vertical">
-                    <Image Source="{StaticResource icon_crud_delete}" 
-                           Style="{StaticResource StyleOfToolbarButtonImage}" />
-                    <TextBlock Text="{x:Static fa:Labels.Delete}" 
+                    <TextBlock Text="{x:Static fa:Labels.Edit}"
                                Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
                 </StackPanel>
             </Button.Content>
         </Button>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="TemplateOfToolbarButtonSave">
-        <Button Name="ButtonSave" 
-                Style="{StaticResource StyleOfToolbarButtonSave}" 
-                Command="commands:PaySysCommands.Save">
+    <ControlTemplate x:Key="TemplateOfToolbarButtonEdit" >
+        <Button Name="ButtonEdit"
+                Style="{StaticResource StyleOfToolbarButtonEdit}"
+                Width="Auto"
+                Height="Auto"
+                Command="commands:PaySysCommands.Edit" >
             <Button.Content>
-                <StackPanel Orientation="Vertical">
-                    <Image Source="{StaticResource icon_save}" 
+                <StackPanel Orientation="Horizontal" >
+                    <TextBlock Text="{x:Static fa:Labels.Edit}"
+                               Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
+                    <Image Source="{StaticResource icon_crud_edit}"
+                           Style="{StaticResource StyleOfToolbarButtonImage}"
+                           Height="18"
+                           Width="18"/>
+                </StackPanel>
+            </Button.Content>
+        </Button>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="TemplateOfToolbarButtonDelete" >
+        <Button Name="ButtonDelete"
+                Style="{StaticResource StyleOfToolbarButtonDelete}"
+                Command="commands:PaySysCommands.Delete" >
+            <Button.Content>
+                <StackPanel Orientation="Vertical" >
+                    <Image Source="{StaticResource icon_crud_delete}"
                            Style="{StaticResource StyleOfToolbarButtonImage}" />
-                    <TextBlock Text="{x:Static fa:Labels.Save}" 
+                    <TextBlock Text="{x:Static fa:Labels.Delete}"
                                Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
                 </StackPanel>
             </Button.Content>
         </Button>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="TemplateOfToolbarButtonDiscardChanges">
-        <Button Name="ButtonDiscardChanges" 
-                Style="{StaticResource StyleOfToolbarButtonDiscardChanges}" 
-                Command="commands:PaySysCommands.DiscardChanges">
+    <ControlTemplate x:Key="TemplateOfToolbarButtonSave" >
+        <Button Name="ButtonSave"
+                Style="{StaticResource StyleOfToolbarButtonSave}"
+                Command="commands:PaySysCommands.Save" >
             <Button.Content>
-                <StackPanel Orientation="Vertical">
-                    <Image Source="{StaticResource icon_discard_changes}" 
+                <StackPanel Orientation="Vertical" >
+                    <Image Source="{StaticResource icon_save}"
                            Style="{StaticResource StyleOfToolbarButtonImage}" />
-                    <TextBlock Text="{x:Static fa:Labels.DischardChanges}" 
+                    <TextBlock Text="{x:Static fa:Labels.Save}"
                                Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
                 </StackPanel>
             </Button.Content>
         </Button>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="TemplateOfToolbarButtonReload">
-        <Button Name="ButtonReload" 
-                Style="{StaticResource StyleOfToolbarButton}" 
-                Command="commands:PaySysCommands.Reload">
+    <ControlTemplate x:Key="TemplateOfToolbarButtonDiscardChanges" >
+        <Button Name="ButtonDiscardChanges"
+                Style="{StaticResource StyleOfToolbarButtonDiscardChanges}"
+                Command="commands:PaySysCommands.DiscardChanges" >
             <Button.Content>
-                <StackPanel Orientation="Vertical">
-                    <Image Source="{StaticResource icon_reload}" 
+                <StackPanel Orientation="Vertical" >
+                    <Image Source="{StaticResource icon_discard_changes}"
                            Style="{StaticResource StyleOfToolbarButtonImage}" />
-                    <TextBlock Text="{x:Static fa:Labels.Reload}" 
+                    <TextBlock Text="{x:Static fa:Labels.DischardChanges}"
+                               Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
+                </StackPanel>
+            </Button.Content>
+        </Button>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="TemplateOfToolbarButtonReload" >
+        <Button Name="ButtonReload"
+                Style="{StaticResource StyleOfToolbarButton}"
+                Command="commands:PaySysCommands.Reload" >
+            <Button.Content>
+                <StackPanel Orientation="Vertical" >
+                    <Image Source="{StaticResource icon_reload}"
+                           Style="{StaticResource StyleOfToolbarButtonImage}" />
+                    <TextBlock Text="{x:Static fa:Labels.Reload}"
                                Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
                 </StackPanel>
             </Button.Content>

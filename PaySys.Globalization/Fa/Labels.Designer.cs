@@ -475,7 +475,7 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to به تفکیک عناوین (کسور).
+        ///   Looks up a localized string similar to به تفکیک بدهی های متفرقه.
         /// </summary>
         public static string GroupByMiscTitleDebt {
             get {
@@ -484,7 +484,7 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to به تفکیک عناوین (پرداخت ها).
+        ///   Looks up a localized string similar to به تفکیک پرداخت های متفرقه.
         /// </summary>
         public static string GroupByMiscTitlePayment {
             get {
@@ -502,7 +502,7 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to به تفکیک عناوین (متغیرها).
+        ///   Looks up a localized string similar to به تفکیک متغیرها.
         /// </summary>
         public static string GroupByVariableTitle {
             get {
@@ -601,6 +601,15 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to عناوین بدهی های متفرقه.
+        /// </summary>
+        public static string MiscDebtTitles {
+            get {
+                return ResourceManager.GetString("MiscDebtTitles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to بدهیها و پرداختهای متفرقه.
         /// </summary>
         public static string MiscMng {
@@ -615,6 +624,15 @@ namespace PaySys.Globalization.Fa {
         public static string MiscPayments {
             get {
                 return ResourceManager.GetString("MiscPayments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to عناوین پرداخت های متفرقه.
+        /// </summary>
+        public static string MiscPaymentTitles {
+            get {
+                return ResourceManager.GetString("MiscPaymentTitles", resourceCulture);
             }
         }
         
@@ -1128,6 +1146,15 @@ namespace PaySys.Globalization.Fa {
         public static string Variables {
             get {
                 return ResourceManager.GetString("Variables", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to عناوین متغیرها.
+        /// </summary>
+        public static string VariableTitles {
+            get {
+                return ResourceManager.GetString("VariableTitles", resourceCulture);
             }
         }
         

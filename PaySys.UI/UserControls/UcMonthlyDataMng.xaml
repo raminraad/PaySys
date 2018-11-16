@@ -41,19 +41,19 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <ToolBar Grid.Row="0"
-                 Grid.ColumnSpan="3" >
+                 Grid.ColumnSpan="3" Style="{x:Null}">
             <Button Template="{StaticResource TemplateOfToolbarButtonEdit}" />
             <Separator Style="{StaticResource StyleOfSeparator}" />
-            <Button Template="{StaticResource TemplateOfToolbarButtonSave}" />
-            <Button Template="{StaticResource TemplateOfToolbarButtonDiscardChanges}" />
-            <Separator Style="{StaticResource StyleOfSeparator}" />
-            <Button Template="{StaticResource TemplateOfToolbarButtonReload}" />
+            <!-- <Button Template="{StaticResource TemplateOfToolbarButtonSave}" /> -->
+            <!-- <Button Template="{StaticResource TemplateOfToolbarButtonDiscardChanges}" /> -->
+            <!-- <Separator Style="{StaticResource StyleOfSeparator}" /> -->
+            <!-- <Button Template="{StaticResource TemplateOfToolbarButtonReload}" /> -->
         </ToolBar>
         <Grid Grid.Row="1"
               VerticalAlignment="Stretch"
               Grid.Column="1" >
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -119,9 +119,9 @@
                     Grid.ColumnSpan="3" >
             <TabControl.Resources>
                 <Style TargetType="TabItem"
-                       BasedOn="{StaticResource StyleOfChildTabItem}" />
+                       BasedOn="{StaticResource StyleOfChildTabItem}"/>
             </TabControl.Resources>
-            <TabItem x:Name="TabItemGroupByEmployee" >
+            <TabItem x:Name="TabItemGroupByEmployee">
                 <TabItem.Header>
                     <local:UcTextImagePair Icon="{StaticResource icon_black_employee}"
                                            Text="{x:Static fa:Labels.GroupByEmployees}" />
@@ -129,37 +129,33 @@
                 <local:UcMonthlyDataOfOneEmployee x:Name="SmpUcMonthlyDataOfOneEmployee"
                                                   ReadOnlyOfListItems="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}" />
             </TabItem>
-            <TabItem x:Name="TabItemByVariableOrMiscTitle" >
+            <TabItem x:Name="TabItemGroupByVariableTitle"
+                             Style="{StaticResource StyleOfChildTabItem}" >
                 <TabItem.Header>
-                    <local:UcTextImagePair Icon="{StaticResource icon_black_employee_group}"
-                                           Text="{x:Static fa:Labels.ByGroup}" />
-                </TabItem.Header>
-                <TabControl Margin="{StaticResource MarginOfDetail}">
-                    <TabItem x:Name="TabItemGroupByVariableTitle" Style="{StaticResource StyleOfParentTabItem}">
-                        <TabItem.Header>
-                            <local:UcTextImagePair Icon="{StaticResource icon_black_monthly_variable}"
+                    <local:UcTextImagePair Icon="{StaticResource icon_black_monthly_variable}"
                                                    Text="{x:Static fa:Labels.GroupByVariableTitle}" />
-                        </TabItem.Header>
-                        <local:UcMonthlyDataOfOneVariable x:Name="SmpUcMonthlyDataOfOneVariable"
+                </TabItem.Header>
+                <local:UcMonthlyDataOfOneVariable x:Name="SmpUcMonthlyDataOfOneVariable"
                                                           ReadOnlyOfListItems="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}" />
-                    </TabItem>
-                    <TabItem x:Name="TabItemGroupByMiscPayment" Style="{StaticResource StyleOfParentTabItem}">
-                        <TabItem.Header>
-                            <local:UcTextImagePair Icon="{StaticResource icon_black_money}"
+            </TabItem>
+            <TabItem x:Name="TabItemGroupByMiscPayment"
+                             Style="{StaticResource StyleOfChildTabItem}" >
+                <TabItem.Header>
+                    <local:UcTextImagePair Icon="{StaticResource icon_black_money}"
                                                    Text="{x:Static fa:Labels.GroupByMiscTitlePayment}" />
-                        </TabItem.Header>
-                        <local:UcMonthlyDataOfOneMiscPayment x:Name="SmpUcMonthlyDataOfOneMiscPayment"
+                </TabItem.Header>
+                <local:UcMonthlyDataOfOneMiscPayment x:Name="SmpUcMonthlyDataOfOneMiscPayment"
                                                              ReadOnlyOfListItems="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}" />
-                    </TabItem>
-                    <TabItem x:Name="TabItemGroupByMiscDebt" Style="{StaticResource StyleOfParentTabItem}">
-                        <TabItem.Header>
-                            <local:UcTextImagePair Icon="{StaticResource icon_black_money_cut}"
+            </TabItem>
+            <TabItem x:Name="TabItemGroupByMiscDebt"
+                             Style="{StaticResource StyleOfChildTabItem}" >
+                <TabItem.Header>
+                    <local:UcTextImagePair Icon="{StaticResource icon_black_money_cut}"
                                                    Text="{x:Static fa:Labels.GroupByMiscTitleDebt}" />
-                        </TabItem.Header>
-                        <local:UcMonthlyDataOfOneMiscDebt x:Name="SmpUcMonthlyDataOfOneMiscDebt"
+                </TabItem.Header>
+                <local:UcMonthlyDataOfOneMiscDebt x:Name="SmpUcMonthlyDataOfOneMiscDebt"
                                                           ReadOnlyOfListItems="{Binding ElementName=SmpUcFormStateLabel,Path=ReadOnlyOfEditFields}" />
-                    </TabItem></TabControl>
-                </TabItem>
+            </TabItem>
         </TabControl>
         <StatusBar Grid.Column="0"
                    Grid.Row="3"

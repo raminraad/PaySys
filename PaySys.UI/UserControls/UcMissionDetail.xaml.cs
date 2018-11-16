@@ -1,10 +1,12 @@
 ﻿#region
-
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using Arash.PersianDateControls;
+using PaySys.ModelAndBindLib.Entities;
 using Xceed.Wpf.Toolkit;
 
 #endregion
@@ -18,7 +20,7 @@ namespace PaySys.UI.UC
 	public partial class UcMissionDetail : UserControl
 	{
 		public static readonly DependencyProperty ReadOnlyOfFieldsProperty = DependencyProperty.Register( "ReadOnlyOfFields", typeof(bool), typeof(UcMissionDetail), new PropertyMetadata( default(bool) ) );
-
+	    public ObservableCollection<City> CitiesAll { set => ComboBoxCities.ItemsSource = value; }
 		public UcMissionDetail()
 		{
 			InitializeComponent();

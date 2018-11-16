@@ -37,9 +37,11 @@ namespace PaySys.UI.UC
 			var selectedId = (DataGridMissions.SelectedItem as Mission)?.Id;
 			Context = new PaySysContext();
 			Context.Missions.Load();
+            Context.Cities.Load();
 			MissionsAll = Context.Missions.Local;
+		    SmpUcMissionDetail.CitiesAll = Context.Cities.Local;
 
-			GetBindingExpression( DataContextProperty )?.UpdateTarget();
+            GetBindingExpression( DataContextProperty )?.UpdateTarget();
 
 			if(selectedId.HasValue)
 				DataGridMissions.SelectedItem = MissionsAll.FirstOrDefault(m => m.Id == selectedId.Value);
@@ -108,6 +110,7 @@ namespace PaySys.UI.UC
 			SmpUcMissionDetail.UpdateSource();
 			Context.SaveChanges();
 			SmpUcFormStateLabel.CurrentState = FormCurrentState.Select;
+            CollectionViewSource.GetDefaultView(DataGridMissions.ItemsSource)?.Refresh();
 		}
 
 		private void DiscardChanges_Executed( object sender, ExecutedRoutedEventArgs e )

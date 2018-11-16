@@ -79,11 +79,12 @@
 				 Style="{StaticResource StyleOfDataFieldTextBox}"
 				 IsReadOnly="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields}"
 		         Text="{Binding Title,UpdateSourceTrigger=Explicit}" />
-		<TextBox Grid.Row="1"
+        <ComboBox x:Name="ComboBoxCities" Grid.Row="1"
 		         Grid.Column="1"
-				 Style="{StaticResource StyleOfDataFieldTextBox}"
-				 IsReadOnly="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields}"
-		         Text="{Binding City,UpdateSourceTrigger=Explicit}" />
+				 Style="{StaticResource StyleOfDataFieldComboBox}"
+                  IsEnabled="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields,Converter={StaticResource NegateBooleanConverter}}"
+                  DisplayMemberPath="Title"
+                  SelectedItem="{Binding City,UpdateSourceTrigger=Explicit}" />
 		<ComboBox Grid.Row="1"
 		          Grid.Column="3"
 				  Style="{StaticResource StyleOfDataFieldComboBox}"

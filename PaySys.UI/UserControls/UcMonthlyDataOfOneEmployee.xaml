@@ -30,7 +30,7 @@
     </UserControl.Resources>
     <Grid>
         <Grid.Resources>
-            <Thickness x:Key="MarginOfLists" > 10,0 </Thickness>
+            <Thickness x:Key="MarginOfLists" > 10,0,10,20 </Thickness>
         </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="4*" />
@@ -41,7 +41,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
-            <RowDefinition Height="30" />
         </Grid.RowDefinitions>
         <DataGrid x:Name="DataGridEmployees"
                   Margin="{StaticResource MarginOfLists}"
@@ -215,8 +214,5 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <StatusBar Grid.Column="0"
-                   Grid.Row="2"
-                   Grid.ColumnSpan="4" />
     </Grid>
 </UserControl>

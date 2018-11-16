@@ -379,13 +379,13 @@
     <value>بارگذاری</value>
   </data>
   <data name="GroupByMiscTitleDebt" xml:space="preserve">
-    <value>به تفکیک عناوین (کسور)</value>
+    <value>به تفکیک بدهی های متفرقه</value>
   </data>
   <data name="GroupByMiscTitlePayment" xml:space="preserve">
-    <value>به تفکیک عناوین (پرداخت ها)</value>
+    <value>به تفکیک پرداخت های متفرقه</value>
   </data>
   <data name="GroupByVariableTitle" xml:space="preserve">
-    <value>به تفکیک عناوین (متغیرها)</value>
+    <value>به تفکیک متغیرها</value>
   </data>
   <data name="MonthlyVariables" xml:space="preserve">
     <value>متغیرهای ماهانه</value>
@@ -476,5 +476,14 @@
   </data>
   <data name="MonthOfFiscalYear" xml:space="preserve">
     <value>ماه سال مالی</value>
+  </data>
+  <data name="VariableTitles" xml:space="preserve">
+    <value>عناوین متغیرها</value>
+  </data>
+  <data name="MiscDebtTitles" xml:space="preserve">
+    <value>عناوین بدهی های متفرقه</value>
+  </data>
+  <data name="MiscPaymentTitles" xml:space="preserve">
+    <value>عناوین پرداخت های متفرقه</value>
   </data>
 </root>
