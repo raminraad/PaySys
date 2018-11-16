@@ -129,7 +129,7 @@
         </Button>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="TemplateOfToolbarButtonEdit_Obs" >
+    <ControlTemplate x:Key="TemplateOfToolbarButtonEdit" >
         <Button Name="ButtonEdit"
                 Style="{StaticResource StyleOfToolbarButtonEdit}"
                 Command="commands:PaySysCommands.Edit" >
@@ -139,25 +139,6 @@
                            Style="{StaticResource StyleOfToolbarButtonImage}" />
                     <TextBlock Text="{x:Static fa:Labels.Edit}"
                                Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
-                </StackPanel>
-            </Button.Content>
-        </Button>
-    </ControlTemplate>
-
-    <ControlTemplate x:Key="TemplateOfToolbarButtonEdit" >
-        <Button Name="ButtonEdit"
-                Style="{StaticResource StyleOfToolbarButtonEdit}"
-                Width="Auto"
-                Height="Auto"
-                Command="commands:PaySysCommands.Edit" >
-            <Button.Content>
-                <StackPanel Orientation="Horizontal" >
-                    <TextBlock Text="{x:Static fa:Labels.Edit}"
-                               Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
-                    <Image Source="{StaticResource icon_crud_edit}"
-                           Style="{StaticResource StyleOfToolbarButtonImage}"
-                           Height="18"
-                           Width="18"/>
                 </StackPanel>
             </Button.Content>
         </Button>

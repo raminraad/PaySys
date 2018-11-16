@@ -62,38 +62,39 @@
             <bindingConverter:DoublePlusParameterConverter x:Key="DoublePlusParameterConverter" />
 
             <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
-                             Color="#B489B4" />
+                             Color="#DAA1DA" />
             <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}"
-                             Color="#B489B4" />
+                             Color="#DAA1DA" />
             <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}"
                              Color="Black" />
             <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}"
                              Color="Black" />
 
-            <Brush x:Key="ColorOfFormStateContents" > #6699ff </Brush>
+            <Brush x:Key="ColorOfFormStateContents" > #754C82 </Brush>
+
+            <LinearGradientBrush x:Key="ColorOfTabItemHeaderUnselected"
+                                 StartPoint="0.5,0"
+                                 EndPoint="0.5,1" >
+                <GradientStop Color="#E1E0E0"
+                              Offset="0.0" />
+                <GradientStop Color="#ACACAC"
+                              Offset="0.9" />
+                <GradientStop Color="#7E7E7E"
+                              Offset="1.0" />
+            </LinearGradientBrush>
             <LinearGradientBrush x:Key="ColorOfParentTabItemHeaderSelected"
                                  StartPoint="0.5,0"
                                  EndPoint="0.5,1" >
-                <GradientStop Color="#DDB0DD"
+                <GradientStop Color="#EFD6EF"
                               Offset="0.0" />
-                <GradientStop Color="#B489B4"
-                              Offset="1.0" />
-
-            </LinearGradientBrush>
-
-            <LinearGradientBrush x:Key="ColorOfParentTabItemHeaderSelected_Obs"
-                                 StartPoint="0.5,0"
-                                 EndPoint="0.5,1" >
-                <GradientStop Color="#F3E95F"
-                              Offset="0.0" />
-                <GradientStop Color="#F3E95F"
+                <GradientStop Color="#EABBEA"
                               Offset="0.1" />
-                <GradientStop Color="#F4ED88"
+                <GradientStop Color="#EABBEA"
                               Offset="0.5" />
-                <GradientStop Color="#F4ED88"
+                <GradientStop Color="#DAA1DA"
                               Offset="0.5" />
-                <GradientStop Color="#FCF9CA"
-                              Offset="1.0" />
+                <GradientStop Color="#DAA1DA"
+                              Offset="1" />
             </LinearGradientBrush>
             <LinearGradientBrush x:Key="ColorOfParentTabItemBackground"
                                  StartPoint="0.5,0"
@@ -127,22 +128,13 @@
                 <GradientStop Color="#D5DAED"
                               Offset="1" />
             </LinearGradientBrush>
-            <LinearGradientBrush x:Key="ColorOfTabItemHeaderUnselected"
-                                 StartPoint="0.5,0"
-                                 EndPoint="0.5,1" >
-                <GradientStop Color="#D1D1D1"
-                              Offset="0.0" />
-                <GradientStop Color="#989898"
-                              Offset="0.9" />
-                <GradientStop Color="#646464"
-                              Offset="1.0" />
-            </LinearGradientBrush>
+
             <LinearGradientBrush x:Key="ColorOfEditUserControlsBackground"
                                  EndPoint="0.5,1"
                                  StartPoint="0.5,0" >
-                <GradientStop Color="#E9CCADF5"
+                <GradientStop Color="#CBA7CB"
                               Offset="0" />
-                <GradientStop Color="#E9AC89DA"
+                <GradientStop Color="#D1B5D1"
                               Offset="1" />
             </LinearGradientBrush>
             <LinearGradientBrush x:Key="ColorOfEditUserControlsBorder"

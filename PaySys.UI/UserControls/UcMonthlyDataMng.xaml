@@ -44,10 +44,10 @@
                  Grid.ColumnSpan="3" Style="{x:Null}">
             <Button Template="{StaticResource TemplateOfToolbarButtonEdit}" />
             <Separator Style="{StaticResource StyleOfSeparator}" />
-            <!-- <Button Template="{StaticResource TemplateOfToolbarButtonSave}" /> -->
-            <!-- <Button Template="{StaticResource TemplateOfToolbarButtonDiscardChanges}" /> -->
-            <!-- <Separator Style="{StaticResource StyleOfSeparator}" /> -->
-            <!-- <Button Template="{StaticResource TemplateOfToolbarButtonReload}" /> -->
+            <Button Template="{StaticResource TemplateOfToolbarButtonSave}" />
+            <Button Template="{StaticResource TemplateOfToolbarButtonDiscardChanges}" />
+            <Separator Style="{StaticResource StyleOfSeparator}" />
+            <Button Template="{StaticResource TemplateOfToolbarButtonReload}" />
         </ToolBar>
         <Grid Grid.Row="1"
               VerticalAlignment="Stretch"
