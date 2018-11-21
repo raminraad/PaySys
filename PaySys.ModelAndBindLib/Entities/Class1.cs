@@ -83,6 +83,7 @@ namespace PaySys.ModelAndBindLib.Entities
         public virtual List<ContractMaster> ContractMasters { get; set; }
 
         public virtual List<Misc> Miscs { get; set; }
+        public virtual List<PayslipItemForSubGroup> PayslipItemForSubGroups { get; set; }
 
         public virtual ExpenseArticle ExpenseArticleOfOvertime { set; get; }
         public virtual ExpenseArticle ExpenseArticleOfMission { set; get; }
@@ -233,6 +234,7 @@ namespace PaySys.ModelAndBindLib.Entities
         public virtual List<MiscValueForEmployee> MiscValueForEmployees { get; set; }
 
         public virtual List<MiscRecharge> MiscRecharges { get; set; }
+        public virtual List<PayslipValueOfMiscForEmployee> PayslipValueOfMiscForEmployees { get; set; }
 
         public virtual MiscTitle MiscTitle { get; set; }
 
@@ -719,6 +721,10 @@ namespace PaySys.ModelAndBindLib.Entities
         public virtual ContractField ContractField { get; set; }
 
         public virtual ContractMaster ContractMaster { get; set; }
+
+        public virtual List<PayslipValueOfContractDetailsForEmployee> PayslipValueOfContractDetailsForEmployees { set;
+            get;
+        }
     }
 
     /// <summary> #22 اشخاص </summary>
@@ -788,6 +794,8 @@ namespace PaySys.ModelAndBindLib.Entities
         public virtual List<MiscValueForEmployee> MiscValueForEmployees { get; set; }
 
         public virtual List<VariableValueForEmployee> VariableValueForEmployees { get; set; }
+        public virtual List<PayslipItemValueForEmployee> PayslipItemValueForEmployees { get; set; }
+        public virtual List<PayslipValueOfMiscForEmployee> PayslipValueOfMiscForEmployees { get; set; }
 
         [NotMapped]
         public IEnumerable<Mission> MissionsOfCurrentYear =>
@@ -1077,6 +1085,72 @@ namespace PaySys.ModelAndBindLib.Entities
         public string Alias { get; set; }
 
         public virtual List<ParameterTitle> ParameterTitles { get; set; }
+    }
+
+    /// <summary>
+    /// #40 عناوین آیتم های فیش حقوقی
+    /// </summary>
+    public class PayslipItemTitle : EntityBase
+    {
+        public string Title { get; set; }
+
+        public string Alias { get; set; }
+
+        public bool IsPayment { get; set; }
+        public virtual List<PayslipItemForSubGroup> PayslipItemForSubGroups { get; set; }
+        public virtual List<PayslipItemValueForEmployee> PayslipItemValueForEmployees { get; set; }
+    }
+
+    /// <summary>
+    /// #41 عناوین آیتم های فیش حقوقی برای زیرگروه
+    /// </summary>
+    public class PayslipItemForSubGroup : EntityBase
+    {
+        public PayslipItemTitle PayslipItemTitle { get; set; }
+
+        public SubGroup SubGroup { get; set; }
+
+
+        public virtual List<ParameterTitle> ParameterTitles { get; set; }
+    }
+
+    /// <summary>
+    /// #42 مقادیر آیتم های فیش حقوقی برای اشخاص در سال و ماه
+    /// </summary>
+    public class PayslipItemValueForEmployee : EntityBase
+    {
+        public PayslipItemTitle PayslipItemTitle { get; set; }
+
+        public Employee Employee { get; set; }
+
+        public double Value { get; set; }
+
+        public int Year { get; set; }
+
+        public int Month { get; set; }
+    }
+
+    /// <summary>
+    /// #43 مقادیر کسور یا پرداختهای متفرقه اشخاص در فیش حقوقی
+    /// </summary>
+    public class PayslipValueOfMiscForEmployee : EntityBase
+    {
+        public Employee Employee { get; set; }
+        public Misc Misc { get; set; }
+        public double Value { get; set; }
+
+    }
+
+    /// <summary>
+    /// #44 مقادیر جزئیات احکام در فیش حقوقی در سال و ماه
+    /// </summary>
+    public class PayslipValueOfContractDetailsForEmployee : EntityBase
+    {
+        public ContractDetail ContractDetail { get; set; }
+        public double Value { get; set; }
+        public int Year { get; set; }
+
+        public int Month { get; set; }
     }
 
     

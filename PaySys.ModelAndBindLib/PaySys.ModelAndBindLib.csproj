@@ -77,9 +77,9 @@
     <Compile Include="EF.Engine\PaySysDbInitializer.cs" />
     <Compile Include="EF.Configuration\Configuration.cs" />
     <Compile Include="Enums\Enums.cs" />
-    <Compile Include="Migrations\201810221728003_Init.cs" />
-    <Compile Include="Migrations\201810221728003_Init.Designer.cs">
-      <DependentUpon>201810221728003_Init.cs</DependentUpon>
+    <Compile Include="Migrations\201811211246112_Init.cs" />
+    <Compile Include="Migrations\201811211246112_Init.Designer.cs">
+      <DependentUpon>201811211246112_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Validation.INotifyDataErrorInfo\IValidationErrorContainer.cs" />
     <Compile Include="Entities\Base\EntityBase.cs" />
@@ -113,8 +113,8 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201810221728003_Init.resx">
-      <DependentUpon>201810221728003_Init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201811211246112_Init.resx">
+      <DependentUpon>201811211246112_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
