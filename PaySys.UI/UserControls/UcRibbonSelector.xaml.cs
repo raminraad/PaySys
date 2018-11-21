@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Markup;
 using PaySys.ModelAndBindLib.Entities;
+using PaySys.ModelAndBindLib.Enums;
 using Binding = System.Windows.Data.Binding;
 using Label = System.Windows.Controls.Label;
 using MessageBox = System.Windows.Forms.MessageBox;

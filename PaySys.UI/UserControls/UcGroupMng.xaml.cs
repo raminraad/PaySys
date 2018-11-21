@@ -22,6 +22,7 @@ using PaySys.CalcLib.ExtensionMethods;
 using PaySys.Globalization;
 using PaySys.ModelAndBindLib.Engine;
 using PaySys.ModelAndBindLib.Entities;
+using PaySys.ModelAndBindLib.Enums;
 using PaySys.UI.UC;
 using Binding = System.Windows.Data.Binding;
 using Control = System.Windows.Controls.Control;

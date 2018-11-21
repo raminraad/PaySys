@@ -9,7 +9,7 @@ using System.Windows.Data;
 using Arash.PersianDateControls;
 using PaySys.CalcLib.ExtensionMethods;
 using PaySys.ModelAndBindLib.Entities;
-using ValueType = PaySys.ModelAndBindLib.Entities.ValueType;
+using ValueType = PaySys.ModelAndBindLib.Enums.ValueType;
 
 #endregion
 

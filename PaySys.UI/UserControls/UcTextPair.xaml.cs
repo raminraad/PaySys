@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using Bogus;
 using PaySys.Globalization;
 using PaySys.ModelAndBindLib.Entities;
+using PaySys.ModelAndBindLib.Enums;
 
 namespace PaySys.UI.UC
 {

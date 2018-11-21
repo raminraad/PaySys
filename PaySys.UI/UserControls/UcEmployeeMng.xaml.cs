@@ -10,7 +10,7 @@ using System.Windows.Input;
 using PaySys.Globalization;
 using PaySys.ModelAndBindLib.Engine;
 using PaySys.ModelAndBindLib.Entities;
-
+using PaySys.ModelAndBindLib.Enums;
 #endregion
 
 namespace PaySys.UI.UC

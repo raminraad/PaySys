@@ -10,6 +10,7 @@ using PaySys.Globalization;
 using PaySys.ModelAndBindLib;
 using PaySys.ModelAndBindLib.Engine;
 using PaySys.ModelAndBindLib.Entities;
+using PaySys.ModelAndBindLib.Enums;
 using PaySys.UI.Commands;
 
 #endregion

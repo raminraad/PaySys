@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Windows.Data;
 using PaySys.ModelAndBindLib.Entities;
+using PaySys.ModelAndBindLib.Enums;
 
 namespace PaySys.ModelAndBindLib.BindingConverter
 {

@@ -8,7 +8,8 @@ using Arash;
 using Bogus;
 using PaySys.ModelAndBindLib.Engine;
 using PaySys.ModelAndBindLib.Entities;
-using ValueType = PaySys.ModelAndBindLib.Entities.ValueType;
+using PaySys.ModelAndBindLib.Enums;
+using ValueType = PaySys.ModelAndBindLib.Enums.ValueType;
 #endregion
 
 

@@ -13,6 +13,7 @@
              xmlns:bindingConverter="clr-namespace:PaySys.ModelAndBindLib.BindingConverter;assembly=PaySys.ModelAndBindLib"
              xmlns:persianDateControls="clr-namespace:Arash.PersianDateControls;assembly=PersianDateControls"
              xmlns:commands="clr-namespace:PaySys.UI.Commands"
+             xmlns:enums="clr-namespace:PaySys.ModelAndBindLib.Enums;assembly=PaySys.ModelAndBindLib"
              FlowDirection="RightToLeft" >
     <UserControl.CommandBindings>
         <CommandBinding Command="commands:PaySysCommands.FileBrowse"
@@ -202,7 +203,7 @@
                   Grid.Column="8"
                   Style="{StaticResource StyleOfDataFieldComboBox}"
                   IsEnabled="{Binding ElementName=SmpUcEmployeeEdit,Path=ReadOnlyOfFields,Converter={StaticResource NegateBooleanConverter}}"
-                  ItemsSource="{Binding Source={extensionMethods:EnumBindingSource {x:Type model:Sex}}}"
+                  ItemsSource="{Binding Source={extensionMethods:EnumBindingSource {x:Type enums:Sex}}}"
                   SelectedItem="{Binding Sex,UpdateSourceTrigger=Explicit}" />
         <TextBox Grid.Row="2"
                  IsReadOnly="{Binding ElementName=SmpUcEmployeeEdit,Path=ReadOnlyOfFields}"

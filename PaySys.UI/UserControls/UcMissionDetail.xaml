@@ -13,6 +13,7 @@
 	xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Entities;assembly=PaySys.ModelAndBindLib"
 	xmlns:persianDateControls="clr-namespace:Arash.PersianDateControls;assembly=PersianDateControls"
 	xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+	xmlns:enums="clr-namespace:PaySys.ModelAndBindLib.Enums;assembly=PaySys.ModelAndBindLib"
 	d:DataContext="{d:DesignInstance Type=model:Mission, IsDesignTimeCreatable=True}"
 	Height="150"
 	MaxHeight="150"
@@ -89,7 +90,7 @@
 		          Grid.Column="3"
 				  Style="{StaticResource StyleOfDataFieldComboBox}"
 				  IsEnabled="{Binding ElementName=SmpUcMissionDetail,Path=ReadOnlyOfFields,Converter={StaticResource NegateBooleanConverter}}"
-		          ItemsSource="{Binding Source={extensionMethods:EnumBindingSource {x:Type model:VehicleType}}}"
+		          ItemsSource="{Binding Source={extensionMethods:EnumBindingSource {x:Type enums:VehicleType}}}"
 		          SelectedItem="{Binding VehicleType,UpdateSourceTrigger=Explicit}" />
 		<TextBox Grid.Row="1"
 		         Grid.Column="5"

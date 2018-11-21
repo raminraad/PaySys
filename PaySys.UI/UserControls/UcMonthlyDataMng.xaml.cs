@@ -9,8 +9,9 @@ using PaySys.Globalization;
 using PaySys.ModelAndBindLib;
 using PaySys.ModelAndBindLib.Engine;
 using PaySys.ModelAndBindLib.Entities;
+using PaySys.ModelAndBindLib.Enums;
 using PaySys.UI.Commands;
-using ValueType = PaySys.ModelAndBindLib.Entities.ValueType;
+using ValueType = PaySys.ModelAndBindLib.Enums.ValueType;
 #endregion
 
 
@@ -179,7 +180,7 @@ namespace PaySys.UI.UC
                 Employee = emp,
                 MiscValues = from sgM in sg.CurrentMiscs
                     join m in miscs.Where(r =>
-                            r.Year == PaySysSetting.CurrentYear && r.Month == PaySysSetting.CurrentMonth)
+                            r.Misc.Year == PaySysSetting.CurrentYear && r.Misc.Month == PaySysSetting.CurrentMonth)
                         on sgM equals m.Misc into empMiscs
                     from subVar in empMiscs.DefaultIfEmpty(new MiscValueForEmployee
                     {
@@ -187,8 +188,6 @@ namespace PaySys.UI.UC
                         Value = 0,
                         ValueSubtraction = 0,
                         Employee = emp,
-                        Month = PaySysSetting.CurrentMonth,
-                        Year = PaySysSetting.CurrentYear,
                         Id = 0
                     })
                     select subVar

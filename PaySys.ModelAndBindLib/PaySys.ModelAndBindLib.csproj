@@ -76,6 +76,7 @@
     <Compile Include="EF.Engine\PaySysContext.cs" />
     <Compile Include="EF.Engine\PaySysDbInitializer.cs" />
     <Compile Include="EF.Configuration\Configuration.cs" />
+    <Compile Include="Enums\Enums.cs" />
     <Compile Include="Migrations\201810221728003_Init.cs" />
     <Compile Include="Migrations\201810221728003_Init.Designer.cs">
       <DependentUpon>201810221728003_Init.cs</DependentUpon>

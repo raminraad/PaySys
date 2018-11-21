@@ -9,6 +9,7 @@
 	xmlns:system="clr-namespace:System;assembly=mscorlib"
 	xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Entities;assembly=PaySys.ModelAndBindLib"
 	xmlns:commands="clr-namespace:PaySys.UI.Commands"
+	xmlns:enums="clr-namespace:PaySys.ModelAndBindLib.Enums;assembly=PaySys.ModelAndBindLib"
 	mc:Ignorable="d"
 	d:DesignHeight="300"
 	d:DesignWidth="450"
@@ -61,14 +62,14 @@
 			        Grid.Row="0"
 			        Grid.RowSpan="2"
 			        Command="commands:PaySysCommands.NavigateLast"
-			        CommandParameter="{x:Static model:NavigationType.Last}"
+			        CommandParameter="{x:Static enums:NavigationType.Last}"
 			        x:Name="ButtonLast"
 			        Content="««" />
 			<Button Grid.Row="0"
 			        Grid.Column="1"
 			        Grid.RowSpan="2"
 			        Command="commands:PaySysCommands.NavigateNext"
-			        CommandParameter="{x:Static model:NavigationType.Next}"
+			        CommandParameter="{x:Static enums:NavigationType.Next}"
 			        x:Name="ButtonNext"
 			        Content="«" />
 			<Label Grid.Row="0"
@@ -83,14 +84,14 @@
 			        Grid.RowSpan="2"
 			        x:Name="ButtonPrevious"
 			        Command="commands:PaySysCommands.NavigatePrevious"
-			        CommandParameter="{x:Static model:NavigationType.Previous}"
+			        CommandParameter="{x:Static enums:NavigationType.Previous}"
 			        Content="»" />
 			<Button Grid.Row="0"
 			        Grid.Column="4"
 			        Grid.RowSpan="2"
 			        x:Name="ButtonFirst"
 			        Command="commands:PaySysCommands.NavigateFirst"
-			        CommandParameter="{x:Static model:NavigationType.First}"
+			        CommandParameter="{x:Static enums:NavigationType.First}"
 			        Content="»»" />
 			<ProgressBar
 				x:Name="ProgressBarOfItems"
