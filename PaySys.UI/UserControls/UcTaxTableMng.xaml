@@ -19,7 +19,7 @@
     <UserControl.Resources>
         <bindingConverter:MathAddWithParameterConverter x:Key="CnvAdd" />
     </UserControl.Resources>
-    <Grid>
+    <Grid x:Name="GridMain">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
@@ -62,8 +62,8 @@
                                     listViewLayout:ProportionalColumn.Width="2">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBox Text="{Binding Path=Factor,UpdateSourceTrigger=PropertyChanged,StringFormat={}{0:N0}}"
-                                         MaxLength="3"
+                                <TextBox Text="{Binding Path=Factor,UpdateSourceTrigger=Explicit,StringFormat={}{0:N2}}"
+                                         MaxLength="6"
                                          IsReadOnly="{Binding ElementName=SmpUcTaxTableMng,Path=ReadOnlyOfFields}"
                                          Width="30" />
                             </DataTemplate>

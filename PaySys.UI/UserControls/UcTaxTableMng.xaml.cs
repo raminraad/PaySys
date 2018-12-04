@@ -1,6 +1,10 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using PaySys.Model.Entities;
+using PaySys.Model.ExtensionMethods;
 using UserControl = System.Windows.Controls.UserControl;
 
 namespace PaySys.UI.UserControls
@@ -33,6 +37,20 @@ namespace PaySys.UI.UserControls
 	        set => SetValue(ReadOnlyOfFieldsProperty, value);
 	    }
 
-	    
+	    public void UpdateSource()
+	    {
+	        foreach (var control in GridMain.FindVisualChildren<TextBox>())
+	        {
+	            control.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
+	        }
+	    }
+
+	    public void UpdateTarget()
+	    {
+	        foreach (var control in GridMain.FindVisualChildren<TextBox>())
+            {
+	            control.GetBindingExpression(TextBox.TextProperty)?.UpdateTarget();
+	        }
+	    }
     }
 }

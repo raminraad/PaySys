@@ -130,6 +130,7 @@ namespace PaySys.UI.UserControls
 
 
             #region TaxTable
+            SmpUcTaxTableMng.UpdateSource();
             currentSubGroup?.CurrenTaxTable.CommitTempToValues();
             #endregion
 
@@ -156,10 +157,6 @@ namespace PaySys.UI.UserControls
             }
 
             Context.MissionFormulas.AddOrUpdate(currentSubGroup.CurrentOrNewMissionFormula);
-            #endregion
-
-
-            #region TaxTable
             #endregion
 
             Context.SaveChanges();
