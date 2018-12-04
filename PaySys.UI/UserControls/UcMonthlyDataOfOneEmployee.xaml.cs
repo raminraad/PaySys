@@ -1,19 +1,17 @@
 ﻿#region
-
-using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using Arash.PersianDateControls;
-using PaySys.CalcLib.ExtensionMethods;
-using PaySys.ModelAndBindLib.Entities;
-using ValueType = PaySys.ModelAndBindLib.Enums.ValueType;
+using PaySys.Model.Entities;
+using PaySys.Model.ExtensionMethods;
+using ValueType = PaySys.Model.Enums.ValueType;
 
 #endregion
 
-namespace PaySys.UI.UC
+namespace PaySys.UI.UserControls
 {
 	public partial class UcMonthlyDataOfOneEmployee : UserControl
 	{
@@ -67,7 +65,7 @@ namespace PaySys.UI.UC
 			e.Accepted = var.Employee.Equals(DataGridEmployees.SelectedItem as Employee);
 		}
 
-	    private void UcMonthlyDataOfOneEmployee_OnInitialized( object sender, EventArgs e )
+	    private void UcMonthlyDataOfOneEmployee_OnInitialized( object sender, System.EventArgs e )
 		{
 			CvsOfEmployeeVariableValues.SortDescriptions.Add( new SortDescription( "Variable.Title", ListSortDirection.Ascending ) );
 			CvsOfEmployeeVariableValues.Filter += FilterVariablesOfSelectedEmployee;

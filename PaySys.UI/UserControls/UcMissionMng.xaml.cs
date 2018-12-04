@@ -1,19 +1,18 @@
 ﻿#region
-
 using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using PaySys.Globalization;
-using PaySys.ModelAndBindLib.Engine;
-using PaySys.ModelAndBindLib.Entities;
-using PaySys.ModelAndBindLib.Enums;
+
+using PaySys.Model.Entities;
+using PaySys.Model.EntityFramework;
+using PaySys.Model.Enums;
 #endregion
 
-namespace PaySys.UI.UC
+namespace PaySys.UI.UserControls
 {
 	/// <summary>
 	///     Interaction logic for

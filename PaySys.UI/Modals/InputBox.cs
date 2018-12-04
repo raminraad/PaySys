@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Windows.Forms;
 using System.Drawing;
+using System.Windows.Forms;
 using PaySys.Globalization;
 
-namespace PaySys.UI
+namespace PaySys.UI.Modals
 {
 	public static class InputBox
 	{

@@ -1,38 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
+﻿using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Forms;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using PaySys.CalcLib.ExtensionMethods;
 using PaySys.Globalization;
-using PaySys.ModelAndBindLib.Engine;
-using PaySys.ModelAndBindLib.Entities;
-using PaySys.ModelAndBindLib.Enums;
-using PaySys.UI.UC;
-using Binding = System.Windows.Data.Binding;
-using Control = System.Windows.Controls.Control;
-using DataGrid = System.Windows.Controls.DataGrid;
-using ListView = System.Windows.Controls.ListView;
-using MessageBox = System.Windows.Forms.MessageBox;
-using TextBox = System.Windows.Controls.TextBox;
+
+using PaySys.Model.Entities;
+using PaySys.Model.EntityFramework;
+using PaySys.Model.Enums;
+using PaySys.Model.ExtensionMethods;
 using UserControl = System.Windows.Controls.UserControl;
 
-namespace PaySys.UI.UC
+namespace PaySys.UI.UserControls
 {
     /// <summary>
     /// Interaction logic for UcGroupMng.xaml
@@ -62,7 +41,7 @@ namespace PaySys.UI.UC
             SmpUcContractFieldTitlesMng.ContractFieldsAll = Context.ContractFields.Local.ToList();
         }
 
-        private void UcGroupMng_OnInitialized(object sender, EventArgs e)
+        private void UcGroupMng_OnInitialized(object sender, System.EventArgs e)
         {
             SmpUcFormStateLabel.CurrentState = FormCurrentState.Select;
         }

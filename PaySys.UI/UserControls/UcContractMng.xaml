@@ -1,14 +1,13 @@
 ﻿<UserControl x:Name="SmpUcContractMng"
-             x:Class="PaySys.UI.UC.UcContractMng"
+             x:Class="PaySys.UI.UserControls.UcContractMng"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:PaySys.UI.UC"
              xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
-             xmlns:ingredient="clr-namespace:PaySys.UI.UC"
              xmlns:commands="clr-namespace:PaySys.UI.Commands"
-             xmlns:entities="clr-namespace:PaySys.ModelAndBindLib.Entities;assembly=PaySys.ModelAndBindLib"
+             xmlns:entities="clr-namespace:PaySys.Model.Entities;assembly=PaySys.Model"
+             xmlns:userControls="clr-namespace:PaySys.UI.UserControls"
              mc:Ignorable="d"
              d:DesignHeight="1000"
              d:DesignWidth="1500"
@@ -60,7 +59,7 @@
             <Separator Style="{StaticResource StyleOfSeparator}" />
             <Button Template="{StaticResource TemplateOfToolbarButtonReload}" />
         </ToolBar>
-        <local:UcLookup x:Name="SmpUcLookup"
+        <userControls:UcLookup x:Name="SmpUcLookup"
                         Grid.Row="0"
                         LookupTextChanged="SmpUcLookup_OnLookupTextChanged" />
         <Grid Grid.Row="1" >
@@ -111,7 +110,7 @@
                      DataContext="{Binding ElementName=DataGridEmployeeContracts,Path=SelectedItem}" >
 
                 <TabItem.Header>
-                    <local:UcTextImagePair Icon="{StaticResource icon_black_contracts}"
+                    <userControls:UcTextImagePair Icon="{StaticResource icon_black_contracts}"
                                            Text="{x:Static fa:Labels.EmployeeContracts}" />
                 </TabItem.Header>
                 <Grid>
@@ -160,7 +159,7 @@
                             </DataGridTemplateColumn>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <local:UcContractMasterEdit x:Name="SmpUcContractMasterEdit"
+                    <userControls:UcContractMasterEdit x:Name="SmpUcContractMasterEdit"
                                                 Grid.Row="0"
                                                 Grid.Column="1"
                                                 VerticalAlignment="Stretch"
@@ -178,14 +177,14 @@
                             Visibility="{Binding ElementName=SmpUcFormState,Path=EnabledOfAddFields,Converter={StaticResource BooleanToVisibilityConverter}}"
                             Margin="0,0,0,5" >
                         <Button.Content>
-                            <ingredient:UcTextImagePair
+                            <userControls:UcTextImagePair
                                 Text="{x:Static fa:Labels.SaveContractMasterAndContinueToContractDetails}"
                                 TextFontFamily="{StaticResource FontFamilyOfOnFormButton}"
                                 TextFontSize="{StaticResource FontSizeOfOnFormButton}"
                                 Icon="{StaticResource icon_notification_done}" />
                         </Button.Content>
                     </Button>
-                    <ingredient:UcContractDetailsEdit x:Name="SmpUcContractDetailsEdit"
+                    <userControls:UcContractDetailsEdit x:Name="SmpUcContractDetailsEdit"
                                                       DataContext="{Binding}"
                                                       Grid.Row="0"
                                                       Grid.Column="2"
@@ -197,7 +196,7 @@
         </TabControl>
 
         <StatusBar Grid.Row="4" >
-            <local:UcFormStateLabel x:Name="SmpUcFormState" />
+            <userControls:UcFormStateLabel x:Name="SmpUcFormState" />
         </StatusBar>
     </Grid>
 </UserControl>

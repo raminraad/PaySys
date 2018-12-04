@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using PaySys.ModelAndBindLib.Entities;
-using PaySys.ModelAndBindLib.Enums;
+using PaySys.Model.Enums;
 
-namespace PaySys.UI.UC
+namespace PaySys.UI.EventArgs
 {
 	public class FormCurrentStateChangedEventArgs:RoutedEventArgs
 	{

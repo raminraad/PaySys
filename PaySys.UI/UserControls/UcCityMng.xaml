@@ -1,15 +1,16 @@
 ﻿<UserControl x:Name="SmpUcCityMng"
-             x:Class="PaySys.UI.UC.UcCityMng"
+             x:Class="PaySys.UI.UserControls.UcCityMng"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:PaySys.UI.UC"
              xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
-             xmlns:bindingConverter="clr-namespace:PaySys.ModelAndBindLib.BindingConverter;assembly=PaySys.ModelAndBindLib"
-             xmlns:model="clr-namespace:PaySys.ModelAndBindLib.Entities;assembly=PaySys.ModelAndBindLib"
-             xmlns:validation="clr-namespace:PaySys.ModelAndBindLib.Validation;assembly=PaySys.ModelAndBindLib"
+             xmlns:bindingConverter="clr-namespace:PaySys.Model.BindingConverter;assembly=PaySys.Model"
+             xmlns:model="clr-namespace:PaySys.Model.Entities;assembly=PaySys.Model"
+             xmlns:validation="clr-namespace:PaySys.Model.Validation;assembly=PaySys.Model"
              xmlns:commands="clr-namespace:PaySys.UI.Commands"
+             xmlns:validationRule="clr-namespace:PaySys.Model.Validation.ValidationRule;assembly=PaySys.Model"
+             xmlns:userControls="clr-namespace:PaySys.UI.UserControls"
              mc:Ignorable="d"
              FlowDirection="RightToLeft"
              Loaded="UcCityMng_OnLoaded"
@@ -66,7 +67,7 @@
             <Separator Style="{StaticResource StyleOfSeparator}" />
             <Button Template="{StaticResource TemplateOfToolbarButtonReload}" />
         </ToolBar>
-        <local:UcLookup x:Name="SmpUcLookup"
+        <userControls:UcLookup x:Name="SmpUcLookup"
                         Grid.Row="0"
                         Grid.Column="2"
                         Grid.ColumnSpan="2"
@@ -103,7 +104,7 @@
                      Style="{StaticResource StyleOfChildTabItem}" >
 
                 <TabItem.Header>
-                    <local:UcTextImagePair Icon="{StaticResource icon_city}"
+                    <userControls:UcTextImagePair Icon="{StaticResource icon_city}"
                                            Text="{x:Static fa:Labels.CityInfo}" />
                 </TabItem.Header>
                 <Grid x:Name="GridDetails"
@@ -150,12 +151,12 @@
                             <Binding Path="Distance"
                                      UpdateSourceTrigger="Explicit" >
                                 <Binding.ValidationRules>
-                                    <validation:ValidationRuleForMandatory />
-                                    <validation:ValidationRuleForNumberType
+                                    <validationRule:ValidationRuleForMandatory />
+                                    <validationRule:ValidationRuleForNumberType
                                         FieldName="{x:Static fa:FieldicCity.Distance}" />
-                                    <validation:ValidationRuleForNonNegativeNumber
+                                    <validationRule:ValidationRuleForNonNegativeNumber
                                         FieldName="{x:Static fa:FieldicCity.Distance}" />
-                                    <validation:ValidationRuleForNumberRange
+                                    <validationRule:ValidationRuleForNumberRange
                                         FieldName="{x:Static fa:FieldicCity.Distance}"
                                         Max="10000" />
                                 </Binding.ValidationRules>
@@ -171,12 +172,12 @@
                             <Binding Path="Percentage"
                                      UpdateSourceTrigger="Explicit" >
                                 <Binding.ValidationRules>
-                                    <validation:ValidationRuleForMandatory />
-                                    <validation:ValidationRuleForNumberType
+                                    <validationRule:ValidationRuleForMandatory />
+                                    <validationRule:ValidationRuleForNumberType
                                         FieldName="{x:Static fa:FieldicCity.Percentage}" />
-                                    <validation:ValidationRuleForNonNegativeNumber
+                                    <validationRule:ValidationRuleForNonNegativeNumber
                                         FieldName="{x:Static fa:FieldicCity.Percentage}" />
-                                    <validation:ValidationRuleForNumberRange
+                                    <validationRule:ValidationRuleForNumberRange
                                         FieldName="{x:Static fa:FieldicCity.Percentage}"
                                         Max="100" />
                                 </Binding.ValidationRules>
@@ -190,7 +191,7 @@
         <StatusBar Grid.Column="0"
                    Grid.Row="4"
                    Grid.ColumnSpan="4" >
-            <local:UcFormStateLabel x:Name="SmpUcFormStateLabel" />
+            <userControls:UcFormStateLabel x:Name="SmpUcFormStateLabel" />
         </StatusBar>
     </Grid>
 </UserControl>

@@ -1,21 +1,21 @@
 ﻿#region
-using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using PaySys.Globalization;
-using PaySys.ModelAndBindLib;
-using PaySys.ModelAndBindLib.Engine;
-using PaySys.ModelAndBindLib.Entities;
-using PaySys.ModelAndBindLib.Enums;
+
+using PaySys.Model.Entities;
+using PaySys.Model.EntityFramework;
+using PaySys.Model.Enums;
+using PaySys.Model.Static;
 using PaySys.UI.Commands;
-using ValueType = PaySys.ModelAndBindLib.Enums.ValueType;
+using ValueType = PaySys.Model.Enums.ValueType;
 #endregion
 
 
-namespace PaySys.UI.UC
+namespace PaySys.UI.UserControls
 {
     public partial class UcMonthlyDataMng : UserControl
     {
@@ -202,7 +202,7 @@ namespace PaySys.UI.UC
             SmpUcMonthlyDataOfOneMiscDebt.DataContext = sg;
         }
 
-        private void UcMonthlyDataMng_OnInitialized(object sender, EventArgs e)
+        private void UcMonthlyDataMng_OnInitialized(object sender, System.EventArgs e)
         {
             SmpUcFormStateLabel.CurrentState = FormCurrentState.Select;
             Reload(null,null);

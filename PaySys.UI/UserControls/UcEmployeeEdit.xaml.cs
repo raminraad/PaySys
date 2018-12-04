@@ -1,28 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Arash.PersianDateControls;
-using PaySys.CalcLib.ExtensionMethods;
-using PaySys.Globalization;
 using PaySys.Globalization.Fa;
-using PaySys.ModelAndBindLib.Entities;
+using PaySys.Model.Entities;
+using PaySys.Model.ExtensionMethods;
 using Control = System.Windows.Controls.Control;
 using TextBox = System.Windows.Controls.TextBox;
 using UserControl = System.Windows.Controls.UserControl;
 
-namespace PaySys.UI.UC
+namespace PaySys.UI.UserControls
 {
     /// <summary>
     /// Interaction logic for UcEmployeeDetail.xaml

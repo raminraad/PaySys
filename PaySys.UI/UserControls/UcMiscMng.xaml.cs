@@ -1,33 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Bogus;
-using PaySys.CalcLib.Delegates;
 using PaySys.Globalization;
-using PaySys.ModelAndBindLib;
-using PaySys.ModelAndBindLib.Entities;
-using PaySys.UI.Commands;
+using PaySys.Model.Entities;
+using PaySys.Model.Static;
 using PaySys.UI.Modals;
-using DialogResult = System.Windows.Forms.DialogResult;
-using MessageBoxDefaultButton = System.Windows.Forms.MessageBoxDefaultButton;
-using MessageBoxButtons = System.Windows.Forms.MessageBoxButtons;
-using MessageBoxIcon = System.Windows.Forms.MessageBoxIcon;
-using MessageBox = System.Windows.MessageBox;
-using MessageBoxOptions = System.Windows.MessageBoxOptions;
 using UserControl = System.Windows.Controls.UserControl;
 
-namespace PaySys.UI.UC
+namespace PaySys.UI.UserControls
 {
     /// <summary>
     /// Interaction logic for UcMiscMng.xaml

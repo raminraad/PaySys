@@ -1,17 +1,15 @@
 ﻿#region
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using Arash.PersianDateControls;
-using PaySys.ModelAndBindLib.Entities;
+using PaySys.Model.Entities;
 using Xceed.Wpf.Toolkit;
-
 #endregion
 
-namespace PaySys.UI.UC
+namespace PaySys.UI.UserControls
 {
 	/// <summary>
 	///     Interaction logic for

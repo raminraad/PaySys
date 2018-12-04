@@ -129,7 +129,79 @@
     <Compile Include="EventArgs\FormCurrentStateChangedEventArgs.cs" />
     <Compile Include="Modals\InputBox.cs" />
     <Compile Include="Modals\PaySysMessage.cs" />
-    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Properties\CanBeNullAttribute.cs" />
+    <Compile Include="Properties\AspChildControlTypeAttribute.cs" />
+    <Compile Include="Properties\AspDataFieldAttribute.cs" />
+    <Compile Include="Properties\AspDataFieldsAttribute.cs" />
+    <Compile Include="Properties\AspMethodPropertyAttribute.cs" />
+    <Compile Include="Properties\AspMvcActionAttribute.cs" />
+    <Compile Include="Properties\AspMvcActionSelectorAttribute.cs" />
+    <Compile Include="Properties\AspMvcAreaAttribute.cs" />
+    <Compile Include="Properties\AspMvcAreaMasterLocationFormatAttribute.cs" />
+    <Compile Include="Properties\AspMvcAreaPartialViewLocationFormatAttribute.cs" />
+    <Compile Include="Properties\AspMvcAreaViewLocationFormatAttribute.cs" />
+    <Compile Include="Properties\AspMvcControllerAttribute.cs" />
+    <Compile Include="Properties\AspMvcDisplayTemplateAttribute.cs" />
+    <Compile Include="Properties\AspMvcEditorTemplateAttribute.cs" />
+    <Compile Include="Properties\AspMvcMasterAttribute.cs" />
+    <Compile Include="Properties\AspMvcMasterLocationFormatAttribute.cs" />
+    <Compile Include="Properties\AspMvcModelTypeAttribute.cs" />
+    <Compile Include="Properties\AspMvcPartialViewAttribute.cs" />
+    <Compile Include="Properties\AspMvcPartialViewLocationFormatAttribute.cs" />
+    <Compile Include="Properties\AspMvcSuppressViewErrorAttribute.cs" />
+    <Compile Include="Properties\AspMvcTemplateAttribute.cs" />
+    <Compile Include="Properties\AspMvcViewAttribute.cs" />
+    <Compile Include="Properties\AspMvcViewComponentAttribute.cs" />
+    <Compile Include="Properties\AspMvcViewComponentViewAttribute.cs" />
+    <Compile Include="Properties\AspMvcViewLocationFormatAttribute.cs" />
+    <Compile Include="Properties\AspRequiredAttributeAttribute.cs" />
+    <Compile Include="Properties\AspTypePropertyAttribute.cs" />
+    <Compile Include="Properties\AssertionConditionAttribute.cs" />
+    <Compile Include="Properties\AssertionConditionType.cs" />
+    <Compile Include="Properties\AssertionMethodAttribute.cs" />
+    <Compile Include="Properties\BaseTypeRequiredAttribute.cs" />
+    <Compile Include="Properties\CannotApplyEqualityOperatorAttribute.cs" />
+    <Compile Include="Properties\CollectionAccessAttribute.cs" />
+    <Compile Include="Properties\CollectionAccessType.cs" />
+    <Compile Include="Properties\ContractAnnotationAttribute.cs" />
+    <Compile Include="Properties\HtmlAttributeValueAttribute.cs" />
+    <Compile Include="Properties\HtmlElementAttributesAttribute.cs" />
+    <Compile Include="Properties\ImplicitUseKindFlags.cs" />
+    <Compile Include="Properties\ImplicitUseTargetFlags.cs" />
+    <Compile Include="Properties\InstantHandleAttribute.cs" />
+    <Compile Include="Properties\InvokerParameterNameAttribute.cs" />
+    <Compile Include="Properties\ItemCanBeNullAttribute.cs" />
+    <Compile Include="Properties\ItemNotNullAttribute.cs" />
+    <Compile Include="Properties\LinqTunnelAttribute.cs" />
+    <Compile Include="Properties\LocalizationRequiredAttribute.cs" />
+    <Compile Include="Properties\MacroAttribute.cs" />
+    <Compile Include="Properties\MeansImplicitUseAttribute.cs" />
+    <Compile Include="Properties\MustUseReturnValueAttribute.cs" />
+    <Compile Include="Properties\NoEnumerationAttribute.cs" />
+    <Compile Include="Properties\NoReorderAttribute.cs" />
+    <Compile Include="Properties\NotifyPropertyChangedInvocatorAttribute.cs" />
+    <Compile Include="Properties\NotNullAttribute.cs" />
+    <Compile Include="Properties\PathReferenceAttribute.cs" />
+    <Compile Include="Properties\ProvidesContextAttribute.cs" />
+    <Compile Include="Properties\PublicAPIAttribute.cs" />
+    <Compile Include="Properties\PureAttribute.cs" />
+    <Compile Include="Properties\RazorDirectiveAttribute.cs" />
+    <Compile Include="Properties\RazorHelperCommonAttribute.cs" />
+    <Compile Include="Properties\RazorImportNamespaceAttribute.cs" />
+    <Compile Include="Properties\RazorInjectionAttribute.cs" />
+    <Compile Include="Properties\RazorLayoutAttribute.cs" />
+    <Compile Include="Properties\RazorSectionAttribute.cs" />
+    <Compile Include="Properties\RazorWriteLiteralMethodAttribute.cs" />
+    <Compile Include="Properties\RazorWriteMethodAttribute.cs" />
+    <Compile Include="Properties\RazorWriteMethodParameterAttribute.cs" />
+    <Compile Include="Properties\RegexPatternAttribute.cs" />
+    <Compile Include="Properties\SourceTemplateAttribute.cs" />
+    <Compile Include="Properties\StringFormatMethodAttribute.cs" />
+    <Compile Include="Properties\TerminatesProgramAttribute.cs" />
+    <Compile Include="Properties\UsedImplicitlyAttribute.cs" />
+    <Compile Include="Properties\ValueProviderAttribute.cs" />
+    <Compile Include="Properties\XamlItemBindingOfItemsControlAttribute.cs" />
+    <Compile Include="Properties\XamlItemsControlAttribute.cs" />
     <Compile Include="UserControls\UcEmployeeEdit.xaml.cs">
       <DependentUpon>UcEmployeeEdit.xaml</DependentUpon>
     </Compile>
@@ -445,17 +517,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PaySys.CalcLib\PaySys.CalcLib.csproj">
-      <Project>{733ddf04-3787-4610-95f1-a3ede7cff373}</Project>
-      <Name>PaySys.CalcLib</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PaySys.Globalization\PaySys.Globalization.csproj">
       <Project>{9833315b-63e2-4717-8615-b3e625acaea8}</Project>
       <Name>PaySys.Globalization</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PaySys.ModelAndBindLib\PaySys.ModelAndBindLib.csproj">
+    <ProjectReference Include="..\PaySys.Model\PaySys.Model.csproj">
       <Project>{21C027CA-0A77-47DF-B9D5-70079B1CDCC8}</Project>
-      <Name>PaySys.ModelAndBindLib</Name>
+      <Name>PaySys.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -1,18 +1,14 @@
 ﻿#region
-
-using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using PaySys.CalcLib.ExtensionMethods;
-using PaySys.ModelAndBindLib.Entities;
-using Xceed.Wpf.DataGrid;
-
+using PaySys.Model.Entities;
+using PaySys.Model.ExtensionMethods;
 #endregion
 
-namespace PaySys.UI.UC
+namespace PaySys.UI.UserControls
 {
 	/// <summary>
 	///     Interaction logic for
@@ -59,7 +55,7 @@ namespace PaySys.UI.UC
 
 		
 
-		private void UcMiscRechargesOfOneEmployee_OnInitialized( object sender, EventArgs e )
+		private void UcMiscRechargesOfOneEmployee_OnInitialized( object sender, System.EventArgs e )
 		{
 			CvsOfSubGroupMiscRecharges.SortDescriptions.Add( new SortDescription( "Misc.MiscTitle.Title", ListSortDirection.Ascending ) );
 			CvsOfSubGroupMiscRecharges.Filter += CvsFilterMiscRechargesOfCurrentEmployee;

@@ -5,17 +5,14 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Markup;
-using PaySys.ModelAndBindLib.Entities;
-using PaySys.ModelAndBindLib.Enums;
+using PaySys.Model.Enums;
 using Binding = System.Windows.Data.Binding;
 using Label = System.Windows.Controls.Label;
-using MessageBox = System.Windows.Forms.MessageBox;
 using UserControl = System.Windows.Controls.UserControl;
 
-namespace PaySys.UI.UC
+namespace PaySys.UI.UserControls
 {
 	/// <summary>Interaction logic for UcRibbonSelector.xaml</summary>
 	public partial class UcRibbonSelector : UserControl, IComponentConnector

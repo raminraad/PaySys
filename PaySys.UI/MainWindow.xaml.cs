@@ -1,25 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Forms;
 using System.Windows.Input;
 using Arash;
-using PaySys.Globalization;
 using PaySys.Globalization.Fa;
-using PaySys.ModelAndBindLib;
-using PaySys.ModelAndBindLib.Engine;
-using PaySys.UI.UC;
-using PaySys.Windows;
-using Stimulsoft.Report;
-using Button = System.Windows.Controls.Button;
-using Label = System.Windows.Controls.Label;
-using MenuItem = System.Windows.Controls.MenuItem;
-using MessageBox = System.Windows.MessageBox;
 
-namespace PaySys
+using PaySys.Model.EntityFramework;
+using PaySys.Model.Static;
+using PaySys.UI.UserControls;
+using PaySys.UI.Windows;
+using Stimulsoft.Report;
+
+namespace PaySys.UI
 {
     /// <summary>Interaction logic for MainWindow.xaml</summary>
     public partial class MainWindow : Window

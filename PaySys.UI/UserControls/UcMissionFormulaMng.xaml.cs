@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using PaySys.ModelAndBindLib.Entities;
+using PaySys.Model.Entities;
 
-namespace PaySys.UI.UC
+namespace PaySys.UI.UserControls
 {
     /// <summary>
     ///     Interaction logic for UcMissionFormulaMng.xaml

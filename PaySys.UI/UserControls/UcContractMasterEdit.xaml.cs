@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Linq;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using Bogus;
-using PaySys.CalcLib.ExtensionMethods;
-using PaySys.ModelAndBindLib.Entities;
+using PaySys.Model.Entities;
+using PaySys.Model.ExtensionMethods;
 
-namespace PaySys.UI.UC
+namespace PaySys.UI.UserControls
 {
 	public partial class UcContractMasterEdit : UserControl
 	{

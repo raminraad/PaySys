@@ -1,15 +1,15 @@
 ﻿<UserControl x:Name="SmpUcJobMng"
-             x:Class="PaySys.UI.UC.UcJobMng"
+             x:Class="PaySys.UI.UserControls.UcJobMng"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:PaySys.UI.UC"
              xmlns:fa="clr-namespace:PaySys.Globalization.Fa;assembly=PaySys.Globalization"
-             xmlns:uc="clr-namespace:PaySys.UI.UC"
              xmlns:commands="clr-namespace:PaySys.UI.Commands"
-             xmlns:validation="clr-namespace:PaySys.ModelAndBindLib.Validation;assembly=PaySys.ModelAndBindLib"
-             xmlns:entities="clr-namespace:PaySys.ModelAndBindLib.Entities;assembly=PaySys.ModelAndBindLib"
+             xmlns:validation="clr-namespace:PaySys.Model.Validation;assembly=PaySys.Model"
+             xmlns:entities="clr-namespace:PaySys.Model.Entities;assembly=PaySys.Model"
+             xmlns:validationRule="clr-namespace:PaySys.Model.Validation.ValidationRule;assembly=PaySys.Model"
+             xmlns:userControls="clr-namespace:PaySys.UI.UserControls"
              mc:Ignorable="d"
              FlowDirection="RightToLeft"
              d:DesignHeight="600"
@@ -63,7 +63,7 @@
             <Separator Style="{StaticResource StyleOfSeparator}" />
             <Button Template="{StaticResource TemplateOfToolbarButtonReload}" />
         </ToolBar>
-        <local:UcLookup x:Name="SmpUcLookup"
+        <userControls:UcLookup x:Name="SmpUcLookup"
                         Grid.Row="0"
                         Grid.Column="2"
                         Grid.ColumnSpan="2"
@@ -101,7 +101,7 @@
                      Style="{StaticResource StyleOfChildTabItem}" >
 
                 <TabItem.Header>
-                    <local:UcTextImagePair Icon="{StaticResource icon_black_job}"
+                    <userControls:UcTextImagePair Icon="{StaticResource icon_black_job}"
                                            Text="{x:Static fa:Labels.JobInfo}" />
                 </TabItem.Header>
                 <Grid x:Name="GridDetails"
@@ -152,9 +152,9 @@
                             <Binding Path="JobNo"
                                      UpdateSourceTrigger="Explicit" >
                                 <Binding.ValidationRules>
-                                    <validation:ValidationRuleForMandatory />
-                                    <validation:ValidationRuleForNumberType FieldName="{x:Static fa:FieldicJob.JobNo}" />
-                                    <validation:ValidationRuleForNonNegativeNumber
+                                    <validationRule:ValidationRuleForMandatory />
+                                    <validationRule:ValidationRuleForNumberType FieldName="{x:Static fa:FieldicJob.JobNo}" />
+                                    <validationRule:ValidationRuleForNonNegativeNumber
                                         FieldName="{x:Static fa:FieldicJob.JobNo}" />
                                 </Binding.ValidationRules>
                             </Binding>
@@ -167,7 +167,7 @@
                             <Binding Path="Title"
                                      UpdateSourceTrigger="Explicit" >
                                 <Binding.ValidationRules>
-                                    <validation:ValidationRuleForMandatory />
+                                    <validationRule:ValidationRuleForMandatory />
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
@@ -187,7 +187,7 @@
         <StatusBar Grid.Column="0"
                    Grid.Row="3"
                    Grid.ColumnSpan="4" >
-            <uc:UcFormStateLabel x:Name="SmpUcFormStateLabel" />
+            <userControls:UcFormStateLabel x:Name="SmpUcFormStateLabel" />
         </StatusBar>
     </Grid>
 </UserControl>

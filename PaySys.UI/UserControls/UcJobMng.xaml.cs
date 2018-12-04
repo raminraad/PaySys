@@ -1,26 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using PaySys.CalcLib.ExtensionMethods;
 using PaySys.Globalization;
-using PaySys.ModelAndBindLib.Engine;
-using PaySys.ModelAndBindLib.Entities;
-using PaySys.ModelAndBindLib.Enums;
 
-namespace PaySys.UI.UC
+using PaySys.Model.Entities;
+using PaySys.Model.EntityFramework;
+using PaySys.Model.Enums;
+using PaySys.Model.ExtensionMethods;
+using PaySys.Model.Validation.INotifyDataErrorInfo;
+
+namespace PaySys.UI.UserControls
 {
     /// <summary>
     /// Interaction logic for UcJobMng.xaml

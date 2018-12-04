@@ -1,21 +1,19 @@
 ﻿#region
-
-using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using PaySys.Globalization;
-using PaySys.ModelAndBindLib;
-using PaySys.ModelAndBindLib.Engine;
-using PaySys.ModelAndBindLib.Entities;
-using PaySys.ModelAndBindLib.Enums;
-using PaySys.UI.Commands;
 
+using PaySys.Model.Entities;
+using PaySys.Model.EntityFramework;
+using PaySys.Model.Enums;
+using PaySys.Model.Static;
+using PaySys.UI.Commands;
 #endregion
 
-namespace PaySys.UI.UC
+namespace PaySys.UI.UserControls
 {
 	public partial class UcMiscRechargeMng : UserControl
 	{
@@ -104,7 +102,7 @@ namespace PaySys.UI.UC
 			SmpUcMiscRechargesOfOneMisc.DataContext = sg;
 		}
 
-		private void UcMiscRechargeMng_OnInitialized( object sender, EventArgs e )
+		private void UcMiscRechargeMng_OnInitialized( object sender, System.EventArgs e )
 		{
 			Reload(null,null);
 			SmpUcFormStateLabel.CurrentState = FormCurrentState.Select;
