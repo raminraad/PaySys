@@ -160,6 +160,15 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to انجام محاسبات حقوق.
+        /// </summary>
+        public static string CalculatePayslip {
+            get {
+                return ResourceManager.GetString("CalculatePayslip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to انصراف.
         /// </summary>
         public static string Cancel {

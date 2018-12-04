@@ -229,5 +229,19 @@ namespace PaySys.UI.UC
         {
             Reload();
         }
+
+        private void CalculatePayslip_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = SmpUcFormStateLabel.EnabledOfCrudButtons;
+        }
+
+        private void CalculatePayslip_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+//            var currentSubGroup = DataGridSubGroups.SelectedItem as SubGroup;
+//            foreach (var employee in currentSubGroup.ContractMasters.Where(m => m.IsCurrent).Select(m => m.Employee).ToList())
+//            {
+//                employee.MiscValueForEmployees.
+//            }
+        }
     }
 }

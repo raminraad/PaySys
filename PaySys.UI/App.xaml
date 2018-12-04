@@ -360,7 +360,7 @@
                 <Setter Property="BorderBrush"
                         Value="{StaticResource ColorOfEditUserControlsBorder}" />
                 <Setter Property="CornerRadius"
-                        Value="10" />
+                        Value="1" />
                 <Setter Property="Background"
                         Value="{StaticResource ColorOfEditUserControlsBackground}" />
                 <Setter Property="Padding"
@@ -378,7 +378,7 @@
                 <Setter Property="Margin"
                         Value="{StaticResource MarginOfDetail}" />
             </Style>
-            <Style x:Key="StyleOfParentTabItem"
+            <Style x:Key="StyleOfParentTabItem_Obsolete"
                    TargetType="TabItem" >
                 <Setter Property="FontFamily"
                         Value="{StaticResource FontFamilyOfTabHeader}" />
@@ -424,6 +424,51 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+            <Style x:Key="StyleOfParentTabItem"
+                   TargetType="TabItem" >
+                <Setter Property="FontFamily"
+                        Value="{StaticResource FontFamilyOfTabHeader}" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource FontSizeOfTabHeader}" />
+                <Setter Property="VerticalAlignment"
+                        Value="Bottom" />
+                <Setter Property="Height"
+                        Value="26" />
+                <Setter Property="Template" >
+                    <Setter.Value>
+                        <ControlTemplate TargetType="TabItem" >
+                            <Border Name="Border"
+                                    BorderThickness="1,1,1,0"
+                                    BorderBrush="DimGray"
+                                    Margin="0,0,0,-2" >
+                                <ContentPresenter x:Name="ContentSite"
+                                                  VerticalAlignment="Center"
+                                                  ContentSource="Header"
+                                                  Width="Auto"
+                                                  Margin="4,0" />
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsSelected"
+                                         Value="True" >
+                                    <Setter TargetName="Border"
+                                            Property="Background"
+                                            Value="{StaticResource ColorOfParentTabItemHeaderSelected}" />
+                                    <Setter Property="Height"
+                                            Value="27" />
+                                </Trigger>
+                                <Trigger Property="IsSelected"
+                                         Value="False" >
+                                    <Setter TargetName="Border"
+                                            Property="Background"
+                                            Value="{StaticResource ColorOfTabItemHeaderUnselected}" />
+                                    <Setter Property="Margin"
+                                            Value="0,0,0,0" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
             <Style x:Key="StyleOfChildTabControl"
                    TargetType="TabControl" >
                 <Setter Property="BorderBrush"
@@ -435,7 +480,7 @@
                 <Setter Property="Margin"
                         Value="{StaticResource MarginOfDetail}" />
             </Style>
-            <Style x:Key="StyleOfChildTabItem"
+            <Style x:Key="StyleOfChildTabItem_Obsolete"
                    TargetType="TabItem" >
                 <Setter Property="FontFamily"
                         Value="{StaticResource FontFamilyOfTabHeader}" />
@@ -481,7 +526,51 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-
+            <Style x:Key="StyleOfChildTabItem"
+                   TargetType="TabItem" >
+                <Setter Property="FontFamily"
+                        Value="{StaticResource FontFamilyOfTabHeader}" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource FontSizeOfTabHeader}" />
+                <Setter Property="VerticalAlignment"
+                        Value="Bottom" />
+                <Setter Property="Height"
+                        Value="26" />
+                <Setter Property="Template" >
+                    <Setter.Value>
+                        <ControlTemplate TargetType="TabItem" >
+                            <Border Name="Border"
+                                    BorderThickness="1,1,1,0"
+                                    BorderBrush="DimGray"
+                                    CornerRadius="0"
+                                    Margin="0,0,0,-2" >
+                                <ContentPresenter x:Name="ContentSite"
+                                                  VerticalAlignment="Center"
+                                                  ContentSource="Header"
+                                                  Width="Auto"
+                                                  Margin="4,0" />
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsSelected"
+                                         Value="True" >
+                                    <Setter TargetName="Border"
+                                            Property="Background"
+                                            Value="{StaticResource ColorOfChildTabItemHeaderSelected}" />
+                                    <Setter Property="Height"
+                                            Value="27" />
+                                </Trigger>
+                                <Trigger Property="IsSelected"
+                                         Value="False" >
+                                    <Setter TargetName="Border"
+                                            Property="Background"
+                                            Value="{StaticResource ColorOfTabItemHeaderUnselected}" />
+                                    
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
             <Style x:Key="StyleOfGridSplitter"
                    TargetType="GridSplitter" >
                 <Setter Property="ShowsPreview"

@@ -16,6 +16,8 @@
 
     <BitmapImage x:Key="icon_reload" UriSource="../Assets/Icons/Licorice/icon_blue_double_reload.png" />
 
+    <BitmapImage x:Key="icon_calculator" UriSource="../Assets/Icons/Licorice/icon_calculator.png" />
+
     <BitmapImage x:Key="icon_file_browse" UriSource="../Assets/Icons/Licorice/icon_file_browse.png" />
     <BitmapImage x:Key="icon_file_clear" UriSource="../Assets/Icons/Licorice/icon_file_clear.png" />
 

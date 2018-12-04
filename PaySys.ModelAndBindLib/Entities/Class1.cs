@@ -787,6 +787,11 @@ namespace PaySys.ModelAndBindLib.Entities
             get => PhotoStream.ToImage();
         }
 
+        [NotMapped]
+        public List<MiscValueForEmployee> CurrentMiscValues => MiscValueForEmployees.Where(valForEmp =>
+                valForEmp.Misc.Year == PaySysSetting.CurrentYear && valForEmp.Misc.Month == PaySysSetting.CurrentMonth)
+            .ToList();
+
         public virtual List<ContractMaster> ContractMasters { get; set; }
 
         public virtual List<MiscRecharge> MiscRecharges { get; set; }

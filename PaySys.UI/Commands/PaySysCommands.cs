@@ -62,5 +62,12 @@ namespace PaySys.UI.Commands
             typeof(PaySysCommands), null);
         #endregion
 
+
+        #region Application Operations
+        public static RoutedUICommand CalculatePayslip { get; } = new RoutedUICommand("Perform calculations related to payslip", nameof(CalculatePayslip),
+            typeof(PaySysCommands), new InputGestureCollection { new KeyGesture(Key.F12) });
+        #endregion
+
+
     }
 }

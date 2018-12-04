@@ -88,6 +88,15 @@ namespace PaySys.Globalization.Fa {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to انجام محاسبات حقوق (F12).
+        /// </summary>
+        public static string ButtonCalculatePayslip {
+            get {
+                return ResourceManager.GetString("ButtonCalculatePayslip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to پاک کردن فیلتر.
         /// </summary>
         public static string ButtonClearLookup {

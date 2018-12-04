@@ -486,4 +486,7 @@
   <data name="MiscPaymentTitles" xml:space="preserve">
     <value>عناوین پرداخت های متفرقه</value>
   </data>
+  <data name="CalculatePayslip" xml:space="preserve">
+    <value>انجام محاسبات حقوق</value>
+  </data>
 </root>

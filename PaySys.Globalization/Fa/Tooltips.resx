@@ -126,6 +126,9 @@
   <data name="ButtonAddToList" xml:space="preserve">
     <value>افزودن به لیست (Ctrl+I)</value>
   </data>
+  <data name="ButtonCalculatePayslip" xml:space="preserve">
+    <value>انجام محاسبات حقوق (F12)</value>
+  </data>
   <data name="ButtonClearLookup" xml:space="preserve">
     <value>پاک کردن فیلتر</value>
   </data>

@@ -92,6 +92,13 @@
                 Value="{x:Static fa:Tooltips.ButtonReload}" />
     </Style>
 
+    <Style x:Key="StyleOfToolbarButtonCalculatePayslip"
+           TargetType="Button"
+           BasedOn="{StaticResource StyleOfToolbarButton}" >
+        <Setter Property="ToolTip"
+                Value="{x:Static fa:Tooltips.ButtonCalculatePayslip}" />
+    </Style>
+
     <Style x:Key="StyleOfToolbarButtonImage"
            TargetType="Image" >
         <Setter Property="Height"
@@ -191,13 +198,28 @@
 
     <ControlTemplate x:Key="TemplateOfToolbarButtonReload" >
         <Button Name="ButtonReload"
-                Style="{StaticResource StyleOfToolbarButton}"
+                Style="{StaticResource StyleOfToolbarButtonReload}"
                 Command="commands:PaySysCommands.Reload" >
             <Button.Content>
                 <StackPanel Orientation="Vertical" >
                     <Image Source="{StaticResource icon_reload}"
                            Style="{StaticResource StyleOfToolbarButtonImage}" />
                     <TextBlock Text="{x:Static fa:Labels.Reload}"
+                               Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
+                </StackPanel>
+            </Button.Content>
+        </Button>
+    </ControlTemplate>
+    <ControlTemplate x:Key="TemplateOfToolbarButtonCalculatePayslip" >
+        <Button Name="ButtonCalculate"
+                Style="{StaticResource StyleOfToolbarButtonCalculatePayslip}"
+                Width="Auto"
+                Command="commands:PaySysCommands.CalculatePayslip" >
+            <Button.Content>
+                <StackPanel Orientation="Vertical" >
+                    <Image Source="{StaticResource icon_calculator}"
+                           Style="{StaticResource StyleOfToolbarButtonImage}" />
+                    <TextBlock Text="{x:Static fa:Labels.CalculatePayslip}"
                                Style="{StaticResource StyleOfToolbarButtonTextBlock}" />
                 </StackPanel>
             </Button.Content>
